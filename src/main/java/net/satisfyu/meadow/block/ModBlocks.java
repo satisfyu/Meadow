@@ -2,7 +2,9 @@ package net.satisfyu.meadow.block;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Blocks;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.custom.OatCropBlock;
 import net.satisfyu.meadow.item.ModItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -19,6 +21,23 @@ public class ModBlocks {
             new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
                     UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block OAT_CROP = registerBlockWithoutItem("eggplant_crop",
+            new OatCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
+
+
+
+
+
+
+
+
+
+
+
+
+    private static Block registerBlockWithoutItem(String oat_crop, OatCropBlock eggplantCropBlock) {
+        return null;
+    }
 
 
     private static Block registerBlock(String name, Block block, ItemGroup tab) {
