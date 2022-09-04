@@ -1,29 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
-  "version": "${version}",
+  "id": "meadow",
+  "version": "1.19",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Meadow",
+  "description": "A small mod Vanilla+ Mod that aims to improve the meadow biome and adds a new way to create food. It also brings back a few animals from Minecraft:Earth and gives them a reason to be there beside of looking pretty.",
   "authors": [
-    "Me!"
+    "satisfyu"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
 
-  "license": "CC0-1.0",
+  "license": "ARR",
   "icon": "assets/modid/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.satisfyu.meadow.Meadow"
+    ],
+    "client": [
+      "net.satisfyu.meadow.MeadowClient"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "meadow.mixins.json"
   ],
 
   "depends": {
