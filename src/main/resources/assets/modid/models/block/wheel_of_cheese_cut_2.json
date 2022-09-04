@@ -1,0 +1,23 @@
+{
+	"credit": "Made by Satisfy",
+	"texture_size": [24, 24],
+	"textures": {
+		"0": "meadow:block/cheese_cut",
+		"particle": "meadow:block/cheese_cut"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 4],
+			"to": [8, 4, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [5.35467, 5.35467, 7.97867, 7.97867], "texture": "#0"},
+				"east": {"uv": [0.02133, 5.35467, 5.33333, 7.97867], "texture": "#0"},
+				"south": {"uv": [13.35467, 5.35467, 15.97867, 7.97867], "texture": "#0"},
+				"west": {"uv": [8.02133, 5.35467, 13.33333, 7.97867], "texture": "#0"},
+				"up": {"uv": [7.97867, 5.33333, 5.35467, 0.02133], "texture": "#0"},
+				"down": {"uv": [10.64533, 0.02133, 8.02133, 5.33333], "texture": "#0"}
+			}
+		}
+	]
+}
