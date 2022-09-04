@@ -20,7 +20,7 @@ public class ModBlocks {
                     UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
 
 
-    
+
     private static Block registerBlock(String name, Block block, ItemGroup tab) {
         registerBlockItem(name, block, tab);
         return Registry.register(Registry.BLOCK, new Identifier(Meadow.MOD_ID, name), block);
