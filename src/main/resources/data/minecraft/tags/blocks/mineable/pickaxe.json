@@ -28,6 +28,14 @@
     "meadow:stove_tiles_lid",
     "meadow:stove_tiles_wood_on",
     "meadow:stove_tiles_wood",
-    "meadow:stove_tiles"
+    "meadow:stove_tiles",
+    "meadow:limestone_bricks",
+    "meadow:mossy_limestone_bricks",
+    "meadow:cracked_limestone_bricks",
+    "meadow:chiseled_limestone_bricks",
+    "meadow:limestone",
+    "meadow:cobbled_limestone",
+    "meadow:mossy_cobbled_limestone",
+    "meadow:polished_limestone"
   ]
 }
