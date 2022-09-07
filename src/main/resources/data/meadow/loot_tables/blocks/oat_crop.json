@@ -15,7 +15,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "meadow:oat_crop",
                   "properties": {
-                    "age": "6"
+                    "age": "4"
                   }
                 }
               ],
@@ -54,7 +54,7 @@
           "condition": "minecraft:block_state_property",
           "block": "meadow:oat_crop",
           "properties": {
-            "age": "6"
+            "age": "4"
           }
         }
       ]
