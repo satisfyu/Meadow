@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "id": "meadow",
-  "version": "1.19",
-
+  "version": "1.0.0",
   "name": "Meadow",
   "description": "A small mod Vanilla+ Mod that aims to improve the meadow biome and adds a new way to create food. It also brings back a few animals from Minecraft:Earth and gives them a reason to be there beside of looking pretty.",
   "authors": [
-    "satisfyu"
+    "satisfyu",
+    "Cristelknight999"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -14,7 +14,7 @@
   },
 
   "license": "ARR",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/meadow/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -34,8 +34,5 @@
     "fabric-api": "*",
     "minecraft": "~1.19",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
