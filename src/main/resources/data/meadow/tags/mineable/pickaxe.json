@@ -1,6 +1,33 @@
 {
   "values": [
     "meadow:alpine_salt_ore",
-    ""
+    "meadow:can",
+    "meadow:can_milk",
+    "meadow:can_water",
+    "meadow:climbing_rope_topmount",
+    "meadow:cooking_cauldron",
+    "meadow:cooking_cauldron_buffalo_stage_0",
+    "meadow:cooking_cauldron_sheep_stage_0",
+    "meadow:cooking_cauldron_oat_stage_0",
+    "meadow:cooking_cauldron_goat_stage_0",
+    "meadow:cooking_cauldron_herbs_stage_0",
+    "meadow:cooking_cauldron_lavender_stage_0",
+    "meadow:cooking_cauldron_buffalo_stage_0",
+    "meadow:cooking_cauldron_buffalo_stage_1",
+    "meadow:cooking_cauldron_sheep_stage_1",
+    "meadow:cooking_cauldron_oat_stage_1",
+    "meadow:cooking_cauldron_goat_stage_1",
+    "meadow:cooking_cauldron_herbs_stage_1",
+    "meadow:cooking_cauldron_lavender_stage_1",
+    "meadow:cooking_cauldron_buffalo_stage_1",
+    "meadow:flower_pot",
+    "meadow:furnace_cobblestone",
+    "meadow:oil_lantern",
+    "meadow:oil_lantern_hanging",
+    "meadow:stove_tiles_bench",
+    "meadow:stove_tiles_lid",
+    "meadow:stove_tiles_wood_on",
+    "meadow:stove_tiles_wood",
+    "meadow:stove_tiles"
   ]
 }
