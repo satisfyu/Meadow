@@ -36,7 +36,8 @@ public class ModBlocks {
 
 
     private static Block registerBlockWithoutItem(String oat_crop, OatCropBlock eggplantCropBlock) {
-        return null;
+
+        return Registry.register(Registry.BLOCK, oat_crop, eggplantCropBlock);
     }
 
 
