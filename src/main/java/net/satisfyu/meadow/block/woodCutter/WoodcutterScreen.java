@@ -7,6 +7,7 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -111,7 +112,7 @@ public class WoodcutterScreen extends HandledScreen<WoodcuttorScreenHandler> {
                 double d = mouseX - (double)(i + m % 4 * 16);
                 double e = mouseY - (double)(j + m / 4 * 18);
                 if (!(d >= 0.0) || !(e >= 0.0) || !(d < 16.0) || !(e < 18.0) || !this.handler.onButtonClick(this.client.player, l)) continue;
-                MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(ModSounds.WOODCUTTER, 1.0f));
+                MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0f));
                 this.client.interactionManager.clickButton(this.handler.syncId, l);
                 return true;
             }

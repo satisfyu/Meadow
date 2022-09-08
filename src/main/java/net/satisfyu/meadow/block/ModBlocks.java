@@ -77,7 +77,7 @@ public class ModBlocks {
             new Block(settings()), ModItemGroup.ALPINE_SALT);
 
     public static final Block WOODCUTTER = registerBlock("woodcutter",
-            new WoodcutterBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F)), ModItemGroup.ALPINE_SALT);
+            new WoodcutterBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
 
     private static FabricBlockSettings settings(){
