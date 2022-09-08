@@ -4,5 +4,11 @@
   "block.meadow.alpine_grass": "Alpine Grass",
   "block.meadow.alpine_grass": "Alpine Grass",
 
-  "itemGroup.meadow.alpine_salt": "Meadow"
+  "itemGroup.meadow.alpine_salt": "Meadow",
+
+  "subtitles.meadow.slurping_bowl.ogg": "Slurping Bowl",
+
+  "subtitles.meadow.click_camera.ogg": "Clicking Camera",
+
+  "container.woodcutter": "Woodcutter"
 }

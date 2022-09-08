@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "fluid=0": {
+      "model": "meadow:block/can"
+    },
+    "fluid=1": {
+      "model": "meadow:block/can_milk"
+    },
+    "fluid=2": {
+      "model": "meadow:block/can_water"
+    }
+  }
+}

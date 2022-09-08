@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "meadow:block/bowl_mozzarella",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "meadow:block/bowl_mozzarella"
+    },
+    "facing=south": {
+      "model": "meadow:block/bowl_mozzarella",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "meadow:block/bowl_mozzarella",
+      "y": 270
+    }
+  }
+}
