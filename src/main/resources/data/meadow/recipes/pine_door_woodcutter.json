@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "item": "meadow:pine_log"
+  },
+  "outputItem": "meadow:pine_door",
+  "outputAmount": 1
+}

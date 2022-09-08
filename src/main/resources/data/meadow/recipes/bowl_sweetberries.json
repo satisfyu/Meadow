@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#S"
+    ],
+    "key": {
+        "#": {
+            "item": "meadow:bowl_milk"
+        },
+        "S": {
+            "item": "minecraft:sweet_berries"
+        }
+    },
+    "result": {
+        "item": "meadow:bowl_sweetberries",
+        "count": 1
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "item": "minecraft:warped_log"
+  },
+  "outputItem": "minecraft:warped_button",
+  "outputAmount": 6
+}

@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "item": "minecraft:dark_oak_log"
+  },
+  "outputItem": "minecraft:dark_boak_trapdoor",
+  "outputAmount": 2
+}}

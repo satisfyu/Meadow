@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "item": "minecraft:spruce_log"
+  },
+  "outputItem": "minecraft:spruce_button",
+  "outputAmount": 6
+}

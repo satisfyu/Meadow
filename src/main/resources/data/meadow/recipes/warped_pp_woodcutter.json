@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "item": "minecraft:warped_log"
+  },
+  "outputItem": "minecraft:warped_pressure_plate",
+  "outputAmount": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "item": "minecraft:warped_log"
+  },
+  "outputItem": "minecraft:warped_fence_gate",
+  "outputAmount": 1
+}

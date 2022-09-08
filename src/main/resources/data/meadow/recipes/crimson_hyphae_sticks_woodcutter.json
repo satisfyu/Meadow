@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "item": "minecraft:crimson_hyphae_log"
+  },
+  "outputItem": "minecraft:stick",
+  "outputAmount": 10
+}

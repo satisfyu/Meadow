@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#W"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:bowl"
+        },
+        "W": {
+            "item": "minecraft:wheat"
+        }
+    },
+    "result": {
+        "item": "minecraft:bowl",
+        "count": 1
+    }
+}

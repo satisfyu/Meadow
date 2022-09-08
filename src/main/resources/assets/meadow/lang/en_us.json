@@ -1,6 +1,8 @@
 {
   "item.meadow.alpine_salt": "Alpine Salt",
   "block.meadow.alpine_salt_ore": "Alpine Salt Ore",
+  "block.meadow.alpine_grass": "Alpine Grass",
+  "block.meadow.alpine_grass": "Alpine Grass",
 
   "itemGroup.meadow.alpine_salt": "Meadow"
 }
