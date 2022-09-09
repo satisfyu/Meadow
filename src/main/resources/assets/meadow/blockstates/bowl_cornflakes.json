@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "meadow:block/bowl_cornflakes",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "meadow:block/bowl_cornflakes"
+    },
+    "facing=south": {
+      "model": "meadow:block/bowl_cornflakes",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "meadow:block/bowl_cornflakes",
+      "y": 270
+    }
+  }
+}

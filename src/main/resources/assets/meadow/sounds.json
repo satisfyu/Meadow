@@ -1,0 +1,26 @@
+{
+  "slurping_bowl": {
+    "subtitle": "subtitles.meadow.slurping_bowl",
+    "sounds": [
+      "meadow:slurping_bowl"
+    ]
+  },
+  "woodcutter": {
+    "subtitle": "subtitles.meadow.woodcutter",
+    "sounds": [
+      "meadow:woodcutter"
+    ]
+  },
+  "click_camera": {
+    "subtitle": "subtitles.meadow.click_camera",
+    "sounds": [
+      "meadow:click_camera"
+    ]
+  },
+  "click_camera2": {
+    "subtitle": "subtitles.meadow.click_camera",
+    "sounds": [
+      "meadow:click_camera2"
+    ]
+  }
+}
