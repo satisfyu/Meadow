@@ -3,12 +3,11 @@
 	"parent": "block/block",
 	"ambientocclusion": false,
 	"textures": {
-		"3": "meadow:fondue_side",
-		"4": "fondue_2",
-		"6": "block/campfire_fire",
+		"3": "meadow:block/fondue_pan",
+		"4": "meadow:block/fondue_roster",
+		"6": "meadow:block/campfire_fire",
 		"7": "meadow:block/campfire_log",
-		"8": "fondue_cheese",
-		"particle": "meadow:block/chesse_mass_goat"
+		"8": "meadow:block/fondue_cheese"
 	},
 	"elements": [
 		{
