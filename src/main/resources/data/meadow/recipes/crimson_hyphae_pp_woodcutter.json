@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
   "inputItem": {
-    "item": "minecraft:crimson_hyphae_log"
+    "item": "minecraft:crimson_stem"
   },
-  "outputItem": "minecraft:crimson_hyphae_pressure_plate",
+  "outputItem": "minecraft:crimson_pressure_plate",
   "outputAmount": 1
 }

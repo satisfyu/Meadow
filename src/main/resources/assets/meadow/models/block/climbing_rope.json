@@ -2,6 +2,7 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"1": "meadow:block/climbing_rope"
+		"particle": "meadow:block/climbing_rope"
 	},
 	"elements": [
 		{
@@ -17,5 +18,6 @@
 				"down": {"uv": [11, 4, 13, 6], "texture": "#1", "cullface": "down"}
 			}
 		}
-	]
+	],
+	"display": {}
 }

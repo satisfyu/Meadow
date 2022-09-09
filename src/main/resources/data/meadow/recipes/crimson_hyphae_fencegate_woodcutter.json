@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
   "inputItem": {
-    "item": "minecraft:crimson_hyphae_log"
+    "item": "minecraft:crimson_stem"
   },
-  "outputItem": "minecraft:crimson_hyphae_fence_gate",
+  "outputItem": "minecraft:crimson_fence_gate",
   "outputAmount": 1
 }
