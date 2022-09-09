@@ -2,12 +2,12 @@
 	"credit": "Made by Satisfy",
 	"ambientocclusion": false,
 	"textures": {
-		"top": "block/cauldron_top",
+		"top": "meadow:block/wooden_cauldron_top",
 		"bottom": "meadow:block/cauldron_bottom",
 		"particle": "meadow:block/wooden_cauldron_side",
 		"side": "meadow:block/wooden_cauldron_side",
 		"inside": "meadow:block/wooden_cauldron_inner",
-		"content": "meadow:block/powder_snow"
+		"content": "block/powder_snow"
 	},
 	"elements": [
 		{

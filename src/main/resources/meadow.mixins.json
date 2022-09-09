@@ -4,6 +4,7 @@
   "package": "net.satisfyu.meadow.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "FluidDecrementMixin",
     "ItemsMixin",
     "SpawnMobAccessor"
   ],
