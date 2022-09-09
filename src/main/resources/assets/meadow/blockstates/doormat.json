@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "meadow:block/doormat",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "meadow:block/doormat",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "meadow:block/doormat"
+    },
+    "facing=west": {
+      "model": "meadow:block/doormat",
+      "y": 90
+    }
+  }
+}
