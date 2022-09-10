@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "meadow:block/oil_lantern"
+    },
+    "hanging=true": {
+      "model": "meadow:block/oil_lantern_hanging"
+    }
+  }
+}

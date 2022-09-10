@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "var=0": {
+      "model": "meadow:block/limestone_bricks_1"
+    },
+    "var=1": {
+      "model": "meadow:block/limestone_bricks_2"
+    }
+  }
+}
