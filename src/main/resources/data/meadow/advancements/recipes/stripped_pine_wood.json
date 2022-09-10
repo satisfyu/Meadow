@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "vinery:stripped_cherry_wood"
+      "vinery:stripped_pine_wood"
     ]
   },
   "criteria": {
-    "has_stripped_cherry_log": {
+    "has_stripped_pine_log": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "vinery:stripped_cherry_log"
+              "vinery:stripped_pine_log"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:stripped_cherry_wood"
+        "recipe": "vinery:stripped_pine_wood"
       }
     }
   },
   "requirements": [
     [
-      "has_stripped_cherry_log",
+      "has_stripped_pine_log",
       "has_the_recipe"
     ]
   ]
