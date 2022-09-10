@@ -3,7 +3,7 @@
 	"textures": {
 		"0": "meadow:block/can_side",
 		"1": "meadow:block/can_bottom",
-		"2": "block/water_still",
+		"2": "meadow:block/water_still",
 		"particle": "meadow:block/can_side"
 	},
 	"elements": [
