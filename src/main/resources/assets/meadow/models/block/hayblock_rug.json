@@ -3,7 +3,8 @@
 	"parent": "block/thin_block",
 	"textures": {
 		"1": "meadow:block/hayblock_rug",
-		"2": "meadow:block/hayblock_rug_main"
+		"2": "meadow:block/hayblock_rug_main",
+		"particle": "meadow:block/hayblock_rug"
 	},
 	"elements": [
 		{
@@ -69,10 +70,12 @@
 		},
 		"firstperson_righthand": {
 			"rotation": [0, 45, 0],
+			"translation": [0, 3, 0],
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, 225, 0],
+			"rotation": [0, 45, 0],
+			"translation": [0, 3, 0],
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"ground": {
