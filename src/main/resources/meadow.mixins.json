@@ -9,6 +9,7 @@
     "ItemsMixin",
     "SignBlockEntityMixin",
     "SignTypeAccessor",
+    "SmokerRecipeMixin",
     "SpawnMobAccessor"
   ],
   "client": [
