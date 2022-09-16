@@ -7,10 +7,12 @@
     "BlockEntityTypeMixin",
     "FluidDecrementMixin",
     "ItemsMixin",
-    "SignBlockEntityMixin",
     "SignTypeAccessor",
     "SmokerRecipeMixin",
-    "SpawnMobAccessor"
+    "SpawnMobAccessor",
+    "entity.CowMixin",
+    "entity.GoatMixin",
+    "entity.SheepMixin"
   ],
   "client": [
   ],
