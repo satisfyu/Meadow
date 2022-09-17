@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "meadow:item/oat_cheese_mass"
+    "layer0": "meadow:item/bucket_cheese_mass_sheep"
   }
 }

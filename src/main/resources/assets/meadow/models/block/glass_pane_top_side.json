@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/template_glass_pane_side",
   "textures": {
-    "pane": "meadow:block/window_bottom",
+    "pane": "meadow:block/window_top_a",
     "edge": "meadow:block/window_pane_top"
   }
 }
