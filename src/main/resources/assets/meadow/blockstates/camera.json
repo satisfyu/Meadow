@@ -1,5 +1,19 @@
 {
   "variants": {
-    "": { "model": "meadow:block/camera" }
+    "facing=east": {
+      "model": "meadow:block/camera",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "meadow:block/camera"
+    },
+    "facing=south": {
+      "model": "meadow:block/camera",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "meadow:block/camera",
+      "y": 270
+    }
   }
 }

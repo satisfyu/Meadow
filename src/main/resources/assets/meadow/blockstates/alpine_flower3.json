@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "var=0": {
+      "model": "meadow:block/alpine_flower3_v1"
+    },
+    "var=1": {
+      "model": "meadow:block/alpine_flower3_v2"
+    },
+    "var=2": {
+      "model": "meadow:block/alpine_flower3_v3"
+    }
+  }
+}

@@ -1,17 +1,6 @@
 {
-	"credit": "Made by Satisfy",
-	"ambientocclusion": false,
-	"textures": {
-		"particle": "meadow:block/window_pane_top",
-		"pane": "meadow:block/window_pane_top"
-	},
-	"elements": [
-		{
-			"from": [7, 0, 7],
-			"to": [9, 16, 9],
-			"faces": {
-				"north": {"uv": [9, 0, 7, 16], "texture": "#pane"}
-			}
-		}
-	]
+  "parent": "minecraft:block/template_glass_pane_noside",
+  "textures": {
+    "pane": "meadow:block/window_main"
+  }
 }
