@@ -22,5 +22,11 @@
     "sounds": [
       "meadow:click_camera2"
     ]
+  },
+  "cooking_cauldron": {
+    "subtitle": "subtitles.meadow.cooking_cauldron",
+    "sounds": [
+      "meadow:cooking_cauldron"
+    ]
   }
 }

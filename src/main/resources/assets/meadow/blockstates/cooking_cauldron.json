@@ -13,13 +13,16 @@
       "model": "meadow:block/cooking_cauldron_goat_stage_0"
     },
     "hanging=false,var=4,done=false,facing=north": {
-      "model": "meadow:block/cooking_cauldron_herbs_stage_0"
+      "model": "meadow:block/cooking_cauldron_lavender_stage_0"
     },
     "hanging=false,var=5,done=false,facing=north": {
       "model": "meadow:block/cooking_cauldron_oat_stage_0"
     },
     "hanging=false,var=6,done=false,facing=north": {
       "model": "meadow:block/cooking_cauldron_sheep_stage_0"
+    },
+    "hanging=false,var=7,done=false,facing=north": {
+      "model": "meadow:block/cooking_cauldron_herbs_stage_0"
     },
     "hanging=false,var=0,done=true,facing=north": {
       "model": "meadow:block/cooking_cauldron"
@@ -34,13 +37,16 @@
       "model": "meadow:block/cooking_cauldron_goat_stage_1"
     },
     "hanging=false,var=4,done=true,facing=north": {
-      "model": "meadow:block/cooking_cauldron_herbs_stage_1"
+      "model": "meadow:block/cooking_cauldron_lavender_stage_1"
     },
     "hanging=false,var=5,done=true,facing=north": {
       "model": "meadow:block/cooking_cauldron_oat_stage_1"
     },
     "hanging=false,var=6,done=true,facing=north": {
       "model": "meadow:block/cooking_cauldron_sheep_stage_1"
+    },
+    "hanging=false,var=7,done=true,facing=north": {
+      "model": "meadow:block/cooking_cauldron_herbs_stage_1"
     },
     "hanging=true,var=0,done=false,facing=north": {
       "model": "meadow:block/frame_cauldron"
@@ -63,6 +69,9 @@
     "hanging=true,var=6,done=false,facing=north": {
       "model": "meadow:block/frame_cauldron_sheep_stage_0"
     },
+    "hanging=true,var=7,done=false,facing=north": {
+      "model": "meadow:block/frame_cauldron_herbs_stage_0"
+    },
     "hanging=true,var=0,done=true,facing=north": {
       "model": "meadow:block/frame_cauldron"
     },
@@ -84,9 +93,9 @@
     "hanging=true,var=6,done=true,facing=north": {
       "model": "meadow:block/frame_cauldron_sheep_stage_1"
     },
-	
-	
-	
+    "hanging=true,var=7,done=true,facing=north": {
+      "model": "meadow:block/frame_cauldron_herbs_stage_1"
+    },
 	"hanging=false,var=0,done=false,facing=east": {
       "model": "meadow:block/cooking_cauldron",
       "y": 90
@@ -104,7 +113,7 @@
       "y": 90
     },
     "hanging=false,var=4,done=false,facing=east": {
-      "model": "meadow:block/cooking_cauldron_herbs_stage_0",
+      "model": "meadow:block/cooking_cauldron_lavender_stage_0",
       "y": 90
     },
     "hanging=false,var=5,done=false,facing=east": {
@@ -113,6 +122,10 @@
     },
     "hanging=false,var=6,done=false,facing=east": {
       "model": "meadow:block/cooking_cauldron_sheep_stage_0",
+      "y": 90
+    },
+    "hanging=false,var=7,done=false,facing=east": {
+      "model": "meadow:block/cooking_cauldron_herbs_stage_0",
       "y": 90
     },
     "hanging=false,var=0,done=true,facing=east": {
@@ -132,7 +145,7 @@
       "y": 90
     },
     "hanging=false,var=4,done=true,facing=east": {
-      "model": "meadow:block/cooking_cauldron_herbs_stage_1",
+      "model": "meadow:block/cooking_cauldron_lavender_stage_1",
       "y": 90
     },
     "hanging=false,var=5,done=true,facing=east": {
@@ -141,6 +154,10 @@
     },
     "hanging=false,var=6,done=true,facing=east": {
       "model": "meadow:block/cooking_cauldron_sheep_stage_1",
+      "y": 90
+    },
+    "hanging=false,var=7,done=true,facing=east": {
+      "model": "meadow:block/cooking_cauldron_herbs_stage_1",
       "y": 90
     },
     "hanging=true,var=0,done=false,facing=east": {
@@ -171,6 +188,10 @@
       "model": "meadow:block/frame_cauldron_sheep_stage_0",
       "y": 90
     },
+    "hanging=true,var=7,done=false,facing=east": {
+      "model": "meadow:block/frame_cauldron_herbs_stage_0",
+      "y": 90
+    },
     "hanging=true,var=0,done=true,facing=east": {
       "model": "meadow:block/frame_cauldron",
       "y": 90
@@ -199,9 +220,10 @@
       "model": "meadow:block/frame_cauldron_sheep_stage_1",
       "y": 90
     },
-	
-	
-	
+    "hanging=true,var=7,done=true,facing=east": {
+      "model": "meadow:block/frame_cauldron_herbs_stage_1",
+      "y": 90
+    },
 	"hanging=false,var=0,done=false,facing=south": {
       "model": "meadow:block/cooking_cauldron",
       "y": 180
@@ -219,7 +241,7 @@
       "y": 180
     },
     "hanging=false,var=4,done=false,facing=south": {
-      "model": "meadow:block/cooking_cauldron_herbs_stage_0",
+      "model": "meadow:block/cooking_cauldron_lavender_stage_0",
       "y": 180
     },
     "hanging=false,var=5,done=false,facing=south": {
@@ -228,6 +250,10 @@
     },
     "hanging=false,var=6,done=false,facing=south": {
       "model": "meadow:block/cooking_cauldron_sheep_stage_0",
+      "y": 180
+    },
+    "hanging=false,var=7,done=false,facing=south": {
+      "model": "meadow:block/cooking_cauldron_herbs_stage_0",
       "y": 180
     },
     "hanging=false,var=0,done=true,facing=south": {
@@ -247,7 +273,7 @@
       "y": 180
     },
     "hanging=false,var=4,done=true,facing=south": {
-      "model": "meadow:block/cooking_cauldron_herbs_stage_1",
+      "model": "meadow:block/cooking_cauldron_lavender_stage_1",
       "y": 180
     },
     "hanging=false,var=5,done=true,facing=south": {
@@ -256,6 +282,10 @@
     },
     "hanging=false,var=6,done=true,facing=south": {
       "model": "meadow:block/cooking_cauldron_sheep_stage_1",
+      "y": 180
+    },
+    "hanging=false,var=7,done=true,facing=south": {
+      "model": "meadow:block/cooking_cauldron_herbs_stage_1",
       "y": 180
     },
     "hanging=true,var=0,done=false,facing=south": {
@@ -286,6 +316,10 @@
       "model": "meadow:block/frame_cauldron_sheep_stage_0",
       "y": 180
     },
+    "hanging=true,var=7,done=false,facing=south": {
+      "model": "meadow:block/frame_cauldron_herbs_stage_0",
+      "y": 180
+    },
     "hanging=true,var=0,done=true,facing=south": {
       "model": "meadow:block/frame_cauldron",
       "y": 180
@@ -314,10 +348,10 @@
       "model": "meadow:block/frame_cauldron_sheep_stage_1",
       "y": 180
     },
-	
-	
-	
-	
+    "hanging=true,var=7,done=true,facing=south": {
+      "model": "meadow:block/frame_cauldron_herbs_stage_1",
+      "y": 180
+    },
 	"hanging=false,var=0,done=false,facing=west": {
       "model": "meadow:block/cooking_cauldron",
       "y": 270
@@ -335,7 +369,7 @@
       "y": 270
     },
     "hanging=false,var=4,done=false,facing=west": {
-      "model": "meadow:block/cooking_cauldron_herbs_stage_0",
+      "model": "meadow:block/cooking_cauldron_lavender_stage_0",
       "y": 270
     },
     "hanging=false,var=5,done=false,facing=west": {
@@ -344,6 +378,10 @@
     },
     "hanging=false,var=6,done=false,facing=west": {
       "model": "meadow:block/cooking_cauldron_sheep_stage_0",
+      "y": 270
+    },
+    "hanging=false,var=7,done=false,facing=west": {
+      "model": "meadow:block/cooking_cauldron_herbs_stage_0",
       "y": 270
     },
     "hanging=false,var=0,done=true,facing=west": {
@@ -363,7 +401,7 @@
       "y": 270
     },
     "hanging=false,var=4,done=true,facing=west": {
-      "model": "meadow:block/cooking_cauldron_herbs_stage_1",
+      "model": "meadow:block/cooking_cauldron_lavender_stage_1",
       "y": 270
     },
     "hanging=false,var=5,done=true,facing=west": {
@@ -372,6 +410,10 @@
     },
     "hanging=false,var=6,done=true,facing=west": {
       "model": "meadow:block/cooking_cauldron_sheep_stage_1",
+      "y": 270
+    },
+    "hanging=false,var=7,done=true,facing=west": {
+      "model": "meadow:block/cooking_cauldron_herbs_stage_1",
       "y": 270
     },
     "hanging=true,var=0,done=false,facing=west": {
@@ -402,6 +444,10 @@
       "model": "meadow:block/frame_cauldron_sheep_stage_0",
       "y": 270
     },
+    "hanging=true,var=7,done=false,facing=west": {
+      "model": "meadow:block/frame_cauldron_herbs_stage_0",
+      "y": 270
+    },
     "hanging=true,var=0,done=true,facing=west": {
       "model": "meadow:block/frame_cauldron",
       "y": 270
@@ -429,7 +475,10 @@
     "hanging=true,var=6,done=true,facing=west": {
       "model": "meadow:block/frame_cauldron_sheep_stage_1",
       "y": 270
+    },
+    "hanging=true,var=7,done=true,facing=west": {
+      "model": "meadow:block/frame_cauldron_herbs_stage_1",
+      "y": 270
     }
-
   }
 }

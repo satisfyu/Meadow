@@ -8,7 +8,6 @@
     "FluidDecrementMixin",
     "ItemsMixin",
     "SignTypeAccessor",
-    "SmokerRecipeMixin",
     "SpawnMobAccessor",
     "entity.CowMixin",
     "entity.GoatMixin",
