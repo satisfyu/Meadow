@@ -1,16 +1,16 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "_ _",
-        "___"
+        "# #",
+        " # "
     ],
     "key": {
-        "_": {
-            "item": "meadow:pine_slab"
+        "#": {
+            "item": "minecraft:glass_bottle"
         }
     },
     "result": {
-        "item": "meadow:cheese_form",
+        "item": "meadow:jug",
         "count": 1
     }
 }

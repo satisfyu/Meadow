@@ -2,16 +2,19 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "i i",
-        "iii",
-        " i "
+        " i ",
+        " L "
     ],
     "key": {
         "i": {
             "item": "minecraft:iron_ingot"
+        },
+        "L": {
+            "item": "minecraft:lead"
         }
     },
     "result": {
-        "item": "meadow:cooking_cauldron,
-        "count": 1
+        "item": "meadow:climbing_rope",
+        "count": 2
     }
 }

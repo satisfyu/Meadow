@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "meadow:limestone"
+    },
+    "result": "meadow:chiseled_limestone_bricks",
+    "group": "limestone",
+    "count": 1
+}

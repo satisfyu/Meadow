@@ -1,16 +1,19 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "_ _",
-        "___"
+        "___",
+        "/ /"
     ],
     "key": {
         "_": {
             "item": "meadow:pine_slab"
+        },
+        "/": {
+            "item": "minecraft:stick"
         }
     },
     "result": {
-        "item": "meadow:cheese_form",
+        "item": "meadow:bench",
         "count": 1
     }
 }

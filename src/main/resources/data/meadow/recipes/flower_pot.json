@@ -1,19 +1,19 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "#",
-        "O"
+        "#B#",
+        " # "
     ],
     "key": {
         "#": {
-            "item": "minecraft:iron_axe"
+            "item": "minecraft:brick"
         },
-        "O": {
-            "item": "meadow:pine_log"
+        "B": {
+            "item": "minecraft:blue_dye"
         }
     },
     "result": {
-        "item": "meadow:woodcutter",
+        "item": "meadow:flower_pot",
         "count": 1
     }
 }

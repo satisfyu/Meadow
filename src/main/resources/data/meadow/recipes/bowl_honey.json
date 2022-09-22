@@ -5,14 +5,14 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:bowl"
+            "item": "meadow:bowl_milk"
         },
         "H": {
             "item": "minecraft:honey_bottle"
         }
     },
     "result": {
-        "item": "minecraft:bowl",
+        "item": "meadow:bowl_honey",
         "count": 1
     }
 }
