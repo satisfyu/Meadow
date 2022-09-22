@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " #",
+        "S#",
+        " #"
+    ],
+    "key": {
+        "#": {
+            "item": "meadow:pine_planks"
+        },
+        "S": {
+            "item": "minecraft:spruce_sapling"
+        }
+    },
+    "result": {
+        "item": "meadow:window_shutter_3",
+        "count": 1
+    }
+}

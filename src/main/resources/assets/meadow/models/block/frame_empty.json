@@ -3,8 +3,8 @@
 	"textures": {
 		"1": "meadow:block/chain",
 		"4": "meadow:block/campfire_log_lit",
-		"5": "meadow_assets:Desktop/campfire_log",
-		"6": "meadow_assets:blocks/frame",
+		"5": "meadow:block/campfire_log",
+		"6": "meadow:block/stripped_pine_log",
 		"7": "meadow:block/campfire_fire",
 		"particle": "meadow:block/chain"
 	},

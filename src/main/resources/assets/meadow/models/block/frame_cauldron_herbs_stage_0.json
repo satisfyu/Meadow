@@ -4,7 +4,7 @@
 		"1": "meadow:block/chain",
 		"4": "meadow:block/campfire_log_lit",
 		"5": "meadow:block/campfire_log",
-		"6": "meadow:block/frame",
+		"6": "meadow:block/stripped_pine_log",
 		"7": "meadow:block/campfire_fire",
 		"8": "meadow:block/copper_block",
 		"9": "meadow:block/cooking_cauldron_inner",
@@ -522,8 +522,8 @@
 		},
 		{
 			"name": "cheese_mass",
-			"from": [4.15, 15.5, 3.12],
-			"to": [11.83, 15.5, 10.8],
+			"from": [4.15, 15.5, 3.4],
+			"to": [11.83, 15.5, 11.08],
 			"rotation": {"angle": 0, "axis": "y", "origin": [1.6, -3.2, 1.6]},
 			"faces": {
 				"north": {"uv": [0.032, 0.032, 0, 0.968], "texture": "#11"},
@@ -544,7 +544,7 @@
 				"east": {"uv": [0.032, 0.032, 0, 0], "texture": "#12"},
 				"south": {"uv": [0.032, 0.032, 0, 0.968], "texture": "#12"},
 				"west": {"uv": [0.032, 0.032, 0, 0], "texture": "#12"},
-				"up": {"uv": [3.32, 2.32, 11, 10], "texture": "#12"},
+				"up": {"uv": [1.32, 1.32, 9, 9], "texture": "#12"},
 				"down": {"uv": [0.032, 0.032, 0, 0], "texture": "#12"}
 			}
 		}
