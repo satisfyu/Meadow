@@ -1,10 +1,8 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"2": "Desktop/table_connected",
-		"particle": "table_top",
-		"top": "table_top",
-		"side": "table"
+		"2": "meadow:block/table_connected_mid",
+		"side": "meadow:block/table"
 	},
 	"elements": [
 		{
@@ -16,7 +14,7 @@
 				"south": {"uv": [0, 0, 16, 3], "texture": "#side"},
 				"west": {"uv": [0, 0, 16, 3], "texture": "#side"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#top"}
+				"down": {"uv": [0, 0, 16, 16], "texture": "#2"}
 			}
 		}
 	],
