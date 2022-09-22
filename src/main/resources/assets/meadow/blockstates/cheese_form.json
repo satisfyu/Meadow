@@ -1,5 +1,55 @@
 {
   "variants": {
-    "": { "model": "meadow:block/cheese_form" }
+    "done=false,var=0": {
+      "model": "meadow:block/cheese_form"
+    },
+    "done=false,var=1": {
+      "model": "meadow:block/cheese_form_filled_buffalo"
+    },
+    "done=true,var=1": {
+      "model": "meadow:block/cheese_form_finished_buffalo"
+    },
+
+    "done=false,var=2": {
+      "model": "meadow:block/cheese_form_filled_cow"
+    },
+    "done=true,var=2": {
+      "model": "meadow:block/cheese_form_finished_cheese"
+    },
+
+    "done=false,var=3": {
+      "model": "meadow:block/cheese_form_filled_goat"
+    },
+    "done=true,var=3": {
+      "model": "meadow:block/cheese_form_finished_goat"
+    },
+
+    "done=false,var=4": {
+      "model": "meadow:block/cheese_form_filled_lavender"
+    },
+    "done=true,var=4": {
+      "model": "meadow:block/cheese_form_finished_lavender"
+    },
+
+    "done=false,var=5": {
+      "model": "meadow:block/cheese_form_filled_oat"
+    },
+    "done=true,var=5": {
+      "model": "meadow:block/cheese_form_finished_oat"
+    },
+
+    "done=false,var=6": {
+      "model": "meadow:block/cheese_form_filled_sheep"
+    },
+    "done=true,var=6": {
+      "model": "meadow:block/cheese_form_finished_sheep"
+    },
+
+    "done=false,var=7": {
+      "model": "meadow:block/cheese_form_filled_herbs"
+    },
+    "done=true,var=7": {
+      "model": "meadow:block/cheese_form_finished_herbs"
+    }
   }
 }
