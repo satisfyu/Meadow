@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:pine_boat"
+      "meadow:limestone"
     ]
   },
   "criteria": {
-    "has_cherry_planks": {
+    "has_cobbled_limestone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:pine_planks"
+              "meadow:cobbled_limestone"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:pine_boat"
+        "recipe": "meadow:limestone"
       }
     }
   },
   "requirements": [
     [
-      "has_cherry_planks",
+      "has_cobbled_limestone",
       "has_the_recipe"
     ]
   ]

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:limestone_bricks"
+    ]
+  },
+  "criteria": {
+    "has_cobbled_limestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:cobbled_limestone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:limestone_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cobbled_limestone",
+      "has_the_recipe"
+    ]
+  ]
+}

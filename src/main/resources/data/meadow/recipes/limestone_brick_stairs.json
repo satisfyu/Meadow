@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
-      "item": "meadow:limestone"
+      "item": "meadow:limestone_bricks"
     }
   },
   "pattern": [
-    "##",
-    "##"
+    "#  ",
+    "## ",
+    "###"
   ],
   "result": {
     "count": 4,
-    "item": "meadow:limestone_bricks"
+    "item": "meadow:limestone_brick_stairs"
   }
 }

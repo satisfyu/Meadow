@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:alpine_grass"
+      "meadow:limestone_bricks_stairs"
     ]
   },
   "criteria": {
-    "has_stone": {
+    "has_cobbled_limestone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:stone"
+              "meadow:cobbled_limestone"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:alpine_grass"
+        "recipe": "meadow:limestone_bricks_stairs"
       }
     }
   },
   "requirements": [
     [
-      "has_stone",
+      "has_cobbled_limestone",
       "has_the_recipe"
     ]
   ]

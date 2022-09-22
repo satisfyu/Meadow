@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AdvancementRecipeGenerator {
 
-    public static String FOLDER = "C:/Users/Admin/Documents/GitHub/meadow/src/main/resources/data/meadow/advancements/recipes/";
+    public static String FOLDER = "/Users/marco/Documents/GitHub/meadow/src/main/resources/data/meadow/advancements";
 
     public static void main(String[] args) {
         /*
@@ -18,7 +18,7 @@ public class AdvancementRecipeGenerator {
         FOLDER gibt das Verzeichnis an, in dem die Advancements landen.
         Drücke dann auf das play Symbol links von der main method und die Advancements sollten generiert werden.
          */
-        List<String> putRecipesHere = List.of("minecraft:stone/alpine_grass", "pine_boat/pine_button");
+        List<String> putRecipesHere = List.of("cobbled_limestone/limestone", "cobbled_limestone/limestone_bricks", "cobbled_limestone/limestone_bricks_stairs", "cobbled_limestone/limestone_bricks_slab", "cobbled_limestone/chiseled_limestone_bricks", "cobbled_limestone/limestone_bricks_wall", "cobbled_limestone/mossy_limestone_bricks", "cobbled_limestone/mossy_limestone_bricks_stairs", "cobbled_limestone/mossy_limestone_bricks_wall", "cobbled_limestone/mossy_limestone_bricks_slabs");
 
 
 
