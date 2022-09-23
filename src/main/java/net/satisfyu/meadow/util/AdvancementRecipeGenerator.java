@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AdvancementRecipeGenerator {
 
-    public static String FOLDER = "/Users/marco/Documents/GitHub/meadow/src/main/resources/data/meadow/advancements";
+    public static String FOLDER = "/Users/marco/Documents/GitHub/meadow/src/main/resources/data/meadow/advancements/recipes";
 
     public static void main(String[] args) {
         /*

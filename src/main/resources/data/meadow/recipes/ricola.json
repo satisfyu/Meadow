@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#WS"
+    ],
+    "key": {
+        "#": {
+            "item": "meadow:bag_of_juniper"
+        },
+        "W": {
+            "item": "meadow:bad_of_yarrow"
+        },
+        "S": {
+            "item": "minecraft:sugar"
+        }
+    },
+    "result": {
+        "item": "meadow:ricola",
+        "count": 5
+    }
+}
