@@ -1,78 +1,52 @@
 {
-  "multipart": [
-    {
-      "when": {
-        "facing": "north"
-      },
-      "apply": {
-        "model": "meadow:block/table_top"
-      }
+  "variants": {
+
+    "facing=east,type=single": {
+      "model": "meadow:block/table",
+      "y": 90
     },
-    {
-      "when": {
-        "facing": "east"
-      },
-      "apply": {
-        "model": "meadow:block/table_top",
-        "y": 90
-      }
+    "facing=north,type=single": {
+      "model": "meadow:block/table"
     },
-    {
-      "when": {
-        "facing": "south"
-      },
-      "apply": {
-        "model": "meadow:block/table_top",
-        "y": 180
-      }
+    "facing=south,type=single": {
+      "model": "meadow:block/table",
+      "y": 180
     },
-    {
-      "when": {
-        "facing": "west"
-      },
-      "apply": {
-        "model": "meadow:block/table_top",
-        "y": 270
-      }
+    "facing=west,type=single": {
+      "model": "meadow:block/table",
+      "y": 270
     },
-    {
-      "when": {
-        "leg_1": "true"
-      },
-      "apply": {
-        "model": "meadow:block/table_leg",
-        "uvlock": true
-      }
+
+    "facing=east,type=left": {
+      "model": "meadow:block/table_connected_support",
+      "y": 90
     },
-    {
-      "when": {
-        "leg_2": "true"
-      },
-      "apply": {
-        "model": "meadow:block/table_leg",
-        "y": 90,
-        "uvlock": true
-      }
+    "facing=north,type=left": {
+      "model": "meadow:block/table_connected_support"
     },
-    {
-      "when": {
-        "leg_3": "true"
-      },
-      "apply": {
-        "model": "meadow:block/table_leg",
-        "y": 180,
-        "uvlock": true
-      }
+    "facing=south,type=left": {
+      "model": "meadow:block/table_connected_support",
+      "y": 180
     },
-    {
-      "when": {
-        "leg_4": "true"
-      },
-      "apply": {
-        "model": "meadow:block/table_leg",
-        "y": 270,
-        "uvlock": true
-      }
+    "facing=west,type=left": {
+      "model": "meadow:block/table_connected_support",
+      "y": 270
+    },
+
+    "facing=east,type=right": {
+      "model": "meadow:block/table_connected_support",
+      "y": 270
+    },
+    "facing=north,type=right": {
+      "model": "meadow:block/table_connected_support",
+      "y": 180
+    },
+    "facing=south,type=right": {
+      "model": "meadow:block/table_connected_support"
+    },
+    "facing=west,type=right": {
+      "model": "meadow:block/table_connected_support",
+      "y": 90
     }
-  ]
+  }
 }
