@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "MMM"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_axe"
+        },
+        "M": {
+            "item": "meadow:pine_log"
+        }
+    },
+    "result": {
+        "item": "meadow:axe_woodstack",
+        "count": 1
+    }
+}

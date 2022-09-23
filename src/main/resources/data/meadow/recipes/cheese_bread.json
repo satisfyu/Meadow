@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#M"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:bread"
+        },
+        "M": {
+   	   "tag": "meadow:cheese"
+        }
+    },
+    "result": {
+        "item": "meadow:cheese_bread",
+        "count": 1
+    }
+}

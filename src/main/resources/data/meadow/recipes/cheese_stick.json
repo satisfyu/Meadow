@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  /",
+        " M ",
+        "/  "
+    ],
+    "key": {
+        "/": {
+            "item": "minecraft:stick"
+        },
+        "M": {
+   	   "tag": "meadow:cheese"
+        }
+    },
+    "result": {
+        "item": "meadow:cheese_stick",
+        "count": 1
+    }
+}

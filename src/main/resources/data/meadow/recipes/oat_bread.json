@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "meadow:oat"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "item": "meadow:oat_bread"
+  }
+}
