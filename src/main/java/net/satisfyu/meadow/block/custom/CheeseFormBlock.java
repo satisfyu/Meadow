@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 import net.satisfyu.meadow.block.ModBlocks;
-import net.satisfyu.meadow.sounds.ModSounds;
+import net.satisfyu.meadow.sound.ModSounds;
 
 public class CheeseFormBlock extends Block {
 

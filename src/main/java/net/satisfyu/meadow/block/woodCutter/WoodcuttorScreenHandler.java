@@ -17,7 +17,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
-import net.satisfyu.meadow.sounds.ModSounds;
+import net.satisfyu.meadow.sound.ModSounds;
 
 import java.util.List;
 

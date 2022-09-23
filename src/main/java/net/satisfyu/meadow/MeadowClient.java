@@ -2,16 +2,15 @@ package net.satisfyu.meadow;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.entity.cow.MeadowCowEntityMdodel;
@@ -20,13 +19,13 @@ import net.satisfyu.meadow.entity.cow.ashen_cow.AshenCowRenderer;
 import net.satisfyu.meadow.entity.cow.cookie_cow.CookieCowRenderer;
 import net.satisfyu.meadow.entity.cow.cream_cow.CreamCowRenderer;
 import net.satisfyu.meadow.entity.cow.dairy_cow.DairyCowRenderer;
-import net.satisfyu.meadow.entity.cow.dark_cow.DarkCowEntity;
 import net.satisfyu.meadow.entity.cow.dark_cow.DarkCowRenderer;
 import net.satisfyu.meadow.entity.cow.pinto_cow.PintoCowRenderer;
 import net.satisfyu.meadow.entity.cow.sunset_cow.SunsetCowRenderer;
+import net.satisfyu.meadow.particle.ModParticles;
+import net.satisfyu.meadow.particle.custom.SplashParticle;
 
-import static net.satisfyu.meadow.Meadow.MOD_ID;
-import static net.satisfyu.meadow.Meadow.WOODCUTTOR_SCREEN_HANDLER;
+import static net.satisfyu.meadow.Meadow.*;
 
 public class MeadowClient implements ClientModInitializer {
 
@@ -49,9 +48,21 @@ public class MeadowClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         HandledScreens.register(WOODCUTTOR_SCREEN_HANDLER, WoodcutterScreen::new);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.WOODCUTTER, ModBlocks.OAT_CROP, ModBlocks.ALPINE_GRASS, ModBlocks.ALPINE_GRASS_TALL);
+        HandledScreens.register(COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
+
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.WOODCUTTER, ModBlocks.OAT_CROP, ModBlocks.ALPINE_GRASS, ModBlocks.ALPINE_GRASS_TALL,
+                ModBlocks.PINE_DOOR, ModBlocks.HAYBLOCK_RUG, ModBlocks.PINE_TRAPDOOR, ModBlocks.ALPINE_FLOWER_1, ModBlocks.ALPINE_FLOWER_2, ModBlocks.ALPINE_FLOWER_3,
+                ModBlocks.ALPINE_FLOWER_4, ModBlocks.COOKING_CAULDRON, ModBlocks.FRAME, ModBlocks.TABLE);
+
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
 
         registerEntityStuff();
+        registerParticles();
+    }
+
+    private void registerParticles(){
+        ParticleFactoryRegistry.getInstance().register(ModParticles.SPLASH, SplashParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.CHEESE_SPLASH, SplashParticle.Factory::new);
     }
 
     private void registerEntityStuff(){

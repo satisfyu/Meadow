@@ -14,7 +14,7 @@ import net.satisfyu.meadow.item.ModItems;
 
 public class OatCropBlock extends CropBlock {
     public static final IntProperty AGE = IntProperty.of("age", 0, 3);
-    private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
+    protected static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
             Block.createCuboidShape(0.0, -1.0, 0.0, 16.0, 2.0, 16.0),
             Block.createCuboidShape(0.0, -1.0, 0.0, 16.0, 8.0, 16.0),
             Block.createCuboidShape(0.0, -1.0, 0.0, 16.0, 14.0, 16.0),
@@ -38,7 +38,7 @@ public class OatCropBlock extends CropBlock {
 
     @Override
     public int getMaxAge() {
-        return 4;
+        return 3;
     }
 
     @Override
