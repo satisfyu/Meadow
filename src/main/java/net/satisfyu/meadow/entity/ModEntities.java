@@ -3,9 +3,14 @@ package net.satisfyu.meadow.entity;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.*;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.tag.BiomeTags;
@@ -13,6 +18,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.BiomeKeys;
+import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlockEntity;
+import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.entity.cow.albino_cow.AlbinoCowEntity;
 import net.satisfyu.meadow.entity.cow.ashen_cow.AshenCowEntity;
 import net.satisfyu.meadow.entity.cow.cookie_cow.CookieCowEntity;
@@ -70,21 +78,22 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, SunsetCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
     );
 
+    public static final BlockEntityType<CookingCauldronBlockEntity> COOKING_CAULDRON_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cooking_cauldron", FabricBlockEntityTypeBuilder.create(CookingCauldronBlockEntity::new, ModBlocks.COOKING_CAULDRON).build(null));
+
+    public static final BlockEntityType<CheeseFormBlockEntity> CHEESE_FORM_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cheese_form", FabricBlockEntityTypeBuilder.create(CheeseFormBlockEntity::new, ModBlocks.CHEESE_FORM).build(null));
+
 
     public static void register(){
-        FabricDefaultAttributeRegistry.register(ALBINO_COW, CowEntity.createCowAttributes());
-        SpawnMobAccessor.callRegister(ALBINO_COW, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.COW), SpawnGroup.CREATURE, ALBINO_COW, 8, 4, 4);
-
-        FabricDefaultAttributeRegistry.register(ASHEN_COW, CowEntity.createCowAttributes());
-        SpawnMobAccessor.callRegister(ASHEN_COW, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST), SpawnGroup.CREATURE, ASHEN_COW, 8, 4, 4);
 
         registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
+
+        registerCow(ALBINO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
 
         registerCow(CREAM_COW, BiomeSelectors.includeByKey(BiomeKeys.WOODED_BADLANDS).or(BiomeSelectors.tag(BiomeTags.IS_SAVANNA)));
 
         registerCow(DAIRY_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
+
+        registerCow(ASHEN_COW, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST));
 
         registerCow(DARK_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
 

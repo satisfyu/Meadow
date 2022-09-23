@@ -11,7 +11,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.satisfyu.meadow.sounds.ModSounds;
 
 import java.util.List;
 
@@ -26,6 +25,7 @@ public class WoodcutterScreen extends HandledScreen<WoodcuttorScreenHandler> {
         super(handler, inventory, title);
         handler.setContentsChangedListener(this::onInventoryChange);
         --this.titleY;
+
     }
 
     @Override
