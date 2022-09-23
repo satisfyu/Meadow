@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  #",
+        "#W ",
+        "## "
+    ],
+    "key": {
+        "#": {
+            "item": "meadow:pine_planks"
+        },
+        "W": {
+            "item": "meadow:wood_bucket_water"
+        }
+    },
+    "result": {
+        "item": "meadow:watering_can",
+        "count": 1
+    }
+}
