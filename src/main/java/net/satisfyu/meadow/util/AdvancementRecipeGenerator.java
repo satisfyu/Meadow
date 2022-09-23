@@ -18,7 +18,7 @@ public class AdvancementRecipeGenerator {
         FOLDER gibt das Verzeichnis an, in dem die Advancements landen.
         Drücke dann auf das play Symbol links von der main method und die Advancements sollten generiert werden.
          */
-        List<String> putRecipesHere = List.of("cobbled_limestone/limestone", "cobbled_limestone/limestone_bricks", "cobbled_limestone/limestone_bricks_stairs", "cobbled_limestone/limestone_bricks_slab", "cobbled_limestone/chiseled_limestone_bricks", "cobbled_limestone/limestone_bricks_wall", "cobbled_limestone/mossy_limestone_bricks", "cobbled_limestone/mossy_limestone_bricks_stairs", "cobbled_limestone/mossy_limestone_bricks_wall", "cobbled_limestone/mossy_limestone_bricks_slabs");
+        List<String> putRecipesHere = List.of();
 
 
 
