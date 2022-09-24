@@ -13,14 +13,14 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "minecraft:black_bed",
+              "block": "meadow:tall_eriophorum",
               "condition": "minecraft:block_state_property",
               "properties": {
-                "part": "head"
+                "half": "lower"
               }
             }
           ],
-          "name": "meadow:patched_bed"
+          "name": "meadow:tall:eriophorum"
         }
       ],
       "rolls": 1.0

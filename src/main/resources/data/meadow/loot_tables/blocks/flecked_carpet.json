@@ -11,16 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "minecraft:black_bed",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "part": "head"
-              }
-            }
-          ],
-          "name": "meadow:patched_bed"
+          "name": "minecraft:flecked_carpet"
         }
       ],
       "rolls": 1.0

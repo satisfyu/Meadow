@@ -24,30 +24,16 @@
                   }
                 }
               ],
-              "name": "meadow:alpine_salt_ore"
+              "name": "minecraft:limestone"
             },
             {
               "type": "minecraft:item",
-              "functions": [
+              "conditions": [
                 {
-                  "add": false,
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "max": 5.0,
-                    "min": 2.0
-                  },
-                  "function": "minecraft:set_count"
-                },
-                {
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops",
-                  "function": "minecraft:apply_bonus"
-                },
-                {
-                  "function": "minecraft:explosion_decay"
+                  "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "meadow:alpine_salt"
+              "name": "minecraft:cobblelimestone"
             }
           ]
         }

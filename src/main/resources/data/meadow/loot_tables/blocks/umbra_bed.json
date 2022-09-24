@@ -13,7 +13,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "meadow:umbra_bed",
+              "block": "minecraft:black_bed",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "part": "head"

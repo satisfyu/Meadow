@@ -13,14 +13,14 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "minecraft:black_bed",
+              "block": "meadow:bench",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "part": "head"
               }
             }
           ],
-          "name": "meadow:patched_bed"
+          "name": "meadow:bench"
         }
       ],
       "rolls": 1.0
