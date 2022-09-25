@@ -52,7 +52,7 @@ public class MeadowClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.WOODCUTTER, ModBlocks.OAT_CROP, ModBlocks.ALPINE_GRASS, ModBlocks.ALPINE_GRASS_TALL,
                 ModBlocks.PINE_DOOR, ModBlocks.HAYBLOCK_RUG, ModBlocks.PINE_TRAPDOOR, ModBlocks.ALPINE_FLOWER_1, ModBlocks.ALPINE_FLOWER_2, ModBlocks.ALPINE_FLOWER_3,
-                ModBlocks.ALPINE_FLOWER_4, ModBlocks.COOKING_CAULDRON, ModBlocks.FRAME, ModBlocks.TABLE);
+                ModBlocks.ALPINE_FLOWER_4, ModBlocks.COOKING_CAULDRON, ModBlocks.FRAME, ModBlocks.TABLE, ModBlocks.AXE_WOODSTACK);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
 
