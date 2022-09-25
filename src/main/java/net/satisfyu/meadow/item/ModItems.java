@@ -43,6 +43,10 @@ public class ModItems {
             new AliasedBlockItem(ModBlocks.OAT_CROP,
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
+    public static final Item YARROW_SEEDS = registerItem("yarrow_seeds",
+            new AliasedBlockItem(ModBlocks.YARROW_CROP,
+                    new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+
     public static final Item PINE_SIGN = registerItem("pine_sign",
             new SignItem(new FabricItemSettings().maxCount(16).group(ModItemGroup.ALPINE_SALT), ModBlocks.PINE_SIGN, ModBlocks.PINE_WALL_SIGN));
 
