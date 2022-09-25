@@ -235,7 +235,9 @@ public class ModBlocks {
     public static final Block TABLE = registerBlock("table",
             new TableBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
 
-
+    public static final Block CHAIR = registerBlock("chair",
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+    
     public static final Block SHELF = registerBlock("shelf",
             new Block(FabricBlockSettings.copyOf(Blocks.BOOKSHELF)), ModItemGroup.ALPINE_SALT);
 
@@ -244,10 +246,6 @@ public class ModBlocks {
 
     public static final Block BIG_WOODSTACK = registerBlock("big_woodstack",
             new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), true), ModItemGroup.ALPINE_SALT);
-
-
-    public static final Block CHAIR = registerBlock("chair",
-            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
     public static final Block WINDOW_SHUTTER_0 = registerBlock("window_shutter_0",
             new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
@@ -260,18 +258,6 @@ public class ModBlocks {
 
     public static final Block WINDOW_SHUTTER_3 = registerBlock("window_shutter_3",
             new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
-
-    public static final Block WOODSTACK_AXE = registerBlock("woodstack_axe",
-            new FrameBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
-
-    public static final Block WOODSTACK_SMALL = registerBlock("woodstack_small",
-            new FrameBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
-
-    public static final Block WOODSTACK_MID = registerBlock("woodstack_mid",
-            new FrameBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
-
-    public static final Block WOODSTACK_BIG = registerBlock("woodstack_big",
-            new FrameBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
 
     private static FabricBlockSettings bowlSettings(){
         return FabricBlockSettings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);
