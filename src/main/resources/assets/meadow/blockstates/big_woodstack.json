@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "meadow:block/big_woodstack",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "meadow:block/big_woodstack"
+    },
+    "facing=south": {
+      "model": "meadow:block/big_woodstack",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "meadow:block/big_woodstack",
+      "y": 270
+    }
+  }
+}

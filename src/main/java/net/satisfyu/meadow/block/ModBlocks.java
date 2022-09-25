@@ -227,16 +227,27 @@ public class ModBlocks {
             new CookingCauldronBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
     public static final Block WINDOW = registerBlock("window",
-            new WindowBlock(AbstractBlock.Settings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
+            new WindowBlock(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
 
     public static final Block FRAME = registerBlock("frame",
-            new FrameBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
+            new FrameBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
 
     public static final Block TABLE = registerBlock("table",
-            new TableBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
+            new TableBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
+
 
     public static final Block SHELF = registerBlock("shelf",
             new Block(FabricBlockSettings.copyOf(Blocks.BOOKSHELF)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block AXE_WOODSTACK = registerBlock("axe_woodstack",
+            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
+
+    public static final Block BIG_WOODSTACK = registerBlock("big_woodstack",
+            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), true), ModItemGroup.ALPINE_SALT);
+
+
+    public static final Block CHAIR = registerBlock("chair",
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
     public static final Block WINDOW_SHUTTER_0 = registerBlock("window_shutter_0",
             new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
