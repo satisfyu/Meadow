@@ -1,3 +1,6 @@
 {
-  "parent": "meadow:block/can"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "meadow:item/can"
+  }
 }
