@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "vinery:stripped_cherry_log"
+      "item": "meadow:stripped_pine_log"
     }
   },
   "result": {
-    "item": "vinery:stripped_cherry_wood",
+    "item": "pine:stripped_pine_wood",
     "count": 3
   }
 }
