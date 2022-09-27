@@ -49,6 +49,12 @@ public class ModBlocks {
     public static final Block ALPINE_FLOWER_4 = registerBlock("alpine_flower4",
             new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block ERIOPHORUM = registerBlock("eriophorum",
+            new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block ERIOPHORUM_TALL = registerBlock("eriophorum_tall",
+            new TallPlantBlock(FabricBlockSettings.copyOf(Blocks.ROSE_BUSH)), ModItemGroup.ALPINE_SALT);
+
     public static final Block ALPINE_SALT_ORE = registerBlock("alpine_salt_ore",
             new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
                     UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);

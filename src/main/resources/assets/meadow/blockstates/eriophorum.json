@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "var=0": {
+      "model": "meadow:block/eriophorum_1"
+    },
+    "var=1": {
+      "model": "meadow:block/eriophorum_2"
+    },
+    "var=2": {
+      "model": "meadow:block/eriophorum_3"
+    }
+  }
+}
