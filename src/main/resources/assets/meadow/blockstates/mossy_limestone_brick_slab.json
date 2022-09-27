@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "meadow:block/mossy_limestone_brick_slab"
+    },
+    "type=double": {
+      "model": "meadow:block/mossy_limestone_bricks_0"
+    },
+    "type=top": {
+      "model": "meadow:block/mossy_limestone_brick_slab_top"
+    }
+  }
+}

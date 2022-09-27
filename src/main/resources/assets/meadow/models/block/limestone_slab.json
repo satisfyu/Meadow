@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "meadow:block/limestone",
+    "top": "meadow:block/limestone",
+    "side": "meadow:block/limestone"
+  }
+}

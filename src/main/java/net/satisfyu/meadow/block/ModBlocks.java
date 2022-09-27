@@ -49,6 +49,12 @@ public class ModBlocks {
     public static final Block ALPINE_FLOWER_4 = registerBlock("alpine_flower4",
             new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block ERIOPHORUM = registerBlock("eriophorum",
+            new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block ERIOPHORUM_TALL = registerBlock("eriophorum_tall",
+            new TallPlantBlock(FabricBlockSettings.copyOf(Blocks.ROSE_BUSH)), ModItemGroup.ALPINE_SALT);
+
     public static final Block ALPINE_SALT_ORE = registerBlock("alpine_salt_ore",
             new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
                     UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
@@ -67,6 +73,9 @@ public class ModBlocks {
 
     public static final Block LIMESTONE_BRICKS = registerBlock("limestone_bricks",
             new Block2(FabricBlockSettings.copyOf(Blocks.STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block MOSSY_LIMESTONE_BRICKS = registerBlock("mossy_limestone_bricks",
+            new Block2(FabricBlockSettings.copyOf(Blocks.MOSSY_STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
 
     public static final Block CHISELD_LIMESTONE_BRICKS = registerBlock("chiseled_limestone_bricks",
             new Block(FabricBlockSettings.copyOf(Blocks.CHISELED_STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
@@ -258,6 +267,54 @@ public class ModBlocks {
 
     public static final Block WINDOW_SHUTTER_3 = registerBlock("window_shutter_3",
             new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
+
+    public static final Block LIMESTONE_BRICK_WALL = registerBlock("limestone_brick_wall",
+            new WallBlock(FabricBlockSettings.copyOf(LIMESTONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block COBBLED_LIMESTONE_WALL = registerBlock("cobbled_limestone_wall",
+            new WallBlock(FabricBlockSettings.copyOf(COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block MOSSY_COBBLED_LIMESTONE_WALL = registerBlock("mossy_cobbled_limestone_wall",
+            new WallBlock(FabricBlockSettings.copyOf(MOSSY_COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block MOSSY_LIMESTONE_BRICK_WALL = registerBlock("mossy_limestone_brick_wall",
+            new WallBlock(FabricBlockSettings.copyOf(MOSSY_LIMESTONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block LIMESTONE_WALL = registerBlock("limestone_wall",
+            new WallBlock(FabricBlockSettings.copyOf(LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block LIMESTONE_STAIRS = registerBlock("limestone_stairs",
+            new StairsBlock(LIMESTONE.getDefaultState(), FabricBlockSettings.copyOf(LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block LIMESTONE_BRICK_STAIRS = registerBlock("limestone_brick_stairs",
+            new StairsBlock(LIMESTONE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(LIMESTONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block MOSSY_LIMESTONE_BRICK_STAIRS = registerBlock("mossy_limestone_brick_stairs",
+            new StairsBlock(MOSSY_LIMESTONE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(MOSSY_LIMESTONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block COBBLED_LIMESTONE_STAIRS = registerBlock("cobbled_limestone_stairs",
+            new StairsBlock(COBBLED_LIMESTONE.getDefaultState(), FabricBlockSettings.copyOf(COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block MOSSY_COBBLED_LIMESTONE_STAIRS = registerBlock("mossy_cobbled_limestone_stairs",
+            new StairsBlock(MOSSY_COBBLED_LIMESTONE.getDefaultState(), FabricBlockSettings.copyOf(MOSSY_COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+
+    public static final Block LIMESTONE_SLAB = registerBlock("limestone_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block LIMESTONE_BRICK_SLAB = registerBlock("limestone_brick_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(LIMESTONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block MOSSY_LIMESTONE_BRICK_SLAB = registerBlock("mossy_limestone_brick_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(MOSSY_LIMESTONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block COBBLED_LIMESTONE_SLAB = registerBlock("cobbled_limestone_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block MOSSY_COBBLED_LIMESTONE_SLAB = registerBlock("mossy_cobbled_limestone_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(MOSSY_COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+
 
     private static FabricBlockSettings bowlSettings(){
         return FabricBlockSettings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);

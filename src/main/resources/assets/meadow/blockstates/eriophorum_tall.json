@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "meadow:block/eriophorum_tall_bottom"
+    },
+    "half=upper": {
+      "model": "meadow:block/eriophorum_tall_top"
+    }
+  }
+}
