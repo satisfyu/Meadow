@@ -9,7 +9,7 @@
 		"8": "meadow:block/copper_block",
 		"9": "meadow:block/cooking_cauldron_inner",
 		"10": "meadow:block/cooking_cauldron_side",
-		"12": "meadow:block/chesse_mass_sheep",
+		"12": "meadow:Desktop/milk_lavender_cauldron",
 		"particle": "meadow:block/chain"
 	},
 	"elements": [
@@ -529,7 +529,7 @@
 				"east": {"uv": [0.032, 0.032, 0, 0], "texture": "#12"},
 				"south": {"uv": [0.032, 0.032, 0, 0.968], "texture": "#12"},
 				"west": {"uv": [0.032, 0.032, 0, 0], "texture": "#12"},
-				"up": {"uv": [8.32, 8.32, 16, 16], "texture": "#12"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#12"},
 				"down": {"uv": [0.032, 0.032, 0, 0], "texture": "#12"}
 			}
 		}
