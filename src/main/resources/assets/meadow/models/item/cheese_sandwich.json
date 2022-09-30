@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "meadow:item/bag_of_oat"
+    "layer0": "meadow:item/cheese_sandwich"
   }
 }

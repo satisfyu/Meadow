@@ -39,6 +39,82 @@ public class ModItems {
 
     public static final Item SUNSET_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.SUNSET_COW, 16777215,8014336);
 
+    public static final Item PINE_SIGN = registerItem("pine_sign",
+            new SignItem(new FabricItemSettings().maxCount(16).group(ModItemGroup.ALPINE_SALT), ModBlocks.PINE_SIGN, ModBlocks.PINE_WALL_SIGN));
+
+    public static final Item PIECE_OF_CHEESE = registerItem("piece_of_cheese",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+
+    public static final Item PIECE_OF_GOAT_CHEESE = registerItem("piece_of_goat_cheese",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+
+    public static final Item PIECE_OF_OAT_CHEESE = registerItem("piece_of_oat_cheese",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+
+    public static final Item PIECE_OF_HERB_CHEESE = registerItem("piece_of_herb_cheese",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+
+    public static final Item PIECE_OF_LAVENDER_CHEESE = registerItem("piece_of_lavender_cheese",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+
+    public static final Item PIECE_OF_SHEEP_CHEESE = registerItem("piece_of_sheep_cheese",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+
+    public static final Item CHEESECAKE_SLICE = registerItem("cheesecake_slice",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+
+    public static final Item CHEESE_TART_SLICE = registerItem("cheese_tart_slice",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+
+    public static final Item CREAM_CHEESE = registerItem("cream_cheese",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.6f).build())));
+
+    public static final Item CHEESE_SANDWICH = registerItem("cheese_sandwich",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+
+    public static final Item CHEESE_ROLL = registerItem("cheese_roll",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+
+    public static final Item CHEESE_STICK = registerItem("cheese_stick",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+
+    public static final Item OAT_BREAD = registerItem("oat_bread",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.6f).build())));
+
+    public static final Item RICOLA = registerItem("ricola",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
+
+    public static final Item JUG = registerItem("JUG", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+
+    public static final Item JUG_MILK = registerItem("jug_milk",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
+
+    public static final Item JUG_YARROW_TEA = registerItem("jug_yarrow_tea",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
+
+    public static final Item JUG_JUNIPER_TEA = registerItem("jug_juniper_tea",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
+
+    public static final Item LAB = registerItem("lab", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+
+
     public static final Item OAT_SEEDS = registerItem("oat_seeds",
             new AliasedBlockItem(ModBlocks.OAT_CROP,
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
@@ -47,17 +123,13 @@ public class ModItems {
             new AliasedBlockItem(ModBlocks.YARROW_CROP,
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
-    public static final Item PINE_SIGN = registerItem("pine_sign",
-            new SignItem(new FabricItemSettings().maxCount(16).group(ModItemGroup.ALPINE_SALT), ModBlocks.PINE_SIGN, ModBlocks.PINE_WALL_SIGN));
+    public static final Item JUNIPER_SEEDS = registerItem("juniper_seeds",
+            new AliasedBlockItem(ModBlocks.JUNIPER_CROP,
+                    new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
-    public static final Item BAG_OF_OAT = registerItem("bag_of_oat",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(1).saturationModifier(1f).build())));
-
-    public static final Item LAB = registerItem("lab", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-
-
-
+    public static final Item MOUNTAIN_LAVENDER_SEEDS = registerItem("mountain_lavender_seeds",
+            new AliasedBlockItem(ModBlocks.MOUNTAIN_LAVENDER_CROP,
+                    new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BAG_OF_LAVENDER = registerItem("bag_of_lavender", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item BAG_OF_JUNIPER = registerItem("bag_of_juniper", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));

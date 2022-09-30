@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "meadow:block/small_fir_bottom"
+    },
+    "half=upper": {
+      "model": "meadow:block/small_fir_top"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "meadow:item/jug_yarrow_tea"
+  }
+}

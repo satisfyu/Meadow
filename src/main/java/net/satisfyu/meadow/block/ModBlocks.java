@@ -31,6 +31,12 @@ public class ModBlocks {
     public static final Block YARROW_CROP = registerBlockWithoutItem("yarrow_crop",
             new YarrowCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
 
+    public static final Block MOUNTAIN_LAVENDER_CROP = registerBlockWithoutItem("mountain_lavender_crop",
+            new YarrowCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
+
+    public static final Block JUNIPER_CROP = registerBlockWithoutItem("juniper_crop",
+            new YarrowCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
+
     public static final Block ALPINE_GRASS = registerBlock("alpine_grass",
             new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.ALPINE_SALT);
 
@@ -53,6 +59,9 @@ public class ModBlocks {
             new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
     public static final Block ERIOPHORUM_TALL = registerBlock("eriophorum_tall",
+            new TallPlantBlock(FabricBlockSettings.copyOf(Blocks.ROSE_BUSH)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block SMALL_FIR = registerBlock("small_fir",
             new TallPlantBlock(FabricBlockSettings.copyOf(Blocks.ROSE_BUSH)), ModItemGroup.ALPINE_SALT);
 
     public static final Block ALPINE_SALT_ORE = registerBlock("alpine_salt_ore",

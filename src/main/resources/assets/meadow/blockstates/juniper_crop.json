@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "age=0": { "model": "meadow:block/juniper_stage_0"},
+    "age=1": { "model": "meadow:block/juniper_stage_1"},
+    "age=2": { "model": "meadow:block/juniper_stage_2"}
+  }
+}
