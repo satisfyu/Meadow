@@ -1,6 +1,23 @@
 {
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "meadow:block/chiseled_limestone"
-  }
+	"credit": "Made by Satisfy",
+	"parent": "block/cube_all",
+	"textures": {
+		"1": "meadow:block/chiseled_limestone_side",
+		"all": "meadow:block/chiseled_limestone",
+		"particle": "meadow:block/chiseled_limestone_side"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#all"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#all"}
+			}
+		}
+	]
 }
