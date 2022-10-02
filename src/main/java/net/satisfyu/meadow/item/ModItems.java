@@ -98,7 +98,7 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
 
-    public static final Item JUG = registerItem("JUG", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item JUG = registerItem("jug", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item JUG_MILK = registerItem("jug_milk",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
