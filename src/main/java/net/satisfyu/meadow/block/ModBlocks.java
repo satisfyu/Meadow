@@ -23,6 +23,7 @@ import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
 import net.satisfyu.meadow.block.custom.*;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
 import net.satisfyu.meadow.item.ModItemGroup;
+import net.satisfyu.meadow.world.feature.tree.PineSaplingGenerator;
 
 public class ModBlocks {
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
@@ -193,6 +194,9 @@ public class ModBlocks {
             new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.2f).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque().blockVision((state, world, pos) -> false)
                     .suffocates((state, world, pos) -> false)), ModItemGroup.ALPINE_SALT,  30, 60);
 
+    public static final Block PINE_SAPLING = registerBlock("pine_sapling",
+            new SaplingBlock(new PineSaplingGenerator(),
+                    FabricBlockSettings.copy(Blocks.OAK_SAPLING)), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_FENCE = registerBurningBlock("pine_fence",
             new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT, 5, 20);
 

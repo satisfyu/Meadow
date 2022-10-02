@@ -16,8 +16,12 @@ import net.satisfyu.meadow.block.woodCutter.WoodcuttorScreenHandler;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.mixin.SignTypeAccessor;
+import net.satisfyu.meadow.painting.ModPaintings;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.sound.ModSounds;
+import net.satisfyu.meadow.util.ModFlammableBlocks;
+import net.satisfyu.meadow.util.ModStrippableBlocks;
+import net.satisfyu.meadow.world.gen.ModWorldGen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,8 +52,9 @@ public class  Meadow implements ModInitializer {
 
 
 
-
-
+		ModFlammableBlocks.registerFlammableBlocks();
+		ModStrippableBlocks.registerStrippables();
+		ModPaintings.registerPaintings();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModSounds.registerSounds();
