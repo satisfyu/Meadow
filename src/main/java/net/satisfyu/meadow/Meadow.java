@@ -21,6 +21,7 @@ import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.sound.ModSounds;
 import net.satisfyu.meadow.util.ModFlammableBlocks;
 import net.satisfyu.meadow.util.ModStrippableBlocks;
+import net.satisfyu.meadow.world.feature.ModConfiguredFeatures;
 import net.satisfyu.meadow.world.gen.ModWorldGen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,8 @@ public class  Meadow implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+
+
 		FuelRegistry.INSTANCE.add(ModBlocks.PINE_FENCE, 300);
 		WOODCUTTING = Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, WoodcuttingRecipe.Type.ID), WoodcuttingRecipe.Type.INSTANCE);
 		WOODCUTTOR_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MOD_ID, "woodcutter"), new ScreenHandlerType<>(WoodcuttorScreenHandler::new));
@@ -50,10 +53,10 @@ public class  Meadow implements ModInitializer {
 
 		Registry.register(Registry.RECIPE_SERIALIZER, WoodcuttingRecipeSerializer.ID, WoodcuttingRecipeSerializer.INSTANCE);
 
-
-
+		ModWorldGen.generateWorldGen();
 		ModFlammableBlocks.registerFlammableBlocks();
 		ModStrippableBlocks.registerStrippables();
+		ModConfiguredFeatures.registerConfiguredFeatures();
 		ModPaintings.registerPaintings();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
