@@ -7,6 +7,7 @@ import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
+import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
 
 import java.util.List;
@@ -29,5 +30,9 @@ public class ModConfiguredFeatures {
             ConfiguredFeatures.register("pine_spawn", Feature.RANDOM_SELECTOR,
                     new RandomFeatureConfig(List.of(new RandomFeatureEntry(PINE_CHECKED, 0.5f)),
                             PINE_CHECKED));
+
+    public static void registerConfiguredFeatures() {
+        Meadow.LOGGER.debug("Registering the ModConfiguredFeatures for " + Meadow.MOD_ID);
+    }
 
 }

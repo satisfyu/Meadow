@@ -54,9 +54,9 @@ public class  Meadow implements ModInitializer {
 		Registry.register(Registry.RECIPE_SERIALIZER, WoodcuttingRecipeSerializer.ID, WoodcuttingRecipeSerializer.INSTANCE);
 
 		ModWorldGen.generateWorldGen();
+		ModConfiguredFeatures.registerConfiguredFeatures();
 		ModFlammableBlocks.registerFlammableBlocks();
 		ModStrippableBlocks.registerStrippables();
-		ModConfiguredFeatures.registerConfiguredFeatures();
 		ModPaintings.registerPaintings();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
