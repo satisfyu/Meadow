@@ -47,18 +47,30 @@ public class ModBlocks {
     public static final Block ALPINE_FLOWER_1 = registerBlock("alpine_flower1",
             new Flower2(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block POTTED_ALPINE_FLOWER_1 = registerBlockWithoutItem("potted_alpine_flower1",
+            new FlowerPotBlock(ModBlocks.ALPINE_FLOWER_1, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+
     public static final Block ALPINE_FLOWER_2 = registerBlock("alpine_flower2",
             new Flower4(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block POTTED_ALPINE_FLOWER_2 = registerBlockWithoutItem("potted_alpine_flower2",
+            new FlowerPotBlock(ModBlocks.ALPINE_FLOWER_2, FabricBlockSettings.copyOf(Blocks.DANDELION)));
     public static final Block ALPINE_FLOWER_3 = registerBlock("alpine_flower3",
             new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block POTTED_ALPINE_FLOWER_3 = registerBlockWithoutItem("potted_alpine_flower3",
+            new FlowerPotBlock(ModBlocks.ALPINE_FLOWER_3, FabricBlockSettings.copyOf(Blocks.DANDELION)));
     public static final Block ALPINE_FLOWER_4 = registerBlock("alpine_flower4",
             new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block POTTED_ALPINE_FLOWER_4 = registerBlockWithoutItem("potted_alpine_flower4",
+            new FlowerPotBlock(ModBlocks.ALPINE_FLOWER_4, FabricBlockSettings.copyOf(Blocks.DANDELION)));
 
     public static final Block ERIOPHORUM = registerBlock("eriophorum",
             new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block POTTED_ERIOPHORUM = registerBlockWithoutItem("potted_eriophorum",
+            new FlowerPotBlock(ModBlocks.ERIOPHORUM, FabricBlockSettings.copyOf(Blocks.DANDELION)));
     public static final Block ERIOPHORUM_TALL = registerBlock("eriophorum_tall",
             new TallPlantBlock(FabricBlockSettings.copyOf(Blocks.ROSE_BUSH)), ModItemGroup.ALPINE_SALT);
 
@@ -196,7 +208,7 @@ public class ModBlocks {
 
     public static final Block PINE_SAPLING = registerBlock("pine_sapling",
             new SaplingBlock(new PineSaplingGenerator(),
-                    FabricBlockSettings.copy(Blocks.OAK_SAPLING)), ModItemGroup.ALPINE_SALT);
+                    FabricBlockSettings.copy(Blocks.SPRUCE_SAPLING)), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_FENCE = registerBurningBlock("pine_fence",
             new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT, 5, 20);
 

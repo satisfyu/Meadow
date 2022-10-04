@@ -44,6 +44,22 @@ public class  Meadow implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModConfiguredFeatures.registerConfiguredFeatures();
+
+		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
+
+		ModPaintings.registerPaintings();
+		ModWorldGen.generateWorldGen();
+
+		ModFlammableBlocks.registerFlammableBlocks();
+		ModStrippableBlocks.registerStrippables();
+
+		ModSounds.registerSounds();
+		ModEntities.register();
+
+		WoodenCauldronBehavior.registerBehavior();
+		ModParticles.registerParticles();
 
 
 		FuelRegistry.INSTANCE.add(ModBlocks.PINE_FENCE, 300);
@@ -52,19 +68,6 @@ public class  Meadow implements ModInitializer {
 		COOKING_CAULDRON_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MOD_ID, "cooking_cauldron"), new ScreenHandlerType<>(CookingCauldronScreenHandler::new));
 
 		Registry.register(Registry.RECIPE_SERIALIZER, WoodcuttingRecipeSerializer.ID, WoodcuttingRecipeSerializer.INSTANCE);
-
-		ModWorldGen.generateWorldGen();
-		ModConfiguredFeatures.registerConfiguredFeatures();
-		ModFlammableBlocks.registerFlammableBlocks();
-		ModStrippableBlocks.registerStrippables();
-		ModPaintings.registerPaintings();
-		ModItems.registerModItems();
-		ModBlocks.registerModBlocks();
-		ModSounds.registerSounds();
-		ModEntities.register();
-		WoodenCauldronBehavior.registerBehavior();
-		ModParticles.registerParticles();
-
 
 		/*
 		CauldronFluidContent.registerCauldron(ModBlocks.WOODEN_CAULDRON, Fluids.EMPTY, FluidConstants.BUCKET, null);

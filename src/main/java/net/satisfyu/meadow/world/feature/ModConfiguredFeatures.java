@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.world.feature;
 
+import net.minecraft.block.AirBlock;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.*;
@@ -14,22 +15,61 @@ import java.util.List;
 
 public class ModConfiguredFeatures {
 
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_FLOWER_1 =
+            ConfiguredFeatures.register("flower_alpine_flower_1", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_FLOWER_1)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_FLOWER_2 =
+            ConfiguredFeatures.register("flower_alpine_flower_2", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_FLOWER_2)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_FLOWER_3 =
+            ConfiguredFeatures.register("flower_alpine_flower_3", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_FLOWER_3)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_FLOWER_4 =
+            ConfiguredFeatures.register("flower_alpine_flower_4", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_FLOWER_4)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ERIOPHORUM =
+            ConfiguredFeatures.register("eriophorum", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ERIOPHORUM)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_GRASS =
+            ConfiguredFeatures.register("alpine_grass", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_GRASS)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_GRASS_TALL =
+            ConfiguredFeatures.register("alpine_grass_tall", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_GRASS_TALL)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> SMALL_FIR =
+            ConfiguredFeatures.register("small_fir", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.SMALL_FIR)))));
 
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> PINE_TREE =
             ConfiguredFeatures.register("pine_tree", Feature.TREE, new TreeFeatureConfig.Builder(
                     BlockStateProvider.of(ModBlocks.PINE_LOG),
-                    new StraightTrunkPlacer(5, 6, 3),
+                    new StraightTrunkPlacer(6, 4, 0),
                     BlockStateProvider.of(ModBlocks.PINE_LEAVES),
                     new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
-                    new TwoLayersFeatureSize(1, 0, 2)).build());
+                    new TwoLayersFeatureSize(2, 0, 2)).build());
 
-    public static final RegistryEntry<PlacedFeature> PINE_CHECKED = PlacedFeatures.register("pine_checked",
+    public static final RegistryEntry<PlacedFeature> DOGWOOD_CHECKED = PlacedFeatures.register("dogwood_checked",
             ModConfiguredFeatures.PINE_TREE, List.of(PlacedFeatures.wouldSurvive(ModBlocks.PINE_SAPLING)));
 
     public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> PINE_SPAWN =
             ConfiguredFeatures.register("pine_spawn", Feature.RANDOM_SELECTOR,
-                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(PINE_CHECKED, 0.5f)),
-                            PINE_CHECKED));
+                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(DOGWOOD_CHECKED, 0.5f)),
+                            DOGWOOD_CHECKED));
 
     public static void registerConfiguredFeatures() {
         Meadow.LOGGER.debug("Registering the ModConfiguredFeatures for " + Meadow.MOD_ID);
