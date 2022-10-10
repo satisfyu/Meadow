@@ -1,7 +1,6 @@
 package net.satisfyu.meadow;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
@@ -21,14 +20,15 @@ import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.sound.ModSounds;
 import net.satisfyu.meadow.util.ModFlammableBlocks;
 import net.satisfyu.meadow.util.ModStrippableBlocks;
+import net.satisfyu.meadow.world.ModBiomes;
 import net.satisfyu.meadow.villager.ModVillagers;
 import net.satisfyu.meadow.world.feature.ModConfiguredFeatures;
-import net.satisfyu.meadow.world.gen.ModWorldGen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import terrablender.api.TerraBlenderApi;
 
 
-public class  Meadow implements ModInitializer {
+public class Meadow implements ModInitializer, TerraBlenderApi {
 	public static final String MOD_ID = "meadow";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -52,7 +52,7 @@ public class  Meadow implements ModInitializer {
 		ModBlocks.registerModBlocks();
 
 		ModPaintings.registerPaintings();
-		ModWorldGen.generateWorldGen();
+		ModBiomes.initialize();
 		ModVillagers.registerVillagers();
 		ModVillagers.registerTrades();
 
@@ -64,5 +64,10 @@ public class  Meadow implements ModInitializer {
 
 		WoodenCauldronBehavior.registerBehavior();
 		ModParticles.registerParticles();
+	}
+
+	@Override
+	public void onTerraBlenderInitialized() {
+		ModBiomes.initializeTerraBlender();
 	}
 }
