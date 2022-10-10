@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.cow;
+package net.satisfyu.meadow.entity.custom.cow;
 
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;

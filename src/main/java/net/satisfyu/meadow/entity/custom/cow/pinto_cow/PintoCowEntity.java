@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.cow.ashen_cow;
+package net.satisfyu.meadow.entity.custom.cow.pinto_cow;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.CowEntity;
@@ -16,14 +16,14 @@ import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItems;
 
 
-public class AshenCowEntity extends CowEntity {
-    public AshenCowEntity(EntityType<? extends CowEntity> entityType, World world) {
+public class PintoCowEntity extends CowEntity {
+    public PintoCowEntity(EntityType<? extends CowEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     public CowEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        return ModEntities.ASHEN_COW.create(serverWorld);
+        return ModEntities.PINTO_COW.create(serverWorld);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class AshenCowEntity extends CowEntity {
         boolean bl;
         if (((bl = itemStack.isOf(Items.BUCKET)) || itemStack.isOf(ModItems.WOODEN_BUCKET)) && !this.isBaby()) {
             player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-            ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, bl ? ModItems.BUFFALO_MILK.getDefaultStack() : ModItems.WOODEN_BUFFALO_MILK.getDefaultStack());
+            ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, bl ? Items.MILK_BUCKET.getDefaultStack() : ModItems.WOODEN_MILK_BUCKET.getDefaultStack());
             player.setStackInHand(hand, itemStack2);
             return ActionResult.success(this.world.isClient);
         } else {

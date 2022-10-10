@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.cow.sunset_cow;
+package net.satisfyu.meadow.entity.custom.cow.albino_cow;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.CowEntity;
@@ -16,15 +16,14 @@ import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItems;
 
 
-public class SunsetCowEntity extends CowEntity {
-
-    public SunsetCowEntity(EntityType<? extends CowEntity> entityType, World world) {
+public class AlbinoCowEntity extends CowEntity {
+    public AlbinoCowEntity(EntityType<? extends CowEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     public CowEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        return ModEntities.SUNSET_COW.create(serverWorld);
+        return ModEntities.ALBINO_COW.create(serverWorld);
     }
 
     @Override

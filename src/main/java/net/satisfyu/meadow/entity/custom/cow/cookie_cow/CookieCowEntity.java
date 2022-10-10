@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.cow.cookie_cow;
+package net.satisfyu.meadow.entity.custom.cow.cookie_cow;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.CowEntity;

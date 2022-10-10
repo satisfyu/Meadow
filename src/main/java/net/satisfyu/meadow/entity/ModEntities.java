@@ -21,14 +21,15 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlockEntity;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
-import net.satisfyu.meadow.entity.cow.albino_cow.AlbinoCowEntity;
-import net.satisfyu.meadow.entity.cow.ashen_cow.AshenCowEntity;
-import net.satisfyu.meadow.entity.cow.cookie_cow.CookieCowEntity;
-import net.satisfyu.meadow.entity.cow.cream_cow.CreamCowEntity;
-import net.satisfyu.meadow.entity.cow.dairy_cow.DairyCowEntity;
-import net.satisfyu.meadow.entity.cow.dark_cow.DarkCowEntity;
-import net.satisfyu.meadow.entity.cow.pinto_cow.PintoCowEntity;
-import net.satisfyu.meadow.entity.cow.sunset_cow.SunsetCowEntity;
+import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
+import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.ashen_cow.AshenCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.cookie_cow.CookieCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.cream_cow.CreamCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.dairy_cow.DairyCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.dark_cow.DarkCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.pinto_cow.PintoCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.sunset_cow.SunsetCowEntity;
 import net.satisfyu.meadow.mixin.SpawnMobAccessor;
 
 import java.util.function.Predicate;
@@ -37,6 +38,12 @@ import static net.satisfyu.meadow.Meadow.MOD_ID;
 
 public class ModEntities {
     private ModEntities() {}
+
+    public static final EntityType<ChairEntity> CHAIR = Registry.register(
+            Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "chair"),
+            FabricEntityTypeBuilder.<ChairEntity>create(SpawnGroup.MISC, ChairEntity::new).dimensions(EntityDimensions.fixed(0.001F, 0.001F)).build()
+    );
 
     public static final EntityType<AlbinoCowEntity> ALBINO_COW = Registry.register(Registry.ENTITY_TYPE,
             new Identifier(MOD_ID, "albino_cow"),

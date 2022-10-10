@@ -2,10 +2,12 @@ package net.satisfyu.meadow.world.feature;
 
 import net.minecraft.block.AirBlock;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
+import net.minecraft.world.gen.foliage.SpruceFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import net.satisfyu.meadow.Meadow;
@@ -75,7 +77,7 @@ public class ModConfiguredFeatures {
                     BlockStateProvider.of(ModBlocks.PINE_LOG),
                     new StraightTrunkPlacer(6, 4, 0),
                     BlockStateProvider.of(ModBlocks.PINE_LEAVES),
-                    new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
+                    new SpruceFoliagePlacer(UniformIntProvider.create(2, 3), UniformIntProvider.create(0, 2), UniformIntProvider.create(1, 2)),
                     new TwoLayersFeatureSize(2, 0, 2)).build());
 
     public static final RegistryEntry<PlacedFeature> DOGWOOD_CHECKED = PlacedFeatures.register("dogwood_checked",
