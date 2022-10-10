@@ -21,6 +21,7 @@ import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.sound.ModSounds;
 import net.satisfyu.meadow.util.ModFlammableBlocks;
 import net.satisfyu.meadow.util.ModStrippableBlocks;
+import net.satisfyu.meadow.villager.ModVillagers;
 import net.satisfyu.meadow.world.feature.ModConfiguredFeatures;
 import net.satisfyu.meadow.world.gen.ModWorldGen;
 import org.slf4j.Logger;
@@ -51,6 +52,8 @@ public class  Meadow implements ModInitializer {
 
 		ModPaintings.registerPaintings();
 		ModWorldGen.generateWorldGen();
+		ModVillagers.registerVillagers();
+		ModVillagers.registerTrades();
 
 		ModFlammableBlocks.registerFlammableBlocks();
 		ModStrippableBlocks.registerStrippables();

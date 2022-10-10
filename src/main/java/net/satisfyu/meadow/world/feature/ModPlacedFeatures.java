@@ -42,6 +42,17 @@ public class ModPlacedFeatures {
             ModConfiguredFeatures.SMALL_FIR, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
             PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
+    public static final RegistryEntry<PlacedFeature> WILD_MOUNTAIN_LAVENDER = PlacedFeatures.register("wild_mountain_lavender_placed",
+            ModConfiguredFeatures.WILD_MOUNTAIN_LAVENDER, RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(),
+            PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+
+    public static final RegistryEntry<PlacedFeature> WILD_JUNIPER = PlacedFeatures.register("wild_juniper_placed",
+            ModConfiguredFeatures.WILD_JUNIPER, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
+            PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+
+    public static final RegistryEntry<PlacedFeature> WILD_YARROW = PlacedFeatures.register("wild_yarrow_placed",
+            ModConfiguredFeatures.WILD_YARROW, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
+            PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
 
     public static final RegistryEntry<PlacedFeature> PINE_PLACED = PlacedFeatures.register("pine_placed",

@@ -55,7 +55,7 @@ public class MeadowClient implements ClientModInitializer {
                 ModBlocks.ALPINE_FLOWER_4, ModBlocks.COOKING_CAULDRON, ModBlocks.FRAME, ModBlocks.TABLE, ModBlocks.AXE_WOODSTACK, ModBlocks.ERIOPHORUM,
                 ModBlocks.ERIOPHORUM_TALL, ModBlocks.FURNACE_COBBLESTONE, ModBlocks.SMALL_FIR, ModBlocks.PINE_SAPLING, ModBlocks.CHAIR, ModBlocks.OATBLOCK_RUG,
                 ModBlocks.POTTED_ALPINE_FLOWER_1, ModBlocks.POTTED_ALPINE_FLOWER_2, ModBlocks.POTTED_ALPINE_FLOWER_3, ModBlocks.POTTED_ALPINE_FLOWER_4,
-                ModBlocks.POTTED_ERIOPHORUM);
+                ModBlocks.POTTED_ERIOPHORUM, ModBlocks.WILD_JUNIPER, ModBlocks.WILD_MOUNTAIN_LAVENDER, ModBlocks.WILD_YARROW);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
 
