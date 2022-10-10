@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.sapling.DarkOakSaplingGenerator;
+import net.minecraft.block.sapling.OakSaplingGenerator;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
@@ -40,6 +42,17 @@ public class ModBlocks {
 
     public static final Block ALPINE_GRASS = registerBlock("alpine_grass",
             new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block WILD_MOUNTAIN_LAVENDER = registerBlockWithoutItem("wild_mountain_lavender",
+            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)));
+
+    public static final Block WILD_JUNIPER = registerBlockWithoutItem("wild_juniper",
+            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)));
+
+    public static final Block WILD_YARROW = registerBlockWithoutItem("wild_yarrow",
+            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)));
+
+
 
     public static final Block ALPINE_GRASS_TALL = registerBlock("alpine_grass_tall",
             new TallPlantBlock(FabricBlockSettings.copyOf(Blocks.TALL_GRASS)), ModItemGroup.ALPINE_SALT);
@@ -78,6 +91,18 @@ public class ModBlocks {
             new TallPlantBlock(FabricBlockSettings.copyOf(Blocks.ROSE_BUSH)), ModItemGroup.ALPINE_SALT);
 
     public static final Block ALPINE_SALT_ORE = registerBlock("alpine_salt_ore",
+            new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
+                    UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block ALPINE_COAL_ORE = registerBlock("alpine_coal_ore",
+            new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
+                    UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block ALPINE_EMERALD_ORE = registerBlock("alpine_emerald_ore",
+            new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
+                    UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block ALPINE_IRON_ORE = registerBlock("alpine_iron_ore",
             new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
                     UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
 
@@ -203,6 +228,10 @@ public class ModBlocks {
             new Block(FabricBlockSettings.of(Material.WOOD, MapColor.TERRACOTTA_ORANGE).sounds(BlockSoundGroup.WOOD).strength(2.0f, 3.0f)), ModItemGroup.ALPINE_SALT, 5, 20);
 
     public static final Block PINE_LEAVES = registerBurningBlock("pine_leaves",
+            new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.2f).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque().blockVision((state, world, pos) -> false)
+                    .suffocates((state, world, pos) -> false)), ModItemGroup.ALPINE_SALT,  30, 60);
+
+    public static final Block ALPINE_BIRCH_LEAVES_HANGING = registerBurningBlock("alpine_birch_leaves_hanging",
             new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.2f).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque().blockVision((state, world, pos) -> false)
                     .suffocates((state, world, pos) -> false)), ModItemGroup.ALPINE_SALT,  30, 60);
 
@@ -338,6 +367,32 @@ public class ModBlocks {
 
     public static final Block MOSSY_COBBLED_LIMESTONE_SLAB = registerBlock("mossy_cobbled_limestone_slab",
             new SlabBlock(FabricBlockSettings.copyOf(MOSSY_COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block ALPINE_OAK_LOG = registerBurningBlock("alpine_oak_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
+
+    public static final Block ALPINE_BIRCH_LOG = registerBurningBlock("alpine_birch_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
+
+    public static final Block SHEEP_CHEESE_BLOCK = registerBlock("sheep_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block OAT_CHEESE_BLOCK = registerBlock("oat_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block LAVENDER_CHEESE_BLOCK = registerBlock("lavender_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block HERB_CHEESE_BLOCK = registerBlock("herb_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block GOAT_CHEESE_BLOCK = registerBlock("goat_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+
+    public static final Block POTTED_PINE_SAPLING = registerBlock("potted_pine_sapling",
+            new FlowerPotBlock(ModBlocks.PINE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
+
 
 
 
