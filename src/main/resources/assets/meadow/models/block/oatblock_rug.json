@@ -2,7 +2,7 @@
 	"credit": "Made by Satisfy",
 	"parent": "block/thin_block",
 	"textures": {
-		"1": "meadow:block/hayblock_rug",
+		"1": "meadow:block/oat_rug",
 		"2": "meadow:block/oat_block_top",
 		"particle": "meadow:block/oat_block_top"
 	},

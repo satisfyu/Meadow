@@ -14,9 +14,6 @@
     },
     "var=4": {
       "model": "meadow:block/mossy_limestone_bricks_4"
-    },
-    "var=5": {
-      "model": "meadow:block/mossy_limestone_bricks_5"
     }
   }
 }
