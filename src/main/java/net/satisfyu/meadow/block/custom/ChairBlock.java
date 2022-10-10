@@ -1,27 +1,27 @@
 package net.satisfyu.meadow.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.sound.SoundCategory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.sound.ModSounds;
+import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
+import net.satisfyu.meadow.entity.ModEntities;
+import net.satisfyu.meadow.entity.custom.chair.ChairUtil;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ChairBlock extends Block {
 
@@ -71,8 +71,33 @@ public class ChairBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        world.playSound(null, pos, new Random().nextBoolean() ? ModSounds.CLICK_CAMERA : ModSounds.CLICK_CAMERA2, SoundCategory.BLOCKS, 1.0f, 1.0f);
-        return ActionResult.SUCCESS;
+        if(world.isClient) return ActionResult.PASS;
+        if(player.isSneaking()) return ActionResult.PASS;
+        if(ChairUtil.isPlayerSitting(player)) return ActionResult.PASS;
+        if(hit.getSide() == Direction.DOWN) return ActionResult.PASS;
+        BlockPos hitPos = hit.getBlockPos();
+        if(!ChairUtil.isOccupied(world, hitPos) && player.getStackInHand(hand).isEmpty()) {
+            ChairEntity chair = ModEntities.CHAIR.create(world);
+            float yaw = state.get(FACING).asRotation();
+            chair.refreshPositionAndAngles(hitPos.getX() + 0.5D, hitPos.getY() + 0.25D, hitPos.getZ() + 0.5D, yaw, 0);
+            if(ChairUtil.addChairEntity(world, hitPos, chair, player.getBlockPos())) {
+                world.spawnEntity(chair);
+                player.startRiding(chair);
+                return ActionResult.SUCCESS;
+            }
+        }
+        return ActionResult.PASS;
+    }
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if(!world.isClient) {
+            ChairEntity entity = ChairUtil.getChairEntity(world, pos);
+            if(entity != null) {
+                ChairUtil.removeChairEntity(world, pos);
+                entity.removeAllPassengers();
+            }
+        }
     }
 
     @Override

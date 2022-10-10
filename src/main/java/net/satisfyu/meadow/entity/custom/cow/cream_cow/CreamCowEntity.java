@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.cow.dairy_cow;
+package net.satisfyu.meadow.entity.custom.cow.cream_cow;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.CowEntity;
@@ -16,14 +16,14 @@ import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItems;
 
 
-public class DairyCowEntity extends CowEntity {
-    public DairyCowEntity(EntityType<? extends CowEntity> entityType, World world) {
+public class CreamCowEntity extends CowEntity {
+    public CreamCowEntity(EntityType<? extends CowEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     public CowEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        return ModEntities.DAIRY_COW.create(serverWorld);
+        return ModEntities.CREAM_COW.create(serverWorld);
     }
 
     @Override

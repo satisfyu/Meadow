@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.sapling.DarkOakSaplingGenerator;
+import net.minecraft.block.sapling.OakSaplingGenerator;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
@@ -338,6 +340,31 @@ public class ModBlocks {
 
     public static final Block MOSSY_COBBLED_LIMESTONE_SLAB = registerBlock("mossy_cobbled_limestone_slab",
             new SlabBlock(FabricBlockSettings.copyOf(MOSSY_COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
+
+
+
+    public static final Block SHEEP_CHEESE_BLOCK = registerBlock("sheep_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block OAT_CHEESE_BLOCK = registerBlock("oat_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block LAVENDER_CHEESE_BLOCK = registerBlock("lavender_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block HERB_CHEESE_BLOCK = registerBlock("herb_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block GOAT_CHEESE_BLOCK = registerBlock("goat_cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+
+
+    public static final Block POTTED_PINE_SAPLING = registerBlock("potted_pine_sapling",
+            new FlowerPotBlock(Blocks.SPRUCE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
+
+    public static final Block PINE_SAPLING = registerBlockWithoutItem("pine_sapling",
+            new SaplingBlock(new OakSaplingGenerator(), FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+
 
 
 

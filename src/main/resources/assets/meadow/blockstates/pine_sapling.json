@@ -1,5 +1,13 @@
 {
   "variants": {
+<<<<<<< Updated upstream
     "": { "model": "meadow:block/pine_sapling" }
   }
 }
+=======
+    "": {
+      "model": "meadow:block/pine_sapling"
+    }
+  }
+}
+>>>>>>> Stashed changes

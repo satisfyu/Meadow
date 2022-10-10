@@ -1,11 +1,11 @@
-package net.satisfyu.meadow.entity.cow.cookie_cow;
+package net.satisfyu.meadow.entity.custom.cow.cookie_cow;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.MeadowClient;
-import net.satisfyu.meadow.entity.cow.EyeBlinkRenderer;
-import net.satisfyu.meadow.entity.cow.MeadowCowEntityMdodel;
+import net.satisfyu.meadow.entity.custom.cow.EyeBlinkRenderer;
+import net.satisfyu.meadow.entity.custom.cow.MeadowCowEntityMdodel;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 

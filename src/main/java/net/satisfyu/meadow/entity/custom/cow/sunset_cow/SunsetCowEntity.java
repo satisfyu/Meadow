@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.cow.pinto_cow;
+package net.satisfyu.meadow.entity.custom.cow.sunset_cow;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.CowEntity;
@@ -16,14 +16,15 @@ import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItems;
 
 
-public class PintoCowEntity extends CowEntity {
-    public PintoCowEntity(EntityType<? extends CowEntity> entityType, World world) {
+public class SunsetCowEntity extends CowEntity {
+
+    public SunsetCowEntity(EntityType<? extends CowEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     public CowEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        return ModEntities.PINTO_COW.create(serverWorld);
+        return ModEntities.SUNSET_COW.create(serverWorld);
     }
 
     @Override
