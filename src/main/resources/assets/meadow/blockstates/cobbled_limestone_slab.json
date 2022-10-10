@@ -4,7 +4,7 @@
       "model": "meadow:block/cobbled_limestone_slab"
     },
     "type=double": {
-      "model": "meadow:block/cobbled_limestone"
+      "model": "meadow:block/cobbled_limestone_slab_double"
     },
     "type=top": {
       "model": "meadow:block/cobbled_limestone_slab_top"
