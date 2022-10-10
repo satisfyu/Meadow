@@ -1,6 +1,7 @@
 package net.satisfyu.meadow;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
@@ -39,17 +40,12 @@ public class  Meadow implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-<<<<<<< Updated upstream
 		ModConfiguredFeatures.registerConfiguredFeatures();
-=======
-		//FuelRegistry.INSTANCE.add(ModBlocks.PINE_FENCE, 300);
 		WOODCUTTING = Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, WoodcuttingRecipe.Type.ID), WoodcuttingRecipe.Type.INSTANCE);
 		WOODCUTTOR_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MOD_ID, "woodcutter"), new ScreenHandlerType<>(WoodcuttorScreenHandler::new));
 		COOKING_CAULDRON_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MOD_ID, "cooking_cauldron"), new ScreenHandlerType<>(CookingCauldronScreenHandler::new));
 
 		Registry.register(Registry.RECIPE_SERIALIZER, WoodcuttingRecipeSerializer.ID, WoodcuttingRecipeSerializer.INSTANCE);
-
->>>>>>> Stashed changes
 
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
@@ -65,18 +61,5 @@ public class  Meadow implements ModInitializer {
 
 		WoodenCauldronBehavior.registerBehavior();
 		ModParticles.registerParticles();
-
-
-		FuelRegistry.INSTANCE.add(ModBlocks.PINE_FENCE, 300);
-		WOODCUTTING = Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, WoodcuttingRecipe.Type.ID), WoodcuttingRecipe.Type.INSTANCE);
-		WOODCUTTOR_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MOD_ID, "woodcutter"), new ScreenHandlerType<>(WoodcuttorScreenHandler::new));
-		COOKING_CAULDRON_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MOD_ID, "cooking_cauldron"), new ScreenHandlerType<>(CookingCauldronScreenHandler::new));
-
-		Registry.register(Registry.RECIPE_SERIALIZER, WoodcuttingRecipeSerializer.ID, WoodcuttingRecipeSerializer.INSTANCE);
-
-		/*
-		CauldronFluidContent.registerCauldron(ModBlocks.WOODEN_CAULDRON, Fluids.EMPTY, FluidConstants.BUCKET, null);
-		CauldronFluidContent.registerCauldron(ModBlocks.WOODEN_WATER_CAULDRON, Fluids.WATER, FluidConstants.BOTTLE, LeveledCauldronBlock.LEVEL);
-		 */
 	}
 }

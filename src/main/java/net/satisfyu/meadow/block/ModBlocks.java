@@ -360,10 +360,7 @@ public class ModBlocks {
 
 
     public static final Block POTTED_PINE_SAPLING = registerBlock("potted_pine_sapling",
-            new FlowerPotBlock(Blocks.SPRUCE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
-
-    public static final Block PINE_SAPLING = registerBlockWithoutItem("pine_sapling",
-            new SaplingBlock(new OakSaplingGenerator(), FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+            new FlowerPotBlock(ModBlocks.PINE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
 
 
 
