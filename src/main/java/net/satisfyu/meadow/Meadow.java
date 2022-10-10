@@ -21,13 +21,14 @@ import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.sound.ModSounds;
 import net.satisfyu.meadow.util.ModFlammableBlocks;
 import net.satisfyu.meadow.util.ModStrippableBlocks;
+import net.satisfyu.meadow.world.ModBiomes;
 import net.satisfyu.meadow.world.feature.ModConfiguredFeatures;
-import net.satisfyu.meadow.world.gen.ModWorldGen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import terrablender.api.TerraBlenderApi;
 
 
-public class  Meadow implements ModInitializer {
+public class Meadow implements ModInitializer, TerraBlenderApi {
 	public static final String MOD_ID = "meadow";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -50,7 +51,7 @@ public class  Meadow implements ModInitializer {
 		ModBlocks.registerModBlocks();
 
 		ModPaintings.registerPaintings();
-		ModWorldGen.generateWorldGen();
+		ModBiomes.initialize();
 
 		ModFlammableBlocks.registerFlammableBlocks();
 		ModStrippableBlocks.registerStrippables();
@@ -73,5 +74,10 @@ public class  Meadow implements ModInitializer {
 		CauldronFluidContent.registerCauldron(ModBlocks.WOODEN_CAULDRON, Fluids.EMPTY, FluidConstants.BUCKET, null);
 		CauldronFluidContent.registerCauldron(ModBlocks.WOODEN_WATER_CAULDRON, Fluids.WATER, FluidConstants.BOTTLE, LeveledCauldronBlock.LEVEL);
 		 */
+	}
+
+	@Override
+	public void onTerraBlenderInitialized() {
+		ModBiomes.initializeTerraBlender();
 	}
 }
