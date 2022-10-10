@@ -1,9 +1,8 @@
 package net.satisfyu.meadow.world.feature;
 
 import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placementmodifier.*;
 
 import java.util.List;
@@ -47,6 +46,13 @@ public class ModPlacedFeatures {
     public static final RegistryEntry<PlacedFeature> PINE_PLACED = PlacedFeatures.register("pine_placed",
             ModConfiguredFeatures.PINE_SPAWN,
             VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(1, 0.1f, 2)));
+
+    public static final RegistryEntry<PlacedFeature> ORE_LIMESTONE_UPPER = PlacedFeatures.register("ore_limestone_upper", ModConfiguredFeatures.ORE_LIMESTONE, CountPlacementModifier.of(50), HeightRangePlacementModifier.uniform(YOffset.fixed(64), YOffset.fixed(128)));
+    public static final RegistryEntry<PlacedFeature> ORE_LIMESTONE_LOWER = PlacedFeatures.register("ore_limestone_lower", ModConfiguredFeatures.ORE_LIMESTONE, CountPlacementModifier.of(2), HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(60)));
+
+    public static final RegistryEntry<PlacedFeature> ORE_SALT_UPPER = PlacedFeatures.register("ore_salt_upper", ModConfiguredFeatures.ORE_SALT, CountPlacementModifier.of(225), HeightRangePlacementModifier.trapezoid(YOffset.fixed(80), YOffset.fixed(384)));
+    public static final RegistryEntry<PlacedFeature> ORE_SALT_MIDDLE = PlacedFeatures.register("ore_salt_middle", ModConfiguredFeatures.ORE_SALT, CountPlacementModifier.of(25), HeightRangePlacementModifier.trapezoid(YOffset.fixed(-24), YOffset.fixed(56)));
+    public static final RegistryEntry<PlacedFeature> ORE_SALT_SMALL = PlacedFeatures.register("ore_salt_small", ModConfiguredFeatures.ORE_SALT_SMALL, CountPlacementModifier.of(25), HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(72)));
 
 
     private static List<PlacementModifier> modifiers(PlacementModifier countModifier, PlacementModifier heightModifier) {
