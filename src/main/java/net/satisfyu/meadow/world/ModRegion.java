@@ -5,6 +5,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
@@ -18,6 +19,10 @@ public class ModRegion extends Region {
     }
 
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
-
+        this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
+            // Simple biome adding for testing
+            builder.replaceBiome(BiomeKeys.MEADOW, ModBiomes.MEADOW_CLEARING_KEY);
+            builder.replaceBiome(BiomeKeys.MEADOW, ModBiomes.MEADOW_FOREST_KEY);
+        });
     }
 }

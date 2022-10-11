@@ -98,6 +98,14 @@ public class ModBlocks {
             new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
                     UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block ALPINE_LAPIS_ORE = registerBlock("alpine_lapis_ore",
+            new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
+                    UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block ALPINE_GOLD_ORE = registerBlock("alpine_gold_ore",
+            new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
+                    UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
+
     public static final Block ALPINE_EMERALD_ORE = registerBlock("alpine_emerald_ore",
             new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
                     UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);
