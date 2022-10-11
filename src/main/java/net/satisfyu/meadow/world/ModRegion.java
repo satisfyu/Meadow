@@ -21,9 +21,8 @@ public class ModRegion extends Region {
 
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
         this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
-            // Simple biome adding for testing
-            List<MultiNoiseUtil.NoiseHypercube> frozenPeaksPoints = new ParameterUtils.ParameterPointListBuilder()
-                    .temperature(ParameterUtils.Temperature.ICY, ParameterUtils.Temperature.COOL, ParameterUtils.Temperature.NEUTRAL)
+            List<MultiNoiseUtil.NoiseHypercube> meadowForestPoints = new ParameterUtils.ParameterPointListBuilder()
+                    .temperature(ParameterUtils.Temperature., ParameterUtils.Temperature.WARM, ParameterUtils.Temperature.NEUTRAL)
                     .humidity(ParameterUtils.Humidity.ARID, ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL, ParameterUtils.Humidity.WET, ParameterUtils.Humidity.HUMID)
                     .continentalness(ParameterUtils.Continentalness.span(ParameterUtils.Continentalness.COAST, ParameterUtils.Continentalness.FAR_INLAND), ParameterUtils.Continentalness.span(ParameterUtils.Continentalness.MID_INLAND, ParameterUtils.Continentalness.FAR_INLAND))
                     .erosion(ParameterUtils.Erosion.EROSION_0, ParameterUtils.Erosion.EROSION_1)
@@ -31,7 +30,7 @@ public class ModRegion extends Region {
                     .weirdness(ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.PEAK_VARIANT, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_DESCENDING)
                     .build();
 
-            frozenPeaksPoints.forEach(point -> builder.replaceBiome(point, ModBiomes.MEADOW_FOREST_KEY));
+            meadowForestPoints.forEach(point -> builder.replaceBiome(point, ModBiomes.MEADOW_FOREST_KEY));
 
 
             List<MultiNoiseUtil.NoiseHypercube> frozenPeaksPoints2 = new ParameterUtils.ParameterPointListBuilder()
