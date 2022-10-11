@@ -58,7 +58,6 @@ public class ModBiomes {
         DefaultBiomeFeatures.addDefaultOres(generationSettings);
         DefaultBiomeFeatures.addDefaultDisks(generationSettings);
 
-/*
         ModOreGeneration.addOres(generationSettings);
 
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.ALPINE_GRASS_TALL);
@@ -69,7 +68,8 @@ public class ModBiomes {
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.ALPINE_FLOWER_4);
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.SMALL_FIR);
 
- */
+
+
 
 
 
