@@ -53,8 +53,6 @@ public class ModBiomes {
     private static void applyDefaults(SpawnSettings.Builder spawnSettings, GenerationSettings.Builder generationSettings, Biome.Builder biome) {
         callAddBasicFeatures(generationSettings);
 
-
-
         DefaultBiomeFeatures.addDefaultOres(generationSettings);
         DefaultBiomeFeatures.addDefaultDisks(generationSettings);
 
