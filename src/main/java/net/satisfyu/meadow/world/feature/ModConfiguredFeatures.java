@@ -1,7 +1,5 @@
 package net.satisfyu.meadow.world.feature;
 
-import net.minecraft.structure.rule.RuleTest;
-import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.*;
@@ -11,11 +9,8 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
-import net.satisfyu.meadow.util.Tags;
 
 import java.util.List;
-
-import static net.minecraft.world.gen.feature.OreConfiguredFeatures.BASE_STONE_OVERWORLD;
 
 public class ModConfiguredFeatures {
 
@@ -90,16 +85,7 @@ public class ModConfiguredFeatures {
                     new RandomFeatureConfig(List.of(new RandomFeatureEntry(DOGWOOD_CHECKED, 0.5f)),
                             DOGWOOD_CHECKED));
 
-    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_LIMESTONE =
-            ConfiguredFeatures.register("ore_limestone", Feature.ORE, new OreFeatureConfig(BASE_STONE_OVERWORLD,
-                    ModBlocks.LIMESTONE.getDefaultState(), 64));
 
-
-    public static final RuleTest LIMESTONE_ORE_REPLACEABLES = new TagMatchRuleTest(Tags.LIMESTONE_ORE_REPLACEABLES);
-    public static final List<OreFeatureConfig.Target> SALT_ORE = List.of(OreFeatureConfig.createTarget(LIMESTONE_ORE_REPLACEABLES, ModBlocks.ALPINE_SALT_ORE.getDefaultState()));
-
-    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_SALT = ConfiguredFeatures.register("ore_salt", Feature.ORE, new OreFeatureConfig(SALT_ORE, 9));
-    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_SALT_SMALL = ConfiguredFeatures.register("ore_salt_small", Feature.ORE, new OreFeatureConfig(SALT_ORE, 4));
 
 
     public static void registerConfiguredFeatures() {
