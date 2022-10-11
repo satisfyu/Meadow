@@ -53,12 +53,12 @@ public class MeadowClient implements ClientModInitializer {
         HandledScreens.register(COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.WOODCUTTER, ModBlocks.OAT_CROP, ModBlocks.ALPINE_GRASS, ModBlocks.ALPINE_GRASS_TALL,
-                ModBlocks.PINE_DOOR, ModBlocks.HAYBLOCK_RUG, ModBlocks.PINE_TRAPDOOR, ModBlocks.ALPINE_FLOWER_1, ModBlocks.ALPINE_FLOWER_2, ModBlocks.ALPINE_FLOWER_3,
-                ModBlocks.ALPINE_FLOWER_4, ModBlocks.COOKING_CAULDRON, ModBlocks.FRAME, ModBlocks.TABLE, ModBlocks.AXE_WOODSTACK, ModBlocks.ERIOPHORUM,
+                ModBlocks.PINE_DOOR, ModBlocks.HAYBLOCK_RUG, ModBlocks.PINE_TRAPDOOR, ModBlocks.DELPHINIUM, ModBlocks.ALPINE_POPPY, ModBlocks.SAXIFRAGE,
+                ModBlocks.ENZIAN, ModBlocks.COOKING_CAULDRON, ModBlocks.FRAME, ModBlocks.TABLE, ModBlocks.AXE_WOODSTACK, ModBlocks.ERIOPHORUM,
                 ModBlocks.ERIOPHORUM_TALL, ModBlocks.FURNACE_COBBLESTONE, ModBlocks.SMALL_FIR, ModBlocks.PINE_SAPLING, ModBlocks.CHAIR, ModBlocks.OATBLOCK_RUG,
-                ModBlocks.POTTED_ALPINE_FLOWER_1, ModBlocks.POTTED_ALPINE_FLOWER_2, ModBlocks.POTTED_ALPINE_FLOWER_3, ModBlocks.POTTED_ALPINE_FLOWER_4,
+                ModBlocks.POTTED_DELPHINIUM, ModBlocks.POTTED_ALPINE_POPPY, ModBlocks.POTTED_SAXIFRAGE, ModBlocks.POTTED_ENZIAN,
                 ModBlocks.POTTED_ERIOPHORUM, ModBlocks.WILD_JUNIPER, ModBlocks.WILD_MOUNTAIN_LAVENDER, ModBlocks.WILD_YARROW,
-                ModBlocks.POTTED_ERIOPHORUM, ModBlocks.ERIOPHORUM_TALL, ModBlocks.PINE_SAPLING, ModBlocks.POTTED_PINE_SAPLING);
+                ModBlocks.POTTED_ERIOPHORUM, ModBlocks.ERIOPHORUM_TALL, ModBlocks.PINE_SAPLING, ModBlocks.POTTED_PINE_SAPLING, ModBlocks.FIRE_LILY, ModBlocks.POTTED_FIRE_LILY);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
 

@@ -1,7 +1,6 @@
 {
   "variants": {
-    "": {
-      "model": "meadow:block/alpine_iron_ore"
-    }
-  }
+    "": [ { "model": "meadow:block/alpine_iron_ore_1", "weight":1 }
+    ,{ "model": "meadow:block/alpine_iron_ore_2", "weight":1 }
+    ]   }
 }

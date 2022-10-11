@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "meadow:block/alpine_lapislazuli_ore_2"
+  }
+}

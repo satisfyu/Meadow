@@ -1,19 +1,9 @@
 {
   "variants": {
-    "var=0": {
-      "model": "meadow:block/mossy_limestone_bricks_0"
-    },
-    "var=1": {
-      "model": "meadow:block/mossy_limestone_bricks_1"
-    },
-    "var=2": {
-      "model": "meadow:block/mossy_limestone_bricks_2"
-    },
-    "var=3": {
-      "model": "meadow:block/mossy_limestone_bricks_3"
-    },
-    "var=4": {
-      "model": "meadow:block/mossy_limestone_bricks_4"
-    }
-  }
+    "": [ { "model": "meadow:block/mossy_limestone_bricks_1", "weight":5 }
+    ,{ "model": "meadow:block/mossy_limestone_bricks_2", "weight":1 }
+    ,{ "model": "meadow:block/mossy_limestone_bricks_3", "weight":1 }
+    ,{ "model": "meadow:block/mossy_limestone_bricks_4", "weight":5 }
+    ,{ "model": "meadow:block/mossy_limestone_bricks_0", "weight":5 }
+    ]   }
 }

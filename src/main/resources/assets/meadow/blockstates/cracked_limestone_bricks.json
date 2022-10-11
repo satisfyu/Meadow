@@ -1,10 +1,7 @@
 {
   "variants": {
-    "var=0": {
-      "model": "meadow:block/cracked_limestone_bricks_1"
-    },
-    "var=1": {
-      "model": "meadow:block/cracked_limestone_bricks_2"
-    }
-  }
+    "": [ { "model": "meadow:block/cracked_limestone_bricks_1", "weight":4 }
+    ,{ "model": "meadow:block/cracked_limestone_bricks_2", "weight":1 }
+    ,{ "model": "meadow:block/cracked_limestone_bricks_3", "weight":4 }
+    ]   }
 }

@@ -1,7 +1,6 @@
 {
   "variants": {
-    "": {
-      "model": "meadow:block/mossy_cobbled_limestone"
-    }
-  }
+    "": [ { "model": "meadow:block/mossy_cobbled_limestone", "weight":1 }
+    ,{ "model": "meadow:block/mossy_cobbled_limestone_2", "weight":1 }
+    ]   }
 }

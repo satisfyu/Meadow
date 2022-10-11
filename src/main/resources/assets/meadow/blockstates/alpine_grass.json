@@ -1,7 +1,7 @@
 {
   "variants": {
-    "": {
-      "model": "meadow:block/alpine_grass"
-    }
-  }
+    "": [ { "model": "meadow:block/alpine_grass_1", "weight":1 }
+    ,{ "model": "meadow:block/alpine_grass_2", "weight":1 }
+    ,{ "model": "meadow:block/alpine_grass_3", "weight":1 }
+    ]   }
 }

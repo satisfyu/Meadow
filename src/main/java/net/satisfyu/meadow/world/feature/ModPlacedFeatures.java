@@ -9,20 +9,24 @@ import java.util.List;
 
 public class ModPlacedFeatures {
 
-    public static final RegistryEntry<PlacedFeature> ALPINE_FLOWER_1 = PlacedFeatures.register("alpine_flower_1_placed",
-            ModConfiguredFeatures.ALPINE_FLOWER_1, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
+    public static final RegistryEntry<PlacedFeature> DELPHINIUM = PlacedFeatures.register("delphinium_placed",
+            ModConfiguredFeatures.DELPHINIUM, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
             PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
-    public static final RegistryEntry<PlacedFeature> ALPINE_FLOWER_2 = PlacedFeatures.register("alpine_flower_2_placed",
-            ModConfiguredFeatures.ALPINE_FLOWER_2, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
+    public static final RegistryEntry<PlacedFeature> ALPINE_POPPY = PlacedFeatures.register("alpine_poppy_placed",
+            ModConfiguredFeatures.ALPINE_POPPY, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
             PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
-    public static final RegistryEntry<PlacedFeature> ALPINE_FLOWER_3 = PlacedFeatures.register("alpine_flower_3_placed",
-            ModConfiguredFeatures.ALPINE_FLOWER_3, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
+    public static final RegistryEntry<PlacedFeature> SAXIFRAGE = PlacedFeatures.register("saxifrage_placed",
+            ModConfiguredFeatures.SAXIFRAGE, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
             PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
-    public static final RegistryEntry<PlacedFeature> ALPINE_FLOWER_4 = PlacedFeatures.register("alpine_flower_4_placed",
-            ModConfiguredFeatures.ALPINE_FLOWER_4, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
+    public static final RegistryEntry<PlacedFeature> ENZIAN = PlacedFeatures.register("enzian_placed",
+            ModConfiguredFeatures.ENZIAN, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
+            PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+
+    public static final RegistryEntry<PlacedFeature> FIRE_LILY = PlacedFeatures.register("fire_lily_placed",
+            ModConfiguredFeatures.FIRE_LILY, RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(),
             PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
     public static final RegistryEntry<PlacedFeature> ERIOPHORUM = PlacedFeatures.register("eriophorum_placed",
@@ -35,6 +39,10 @@ public class ModPlacedFeatures {
 
     public static final RegistryEntry<PlacedFeature> ALPINE_GRASS_TALL = PlacedFeatures.register("alpine_grass_tall_placed",
             ModConfiguredFeatures.ALPINE_GRASS_TALL, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
+            PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+
+    public static final RegistryEntry<PlacedFeature> TALL_ERIOPHORUM = PlacedFeatures.register("tall_eriophorum",
+            ModConfiguredFeatures.TALL_ERIOPHORUM, RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(),
             PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
     public static final RegistryEntry<PlacedFeature> SMALL_FIR = PlacedFeatures.register("small_fir_placed",

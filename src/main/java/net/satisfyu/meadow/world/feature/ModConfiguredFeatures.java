@@ -14,25 +14,34 @@ import java.util.List;
 
 public class ModConfiguredFeatures {
 
-    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_FLOWER_1 =
-            ConfiguredFeatures.register("flower_alpine_flower_1", Feature.FLOWER,
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> DELPHINIUM =
+            ConfiguredFeatures.register("delphinium", Feature.FLOWER,
                     ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_FLOWER_1)))));
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.DELPHINIUM)))));
 
-    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_FLOWER_2 =
-            ConfiguredFeatures.register("flower_alpine_flower_2", Feature.FLOWER,
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_POPPY =
+            ConfiguredFeatures.register("alpine_poppy", Feature.FLOWER,
                     ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_FLOWER_2)))));
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_POPPY)))));
 
-    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_FLOWER_3 =
-            ConfiguredFeatures.register("flower_alpine_flower_3", Feature.FLOWER,
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> SAXIFRAGE =
+            ConfiguredFeatures.register("saxifrage", Feature.FLOWER,
                     ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_FLOWER_3)))));
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.SAXIFRAGE)))));
 
-    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ALPINE_FLOWER_4 =
-            ConfiguredFeatures.register("flower_alpine_flower_4", Feature.FLOWER,
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ENZIAN =
+            ConfiguredFeatures.register("enzian", Feature.FLOWER,
                     ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALPINE_FLOWER_4)))));
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ENZIAN)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> TALL_ERIOPHORUM =
+            ConfiguredFeatures.register("tall_eriophorum", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ENZIAN)))));
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> FIRE_LILY =
+            ConfiguredFeatures.register("fire_lily", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.FIRE_LILY)))));
 
     public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ERIOPHORUM =
             ConfiguredFeatures.register("eriophorum", Feature.FLOWER,

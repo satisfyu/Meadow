@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": [ { "model": "meadow:block/enzian_1", "weight":1 }
+    ,{ "model": "meadow:block/enzian_2", "weight":1 }
+    ,{ "model": "meadow:block/enzian_3", "weight":1 }
+    ]   }
+}

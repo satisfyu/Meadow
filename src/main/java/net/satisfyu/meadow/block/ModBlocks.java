@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.FacingBlock;
 import net.minecraft.block.sapling.DarkOakSaplingGenerator;
 import net.minecraft.block.sapling.OakSaplingGenerator;
 import net.minecraft.entity.effect.StatusEffect;
@@ -15,10 +16,6 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlock;
-import net.satisfyu.meadow.block.custom.multipleModelBlocks.Block2;
-import net.satisfyu.meadow.block.custom.multipleModelBlocks.Flower2;
-import net.satisfyu.meadow.block.custom.multipleModelBlocks.Flower3;
-import net.satisfyu.meadow.block.custom.multipleModelBlocks.Flower4;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
@@ -57,30 +54,36 @@ public class ModBlocks {
     public static final Block ALPINE_GRASS_TALL = registerBlock("alpine_grass_tall",
             new TallPlantBlock(FabricBlockSettings.copyOf(Blocks.TALL_GRASS)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block ALPINE_FLOWER_1 = registerBlock("alpine_flower1",
-            new Flower2(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
+    public static final Block DELPHINIUM = registerBlock("delphinium",
+            new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block POTTED_ALPINE_FLOWER_1 = registerBlockWithoutItem("potted_alpine_flower1",
-            new FlowerPotBlock(ModBlocks.ALPINE_FLOWER_1, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+    public static final Block POTTED_DELPHINIUM = registerBlockWithoutItem("potted_delphinium",
+            new FlowerPotBlock(ModBlocks.DELPHINIUM, FabricBlockSettings.copyOf(Blocks.DANDELION)));
 
-    public static final Block ALPINE_FLOWER_2 = registerBlock("alpine_flower2",
-            new Flower4(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
+    public static final Block ALPINE_POPPY = registerBlock("alpine_poppy",
+            new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block POTTED_ALPINE_FLOWER_2 = registerBlockWithoutItem("potted_alpine_flower2",
-            new FlowerPotBlock(ModBlocks.ALPINE_FLOWER_2, FabricBlockSettings.copyOf(Blocks.DANDELION)));
-    public static final Block ALPINE_FLOWER_3 = registerBlock("alpine_flower3",
-            new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
+    public static final Block POTTED_ALPINE_POPPY = registerBlockWithoutItem("potted_alpine_poppy",
+            new FlowerPotBlock(ModBlocks.ALPINE_POPPY, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+    public static final Block SAXIFRAGE = registerBlock("saxifrage",
+            new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block POTTED_ALPINE_FLOWER_3 = registerBlockWithoutItem("potted_alpine_flower3",
-            new FlowerPotBlock(ModBlocks.ALPINE_FLOWER_3, FabricBlockSettings.copyOf(Blocks.DANDELION)));
-    public static final Block ALPINE_FLOWER_4 = registerBlock("alpine_flower4",
-            new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
+    public static final Block POTTED_SAXIFRAGE = registerBlockWithoutItem("potted_saxifrage",
+            new FlowerPotBlock(ModBlocks.SAXIFRAGE, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+    public static final Block ENZIAN = registerBlock("enzian",
+            new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block POTTED_ALPINE_FLOWER_4 = registerBlockWithoutItem("potted_alpine_flower4",
-            new FlowerPotBlock(ModBlocks.ALPINE_FLOWER_4, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+    public static final Block POTTED_ENZIAN = registerBlockWithoutItem("potted_enzian",
+            new FlowerPotBlock(ModBlocks.ENZIAN, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+
+    public static final Block FIRE_LILY = registerBlock("fire_lily",
+            new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block POTTED_FIRE_LILY = registerBlockWithoutItem("potted_fire_lily",
+            new FlowerPotBlock(ModBlocks.ENZIAN, FabricBlockSettings.copyOf(Blocks.DANDELION)));
 
     public static final Block ERIOPHORUM = registerBlock("eriophorum",
-            new Flower3(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
+            new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
     public static final Block POTTED_ERIOPHORUM = registerBlockWithoutItem("potted_eriophorum",
             new FlowerPotBlock(ModBlocks.ERIOPHORUM, FabricBlockSettings.copyOf(Blocks.DANDELION)));
@@ -124,13 +127,13 @@ public class ModBlocks {
             new Block(FabricBlockSettings.copyOf(Blocks.MOSSY_COBBLESTONE)), ModItemGroup.ALPINE_SALT);
 
     public static final Block CRACKED_LIMESTONE_BRICKS = registerBlock("cracked_limestone_bricks",
-            new Block2(FabricBlockSettings.copyOf(Blocks.CRACKED_STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+            new Block(FabricBlockSettings.copyOf(Blocks.CRACKED_STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
 
     public static final Block LIMESTONE_BRICKS = registerBlock("limestone_bricks",
-            new Block2(FabricBlockSettings.copyOf(Blocks.STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+            new Block(FabricBlockSettings.copyOf(Blocks.STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
 
     public static final Block MOSSY_LIMESTONE_BRICKS = registerBlock("mossy_limestone_bricks",
-            new Block2(FabricBlockSettings.copyOf(Blocks.MOSSY_STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
+            new Block(FabricBlockSettings.copyOf(Blocks.MOSSY_STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
 
     public static final Block CHISELD_LIMESTONE_BRICKS = registerBlock("chiseled_limestone_bricks",
             new Block(FabricBlockSettings.copyOf(Blocks.CHISELED_STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
@@ -308,9 +311,6 @@ public class ModBlocks {
 
     public static final Block CHAIR = registerBlock("chair",
             new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
-    
-    public static final Block SHELF = registerBlock("shelf",
-            new Block(FabricBlockSettings.copyOf(Blocks.BOOKSHELF)), ModItemGroup.ALPINE_SALT);
 
     public static final Block AXE_WOODSTACK = registerBlock("axe_woodstack",
             new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);

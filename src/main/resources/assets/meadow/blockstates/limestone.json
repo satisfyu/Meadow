@@ -1,7 +1,9 @@
 {
   "variants": {
-    "": {
-      "model": "meadow:block/limestone"
-    }
-  }
+    "": [ { "model": "meadow:block/limestone_1", "weight":5 }
+    ,{ "model": "meadow:block/limestone_2", "weight":4 }
+    ,{ "model": "meadow:block/limestone_3", "weight":2 }
+    ,{ "model": "meadow:block/limestone_4", "weight":1 }
+    ,{ "model": "meadow:block/limestone_5", "weight":1 }
+    ]   }
 }

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": [ { "model": "meadow:block/alpine_gold_ore_1", "weight":1 }
+    ,{ "model": "meadow:block/alpine_gold_ore_2", "weight":1 }
+    ,{ "model": "meadow:block/alpine_gold_ore_3", "weight":1 }
+    ]   }
+}
