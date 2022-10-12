@@ -20,8 +20,8 @@ import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.sound.ModSounds;
 import net.satisfyu.meadow.util.ModFlammableBlocks;
 import net.satisfyu.meadow.util.ModStrippableBlocks;
-import net.satisfyu.meadow.world.ModBiomes;
 import net.satisfyu.meadow.villager.ModVillagers;
+import net.satisfyu.meadow.world.ModBiomes;
 import net.satisfyu.meadow.world.feature.ModConfiguredFeatures;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +56,7 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 		ModVillagers.registerVillagers();
 		ModVillagers.registerTrades();
 
-		ModFlammableBlocks.registerFlammableBlocks();
+		//ModFlammableBlocks.registerFlammableBlocks();
 		ModStrippableBlocks.registerStrippables();
 
 		ModSounds.registerSounds();

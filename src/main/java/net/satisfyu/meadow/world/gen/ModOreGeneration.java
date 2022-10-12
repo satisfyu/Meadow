@@ -10,11 +10,14 @@ import net.satisfyu.meadow.world.feature.ModOrePlacedFeatures;
 public class ModOreGeneration {
 
     public static void generateOres() {
+        /*
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MEADOW),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_LIMESTONE_LOWER.getKey().get());
 
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MEADOW),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_LIMESTONE_UPPER.getKey().get());
+
+         */
 
 
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MEADOW),

@@ -22,6 +22,7 @@ import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
 import net.satisfyu.meadow.block.custom.*;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
 import net.satisfyu.meadow.item.ModItemGroup;
+import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.world.feature.tree.PineSaplingGenerator;
 
 public class ModBlocks {
@@ -383,19 +384,25 @@ public class ModBlocks {
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
 
     public static final Block SHEEP_CHEESE_BLOCK = registerBlock("sheep_cheese_block",
-            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_SHEEP_CHEESE, false), ModItemGroup.ALPINE_SALT);
 
     public static final Block OAT_CHEESE_BLOCK = registerBlock("oat_cheese_block",
-            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_OAT_CHEESE, false), ModItemGroup.ALPINE_SALT);
 
     public static final Block LAVENDER_CHEESE_BLOCK = registerBlock("lavender_cheese_block",
-            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_LAVENDER_CHEESE, false), ModItemGroup.ALPINE_SALT);
 
     public static final Block HERB_CHEESE_BLOCK = registerBlock("herb_cheese_block",
-            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_HERB_CHEESE, false), ModItemGroup.ALPINE_SALT);
 
     public static final Block GOAT_CHEESE_BLOCK = registerBlock("goat_cheese_block",
-            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.STONE)), ModItemGroup.ALPINE_SALT);
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_GOAT_CHEESE, false), ModItemGroup.ALPINE_SALT);
+
+    public static final Block CHEESE_TART = registerBlock("cheese_tart",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.CHEESE_TART_SLICE, true), ModItemGroup.ALPINE_SALT);
+
+    public static final Block CHEESECAKE = registerBlock("cheesecake",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.CHEESECAKE_SLICE, true), ModItemGroup.ALPINE_SALT);
 
 
     public static final Block POTTED_PINE_SAPLING = registerBlock("potted_pine_sapling",

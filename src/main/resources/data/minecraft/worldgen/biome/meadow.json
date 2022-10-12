@@ -156,6 +156,8 @@
     [],
     [],
     [
+      "minecraft:ore_limestone_upper",
+      "minecraft:ore_limestone_lower",
       "minecraft:ore_dirt",
       "minecraft:ore_gravel",
       "minecraft:ore_granite_upper",

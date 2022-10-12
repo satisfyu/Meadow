@@ -1,33 +1,69 @@
 package net.satisfyu.meadow.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
+import net.satisfyu.meadow.item.ModItems;
 
 public class CheeseBlock extends Block {
 
-    public static final IntProperty CUTS = IntProperty.of("cuts", 0, 3);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 4, 12);
 
-    public CheeseBlock(Settings settings) {
+    private static final VoxelShape SHAPE_BIG = Block.createCuboidShape(2, 0, 2, 14, 4, 14);
+
+    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    public static final IntProperty CUTS = IntProperty.of("cuts", 0, 3);
+    private final Item slice;
+
+    private final boolean big;
+
+    public CheeseBlock(Settings settings, Item slice, boolean big) {
         super(settings);
+        this.slice = slice;
+        this.big = big;
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(CUTS);
+        builder.add(CUTS, FACING);
+    }
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return big ? SHAPE_BIG : SHAPE;
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state.rotate(mirror.getRotation(state.get(FACING)));
     }
 
     @Override
@@ -44,11 +80,11 @@ public class CheeseBlock extends Block {
         return tryEat(world, pos, state, player);
     }
 
-    protected static ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
+    private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canConsume(false)) {
             return ActionResult.PASS;
         }
-        player.getHungerManager().add(2, 0.1f);
+        CheeseBlock.dropStack((World) world, pos, Direction.UP, new ItemStack(slice));
         int i = state.get(CUTS);
         world.emitGameEvent(player, GameEvent.EAT, pos);
         if (i < 3) {

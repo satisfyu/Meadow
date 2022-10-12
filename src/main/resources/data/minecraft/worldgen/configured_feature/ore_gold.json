@@ -4,7 +4,7 @@
       {
         "target": {
           "predicate_type": "minecraft:block_match",
-          "block": "minecraft:limestone"
+          "block": "meadow:limestone"
         },
         "state": {
           "Name": "meadow:alpine_gold_ore"
