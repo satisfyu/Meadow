@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.mixin;
+package net.satisfyu.meadow.mixin.biome;
 
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.OverworldBiomeCreator;
