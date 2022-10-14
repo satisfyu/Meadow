@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "features": [
+      {
+        "chance": 0.25,
+        "feature": "meadow:old_birch_tree_bees_checked"
+      }
+    ],
+    "default": "meadow:pine_checked"
+  }
+}

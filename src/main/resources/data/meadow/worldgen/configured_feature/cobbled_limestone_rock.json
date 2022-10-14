@@ -1,0 +1,8 @@
+{
+  "type": "meadow:cobbled_limestone_rock",
+  "config": {
+    "state": {
+      "Name": "meadow:cobbled_limestone"
+    }
+  }
+}

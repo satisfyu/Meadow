@@ -14,7 +14,7 @@
         }
     },
     "result": {
-        "item": "meadow:climbing_rope",
+        "item": "meadow:climbing_rope_topmount",
         "count": 2
     }
 }

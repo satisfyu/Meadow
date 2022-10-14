@@ -18,13 +18,13 @@ import net.satisfyu.meadow.mixin.SignTypeAccessor;
 import net.satisfyu.meadow.painting.ModPaintings;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.sound.ModSounds;
-import net.satisfyu.meadow.util.ModFlammableBlocks;
 import net.satisfyu.meadow.util.ModStrippableBlocks;
 import net.satisfyu.meadow.villager.ModVillagers;
-import net.satisfyu.meadow.world.ModBiomes;
-import net.satisfyu.meadow.world.feature.ModConfiguredFeatures;
+import net.satisfyu.meadow.world.ModRegion;
+import net.satisfyu.meadow.world.feature.ModFeatures;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import terrablender.api.Regions;
 import terrablender.api.TerraBlenderApi;
 
 
@@ -41,33 +41,31 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 
 	@Override
 	public void onInitialize() {
-		ModConfiguredFeatures.registerConfiguredFeatures();
 		WOODCUTTING = Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, WoodcuttingRecipe.Type.ID), WoodcuttingRecipe.Type.INSTANCE);
 		WOODCUTTOR_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MOD_ID, "woodcutter"), new ScreenHandlerType<>(WoodcuttorScreenHandler::new));
 		COOKING_CAULDRON_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(MOD_ID, "cooking_cauldron"), new ScreenHandlerType<>(CookingCauldronScreenHandler::new));
-
 		Registry.register(Registry.RECIPE_SERIALIZER, WoodcuttingRecipeSerializer.ID, WoodcuttingRecipeSerializer.INSTANCE);
 
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModStrippableBlocks.registerStrippables();
+		WoodenCauldronBehavior.registerBehavior();
 
 		ModPaintings.registerPaintings();
-		ModBiomes.initialize();
 		ModVillagers.registerVillagers();
 		ModVillagers.registerTrades();
 
-		//ModFlammableBlocks.registerFlammableBlocks();
-		ModStrippableBlocks.registerStrippables();
-
 		ModSounds.registerSounds();
-		ModEntities.register();
-
-		WoodenCauldronBehavior.registerBehavior();
 		ModParticles.registerParticles();
+
+		ModEntities.registerEntities();
+
+		ModFeatures.registerFeatures();
 	}
 
 	@Override
 	public void onTerraBlenderInitialized() {
-		ModBiomes.initializeTerraBlender();
+		Regions.register(new ModRegion(new Identifier(MOD_ID, "overworld"), 2));
+
 	}
 }

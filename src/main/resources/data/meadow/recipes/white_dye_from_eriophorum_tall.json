@@ -3,7 +3,7 @@
   "group": "white_dye",
   "ingredients": [
     {
-      "item": "meadow:tall_eriophorum"
+      "item": "meadow:eriophorum_tall"
     }
   ],
   "result": {

@@ -198,21 +198,14 @@
     [
       "minecraft:glow_lichen",
 
-      "meadow:flower/alpine_poppy",
-      "meadow:flower/delphinium",
-      "meadow:flower/enzian",
-      "meadow:flower/eriophorum",
-      "meadow:flower/fire_lilly",
-      "meadow:flower/saxifrage",
+      "meadow:flower/small_fir",
+
+      "meadow:fern/wild_juniper",
+      "meadow:fern/wild_mountain_lavender",
+      "meadow:fern/wild_yarrow",
 
       "meadow:patch_alpine_grass",
-      "meadow:patch_tall_alpine_grass",
-      "meadow:meadow_trees",
-
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin"
+      "meadow:patch_tall_alpine_grass"
     ],
     [
       "minecraft:freeze_top_layer"

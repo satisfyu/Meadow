@@ -4,9 +4,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
-import net.minecraft.block.FacingBlock;
-import net.minecraft.block.sapling.DarkOakSaplingGenerator;
-import net.minecraft.block.sapling.OakSaplingGenerator;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
@@ -23,7 +20,7 @@ import net.satisfyu.meadow.block.custom.*;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
 import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
-import net.satisfyu.meadow.world.feature.tree.PineSaplingGenerator;
+import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
 public class ModBlocks {
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
@@ -250,6 +247,7 @@ public class ModBlocks {
     public static final Block PINE_SAPLING = registerBlock("pine_sapling",
             new SaplingBlock(new PineSaplingGenerator(),
                     FabricBlockSettings.copy(Blocks.SPRUCE_SAPLING)), ModItemGroup.ALPINE_SALT);
+
     public static final Block PINE_FENCE = registerBurningBlock("pine_fence",
             new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT, 5, 20);
 

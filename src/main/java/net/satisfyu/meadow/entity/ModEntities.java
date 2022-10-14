@@ -90,7 +90,7 @@ public class ModEntities {
     public static final BlockEntityType<CheeseFormBlockEntity> CHEESE_FORM_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cheese_form", FabricBlockEntityTypeBuilder.create(CheeseFormBlockEntity::new, ModBlocks.CHEESE_FORM).build(null));
 
 
-    public static void register(){
+    public static void registerEntities(){
 
         registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
 

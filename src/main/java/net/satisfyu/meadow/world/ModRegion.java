@@ -6,6 +6,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
+import net.satisfyu.meadow.Meadow;
 import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
@@ -14,6 +15,9 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class ModRegion extends Region {
+
+    public static final RegistryKey<Biome> MEADOW_CLEARING_KEY = register("meadow_clearing");
+    public static final RegistryKey<Biome> MEADOW_FOREST_KEY = register("meadow_forest");
     public ModRegion(Identifier name, int weight) {
         super(name, RegionType.OVERWORLD, weight);
     }
@@ -28,7 +32,7 @@ public class ModRegion extends Region {
                     .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.FLOOR)
                     .weirdness(ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.PEAK_VARIANT, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_DESCENDING)
                     .build();
-            meadowForestPoints.forEach(point -> builder.replaceBiome(point, ModBiomes.MEADOW_FOREST_KEY));
+            meadowForestPoints.forEach(point -> builder.replaceBiome(point, MEADOW_FOREST_KEY));
 
             List<MultiNoiseUtil.NoiseHypercube> meadowClearingPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(ParameterUtils.Temperature.ICY, ParameterUtils.Temperature.COOL, ParameterUtils.Temperature.NEUTRAL)
@@ -38,8 +42,16 @@ public class ModRegion extends Region {
                     .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.FLOOR)
                     .weirdness(ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.PEAK_VARIANT, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_DESCENDING)
                     .build();
-            meadowClearingPoints.forEach(point -> builder.replaceBiome(point, ModBiomes.MEADOW_CLEARING_KEY));
+            meadowClearingPoints.forEach(point -> builder.replaceBiome(point, MEADOW_CLEARING_KEY));
 
         });
     }
+
+
+
+    private static RegistryKey<Biome> register(String name) {
+        return RegistryKey.of(Registry.BIOME_KEY, new Identifier(Meadow.MOD_ID, name));
+    }
+
+
 }
