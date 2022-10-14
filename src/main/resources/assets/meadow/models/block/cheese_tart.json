@@ -3,7 +3,8 @@
 	"textures": {
 		"side": "meadow:block/cheese_tart_side",
 		"top": "meadow:block/cheese_tart_top",
-		"bottom": "meadow:block/cheese_tart_bottom"
+		"bottom": "meadow:block/cheese_tart_bottom",
+		"particle": "meadow:block/cheese_tart_eaten"
 	},
 	"elements": [
 		{

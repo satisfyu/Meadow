@@ -4,7 +4,8 @@
 		"side": "meadow:block/cheese_tart_side",
 		"inner": "meadow:block/cheesecake_eaten",
 		"top": "meadow:block/cheesecake_top",
-		"bottom": "meadow:block/cheese_tart_bottom"
+		"bottom": "meadow:block/cheese_tart_bottom",
+		"particle": "meadow:block/cheesecake_eaten"
 	},
 	"elements": [
 		{

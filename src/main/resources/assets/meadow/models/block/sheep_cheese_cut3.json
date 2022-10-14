@@ -2,7 +2,8 @@
 	"credit": "Made by Satisfy",
 	"parent": "template_cheese_cut3",
 	"textures": {
-		"1": "meadow:block/cheese_sheep"
+		"1": "meadow:block/cheese_sheep",
+		"particle": "meadow:block/cheese_sheep"
 	},
 	"elements": [
 		{

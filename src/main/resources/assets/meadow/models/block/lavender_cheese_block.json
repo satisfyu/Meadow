@@ -2,7 +2,8 @@
 	"credit": "Made by Satisfy",
 	"parent": "template_cheese_block",
 	"textures": {
-		"1": "meadow:block/cheese_lavender"
+		"1": "meadow:block/cheese_lavender",
+		"particle": "meadow:block/cheese_lavender"
 	},
 	"elements": [
 		{

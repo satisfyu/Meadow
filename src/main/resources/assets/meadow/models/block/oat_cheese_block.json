@@ -2,7 +2,8 @@
 	"credit": "Made by Satisfy",
 	"parent": "template_cheese_block",
 	"textures": {
-		"1": "meadow:block/cheese_oat"
+		"1": "meadow:block/cheese_oat",
+		"particle": "meadow:block/cheese_oat"
 	},
 	"elements": [
 		{
