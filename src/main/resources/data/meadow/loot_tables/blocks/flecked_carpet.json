@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:flecked_carpet"
+          "name": "meadow:flecked_carpet"
         }
       ],
       "rolls": 1.0

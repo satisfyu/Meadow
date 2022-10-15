@@ -13,7 +13,7 @@ import net.minecraft.world.BlockView;
 import net.satisfyu.meadow.item.ModItems;
 
 public class YarrowCropBlock extends CropBlock {
-    public static final IntProperty AGE = IntProperty.of("age", 0, 3);
+    public static final IntProperty AGE = IntProperty.of("age", 0, 2);
     protected static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
             Block.createCuboidShape(0.0, -1.0, 0.0, 16.0, 2.0, 16.0),
             Block.createCuboidShape(0.0, -1.0, 0.0, 16.0, 8.0, 16.0),
@@ -38,7 +38,7 @@ public class YarrowCropBlock extends CropBlock {
 
     @Override
     public int getMaxAge() {
-        return 3;
+        return 2;
     }
 
     @Override

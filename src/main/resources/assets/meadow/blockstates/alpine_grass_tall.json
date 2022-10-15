@@ -3,8 +3,9 @@
     "half=lower": {
       "model": "meadow:block/alpine_grass_tall_bottom"
     },
-    "half=upper": {
-      "model": "meadow:block/alpine_grass_tall_top"
+        "half=upper": [ { "model": "meadow:block/alpine_grass_tall_top" },
+			{ "model": "meadow:block/alpine_grass_tall_top_1" },
+			{ "model": "meadow:block/alpine_grass_tall_top_2" }]
     }
   }
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "meadow:block/juniper_stage2_3"
+  }
+}
