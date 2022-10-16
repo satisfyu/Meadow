@@ -1,18 +1,22 @@
 package net.satisfyu.meadow.world;
 
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import net.satisfyu.meadow.Meadow;
-import terrablender.api.ParameterUtils;
-import terrablender.api.Region;
-import terrablender.api.RegionType;
+import net.minecraft.world.gen.surfacebuilder.MaterialRules;
+import net.satisfyu.meadow.block.ModBlocks;
+import terrablender.api.*;
 
 import java.util.List;
 import java.util.function.Consumer;
+
+import static net.satisfyu.meadow.Meadow.MOD_ID;
+import static net.satisfyu.meadow.world.ModSurfaceRules.makeRules;
 
 public class ModRegion extends Region {
 
@@ -47,10 +51,13 @@ public class ModRegion extends Region {
         });
     }
 
-
+    public static void loadTerrablender(){
+        Regions.register(new ModRegion(new Identifier(MOD_ID, "overworld"), 2));
+        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, makeRules());
+    }
 
     private static RegistryKey<Biome> register(String name) {
-        return RegistryKey.of(Registry.BIOME_KEY, new Identifier(Meadow.MOD_ID, name));
+        return RegistryKey.of(Registry.BIOME_KEY, new Identifier(MOD_ID, name));
     }
 
 

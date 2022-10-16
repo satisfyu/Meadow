@@ -147,7 +147,8 @@
       "minecraft:lake_lava_surface"
     ],
     [
-      "minecraft:amethyst_geode"
+      "minecraft:amethyst_geode",
+      "meadow:forest_rock_limestone"
     ],
     [
       "minecraft:monster_room",
@@ -203,6 +204,7 @@
       "meadow:fern/wild_juniper",
       "meadow:fern/wild_mountain_lavender",
       "meadow:fern/wild_yarrow",
+      "meadow:meadow_forest_trees",
 
       "meadow:patch_alpine_grass",
       "meadow:patch_tall_alpine_grass"
