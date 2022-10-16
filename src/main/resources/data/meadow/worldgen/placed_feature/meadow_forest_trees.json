@@ -1,9 +1,9 @@
 {
-  "feature": "meadow:meadow_trees",
+  "feature": "meadow:meadow_forest_trees",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 35
+      "type": "minecraft:count",
+      "count": 15
     },
     {
       "type": "minecraft:in_square"
