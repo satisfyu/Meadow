@@ -197,7 +197,7 @@
     ],
     [
       "minecraft:glow_lichen",
-      "meadow:flower/tall_eriophorum",
+      "meadow:eriophorum_tall",
       "meadow:patch_alpine_grass",
       "meadow:patch_tall_alpine_grass"
     ],

@@ -1,15 +1,11 @@
 package net.satisfyu.meadow.world;
 
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import net.minecraft.world.gen.surfacebuilder.MaterialRules;
-import net.satisfyu.meadow.block.ModBlocks;
 import terrablender.api.*;
 
 import java.util.List;
@@ -28,6 +24,7 @@ public class ModRegion extends Region {
 
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
         addModifiedVanillaOverworldBiomes(mapper, builder -> {
+
             List<MultiNoiseUtil.NoiseHypercube> meadowForestPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(ParameterUtils.Temperature.WARM, ParameterUtils.Temperature.WARM, ParameterUtils.Temperature.NEUTRAL)
                     .humidity(ParameterUtils.Humidity.ARID, ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL, ParameterUtils.Humidity.WET, ParameterUtils.Humidity.HUMID)
@@ -36,7 +33,9 @@ public class ModRegion extends Region {
                     .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.FLOOR)
                     .weirdness(ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.PEAK_VARIANT, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_DESCENDING)
                     .build();
+
             meadowForestPoints.forEach(point -> builder.replaceBiome(point, MEADOW_FOREST_KEY));
+
 
             List<MultiNoiseUtil.NoiseHypercube> meadowClearingPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(ParameterUtils.Temperature.ICY, ParameterUtils.Temperature.COOL, ParameterUtils.Temperature.NEUTRAL)
@@ -46,8 +45,8 @@ public class ModRegion extends Region {
                     .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.FLOOR)
                     .weirdness(ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.PEAK_VARIANT, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_DESCENDING)
                     .build();
-            meadowClearingPoints.forEach(point -> builder.replaceBiome(point, MEADOW_CLEARING_KEY));
 
+            meadowClearingPoints.forEach(point -> builder.replaceBiome(point, MEADOW_CLEARING_KEY));
         });
     }
 
