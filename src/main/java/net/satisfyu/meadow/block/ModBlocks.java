@@ -22,6 +22,8 @@ import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
+import static net.minecraft.block.Blocks.AIR;
+
 public class ModBlocks {
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
             new OatCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
@@ -30,10 +32,10 @@ public class ModBlocks {
             new YarrowCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
 
     public static final Block MOUNTAIN_LAVENDER_CROP = registerBlockWithoutItem("mountain_lavender_crop",
-            new YarrowCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
+            new MountainLavenderCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
 
     public static final Block JUNIPER_CROP = registerBlockWithoutItem("juniper_crop",
-            new YarrowCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
+            new JuniperCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
 
     public static final Block ALPINE_GRASS = registerBlock("alpine_grass",
             new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.ALPINE_SALT);
@@ -72,7 +74,7 @@ public class ModBlocks {
             new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
     public static final Block POTTED_ENZIAN = registerBlockWithoutItem("potted_enzian",
-            new FlowerPotBlock(ModBlocks.ENZIAN, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+            new FlowerPotBlock(ModBlocks.ENZIAN, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY)));
 
     public static final Block FIRE_LILY = registerBlock("fire_lily",
             new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
@@ -412,8 +414,9 @@ public class ModBlocks {
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.CHEESECAKE_SLICE, true), ModItemGroup.ALPINE_SALT);
 
 
-    public static final Block POTTED_PINE_SAPLING = registerBlock("potted_pine_sapling",
-            new FlowerPotBlock(ModBlocks.PINE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
+
+    public static final Block POTTED_PINE_SAPLING = registerBlockWithoutItem("potted_pine_sapling",
+            new FlowerPotBlock(ModBlocks.PINE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
 
 
 

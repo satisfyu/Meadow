@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/crop",
-  "textures": {
-    "crop": "meadow:block/mountain_lavender_stage_1"
-  }
-}
