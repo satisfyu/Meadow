@@ -56,7 +56,7 @@ public class ModSurfaceRules {
         return MaterialRules.block(block.getDefaultState());
     }
 
-    
+
     private static RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> register(String name) {
         return RegistryKey.of(Registry.NOISE_KEY, new Identifier(MOD_ID, name));
     }

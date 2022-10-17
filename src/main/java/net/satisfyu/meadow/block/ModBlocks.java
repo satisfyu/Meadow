@@ -311,7 +311,16 @@ public class ModBlocks {
     public static final Block CHAIR = registerBlock("chair",
             new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block BENCH = registerBlock("bench",
+            new BenchBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+
     public static final Block AXE_WOODSTACK = registerBlock("axe_woodstack",
+            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
+
+    public static final Block MID_WOODSTACK = registerBlock("mid_woodstack",
+            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
+
+    public static final Block SMALL_WOODSTACK = registerBlock("small_woodstack",
             new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
 
     public static final Block BIG_WOODSTACK = registerBlock("big_woodstack",

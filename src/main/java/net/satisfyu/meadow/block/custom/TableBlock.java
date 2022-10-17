@@ -19,6 +19,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
+import net.satisfyu.meadow.Meadow;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -28,64 +29,11 @@ public class TableBlock extends Block {
     public static final EnumProperty<ChestType> CHEST_TYPE = Properties.CHEST_TYPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
-    protected static VoxelShape DOUBLE_NORTH_SHAPE(){
-        VoxelShape top = Block.createCuboidShape(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
-
-        VoxelShape leg1 = Block.createCuboidShape(1.0, 0.0, 1.0, 4.0, 13.0, 4.0);
-        VoxelShape leg2 = Block.createCuboidShape(1.0, 0.0, 12.0, 4.0, 13.0, 15.0);
-        VoxelShape leg3 = Block.createCuboidShape(12.0, 0.0, 12.0, 15.0, 13.0, 15.0);
-        VoxelShape leg4 = Block.createCuboidShape(12.0, 0.0, 1.0, 15.0, 13.0, 4.0);
-
-        return VoxelShapes.union(top, leg1, leg2, leg3, leg4);
-    }
-    protected static VoxelShape DOUBLE_SOUTH_SHAPE(){
-        VoxelShape top = Block.createCuboidShape(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
-
-        VoxelShape leg1 = Block.createCuboidShape(1.0, 0.0, 1.0, 4.0, 13.0, 4.0);
-        VoxelShape leg2 = Block.createCuboidShape(1.0, 0.0, 12.0, 4.0, 13.0, 15.0);
-        VoxelShape leg3 = Block.createCuboidShape(12.0, 0.0, 12.0, 15.0, 13.0, 15.0);
-        VoxelShape leg4 = Block.createCuboidShape(12.0, 0.0, 1.0, 15.0, 13.0, 4.0);
-
-        return VoxelShapes.union(top, leg1, leg2, leg3, leg4);
-    }
-    protected static VoxelShape DOUBLE_WEST_SHAPE(){
-        VoxelShape top = Block.createCuboidShape(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
-
-        VoxelShape leg1 = Block.createCuboidShape(1.0, 0.0, 1.0, 4.0, 13.0, 4.0);
-        VoxelShape leg2 = Block.createCuboidShape(1.0, 0.0, 12.0, 4.0, 13.0, 15.0);
-        VoxelShape leg3 = Block.createCuboidShape(12.0, 0.0, 12.0, 15.0, 13.0, 15.0);
-        VoxelShape leg4 = Block.createCuboidShape(12.0, 0.0, 1.0, 15.0, 13.0, 4.0);
-
-        return VoxelShapes.union(top, leg1, leg2, leg3, leg4);
-    }
-    protected static VoxelShape DOUBLE_EAST_SHAPE(){
-        VoxelShape top = Block.createCuboidShape(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
-
-        VoxelShape leg1 = Block.createCuboidShape(1.0, 0.0, 1.0, 4.0, 13.0, 4.0);
-        VoxelShape leg2 = Block.createCuboidShape(1.0, 0.0, 12.0, 4.0, 13.0, 15.0);
-        VoxelShape leg3 = Block.createCuboidShape(12.0, 0.0, 12.0, 15.0, 13.0, 15.0);
-        VoxelShape leg4 = Block.createCuboidShape(12.0, 0.0, 1.0, 15.0, 13.0, 4.0);
-
-        return VoxelShapes.union(top, leg1, leg2, leg3, leg4);
-    }
-    protected static VoxelShape SINGLE_SHAPE(){
-        VoxelShape top = Block.createCuboidShape(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
-
-        VoxelShape leg1 = Block.createCuboidShape(1.0, 0.0, 1.0, 4.0, 13.0, 4.0);
-        VoxelShape leg2 = Block.createCuboidShape(1.0, 0.0, 12.0, 4.0, 13.0, 15.0);
-        VoxelShape leg3 = Block.createCuboidShape(12.0, 0.0, 12.0, 15.0, 13.0, 15.0);
-        VoxelShape leg4 = Block.createCuboidShape(12.0, 0.0, 1.0, 15.0, 13.0, 4.0);
-
-        return VoxelShapes.union(top, leg1, leg2, leg3, leg4);
-    }
-
 
     public TableBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(CHEST_TYPE, ChestType.SINGLE).with(WATERLOGGED, false));
     }
-
-
 
 
     @Override
@@ -106,28 +54,44 @@ public class TableBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        VoxelShape top = Block.createCuboidShape(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
+        VoxelShape leg1 = Block.createCuboidShape(1.0, 0.0, 1.0, 4.0, 13.0, 4.0);
+        VoxelShape leg2 = Block.createCuboidShape(1.0, 0.0, 12.0, 4.0, 13.0, 15.0);
+        VoxelShape leg3 = Block.createCuboidShape(12.0, 0.0, 12.0, 15.0, 13.0, 15.0);
+        VoxelShape leg4 = Block.createCuboidShape(12.0, 0.0, 1.0, 15.0, 13.0, 4.0);
+
         if (state.get(CHEST_TYPE) == ChestType.SINGLE) {
-            return SINGLE_SHAPE();
+            return VoxelShapes.union(top, leg1, leg2, leg3, leg4);
+        }
+
+
+        VoxelShape legs1;
+        VoxelShape legs2;
+
+        Direction direction = state.get(FACING);
+        ChestType chestType = state.get(CHEST_TYPE);
+
+        if((direction == Direction.NORTH && chestType == ChestType.LEFT) || (direction == Direction.SOUTH && chestType == ChestType.RIGHT)){
+            legs1 = leg1;
+            legs2 = leg2;
+        }
+        else if((direction == Direction.NORTH && chestType == ChestType.RIGHT) || (direction == Direction.SOUTH && chestType == ChestType.LEFT)){
+            legs1 = leg3;
+            legs2 = leg4;
+        }
+        else if((direction == Direction.EAST && chestType == ChestType.RIGHT) || (direction == Direction.WEST && chestType == ChestType.LEFT)){
+            legs1 = leg2;
+            legs2 = leg3;
+        }
+        else if((direction == Direction.EAST && chestType == ChestType.LEFT) || (direction == Direction.WEST && chestType == ChestType.RIGHT)){
+            legs1 = leg1;
+            legs2 = leg4;
         }
         else {
-            return Block.createCuboidShape(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
+            Meadow.LOGGER.error("Table blockstate not correct!");
+            return top;
         }
-        /*
-        switch (TableBlock.getFacing(state)) {
-            default: {
-                return DOUBLE_NORTH_SHAPE();
-            }
-            case SOUTH: {
-                return DOUBLE_SOUTH_SHAPE();
-            }
-            case WEST: {
-                return DOUBLE_WEST_SHAPE();
-            }
-            case EAST:
-        }
-        return DOUBLE_EAST_SHAPE();
-
-         */
+        return VoxelShapes.union(top, legs1, legs2);
     }
 
     public static Direction getFacing(BlockState state) {
