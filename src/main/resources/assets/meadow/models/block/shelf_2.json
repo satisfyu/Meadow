@@ -1,32 +1,35 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"1": "meadow:block/doormat",
-		"particle": "meadow:block/doormat"
+		"0": "meadow:block/shelf_bottom",
+		"1": "meadow:block/shelf_side",
+		"2": "meadow:block/shelf_top",
+		"3": "meadow:block/shelf_2",
+		"particle": "meadow:block/shelf_bottom"
 	},
 	"elements": [
 		{
-			"from": [1.5, 0, 3],
-			"to": [14.5, 0.5, 13],
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
 			"faces": {
-				"north": {"uv": [0, 0, 13, 1], "texture": "#1"},
-				"east": {"uv": [0, 0, 10, 1], "texture": "#1"},
-				"south": {"uv": [0, 9, 13, 10], "texture": "#1"},
-				"west": {"uv": [0, 9, 10, 10], "texture": "#1"},
-				"up": {"uv": [13, 10, 0, 0], "texture": "#1"},
-				"down": {"uv": [13, 0, 0, 10], "texture": "#1"}
+				"north": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
 			}
 		}
 	],
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 2.75],
+			"translation": [0, 2.5, 0],
 			"scale": [0.375, 0.375, 0.375]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 2.75],
+			"translation": [0, 2.5, 0],
 			"scale": [0.375, 0.375, 0.375]
 		},
 		"firstperson_righthand": {
@@ -43,7 +46,6 @@
 		},
 		"gui": {
 			"rotation": [30, 225, 0],
-			"translation": [0, 1, 0],
 			"scale": [0.625, 0.625, 0.625]
 		},
 		"fixed": {

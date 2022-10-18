@@ -13,6 +13,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlock;
+import net.satisfyu.meadow.block.custom.FacingBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
@@ -295,6 +296,8 @@ public class ModBlocks {
     public static final Block PINE_PRESSURE_PLATE = registerBlock("pine_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.of(Material.WOOD, PINE_PLANKS.getDefaultMapColor()).noCollision().strength(0.5f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
+    public static final Block SHELF = registerBlock("shelf",
+            new FacingBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block FURNACE_COBBLESTONE = registerBlock("furnace_cobblestone",
             new SmokerBlock(FabricBlockSettings.copyOf(Blocks.SMOKER)), ModItemGroup.ALPINE_SALT);
 
@@ -319,10 +322,10 @@ public class ModBlocks {
     public static final Block AXE_WOODSTACK = registerBlock("axe_woodstack",
             new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
 
-    public static final Block MID_WOODSTACK = registerBlock("mid_woodstack",
+    public static final Block SMALL_WOODSTACK = registerBlock("small_woodstack",
             new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
 
-    public static final Block SMALL_WOODSTACK = registerBlock("small_woodstack",
+    public static final Block MID_WOODSTACK = registerBlock("mid_woodstack",
             new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
 
     public static final Block BIG_WOODSTACK = registerBlock("big_woodstack",
