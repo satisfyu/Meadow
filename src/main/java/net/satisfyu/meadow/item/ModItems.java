@@ -114,6 +114,7 @@ public class ModItems {
 
     public static final Item LAB = registerItem("lab", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
+    public static final Item OAT_OIL = registerItem("oat_oil", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item OAT_SEEDS = registerItem("oat_seeds",
             new AliasedBlockItem(ModBlocks.OAT_CROP,
@@ -136,7 +137,8 @@ public class ModItems {
 
     public static final Item BAG_OF_YARROW = registerItem("bag_of_yarrow", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
-
+    public static final Item OAT = registerItem("oat",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item CHEESE_MASS = registerItem("cow_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item BUFFALO_CHEESE_MASS = registerItem("buffalo_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
@@ -189,6 +191,9 @@ public class ModItems {
     public static final Item WOODEN_OAT_MILK = registerItem("wooden_oat_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item WOODEN_SHEEP_MILK = registerItem("wooden_sheep_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+
+    public static final Item BEAR_FUR = registerItem("bear_fur",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
 
     private static Item registerItem(String name, Item item) {
