@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "meadow:block/stove_tiles_wood_on",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "meadow:block/stove_tiles_wood_on"
+    },
+    "facing=south": {
+      "model": "meadow:block/stove_tiles_wood_on",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "meadow:block/stove_tiles_wood_on",
+      "y": 270
+    }
+  }
+}

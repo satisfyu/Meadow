@@ -11,6 +11,7 @@ import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.entity.ModEntities;
+import net.satisfyu.meadow.item.custom.WateringCanItem;
 import net.satisfyu.meadow.item.custom.WoodenBucket;
 import net.satisfyu.meadow.item.custom.WoodenMilkBucket;
 import net.satisfyu.meadow.item.custom.WoodenPowderSnowBucket;
@@ -113,6 +114,8 @@ public class ModItems {
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
 
     public static final Item LAB = registerItem("lab", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+
+    public static final Item WATERING_CAN = registerItem("watering_can", new WateringCanItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxDamage(25)));
 
     public static final Item OAT_OIL = registerItem("oat_oil", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
