@@ -30,15 +30,20 @@ public class WoodStackBlock extends Block {
 
     private static final VoxelShape SHAPE_BIG = Block.createCuboidShape(1, 0, 1, 15, 16, 15);
 
-    private final boolean isBig;
-    public WoodStackBlock(Settings settings, boolean isBig) {
+    private static final VoxelShape SHAPE_MID = Block.createCuboidShape(1, 0, 1, 15, 12, 15);
+
+    private final int size;
+    public WoodStackBlock(Settings settings, int size) {
         super(settings);
-        this.isBig = isBig;
+        this.size = size;
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return isBig ? SHAPE_BIG : SHAPE;
+        if(size == 0) return SHAPE;
+        else if(size == 1) return SHAPE_MID;
+        else if(size == 2) return SHAPE_BIG;
+        else return SHAPE;
     }
 
     @Override

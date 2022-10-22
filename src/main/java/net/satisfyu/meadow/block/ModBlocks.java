@@ -154,6 +154,9 @@ public class ModBlocks {
     public static final Block UMBRA_WOOL = registerBurningBlock("umbra_wool",
             new Block(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT, 30, 60);
 
+    public static final Block INKY_WOOL = registerBurningBlock("inky_wool",
+            new Block(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT, 30, 60);
+
     public static final Block FLECKED_CARPET = registerBlock("flecked_carpet",
             new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
 
@@ -320,16 +323,16 @@ public class ModBlocks {
             new BenchBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
     public static final Block AXE_WOODSTACK = registerBlock("axe_woodstack",
-            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
-
-    public static final Block SMALL_WOODSTACK = registerBlock("small_woodstack",
-            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
+            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), 0), ModItemGroup.ALPINE_SALT);
 
     public static final Block MID_WOODSTACK = registerBlock("mid_woodstack",
-            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), false), ModItemGroup.ALPINE_SALT);
+            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), 2), ModItemGroup.ALPINE_SALT);
+
+    public static final Block SMALL_WOODSTACK = registerBlock("small_woodstack",
+            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), 1), ModItemGroup.ALPINE_SALT);
 
     public static final Block BIG_WOODSTACK = registerBlock("big_woodstack",
-            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), true), ModItemGroup.ALPINE_SALT);
+            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), 2), ModItemGroup.ALPINE_SALT);
 
     public static final Block WINDOW_SHUTTER_0 = registerBlock("window_shutter_0",
             new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
@@ -416,7 +419,20 @@ public class ModBlocks {
     public static final Block CHEESECAKE = registerBlock("cheesecake",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.CHEESECAKE_SLICE, true), ModItemGroup.ALPINE_SALT);
 
+    public static final Block STOVE = registerBlock("stove_tiles",
+            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
 
+    public static final Block STOVE_WOOD = registerBlock("stove_tiles_wood",
+            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
+
+    public static final Block STOVE_WOOD_ON = registerBlock("stove_tiles_wood_on",
+            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
+
+    public static final Block STOVE_LID = registerBlock("stove_tiles_lid",
+            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
+
+    public static final Block STOVE_BENCH = registerBlock("stove_tiles_bench",
+            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), false), ModItemGroup.ALPINE_SALT);
 
     public static final Block POTTED_PINE_SAPLING = registerBlockWithoutItem("potted_pine_sapling",
             new FlowerPotBlock(ModBlocks.PINE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));

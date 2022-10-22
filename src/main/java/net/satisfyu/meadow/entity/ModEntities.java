@@ -13,6 +13,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.tag.BiomeTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -29,7 +30,16 @@ import net.satisfyu.meadow.entity.custom.cow.cream_cow.CreamCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.dairy_cow.DairyCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.dark_cow.DarkCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.pinto_cow.PintoCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle.HighlandCattleEntity;
+import net.satisfyu.meadow.entity.custom.cow.shearable.umbra.UmbraCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.sunset_cow.SunsetCowEntity;
+import net.satisfyu.meadow.entity.custom.sheep.flecked.FleckedSheepEntity;
+import net.satisfyu.meadow.entity.custom.sheep.fuzzy.FuzzySheepEntity;
+import net.satisfyu.meadow.entity.custom.sheep.horned.HornedSheepEntity;
+import net.satisfyu.meadow.entity.custom.sheep.inky.InkySheepEntity;
+import net.satisfyu.meadow.entity.custom.sheep.long_nosed.LongNosedSheepEntity;
+import net.satisfyu.meadow.entity.custom.sheep.patched.PatchedSheepEntity;
+import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepEntity;
 import net.satisfyu.meadow.mixin.SpawnMobAccessor;
 
 import java.util.function.Predicate;
@@ -85,27 +95,76 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, SunsetCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
     );
 
+    public static final EntityType<HighlandCattleEntity> HIGHLAND_CATTLE = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "highland_cattle"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HighlandCattleEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
+    public static final EntityType<UmbraCowEntity> UMBRA_COW = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "umbra_cow"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, UmbraCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
+    public static final EntityType<FleckedSheepEntity> FLECKED_SHEEP = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "flecked_sheep"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, FleckedSheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
+    public static final EntityType<FuzzySheepEntity> FUZZY_SHEEP = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "fuzzy_sheep"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, FuzzySheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
+    public static final EntityType<HornedSheepEntity> HORNED_SHEEP = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "horned_sheep"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HornedSheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
+    public static final EntityType<InkySheepEntity> INKY_SHEEP = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "inky_sheep"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, InkySheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
+    public static final EntityType<LongNosedSheepEntity> LONG_NOSED_SHEEP = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "long_nosed_sheep"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, LongNosedSheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
+    public static final EntityType<PatchedSheepEntity> PATCHED_SHEEP = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "patched_sheep"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, PatchedSheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
+    public static final EntityType<RockySheepEntity> ROCKY_SHEEP = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "rocky_sheep"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RockySheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
     public static final BlockEntityType<CookingCauldronBlockEntity> COOKING_CAULDRON_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cooking_cauldron", FabricBlockEntityTypeBuilder.create(CookingCauldronBlockEntity::new, ModBlocks.COOKING_CAULDRON).build(null));
 
     public static final BlockEntityType<CheeseFormBlockEntity> CHEESE_FORM_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cheese_form", FabricBlockEntityTypeBuilder.create(CheeseFormBlockEntity::new, ModBlocks.CHEESE_FORM).build(null));
 
 
     public static void registerEntities(){
+        registerSheep(FLECKED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
+        registerSheep(FUZZY_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
+        registerSheep(HORNED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
+        registerSheep(INKY_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
+        registerSheep(LONG_NOSED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
+        registerSheep(PATCHED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
+        registerSheep(ROCKY_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
+
+
+        registerCow(HIGHLAND_CATTLE, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
+        registerCow(UMBRA_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
 
         registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
-
         registerCow(ALBINO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
-
         registerCow(CREAM_COW, BiomeSelectors.includeByKey(BiomeKeys.WOODED_BADLANDS).or(BiomeSelectors.tag(BiomeTags.IS_SAVANNA)));
-
         registerCow(DAIRY_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
-
         registerCow(ASHEN_COW, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST));
-
         registerCow(DARK_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
-
         registerCow(PINTO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
-
         registerCow(SUNSET_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
     }
 
@@ -113,5 +172,11 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(entityType, CowEntity.createCowAttributes());
         SpawnMobAccessor.callRegister(entityType, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
         BiomeModifications.addSpawn(biomes, SpawnGroup.CREATURE, entityType, 8, 4, 4);
+    }
+
+    public static void registerSheep(EntityType entityType, Predicate<BiomeSelectionContext> biomes){
+        FabricDefaultAttributeRegistry.register(entityType, SheepEntity.createSheepAttributes());
+        SpawnMobAccessor.callRegister(entityType, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
+        BiomeModifications.addSpawn(biomes, SpawnGroup.CREATURE, entityType, 2, 2, 4);
     }
 }

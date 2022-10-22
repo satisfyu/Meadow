@@ -7,15 +7,13 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.*;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
-import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairRenderer;
-import net.satisfyu.meadow.entity.custom.cow.MeadowCowEntityMdodel;
 import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.ashen_cow.AshenCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.cookie_cow.CookieCowRenderer;
@@ -23,7 +21,19 @@ import net.satisfyu.meadow.entity.custom.cow.cream_cow.CreamCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.dairy_cow.DairyCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.dark_cow.DarkCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.pinto_cow.PintoCowRenderer;
+import net.satisfyu.meadow.entity.custom.cow.shearable.WoolyCowModel;
+import net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle.HighlandCattleRenderer;
+import net.satisfyu.meadow.entity.custom.cow.shearable.umbra.UmbraCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.shearable.umbra.UmbraCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.sunset_cow.SunsetCowRenderer;
+import net.satisfyu.meadow.entity.custom.sheep.flecked.FleckedSheepRenderer;
+import net.satisfyu.meadow.entity.custom.sheep.fuzzy.FuzzySheepRenderer;
+import net.satisfyu.meadow.entity.custom.sheep.horned.HornedSheepModel;
+import net.satisfyu.meadow.entity.custom.sheep.horned.HornedSheepRenderer;
+import net.satisfyu.meadow.entity.custom.sheep.inky.InkySheepRenderer;
+import net.satisfyu.meadow.entity.custom.sheep.long_nosed.LongNosedSheepRenderer;
+import net.satisfyu.meadow.entity.custom.sheep.patched.PatchedSheepRenderer;
+import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepRenderer;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
 
@@ -31,8 +41,32 @@ import static net.satisfyu.meadow.Meadow.*;
 
 public class MeadowClient implements ClientModInitializer {
 
-    public static final EntityModelLayer ALBINO_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "albino_cow"), "head");
+    public static final EntityModelLayer FLECKED_SHEEP_FUR = new EntityModelLayer(new Identifier(MOD_ID, "flecked_sheep"), "fur");
+    public static final EntityModelLayer FLECKED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "flecked_sheep"), "main");
 
+    public static final EntityModelLayer FUZZY_SHEEP_FUR = new EntityModelLayer(new Identifier(MOD_ID, "fuzzy_sheep"), "fur");
+    public static final EntityModelLayer FUZZY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "fuzzy_sheep"), "main");
+
+
+    public static final EntityModelLayer HORNED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "horned_sheep"), "main");
+
+    public static final EntityModelLayer INKY_SHEEP_FUR = new EntityModelLayer(new Identifier(MOD_ID, "inky_sheep"), "fur");
+    public static final EntityModelLayer INKY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "inky_sheep"), "main");
+
+    public static final EntityModelLayer LONG_NOSED_SHEEP_FUR = new EntityModelLayer(new Identifier(MOD_ID, "long_nosed_sheep"), "fur");
+    public static final EntityModelLayer LONG_NOSED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "long_nosed_sheep"), "main");
+
+    public static final EntityModelLayer PATCHED_SHEEP_FUR = new EntityModelLayer(new Identifier(MOD_ID, "patched_sheep"), "fur");
+    public static final EntityModelLayer PATCHED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "patched_sheep"), "main");
+
+    public static final EntityModelLayer ROCKY_SHEEP_FUR = new EntityModelLayer(new Identifier(MOD_ID, "rocky_sheep"), "fur");
+    public static final EntityModelLayer ROCKY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "rocky_sheep"), "main");
+
+    public static final EntityModelLayer UMBRA_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "umbra_cow"), "head");
+
+    public static final EntityModelLayer HIGHLAND_CATTLE_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "highland_cattle"), "head");
+
+    public static final EntityModelLayer ALBINO_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "albino_cow"), "head");
     public static final EntityModelLayer ASHEN_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "ashen_cow"), "head");
 
     public static final EntityModelLayer COOKIE_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "cookie_cow"), "head");
@@ -62,8 +96,10 @@ public class MeadowClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
 
-        registerEntityStuff();
+        registerCows();
+        registerSheeps();
         registerParticles();
+        EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
     }
 
     private void registerParticles(){
@@ -71,33 +107,66 @@ public class MeadowClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(ModParticles.CHEESE_SPLASH, SplashParticle.Factory::new);
     }
 
-    private void registerEntityStuff(){
+    private void registerCows(){
+        EntityRendererRegistry.register(ModEntities.UMBRA_COW, UmbraCowRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(UMBRA_COW_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.HIGHLAND_CATTLE, HighlandCattleRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(HIGHLAND_CATTLE_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
+
         EntityRendererRegistry.register(ModEntities.ALBINO_COW, AlbinoCowRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(ALBINO_COW_MODEL_LAYER, MeadowCowEntityMdodel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ALBINO_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.ASHEN_COW, AshenCowRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(ASHEN_COW_MODEL_LAYER, MeadowCowEntityMdodel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ASHEN_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.COOKIE_COW, CookieCowRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(COOKIE_COW_MODEL_LAYER, MeadowCowEntityMdodel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(COOKIE_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.CREAM_COW, CreamCowRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(CREAM_COW_MODEL_LAYER, MeadowCowEntityMdodel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(CREAM_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.DAIRY_COW, DairyCowRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(DAIRY_COW_MODEL_LAYER, MeadowCowEntityMdodel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(DAIRY_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.DARK_COW, DarkCowRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(DARK_COW_MODEL_LAYER, MeadowCowEntityMdodel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(DARK_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.PINTO_COW, PintoCowRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(PINTO_COW_MODEL_LAYER, MeadowCowEntityMdodel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(PINTO_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.SUNSET_COW, SunsetCowRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(SUNSET_COW_MODEL_LAYER, MeadowCowEntityMdodel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(SUNSET_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
+    }
 
-        EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
+    private void registerSheeps(){
+        EntityRendererRegistry.register(ModEntities.FLECKED_SHEEP, FleckedSheepRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(FLECKED_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(FLECKED_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
 
+        EntityRendererRegistry.register(ModEntities.FUZZY_SHEEP, FuzzySheepRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(FUZZY_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(FUZZY_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.HORNED_SHEEP, HornedSheepRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(HORNED_SHEEP_MODEL_LAYER, HornedSheepModel::getTexturedModelData);
+
+
+        EntityRendererRegistry.register(ModEntities.INKY_SHEEP, InkySheepRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(INKY_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(INKY_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.LONG_NOSED_SHEEP, LongNosedSheepRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(LONG_NOSED_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(LONG_NOSED_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.PATCHED_SHEEP, PatchedSheepRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(PATCHED_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(PATCHED_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.ROCKY_SHEEP, RockySheepRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(ROCKY_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ROCKY_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
     }
 
 }
