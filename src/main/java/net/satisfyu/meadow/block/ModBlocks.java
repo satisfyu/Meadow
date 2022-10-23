@@ -23,8 +23,6 @@ import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
-import static net.minecraft.block.Blocks.AIR;
-
 public class ModBlocks {
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
             new OatCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
@@ -305,7 +303,7 @@ public class ModBlocks {
     public static final Block SHELF = registerBlock("shelf",
             new FacingBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block FURNACE_COBBLESTONE = registerBlock("furnace_cobblestone",
-            new SmokerBlock(FabricBlockSettings.copyOf(Blocks.SMOKER)), ModItemGroup.ALPINE_SALT);
+            new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.SMOKER)), ModItemGroup.ALPINE_SALT);
 
     public static final Block COOKING_CAULDRON = registerBlock("cooking_cauldron",
             new CookingCauldronBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
