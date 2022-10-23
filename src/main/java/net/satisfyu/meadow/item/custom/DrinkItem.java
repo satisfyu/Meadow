@@ -15,6 +15,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
+import net.satisfyu.meadow.item.ModItems;
 
 public class DrinkItem extends Item {
     public DrinkItem(Settings settings) {
@@ -29,10 +30,10 @@ public class DrinkItem extends Item {
         }
 
         if (stack.isEmpty())
-            return new ItemStack(Items.GLASS_BOTTLE);
+            return new ItemStack(ModItems.JUG);
 
         if (user instanceof PlayerEntity playerEntity && !playerEntity.getAbilities().creativeMode) {
-            ItemStack itemStack = new ItemStack(Items.GLASS_BOTTLE);
+            ItemStack itemStack = new ItemStack(ModItems.JUG);
             if (!playerEntity.getInventory().insertStack(itemStack)) {
                 playerEntity.dropItem(itemStack, false);
             }

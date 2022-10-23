@@ -427,7 +427,7 @@ public class ModBlocks {
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE_WOOD_ON = registerBlock("stove_tiles_wood_on",
-            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
+            new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE_LID = registerBlock("stove_tiles_lid",
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
