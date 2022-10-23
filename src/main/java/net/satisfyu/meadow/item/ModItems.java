@@ -11,10 +11,7 @@ import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.entity.ModEntities;
-import net.satisfyu.meadow.item.custom.WateringCanItem;
-import net.satisfyu.meadow.item.custom.WoodenBucket;
-import net.satisfyu.meadow.item.custom.WoodenMilkBucket;
-import net.satisfyu.meadow.item.custom.WoodenPowderSnowBucket;
+import net.satisfyu.meadow.item.custom.*;
 
 import java.util.Arrays;
 
@@ -102,15 +99,15 @@ public class ModItems {
     public static final Item JUG = registerItem("jug", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item JUG_MILK = registerItem("jug_milk",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+            new DrinkItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
 
     public static final Item JUG_YARROW_TEA = registerItem("jug_yarrow_tea",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+            new DrinkItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
 
     public static final Item JUG_JUNIPER_TEA = registerItem("jug_juniper_tea",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+            new DrinkItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
 
     public static final Item LAB = registerItem("lab", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
