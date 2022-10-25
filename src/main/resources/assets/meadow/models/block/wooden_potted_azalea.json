@@ -1,0 +1,7 @@
+{
+  "parent": "meadow:block/template_wooden_potted_azalea",
+  "textures": {
+    "top": "minecraft:block/potted_azalea_bush_top",
+    "side": "minecraft:block/potted_azalea_bush_side"
+  }
+}

@@ -6,10 +6,13 @@ import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.MeadowClient;
 import net.satisfyu.meadow.entity.custom.EyeBlinkRenderer;
 import net.satisfyu.meadow.entity.custom.cow.shearable.WoolyCowModel;
+import net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle.HighlandCattleEntity;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 
 public class UmbraCowRenderer extends MobEntityRenderer<UmbraCowEntity, WoolyCowModel<UmbraCowEntity>> {
+
+    private static final Identifier TEXTURE_SHEARED = new Identifier(MOD_ID, "textures/entity/cow/umbra_cow_sheared.png");
 
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/cow/umbra_cow.png");
 
@@ -20,6 +23,6 @@ public class UmbraCowRenderer extends MobEntityRenderer<UmbraCowEntity, WoolyCow
 
     @Override
     public Identifier getTexture(UmbraCowEntity cowEntity) {
-        return TEXTURE;
+        return cowEntity.isSheared() ? TEXTURE_SHEARED : TEXTURE;
     }
 }
