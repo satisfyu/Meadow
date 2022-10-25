@@ -308,7 +308,7 @@ public class ModBlocks {
     public static final Block SHELF = registerBlock("shelf",
             new FacingBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block FURNACE_COBBLESTONE = registerBlock("furnace_cobblestone",
-            new SmokerBlock(FabricBlockSettings.copyOf(Blocks.SMOKER)), ModItemGroup.ALPINE_SALT);
+            new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.SMOKER)), ModItemGroup.ALPINE_SALT);
 
     public static final Block COOKING_CAULDRON = registerBlock("cooking_cauldron",
             new CookingCauldronBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
@@ -432,7 +432,7 @@ public class ModBlocks {
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE_WOOD_ON = registerBlock("stove_tiles_wood_on",
-            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
+            new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE_LID = registerBlock("stove_tiles_lid",
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
