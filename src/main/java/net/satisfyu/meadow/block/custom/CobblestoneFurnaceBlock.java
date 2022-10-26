@@ -1,6 +1,8 @@
 package net.satisfyu.meadow.block.custom;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.SmokerBlock;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
@@ -8,6 +10,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class CobblestoneFurnaceBlock extends SmokerBlock {
@@ -33,5 +38,3 @@ public class CobblestoneFurnaceBlock extends SmokerBlock {
 
     }
 }
-
-
