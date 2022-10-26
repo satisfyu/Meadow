@@ -1,5 +1,8 @@
 package net.satisfyu.meadow.item;
 
+import com.terraformersmc.terraform.boat.api.TerraformBoatType;
+import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
+import com.terraformersmc.terraform.boat.impl.item.TerraformBoatItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -14,6 +17,8 @@ import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.custom.*;
 
 import java.util.Arrays;
+
+import static net.satisfyu.meadow.Meadow.PINE_BOAT_ID;
 
 
 public class ModItems {
@@ -191,6 +196,8 @@ public class ModItems {
     public static final Item WOODEN_OAT_MILK = registerItem("wooden_oat_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item WOODEN_SHEEP_MILK = registerItem("wooden_sheep_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+
+
 
     public static final Item BEAR_FUR = registerItem("bear_fur",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));

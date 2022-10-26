@@ -13,15 +13,18 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.tag.BiomeTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.BiomeKeys;
+import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlockEntity;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
 import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.ashen_cow.AshenCowEntity;
@@ -58,6 +61,11 @@ public class ModEntities {
     public static final EntityType<AlbinoCowEntity> ALBINO_COW = Registry.register(Registry.ENTITY_TYPE,
             new Identifier(MOD_ID, "albino_cow"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AlbinoCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
+
+    public static final EntityType<BrownBearEntity> BROWN_BEAR = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "brown_bear"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, BrownBearEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
     );
 
     public static final EntityType<AshenCowEntity> ASHEN_COW = Registry.register(Registry.ENTITY_TYPE,
@@ -135,6 +143,7 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, PatchedSheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
     );
 
+
     public static final EntityType<RockySheepEntity> ROCKY_SHEEP = Registry.register(Registry.ENTITY_TYPE,
             new Identifier(MOD_ID, "rocky_sheep"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RockySheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
@@ -146,6 +155,14 @@ public class ModEntities {
 
 
     public static void registerEntities(){
+        Meadow.LOGGER.debug("Registering Mod Entities for " + Meadow.MOD_ID);
+
+        FabricDefaultAttributeRegistry.register(BROWN_BEAR, PolarBearEntity.createPolarBearAttributes());
+        SpawnMobAccessor.callRegister(BROWN_BEAR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
+        BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.COW), SpawnGroup.CREATURE, BROWN_BEAR, 1, 1, 2);
+
+
+
         registerSheep(FLECKED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
         registerSheep(FUZZY_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
         registerSheep(HORNED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));

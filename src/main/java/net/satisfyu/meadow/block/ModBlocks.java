@@ -510,10 +510,9 @@ public class ModBlocks {
 
 
     private static Block registerWFPBlock(Block content){
-        Meadow.LOGGER.error(String.valueOf(Registry.BLOCK.getId(content)));
         List<String> s = Arrays.stream(Registry.BLOCK.getId(content).toString().split(":")).toList();
         String block = s.get(s.size() == 2 ? 1 : 0);
-        return registerBlockWithoutItem("wooden_potted_" + block, new WoodenFlowerPotBlock(content, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
+        return registerBlockWithoutItem("wooden_potted_" + block, new WoodenFlowerPotBlock(content, FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
     }
 
     private static Block registerBlockWithoutItem(String name, Block block) {

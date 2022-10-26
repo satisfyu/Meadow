@@ -1,5 +1,7 @@
 package net.satisfyu.meadow;
 
+import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
+import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -7,12 +9,15 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
+import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearRenderer;
 import net.satisfyu.meadow.entity.custom.chair.ChairRenderer;
 import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.ashen_cow.AshenCowRenderer;
@@ -23,7 +28,6 @@ import net.satisfyu.meadow.entity.custom.cow.dark_cow.DarkCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.pinto_cow.PintoCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.shearable.WoolyCowModel;
 import net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle.HighlandCattleRenderer;
-import net.satisfyu.meadow.entity.custom.cow.shearable.umbra.UmbraCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.shearable.umbra.UmbraCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.sunset_cow.SunsetCowRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.flecked.FleckedSheepRenderer;
@@ -49,6 +53,8 @@ public class MeadowClient implements ClientModInitializer {
 
 
     public static final EntityModelLayer HORNED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "horned_sheep"), "main");
+
+    public static final EntityModelLayer BROWN_BEAR_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "brown_bear"), "main");
 
     public static final EntityModelLayer INKY_SHEEP_FUR = new EntityModelLayer(new Identifier(MOD_ID, "inky_sheep"), "fur");
     public static final EntityModelLayer INKY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "inky_sheep"), "main");
@@ -105,7 +111,11 @@ public class MeadowClient implements ClientModInitializer {
         registerCows();
         registerSheeps();
         registerParticles();
+
+        EntityRendererRegistry.register(ModEntities.BROWN_BEAR, BrownBearRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(BROWN_BEAR_MODEL_LAYER, PolarBearEntityModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
+        TerraformBoatClientHelper.registerModelLayers(PINE_ID);
     }
 
     private void registerParticles(){
