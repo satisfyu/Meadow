@@ -23,6 +23,11 @@ import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static net.minecraft.block.Blocks.AIR;
+
 public class ModBlocks {
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
             new OatCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
@@ -439,11 +444,77 @@ public class ModBlocks {
     public static final Block POTTED_PINE_SAPLING = registerBlockWithoutItem("potted_pine_sapling",
             new FlowerPotBlock(ModBlocks.PINE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
 
+    public static final Block WOODEN_FLOWER_POT = registerBlock("wooden_flower_pot", new WoodenFlowerPotBlock(AIR, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
 
+    public static final Block POTTED_OAK_SAPLING = registerWFPBlock(Blocks.OAK_SAPLING);
+
+    public static final Block POTTED_SPRUCE_SAPLING = registerWFPBlock(Blocks.SPRUCE_SAPLING);
+
+    public static final Block POTTED_BIRCH_SAPLING = registerWFPBlock(Blocks.BIRCH_SAPLING);
+
+    public static final Block POTTED_JUNGLE_SAPLING = registerWFPBlock(Blocks.JUNGLE_SAPLING);
+
+    public static final Block POTTED_ACACIA_SAPLING = registerWFPBlock(Blocks.ACACIA_SAPLING);
+
+    public static final Block POTTED_DARK_OAK_SAPLING = registerWFPBlock(Blocks.DARK_OAK_SAPLING);
+
+    public static final Block POTTED_MANGROVE_PROPAGULE = registerWFPBlock(Blocks.MANGROVE_PROPAGULE);
+
+    public static final Block POTTED_DANDELION = registerWFPBlock(Blocks.DANDELION);
+
+    public static final Block POTTED_POPPY = registerWFPBlock(Blocks.POPPY);
+
+    public static final Block POTTED_BLUE_ORCHID = registerWFPBlock(Blocks.BLUE_ORCHID);
+
+    public static final Block POTTED_ALLIUM = registerWFPBlock(Blocks.ALLIUM);
+
+    public static final Block POTTED_AZURE_BLUET = registerWFPBlock(Blocks.AZURE_BLUET);
+
+    public static final Block POTTED_RED_TULIP = registerWFPBlock(Blocks.RED_TULIP);
+
+    public static final Block POTTED_ORANGE_TULIP = registerWFPBlock(Blocks.ORANGE_TULIP);
+
+    public static final Block POTTED_WHITE_TULIP = registerWFPBlock(Blocks.WHITE_TULIP);
+
+    public static final Block POTTED_PINK_TULIP = registerWFPBlock(Blocks.PINK_TULIP);
+
+    public static final Block POTTED_OXEYE_DAISY = registerWFPBlock(Blocks.OXEYE_DAISY);
+
+    public static final Block POTTED_CORNFLOWER = registerWFPBlock(Blocks.CORNFLOWER);
+
+    public static final Block POTTED_LILY_OF_THE_VALLEY = registerWFPBlock(Blocks.LILY_OF_THE_VALLEY);
+
+    public static final Block POTTED_WITHER_ROSE = registerWFPBlock(Blocks.WITHER_ROSE);
+
+    public static final Block POTTED_AZALEA = registerWFPBlock(Blocks.AZALEA);
+
+    public static final Block POTTED_FLOWERING_AZALEA = registerWFPBlock(Blocks.FLOWERING_AZALEA);
+
+    public static final Block W_POTTED_PINE_SAPLING = registerWFPBlock(PINE_SAPLING);
+
+    public static final Block W_POTTED_DELPHINIUM = registerWFPBlock(DELPHINIUM);
+
+    public static final Block W_POTTED_ALPINE_POPPY = registerWFPBlock(ALPINE_POPPY);
+
+    public static final Block W_POTTED_SAXIFRAGE = registerWFPBlock(SAXIFRAGE);
+
+    public static final Block W_POTTED_ENZIAN = registerWFPBlock(ENZIAN);
+
+    public static final Block W_POTTED_FIRE_LILY = registerWFPBlock(FIRE_LILY);
+
+    public static final Block W_POTTED_ERIOPHORUM = registerWFPBlock(ERIOPHORUM);
 
 
     private static FabricBlockSettings bowlSettings(){
         return FabricBlockSettings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);
+    }
+
+
+    private static Block registerWFPBlock(Block content){
+        Meadow.LOGGER.error(String.valueOf(Registry.BLOCK.getId(content)));
+        List<String> s = Arrays.stream(Registry.BLOCK.getId(content).toString().split(":")).toList();
+        String block = s.get(s.size() == 2 ? 1 : 0);
+        return registerBlockWithoutItem("wooden_potted_" + block, new WoodenFlowerPotBlock(content, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
     }
 
     private static Block registerBlockWithoutItem(String name, Block block) {

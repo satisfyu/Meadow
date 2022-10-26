@@ -37,8 +37,8 @@ public class EyeBlinkRenderer<T extends Entity, M extends EntityModel<T>> extend
         }
     }
 
-    public RenderLayer getEyesTexture(String cowName) {
-        return RenderLayer.getEntitySolid(new Identifier(Meadow.MOD_ID, "textures/entity/"+ entityType + "/" + cowName + "_blink.png"));
+    public RenderLayer getEyesTexture(String name) {
+        return RenderLayer.getEntityCutout(new Identifier(Meadow.MOD_ID, "textures/entity/"+ entityType + "/" + name + "_blink.png"));
     }
 
 

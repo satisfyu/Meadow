@@ -43,7 +43,6 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 	public static RecipeType<WoodcuttingRecipe> WOODCUTTING;
 
 	public static final SignType PINE = SignTypeAccessor.callRegister(SignTypeAccessor.callCreate("pine"));
-	public static final RegistryKey<ConfiguredFeature<?, ?>> NORMAL = GeneralUtil.configuredFeatureKey("pine");
 
 	@Override
 	public void onInitialize() {

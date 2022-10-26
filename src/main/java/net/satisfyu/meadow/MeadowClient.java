@@ -92,7 +92,13 @@ public class MeadowClient implements ClientModInitializer {
                 ModBlocks.ERIOPHORUM_TALL, ModBlocks.FURNACE_COBBLESTONE, ModBlocks.SMALL_FIR, ModBlocks.PINE_SAPLING, ModBlocks.CHAIR, ModBlocks.OATBLOCK_RUG,
                 ModBlocks.POTTED_DELPHINIUM, ModBlocks.POTTED_ALPINE_POPPY, ModBlocks.POTTED_SAXIFRAGE, ModBlocks.POTTED_ENZIAN,
                 ModBlocks.POTTED_ERIOPHORUM, ModBlocks.WILD_JUNIPER, ModBlocks.WILD_MOUNTAIN_LAVENDER, ModBlocks.WILD_YARROW,
-                ModBlocks.POTTED_ERIOPHORUM, ModBlocks.ERIOPHORUM_TALL, ModBlocks.PINE_SAPLING, ModBlocks.POTTED_PINE_SAPLING, ModBlocks.FIRE_LILY, ModBlocks.POTTED_FIRE_LILY);
+                ModBlocks.POTTED_ERIOPHORUM, ModBlocks.ERIOPHORUM_TALL, ModBlocks.PINE_SAPLING, ModBlocks.POTTED_PINE_SAPLING, ModBlocks.FIRE_LILY, ModBlocks.POTTED_FIRE_LILY,
+                ModBlocks.POTTED_OAK_SAPLING, ModBlocks.POTTED_SPRUCE_SAPLING, ModBlocks.POTTED_BIRCH_SAPLING, ModBlocks.POTTED_JUNGLE_SAPLING, ModBlocks.POTTED_ACACIA_SAPLING,
+                ModBlocks.POTTED_DARK_OAK_SAPLING, ModBlocks.POTTED_DANDELION, ModBlocks.POTTED_POPPY, ModBlocks.POTTED_BLUE_ORCHID, ModBlocks.POTTED_ALLIUM, ModBlocks.POTTED_AZURE_BLUET,
+                ModBlocks.POTTED_RED_TULIP, ModBlocks.POTTED_ORANGE_TULIP, ModBlocks.POTTED_WHITE_TULIP, ModBlocks.POTTED_PINK_TULIP, ModBlocks.POTTED_OXEYE_DAISY, ModBlocks.POTTED_CORNFLOWER,
+                ModBlocks.POTTED_LILY_OF_THE_VALLEY, ModBlocks.POTTED_WITHER_ROSE, ModBlocks.W_POTTED_PINE_SAPLING, ModBlocks.W_POTTED_DELPHINIUM, ModBlocks.W_POTTED_ALPINE_POPPY, ModBlocks.W_POTTED_SAXIFRAGE,
+                ModBlocks.W_POTTED_ENZIAN, ModBlocks.W_POTTED_FIRE_LILY, ModBlocks.W_POTTED_ERIOPHORUM);
+
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
 

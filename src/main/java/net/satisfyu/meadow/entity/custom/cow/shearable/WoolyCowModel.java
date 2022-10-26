@@ -6,6 +6,8 @@ import net.minecraft.entity.passive.CowEntity;
 
 public class WoolyCowModel<T extends CowEntity> extends CowEntityModel<T> {
 
+    private float headPitchModifier;
+
     public WoolyCowModel(ModelPart modelPart) {
         super(modelPart);
     }
@@ -28,6 +30,19 @@ public class WoolyCowModel<T extends CowEntity> extends CowEntityModel<T> {
         partdefinition.addChild("right_front_leg", cubelistbuilder, ModelTransform.pivot(-4.0F, 12.0F, -6.0F));
         partdefinition.addChild("left_front_leg", cubelistbuilder, ModelTransform.pivot(4.0F, 12.0F, -6.0F));
         return TexturedModelData.of(meshdefinition, 64, 32);
+    }
+
+    @Override
+    public void animateModel(T entity, float f, float g, float h) {
+        super.animateModel(entity, f, g, h);
+        this.head.pivotY = 6.0f + ((ShearableCowEntity)entity).getNeckAngle(h) * 9.0f;
+        this.headPitchModifier = ((ShearableCowEntity)entity).getHeadAngle(h);
+    }
+
+    @Override
+    public void setAngles(T sheepEntity, float f, float g, float h, float i, float j) {
+        super.setAngles(sheepEntity, f, g, h, i, j);
+        this.head.pitch = this.headPitchModifier;
     }
 
 

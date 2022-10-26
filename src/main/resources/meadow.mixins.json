@@ -4,17 +4,19 @@
   "package": "net.satisfyu.meadow.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "biome.OverworldDefaultFeaturesMixin",
     "BlockEntityTypeMixin",
     "FluidDecrementMixin",
     "ItemsMixin",
     "SignTypeAccessor",
     "SpawnMobAccessor",
+    "biome.OverworldDefaultFeaturesMixin",
     "entity.CowMixin",
     "entity.GoatMixin",
+    "entity.RabbitSpawnMixin",
     "entity.SheepMixin"
   ],
   "client": [
+    "entity.RabbitMixin"
   ],
   "injectors": {
     "defaultRequire": 1

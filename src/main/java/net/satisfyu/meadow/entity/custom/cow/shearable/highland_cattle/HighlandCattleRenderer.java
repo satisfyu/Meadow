@@ -12,6 +12,8 @@ import static net.satisfyu.meadow.Meadow.MOD_ID;
 
 public class HighlandCattleRenderer extends MobEntityRenderer<HighlandCattleEntity, WoolyCowModel<HighlandCattleEntity>> {
 
+    private static final Identifier TEXTURE_SHEARED = new Identifier(MOD_ID, "textures/entity/cow/highland_cattle_sheared.png");
+
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/cow/highland_cattle.png");
 
     public HighlandCattleRenderer(EntityRendererFactory.Context context) {
@@ -21,6 +23,6 @@ public class HighlandCattleRenderer extends MobEntityRenderer<HighlandCattleEnti
 
     @Override
     public Identifier getTexture(HighlandCattleEntity cowEntity) {
-        return TEXTURE;
+        return cowEntity.isSheared() ? TEXTURE_SHEARED : TEXTURE;
     }
 }
