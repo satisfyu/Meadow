@@ -1,9 +1,9 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "meadow:block/flower_pot",
+    "particle": "meadow:block/wooden_flower_pot",
     "sapling": "block/mangrove_propagule",
-    "flowerpot": "meadow:block/flower_pot",
+    "flowerpot": "meadow:block/wooden_flower_pot",
     "dirt": "block/dirt"
   },
   "elements": [
