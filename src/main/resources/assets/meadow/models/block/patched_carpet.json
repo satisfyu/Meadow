@@ -2,7 +2,9 @@
 	"credit": "Made by Satisfy",
 	"parent": "block/thin_block",
 	"textures": {
-		"1": "meadow:block/patched_wool"
+		"1": "meadow:block/patched_wool",
+		"particle": "meadow:block/patched_wool"
+
 	},
 	"elements": [
 		{

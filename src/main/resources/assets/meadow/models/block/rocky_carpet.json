@@ -3,6 +3,8 @@
 	"parent": "block/thin_block",
 	"textures": {
 		"1": "meadow:block/rocky_sheep_wool"
+		"particle": "meadow:block/rocky_sheep_wool"
+
 	},
 	"elements": [
 		{

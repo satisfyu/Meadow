@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "meadow:block/bowl_empty_no_fork",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "meadow:block/bowl_empty_no_fork"
+    },
+    "facing=south": {
+      "model": "meadow:block/bowl_empty_no_fork",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "meadow:block/bowl_empty_no_fork",
+      "y": 270
+    }
+  }
+}

@@ -2,7 +2,7 @@
 	"credit": "Made by Satisfy",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "meadow:block/oat_stage3_top_1",
+		"0": "meadow:block/oat_stage3_top_5",
 		"4": "meadow:block/oat_stage3_bottom_2",
 		"particle": "meadow:block/oat_stage3_top_1"
 	},

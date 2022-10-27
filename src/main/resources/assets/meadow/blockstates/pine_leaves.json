@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "meadow:block/pine_leaves"
+      "model": "meadow:block/pine_leaves_1"
     }
   }
 }

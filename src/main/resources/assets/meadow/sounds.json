@@ -28,5 +28,11 @@
     "sounds": [
       "meadow:cooking_cauldron"
     ]
+  },
+  "eating_bowl": {
+    "subtitle": "subtitles.meadow.eating_bowl",
+    "sounds": [
+      "meadow:eating_bowl"
+    ]
   }
 }

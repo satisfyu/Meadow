@@ -2,8 +2,11 @@ package net.satisfyu.meadow.block;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.entity.decoration.ItemFrameEntity;
+import net.minecraft.entity.decoration.painting.PaintingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
@@ -23,10 +26,15 @@ import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
+<<<<<<< Updated upstream
 import java.util.Arrays;
 import java.util.List;
+=======
+import java.util.Locale;
+>>>>>>> Stashed changes
 
 import static net.minecraft.block.Blocks.AIR;
+import static net.minecraft.block.Blocks.SPRUCE_LEAVES;
 
 public class ModBlocks {
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
@@ -84,7 +92,7 @@ public class ModBlocks {
             new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
 
     public static final Block POTTED_FIRE_LILY = registerBlockWithoutItem("potted_fire_lily",
-            new FlowerPotBlock(ModBlocks.ENZIAN, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+            new FlowerPotBlock(ModBlocks.FIRE_LILY, FabricBlockSettings.copyOf(Blocks.DANDELION)));
 
     public static final Block ERIOPHORUM = registerBlock("eriophorum",
             new FlowerBlock(StatusEffect.byRawId(6), 1, FabricBlockSettings.copyOf(Blocks.DANDELION)), ModItemGroup.ALPINE_SALT);
@@ -201,10 +209,13 @@ public class ModBlocks {
             new BowlBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
 
     public static final Block BOWL_MOZERELLA = registerBlock("bowl_mozzarella",
-            new BowlBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
+            new BowlEatBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
 
     public static final Block BOWL_SWEETBERRIES = registerBlock("bowl_sweetberries",
             new BowlBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
+
+    public static final Block BOWL_EMPTY_NO_FORK = registerBlockWithoutItem("bowl_empty_no_fork",
+            new BowlBlock(bowlSettings()));
 
     public static final Block CAN = registerBlock("can",
             new CanBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(0.8f).nonOpaque().sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
@@ -396,7 +407,6 @@ public class ModBlocks {
     public static final Block MOSSY_COBBLED_LIMESTONE_STAIRS = registerBlock("mossy_cobbled_limestone_stairs",
             new StairsBlock(MOSSY_COBBLED_LIMESTONE.getDefaultState(), FabricBlockSettings.copyOf(MOSSY_COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
 
-
     public static final Block LIMESTONE_SLAB = registerBlock("limestone_slab",
             new SlabBlock(FabricBlockSettings.copyOf(LIMESTONE)), ModItemGroup.ALPINE_SALT);
 
@@ -440,6 +450,8 @@ public class ModBlocks {
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.CHEESECAKE_SLICE, true), ModItemGroup.ALPINE_SALT);
 
 
+    public static final Block PINE_LEAVES_2 = registerBlockWithoutItem("pine_leaves_2",
+            new LeavesBlock(FabricBlockSettings.copyOf(SPRUCE_LEAVES)));
 
     public static final Block POTTED_PINE_SAPLING = registerBlockWithoutItem("potted_pine_sapling",
             new FlowerPotBlock(ModBlocks.PINE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
@@ -464,6 +476,7 @@ public class ModBlocks {
 
     public static final Block POTTED_POPPY = registerWFPBlock(Blocks.POPPY);
 
+<<<<<<< Updated upstream
     public static final Block POTTED_BLUE_ORCHID = registerWFPBlock(Blocks.BLUE_ORCHID);
 
     public static final Block POTTED_ALLIUM = registerWFPBlock(Blocks.ALLIUM);
@@ -503,7 +516,13 @@ public class ModBlocks {
     public static final Block W_POTTED_FIRE_LILY = registerWFPBlock(FIRE_LILY);
 
     public static final Block W_POTTED_ERIOPHORUM = registerWFPBlock(ERIOPHORUM);
+=======
+    public static final Block CONE = registerBlockWithoutItem("cone",
+            new Block(FabricBlockSettings.of(Material.LEAVES).noCollision().dropsLike(ModBlocks.PINE_SIGN)));
+>>>>>>> Stashed changes
 
+    public static final Block FIR = registerBlockWithoutItem("fir",
+            new Block(FabricBlockSettings.of(Material.LEAVES).breakInstantly()));
 
     private static FabricBlockSettings bowlSettings(){
         return FabricBlockSettings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);

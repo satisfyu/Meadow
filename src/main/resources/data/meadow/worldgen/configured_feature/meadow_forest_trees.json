@@ -7,8 +7,24 @@
         "feature": "meadow:oak_pine_checked"
       },
       {
-        "chance": 0.33,
+        "chance": 0.5,
         "feature": "meadow:birch_pine_checked"
+      },
+      {
+        "chance": 0.2,
+        "feature": "meadow:pine_checked"
+      },
+      {
+        "chance": 0.33,
+        "feature": "meadow:spruce_pine_checked"
+      },
+      {
+        "chance": 0.5,
+        "feature": "meadow:bush_checked"
+      },
+      {
+        "chance": 0.2,
+        "feature": "meadow:orange_spruce_pine_checked"
       }
     ],
     "default": "meadow:pine_checked"

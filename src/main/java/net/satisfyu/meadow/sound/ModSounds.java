@@ -12,10 +12,15 @@ public class ModSounds {
     public static final Identifier CLICK_CAMERA2_ID = new Identifier(Meadow.MOD_ID, "click_camera2");
     public static final Identifier WOODCUTTER_ID = new Identifier(Meadow.MOD_ID, "woodcutter");
 
+    public static final Identifier EATING_BOWL_ID = new Identifier(Meadow.MOD_ID, "eating_bowl");
+
     public static final Identifier COOKING_CAULDRON_ID = new Identifier(Meadow.MOD_ID, "cooking_cauldron");
 
 
     public static SoundEvent SLURPING_BOWL = new SoundEvent(SLURPING_BOWL_ID);
+
+    public static SoundEvent EATING_BOWL = new SoundEvent(EATING_BOWL_ID);
+
 
     public static SoundEvent COOKING_CAULDRON = new SoundEvent(COOKING_CAULDRON_ID);
     public static SoundEvent WOODCUTTER = new SoundEvent(WOODCUTTER_ID);
@@ -33,6 +38,7 @@ public class ModSounds {
         registerSound(COOKING_CAULDRON_ID, COOKING_CAULDRON);
         registerSound(WOODCUTTER_ID, WOODCUTTER);
         registerSound(SLURPING_BOWL_ID, SLURPING_BOWL);
+        registerSound(EATING_BOWL_ID, EATING_BOWL);
         registerSound(CLICK_CAMERA_ID, CLICK_CAMERA);
         registerSound(CLICK_CAMERA2_ID, CLICK_CAMERA2);
     }

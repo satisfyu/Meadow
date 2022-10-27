@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "twigs:block/fir_1"
+      },
+      {
+        "model": "twigs:block/fir_1",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/fir_1",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/fir_1",
+        "y": 270
+      },
+      {
+        "model": "twigs:block/fir_2"
+      },
+      {
+        "model": "twigs:block/fir_2",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/fir_2",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/fir_2",
+        "y": 270
+      }
+    ]
+  }
+}
