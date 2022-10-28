@@ -1,8 +1,5 @@
 package net.satisfyu.meadow.item;
 
-import com.terraformersmc.terraform.boat.api.TerraformBoatType;
-import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
-import com.terraformersmc.terraform.boat.impl.item.TerraformBoatItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -17,8 +14,6 @@ import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.custom.*;
 
 import java.util.Arrays;
-
-import static net.satisfyu.meadow.Meadow.PINE_BOAT_ID;
 
 
 public class ModItems {
@@ -41,6 +36,38 @@ public class ModItems {
     public static final Item PINTO_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.PINTO_COW, 16777215, 9757694);
 
     public static final Item SUNSET_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.SUNSET_COW, 16777215,8014336);
+
+
+
+    public static final Item BROWN_BEAR_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.BROWN_BEAR, 16777215, 12632256);
+
+    public static final Item CHICKEN1_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN1, 16777215, 14740948);
+
+    public static final Item CHICKEN2_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN2, 16777215, 329011);
+
+    public static final Item CHICKEN3_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN3, 16777215, 5208616);
+
+    public static final Item HIGHLAND_CATTLE_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.HIGHLAND_CATTLE, 16777215, 4159204);
+
+    public static final Item FLECKED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.FLECKED_SHEEP, 16777215, 6172907);
+
+    public static final Item FUZZY_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.FUZZY_SHEEP, 16777215, 9757694);
+
+    public static final Item HORNED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.HORNED_SHEEP, 16777215,8014336);
+
+    public static final Item INKY_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.INKY_SHEEP, 16777215,8014336);
+
+    public static final Item LONG_NOSED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.LONG_NOSED_SHEEP, 16777215,8014336);
+
+    public static final Item PATCHED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.PATCHED_SHEEP, 16777215,8014336);
+
+    public static final Item ROCKY_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ROCKY_SHEEP, 16777215,8014336);
+
+
+
+
+
+    
 
     public static final Item PINE_SIGN = registerItem("pine_sign",
             new SignItem(new FabricItemSettings().maxCount(16).group(ModItemGroup.ALPINE_SALT), ModBlocks.PINE_SIGN, ModBlocks.PINE_WALL_SIGN));

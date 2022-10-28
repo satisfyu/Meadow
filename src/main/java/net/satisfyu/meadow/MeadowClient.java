@@ -1,7 +1,6 @@
 package net.satisfyu.meadow;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
-import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -9,9 +8,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.entity.model.*;
-import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen;
@@ -19,6 +16,9 @@ import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearRenderer;
 import net.satisfyu.meadow.entity.custom.chair.ChairRenderer;
+import net.satisfyu.meadow.entity.custom.chicken.chicken1.Chicken1Renderer;
+import net.satisfyu.meadow.entity.custom.chicken.chicken2.Chicken2Renderer;
+import net.satisfyu.meadow.entity.custom.chicken.chicken3.Chicken3Renderer;
 import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.ashen_cow.AshenCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.cookie_cow.CookieCowRenderer;
@@ -87,6 +87,12 @@ public class MeadowClient implements ClientModInitializer {
 
     public static final EntityModelLayer SUNSET_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "sunset_cow"), "head");
 
+    public static final EntityModelLayer CHICKEN1_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "chicken_1"), "main");
+
+    public static final EntityModelLayer CHICKEN2_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "chicken_2"), "main");
+
+    public static final EntityModelLayer CHICKEN3_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "chicken_3"), "main");
+
     @Override
     public void onInitializeClient() {
         HandledScreens.register(WOODCUTTOR_SCREEN_HANDLER, WoodcutterScreen::new);
@@ -105,12 +111,12 @@ public class MeadowClient implements ClientModInitializer {
                 ModBlocks.POTTED_LILY_OF_THE_VALLEY, ModBlocks.POTTED_WITHER_ROSE, ModBlocks.W_POTTED_PINE_SAPLING, ModBlocks.W_POTTED_DELPHINIUM, ModBlocks.W_POTTED_ALPINE_POPPY, ModBlocks.W_POTTED_SAXIFRAGE,
                 ModBlocks.W_POTTED_ENZIAN, ModBlocks.W_POTTED_FIRE_LILY, ModBlocks.W_POTTED_ERIOPHORUM);
 
-
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
 
         registerCows();
         registerSheeps();
         registerParticles();
+        registerChicken();
 
         EntityRendererRegistry.register(ModEntities.BROWN_BEAR, BrownBearRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(BROWN_BEAR_MODEL_LAYER, PolarBearEntityModel::getTexturedModelData);
@@ -183,6 +189,17 @@ public class MeadowClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.ROCKY_SHEEP, RockySheepRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ROCKY_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ROCKY_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+    }
+
+    private void registerChicken(){
+        EntityRendererRegistry.register(ModEntities.CHICKEN1, Chicken1Renderer::new);
+        EntityModelLayerRegistry.registerModelLayer(CHICKEN1_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.CHICKEN2, Chicken2Renderer::new);
+        EntityModelLayerRegistry.registerModelLayer(CHICKEN2_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.CHICKEN3, Chicken3Renderer::new);
+        EntityModelLayerRegistry.registerModelLayer(CHICKEN3_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
     }
 
 }
