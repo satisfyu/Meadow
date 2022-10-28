@@ -2,11 +2,9 @@ package net.satisfyu.meadow.block;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
-import net.minecraft.entity.decoration.ItemFrameEntity;
-import net.minecraft.entity.decoration.painting.PaintingEntity;
+
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
@@ -26,12 +24,8 @@ import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
-<<<<<<< Updated upstream
 import java.util.Arrays;
 import java.util.List;
-=======
-import java.util.Locale;
->>>>>>> Stashed changes
 
 import static net.minecraft.block.Blocks.AIR;
 import static net.minecraft.block.Blocks.SPRUCE_LEAVES;
@@ -476,7 +470,6 @@ public class ModBlocks {
 
     public static final Block POTTED_POPPY = registerWFPBlock(Blocks.POPPY);
 
-<<<<<<< Updated upstream
     public static final Block POTTED_BLUE_ORCHID = registerWFPBlock(Blocks.BLUE_ORCHID);
 
     public static final Block POTTED_ALLIUM = registerWFPBlock(Blocks.ALLIUM);
@@ -516,10 +509,9 @@ public class ModBlocks {
     public static final Block W_POTTED_FIRE_LILY = registerWFPBlock(FIRE_LILY);
 
     public static final Block W_POTTED_ERIOPHORUM = registerWFPBlock(ERIOPHORUM);
-=======
+
     public static final Block CONE = registerBlockWithoutItem("cone",
             new Block(FabricBlockSettings.of(Material.LEAVES).noCollision().dropsLike(ModBlocks.PINE_SIGN)));
->>>>>>> Stashed changes
 
     public static final Block FIR = registerBlockWithoutItem("fir",
             new Block(FabricBlockSettings.of(Material.LEAVES).breakInstantly()));
