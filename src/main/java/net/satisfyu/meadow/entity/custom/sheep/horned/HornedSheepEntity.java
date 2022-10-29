@@ -7,8 +7,6 @@ import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.entity.custom.sheep.MeadowSheepEntity;
 

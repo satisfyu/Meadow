@@ -30,7 +30,7 @@ public class EyeBlinkRenderer<T extends Entity, M extends EntityModel<T>> extend
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if(new Random().nextFloat() < 0.001 || blinkTime > 0){
-            if(blinkTime == 0) blinkTime = 20;
+            if(blinkTime == 0) blinkTime = 30;
             blinkTime--;
             VertexConsumer vertexConsumer = vertexConsumers.getBuffer(this.getEyesTexture(name));
             this.getContextModel().render(matrices, vertexConsumer, 0xF00000, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
@@ -38,7 +38,14 @@ public class EyeBlinkRenderer<T extends Entity, M extends EntityModel<T>> extend
     }
 
     public RenderLayer getEyesTexture(String name) {
-        return RenderLayer.getEntityCutout(new Identifier(Meadow.MOD_ID, "textures/entity/"+ entityType + "/" + name + "_blink.png"));
+        String s;
+        if(entityType.equals("cow")){
+            s = "textures/entity/cow/cow_blink.png";
+        }
+        else {
+            s = "textures/entity/"+ entityType + "/" + name + "_blink.png";
+        }
+        return RenderLayer.getEntityCutout(new Identifier(Meadow.MOD_ID, s));
     }
 
 

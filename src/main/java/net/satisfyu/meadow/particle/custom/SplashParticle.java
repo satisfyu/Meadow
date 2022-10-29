@@ -6,8 +6,6 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
-import java.util.Random;
-
 @Environment(value=EnvType.CLIENT)
 public class SplashParticle
 extends SpriteBillboardParticle {

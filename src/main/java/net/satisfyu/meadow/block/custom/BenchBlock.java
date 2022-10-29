@@ -23,13 +23,13 @@ public class BenchBlock extends TableBlock {
         super(settings);
     }
 
-    public static VoxelShape[] MINI_SHAPE = {VoxelShapes.union(Block.createCuboidShape(1.0, 0.0, 1.0, 5.0, 4.0, 15.0), Block.createCuboidShape(11.0, 0.0, 1.0, 15.0, 4.0, 15.0)),
+    public static final VoxelShape[] MINI_SHAPE = {VoxelShapes.union(Block.createCuboidShape(1.0, 0.0, 1.0, 5.0, 4.0, 15.0), Block.createCuboidShape(11.0, 0.0, 1.0, 15.0, 4.0, 15.0)),
             VoxelShapes.union(Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 4.0, 5.0), Block.createCuboidShape(1.0, 0.0, 11.0, 15.0, 4.0, 15.0))};
 
-    public static VoxelShape[] SHAPE = {Block.createCuboidShape(1.0, 0.0, 1.0, 9.0, 4.0, 15.0), Block.createCuboidShape(7.0, 0.0, 1.0, 15.0, 4.0, 15.0),
+    public static final VoxelShape[] SHAPE = {Block.createCuboidShape(1.0, 0.0, 1.0, 9.0, 4.0, 15.0), Block.createCuboidShape(7.0, 0.0, 1.0, 15.0, 4.0, 15.0),
             Block.createCuboidShape(1.0, 0.0, 7.0, 15.0, 4.0, 15.0), Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 4.0, 9.0)};
 
-    public static VoxelShape[] TOP_SHAPE = {Block.createCuboidShape(2.0, 4.0, 0.0, 14.0, 8.0, 16.0), Block.createCuboidShape(0.0, 4.0, 2.0, 16.0, 8.0, 14.0)};
+    public static final VoxelShape[] TOP_SHAPE = {Block.createCuboidShape(2.0, 4.0, 0.0, 14.0, 8.0, 16.0), Block.createCuboidShape(0.0, 4.0, 2.0, 16.0, 8.0, 14.0)};
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

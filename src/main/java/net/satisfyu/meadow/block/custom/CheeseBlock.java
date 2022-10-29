@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
-import net.satisfyu.meadow.item.ModItems;
 
 public class CheeseBlock extends Block {
 

@@ -6,7 +6,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.MilkBucketItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -102,10 +101,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
         Inventories.readNbt(nbt, items);
     }
 
-
     public void tick(World world, BlockPos pos, BlockState state, CookingCauldronBlockEntity be) {
-
-
         if(!world.isClient){
             int var = 0;
 

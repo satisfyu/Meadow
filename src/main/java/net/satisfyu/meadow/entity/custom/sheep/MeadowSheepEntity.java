@@ -28,7 +28,7 @@ public class MeadowSheepEntity extends SheepEntity{
         this.lootTable = lootTable;
     }
 
-    private Map<DyeColor, ItemConvertible> DROPS = Util.make(Maps.newEnumMap(DyeColor.class), map -> {
+    private final Map<DyeColor, ItemConvertible> DROPS = Util.make(Maps.newEnumMap(DyeColor.class), map -> {
         map.put(DyeColor.ORANGE, Blocks.ORANGE_WOOL);
         map.put(DyeColor.MAGENTA, Blocks.MAGENTA_WOOL);
         map.put(DyeColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL);
