@@ -14,6 +14,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlock;
+import net.satisfyu.meadow.block.cookingPot.CookingPotBlock;
 import net.satisfyu.meadow.block.custom.FacingBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
@@ -516,10 +517,13 @@ public class ModBlocks {
     public static final Block FIR = registerBlockWithoutItem("fir",
             new Block(FabricBlockSettings.of(Material.LEAVES).breakInstantly()));
 
+    public static final Block COOKING_POT = registerBlock("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.STONE)), ModItemGroup.ALPINE_SALT);
+
+
+
     private static FabricBlockSettings bowlSettings(){
         return FabricBlockSettings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);
     }
-
 
     private static Block registerWFPBlock(Block content){
         List<String> s = Arrays.stream(Registry.BLOCK.getId(content).toString().split(":")).toList();

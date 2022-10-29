@@ -21,6 +21,7 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlockEntity;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.block.cookingPot.CookingPotBlockEntity;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken1.Chicken1Entity;
@@ -167,6 +168,8 @@ public class ModEntities {
     public static final BlockEntityType<CookingCauldronBlockEntity> COOKING_CAULDRON_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cooking_cauldron", FabricBlockEntityTypeBuilder.create(CookingCauldronBlockEntity::new, ModBlocks.COOKING_CAULDRON).build(null));
 
     public static final BlockEntityType<CheeseFormBlockEntity> CHEESE_FORM_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cheese_form", FabricBlockEntityTypeBuilder.create(CheeseFormBlockEntity::new, ModBlocks.CHEESE_FORM).build(null));
+
+    public static final BlockEntityType<CookingPotBlockEntity> COOKING_POT_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cooking_pot", FabricBlockEntityTypeBuilder.create(CookingPotBlockEntity::new, ModBlocks.COOKING_POT).build());
 
 
     public static void registerEntities(){

@@ -10,11 +10,11 @@ import net.minecraft.world.BlockView;
 
 public class StoveBlock extends FacingBlock {
 
-    public static VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 4, 2, 4), Block.createCuboidShape(12, 0, 0, 16, 2, 4), Block.createCuboidShape(0, 0, 12, 16, 2, 16), Block.createCuboidShape(12, 0, 12, 16, 2, 16));
+    public static final VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 4, 2, 4), Block.createCuboidShape(12, 0, 0, 16, 2, 4), Block.createCuboidShape(0, 0, 12, 16, 2, 16), Block.createCuboidShape(12, 0, 12, 16, 2, 16));
 
-    public static VoxelShape SHAPE_BIG = VoxelShapes.union(SHAPE, Block.createCuboidShape(0, 2, 0, 16, 16, 16));
+    public static final VoxelShape SHAPE_BIG = VoxelShapes.union(SHAPE, Block.createCuboidShape(0, 2, 0, 16, 16, 16));
 
-    public static VoxelShape SHAPE_SMALL = VoxelShapes.union(SHAPE, Block.createCuboidShape(0, 2, 0, 16, 6, 16));
+    public static final VoxelShape SHAPE_SMALL = VoxelShapes.union(SHAPE, Block.createCuboidShape(0, 2, 0, 16, 6, 16));
 
     private final boolean isBig;
 

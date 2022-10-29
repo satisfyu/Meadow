@@ -1,6 +1,5 @@
 package net.satisfyu.meadow.entity.custom.sheep.inky;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.SheepEntity;

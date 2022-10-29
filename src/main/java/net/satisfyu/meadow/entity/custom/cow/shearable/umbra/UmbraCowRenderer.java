@@ -6,7 +6,6 @@ import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.MeadowClient;
 import net.satisfyu.meadow.entity.custom.EyeBlinkRenderer;
 import net.satisfyu.meadow.entity.custom.cow.shearable.WoolyCowModel;
-import net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle.HighlandCattleEntity;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 

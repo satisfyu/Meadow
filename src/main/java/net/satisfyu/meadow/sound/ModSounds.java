@@ -17,15 +17,15 @@ public class ModSounds {
     public static final Identifier COOKING_CAULDRON_ID = new Identifier(Meadow.MOD_ID, "cooking_cauldron");
 
 
-    public static SoundEvent SLURPING_BOWL = new SoundEvent(SLURPING_BOWL_ID);
+    public static final SoundEvent SLURPING_BOWL = new SoundEvent(SLURPING_BOWL_ID);
 
-    public static SoundEvent EATING_BOWL = new SoundEvent(EATING_BOWL_ID);
+    public static final SoundEvent EATING_BOWL = new SoundEvent(EATING_BOWL_ID);
 
 
-    public static SoundEvent COOKING_CAULDRON = new SoundEvent(COOKING_CAULDRON_ID);
-    public static SoundEvent WOODCUTTER = new SoundEvent(WOODCUTTER_ID);
-    public static SoundEvent CLICK_CAMERA = new SoundEvent(CLICK_CAMERA_ID);
-    public static SoundEvent CLICK_CAMERA2 = new SoundEvent(CLICK_CAMERA2_ID);
+    public static final SoundEvent COOKING_CAULDRON = new SoundEvent(COOKING_CAULDRON_ID);
+    public static final SoundEvent WOODCUTTER = new SoundEvent(WOODCUTTER_ID);
+    public static final SoundEvent CLICK_CAMERA = new SoundEvent(CLICK_CAMERA_ID);
+    public static final SoundEvent CLICK_CAMERA2 = new SoundEvent(CLICK_CAMERA2_ID);
 
 
     private static void registerSound(Identifier id, SoundEvent sE) {

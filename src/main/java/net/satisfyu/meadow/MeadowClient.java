@@ -12,6 +12,7 @@ import net.minecraft.client.render.entity.model.*;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen;
+import net.satisfyu.meadow.block.cookingPot.CookingPotScreen;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearRenderer;
@@ -96,6 +97,7 @@ public class MeadowClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         HandledScreens.register(WOODCUTTOR_SCREEN_HANDLER, WoodcutterScreen::new);
+        HandledScreens.register(COOKING_POT_SCREEN_HANDLER, CookingPotScreen::new);
         HandledScreens.register(COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.WOODCUTTER, ModBlocks.OAT_CROP, ModBlocks.JUNIPER_CROP, ModBlocks.YARROW_CROP, ModBlocks.MOUNTAIN_LAVENDER_CROP, ModBlocks.ALPINE_GRASS, ModBlocks.ALPINE_GRASS_TALL,

@@ -2,7 +2,6 @@ package net.satisfyu.meadow.entity.custom.sheep.inky;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.render.entity.model.SheepEntityModel;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.MeadowClient;

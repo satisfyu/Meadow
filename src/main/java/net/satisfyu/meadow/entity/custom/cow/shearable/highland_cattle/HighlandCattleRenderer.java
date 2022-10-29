@@ -2,7 +2,6 @@ package net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.model.CowEntityModel;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.MeadowClient;
 import net.satisfyu.meadow.entity.custom.EyeBlinkRenderer;
