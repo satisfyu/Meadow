@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block.cookingCauldron;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -152,7 +153,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
             if(state.get(VAR) == var && state.get(DONE) == done){
                 return;
             }
-            world.setBlockState(pos, state.with(VAR, var).with(HANGING, state.get(HANGING)).with(DONE, done).with(FACING, state.get(FACING)));
+            world.setBlockState(pos, state.with(VAR, var).with(HANGING, state.get(HANGING)).with(DONE, done).with(FACING, state.get(FACING)), Block.NOTIFY_ALL);
         }
     }
 

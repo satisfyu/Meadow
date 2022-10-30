@@ -123,7 +123,7 @@ public class CookingCauldronBlock extends BlockWithEntity {
             return;
         }
         double d = (double)pos.getX() + 0.5;
-        double e = pos.getY();
+        double e = pos.getY() + 0.45;
         double f = (double)pos.getZ() + 0.5;
         if (random.nextDouble() < 0.1) {
             world.playSound(d, e, f, ModSounds.COOKING_CAULDRON, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
@@ -137,10 +137,10 @@ public class CookingCauldronBlock extends BlockWithEntity {
         java.util.Random r = new java.util.Random();
         if(r.nextFloat() < 0.3f){
             if(!state.get(DONE)){
-                world.addParticle(ModParticles.CHEESE_SPLASH, d, e + 0.45, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
+                world.addParticle(ModParticles.CHEESE_SPLASH, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
             }
             else {
-                world.addParticle(ParticleTypes.BUBBLE_POP, d, e + 0.45, f, r.nextFloat(-0.03f, 0.03f), 0, r.nextFloat(-0.03f, 0.03f));
+                world.addParticle(ParticleTypes.BUBBLE_POP, d, e , f, r.nextFloat(-0.03f, 0.03f), 0, r.nextFloat(-0.03f, 0.03f));
             }
         }
 
