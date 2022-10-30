@@ -25,6 +25,9 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.util.Tags;
 import org.jetbrains.annotations.Nullable;
+
+import static net.satisfyu.meadow.block.cookingPot.CookingPotBlock.COOKING;
+
 public class CookingPotBlockEntity extends BlockEntity implements Inventory, ExtendedScreenHandlerFactory {
 
     private DefaultedList<ItemStack> inventory;
@@ -179,10 +182,10 @@ public class CookingPotBlockEntity extends BlockEntity implements Inventory, Ext
             this.cookingTime = 0;
         }
         if (canCraft) {
-            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.HAS_CHERRIES_INSIDE, true), Block.NOTIFY_ALL);
+            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.HAS_RAW_BEEF, true).with(COOKING, isBeingBurned), Block.NOTIFY_ALL);
             dirty = true;
-        } else if (state.get(CookingPotBlock.HAS_CHERRIES_INSIDE)) {
-            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.HAS_CHERRIES_INSIDE, false), Block.NOTIFY_ALL);
+        } else if (state.get(CookingPotBlock.HAS_RAW_BEEF)) {
+            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.HAS_RAW_BEEF, false).with(COOKING, isBeingBurned), Block.NOTIFY_ALL);
             dirty = true;
         }
         if (dirty) markDirty();
