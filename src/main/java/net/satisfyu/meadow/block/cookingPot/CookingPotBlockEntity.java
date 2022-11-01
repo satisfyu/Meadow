@@ -36,6 +36,91 @@ public class CookingPotBlockEntity extends BlockEntity implements NamedScreenHan
                     case 0: return CookingPotBlockEntity.this.progress;
                     case 1: return CookingPotBlockEntity.this.maxProgress;
                     default: return 0;
+        super(ModEntities.COOKING_POT_BLOCK_ENTITY, pos, state);
+        this.inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
+    }
+
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        this.inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
+        Inventories.readNbt(nbt, this.inventory);
+        nbt.putInt("CookingTime", this.cookingTime);
+        nbt.putBoolean("isBeingBurned", this.isBeingBurned);
+    }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        this.cookingTime = nbt.getInt("CookingTime");
+        this.isBeingBurned = nbt.getBoolean("isBeingBurned");
+        Inventories.writeNbt(nbt, this.inventory);
+    }
+
+    public boolean isBeingBurned() {
+        if (getWorld() == null) throw new NullPointerException("Null world invoked");
+        final BlockState belowState = this.getWorld().getBlockState(getPos().down());
+        final var optionalList = Registry.BLOCK.getEntryList(Tags.ALLOWS_COOKING_ON_POT);
+        final var entryList = optionalList.orElse(null);
+        if (entryList == null) {
+            return false;
+        } else if (!entryList.contains(belowState.getBlock().getRegistryEntry())) {
+            return false;
+        } else return belowState.get(Properties.LIT);
+
+    }
+
+    private boolean canCraft(CookingPotRecipe recipe) {
+        if (recipe == null || recipe.getOutput().isEmpty()) {
+            return false;
+        } else if (!this.getStack(BOTTLE_INPUT_SLOT).isOf(recipe.getContainer().getItem())) {
+            return false;
+        } else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+            return true;
+        } else {
+            final ItemStack recipeOutput = recipe.getOutput();
+            final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+            final int outputSlotCount = outputSlotStack.getCount();
+            if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+                return false;
+            } else if (outputSlotCount < this.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
+                return true;
+            } else {
+                return outputSlotCount < recipeOutput.getMaxCount();
+            }
+        }
+    }
+
+    private void craft(CookingPotRecipe recipe) {
+        if (!canCraft(recipe)) {
+            return;
+        }
+        final ItemStack recipeOutput = recipe.getOutput();
+        final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+        if (outputSlotStack.isEmpty()) {
+            setStack(OUTPUT_SLOT, recipeOutput.copy());
+        } else if (outputSlotStack.isOf(recipeOutput.getItem())) {
+            outputSlotStack.increment(recipeOutput.getCount());
+        }
+        final DefaultedList<Ingredient> ingredients = recipe.getIngredients();
+        // each slot can only be used once because in canMake we only checked if decrement by 1 still retains the recipe
+        // otherwise recipes can break when an ingredient is used multiple times
+        boolean[] slotUsed = new boolean[INGREDIENTS_AREA];
+        for (int i = 0; i < recipe.getIngredients().size(); i++) {
+            Ingredient ingredient = ingredients.get(i);
+            // Looks for the best slot to take it from
+            final ItemStack bestSlot = this.getStack(i);
+            if (ingredient.test(bestSlot) && !slotUsed[i]) {
+                slotUsed[i] = true;
+                bestSlot.decrement(1);
+            } else {
+                // check all slots in search of the ingredient
+                for (int j = 0; j < INGREDIENTS_AREA; j++) {
+                    ItemStack stack = this.getStack(j);
+                    if (ingredient.test(stack) && !slotUsed[j]) {
+                        slotUsed[j] = true;
+                        stack.decrement(1);
+                    }
                 }
             }
 
@@ -55,6 +140,28 @@ public class CookingPotBlockEntity extends BlockEntity implements NamedScreenHan
     @Override
     public DefaultedList<ItemStack> getItems() {
         return this.inventory;
+        return inventory;
+    }
+
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        this.inventory.set(slot, stack);
+        if (stack.getCount() > this.getMaxCountPerStack()) {
+            stack.setCount(this.getMaxCountPerStack());
+        }
+        if (totalCookingTime == 0) {
+            this.totalCookingTime = MAX_COOKING_TIME;
+        }
+        this.markDirty();
+    }
+
+    @Override
+    public boolean canPlayerUse(PlayerEntity player) {
+        if (this.world.getBlockEntity(this.pos) != this) {
+            return false;
+        } else {
+            return player.squaredDistanceTo((double)this.pos.getX() + 0.5, (double)this.pos.getY() + 0.5, (double)this.pos.getZ() + 0.5) <= 64.0;
+        }
     }
 
     @Override
@@ -73,6 +180,12 @@ public class CookingPotBlockEntity extends BlockEntity implements NamedScreenHan
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
         nbt.putInt("cooking_pot.progress", progress);
+        return new CookingPotScreenHandler(syncId, inv, this, delegate);
+    }
+
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBoolean(isBeingBurned);
     }
 
     @Override
