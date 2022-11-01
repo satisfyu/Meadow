@@ -177,7 +177,7 @@ public class ModEntities {
 
         FabricDefaultAttributeRegistry.register(BROWN_BEAR, PolarBearEntity.createPolarBearAttributes());
         SpawnMobAccessor.callRegister(BROWN_BEAR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.COW), SpawnGroup.CREATURE, BROWN_BEAR, 1, 1, 2);
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.MEADOW), SpawnGroup.CREATURE, BROWN_BEAR, 1, 1, 2);
 
 
         registerChicken(CHICKEN1, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
@@ -185,25 +185,23 @@ public class ModEntities {
         registerChicken(CHICKEN3, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
 
         registerSheep(FLECKED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
-        registerSheep(FUZZY_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
-        registerSheep(HORNED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
-        registerSheep(INKY_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
-        registerSheep(LONG_NOSED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
+        registerSheep(FUZZY_SHEEP, BiomeSelectors.includeByKey(BiomeKeys.DARK_FOREST, BiomeKeys.OLD_GROWTH_BIRCH_FOREST, BiomeKeys.BIRCH_FOREST));
+        registerSheep(HORNED_SHEEP, BiomeSelectors.includeByKey(BiomeKeys.SNOWY_BEACH, BiomeKeys.SNOWY_TAIGA, BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_SLOPES));
+        registerSheep(INKY_SHEEP, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
+        registerSheep(LONG_NOSED_SHEEP, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
         registerSheep(PATCHED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
-        registerSheep(ROCKY_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
-
+        registerSheep(ROCKY_SHEEP, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.GROVE, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.TAIGA, BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA, BiomeKeys.OLD_GROWTH_PINE_TAIGA, BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA));
 
         registerCow(HIGHLAND_CATTLE, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
-        registerCow(UMBRA_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
-
-        registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
+        registerCow(UMBRA_COW, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.TAIGA, BiomeKeys.FOREST, BiomeKeys.DARK_FOREST));
+        registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));
         registerCow(ALBINO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
-        registerCow(CREAM_COW, BiomeSelectors.includeByKey(BiomeKeys.WOODED_BADLANDS).or(BiomeSelectors.tag(BiomeTags.IS_SAVANNA)));
+        registerCow(CREAM_COW, BiomeSelectors.includeByKey(BiomeKeys.BADLANDS).or(BiomeSelectors.tag(BiomeTags.IS_BADLANDS)));
         registerCow(DAIRY_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
         registerCow(ASHEN_COW, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST));
         registerCow(DARK_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(PINTO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
-        registerCow(SUNSET_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
+        registerCow(SUNSET_COW, BiomeSelectors.includeByKey(BiomeKeys.SAVANNA).or(BiomeSelectors.tag(BiomeTags.IS_SAVANNA)));
     }
 
     public static void registerCow(EntityType entityType, Predicate<BiomeSelectionContext> biomes){

@@ -21,6 +21,7 @@ import net.satisfyu.meadow.block.woodCutter.WoodcuttingRecipeSerializer;
 import net.satisfyu.meadow.block.woodCutter.WoodcuttorScreenHandler;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.entity.ModEntities;
+import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.mixin.SignTypeAccessor;
 import net.satisfyu.meadow.painting.ModPaintings;
@@ -45,6 +46,7 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 	public static ScreenHandlerType<WoodcuttorScreenHandler> WOODCUTTOR_SCREEN_HANDLER;
 	public static ScreenHandlerType<CookingCauldronScreenHandler> COOKING_CAULDRON_SCREEN_HANDLER;
 	public static ScreenHandlerType<CookingPotScreenHandler> COOKING_POT_SCREEN_HANDLER;
+
 	public static RecipeType<WoodcuttingRecipe> WOODCUTTING;
 
 	public static final Identifier PINE_ID = new Identifier(MOD_ID, "pine");
@@ -53,9 +55,9 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 
 	public static TerraformBoatType PINE_BOAT;
 
-	public static final Item PINE_BOAT_ITEM = TerraformBoatItemHelper.registerBoatItem(PINE_BOAT_ID, () -> PINE_BOAT, false);
+	public static final Item PINE_BOAT_ITEM = TerraformBoatItemHelper.registerBoatItem(PINE_BOAT_ID, () -> PINE_BOAT, false, ModItemGroup.ALPINE_SALT);
 
-	public static final Item PINE_BOAT_CHEST_ITEM = TerraformBoatItemHelper.registerBoatItem(PINE_CHEST_BOAT_ID, () -> PINE_BOAT, true);
+	public static final Item PINE_BOAT_CHEST_ITEM = TerraformBoatItemHelper.registerBoatItem(PINE_CHEST_BOAT_ID, () -> PINE_BOAT, true, ModItemGroup.ALPINE_SALT);
 	public static final SignType PINE = SignTypeAccessor.callRegister(SignTypeAccessor.callCreate("pine"));
 
 	@Override

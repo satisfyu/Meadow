@@ -6,7 +6,7 @@
         "part": 3
       },
       "apply": {
-        "model": "meadow:block/glass_pane_top_post"
+        "model": "meadow:block/glass_pane_top_post2"
       }
     },
     {
@@ -15,7 +15,7 @@
         "part": 3
       },
       "apply": {
-        "model": "meadow:block/glass_pane_top_side"
+        "model": "meadow:block/glass_pane_top_side2"
       }
     },
     {
@@ -24,7 +24,7 @@
         "part": 3
       },
       "apply": {
-        "model": "meadow:block/glass_pane_top_side",
+        "model": "meadow:block/glass_pane_top_side2",
         "y": 90
       }
     },
@@ -34,7 +34,7 @@
         "part": 3
       },
       "apply": {
-        "model": "meadow:block/glass_pane_top_side_alt"
+        "model": "meadow:block/glass_pane_top_side_alt2"
       }
     },
     {
@@ -43,7 +43,7 @@
         "part": 3
       },
       "apply": {
-        "model": "meadow:block/glass_pane_top_side_alt",
+        "model": "meadow:block/glass_pane_top_side_alt2",
         "y": 90
       }
     },
@@ -53,7 +53,7 @@
         "part": 3
       },
       "apply": {
-        "model": "meadow:block/glass_pane_top_noside"
+        "model": "meadow:block/glass_pane_top_noside2"
       }
     },
     {
@@ -62,7 +62,7 @@
         "part": 3
       },
       "apply": {
-        "model": "meadow:block/glass_pane_top_noside_alt"
+        "model": "meadow:block/glass_pane_top_noside_alt2"
       }
     },
     {
@@ -71,7 +71,7 @@
         "part": 3
       },
       "apply": {
-        "model": "meadow:block/glass_pane_top_noside_alt",
+        "model": "meadow:block/glass_pane_top_noside_alt2",
         "y": 90
       }
     },
@@ -81,7 +81,7 @@
         "part": 3
       },
       "apply": {
-        "model": "meadow:block/glass_pane_top_noside",
+        "model": "meadow:block/glass_pane_top_noside2",
         "y": 270
       }
     },
@@ -93,7 +93,7 @@
         "part": 2
       },
       "apply": {
-        "model": "meadow:block/glass_pane_mid_post"
+        "model": "meadow:block/glass_pane_mid_post2"
       }
     },
     {
@@ -102,7 +102,7 @@
         "part": 2
       },
       "apply": {
-        "model": "meadow:block/glass_pane_mid_side"
+        "model": "meadow:block/glass_pane_mid_side2"
       }
     },
     {
@@ -111,7 +111,7 @@
         "part": 2
       },
       "apply": {
-        "model": "meadow:block/glass_pane_mid_side",
+        "model": "meadow:block/glass_pane_mid_side2",
         "y": 90
       }
     },
@@ -121,7 +121,7 @@
         "part": 2
       },
       "apply": {
-        "model": "meadow:block/glass_pane_mid_side_alt"
+        "model": "meadow:block/glass_pane_mid_side_alt2"
       }
     },
     {
@@ -130,7 +130,7 @@
         "part": 2
       },
       "apply": {
-        "model": "meadow:block/glass_pane_mid_side_alt",
+        "model": "meadow:block/glass_pane_mid_side_alt2",
         "y": 90
       }
     },
@@ -140,7 +140,7 @@
         "part": 2
       },
       "apply": {
-        "model": "meadow:block/glass_pane_mid_noside"
+        "model": "meadow:block/glass_pane_mid_noside2"
       }
     },
     {
@@ -149,7 +149,7 @@
         "part": 2
       },
       "apply": {
-        "model": "meadow:block/glass_pane_mid_noside_alt"
+        "model": "meadow:block/glass_pane_mid_noside_alt2"
       }
     },
     {
@@ -158,7 +158,7 @@
         "part": 2
       },
       "apply": {
-        "model": "meadow:block/glass_pane_mid_noside_alt",
+        "model": "meadow:block/glass_pane_mid_noside_alt2",
         "y": 90
       }
     },
@@ -168,7 +168,7 @@
         "part": 2
       },
       "apply": {
-        "model": "meadow:block/glass_pane_mid_noside",
+        "model": "meadow:block/glass_pane_mid_noside2",
         "y": 270
       }
     },
@@ -180,7 +180,7 @@
         "part": 1
       },
       "apply": {
-        "model": "meadow:block/glass_pane_bottom_post"
+        "model": "meadow:block/glass_pane_bottom_post2"
       }
     },
     {
@@ -189,7 +189,7 @@
         "part": 1
       },
       "apply": {
-        "model": "meadow:block/glass_pane_bottom_side"
+        "model": "meadow:block/glass_pane_bottom_side2"
       }
     },
     {
@@ -198,7 +198,7 @@
         "part": 1
       },
       "apply": {
-        "model": "meadow:block/glass_pane_bottom_side",
+        "model": "meadow:block/glass_pane_bottom_side2",
         "y": 90
       }
     },
@@ -208,7 +208,7 @@
         "part": 1
       },
       "apply": {
-        "model": "meadow:block/glass_pane_bottom_side_alt"
+        "model": "meadow:block/glass_pane_bottom_side_alt2"
       }
     },
     {
@@ -217,7 +217,7 @@
         "part": 1
       },
       "apply": {
-        "model": "meadow:block/glass_pane_bottom_side_alt",
+        "model": "meadow:block/glass_pane_bottom_side_alt2",
         "y": 90
       }
     },
@@ -227,7 +227,7 @@
         "part": 1
       },
       "apply": {
-        "model": "meadow:block/glass_pane_bottom_noside"
+        "model": "meadow:block/glass_pane_bottom_noside2"
       }
     },
     {
@@ -236,7 +236,7 @@
         "part": 1
       },
       "apply": {
-        "model": "meadow:block/glass_pane_bottom_noside_alt"
+        "model": "meadow:block/glass_pane_bottom_noside_alt2"
       }
     },
     {
@@ -245,7 +245,7 @@
         "part": 1
       },
       "apply": {
-        "model": "meadow:block/glass_pane_bottom_noside_alt",
+        "model": "meadow:block/glass_pane_bottom_noside_alt2",
         "y": 90
       }
     },
@@ -255,7 +255,7 @@
         "part": 1
       },
       "apply": {
-        "model": "meadow:block/glass_pane_bottom_noside",
+        "model": "meadow:block/glass_pane_bottom_noside2",
         "y": 270
       }
     },
@@ -266,7 +266,7 @@
         "part": 0
       },
       "apply": {
-        "model": "meadow:block/glass_pane_main_post"
+        "model": "meadow:block/glass_pane_main_post2"
       }
     },
     {
@@ -275,7 +275,7 @@
         "part": 0
       },
       "apply": {
-        "model": "meadow:block/glass_pane_main_side"
+        "model": "meadow:block/glass_pane_main_side2"
       }
     },
     {
@@ -284,7 +284,7 @@
         "part": 0
       },
       "apply": {
-        "model": "meadow:block/glass_pane_main_side",
+        "model": "meadow:block/glass_pane_main_side2",
         "y": 90
       }
     },
@@ -294,7 +294,7 @@
         "part": 0
       },
       "apply": {
-        "model": "meadow:block/glass_pane_main_side_alt"
+        "model": "meadow:block/glass_pane_main_side_alt2"
       }
     },
     {
@@ -303,7 +303,7 @@
         "part": 0
       },
       "apply": {
-        "model": "meadow:block/glass_pane_main_side_alt",
+        "model": "meadow:block/glass_pane_main_side_alt2",
         "y": 90
       }
     },
@@ -313,7 +313,7 @@
         "part": 0
       },
       "apply": {
-        "model": "meadow:block/glass_pane_main_noside"
+        "model": "meadow:block/glass_pane_main_noside2"
       }
     },
     {
@@ -322,7 +322,7 @@
         "part": 0
       },
       "apply": {
-        "model": "meadow:block/glass_pane_main_noside_alt"
+        "model": "meadow:block/glass_pane_main_noside_alt2"
       }
     },
     {
@@ -331,7 +331,7 @@
         "part": 0
       },
       "apply": {
-        "model": "meadow:block/glass_pane_main_noside_alt",
+        "model": "meadow:block/glass_pane_main_noside_alt2",
         "y": 90
       }
     },
@@ -341,7 +341,7 @@
         "part": 0
       },
       "apply": {
-        "model": "meadow:block/glass_pane_main_noside",
+        "model": "meadow:block/glass_pane_main_noside2",
         "y": 270
       }
     }

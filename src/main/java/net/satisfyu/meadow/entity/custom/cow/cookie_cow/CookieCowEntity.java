@@ -32,7 +32,7 @@ public class CookieCowEntity extends CowEntity {
         boolean bl;
         if (((bl = itemStack.isOf(Items.BUCKET)) || itemStack.isOf(ModItems.WOODEN_BUCKET)) && !this.isBaby()) {
             player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-            ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, bl ? Items.MILK_BUCKET.getDefaultStack() : ModItems.WOODEN_MILK_BUCKET.getDefaultStack());
+            ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, bl ? ModItems.BUFFALO_MILK.getDefaultStack() : ModItems.WOODEN_BUFFALO_MILK.getDefaultStack());
             player.setStackInHand(hand, itemStack2);
             return ActionResult.success(this.world.isClient);
         } else {

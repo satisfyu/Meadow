@@ -1,0 +1,9 @@
+{
+	"credit": "Made by Satisfy",
+	"parent": "minecraft:block/template_glass_pane_post",
+	"textures": {
+		"particle": "meadow:block/window_2_main",
+		"pane": "meadow:block/window_2_main",
+		"edge": "meadow:block/window_pane_top"
+	}
+}
