@@ -7,7 +7,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -69,6 +68,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ImplementedInv
 
     public CookingPotBlockEntity(BlockPos pos, BlockState state) {
         super(ModEntities.COOKING_POT_BLOCK_ENTITY, pos, state);
+        this.inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
     }
 
     @Override
@@ -213,7 +213,7 @@ public class CookingPotBlockEntity extends BlockEntity implements ImplementedInv
         if (this.world.getBlockEntity(this.pos) != this) {
             return false;
         } else {
-            return player.squaredDistanceTo((double) this.pos.getX() + 0.5, (double) this.pos.getY() + 0.5, (double) this.pos.getZ() + 0.5) <= 64.0;
+            return player.squaredDistanceTo((double)this.pos.getX() + 0.5, (double)this.pos.getY() + 0.5, (double)this.pos.getZ() + 0.5) <= 64.0;
         }
     }
 
@@ -225,11 +225,11 @@ public class CookingPotBlockEntity extends BlockEntity implements ImplementedInv
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CookingPotScreenHandler(syncId, inv, this, this.delegate);
+        return new CookingPotScreenHandler(syncId, inv, this, delegate);
     }
 
     @Override
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBoolean(this.isBeingBurned);
+        buf.writeBoolean(isBeingBurned);
     }
 }

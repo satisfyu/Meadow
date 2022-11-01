@@ -520,7 +520,7 @@ public class ModBlocks {
     public static final Block FIR = registerBlockWithoutItem("fir",
             new Block(FabricBlockSettings.of(Material.LEAVES).breakInstantly()));
 
-    public static final Block COOKING_POT = registerBlock("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.STONE)), ModItemGroup.ALPINE_SALT);
+    public static final Block COOKING_POT = registerBlock("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.STONE).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
 
 
 
