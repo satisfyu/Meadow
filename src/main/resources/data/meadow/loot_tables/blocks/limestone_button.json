@@ -11,10 +11,10 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:limestone_button"
+          "name": "meadow:limestone_button"
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ]
 }

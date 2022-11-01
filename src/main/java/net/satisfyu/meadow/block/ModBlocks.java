@@ -175,7 +175,7 @@ public class ModBlocks {
     public static final Block UMBRA_CARPET = registerBlock("umbra_carpet",
             new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block ROCKY_SHEEP_CARPET = registerBlock("rocky_sheep_carpet",
+    public static final Block ROCKY_SHEEP_CARPET = registerBlock("rocky_carpet",
             new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
 
     public static final Block INKY_CARPET = registerBlock("inky_carpet",

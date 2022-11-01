@@ -11,7 +11,7 @@
               "add": false,
               "conditions": [
                 {
-                  "block": "minecraft:limestone_brick_slab",
+                  "block": "meadow:limestone_brick_slab",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "type": "double"
@@ -25,7 +25,7 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "minecraft:limestone_brick_slab"
+          "name": "meadow:limestone_brick_slab"
         }
       ],
       "rolls": 1.0

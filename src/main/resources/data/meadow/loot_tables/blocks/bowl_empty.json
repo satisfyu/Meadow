@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "meadow:bowl_empty"
+          "name": "minecraft:bowl"
         }
       ],
       "rolls": 1.0
