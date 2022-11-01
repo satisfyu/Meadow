@@ -1,6 +1,9 @@
 package net.satisfyu.meadow.entity.custom.bear.brown;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.AttackGoal;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -15,5 +18,12 @@ public class BrownBearEntity extends PolarBearEntity {
     @Override
     public BrownBearEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
         return ModEntities.BROWN_BEAR.create(serverWorld);
+    }
+
+    @Override
+    protected void initGoals() {
+        super.initGoals();
+        this.goalSelector.add(1, new AttackGoal(this));
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, AnimalEntity.class, true, livingEntity -> livingEntity != this));
     }
 }

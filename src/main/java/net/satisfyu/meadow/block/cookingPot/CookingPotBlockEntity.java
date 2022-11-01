@@ -22,13 +22,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.ImplementedInventory;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.util.Tags;
 import org.jetbrains.annotations.Nullable;
 
 import static net.satisfyu.meadow.block.cookingPot.CookingPotBlock.COOKING;
 
-public class CookingPotBlockEntity extends BlockEntity implements Inventory, ExtendedScreenHandlerFactory {
+public class CookingPotBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory {
 
     private DefaultedList<ItemStack> inventory;
     private static final int MAX_CAPACITY = 8;
@@ -42,34 +43,32 @@ public class CookingPotBlockEntity extends BlockEntity implements Inventory, Ext
     private int totalCookingTime;
 
 
-    private final PropertyDelegate delegate;
+    private final PropertyDelegate delegate = new PropertyDelegate() {
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case 0 -> cookingTime;
+                case 1 -> totalCookingTime;
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {
+            switch (index) {
+                case 0 -> cookingTime = value;
+                case 1 -> totalCookingTime = value;
+            }
+        }
+
+        @Override
+        public int size() {
+            return 2;
+        }
+    };
 
     public CookingPotBlockEntity(BlockPos pos, BlockState state) {
         super(ModEntities.COOKING_POT_BLOCK_ENTITY, pos, state);
-        this.inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
-        this.delegate = new PropertyDelegate() {
-            @Override
-            public int get(int index) {
-                return switch (index) {
-                    case 0 -> CookingPotBlockEntity.this.cookingTime;
-                    case 1 -> CookingPotBlockEntity.this.totalCookingTime;
-                    default -> 0;
-                };
-            }
-
-            @Override
-            public void set(int index, int value) {
-                switch (index) {
-                    case 0 -> CookingPotBlockEntity.this.cookingTime = value;
-                    case 1 -> CookingPotBlockEntity.this.totalCookingTime = value;
-                }
-            }
-
-            @Override
-            public int size() {
-                return 2;
-            }
-        };
     }
 
     @Override
@@ -193,28 +192,8 @@ public class CookingPotBlockEntity extends BlockEntity implements Inventory, Ext
 
 
     @Override
-    public int size() {
-        return inventory.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return inventory.stream().allMatch(ItemStack::isEmpty);
-    }
-
-    @Override
-    public ItemStack getStack(int slot) {
-        return this.inventory.get(slot);
-    }
-
-    @Override
-    public ItemStack removeStack(int slot, int amount) {
-        return Inventories.splitStack(this.inventory, slot, amount);
-    }
-
-    @Override
-    public ItemStack removeStack(int slot) {
-        return Inventories.removeStack(this.inventory, slot);
+    public DefaultedList<ItemStack> getItems() {
+        return inventory;
     }
 
     @Override
@@ -236,11 +215,6 @@ public class CookingPotBlockEntity extends BlockEntity implements Inventory, Ext
         } else {
             return player.squaredDistanceTo((double) this.pos.getX() + 0.5, (double) this.pos.getY() + 0.5, (double) this.pos.getZ() + 0.5) <= 64.0;
         }
-    }
-
-    @Override
-    public void clear() {
-        inventory.clear();
     }
 
     @Override

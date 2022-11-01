@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:limestone_brick_wall"
+          "name": "meadow:limestone_brick_wall"
         }
       ],
       "rolls": 1.0
