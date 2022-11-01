@@ -175,7 +175,7 @@ public class ModBlocks {
     public static final Block UMBRA_CARPET = registerBlock("umbra_carpet",
             new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block ROCKY_SHEEP_CARPET = registerBlock("rocky_carpet",
+    public static final Block ROCKY_CARPET = registerBlock("rocky_carpet",
             new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
 
     public static final Block INKY_CARPET = registerBlock("inky_carpet",
@@ -314,7 +314,7 @@ public class ModBlocks {
     public static final Block SHELF = registerBlock("shelf",
             new FacingBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block FURNACE_COBBLESTONE = registerBlock("furnace_cobblestone",
-            new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.SMOKER)), ModItemGroup.ALPINE_SALT);
+            new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(13), true), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE = registerBlock("stove_tiles",
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
@@ -323,7 +323,7 @@ public class ModBlocks {
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE_WOOD_ON = registerBlock("stove_tiles_wood_on",
-            new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
+            new StoveTilesFurnaceBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(13), true), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE_LID = registerBlock("stove_tiles_lid",
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
@@ -562,4 +562,6 @@ public class ModBlocks {
     public static void registerModBlocks() {
         Meadow.LOGGER.debug("Registering ModBlocks for " + Meadow.MOD_ID);
     }
+
+
 }

@@ -69,6 +69,7 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, BrownBearEntity::new).dimensions(EntityDimensions.fixed(1.4f, 1.4f)).build()
     );
 
+
     public static final EntityType<AshenCowEntity> ASHEN_COW = Registry.register(Registry.ENTITY_TYPE,
             new Identifier(MOD_ID, "ashen_cow"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AshenCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
@@ -169,6 +170,7 @@ public class ModEntities {
 
     public static final BlockEntityType<CheeseFormBlockEntity> CHEESE_FORM_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cheese_form", FabricBlockEntityTypeBuilder.create(CheeseFormBlockEntity::new, ModBlocks.CHEESE_FORM).build());
 
+
     public static BlockEntityType<CookingPotBlockEntity> COOKING_POT = Registry.register(Registry.BLOCK_ENTITY_TYPE,
             new Identifier(MOD_ID, "cooking_pot"),
             FabricBlockEntityTypeBuilder.create(CookingPotBlockEntity::new,
@@ -187,6 +189,7 @@ public class ModEntities {
         registerChicken(CHICKEN1, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
         registerChicken(CHICKEN2, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
         registerChicken(CHICKEN3, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
+
 
         registerSheep(FLECKED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
         registerSheep(FUZZY_SHEEP, BiomeSelectors.includeByKey(BiomeKeys.DARK_FOREST, BiomeKeys.OLD_GROWTH_BIRCH_FOREST, BiomeKeys.BIRCH_FOREST));

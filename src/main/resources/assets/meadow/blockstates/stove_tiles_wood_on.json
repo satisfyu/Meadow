@@ -1,19 +1,19 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "meadow:block/stove_tiles_wood_on",
-      "y": 90
-    },
-    "facing=north": {
+    "facing=north,lit=true": {
       "model": "meadow:block/stove_tiles_wood_on"
     },
-    "facing=south": {
+    "facing=south,lit=true": {
       "model": "meadow:block/stove_tiles_wood_on",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,lit=true": {
       "model": "meadow:block/stove_tiles_wood_on",
       "y": 270
+    },
+    "facing=east,lit=true": {
+      "model": "meadow:block/stove_tiles_wood_on",
+      "y": 90
     }
   }
 }

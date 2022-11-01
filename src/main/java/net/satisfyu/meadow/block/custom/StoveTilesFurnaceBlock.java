@@ -1,14 +1,15 @@
 package net.satisfyu.meadow.block.custom;
 
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FacingBlock;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.SmokerBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -16,6 +17,8 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -24,9 +27,11 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.block.woodenCauldren.DamageSourceRegistry;
+import net.satisfyu.meadow.util.BlockStateUtils;
+import net.satisfyu.meadow.util.MathUtils;
 import org.jetbrains.annotations.Nullable;
 
-public class CobblestoneFurnaceBlock extends Block {
+public class StoveTilesFurnaceBlock extends Block {
 
 
     public static final VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 4, 2, 4), Block.createCuboidShape(12, 0, 0, 16, 2, 4), Block.createCuboidShape(0, 0, 12, 16, 2, 16), Block.createCuboidShape(12, 0, 12, 16, 2, 16));
@@ -37,7 +42,7 @@ public class CobblestoneFurnaceBlock extends Block {
 
     private final boolean isBig;
 
-    public CobblestoneFurnaceBlock(Settings settings, boolean isBig) {
+    public StoveTilesFurnaceBlock(Settings settings, boolean isBig) {
         super(settings);
         this.isBig = isBig;
     }
@@ -54,6 +59,58 @@ public class CobblestoneFurnaceBlock extends Block {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
         builder.add(FACING, LIT);
+    }
+
+
+
+    protected ActionResult tryLightUpByPlayerHand(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
+        ActionResult actionResult = ActionResult.PASS;
+        ItemStack stackHand = player.getStackInHand(hand);
+
+        if (stackHand.getItem() instanceof FlintAndSteelItem) {
+            world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.f,
+                    MathUtils.RAND.nextFloat() * .4f + .8f);
+            stackHand.damage(1, player, playerEntity -> playerEntity.sendToolBreakStatus(hand));
+
+            actionResult = ActionResult.SUCCESS;
+        } else if (stackHand.getItem() instanceof FireChargeItem) {
+            world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.f,
+                    (MathUtils.RAND.nextFloat() - MathUtils.RAND.nextFloat()) * .2f + 1.f);
+            if (!player.isCreative()) {
+                stackHand.decrement(1);
+            }
+
+            actionResult = ActionResult.SUCCESS;
+        }
+
+        if (actionResult.isAccepted()) {
+            world.setBlockState(pos, state.with(LIT, Boolean.TRUE), BlockStateUtils.DEFAULT_AND_RERENDER);
+        }
+
+        return actionResult;
+    }
+
+
+
+    protected ActionResult tryExtinguishByPlayerHand(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
+        ItemStack stackHand = player.getStackInHand(hand);
+        Item usedItem = stackHand.getItem();
+
+        if (!(stackHand.isIn(ConventionalItemTags.SHOVELS)) && usedItem != Items.WATER_BUCKET) {
+            return ActionResult.PASS;
+        }
+
+        extinguish(state, world, pos);
+        if (!player.isCreative() && usedItem == Items.WATER_BUCKET) {
+            player.setStackInHand(hand, new ItemStack(Items.BUCKET));
+        }
+
+        return ActionResult.SUCCESS;
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Nullable
@@ -86,8 +143,16 @@ public class CobblestoneFurnaceBlock extends Block {
         double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : h;
         world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+    }
 
 
+
+    private void extinguish(BlockState state, World world, BlockPos pos) {
+        world.setBlockState(pos, state.with(LIT, false));
+        double dx = pos.getX() + .5d;
+        double dy = pos.getY();
+        double dz = pos.getZ() + .5d;
+        world.playSound(dx, dy, dz, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, .5f, 2.6f, false);
     }
 }
 

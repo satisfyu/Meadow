@@ -1,17 +1,17 @@
 {
   "variants": {
-    "facing=north,lit=false": {
+    "facing=north,lit=true": {
       "model": "meadow:block/furnace_cobblestone"
     },
-    "facing=south,lit=false": {
+    "facing=south,lit=true": {
       "model": "meadow:block/furnace_cobblestone",
       "y": 180
     },
-    "facing=west,lit=false": {
+    "facing=west,lit=true": {
       "model": "meadow:block/furnace_cobblestone",
       "y": 270
     },
-    "facing=east,lit=false": {
+    "facing=east,lit=true": {
       "model": "meadow:block/furnace_cobblestone",
       "y": 90
     }
