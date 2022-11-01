@@ -3,6 +3,7 @@ package net.satisfyu.meadow.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.sound.SoundEvents;
@@ -18,59 +19,18 @@ import java.util.Arrays;
 
 public class ModItems {
 
-    public static final Item ALPINE_SALT = registerItem("alpine_salt",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-
-    public static final Item ALBINO_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ALBINO_COW, 16777215, 12632256);
-
-    public static final Item ASHEN_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ASHEN_COW, 16777215, 14740948);
-
-    public static final Item COOKIE_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.COOKIE_COW, 16777215, 329011);
-
-    public static final Item CREAM_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CREAM_COW, 16777215, 5208616);
-
-    public static final Item DAIRY_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.DAIRY_COW, 16777215, 4159204);
-
-    public static final Item DARK_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.DARK_COW, 16777215, 6172907);
-
-    public static final Item PINTO_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.PINTO_COW, 16777215, 9757694);
-
-    public static final Item SUNSET_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.SUNSET_COW, 16777215,8014336);
-
-
-
-    public static final Item BROWN_BEAR_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.BROWN_BEAR, 16777215, 12632256);
-
-    public static final Item CHICKEN1_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN1, 16777215, 14740948);
-
-    public static final Item CHICKEN2_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN2, 16777215, 329011);
-
-    public static final Item CHICKEN3_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN3, 16777215, 5208616);
-
-    public static final Item HIGHLAND_CATTLE_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.HIGHLAND_CATTLE, 16777215, 4159204);
-
-    public static final Item FLECKED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.FLECKED_SHEEP, 16777215, 6172907);
-
-    public static final Item FUZZY_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.FUZZY_SHEEP, 16777215, 9757694);
-
-    public static final Item HORNED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.HORNED_SHEEP, 16777215,8014336);
-
-    public static final Item INKY_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.INKY_SHEEP, 16777215,8014336);
-
-    public static final Item LONG_NOSED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.LONG_NOSED_SHEEP, 16777215,8014336);
-
-    public static final Item PATCHED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.PATCHED_SHEEP, 16777215,8014336);
-
-    public static final Item ROCKY_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ROCKY_SHEEP, 16777215,8014336);
-
-
-
-
-
-
-
     public static final Item PINE_SIGN = registerItem("pine_sign",
             new SignItem(new FabricItemSettings().maxCount(16).group(ModItemGroup.ALPINE_SALT), ModBlocks.PINE_SIGN, ModBlocks.PINE_WALL_SIGN));
+
+    public static final Item BEAR_FUR = registerItem("bear_fur",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+
+
+    public static final Item BEAR_FUR_HELMET = registerItem("bear_fur_helmet", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.HEAD, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BEAR_FUR_CHESTPLATE = registerItem("bear_fur_chestplate", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.CHEST, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BEAR_FUR_LEGGINGS = registerItem("bear_fur_leggings", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.LEGS, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BEAR_FUR_BOOTS = registerItem("bear_fur_boots", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.FEET, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
+
 
     public static final Item PIECE_OF_CHEESE = registerItem("piece_of_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
@@ -107,6 +67,9 @@ public class ModItems {
     public static final Item CREAM_CHEESE = registerItem("cream_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.6f).build())));
+
+    public static final Item ALPINE_SALT = registerItem("alpine_salt",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item CHEESE_SANDWICH = registerItem("cheese_sandwich",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
@@ -225,9 +188,57 @@ public class ModItems {
     public static final Item WOODEN_SHEEP_MILK = registerItem("wooden_sheep_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
 
+    public static final Item ALBINO_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ALBINO_COW, 16777215, 16721408);
 
-    public static final Item BEAR_FUR = registerItem("bear_fur",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item ASHEN_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ASHEN_COW, 4473924, 8026746);
+
+    public static final Item COOKIE_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.COOKIE_COW, 16757823, 16777215);
+
+    public static final Item CREAM_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CREAM_COW, 16767095, 16777215);
+
+    public static final Item DAIRY_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.DAIRY_COW, 16777215, 0);
+
+    public static final Item DARK_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.DARK_COW, 0, 2302755);
+
+    public static final Item PINTO_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.PINTO_COW, 16738816, 16777215);
+
+    public static final Item SUNSET_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.SUNSET_COW, 11868672,0);
+
+    public static final Item UMBRA_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.UMBRA_COW, 329011,1115451);
+
+    public static final Item HIGHLAND_CATTLE_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.HIGHLAND_CATTLE, 11102208, 16755200);
+
+    public static final Item BROWN_BEAR_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.BROWN_BEAR, 5780480, 5586176);
+
+    public static final Item CHICKEN1_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN1, 17066, 11353600);
+
+    public static final Item CHICKEN2_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN2, 36020, 12893184);
+
+    public static final Item CHICKEN3_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN3, 16775019, 12893184);
+
+    public static final Item FLECKED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.FLECKED_SHEEP, 11172162, 14079702);
+
+    public static final Item FUZZY_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.FUZZY_SHEEP, 14079702, 6316128);
+
+    public static final Item HORNED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.HORNED_SHEEP, 14079702,0);
+
+    public static final Item INKY_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.INKY_SHEEP, 6316128,0);
+
+    public static final Item LONG_NOSED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.LONG_NOSED_SHEEP, 5780480,2302755);
+
+    public static final Item PATCHED_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.PATCHED_SHEEP, 11184810,4473924);
+
+    public static final Item ROCKY_SHEEP_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ROCKY_SHEEP, 4473924,0);
+
+
+
+
+    public static void register() {
+        Registry.register(Registry.ITEM, new Identifier("meadow", "bear_fur_helmet"), BEAR_FUR_HELMET);
+        Registry.register(Registry.ITEM, new Identifier("meadow", "bear_fur_chestplate"), BEAR_FUR_CHESTPLATE);
+        Registry.register(Registry.ITEM, new Identifier("meadow", "bear_fur_leggings"), BEAR_FUR_LEGGINGS);
+        Registry.register(Registry.ITEM, new Identifier("meadow", "bear_fur_boots"), BEAR_FUR_BOOTS);
+    }
 
 
     private static Item registerItem(String name, Item item) {

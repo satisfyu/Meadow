@@ -423,6 +423,9 @@ public class ModBlocks {
     public static final Block ALPINE_BIRCH_LOG = registerBurningBlock("alpine_birch_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
 
+    public static final Block CHEESE_BLOCK = registerBlock("cheese_block",
+            new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_CHEESE, false), ModItemGroup.ALPINE_SALT);
+
     public static final Block SHEEP_CHEESE_BLOCK = registerBlock("sheep_cheese_block",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_SHEEP_CHEESE, false), ModItemGroup.ALPINE_SALT);
 

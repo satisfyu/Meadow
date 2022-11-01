@@ -5,21 +5,21 @@
       "y": 90
     },
     "facing=east,has_raw_beef=true": {
-      "model": "meadow:block/cooking_pots_guts",
+      "model": "meadow:block/cooking_pot_guts",
       "y": 90
     },
     "facing=north,has_raw_beef=false": {
       "model": "meadow:block/cooking_pot"
     },
     "facing=north,has_raw_beef=true": {
-      "model": "meadow:block/cooking_pots_guts"
+      "model": "meadow:block/cooking_pot_guts"
     },
     "facing=south,has_raw_beef=false": {
       "model": "meadow:block/cooking_pot",
       "y": 180
     },
     "facing=south,has_raw_beef=true": {
-      "model": "meadow:block/cooking_pots_guts",
+      "model": "meadow:block/cooking_pot_guts",
       "y": 180
     },
     "facing=west,has_raw_beef=false": {
@@ -27,7 +27,7 @@
       "y": 270
     },
     "facing=west,has_raw_beef=true": {
-      "model": "meadow:block/cooking_pots_guts",
+      "model": "meadow:block/cooking_pot_guts",
       "y": 270
     }
   }
