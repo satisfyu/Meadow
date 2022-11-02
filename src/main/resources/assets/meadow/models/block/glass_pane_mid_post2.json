@@ -1,7 +1,7 @@
 {
-	"credit": "Made by Satisfy",
-	"ambientocclusion": false,
-	"textures": {
-		"particle": "meadow:block/window_mid_2"
-	}
+  "parent": "minecraft:block/template_glass_pane_post",
+  "textures": {
+    "pane": "meadow:block/window_mid_2",
+    "edge": "meadow:block/window_pane_top"
+  }
 }

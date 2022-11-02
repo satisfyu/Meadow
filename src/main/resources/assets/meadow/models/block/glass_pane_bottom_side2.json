@@ -1,21 +1,7 @@
 {
-	"credit": "Made by Satisfy",
-	"ambientocclusion": false,
-	"textures": {
-		"particle": "meadow:block/window_bottom_2",
-		"pane": "meadow:block/window_bottom_2",
-		"edge": "meadow:block/window_pane_top"
-	},
-	"elements": [
-		{
-			"from": [7, 0, 0],
-			"to": [9, 16, 7],
-			"faces": {
-				"north": {"uv": [7, 0, 9, 16], "texture": "#edge", "cullface": "north"},
-				"east": {"uv": [9, 0, 16, 16], "texture": "#pane"},
-				"west": {"uv": [16, 0, 9, 16], "texture": "#pane"},
-				"down": {"uv": [7, 0, 9, 7], "texture": "#edge"}
-			}
-		}
-	]
+  "parent": "minecraft:block/template_glass_pane_side",
+  "textures": {
+    "pane": "meadow:block/window_bottom_2",
+    "edge": "meadow:block/window_pane_top"
+  }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_post",
+  "textures": {
+    "pane": "meadow:block/window_3_main",
+    "edge": "meadow:block/window_pane_top"
+  }
+}

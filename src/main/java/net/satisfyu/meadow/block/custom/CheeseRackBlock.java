@@ -29,7 +29,7 @@ import java.util.List;
 public class CheeseRackBlock extends Block {
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final IntProperty STAGE = IntProperty.of("stage", 0, 2);
+    public static final IntProperty STAGE = IntProperty.of("stage", 0, 16);
 
     private final int MAX_STAGE;
 
