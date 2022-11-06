@@ -9,10 +9,16 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Supplier;
+
+import static net.satisfyu.meadow.block.custom.BenchBlock.SHAPE;
 
 public class WindowShutterBlock extends Block {
 
@@ -23,31 +29,12 @@ public class WindowShutterBlock extends Block {
     }
 
 
-    private static final VoxelShape[] SHAPE = {
-            Block.createCuboidShape(0, 0, 0, 0, 0, 0),
-            Block.createCuboidShape(0, 0, 1, 1, 16, 15),
-            Block.createCuboidShape(0, 0, 0, 0, 0, 0),
-            Block.createCuboidShape(0, 0, 0, 0, 0, 0)
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.875, 0.9375, 1, 1), BooleanBiFunction.OR);
+
+        return shape;
     };
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-
-        switch (state.get(FACING)) {
-            default: {
-                return SHAPE[0];
-            }
-            case WEST: {
-                return SHAPE[1];
-            }
-            case SOUTH: {
-                return SHAPE[2];
-            }
-            case EAST:
-        }
-        return SHAPE[3];
-
-    }
 
     @Nullable
     @Override

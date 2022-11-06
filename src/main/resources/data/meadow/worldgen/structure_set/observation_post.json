@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "meadow:observation_post",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 442868850,
+
+    "spacing": 20,
+
+
+    "separation": 10,
+
+    "type": "minecraft:random_spread"
+  }
+}

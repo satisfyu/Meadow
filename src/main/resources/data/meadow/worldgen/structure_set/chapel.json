@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "meadow:chapel",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 205745294,
+
+    "spacing": 20,
+
+
+    "separation": 10,
+
+    "type": "minecraft:random_spread"
+  }
+}

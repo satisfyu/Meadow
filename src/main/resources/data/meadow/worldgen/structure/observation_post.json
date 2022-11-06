@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:jigsaw",
+
+  "start_pool": "meadow:observation_post/start_pool",
+
+
+  "size": 2,
+
+  "max_distance_from_center": 80,
+
+  "biomes": "#meadow:has_structure/observation_post",
+
+
+  "step": "surface_structures",
+
+  "start_height": {
+    "absolute": 1
+  },
+
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+
+  "use_expansion_hack": false,
+
+  "spawn_overrides": {
+    "creature": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "minecraft:villager",
+          "weight": 1,
+          "minCount": 1,
+          "maxCount": 4
+        }
+      ]
+    }
+  }
+}

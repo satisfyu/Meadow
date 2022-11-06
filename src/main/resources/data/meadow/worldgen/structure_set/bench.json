@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "meadow:bench",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 10587309,
+
+    "spacing": 24,
+
+
+    "separation": 12,
+
+    "type": "minecraft:random_spread"
+  }
+}
