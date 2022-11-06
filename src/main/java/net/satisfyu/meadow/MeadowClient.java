@@ -11,6 +11,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.block.cheeseForm.CheeseFormScreen;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
@@ -40,6 +41,7 @@ import net.satisfyu.meadow.entity.custom.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepRenderer;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
+import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 
 import static net.satisfyu.meadow.Meadow.*;
 
@@ -95,8 +97,7 @@ public class MeadowClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        HandledScreens.register(WOODCUTTOR_SCREEN_HANDLER, WoodcutterScreen::new);
-        HandledScreens.register(COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
+
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.WOODCUTTER, ModBlocks.OAT_CROP, ModBlocks.JUNIPER_CROP, ModBlocks.YARROW_CROP, ModBlocks.MOUNTAIN_LAVENDER_CROP, ModBlocks.ALPINE_GRASS, ModBlocks.ALPINE_GRASS_TALL,
                 ModBlocks.PINE_DOOR, ModBlocks.HAYBLOCK_RUG, ModBlocks.PINE_TRAPDOOR, ModBlocks.DELPHINIUM, ModBlocks.ALPINE_POPPY, ModBlocks.SAXIFRAGE,
@@ -113,6 +114,7 @@ public class MeadowClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
 
+        registerClientScreens();
         registerCows();
         registerSheeps();
         registerParticles();
@@ -122,6 +124,12 @@ public class MeadowClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(BROWN_BEAR_MODEL_LAYER, PolarBearEntityModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
         TerraformBoatClientHelper.registerModelLayers(PINE_ID);
+    }
+
+    public static void registerClientScreens(){
+        HandledScreens.register(ModScreenHandlers.CHEESE_FORM_SCREEN_HANDLER, CheeseFormScreen::new);
+        HandledScreens.register(ModScreenHandlers.WOODCUTTOR_SCREEN_HANDLER, WoodcutterScreen::new);
+        HandledScreens.register(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
     }
 
     private void registerParticles(){

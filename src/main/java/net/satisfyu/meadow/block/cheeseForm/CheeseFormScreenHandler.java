@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.block.cookingCauldron;
+package net.satisfyu.meadow.block.cheeseForm;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -11,32 +11,26 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 
-public class CookingCauldronScreenHandler extends ScreenHandler {
-
-
+public class CheeseFormScreenHandler extends ScreenHandler {
     private final PropertyDelegate propertyDelegate;
 
     private final Inventory inventory;
 
-    public CookingCauldronScreenHandler(int syncId, PlayerInventory playerInventory){
-        this(syncId, playerInventory, new ArrayPropertyDelegate(2),  new SimpleInventory(4));
+    public CheeseFormScreenHandler(int syncId, PlayerInventory playerInventory){
+        this(syncId, playerInventory, new ArrayPropertyDelegate(1),  new SimpleInventory(2));
     }
 
-    public CookingCauldronScreenHandler(int syncId, PlayerInventory playerInventory, PropertyDelegate propertyDelegate, Inventory inv) {
-        super(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, syncId);
+    public CheeseFormScreenHandler(int syncId, PlayerInventory playerInventory, PropertyDelegate propertyDelegate, Inventory inv) {
+        super(ModScreenHandlers.CHEESE_FORM_SCREEN_HANDLER, syncId);
         this.propertyDelegate = propertyDelegate;
-        CookingCauldronScreenHandler.checkSize(inv, 4);
+        CheeseFormScreenHandler.checkSize(inv, 2);
         this.inventory = inv;
         inventory.onOpen(playerInventory.player);
 
-        this.addSlot(new Slot(inv, 0, 30, 26));
-        this.addSlot(new Slot(inv, 1, 48, 26));
-        this.addSlot(new Slot(inv, 2, 66, 26));
-
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inv, 3, 124, 28));
+        this.addSlot(new Slot(inv, 0, 30, 40));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inv, 1, 130, 40));
 
         int m;
         int l;
@@ -50,6 +44,7 @@ public class CookingCauldronScreenHandler extends ScreenHandler {
         }
         this.addProperties(propertyDelegate);
     }
+
 
 
     @Override
@@ -69,7 +64,6 @@ public class CookingCauldronScreenHandler extends ScreenHandler {
     @Override
     public ItemStack transferSlot(PlayerEntity player, int invSlot) {
         ItemStack newStack = ItemStack.EMPTY;
-
         Slot slot = this.slots.get(invSlot);
         if (slot.hasStack()) {
             ItemStack originalStack = slot.getStack();

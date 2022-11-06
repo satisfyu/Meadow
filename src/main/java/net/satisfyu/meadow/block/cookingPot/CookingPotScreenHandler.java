@@ -11,6 +11,7 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 
 public class CookingPotScreenHandler extends ScreenHandler {
 
@@ -22,7 +23,7 @@ public class CookingPotScreenHandler extends ScreenHandler {
     }
 
     public CookingPotScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
-        super(Meadow.COOKING_CAULDRON_SCREEN_HANDLER, syncId);
+        super(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, syncId);
         checkSize(inventory, 3);
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);

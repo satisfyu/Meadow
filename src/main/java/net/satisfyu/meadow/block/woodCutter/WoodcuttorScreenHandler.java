@@ -17,6 +17,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.recipes.ModRecipes;
+import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import net.satisfyu.meadow.sound.ModSounds;
 
 import java.util.List;
@@ -48,7 +50,7 @@ public class WoodcuttorScreenHandler
     }
 
     public WoodcuttorScreenHandler(int syncId, PlayerInventory playerInventory, final ScreenHandlerContext context) {
-        super(Meadow.WOODCUTTOR_SCREEN_HANDLER, syncId);
+        super(ModScreenHandlers.WOODCUTTOR_SCREEN_HANDLER, syncId);
         int i;
         this.context = context;
         this.world = playerInventory.player.world;
@@ -137,7 +139,7 @@ public class WoodcuttorScreenHandler
         this.selectedRecipe.set(-1);
         this.outputSlot.setStack(ItemStack.EMPTY);
         if (!stack.isEmpty()) {
-            this.availableRecipes = this.world.getRecipeManager().getAllMatches(Meadow.WOODCUTTING, input, this.world);
+            this.availableRecipes = this.world.getRecipeManager().getAllMatches(ModRecipes.WOODCUTTING, input, this.world);
         }
     }
 
@@ -154,7 +156,7 @@ public class WoodcuttorScreenHandler
 
     @Override
     public ScreenHandlerType<?> getType() {
-        return Meadow.WOODCUTTOR_SCREEN_HANDLER;
+        return ModScreenHandlers.WOODCUTTOR_SCREEN_HANDLER;
     }
 
     public void setContentsChangedListener(Runnable contentsChangedListener) {
@@ -180,7 +182,7 @@ public class WoodcuttorScreenHandler
                     return ItemStack.EMPTY;
                 }
                 slot.onQuickTransfer(itemStack2, itemStack);
-            } else if (index == 0 ? !this.insertItem(itemStack2, 2, 38, false) : (this.world.getRecipeManager().getFirstMatch(Meadow.WOODCUTTING, new SimpleInventory(itemStack2), this.world).isPresent() ? !this.insertItem(itemStack2, 0, 1, false) : (index >= 2 && index < 29 ? !this.insertItem(itemStack2, 29, 38, false) : index >= 29 && index < 38 && !this.insertItem(itemStack2, 2, 29, false)))) {
+            } else if (index == 0 ? !this.insertItem(itemStack2, 2, 38, false) : (this.world.getRecipeManager().getFirstMatch(ModRecipes.WOODCUTTING, new SimpleInventory(itemStack2), this.world).isPresent() ? !this.insertItem(itemStack2, 0, 1, false) : (index >= 2 && index < 29 ? !this.insertItem(itemStack2, 29, 38, false) : index >= 29 && index < 38 && !this.insertItem(itemStack2, 2, 29, false)))) {
                 return ItemStack.EMPTY;
             }
             if (itemStack2.isEmpty()) {

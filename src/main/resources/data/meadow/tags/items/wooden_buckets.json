@@ -1,0 +1,20 @@
+{
+  "values": [
+    "meadow:wooden_cow_cheese_mass_bucket",
+    "meadow:wooden_buffalo_cheese_mass_bucket",
+    "meadow:wooden_goat_cheese_mass_bucket",
+    "meadow:wooden_oat_cheese_mass_bucket",
+    "meadow:wooden_sheep_cheese_mass_bucket",
+    "meadow:wooden_lavender_cheese_mass_bucket",
+    "meadow:wooden_herbs_cheese_mass_bucket",
+
+    "meadow:wooden_bucket",
+    "meadow:wooden_water_bucket",
+    "meadow:wooden_powder_snow_bucket",
+    "meadow:wooden_milk_bucket",
+    "meadow:wooden_buffalo_milk_bucket",
+    "meadow:wooden_goat_milk_bucket",
+    "meadow:wooden_oat_milk_bucket",
+    "meadow:wooden_sheep_milk_bucket"
+  ]
+}
