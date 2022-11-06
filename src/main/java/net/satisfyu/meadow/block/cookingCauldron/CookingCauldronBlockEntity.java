@@ -17,6 +17,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.block.ImplementedInventory;
+import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.custom.WoodenMilkBucket;
 import org.jetbrains.annotations.Nullable;
@@ -166,7 +167,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
         if(downState.contains(LIT)){
             return downState.get(LIT);
         }
-        return false;
+        else return downState.isOf(ModBlocks.STOVE_LID);
     }
 
 

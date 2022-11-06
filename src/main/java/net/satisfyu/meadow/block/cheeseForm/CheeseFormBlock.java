@@ -5,14 +5,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -20,10 +19,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-import net.minecraft.world.event.GameEvent;
+import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.entity.ModEntities;
-import net.satisfyu.meadow.item.ModItems;
-import net.satisfyu.meadow.sound.ModSounds;
 import org.jetbrains.annotations.Nullable;
 
 public class CheeseFormBlock extends BlockWithEntity {
@@ -53,6 +50,17 @@ public class CheeseFormBlock extends BlockWithEntity {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!world.isClient) {
+            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
+            if (screenHandlerFactory != null) {
+                player.openHandledScreen(screenHandlerFactory);
+            }
+        }
+        return ActionResult.SUCCESS;
+    }
+/*
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         int i;
         ItemStack stack = player.getStackInHand(hand);
         if(state.get(VAR) == 0 && (i = getVar(stack.getItem())) < 8){
@@ -70,10 +78,24 @@ public class CheeseFormBlock extends BlockWithEntity {
         return ActionResult.PASS;
     }
 
+ */
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, ModEntities.CHEESE_FORM_BLOCK_ENTITY, (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
+    }
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof CookingCauldronBlockEntity be) {
+                ItemScatterer.spawn(world, pos, be);
+                world.updateComparators(pos,this);
+            }
+            super.onStateReplaced(state, world, pos, newState, moved);
+        }
     }
 
     @Nullable
@@ -87,26 +109,7 @@ public class CheeseFormBlock extends BlockWithEntity {
         return BlockRenderType.MODEL;
     }
 
-    public static int getVar(Item item){
-        if (ModItems.CHEESE_MASS.equals(item) || ModItems.WOODEN_CHEESE_MASS.equals(item)) {
-            return 2;
-        } else if (ModItems.BUFFALO_CHEESE_MASS.equals(item) || ModItems.WOODEN_BUFFALO_CHEESE_MASS.equals(item)) {
-            return 1;
-        } else if (ModItems.GOAT_CHEESE_MASS.equals(item) || ModItems.WOODEN_GOAT_CHEESE_MASS.equals(item)) {
-            return 3;
-        } else if (ModItems.OAT_CHEESE_MASS.equals(item) || ModItems.WOODEN_OAT_CHEESE_MASS.equals(item)) {
-            return 5;
-        } else if (ModItems.SHEEP_CHEESE_MASS.equals(item) || ModItems.WOODEN_SHEEP_CHEESE_MASS.equals(item)) {
-            return 6;
-        } else if (ModItems.LAVENDER_CHEESE_MASS.equals(item) || ModItems.WOODEN_LAVENDER_CHEESE_MASS.equals(item)) {
-            return 4;
-        } else if (ModItems.HERBS_CHEESE_MASS.equals(item) || ModItems.WOODEN_HERBS_CHEESE_MASS.equals(item)) {
-            return 7;
-        }
-        else{
-            return 100;
-        }
-    }
+
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

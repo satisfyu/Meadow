@@ -1,7 +1,6 @@
 package net.satisfyu.meadow.util;
 
 import com.google.gson.stream.JsonWriter;
-import net.satisfyu.meadow.Meadow;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,15 +9,15 @@ import java.util.List;
 
 public class AdvancementRecipeGenerator {
 
-    public static final String FOLDER = "/Users/marco/Documents/GitHub/meadow/src/main/resources/data/meadow/advancements/recipes";
+    public static final String FOLDER = "C:/Users/Admin/Documents/GitHub/meadow/src/main/resources/data/meadow/advancements/recipes/";
 
     public static void main(String[] args) {
         /*
         Mach die item condition und das Rezept in die Liste und trenne sie mit einem "/" (so wie die Beispiele in der Liste). So kannst du viele Advancements auf einmal erstellen.
-        FOLDER gibt das Verzeichnis an, in dem die Advancements landen.
+        FOLDER gibt das Verzeichnis an, in dem die Advancements landen mit / am Ende! Wichtig!
         Drücke dann auf das play Symbol links von der main method und die Advancements sollten generiert werden.
          */
-        List<String> putRecipesHere = List.of();
+        List<String> putRecipesHere = List.of("cobbled_limestone/chiseled_limestone_bricks");
 
 
 
@@ -57,7 +56,7 @@ public class AdvancementRecipeGenerator {
 
                     .endObject();
         } catch (IOException e) {
-            Meadow.LOGGER.error("["+Meadow.MOD_ID+"] Couldn't write recipe to " + FOLDER + recipe);
+            System.out.printf("[Meadow] Couldn't write recipe to " + FOLDER + recipe);
             e.printStackTrace();
         }
     }

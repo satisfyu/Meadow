@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.block.cookingCauldron;
+package net.satisfyu.meadow.block.cheeseForm;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -9,11 +9,11 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 
-public class CookingCauldronScreen extends HandledScreen<CookingCauldronScreenHandler> {
+public class CheeseFormScreen extends HandledScreen<CheeseFormScreenHandler> {
 
-    private final Identifier background = new Identifier(Meadow.MOD_ID, "textures/gui/cooking_cauldron_gui.png");
+    private final Identifier background = new Identifier(Meadow.MOD_ID, "textures/gui/cheese_form_gui.png");
 
-    public CookingCauldronScreen(CookingCauldronScreenHandler handler, PlayerInventory inventory, Text title) {
+    public CheeseFormScreen(CheeseFormScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
 
@@ -21,16 +21,15 @@ public class CookingCauldronScreen extends HandledScreen<CookingCauldronScreenHa
 
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        int k;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, background);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
-        k = this.handler.getSyncedNumber() / (getTimeToCook() / 22);
-        this.drawTexture(matrices, x + 90, y + 26, 176, 15, k + 1, 16);
-        if(handler.getIsCooking()) this.drawTexture(matrices, x + 124, y + 51, 176, 0, 16, 14);
+
+        int k = this.handler.getSyncedNumber() / (getTimeToCook() / 38);
+        this.drawTexture(matrices, x + 65, y + 37, 176, 0, k + 4, 16);
     }
 
     @Override

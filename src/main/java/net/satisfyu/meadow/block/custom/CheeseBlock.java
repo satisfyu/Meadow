@@ -5,6 +5,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
@@ -80,9 +82,7 @@ public class CheeseBlock extends Block {
     }
 
     private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!player.canConsume(false)) {
-            return ActionResult.PASS;
-        }
+        world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1, 1);
         CheeseBlock.dropStack((World) world, pos, Direction.UP, new ItemStack(slice));
         int i = state.get(CUTS);
         world.emitGameEvent(player, GameEvent.EAT, pos);

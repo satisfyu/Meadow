@@ -42,6 +42,9 @@ public class StoveTilesFurnaceBlock extends Block {
 
     private final boolean isBig;
 
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    public static final BooleanProperty LIT = Properties.LIT;
+
     public StoveTilesFurnaceBlock(Settings settings, boolean isBig) {
         super(settings);
         this.isBig = isBig;
@@ -51,9 +54,6 @@ public class StoveTilesFurnaceBlock extends Block {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return isBig ? SHAPE_BIG : SHAPE_SMALL;
     }
-
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final BooleanProperty LIT = Properties.LIT;
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

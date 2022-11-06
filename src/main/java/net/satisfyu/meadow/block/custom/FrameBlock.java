@@ -1,12 +1,12 @@
 package net.satisfyu.meadow.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.ActionResult;
@@ -16,6 +16,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -52,6 +53,26 @@ public class FrameBlock extends Block {
         return ActionResult.PASS;
     }
 
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        displayTickLikeCampfire(state, world, pos, random, world.getBlockState(pos.down()).isOf(Blocks.HAY_BLOCK));
+    }
+
+    public static void displayTickLikeCampfire(BlockState state, World world, BlockPos pos, Random random, boolean isSignal){
+        if (random.nextFloat() < 0.11f) {
+            for (int i = 0; i < random.nextInt(2) + 2; ++i) {
+                CampfireBlock.spawnSmokeParticle(world, pos, isSignal, false);
+            }
+        }
+        if (random.nextInt(10) == 0) {
+            world.playSound((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5f + random.nextFloat(), random.nextFloat() * 0.7f + 0.6f, false);
+        }
+        if (random.nextInt(5) == 0) {
+            for (int i = 0; i < random.nextInt(1) + 1; ++i) {
+                world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, random.nextFloat() / 2.0f, 5.0E-5, random.nextFloat() / 2.0f);
+            }
+        }
+    }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {

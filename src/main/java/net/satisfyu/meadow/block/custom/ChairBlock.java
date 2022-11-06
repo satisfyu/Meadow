@@ -14,12 +14,10 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairUtil;
 
@@ -30,7 +28,6 @@ public class ChairBlock extends Block {
     private static final VoxelShape[] SHAPE = {Block.createCuboidShape(3, 10, 11, 13, 22, 13),
             Block.createCuboidShape(11, 10, 3, 13, 22, 13),
             Block.createCuboidShape(3, 10, 3, 13, 22, 5),
-
             Block.createCuboidShape(3, 10, 3, 5, 22, 13)
     };
 
@@ -40,19 +37,16 @@ public class ChairBlock extends Block {
 
     protected static VoxelShape SINGLE_SHAPE(){
         VoxelShape top = Block.createCuboidShape(3.0, 9.0, 3.0, 13.0, 10.0, 13.0);
-
         VoxelShape leg1 = Block.createCuboidShape(3.0, 0.0, 3.0, 5.0, 9.0, 5.0);
         VoxelShape leg2 = Block.createCuboidShape(3.0, 0.0, 11.0, 5.0, 9.0, 13.0);
         VoxelShape leg3 = Block.createCuboidShape(11.0, 0.0, 11.0, 13.0, 9.0, 13.0);
         VoxelShape leg4 = Block.createCuboidShape(11.0, 0.0, 3.0, 13.0, 9.0, 5.0);
-
         return VoxelShapes.union(top, leg1, leg2, leg3, leg4);
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         VoxelShape s = SINGLE_SHAPE();
-
         switch (state.get(FACING)) {
             default: {
                 return VoxelShapes.union(s, SHAPE[0]);
@@ -71,33 +65,13 @@ public class ChairBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(world.isClient) return ActionResult.PASS;
-        if(player.isSneaking()) return ActionResult.PASS;
-        if(ChairUtil.isPlayerSitting(player)) return ActionResult.PASS;
-        if(hit.getSide() == Direction.DOWN) return ActionResult.PASS;
-        BlockPos hitPos = hit.getBlockPos();
-        if(!ChairUtil.isOccupied(world, hitPos) && player.getStackInHand(hand).isEmpty()) {
-            ChairEntity chair = ModEntities.CHAIR.create(world);
-            float yaw = state.get(FACING).asRotation();
-            chair.refreshPositionAndAngles(hitPos.getX() + 0.5D, hitPos.getY() + 0.25D, hitPos.getZ() + 0.5D, yaw, 0);
-            if(ChairUtil.addChairEntity(world, hitPos, chair, player.getBlockPos())) {
-                world.spawnEntity(chair);
-                player.startRiding(chair);
-                return ActionResult.SUCCESS;
-            }
-        }
-        return ActionResult.PASS;
+        return ChairUtil.onUse(world, player, hand, hit, 0.1);
     }
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if(!world.isClient) {
-            ChairEntity entity = ChairUtil.getChairEntity(world, pos);
-            if(entity != null) {
-                ChairUtil.removeChairEntity(world, pos);
-                entity.removeAllPassengers();
-            }
-        }
+        super.onStateReplaced(state, world, pos, newState, moved);
+        ChairUtil.onStateReplaced(world, pos);
     }
 
     @Override

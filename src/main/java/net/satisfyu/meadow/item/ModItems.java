@@ -164,28 +164,28 @@ public class ModItems {
     public static final Item WOODEN_HERBS_CHEESE_MASS = registerItem("wooden_herbs_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
 
-    public static final Item BUFFALO_MILK = registerItem("buffalo_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BUFFALO_MILK = registerItem("buffalo_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item GOAT_MILK = registerItem("goat_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item GOAT_MILK = registerItem("goat_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item OAT_MILK = registerItem("oat_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item OAT_MILK = registerItem("oat_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item SHEEP_MILK = registerItem("sheep_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item SHEEP_MILK = registerItem("sheep_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_BUCKET = registerItem("wooden_bucket", new WoodenBucket(Fluids.EMPTY, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_BUCKET = registerItem("wooden_bucket", new WoodenBucket(Fluids.EMPTY, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(16)));
 
-    public static final Item WOODEN_WATER_BUCKET = registerItem("wooden_water_bucket", new WoodenBucket(Fluids.WATER, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item WOODEN_POWDER_SNOW_BUCKET = registerItem("wooden_powder_snow_bucket", new WoodenPowderSnowBucket(Blocks.POWDER_SNOW, SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_WATER_BUCKET = registerItem("wooden_water_bucket", new WoodenBucket(Fluids.WATER, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item WOODEN_POWDER_SNOW_BUCKET = registerItem("wooden_powder_snow_bucket", new WoodenPowderSnowBucket(Blocks.POWDER_SNOW, SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_MILK_BUCKET = registerItem("wooden_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_MILK_BUCKET = registerItem("wooden_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_BUFFALO_MILK = registerItem("wooden_buffalo_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_BUFFALO_MILK = registerItem("wooden_buffalo_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_GOAT_MILK = registerItem("wooden_goat_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_GOAT_MILK = registerItem("wooden_goat_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_OAT_MILK = registerItem("wooden_oat_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_OAT_MILK = registerItem("wooden_oat_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_SHEEP_MILK = registerItem("wooden_sheep_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_SHEEP_MILK = registerItem("wooden_sheep_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
 
     public static final Item ALBINO_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ALBINO_COW, 16777215, 16721408);
@@ -249,8 +249,6 @@ public class ModItems {
     }
 
     private static Item registerSpawnEgg(EntityType entityType, int color1, int color2){
-        String s = Registry.ENTITY_TYPE.getId(entityType).toString();
-        s = Arrays.stream(s.split(":")).toList().get(1);
-        return registerItem(s + "_spawn_egg", new SpawnEggItem(entityType, color1, color2, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
+        return registerItem(Registry.ENTITY_TYPE.getId(entityType).toString().split(":")[1] + "_spawn_egg", new SpawnEggItem(entityType, color1, color2, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
     }
 }
