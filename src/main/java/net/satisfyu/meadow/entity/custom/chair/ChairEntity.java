@@ -17,8 +17,9 @@ public class ChairEntity extends Entity {
         super(type, world);
     }
 
-    public ChairEntity(World world) {
-        super(ModEntities.CHAIR, world);
+    @Override
+    protected void initDataTracker() {
+
     }
 
     @Override
@@ -32,11 +33,6 @@ public class ChairEntity extends Entity {
         }
         discard();
         return super.updatePassengerForDismount(passenger);
-    }
-
-    @Override
-    protected void initDataTracker() {
-
     }
 
     @Override

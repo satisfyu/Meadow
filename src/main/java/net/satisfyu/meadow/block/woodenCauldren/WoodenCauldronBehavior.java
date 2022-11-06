@@ -15,7 +15,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.item.ModItems;
 
 import java.util.Map;
 import java.util.function.Predicate;
@@ -26,21 +28,16 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
     Map<Item, CauldronBehavior> EMPTY_CAULDRON_BEHAVIOR = CauldronBehavior.createMap();
     Map<Item, CauldronBehavior> WATER_CAULDRON_BEHAVIOR = CauldronBehavior.createMap();
     Map<Item, CauldronBehavior> POWDER_SNOW_CAULDRON_BEHAVIOR = CauldronBehavior.createMap();
-    CauldronBehavior FILL_WITH_WATER = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ModBlocks.WOODEN_WATER_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
-    CauldronBehavior FILL_WITH_POWDER_SNOW = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ModBlocks.WOODEN_POWDER_SNOW_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW);
 
-
-
+    CauldronBehavior FILL_WITH_WATER = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ModBlocks.WOODEN_WATER_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY, Items.BUCKET);
+    CauldronBehavior FILL_WITH_POWDER_SNOW = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ModBlocks.WOODEN_POWDER_SNOW_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW, Items.BUCKET);
+    CauldronBehavior FILL_WITH_WATER_W = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ModBlocks.WOODEN_WATER_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY, ModItems.WOODEN_BUCKET);
+    CauldronBehavior FILL_WITH_POWDER_SNOW_W = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ModBlocks.WOODEN_POWDER_SNOW_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW, ModItems.WOODEN_BUCKET);
     ActionResult interact(BlockState var1, World var2, BlockPos var3, PlayerEntity var4, Hand var5, ItemStack var6);
 
-    static void decrementFluidLevel(BlockState state, World world, BlockPos pos) {
-        int i = state.get(LEVEL) - 1;
-        BlockState blockState = i == 0 ? Blocks.CAULDRON.getDefaultState() : state.with(LEVEL, i);
-        world.setBlockState(pos, blockState);
-        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(blockState));
-    }
-
     static void registerBehavior() {
+        registerCauldronBehavior();
+
         WoodenCauldronBehavior.registerBucketBehavior(EMPTY_CAULDRON_BEHAVIOR);
         EMPTY_CAULDRON_BEHAVIOR.put(Items.POTION, (state, world, pos, player, hand, stack) -> {
             if (PotionUtil.getPotion(stack) != Potions.WATER) {
@@ -58,6 +55,7 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
         });
         WoodenCauldronBehavior.registerBucketBehavior(WATER_CAULDRON_BEHAVIOR);
         WATER_CAULDRON_BEHAVIOR.put(Items.BUCKET, (state2, world, pos, player, hand, stack) -> WoodenCauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(Items.WATER_BUCKET), state -> state.get(LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
+        WATER_CAULDRON_BEHAVIOR.put(ModItems.WOODEN_BUCKET, (state2, world, pos, player, hand, stack) -> WoodenCauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(ModItems.WOODEN_WATER_BUCKET), state -> state.get(LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
         WATER_CAULDRON_BEHAVIOR.put(Items.GLASS_BOTTLE, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
                 Item item = stack.getItem();
@@ -120,12 +118,15 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
         WATER_CAULDRON_BEHAVIOR.put(Items.RED_SHULKER_BOX, CLEAN_SHULKER_BOX);
         WATER_CAULDRON_BEHAVIOR.put(Items.YELLOW_SHULKER_BOX, CLEAN_SHULKER_BOX);
         POWDER_SNOW_CAULDRON_BEHAVIOR.put(Items.BUCKET, (state2, world, pos, player, hand, stack) -> WoodenCauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(Items.POWDER_SNOW_BUCKET), state -> state.get(LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL_POWDER_SNOW));
+        POWDER_SNOW_CAULDRON_BEHAVIOR.put(ModItems.WOODEN_BUCKET, (state2, world, pos, player, hand, stack) -> WoodenCauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(ModItems.WOODEN_POWDER_SNOW_BUCKET), state -> state.get(LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL_POWDER_SNOW));
         WoodenCauldronBehavior.registerBucketBehavior(POWDER_SNOW_CAULDRON_BEHAVIOR);
     }
 
     static void registerBucketBehavior(Map<Item, CauldronBehavior> behavior) {
         behavior.put(Items.WATER_BUCKET, FILL_WITH_WATER);
+        behavior.put(ModItems.WOODEN_WATER_BUCKET, FILL_WITH_WATER_W);
         behavior.put(Items.POWDER_SNOW_BUCKET, FILL_WITH_POWDER_SNOW);
+        behavior.put(ModItems.WOODEN_POWDER_SNOW_BUCKET, FILL_WITH_POWDER_SNOW_W);
     }
 
     static ActionResult emptyCauldron(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, ItemStack output, Predicate<BlockState> predicate, SoundEvent soundEvent) {
@@ -143,10 +144,10 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
         return ActionResult.success(world.isClient);
     }
 
-    static ActionResult fillCauldron(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, BlockState state, SoundEvent soundEvent) {
+    static ActionResult fillCauldron(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, BlockState state, SoundEvent soundEvent, Item returnItem) {
         if (!world.isClient) {
             Item item = stack.getItem();
-            player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.BUCKET)));
+            player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(returnItem)));
             player.incrementStat(Stats.FILL_CAULDRON);
             player.incrementStat(Stats.USED.getOrCreateStat(item));
             world.setBlockState(pos, state);
@@ -155,4 +156,19 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
         }
         return ActionResult.success(world.isClient);
     }
+
+    static void registerCauldronBehavior(){
+        CauldronBehavior.WATER_CAULDRON_BEHAVIOR.put(ModItems.WOODEN_BUCKET, (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(ModItems.WOODEN_WATER_BUCKET), state -> state.get(LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
+        CauldronBehavior.POWDER_SNOW_CAULDRON_BEHAVIOR.put(ModItems.WOODEN_BUCKET, (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(ModItems.WOODEN_POWDER_SNOW_BUCKET), state -> state.get(LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL_POWDER_SNOW));
+        registerBucketBehaviorForNormalCauldron(CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR);
+
+    }
+
+    static void registerBucketBehaviorForNormalCauldron(Map<Item, CauldronBehavior> behavior) {
+        CauldronBehavior fillWithWater = (state, world, pos, player, hand, stack) -> fillCauldron(world, pos, player, hand, stack, Blocks.WATER_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY, ModItems.WOODEN_BUCKET);
+        CauldronBehavior fillWithPowderSnow = (state, world, pos, player, hand, stack) -> fillCauldron(world, pos, player, hand, stack, Blocks.POWDER_SNOW_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW, ModItems.WOODEN_BUCKET);
+        behavior.put(ModItems.WOODEN_WATER_BUCKET, fillWithWater);
+        behavior.put(ModItems.WOODEN_POWDER_SNOW_BUCKET, fillWithPowderSnow);
+    }
+
 }

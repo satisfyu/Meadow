@@ -1,16 +1,50 @@
 package net.satisfyu.meadow.entity.custom.chair;
 
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.satisfyu.meadow.entity.ModEntities;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ChairUtil {
     private static final Map<Identifier, Map<BlockPos, Pair<ChairEntity,BlockPos>>> CHAIRS = new HashMap<>();
+
+     public static ActionResult onUse(World world, PlayerEntity player, Hand hand, BlockHitResult hit, double extraHeight) {
+        if(world.isClient) return ActionResult.PASS;
+        if(player.isSneaking()) return ActionResult.PASS;
+        if(ChairUtil.isPlayerSitting(player)) return ActionResult.PASS;
+        if(hit.getSide() == Direction.DOWN) return ActionResult.PASS;
+        BlockPos hitPos = hit.getBlockPos();
+        if(!ChairUtil.isOccupied(world, hitPos) && player.getStackInHand(hand).isEmpty()) {
+            ChairEntity chair = ModEntities.CHAIR.create(world);
+            chair.refreshPositionAndAngles(hitPos.getX() + 0.5D, hitPos.getY() + 0.25D + extraHeight, hitPos.getZ() + 0.5D, 0, 0);
+            if(ChairUtil.addChairEntity(world, hitPos, chair, player.getBlockPos())) {
+                world.spawnEntity(chair);
+                player.startRiding(chair);
+                return ActionResult.SUCCESS;
+            }
+        }
+        return ActionResult.PASS;
+    }
+
+    public static void onStateReplaced(World world, BlockPos pos) {
+        if(!world.isClient) {
+            ChairEntity entity = ChairUtil.getChairEntity(world, pos);
+            if(entity != null) {
+                ChairUtil.removeChairEntity(world, pos);
+                entity.removeAllPassengers();
+            }
+        }
+    }
     public static boolean addChairEntity(World world, BlockPos blockPos, ChairEntity entity, BlockPos playerPos) {
         if(!world.isClient) {
             Identifier id = getDimensionTypeId(world);
