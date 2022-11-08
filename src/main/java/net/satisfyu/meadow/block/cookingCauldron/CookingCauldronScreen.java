@@ -41,7 +41,7 @@ public class CookingCauldronScreen extends HandledScreen<CookingCauldronScreenHa
     }
 
     public static int getTimeToCook(){
-        return 48000;
+        return 6000;
     }
 
 
