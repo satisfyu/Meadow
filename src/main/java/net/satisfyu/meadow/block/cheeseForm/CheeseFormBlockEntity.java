@@ -21,8 +21,11 @@ import net.satisfyu.meadow.block.ImplementedInventory;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItems;
+import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.util.Tags;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock.DONE;
 import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock.VAR;
@@ -79,9 +82,10 @@ public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHan
 
     public void tick(World world, BlockPos pos, BlockState state, CheeseFormBlockEntity be) {
         if(!world.isClient){
+            Optional<CheeseFormRecipe> recipe = world.getRecipeManager().getFirstMatch(CheeseFormRecipe.Type.INSTANCE, this, world);
             int var = 0;
             boolean done = false;
-            if(items.get(0).isIn(Tags.CHEESE_MASS) && items.get(1).isEmpty()){
+            if(recipe.isPresent() && items.get(1).isEmpty()){
                 var = getVar(items.get(0).getItem());
                 if(!state.get(CheeseFormBlock.DONE) && state.get(VAR) > 0){
                     syncedInt++;
@@ -90,54 +94,39 @@ public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHan
                     done = true;
                     Item bucket = items.get(0).isIn(Tags.WOODEN_BUCKETS) ? ModItems.WOODEN_BUCKET : Items.BUCKET;
                     items.set(0, new ItemStack(bucket));
-                    items.set(1, new ItemStack(getBlock(state.get(VAR)).asItem()));
+                    items.set(1, recipe.get().getOutput());
                     syncedInt = 0;
                 }
             }
-            else syncedInt = 0;
+            else{
+                syncedInt = 0;
+                if(!items.get(1).isEmpty()){
+                    done = true;
+                    var = getVar(items.get(1).getItem());
+                }
+            }
             world.setBlockState(pos, ModBlocks.CHEESE_FORM.getDefaultState().with(VAR, var).with(DONE, done));
         }
     }
 
     public static int getVar(Item item){
-        if (ModItems.CHEESE_MASS.equals(item) || ModItems.WOODEN_CHEESE_MASS.equals(item)) {
+        if (ModItems.CHEESE_MASS.equals(item) || ModItems.WOODEN_CHEESE_MASS.equals(item) || ModBlocks.CHEESE_BLOCK.asItem().equals(item)) {
             return 2;
-        } else if (ModItems.BUFFALO_CHEESE_MASS.equals(item) || ModItems.WOODEN_BUFFALO_CHEESE_MASS.equals(item)) {
+        } else if (ModItems.BUFFALO_CHEESE_MASS.equals(item) || ModItems.WOODEN_BUFFALO_CHEESE_MASS.equals(item) || ModBlocks.BOWL_MOZERELLA.asItem().equals(item)) {
             return 1;
-        } else if (ModItems.GOAT_CHEESE_MASS.equals(item) || ModItems.WOODEN_GOAT_CHEESE_MASS.equals(item)) {
+        } else if (ModItems.GOAT_CHEESE_MASS.equals(item) || ModItems.WOODEN_GOAT_CHEESE_MASS.equals(item) || ModBlocks.GOAT_CHEESE_BLOCK.asItem().equals(item)) {
             return 3;
-        } else if (ModItems.OAT_CHEESE_MASS.equals(item) || ModItems.WOODEN_OAT_CHEESE_MASS.equals(item)) {
+        } else if (ModItems.OAT_CHEESE_MASS.equals(item) || ModItems.WOODEN_OAT_CHEESE_MASS.equals(item) || ModBlocks.OAT_CHEESE_BLOCK.asItem().equals(item)) {
             return 5;
-        } else if (ModItems.SHEEP_CHEESE_MASS.equals(item) || ModItems.WOODEN_SHEEP_CHEESE_MASS.equals(item)) {
+        } else if (ModItems.SHEEP_CHEESE_MASS.equals(item) || ModItems.WOODEN_SHEEP_CHEESE_MASS.equals(item) || ModBlocks.SHEEP_CHEESE_BLOCK.asItem().equals(item)) {
             return 6;
-        } else if (ModItems.LAVENDER_CHEESE_MASS.equals(item) || ModItems.WOODEN_LAVENDER_CHEESE_MASS.equals(item)) {
+        } else if (ModItems.LAVENDER_CHEESE_MASS.equals(item) || ModItems.WOODEN_LAVENDER_CHEESE_MASS.equals(item) || ModBlocks.LAVENDER_CHEESE_BLOCK.asItem().equals(item)) {
             return 4;
-        } else if (ModItems.HERBS_CHEESE_MASS.equals(item) || ModItems.WOODEN_HERBS_CHEESE_MASS.equals(item)) {
+        } else if (ModItems.HERBS_CHEESE_MASS.equals(item) || ModItems.WOODEN_HERBS_CHEESE_MASS.equals(item) || ModBlocks.HERB_CHEESE_BLOCK.asItem().equals(item)) {
             return 7;
         }
         else{
-            throw new RuntimeException();
-        }
-    }
-
-    public static Block getBlock(int var){
-        if (var == 2) {
-            return ModBlocks.CHEESE_BLOCK;
-        } else if (var == 1) {
-            return ModBlocks.CHAIR;
-        } else if (var == 3) {
-            return ModBlocks.GOAT_CHEESE_BLOCK;
-        } else if (var == 5) {
-            return ModBlocks.OAT_CHEESE_BLOCK;
-        } else if (var == 6) {
-            return ModBlocks.SHEEP_CHEESE_BLOCK;
-        } else if (var == 4) {
-            return ModBlocks.LAVENDER_CHEESE_BLOCK;
-        } else if (var == 7) {
-            return ModBlocks.HERB_CHEESE_BLOCK;
-        }
-        else{
-            throw new RuntimeException();
+            return 2;
         }
     }
 

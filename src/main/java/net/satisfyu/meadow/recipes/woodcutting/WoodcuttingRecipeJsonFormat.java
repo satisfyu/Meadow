@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.block.woodCutter;
+package net.satisfyu.meadow.recipes.woodcutting;
 
 import com.google.gson.JsonObject;
 

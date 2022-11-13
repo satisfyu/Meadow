@@ -15,9 +15,9 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.recipes.ModRecipes;
+import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import net.satisfyu.meadow.sound.ModSounds;
 

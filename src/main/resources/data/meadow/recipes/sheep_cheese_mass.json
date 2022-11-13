@@ -1,0 +1,14 @@
+{
+  "type": "meadow:cooking",
+  "inputItem1": {
+    "tag": "meadow:sheep_milk"
+  },
+  "inputItem2": {
+    "item": "meadow:lab"
+  },
+  "inputItem3": {
+    "item": "meadow:alpine_salt"
+  },
+  "outputItem": "meadow:sheep_cheese_mass_bucket",
+  "outputItemIfWoodBucket": "meadow:wooden_sheep_cheese_mass_bucket"
+}

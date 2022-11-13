@@ -17,6 +17,7 @@
     "entity.SheepMixin"
   ],
   "client": [
+    "NoUnknowRecipeCategoryMixin",
     "entity.RabbitMixin"
   ],
   "injectors": {

@@ -1,0 +1,14 @@
+{
+  "values": [
+    "minecraft:milk_bucket",
+    "meadow:wooden_milk_bucket",
+    "meadow:buffalo_milk_bucket",
+    "meadow:wooden_buffalo_milk_bucket",
+    "meadow:goat_milk_bucket",
+    "meadow:wooden_goat_milk_bucket",
+    "meadow:oat_milk_bucket",
+    "meadow:wooden_oat_milk_bucket",
+    "meadow:sheep_milk_bucket",
+    "meadow:wooden_sheep_milk_bucket"
+  ]
+}

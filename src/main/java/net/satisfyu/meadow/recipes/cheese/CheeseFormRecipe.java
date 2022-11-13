@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.block.woodCutter;
+package net.satisfyu.meadow.recipes.cheese;
 
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -11,26 +11,29 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.block.ModBlocks;
 
-public class WoodcuttingRecipe implements Recipe<Inventory> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CheeseFormRecipe implements Recipe<Inventory> {
     private final Ingredient input;
+
     private final ItemStack outputStack;
+
     private final Identifier id;
 
-    public WoodcuttingRecipe(Ingredient input, ItemStack outputStack, Identifier id) {
+    public CheeseFormRecipe(Ingredient input, ItemStack outputStack, Identifier id) {
         this.input = input;
         this.outputStack = outputStack;
         this.id = id;
     }
 
-    public Ingredient getInput() {
-        return input;
-    }
 
 
     @Override
     public boolean matches(Inventory inventory, World world) {
-        return this.input.test(inventory.getStack(0));
+        return input.test(inventory.getStack(0));
     }
+
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
@@ -54,9 +57,14 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
         return outputStack;
     }
 
+    public Ingredient getInput() {
+        return input;
+    }
+
+
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(ModBlocks.WOODCUTTER);
+        return new ItemStack(ModBlocks.CHEESE_FORM);
     }
 
     @Override
@@ -64,17 +72,18 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
         return id;
     }
 
+
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return WoodcuttingRecipeSerializer.INSTANCE;
+        return CheeseFormRecipeSerializer.INSTANCE;
     }
 
-    public static class Type implements RecipeType<WoodcuttingRecipe> {
+    public static class Type implements RecipeType<CheeseFormRecipe> {
         private Type() {}
 
         public static final Type INSTANCE = new Type();
 
-        public static final String ID = "woodcutting";
+        public static final String ID = "cheese";
     }
     @Override
     public RecipeType<?> getType() {
