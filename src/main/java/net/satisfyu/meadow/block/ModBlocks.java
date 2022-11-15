@@ -1,5 +1,7 @@
 package net.satisfyu.meadow.block;
 
+import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -278,11 +280,13 @@ public class ModBlocks {
     public static final Block PINE_DOOR = registerBlock("pine_door",
             new DoorBlock(AbstractBlock.Settings.of(Material.WOOD, PINE_PLANKS.getDefaultMapColor()).strength(3.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
 
-    public static final Block PINE_SIGN = registerBlockWithoutItem("pine_sign",
-            new SignBlock(FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD), Meadow.PINE));
 
+    public static final Identifier SIGN_TEXTURE_ID = new Identifier("entity/sign/pine");
+    public static final Block PINE_SIGN = registerBlockWithoutItem("pine_sign",
+            new TerraformSignBlock(SIGN_TEXTURE_ID, FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD)));
     public static final Block PINE_WALL_SIGN = registerBlockWithoutItem("pine_wall_sign",
-            new WallSignBlock(FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD).dropsLike(ModBlocks.PINE_SIGN), Meadow.PINE));
+            new TerraformWallSignBlock(SIGN_TEXTURE_ID, FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD).dropsLike(ModBlocks.PINE_SIGN)));
+
 
     public static final Block OIL_LANTERN = registerBlock("oil_lantern",
             new OilLantern(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5f).sounds(BlockSoundGroup.LANTERN).luminance(state -> state.get(OilLantern.LUMINANCE)).nonOpaque().ticksRandomly()), ModItemGroup.ALPINE_SALT);
