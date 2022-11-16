@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "meadow:block/pine_beam_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "meadow:block/pine_beam"
+    },
+    "axis=z": {
+      "model": "meadow:block/pine_beam_horizontal",
+      "x": 90
+    }
+  }
+}

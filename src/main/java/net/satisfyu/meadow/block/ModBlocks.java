@@ -268,6 +268,9 @@ public class ModBlocks {
     public static final Block STRIPPED_PINE_LOG = registerBurningBlock("stripped_pine_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
 
+    public static final Block PINE_BEAM = registerBurningBlock("pine_beam",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
+
     public static final Block PINE_PLANKS = registerBurningBlock("pine_planks",
             new Block(FabricBlockSettings.of(Material.WOOD, MapColor.TERRACOTTA_ORANGE).sounds(BlockSoundGroup.WOOD).strength(2.0f, 3.0f)), ModItemGroup.ALPINE_SALT, 5, 20);
 
@@ -284,6 +287,9 @@ public class ModBlocks {
                     FabricBlockSettings.copy(Blocks.SPRUCE_SAPLING)), ModItemGroup.ALPINE_SALT);
 
     public static final Block PINE_FENCE = registerBurningBlock("pine_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT, 5, 20);
+
+    public static final Block PINE_RAILING = registerBurningBlock("pine_railing",
             new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT, 5, 20);
 
     public static final Block CLIMBING_ROPE = registerBlockWithoutItem("climbing_rope",

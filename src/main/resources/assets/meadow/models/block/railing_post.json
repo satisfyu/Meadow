@@ -1,0 +1,23 @@
+{
+	"credit": "Made by Satisfy",
+	"textures": {
+		"0": "meadow:block/cheese_rack_side",
+		"1": "meadow:block/cheese_rack_inlay",
+		"particle": "meadow:block/cheese_rack_side"
+	},
+	"elements": [
+		{
+			"name": "Center post",
+			"from": [6, 0, 6],
+			"to": [10, 16, 10],
+			"faces": {
+				"north": {"uv": [6, 0, 10, 16], "texture": "#0"},
+				"east": {"uv": [6, 0, 10, 16], "texture": "#0"},
+				"south": {"uv": [6, 0, 10, 16], "texture": "#0"},
+				"west": {"uv": [6, 0, 10, 16], "texture": "#0"},
+				"up": {"uv": [6, 12, 2, 8], "texture": "#1", "cullface": "up"},
+				"down": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "down"}
+			}
+		}
+	]
+}

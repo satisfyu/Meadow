@@ -2,8 +2,7 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"4": "meadow:block/cheese_rack_side",
-		"6": "meadow:block/cheese_rack_inlay",
-		"particle": "Lets do Cheese:cheese_complete"
+		"6": "meadow:block/cheese_rack_inlay"
 	},
 	"elements": [
 		{
