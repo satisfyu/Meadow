@@ -7,7 +7,6 @@
     "CauldronMixin",
     "FluidDecrementMixin",
     "ItemsMixin",
-    "SignTypeAccessor",
     "SpawnMobAccessor",
     "biome.OverworldDefaultFeaturesMixin",
     "entity.CowMixin",

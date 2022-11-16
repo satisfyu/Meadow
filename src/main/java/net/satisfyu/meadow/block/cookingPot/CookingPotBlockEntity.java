@@ -139,3 +139,4 @@ public class CookingPotBlockEntity extends BlockEntity implements NamedScreenHan
         return inventory.getStack(2).getMaxCount() > inventory.getStack(2).getCount();
     }
 }
+

@@ -1,5 +1,6 @@
 {
   "variants": {
+
     "facing=east,stage=0": {
       "model": "meadow:block/cheese_rack_stage0",
       "y": 90
@@ -15,6 +16,7 @@
       "model": "meadow:block/cheese_rack_stage0",
       "y": 270
     },
+
     "facing=east,stage=1": {
       "model": "meadow:block/cheese_rack_stage1",
       "y": 90
@@ -30,6 +32,7 @@
       "model": "meadow:block/cheese_rack_stage1",
       "y": 270
     },
+
     "facing=east,stage=2": {
       "model": "meadow:block/cheese_rack_stage2",
       "y": 90

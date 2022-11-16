@@ -13,6 +13,8 @@ public class Tags {
 
     public static final TagKey<Item> CHEESE_MASS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "cheese_mass"));
 
+    public static final TagKey<Item> CHEESE_BLOCKS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "cheese_blocks"));
+
     public static final TagKey<Item> WOODEN_BUCKETS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "wooden_buckets"));
 
     public static final TagKey<Item> BUCKETS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "buckets"));
