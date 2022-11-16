@@ -1,5 +1,7 @@
 package net.satisfyu.meadow.entity;
 
+import com.mojang.datafixers.DataFixer;
+import com.mojang.datafixers.DataFixerBuilder;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -20,7 +22,9 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlockEntity;
+import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlockEntity;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
+
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlockEntity;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
@@ -51,7 +55,6 @@ import java.util.function.Predicate;
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 
 public class ModEntities {
-    private ModEntities() {}
 
     public static final EntityType<ChairEntity> CHAIR = Registry.register(
             Registry.ENTITY_TYPE,
@@ -166,15 +169,18 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, Chicken3Entity::new).dimensions(EntityDimensions.fixed(0.4f, 0.7f)).build()
     );
 
-    public static final BlockEntityType<CookingCauldronBlockEntity> COOKING_CAULDRON_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cooking_cauldron", FabricBlockEntityTypeBuilder.create(CookingCauldronBlockEntity::new, ModBlocks.COOKING_CAULDRON).build());
+    public static final BlockEntityType<CookingCauldronBlockEntity> COOKING_CAULDRON_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "cooking_cauldron"), FabricBlockEntityTypeBuilder.create(CookingCauldronBlockEntity::new, ModBlocks.COOKING_CAULDRON).build());
 
-    public static final BlockEntityType<CheeseFormBlockEntity> CHEESE_FORM_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cheese_form", FabricBlockEntityTypeBuilder.create(CheeseFormBlockEntity::new, ModBlocks.CHEESE_FORM).build());
+    public static final BlockEntityType<CheeseFormBlockEntity> CHEESE_FORM_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "cheese_form"), FabricBlockEntityTypeBuilder.create(CheeseFormBlockEntity::new, ModBlocks.CHEESE_FORM).build());
 
+    public static final BlockEntityType<CheeseRackBlockEntity> CHEESE_RACK_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "cheese_rack"), FabricBlockEntityTypeBuilder.create(CheeseRackBlockEntity::new, ModBlocks.CHEESE_RACK).build());
 
     public static BlockEntityType<CookingPotBlockEntity> COOKING_POT = Registry.register(Registry.BLOCK_ENTITY_TYPE,
             new Identifier(MOD_ID, "cooking_pot"),
             FabricBlockEntityTypeBuilder.create(CookingPotBlockEntity::new,
-                    ModBlocks.COOKING_POT).build(null));
+                    ModBlocks.COOKING_POT).build());
+
+
 
 
 

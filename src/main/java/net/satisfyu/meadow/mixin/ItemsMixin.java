@@ -45,7 +45,6 @@ public abstract class ItemsMixin {
                 world.playSound(null, pos, BlockSoundGroup.SCAFFOLDING.getPlaceSound(), SoundCategory.BLOCKS, 1.0f, 1.0f);
                 stack.decrement(1);
             }
-
         }
     }
 }

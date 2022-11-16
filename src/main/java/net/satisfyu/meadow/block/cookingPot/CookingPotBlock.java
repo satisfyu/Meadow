@@ -103,3 +103,4 @@ public class CookingPotBlock extends BlockWithEntity implements BlockEntityProvi
         return checkType(type, ModEntities.COOKING_POT, CookingPotBlockEntity::tick);
     }
 }
+

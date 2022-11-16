@@ -1,6 +1,7 @@
 package net.satisfyu.meadow;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
+import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -8,7 +9,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormScreen;
@@ -114,6 +117,8 @@ public class MeadowClient implements ClientModInitializer {
                 ModBlocks.W_POTTED_ENZIAN, ModBlocks.W_POTTED_FIRE_LILY, ModBlocks.W_POTTED_ERIOPHORUM, ModBlocks.POTTED_AZALEA, ModBlocks.POTTED_FLOWERING_AZALEA);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW, ModBlocks.WINDOW_2, ModBlocks.WINDOW_3);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ModBlocks.SIGN_TEXTURE_ID));
 
         registerClientScreens();
         registerCows();

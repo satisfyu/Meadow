@@ -1,5 +1,7 @@
 package net.satisfyu.meadow.block;
 
+import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -14,6 +16,8 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlock;
+import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
+
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlock;
 import net.satisfyu.meadow.block.custom.FacingBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
@@ -32,6 +36,23 @@ import static net.minecraft.block.Blocks.AIR;
 import static net.minecraft.block.Blocks.SPRUCE_LEAVES;
 
 public class ModBlocks {
+    //Register block entities first
+    public static final Block COOKING_CAULDRON = registerBlock("cooking_cauldron",
+            new CookingCauldronBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block COOKING_POT = registerBlock("cooking_pot",
+            new CookingPotBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+
+    public static final Block CHEESE_FORM = registerBlock("cheese_form",
+            new CheeseFormBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
+
+    public static final Block CHEESE_RACK = registerBlock("cheese_rack", new CheeseRackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+
+    //Normal Blocks
+
+    public static final Block WOODCUTTER = registerBlock("woodcutter",
+            new WoodcutterBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
             new OatCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
 
@@ -224,11 +245,7 @@ public class ModBlocks {
     public static final Block OATBLOCK_RUG = registerBlock("oatblock_rug",
             new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block CHEESE_FORM = registerBlock("cheese_form",
-            new CheeseFormBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
 
-    public static final Block WOODCUTTER = registerBlock("woodcutter",
-            new WoodcutterBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
     public static final Block WOODEN_CAULDRON = registerBlock("wooden_cauldron",
             new WoodenCauldronBlock(FabricBlockSettings.of(Material.WOOD, MapColor.SPRUCE_BROWN).requiresTool().strength(2.0f).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
@@ -278,11 +295,13 @@ public class ModBlocks {
     public static final Block PINE_DOOR = registerBlock("pine_door",
             new DoorBlock(AbstractBlock.Settings.of(Material.WOOD, PINE_PLANKS.getDefaultMapColor()).strength(3.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
 
-    public static final Block PINE_SIGN = registerBlockWithoutItem("pine_sign",
-            new SignBlock(FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD), Meadow.PINE));
 
+    public static final Identifier SIGN_TEXTURE_ID = new Identifier("entity/signs/pine");
+    public static final Block PINE_SIGN = registerBlockWithoutItem("pine_sign",
+            new TerraformSignBlock(SIGN_TEXTURE_ID, FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD)));
     public static final Block PINE_WALL_SIGN = registerBlockWithoutItem("pine_wall_sign",
-            new WallSignBlock(FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD).dropsLike(ModBlocks.PINE_SIGN), Meadow.PINE));
+            new TerraformWallSignBlock(SIGN_TEXTURE_ID, FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD).dropsLike(ModBlocks.PINE_SIGN)));
+
 
     public static final Block OIL_LANTERN = registerBlock("oil_lantern",
             new OilLantern(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5f).sounds(BlockSoundGroup.LANTERN).luminance(state -> state.get(OilLantern.LUMINANCE)).nonOpaque().ticksRandomly()), ModItemGroup.ALPINE_SALT);
@@ -330,11 +349,8 @@ public class ModBlocks {
 
     public static final Block STOVE_BENCH = registerBlock("stove_tiles_bench",
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), false), ModItemGroup.ALPINE_SALT);
-    public static final Block COOKING_CAULDRON = registerBlock("cooking_cauldron",
-            new CookingCauldronBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block COOKING_POT = registerBlock("cooking_pot",
-            new CookingPotBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+
 
     public static final Block WINDOW = registerBlock("window",
             new WindowBlock(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
@@ -530,7 +546,6 @@ public class ModBlocks {
             new Block(FabricBlockSettings.of(Material.LEAVES).breakInstantly()));
 
 
-    public static final Block CHEESE_RACK = registerBlock("cheese_rack", new CheeseRackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), 2), ModItemGroup.ALPINE_SALT);
 
     private static FabricBlockSettings bowlSettings(){
         return FabricBlockSettings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);

@@ -4,6 +4,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
@@ -58,27 +59,6 @@ public class CheeseFormBlock extends BlockWithEntity {
         }
         return ActionResult.SUCCESS;
     }
-/*
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        int i;
-        ItemStack stack = player.getStackInHand(hand);
-        if(state.get(VAR) == 0 && (i = getVar(stack.getItem())) < 8){
-            world.setBlockState(pos, state.with(VAR, i));
-            if(!player.getAbilities().creativeMode) stack.decrement(1);
-            return ActionResult.success(world.isClient);
-        }
-        else if(state.get(DONE) && player.getAbilities().allowModifyWorld && player.getStackInHand(hand).isEmpty() && player.canConsume(false)){
-            world.setBlockState(pos, state.with(VAR, 0).with(DONE, false));
-            player.getHungerManager().add(6, 0.6F);
-            world.playSound(null, pos, ModSounds.SLURPING_BOWL, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            return ActionResult.success(world.isClient);
-        }
-        return ActionResult.PASS;
-    }
-
- */
 
     @Nullable
     @Override
@@ -90,12 +70,17 @@ public class CheeseFormBlock extends BlockWithEntity {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CookingCauldronBlockEntity be) {
+            if (blockEntity instanceof CheeseFormBlockEntity be) {
                 ItemScatterer.spawn(world, pos, be);
                 world.updateComparators(pos,this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
         }
+    }
+
+    @Override
+    public PistonBehavior getPistonBehavior(BlockState state) {
+        return PistonBehavior.IGNORE;
     }
 
     @Nullable

@@ -13,7 +13,6 @@ import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
-import net.satisfyu.meadow.mixin.SignTypeAccessor;
 import net.satisfyu.meadow.painting.ModPaintings;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.recipes.ModRecipes;
@@ -40,13 +39,14 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 	public static TerraformBoatType PINE_BOAT;
 	public static final Item PINE_BOAT_ITEM = TerraformBoatItemHelper.registerBoatItem(PINE_BOAT_ID, () -> PINE_BOAT, false, ModItemGroup.ALPINE_SALT);
 	public static final Item PINE_BOAT_CHEST_ITEM = TerraformBoatItemHelper.registerBoatItem(PINE_CHEST_BOAT_ID, () -> PINE_BOAT, true, ModItemGroup.ALPINE_SALT);
-	public static final SignType PINE = SignTypeAccessor.callRegister(SignTypeAccessor.callCreate("pine"));
 
 	@Override
 	public void onInitialize() {
 
-		ModItems.registerModItems();
+
 		ModBlocks.registerModBlocks();
+		ModEntities.registerEntities();
+		ModItems.registerModItems();
 		ModStrippableBlocks.registerStrippables();
 		WoodenCauldronBehavior.registerBehavior();
 
@@ -58,9 +58,6 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 
 		ModSounds.registerSounds();
 		ModParticles.registerParticles();
-
-		ModEntities.registerEntities();
-
 		ModFeatures.registerFeatures();
 
 

@@ -5,12 +5,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
+import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
 public class FacingBlock extends HorizontalFacingBlock {
 
     public FacingBlock(Settings settings) {
         super(settings);
+        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH));
     }
 
     @Nullable

@@ -29,7 +29,7 @@ public class CheeseFormScreen extends HandledScreen<CheeseFormScreenHandler> {
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         int k = this.handler.getSyncedNumber() / (getTimeToCook() / 38);
-        this.drawTexture(matrices, x + 65, y + 37, 176, 0, k + 4, 16);
+        this.drawTexture(matrices, x + 65, y + 37, 176, 0, k + 4, 20);
     }
 
     @Override

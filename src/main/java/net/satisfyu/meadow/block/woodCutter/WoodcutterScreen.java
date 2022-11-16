@@ -11,6 +11,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 
 import java.util.List;
 
