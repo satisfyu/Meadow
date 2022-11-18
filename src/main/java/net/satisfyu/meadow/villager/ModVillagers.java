@@ -42,12 +42,10 @@ public class ModVillagers {
 
     public static void registerTrades() {
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER,1,
-                factories -> {
-                    factories.add(((entity, random) -> new TradeOffer(
-                            new ItemStack(Items.EMERALD, 3),
-                            new ItemStack(ModItems.OAT_SEEDS, 5),
-                            6, 2, 0.02f
-                    )));
-                });
+                factories -> factories.add(((entity, random) -> new TradeOffer(
+                        new ItemStack(Items.EMERALD, 3),
+                        new ItemStack(ModItems.OAT_SEEDS, 5),
+                        6, 2, 0.02f
+                ))));
     }
 }

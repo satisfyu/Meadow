@@ -6,7 +6,6 @@ import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.SignType;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;

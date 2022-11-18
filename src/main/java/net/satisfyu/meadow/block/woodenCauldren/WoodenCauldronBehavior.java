@@ -15,7 +15,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.item.ModItems;
 
