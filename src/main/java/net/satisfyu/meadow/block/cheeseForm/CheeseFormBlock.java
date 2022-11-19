@@ -20,7 +20,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.entity.ModEntities;
 import org.jetbrains.annotations.Nullable;
 

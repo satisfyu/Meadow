@@ -5,13 +5,11 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.AbstractFurnaceScreenHandler;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 
 public class CookingCauldronScreenHandler extends ScreenHandler {

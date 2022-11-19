@@ -1,7 +1,6 @@
 package net.satisfyu.meadow.entity.custom.chair;
 
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;

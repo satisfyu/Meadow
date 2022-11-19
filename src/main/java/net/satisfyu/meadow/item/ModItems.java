@@ -14,8 +14,6 @@ import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.custom.*;
 
-import java.util.Arrays;
-
 
 public class ModItems {
 

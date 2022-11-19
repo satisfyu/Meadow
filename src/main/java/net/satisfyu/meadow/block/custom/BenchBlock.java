@@ -1,6 +1,9 @@
 package net.satisfyu.meadow.block.custom;
 
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
@@ -13,8 +16,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.entity.ModEntities;
-import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairUtil;
 
 public class BenchBlock extends TableBlock {

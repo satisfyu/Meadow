@@ -1,7 +1,5 @@
 package net.satisfyu.meadow.entity;
 
-import com.mojang.datafixers.DataFixer;
-import com.mojang.datafixers.DataFixerBuilder;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -59,7 +57,7 @@ public class ModEntities {
     public static final EntityType<ChairEntity> CHAIR = Registry.register(
             Registry.ENTITY_TYPE,
             new Identifier(MOD_ID, "chair"),
-            FabricEntityTypeBuilder.<ChairEntity>create(SpawnGroup.MISC, ChairEntity::new).dimensions(EntityDimensions.fixed(0.001F, 0.001F)).build()
+            FabricEntityTypeBuilder.create(SpawnGroup.MISC, ChairEntity::new).dimensions(EntityDimensions.fixed(0.001F, 0.001F)).build()
     );
 
     public static final EntityType<AlbinoCowEntity> ALBINO_COW = Registry.register(Registry.ENTITY_TYPE,
@@ -175,7 +173,7 @@ public class ModEntities {
 
     public static final BlockEntityType<CheeseRackBlockEntity> CHEESE_RACK_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "cheese_rack"), FabricBlockEntityTypeBuilder.create(CheeseRackBlockEntity::new, ModBlocks.CHEESE_RACK).build());
 
-    public static BlockEntityType<CookingPotBlockEntity> COOKING_POT = Registry.register(Registry.BLOCK_ENTITY_TYPE,
+    public static final BlockEntityType<CookingPotBlockEntity> COOKING_POT = Registry.register(Registry.BLOCK_ENTITY_TYPE,
             new Identifier(MOD_ID, "cooking_pot"),
             FabricBlockEntityTypeBuilder.create(CookingPotBlockEntity::new,
                     ModBlocks.COOKING_POT).build());

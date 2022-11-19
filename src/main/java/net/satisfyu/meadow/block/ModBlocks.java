@@ -379,17 +379,9 @@ public class ModBlocks {
     public static final Block BENCH = registerBlock("bench",
             new BenchBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block AXE_WOODSTACK = registerBlock("axe_woodstack",
-            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), 0), ModItemGroup.ALPINE_SALT);
+    public static final Block FIRE_LOG = registerBlock("fire_log",
+            new FireLog(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
-    public static final Block MID_WOODSTACK = registerBlock("mid_woodstack",
-            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), 2), ModItemGroup.ALPINE_SALT);
-
-    public static final Block SMALL_WOODSTACK = registerBlock("small_woodstack",
-            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), 1), ModItemGroup.ALPINE_SALT);
-
-    public static final Block BIG_WOODSTACK = registerBlock("big_woodstack",
-            new WoodStackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD), 2), ModItemGroup.ALPINE_SALT);
 
     public static final Block WINDOW_SHUTTER_0 = registerBlock("window_shutter_0",
             new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
@@ -545,11 +537,13 @@ public class ModBlocks {
 
     public static final Block W_POTTED_ERIOPHORUM = registerWFPBlock(ERIOPHORUM);
 
-    public static final Block CONE = registerBlockWithoutItem("cone",
-            new Block(FabricBlockSettings.of(Material.LEAVES).noCollision().dropsLike(ModBlocks.PINE_SIGN)));
+    public static final Block FIR_CONE = registerBlock("fir_cone",
+            new FirConeBlock(FabricBlockSettings.of(Material.LEAVES).noCollision().dropsLike(PINE_SIGN)), ModItemGroup.ALPINE_SALT);
 
     public static final Block FIR = registerBlockWithoutItem("fir",
             new Block(FabricBlockSettings.of(Material.LEAVES).breakInstantly()));
+
+
 
 
 

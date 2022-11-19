@@ -10,7 +10,6 @@ import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.entity.ModEntities;
 
 public class ChairEntity extends Entity {
     public ChairEntity(EntityType<?> type, World world) {

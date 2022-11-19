@@ -17,7 +17,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ImplementedInventory;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.entity.ModEntities;

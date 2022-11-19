@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "meadow:block/axe_woodstack",
+      "model": "meadow:block/cone",
       "y": 90
     },
     "facing=north": {
-      "model": "meadow:block/axe_woodstack"
+      "model": "meadow:block/cone"
     },
     "facing=south": {
-      "model": "meadow:block/axe_woodstack",
+      "model": "meadow:block/cone",
       "y": 180
     },
     "facing=west": {
-      "model": "meadow:block/axe_woodstack",
+      "model": "meadow:block/cone",
       "y": 270
     }
   }

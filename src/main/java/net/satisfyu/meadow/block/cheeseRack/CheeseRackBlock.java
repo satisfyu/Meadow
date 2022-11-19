@@ -26,7 +26,7 @@ import java.util.Optional;
 
 public class CheeseRackBlock extends FacingBlock implements BlockEntityProvider {
 
-    public static IntProperty STAGE = IntProperty.of("stage", 0, 2);
+    public static final IntProperty STAGE = IntProperty.of("stage", 0, 2);
 
     public CheeseRackBlock(AbstractBlock.Settings settings) {
         super(settings);

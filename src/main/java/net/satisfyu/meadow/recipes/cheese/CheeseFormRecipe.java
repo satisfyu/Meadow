@@ -11,9 +11,6 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.block.ModBlocks;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CheeseFormRecipe implements Recipe<Inventory> {
     private final Ingredient input;
 
