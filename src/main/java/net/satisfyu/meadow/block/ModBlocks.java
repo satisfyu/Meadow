@@ -528,11 +528,12 @@ public class ModBlocks {
 
     public static final Block W_POTTED_ERIOPHORUM = registerWFPBlock(ERIOPHORUM);
 
-    public static final Block CONE = registerBlockWithoutItem("cone",
-            new Block(FabricBlockSettings.of(Material.LEAVES).noCollision().dropsLike(ModBlocks.PINE_SIGN)));
+    public static final Block FIR_CONE = registerBlock("fir_cone",
+            new FirConeBlock(FabricBlockSettings.of(Material.LEAVES).noCollision().dropsLike(PINE_SIGN)), ModItemGroup.ALPINE_SALT);
 
     public static final Block FIR = registerBlockWithoutItem("fir",
             new Block(FabricBlockSettings.of(Material.LEAVES).breakInstantly()));
+
 
 
 
