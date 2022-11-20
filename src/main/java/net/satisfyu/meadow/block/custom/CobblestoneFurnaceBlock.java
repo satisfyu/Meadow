@@ -26,23 +26,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class CobblestoneFurnaceBlock extends Block {
 
-
-    public static final VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 4, 2, 4), Block.createCuboidShape(12, 0, 0, 16, 2, 4), Block.createCuboidShape(0, 0, 12, 16, 2, 16), Block.createCuboidShape(12, 0, 12, 16, 2, 16));
-
-    public static final VoxelShape SHAPE_BIG = VoxelShapes.union(SHAPE, Block.createCuboidShape(0, 2, 0, 16, 16, 16));
-
-    public static final VoxelShape SHAPE_SMALL = VoxelShapes.union(SHAPE, Block.createCuboidShape(0, 2, 0, 16, 6, 16));
-
-    private final boolean isBig;
-
-    public CobblestoneFurnaceBlock(Settings settings, boolean isBig) {
+    public CobblestoneFurnaceBlock(Settings settings) {
         super(settings);
-        this.isBig = isBig;
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return isBig ? SHAPE_BIG : SHAPE_SMALL;
+        return StoveBlock.SHAPE_BIG;
     }
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;

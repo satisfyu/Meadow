@@ -12,6 +12,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
@@ -333,22 +334,19 @@ public class ModBlocks {
     public static final Block SHELF = registerBlock("shelf",
             new FacingBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block FURNACE_COBBLESTONE = registerBlock("furnace_cobblestone",
-            new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(13), true), ModItemGroup.ALPINE_SALT);
+            new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(13)), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE = registerBlock("stove_tiles",
-            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
+            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), Direction.DOWN), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE_WOOD = registerBlock("stove_tiles_wood",
-            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
-
-    public static final Block STOVE_WOOD_ON = registerBlock("stove_tiles_wood_on",
-            new StoveTilesFurnaceBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(13), true), ModItemGroup.ALPINE_SALT);
+            new StoveBlockWood(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), Direction.UP), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE_LID = registerBlock("stove_tiles_lid",
-            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), true), ModItemGroup.ALPINE_SALT);
+            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), Direction.UP), ModItemGroup.ALPINE_SALT);
 
     public static final Block STOVE_BENCH = registerBlock("stove_tiles_bench",
-            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), false), ModItemGroup.ALPINE_SALT);
+            new TiledBench(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
 
 
 

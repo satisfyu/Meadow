@@ -3,46 +3,77 @@ package net.satisfyu.meadow.block.custom;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.satisfyu.meadow.entity.custom.chair.ChairUtil;
+import net.minecraft.world.WorldAccess;
+import net.satisfyu.meadow.block.ModBlocks;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class StoveBlock extends FacingBlock {
 
-    public static final VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 4, 2, 4), Block.createCuboidShape(12, 0, 0, 16, 2, 4), Block.createCuboidShape(0, 0, 12, 16, 2, 16), Block.createCuboidShape(12, 0, 12, 16, 2, 16));
+    public static final BooleanProperty CONNECTED = BooleanProperty.of("connected");
 
-    public static final VoxelShape SHAPE_BIG = VoxelShapes.union(SHAPE, Block.createCuboidShape(0, 2, 0, 16, 16, 16));
+    public static final VoxelShape SHAPE_BIG = VoxelShapes.union(TiledBench.SHAPE, Block.createCuboidShape(0, 2, 0, 16, 16, 16));
 
-    public static final VoxelShape SHAPE_SMALL = VoxelShapes.union(SHAPE, Block.createCuboidShape(0, 2, 0, 16, 6, 16));
+    private final Direction directionToCheck;
 
-    private final boolean isBig;
-
-    public StoveBlock(Settings settings, boolean isBig) {
+    public StoveBlock(Settings settings, Direction directionToCheck) {
         super(settings);
-        this.isBig = isBig;
+        this.setDefaultState(this.getDefaultState().with(CONNECTED, false));
+        this.directionToCheck = directionToCheck;
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return isBig ? SHAPE_BIG : SHAPE_SMALL;
+        if(directionToCheck == Direction.DOWN && state.get(CONNECTED)) return super.getOutlineShape(state, world, pos, context);
+        return SHAPE_BIG;
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-         if(!isBig) return ChairUtil.onUse(world, player, hand, hit, -0.1);
-         return super.onUse(state, world, pos, player, hand, hit);
+    public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
+        List<Block> block = getBlocksToCheck();
+        if(!block.isEmpty()){
+            if(block.contains(ctx.getWorld().getBlockState(ctx.getBlockPos().offset(directionToCheck)).getBlock())){
+                return this.getDefaultState().with(CONNECTED, true).with(FACING, ctx.getPlayerFacing().getOpposite());
+            }
+        }
+        return super.getPlacementState(ctx);
     }
 
     @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        super.onStateReplaced(state, world, pos, newState, moved);
-        if(!isBig) ChairUtil.onStateReplaced(world, pos);
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        List<Block> block = getBlocksToCheck();
+        if(!world.isClient() && !block.isEmpty()){
+            if(direction == directionToCheck){
+                boolean connected = state.get(CONNECTED);
+                if(!connected) if(block.contains(neighborState.getBlock())) return state.with(CONNECTED, true);
+                else if(!block.contains(neighborState.getBlock())) return state.with(CONNECTED, false);
+            }
+        }
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(CONNECTED);
+    }
+
+    private List<Block> getBlocksToCheck(){
+        if(directionToCheck == Direction.UP){
+            return List.of(ModBlocks.STOVE);
+        }
+        else if(directionToCheck == Direction.DOWN){
+            return List.of(ModBlocks.STOVE_WOOD, ModBlocks.STOVE_LID);
+        }
+        else return List.of();
     }
 }
