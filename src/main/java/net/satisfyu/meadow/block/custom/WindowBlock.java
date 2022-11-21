@@ -51,7 +51,7 @@ public class WindowBlock extends PaneBlock {
 
 
     private void updateWindows(World world, BlockPos pos){
-        Meadow.LOGGER.error("current" + pos.toShortString());
+        //Meadow.LOGGER.error("current" + pos.toShortString());
         int i = getWindowHeight(world, pos);
 
         if(i == 3){
@@ -74,7 +74,7 @@ public class WindowBlock extends PaneBlock {
         }
         while(world.getBlockState(pos).isOf(ModBlocks.WINDOW));
 
-        Meadow.LOGGER.error(pos.down().toShortString());
+        //Meadow.LOGGER.error(pos.down().toShortString());
 
         return pos.down();
     }
@@ -88,7 +88,7 @@ public class WindowBlock extends PaneBlock {
             highestPos = highestPos.down();
         }
         while(world.getBlockState(highestPos).isOf(ModBlocks.WINDOW));
-        Meadow.LOGGER.error(String.valueOf(i));
+        //Meadow.LOGGER.error(String.valueOf(i));
         return i;
     }
 

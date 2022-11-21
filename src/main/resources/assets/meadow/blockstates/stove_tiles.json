@@ -1,18 +1,34 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,connected=false": {
       "model": "meadow:block/stove_tiles",
       "y": 90
     },
-    "facing=north": {
+    "facing=north,connected=false": {
       "model": "meadow:block/stove_tiles"
     },
-    "facing=south": {
+    "facing=south,connected=false": {
       "model": "meadow:block/stove_tiles",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,connected=false": {
       "model": "meadow:block/stove_tiles",
+      "y": 270
+    },
+
+    "facing=east,connected=true": {
+      "model": "meadow:block/stove_tiles_connected_top",
+      "y": 90
+    },
+    "facing=north,connected=true": {
+      "model": "meadow:block/stove_tiles_connected_top"
+    },
+    "facing=south,connected=true": {
+      "model": "meadow:block/stove_tiles_connected_top",
+      "y": 180
+    },
+    "facing=west,connected=true": {
+      "model": "meadow:block/stove_tiles_connected_top",
       "y": 270
     }
   }

@@ -152,7 +152,7 @@ public class StoveTilesFurnaceBlock extends Block {
         double dx = pos.getX() + .5d;
         double dy = pos.getY();
         double dz = pos.getZ() + .5d;
-        world.playSound(dx, dy, dz, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, .5f, 2.6f, false);
+        world.playSound(dx, dy, dz, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5f, 2.6f, false);
     }
 }
 
