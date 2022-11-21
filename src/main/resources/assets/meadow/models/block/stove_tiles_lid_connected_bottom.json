@@ -2,8 +2,8 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"1": "meadow:block/oven_top",
-		"3": "meadow:Desktop/stove_tiles_side_connected_bottom",
-		"4": "meadow:Desktop/stove_tiles_lid_bottom_connected",
+		"3": "meadow:block/stove_tiles_side_connected_bottom",
+		"4": "meadow:block/stove_tiles_lid_bottom_connected",
 		"5": "meadow:block/stove_bottom",
 		"particle": "meadow:block/stove_bottom"
 	},
