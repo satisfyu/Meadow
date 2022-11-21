@@ -46,23 +46,23 @@ public class ModRegion extends Region {
 
 
             List<MultiNoiseUtil.NoiseHypercube> meadowForestPoints = new ParameterUtils.ParameterPointListBuilder()
-                    .temperature(MultiNoiseUtil.ParameterRange.of(-0.451F,-0.151F), MultiNoiseUtil.ParameterRange.of(-0.151F, 0.21F))
-                    .humidity(MultiNoiseUtil.ParameterRange.of(-1.1F, -0.351F), MultiNoiseUtil.ParameterRange.of(-0.351F, -0.11F), MultiNoiseUtil.ParameterRange.of(-0.11F, 0.11F), MultiNoiseUtil.ParameterRange.of(0.11F, 0.31F), MultiNoiseUtil.ParameterRange.of(0.31F, 1.1F))
+                    .temperature(MultiNoiseUtil.ParameterRange.of(-0.45F, -0.15F), MultiNoiseUtil.ParameterRange.of(-0.15F, 0.2F))
+                    .humidity(MultiNoiseUtil.ParameterRange.of(-1.0F, -0.36F), MultiNoiseUtil.ParameterRange.of(-0.35F, -0.1F), MultiNoiseUtil.ParameterRange.of(-0.1F, 0.1F), MultiNoiseUtil.ParameterRange.of(0.1F, 0.3F))
                     .continentalness(FAR_INLAND)
                     .erosion(EROSION_1, EROSION_2, EROSION_3)
                     .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.FLOOR)
                     .weirdness(HIGH_SLICE_NORMAL_ASCENDING, PEAK_NORMAL, HIGH_SLICE_NORMAL_DESCENDING, MID_SLICE_NORMAL_DESCENDING, MID_SLICE_VARIANT_ASCENDING, HIGH_SLICE_VARIANT_ASCENDING, PEAK_VARIANT, HIGH_SLICE_VARIANT_DESCENDING, MID_SLICE_VARIANT_DESCENDING)
                     .build();
 
-            meadowPoints.forEach(point -> builder.replaceBiome(point, MEADOW_FOREST_KEY));
+            meadowForestPoints.forEach(point -> builder.replaceBiome(point, MEADOW_FOREST_KEY));
 
             List<MultiNoiseUtil.NoiseHypercube> meadowClearingPoints = new ParameterUtils.ParameterPointListBuilder()
-                    .temperature(MultiNoiseUtil.ParameterRange.of(-0.44F,-0.14F), MultiNoiseUtil.ParameterRange.of(-0.14F, 0.19F))
-                    .humidity(MultiNoiseUtil.ParameterRange.of(-0.9F, -0.34F), MultiNoiseUtil.ParameterRange.of(-0.35F, -0.09F), MultiNoiseUtil.ParameterRange.of(-0.09F, 0.09F), MultiNoiseUtil.ParameterRange.of(0.09F, 0.29F), MultiNoiseUtil.ParameterRange.of(0.29F, 1.0F))
+                    .temperature(MultiNoiseUtil.ParameterRange.of(-0.45F,-0.15F), MultiNoiseUtil.ParameterRange.of(-0.15F, 0.2F))
+                    .humidity(MultiNoiseUtil.ParameterRange.of(-1.0F, -0.35F), MultiNoiseUtil.ParameterRange.of(-0.35F, -0.1F), MultiNoiseUtil.ParameterRange.of(-0.1F, 0.1F), MultiNoiseUtil.ParameterRange.of(0.1F, 0.3F))
                     .continentalness(FAR_INLAND)
                     .erosion(EROSION_1, EROSION_2, EROSION_3)
                     .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.FLOOR)
-                    .weirdness(HIGH_SLICE_NORMAL_ASCENDING, PEAK_NORMAL, HIGH_SLICE_NORMAL_DESCENDING, MID_SLICE_NORMAL_DESCENDING, MID_SLICE_VARIANT_ASCENDING, HIGH_SLICE_VARIANT_ASCENDING, PEAK_VARIANT, HIGH_SLICE_VARIANT_DESCENDING, MID_SLICE_VARIANT_DESCENDING)
+                    .weirdness(HIGH_SLICE_NORMAL_ASCENDING, HIGH_SLICE_NORMAL_DESCENDING, MID_SLICE_NORMAL_DESCENDING, MID_SLICE_VARIANT_ASCENDING, HIGH_SLICE_VARIANT_ASCENDING, HIGH_SLICE_VARIANT_DESCENDING, MID_SLICE_VARIANT_DESCENDING)
                     .build();
 
             meadowClearingPoints.forEach(point -> builder.replaceBiome(point, MEADOW_CLEARING_KEY));
