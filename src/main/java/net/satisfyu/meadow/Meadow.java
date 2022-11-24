@@ -66,8 +66,6 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 				.planks(ModBlocks.PINE_PLANKS.asItem())
 				.build();
 		Registry.register(TerraformBoatTypeRegistry.INSTANCE, PINE_ID, PINE_BOAT);
-
-
 	}
 
 

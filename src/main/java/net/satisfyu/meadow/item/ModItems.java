@@ -132,34 +132,34 @@ public class ModItems {
 
     public static final Item OAT = registerItem("oat",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item CHEESE_MASS = registerItem("cow_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item CHEESE_MASS = registerItem("cow_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item BUFFALO_CHEESE_MASS = registerItem("buffalo_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BUFFALO_CHEESE_MASS = registerItem("buffalo_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item GOAT_CHEESE_MASS = registerItem("goat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item GOAT_CHEESE_MASS = registerItem("goat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item OAT_CHEESE_MASS = registerItem("oat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item OAT_CHEESE_MASS = registerItem("oat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item SHEEP_CHEESE_MASS = registerItem("sheep_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item SHEEP_CHEESE_MASS = registerItem("sheep_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item LAVENDER_CHEESE_MASS = registerItem("lavender_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item LAVENDER_CHEESE_MASS = registerItem("lavender_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item HERBS_CHEESE_MASS = registerItem("herbs_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item HERBS_CHEESE_MASS = registerItem("herbs_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
 
-    public static final Item WOODEN_CHEESE_MASS = registerItem("wooden_cow_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_CHEESE_MASS = registerItem("wooden_cow_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_BUFFALO_CHEESE_MASS = registerItem("wooden_buffalo_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_BUFFALO_CHEESE_MASS = registerItem("wooden_buffalo_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_GOAT_CHEESE_MASS = registerItem("wooden_goat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_GOAT_CHEESE_MASS = registerItem("wooden_goat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_OAT_CHEESE_MASS = registerItem("wooden_oat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_OAT_CHEESE_MASS = registerItem("wooden_oat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_SHEEP_CHEESE_MASS = registerItem("wooden_sheep_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_SHEEP_CHEESE_MASS = registerItem("wooden_sheep_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_LAVENDER_CHEESE_MASS = registerItem("wooden_lavender_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_LAVENDER_CHEESE_MASS = registerItem("wooden_lavender_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_HERBS_CHEESE_MASS = registerItem("wooden_herbs_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item WOODEN_HERBS_CHEESE_MASS = registerItem("wooden_herbs_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
 
     public static final Item BUFFALO_MILK = registerItem("buffalo_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
