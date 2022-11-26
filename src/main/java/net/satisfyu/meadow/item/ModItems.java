@@ -17,17 +17,7 @@ import net.satisfyu.meadow.item.custom.*;
 
 public class ModItems {
 
-    public static final Item PINE_SIGN = registerItem("pine_sign",
-            new SignItem(new FabricItemSettings().maxCount(16).group(ModItemGroup.ALPINE_SALT), ModBlocks.PINE_SIGN, ModBlocks.PINE_WALL_SIGN));
 
-    public static final Item BEAR_FUR = registerItem("bear_fur",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-
-
-    public static final Item BEAR_FUR_HELMET = registerItem("bear_fur_helmet", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.HEAD, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item BEAR_FUR_CHESTPLATE = registerItem("bear_fur_chestplate", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.CHEST, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item BEAR_FUR_LEGGINGS = registerItem("bear_fur_leggings", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.LEGS, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item BEAR_FUR_BOOTS = registerItem("bear_fur_boots", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.FEET, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
 
 
     public static final Item PIECE_OF_CHEESE = registerItem("piece_of_cheese",
@@ -102,36 +92,39 @@ public class ModItems {
     public static final Item JUG_JUNIPER_TEA = registerItem("jug_juniper_tea",
             new DrinkItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
-
     public static final Item LAB = registerItem("lab", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-
     public static final Item WATERING_CAN = registerItem("watering_can", new WateringCanItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxDamage(25)));
 
-    public static final Item OAT_OIL = registerItem("oat_oil", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
-    public static final Item OAT_SEEDS = registerItem("oat_seeds",
-            new AliasedBlockItem(ModBlocks.OAT_CROP,
-                    new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
-    public static final Item YARROW_SEEDS = registerItem("yarrow_seeds",
-            new AliasedBlockItem(ModBlocks.YARROW_CROP,
-                    new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
-    public static final Item JUNIPER_SEEDS = registerItem("juniper_seeds",
-            new AliasedBlockItem(ModBlocks.JUNIPER_CROP,
-                    new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+
+
+
 
     public static final Item MOUNTAIN_LAVENDER_SEEDS = registerItem("mountain_lavender_seeds",
             new AliasedBlockItem(ModBlocks.MOUNTAIN_LAVENDER_CROP,
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BAG_OF_LAVENDER = registerItem("bag_of_lavender", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-
+    public static final Item JUNIPER_SEEDS = registerItem("juniper_seeds",
+            new AliasedBlockItem(ModBlocks.JUNIPER_CROP,
+                    new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BAG_OF_JUNIPER = registerItem("bag_of_juniper", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-
+    public static final Item YARROW_SEEDS = registerItem("yarrow_seeds",
+            new AliasedBlockItem(ModBlocks.YARROW_CROP,
+                    new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BAG_OF_YARROW = registerItem("bag_of_yarrow", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-
+    public static final Item OAT_SEEDS = registerItem("oat_seeds",
+            new AliasedBlockItem(ModBlocks.OAT_CROP,
+                    new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item OAT = registerItem("oat",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item OAT_OIL = registerItem("oat_oil", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BEAR_FUR = registerItem("bear_fur", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BEAR_FUR_HELMET = registerItem("bear_fur_helmet", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.HEAD, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BEAR_FUR_CHESTPLATE = registerItem("bear_fur_chestplate", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.CHEST, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BEAR_FUR_LEGGINGS = registerItem("bear_fur_leggings", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.LEGS, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BEAR_FUR_BOOTS = registerItem("bear_fur_boots", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.FEET, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item CHEESE_MASS = registerItem("cow_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
     public static final Item BUFFALO_CHEESE_MASS = registerItem("buffalo_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
@@ -184,6 +177,8 @@ public class ModItems {
     public static final Item WOODEN_OAT_MILK = registerItem("wooden_oat_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
     public static final Item WOODEN_SHEEP_MILK = registerItem("wooden_sheep_milk_bucket", new WoodenMilkBucket(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item PINE_SIGN = registerItem("pine_sign",
+            new SignItem(new FabricItemSettings().maxCount(16).group(ModItemGroup.ALPINE_SALT), ModBlocks.PINE_SIGN, ModBlocks.PINE_WALL_SIGN));
 
 
     public static final Item ALBINO_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ALBINO_COW, 16777215, 16721408);
