@@ -439,10 +439,10 @@ public class ModBlocks {
             new SlabBlock(FabricBlockSettings.copyOf(MOSSY_COBBLED_LIMESTONE)), ModItemGroup.ALPINE_SALT);
 
     public static final Block ALPINE_OAK_LOG = registerBurningBlock("alpine_oak_log",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), null,  5, 5);
 
     public static final Block ALPINE_BIRCH_LOG = registerBurningBlock("alpine_birch_log",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), null,  5, 5);
 
     public static final Block CHEESE_BLOCK = registerBlock("cheese_block",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_CHEESE, false), ModItemGroup.ALPINE_SALT);
@@ -542,9 +542,6 @@ public class ModBlocks {
             new Block(FabricBlockSettings.of(Material.LEAVES).breakInstantly()));
 
 
-
-
-
     private static FabricBlockSettings bowlSettings(){
         return FabricBlockSettings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);
     }
@@ -572,7 +569,7 @@ public class ModBlocks {
 
     private static void registerBlockItem(String name, Block block, ItemGroup tab) {
         Registry.register(Registry.ITEM, new Identifier(Meadow.MOD_ID, name),
-                new BlockItem(block, new FabricItemSettings().group(tab)));
+                new BlockItem(block, tab == null ? new FabricItemSettings() : new FabricItemSettings().group(tab)));
     }
 
     public static void registerModBlocks() {
