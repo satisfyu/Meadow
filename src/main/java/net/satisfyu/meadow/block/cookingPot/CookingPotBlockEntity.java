@@ -1,143 +1,246 @@
 package net.satisfyu.meadow.block.cookingPot;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.block.ImplementedInventory;
+import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.ModEntities;
-import net.satisfyu.meadow.item.ModItems;
+import net.satisfyu.meadow.recipes.ModRecipes;
+import net.satisfyu.meadow.recipes.pot.CookingPotRecipe;
+import net.satisfyu.meadow.util.Tags;
 import org.jetbrains.annotations.Nullable;
 
-public class CookingPotBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
+public class CookingPotBlockEntity extends BlockEntity implements Inventory, NamedScreenHandlerFactory {
 
-    protected final PropertyDelegate propertyDelegate;
-    private int progress = 0;
-    private int maxProgress = 72;
+	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
+	private static final int MAX_CAPACITY = 8;
+	public static final int MAX_COOKING_TIME = 600; // Time in ticks (30s)
+	private int cookingTime;
+	public static final int BOTTLE_INPUT_SLOT = 6;
+	public static final int OUTPUT_SLOT = 7;
+	private static final int INGREDIENTS_AREA = 2 * 3;
 
-    public CookingPotBlockEntity(BlockPos pos, BlockState state) {
-        super(ModEntities.COOKING_POT, pos, state);
-        this.propertyDelegate = new PropertyDelegate() {
-            public int get(int index) {
-                switch (index) {
-                    case 0: return CookingPotBlockEntity.this.progress;
-                    case 1: return CookingPotBlockEntity.this.maxProgress;
-                    default: return 0;
-                }
-            }
+	private boolean isBeingBurned;
 
-            public void set(int index, int value) {
-                switch(index) {
-                    case 0: CookingPotBlockEntity.this.progress = value; break;
-                    case 1: CookingPotBlockEntity.this.maxProgress = value; break;
-                }
-            }
+	private final PropertyDelegate delegate;
 
-            public int size() {
-                return 2;
-            }
-        };
-    }
+	public CookingPotBlockEntity(BlockPos pos, BlockState state) {
+		super(ModEntities.COOKING_POT, pos, state);
+		this.delegate = new PropertyDelegate() {
+			@Override
+			public int get(int index) {
+				return switch (index) {
+					case 0 ->  cookingTime;
+					case 1 -> isBeingBurned ? 1 : 0;
+					default -> 0;
+				};
+			}
 
-    @Override
-    public DefaultedList<ItemStack> getItems() {
-        return this.inventory;
-    }
+			@Override
+			public void set(int index, int value) {
+				switch (index) {
+					case 0 -> cookingTime = value;
+					case 1 -> isBeingBurned = value != 0;
+				}
+			}
 
-    @Override
-    public Text getDisplayName() {
-        return Text.literal("Cooking Pot");
-    }
+			@Override
+			public int size() {
+				return 2;
+			}
+		};
+	}
+	
+	@Override
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
+		Inventories.readNbt(nbt, this.inventory);
+		nbt.putInt("CookingTime", this.cookingTime);
+	}
+	
+	@Override
+	protected void writeNbt(NbtCompound nbt) {
+		Inventories.writeNbt(nbt, this.inventory);
+		this.cookingTime = nbt.getInt("CookingTime");
+		super.writeNbt(nbt);
+	}
+	
+	public boolean isBeingBurned() {
+		if (getWorld() == null)
+			throw new NullPointerException("Null world invoked");
+		final BlockState belowState = this.getWorld().getBlockState(getPos().down());
+		final var optionalList = Registry.BLOCK.getEntryList(Tags.ALLOWS_COOKING_ON_POT);
+		final var entryList = optionalList.orElse(null);
+		if (entryList == null) {
+			return false;
+		} else return entryList.contains(belowState.getBlock().getRegistryEntry());
+	}
+	
+	private boolean canCraft(CookingPotRecipe recipe) {
+		if (recipe == null || recipe.getOutput().isEmpty()) {
+			return false;
+		}
+		if (!this.getStack(BOTTLE_INPUT_SLOT).isOf(recipe.getContainer().getItem())) {
+			return false;
+		} else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+			return true;
+		} else {
+			final ItemStack recipeOutput = recipe.getOutput();
+			final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+			final int outputSlotCount = outputSlotStack.getCount();
+			if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+				return false;
+			} else if (outputSlotCount < this.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
+				return true;
+			} else {
+				return outputSlotCount < recipeOutput.getMaxCount();
+			}
+		}
+	}
+	
+	private void craft(CookingPotRecipe recipe) {
+		if (!canCraft(recipe)) {
+			return;
+		}
+		final ItemStack recipeOutput = recipe.getOutput();
+		final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+		if (outputSlotStack.isEmpty()) {
+			setStack(OUTPUT_SLOT, recipeOutput.copy());
+		} else if (outputSlotStack.isOf(recipeOutput.getItem())) {
+			outputSlotStack.increment(recipeOutput.getCount());
+		}
+		final DefaultedList<Ingredient> ingredients = recipe.getIngredients();
+		// each slot can only be used once because in canMake we only checked if decrement by 1 still retains the recipe
+		// otherwise recipes can break when an ingredient is used multiple times
+		boolean[] slotUsed = new boolean[INGREDIENTS_AREA];
+		for (int i = 0; i < recipe.getIngredients().size(); i++) {
+			Ingredient ingredient = ingredients.get(i);
+			// Looks for the best slot to take it from
+			final ItemStack bestSlot = this.getStack(i);
+			if (ingredient.test(bestSlot) && !slotUsed[i]) {
+				slotUsed[i] = true;
+				bestSlot.decrement(1);
+			} else {
+				// check all slots in search of the ingredient
+				for (int j = 0; j < INGREDIENTS_AREA; j++) {
+					ItemStack stack = this.getStack(j);
+					if (ingredient.test(stack) && !slotUsed[j]) {
+						slotUsed[j] = true;
+						stack.decrement(1);
+					}
+				}
+			}
+		}
+		this.getStack(BOTTLE_INPUT_SLOT).decrement(1);
+	}
 
-    @Nullable
-    @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CookingPotScreenHandler(syncId, inv, this, this.propertyDelegate);
-    }
+	public void tick(World world, BlockPos pos, BlockState state, CookingPotBlockEntity blockEntity) {
+		if (world.isClient()) {
+			return;
+		}
+		this.isBeingBurned = isBeingBurned();
+		if (!this.isBeingBurned){
+			if(state.get(CookingPotBlock.LIT)) world.setBlockState(pos, state.with(CookingPotBlock.LIT, false), Block.NOTIFY_ALL);
+			return;
+		}
+		CookingPotRecipe recipe = world.getRecipeManager().getFirstMatch(ModRecipes.POT_COOKING, this, world).orElse(null);
 
-    @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
-        nbt.putInt("cooking_pot.progress", progress);
-    }
+		boolean canCraft = canCraft(recipe);
+		if (canCraft) {
+			this.cookingTime++;
+			if (this.cookingTime >= MAX_COOKING_TIME) {
+				this.cookingTime = 0;
+				craft(recipe);
+			}
+		} else if (!canCraft(recipe)) {
+			this.cookingTime = 0;
+		}
+		if (canCraft) {
+			world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.COOKING, true).with(CookingPotBlock.LIT, true), Block.NOTIFY_ALL);
+		} else if (state.get(CookingPotBlock.COOKING)) {
+			world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.COOKING, false).with(CookingPotBlock.LIT, true), Block.NOTIFY_ALL);
+		}
+		else if(state.get(CookingPotBlock.LIT) != isBeingBurned){
+			world.setBlockState(pos, state.with(CookingPotBlock.LIT, isBeingBurned), Block.NOTIFY_ALL);
+		}
+	}
 
-    @Override
-    public void readNbt(NbtCompound nbt) {
-        Inventories.readNbt(nbt, inventory);
-        super.readNbt(nbt);
-        progress = nbt.getInt("cooking_pot.progress");
-    }
 
-    private void resetProgress() {
-        this.progress = 0;
-    }
+	
+	@Override
+	public int size() {
+		return inventory.size();
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return inventory.stream().allMatch(ItemStack::isEmpty);
+	}
+	
+	@Override
+	public ItemStack getStack(int slot) {
+		return this.inventory.get(slot);
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot, int amount) {
+		return Inventories.splitStack(this.inventory, slot, amount);
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot) {
+		return Inventories.removeStack(this.inventory, slot);
+	}
+	
+	@Override
+	public void setStack(int slot, ItemStack stack) {
+		this.inventory.set(slot, stack);
+		if (stack.getCount() > this.getMaxCountPerStack()) {
+			stack.setCount(this.getMaxCountPerStack());
+		}
+		this.markDirty();
+	}
 
-    public static void tick(World world, BlockPos blockPos, BlockState state, CookingPotBlockEntity entity) {
-        if(world.isClient()) {
-            return;
-        }
 
-        if(hasRecipe(entity)) {
-            entity.progress++;
-            markDirty(world, blockPos, state);
-            if(entity.progress >= entity.maxProgress) {
-                craftItem(entity);
-            }
-        } else {
-            entity.resetProgress();
-            markDirty(world, blockPos, state);
-        }
-    }
+	@Override
+	public boolean canPlayerUse(PlayerEntity player) {
+		if (this.world.getBlockEntity(this.pos) != this) {
+			return false;
+		} else {
+			return player.squaredDistanceTo((double) this.pos.getX() + 0.5, (double) this.pos.getY() + 0.5, (double) this.pos.getZ() + 0.5) <= 64.0;
+		}
+	}
 
-    private static void craftItem(CookingPotBlockEntity entity) {
-        SimpleInventory inventory = new SimpleInventory(entity.size());
-        for (int i = 0; i < entity.size(); i++) {
-            inventory.setStack(i, entity.getStack(i));
-        }
-
-        if(hasRecipe(entity)) {
-            entity.removeStack(1, 1);
-
-            entity.setStack(2, new ItemStack(ModItems.LAB,
-                    entity.getStack(2).getCount() + 1));
-
-            entity.resetProgress();
-        }
-    }
-
-    private static boolean hasRecipe(CookingPotBlockEntity entity) {
-        SimpleInventory inventory = new SimpleInventory(entity.size());
-        for (int i = 0; i < entity.size(); i++) {
-            inventory.setStack(i, entity.getStack(i));
-        }
-
-        boolean hasRawBeefInFirstSlot = entity.getStack(1).getItem() == Items.BEEF;
-
-        return hasRawBeefInFirstSlot && canInsertAmountIntoOutputSlot(inventory)
-                && canInsertItemIntoOutputSlot(inventory, ModItems.LAB);
-    }
-
-    private static boolean canInsertItemIntoOutputSlot(SimpleInventory inventory, Item output) {
-        return inventory.getStack(2).getItem() == output || inventory.getStack(2).isEmpty();
-    }
-
-    private static boolean canInsertAmountIntoOutputSlot(SimpleInventory inventory) {
-        return inventory.getStack(2).getMaxCount() > inventory.getStack(2).getCount();
-    }
+	@Override
+	public void clear() {
+		inventory.clear();
+	}
+	
+	@Override
+	public Text getDisplayName() {
+		return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
+	}
+	
+	@Nullable
+	@Override
+	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+		return new CookingPotScreenHandler(syncId, inv, this, this.delegate);
+	}
 }
+
 

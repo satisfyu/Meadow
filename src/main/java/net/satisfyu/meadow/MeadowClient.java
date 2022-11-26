@@ -16,6 +16,7 @@ import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormScreen;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen;
+import net.satisfyu.meadow.block.cookingPot.CookingPotScreen;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearRenderer;
@@ -45,6 +46,7 @@ import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepRenderer;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
+import net.satisfyu.meadow.recipes.pot.CookingPotRecipe;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 
 import static net.satisfyu.meadow.Meadow.*;
@@ -136,6 +138,7 @@ public class MeadowClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.CHEESE_FORM_SCREEN_HANDLER, CheeseFormScreen::new);
         HandledScreens.register(ModScreenHandlers.WOODCUTTOR_SCREEN_HANDLER, WoodcutterScreen::new);
         HandledScreens.register(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
+        HandledScreens.register(ModScreenHandlers.COOKING_POT_SCREEN_HANDLER, CookingPotScreen::new);
     }
 
     private void registerParticles(){
