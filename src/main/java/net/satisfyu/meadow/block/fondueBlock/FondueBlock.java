@@ -39,37 +39,12 @@ import java.util.function.Supplier;
 public class FondueBlock extends BlockWithEntity {
 	private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
 		VoxelShape shape = VoxelShapes.empty();
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3272, 0.53952, 0.3272, 0.6728, 0.59712, 0.6728), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3272, 0.5376, 0.2696, 0.6728, 0.5952, 0.3272), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2696, 0.5376, 0.3272, 0.3272, 0.5952, 0.6728), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3272, 0.5376, 0.6728, 0.6728, 0.5952, 0.7304), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.6728, 0.5376, 0.3272, 0.7304, 0.5952, 0.6728), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2696, 0.5952, 0.212, 0.7304, 0.8352, 0.2696), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2696, 0.81, 0.272, 0.7304, 0.81, 0.7328), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.212, 0.5952, 0.2696, 0.2696, 0.8352, 0.7304), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2696, 0.5952, 0.7304, 0.7304, 0.8352, 0.788), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.7304, 0.5952, 0.2696, 0.788, 0.8352, 0.7304), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2696, 0.5952, 0.2696, 0.3272, 0.62496, 0.3272), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2696, 0.5952, 0.6728, 0.3272, 0.62496, 0.7304), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.6728, 0.5952, 0.6728, 0.7304, 0.62496, 0.7304), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.6728, 0.5952, 0.2696, 0.7304, 0.62496, 0.3272), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.212, 0.7752, 0.212, 0.2696, 0.8352, 0.2696), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.212, 0.7752, 0.7304, 0.2696, 0.8352, 0.788), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.7304, 0.7752, 0.7304, 0.788, 0.8352, 0.788), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.7304, 0.7752, 0.212, 0.788, 0.8352, 0.2696), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4688, 0.71625, -0.088, 0.5288, 0.77625, 0.212), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.38375, 0.71625, 0.788, 0.61625, 0.77625, 0.848), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.11, 0.48, 0.11, 0.89, 0.54, 0.89), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.11, 0, 0.11, 0.17, 0.48, 0.17), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.11, 0, 0.83, 0.17, 0.48, 0.89), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.83, 0, 0.83, 0.89, 0.48, 0.89), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.83, 0, 0.11, 0.89, 0.48, 0.17), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.32, 0, 0.26, 0.44, 0.12, 0.74), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.56, 0, 0.26, 0.68, 0.12, 0.74), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.26, 0.06, 0.32, 0.74, 0.18, 0.44), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.26, 0.06, 0.56, 0.74, 0.18, 0.68), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3375, 0.06, 0.5, 0.66875, 0.54, 0.5), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 0.06, 0.3375, 0.5, 0.54, 0.66875), BooleanBiFunction.OR);
+
 		return shape;
 	};
 

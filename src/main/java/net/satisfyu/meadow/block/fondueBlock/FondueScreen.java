@@ -29,7 +29,8 @@ public class FondueScreen extends HandledScreen<FondueScreenHandler> {
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
         k = this.handler.getSyncedNumber() / (getTimeToCook() / 22);
-        this.drawTexture(matrices, x + 80, y + 60, 176, 15, k + 1, 16);
+        this.drawTexture(matrices, x + 90, y + 26, 176, 15, k + 1, 16);
+        if(handler.getIsCooking()) this.drawTexture(matrices, x + 124, y + 51, 176, 0, 16, 14);
     }
 
 

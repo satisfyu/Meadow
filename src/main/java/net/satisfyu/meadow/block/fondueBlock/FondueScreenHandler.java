@@ -27,8 +27,8 @@ public class FondueScreenHandler extends ScreenHandler {
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
 
-        this.addSlot(new Slot(inventory, 0, 48, 34));
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 1, 116, 35));
+        this.addSlot(new Slot(inventory, 1, 48, 26));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 3, 124, 28));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);

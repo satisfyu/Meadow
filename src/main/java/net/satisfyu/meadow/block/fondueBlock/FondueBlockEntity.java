@@ -74,13 +74,13 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
-        nbt.putInt("wine_press.progress", progress);
+        nbt.putInt("fondue.progress", progress);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         Inventories.readNbt(nbt, inventory);
-        progress = nbt.getInt("wine_press.progress");
+        progress = nbt.getInt("fondue.progress");
         super.readNbt(nbt);
 
     }
