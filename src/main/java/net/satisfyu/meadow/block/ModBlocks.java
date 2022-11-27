@@ -21,6 +21,7 @@ import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
 
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlock;
 import net.satisfyu.meadow.block.custom.FacingBlock;
+import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
@@ -226,9 +227,11 @@ public class ModBlocks {
     public static final Block FRAME = registerBlock("frame",
             new FrameBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().luminance(13).strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block COOKING_CAULDRON = registerBlock("cooking_cauldron",
-            new CookingCauldronBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+            new CookingCauldronBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
     public static final Block COOKING_POT = registerBlock("cooking_pot",
-            new CookingPotBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+            new CookingPotBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
+    public static final Block FONDUE = registerBlock("fondue",
+            new FondueBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
     public static final Block CAN = registerBlock("can",
             new CanBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(0.8f).nonOpaque().sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
     public static final Block CLIMBING_ROPE = registerBlockWithoutItem("climbing_rope",

@@ -17,6 +17,7 @@ import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormScreen;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen;
 import net.satisfyu.meadow.block.cookingPot.CookingPotScreen;
+import net.satisfyu.meadow.block.fondueBlock.FondueScreen;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearRenderer;
@@ -116,7 +117,7 @@ public class MeadowClient implements ClientModInitializer {
                 ModBlocks.POTTED_DARK_OAK_SAPLING, ModBlocks.POTTED_DANDELION, ModBlocks.POTTED_POPPY, ModBlocks.POTTED_BLUE_ORCHID, ModBlocks.POTTED_ALLIUM, ModBlocks.POTTED_AZURE_BLUET,
                 ModBlocks.POTTED_RED_TULIP, ModBlocks.POTTED_ORANGE_TULIP, ModBlocks.POTTED_WHITE_TULIP, ModBlocks.POTTED_PINK_TULIP, ModBlocks.POTTED_OXEYE_DAISY, ModBlocks.POTTED_CORNFLOWER,
                 ModBlocks.POTTED_LILY_OF_THE_VALLEY, ModBlocks.POTTED_WITHER_ROSE, ModBlocks.W_POTTED_PINE_SAPLING, ModBlocks.W_POTTED_DELPHINIUM, ModBlocks.W_POTTED_ALPINE_POPPY, ModBlocks.W_POTTED_SAXIFRAGE,
-                ModBlocks.W_POTTED_ENZIAN, ModBlocks.W_POTTED_FIRE_LILY, ModBlocks.W_POTTED_ERIOPHORUM, ModBlocks.POTTED_AZALEA, ModBlocks.POTTED_FLOWERING_AZALEA, ModBlocks.FLOWER_POT_BIG);
+                ModBlocks.W_POTTED_ENZIAN, ModBlocks.W_POTTED_FIRE_LILY, ModBlocks.W_POTTED_ERIOPHORUM, ModBlocks.POTTED_AZALEA, ModBlocks.POTTED_FLOWERING_AZALEA, ModBlocks.FLOWER_POT_BIG, ModBlocks.FONDUE);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW, ModBlocks.WINDOW_2, ModBlocks.WINDOW_3);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
@@ -139,6 +140,8 @@ public class MeadowClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.WOODCUTTOR_SCREEN_HANDLER, WoodcutterScreen::new);
         HandledScreens.register(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
         HandledScreens.register(ModScreenHandlers.COOKING_POT_SCREEN_HANDLER, CookingPotScreen::new);
+        HandledScreens.register(ModScreenHandlers.FONDUE_SCREEN_HANDLER, FondueScreen::new);
+
     }
 
     private void registerParticles(){

@@ -24,6 +24,7 @@ import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlockEntity;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
 
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlockEntity;
+import net.satisfyu.meadow.block.fondueBlock.FondueBlockEntity;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken1.Chicken1Entity;
@@ -178,6 +179,10 @@ public class ModEntities {
             FabricBlockEntityTypeBuilder.create(CookingPotBlockEntity::new,
                     ModBlocks.COOKING_POT).build());
 
+    public static final BlockEntityType<FondueBlockEntity> FONDUE = Registry.register(Registry.BLOCK_ENTITY_TYPE,
+            new Identifier(MOD_ID, "fondue"),
+            FabricBlockEntityTypeBuilder.create(FondueBlockEntity::new,
+                    ModBlocks.FONDUE).build());
 
 
 
