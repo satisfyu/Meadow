@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "content=none": {
+      "model": "meadow:block/flower_pot_empty"
+    },
+    "content=lilac": {
+      "model": "meadow:block/flower_pot_lilac"
+    },
+    "content=peony": {
+      "model": "meadow:block/flower_pot_peony"
+    },
+    "content=rose_bush": {
+      "model": "meadow:block/flower_pot_rose_bush"
+    },
+    "content=sunflower": {
+      "model": "meadow:block/flower_pot_sunflower"
+    },
+    "content=eriophorum_tall": {
+      "model": "meadow:block/flower_pot_eriophorum"
+  }
+}
+}

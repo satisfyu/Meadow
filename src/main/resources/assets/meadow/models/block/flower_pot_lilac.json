@@ -1,0 +1,8 @@
+{
+	"credit": "Made by Satisfy",
+	"parent": "meadow:block/flower_pot_main",
+	"textures": {
+		"4": "meadow:block/flowers/planted_lilac_top",
+		"5": "meadow:block/flowers/planted_lilac_bottom"
+	}
+}

@@ -209,6 +209,7 @@ public class ModBlocks {
             new CameraBlock(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT);
     public static final Block DOORMAT = registerBlock("doormat",
             new DoormatBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
+    public static final Block FLOWER_POT_BIG = registerBlock("flower_pot_big", new WoodenBigFlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)), ModItemGroup.ALPINE_SALT);
     public static final Block WOODEN_FLOWER_POT = registerBlock("wooden_flower_pot", new WoodenFlowerPotBlock(AIR, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESE_FORM = registerBlock("cheese_form",
             new CheeseFormBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
@@ -254,22 +255,16 @@ public class ModBlocks {
 
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
             new OatCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
-
     public static final Block YARROW_CROP = registerBlockWithoutItem("yarrow_crop",
             new YarrowCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
-
     public static final Block MOUNTAIN_LAVENDER_CROP = registerBlockWithoutItem("mountain_lavender_crop",
             new MountainLavenderCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
-
     public static final Block JUNIPER_CROP = registerBlockWithoutItem("juniper_crop",
             new JuniperCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
-
     public static final Block ALPINE_GRASS = registerBlock("alpine_grass",
             new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.ALPINE_SALT);
-
     public static final Block WILD_MOUNTAIN_LAVENDER = registerBlockWithoutItem("wild_mountain_lavender",
             new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)));
-
     public static final Block WILD_JUNIPER = registerBlockWithoutItem("wild_juniper",
             new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)));
     public static final Block WILD_YARROW = registerBlockWithoutItem("wild_yarrow",

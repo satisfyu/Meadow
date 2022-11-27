@@ -1,0 +1,7 @@
+{
+  "parent": "meadow:block/flower_pot_main",
+  "textures": {
+	"4": "meadow:block/air",
+	"5": "meadow:block/air"
+  }
+}
