@@ -2,7 +2,7 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"1": "meadow:block/chain",
-		"5": "meadow:block/chesse_mass_sheep",
+		"5": "meadow:block/frame_fire_logs",
 		"6": "meadow:block/stripped_pine_log",
 		"7": "meadow:block/frame_fire",
 		"11": "meadow:block/cooking_cauldron",

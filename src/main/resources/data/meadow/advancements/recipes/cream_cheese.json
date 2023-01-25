@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "meadow:cheese_mass"
+              "minecraft:milk_bucket"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_cheese_mass",
+      "has_milk_bucket",
       "has_the_recipe"
     ]
   ]

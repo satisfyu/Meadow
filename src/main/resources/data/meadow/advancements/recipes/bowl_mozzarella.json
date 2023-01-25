@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_buffalo_cheese_mass": {
+    "has_milk_bucket": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:buffalo_cheese_mass"
+              "meadow:milk_bucket"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_buffalo_cheese_mass",
+      "has_milk_bucket",
       "has_the_recipe"
     ]
   ]

@@ -14,8 +14,7 @@
 			"from": [4, 15.9, 4],
 			"to": [12, 16, 12],
 			"faces": {
-				"up": {"uv": [4, 4, 12, 12], "texture": "#6", "cullface": "up"},
-				"down": {"uv": [4, 12, 12, 4], "texture": "#missing"}
+				"up": {"uv": [4, 4, 12, 12], "texture": "#6", "cullface": "up"}
 			}
 		},
 		{
