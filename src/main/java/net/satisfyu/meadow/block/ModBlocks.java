@@ -39,10 +39,6 @@ import static net.minecraft.block.Blocks.SPRUCE_LEAVES;
 
 public class ModBlocks {
 
-
-
-
-
     public static final Block ALPINE_SALT_ORE = registerBlock("alpine_salt_ore",
             new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
                     UniformIntProvider.create(3, 7)), ModItemGroup.ALPINE_SALT);

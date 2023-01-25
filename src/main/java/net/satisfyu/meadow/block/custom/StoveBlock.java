@@ -54,8 +54,11 @@ public class StoveBlock extends FacingBlock {
         if(!world.isClient() && !block.isEmpty()){
             if(direction == directionToCheck){
                 boolean connected = state.get(CONNECTED);
-                if(!connected) if(block.contains(neighborState.getBlock())) return state.with(CONNECTED, true);
+                if(!connected) {
+                    if (block.contains(neighborState.getBlock())) return state.with(CONNECTED, true);
+                }
                 else if(!block.contains(neighborState.getBlock())) return state.with(CONNECTED, false);
+
             }
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
