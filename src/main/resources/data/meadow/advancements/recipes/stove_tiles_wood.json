@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:chiseled_limestone_bricks"
+      "meadow:stove_tiles_wood"
     ]
   },
   "criteria": {
-    "has_cobbled_limestone": {
+    "has_iron_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:cobbled_limestone"
+              "meadow:iron_ingot"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:chiseled_limestone_bricks"
+        "recipe": "meadow:stove_tiles_wood"
       }
     }
   },
   "requirements": [
     [
-      "has_cobbled_limestone",
+      "has_iron_ingot",
       "has_the_recipe"
     ]
   ]

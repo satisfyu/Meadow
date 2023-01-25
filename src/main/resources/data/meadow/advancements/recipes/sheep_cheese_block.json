@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:sheep_cheese_block"
+    ]
+  },
+  "criteria": {
+    "has_sheep_cheese_mass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:sheep_cheese_mass"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:sheep_cheese_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sheep_cheese_mass",
+      "has_the_recipe"
+    ]
+  ]
+}

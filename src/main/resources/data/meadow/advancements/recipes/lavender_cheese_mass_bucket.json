@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:lavender_cheese_mass_bucket"
+    ]
+  },
+  "criteria": {
+    "has_bag_of_lavender": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:bag_of_lavender"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:lavender_cheese_mass_bucket"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bag_of_lavender",
+      "has_the_recipe"
+    ]
+  ]
+}

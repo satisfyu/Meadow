@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:limestone_bricks"
+      "meadow:small_woodstack"
     ]
   },
   "criteria": {
-    "has_cobbled_limestone": {
+    "has_pine_log": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:cobbled_limestone"
+              "meadow:pine_log"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:limestone_bricks"
+        "recipe": "meadow:small_woodstack"
       }
     }
   },
   "requirements": [
     [
-      "has_cobbled_limestone",
+      "has_pine_log",
       "has_the_recipe"
     ]
   ]

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:stripped_pine_wood"
+    ]
+  },
+  "criteria": {
+    "has_stripped_pine_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:stripped_pine_log"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:stripped_pine_wood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_pine_log",
+      "has_the_recipe"
+    ]
+  ]
+}

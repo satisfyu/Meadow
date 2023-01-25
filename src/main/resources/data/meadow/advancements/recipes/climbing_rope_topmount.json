@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:limestone_bricks_slab"
+      "meadow:climbing_rope_topmount"
     ]
   },
   "criteria": {
-    "has_cobbled_limestone": {
+    "has_lead": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:cobbled_limestone"
+              "meadow:lead"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:limestone_bricks_slab"
+        "recipe": "meadow:climbing_rope_topmount"
       }
     }
   },
   "requirements": [
     [
-      "has_cobbled_limestone",
+      "has_lead",
       "has_the_recipe"
     ]
   ]

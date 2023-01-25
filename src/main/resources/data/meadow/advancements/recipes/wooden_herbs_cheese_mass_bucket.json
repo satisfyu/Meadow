@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "herbs_ingredients"
+    ]
+  },
+  "criteria": {
+    "has_herbs_ingredients": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:herbs_ingredients"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "herbs_ingredients"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_herbs_ingredients",
+      "has_the_recipe"
+    ]
+  ]
+}

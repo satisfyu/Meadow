@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:sheep_cheese_mass_bucket"
+    ]
+  },
+  "criteria": {
+    "has_alpine_salt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:alpine_salt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:sheep_cheese_mass_bucket"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_alpine_salt",
+      "has_the_recipe"
+    ]
+  ]
+}

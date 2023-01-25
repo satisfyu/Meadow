@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:jug_juniper_tea"
+    ]
+  },
+  "criteria": {
+    "has_bag_of_juniper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:bag_of_juniper"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:jug_juniper_tea"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bag_of_juniper",
+      "has_the_recipe"
+    ]
+  ]
+}

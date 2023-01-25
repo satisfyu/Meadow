@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:oat_cheese_block"
+    ]
+  },
+  "criteria": {
+    "has_oat_cheese_mass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:oat_cheese_mass"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:oat_cheese_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_oat_cheese_mass",
+      "has_the_recipe"
+    ]
+  ]
+}

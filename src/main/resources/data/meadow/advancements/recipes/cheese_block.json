@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:cheese_block"
+    ]
+  },
+  "criteria": {
+    "has_cow_cheese_mass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:cow_cheese_mass"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:cheese_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cow_cheese_mass",
+      "has_the_recipe"
+    ]
+  ]
+}

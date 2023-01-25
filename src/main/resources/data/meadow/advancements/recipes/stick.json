@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:mossy_limestone_bricks"
+      "meadow:stick"
     ]
   },
   "criteria": {
-    "has_cobbled_limestone": {
+    "has_pine_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:cobbled_limestone"
+              "meadow:pine_planks"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:mossy_limestone_bricks"
+        "recipe": "meadow:stick"
       }
     }
   },
   "requirements": [
     [
-      "has_cobbled_limestone",
+      "has_pine_planks",
       "has_the_recipe"
     ]
   ]

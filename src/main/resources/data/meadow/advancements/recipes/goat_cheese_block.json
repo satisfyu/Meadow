@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:goat_cheese_block"
+    ]
+  },
+  "criteria": {
+    "has_goat_cheese_mass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:goat_cheese_mass"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:goat_cheese_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_goat_cheese_mass",
+      "has_the_recipe"
+    ]
+  ]
+}

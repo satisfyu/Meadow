@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:cream_cheese"
+    ]
+  },
+  "criteria": {
+    "has_cheese_mass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:cheese_mass"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:cream_cheese"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cheese_mass",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:herbs_cheese_mass_bucket"
+    ]
+  },
+  "criteria": {
+    "has_herbs_ingredients": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:herbs_ingredients"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:herbs_cheese_mass_bucket"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_herbs_ingredients",
+      "has_the_recipe"
+    ]
+  ]
+}

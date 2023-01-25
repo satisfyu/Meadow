@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:cracked_limestone_bricks"
+    ]
+  },
+  "criteria": {
+    "has_limestone_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:limestone_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:cracked_limestone_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_limestone_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:white_dye"
+    ]
+  },
+  "criteria": {
+    "has_eriophorum_tall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:eriophorum_tall"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:white_dye"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_eriophorum_tall",
+      "has_the_recipe"
+    ]
+  ]
+}
