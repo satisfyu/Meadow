@@ -1,9 +1,13 @@
 {
   "values": [
-    "meadow:carpet",
     "meadow:doormat",
     "meadow:oat_ball",
-    "meadow:hayblock_rug",
-    "meadow:pine_leaves"
+    "meadow:oatblock_rug",
+    "meadow:pine_leaves",
+    "meadow:umbra_carpet",
+    "meadow:highland_carpet",
+    "meadow:rocky_carpet",
+    "meadow:patched_carpet",
+    "meadow:flecked_carpet"
   ]
 }

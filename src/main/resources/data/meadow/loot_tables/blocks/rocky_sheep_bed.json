@@ -13,14 +13,14 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "minecraft:black_bed",
+              "block": "meadow:rocky_sheep_bed",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "part": "head"
               }
             }
           ],
-          "name": "minecraft:black_bed"
+          "name": "meadow:rocky_sheep_bed"
         }
       ],
       "rolls": 1.0

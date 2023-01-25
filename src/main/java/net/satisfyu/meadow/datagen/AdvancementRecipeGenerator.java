@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.util;
+package net.satisfyu.meadow.datagen;
 
 import com.google.gson.stream.JsonWriter;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AdvancementRecipeGenerator {
 
-    public static String FOLDER = "C:/Users/Admin/Desktop/Neuer Ordner/";
+    public static String FOLDER = "/Users/marco/Desktop/Neuer Ordner/";
 
     public static void main(String[] args) {
         List<String> putRecipesHere = List.of("cobbled_limestone/chiseled_limestone_bricks",
@@ -259,9 +259,9 @@ public class AdvancementRecipeGenerator {
 
                 "eriophorum/white_dye",
                 "eriophorum_tall/white_dye",
-                "red_stained_glass_pane/window",
-                "black_stained_glass_pane/window",
-                "green_stained_glass_pane/window",
+                "glass_pane/window",
+                "stained_glass_pane/window_3",
+                "stained_glass_pane/window_2",
 
                 "pine_planks/window_shutter_1",
                 "poppy/window_shutter_1",

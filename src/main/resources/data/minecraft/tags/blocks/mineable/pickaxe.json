@@ -4,12 +4,11 @@
     "meadow:can",
     "meadow:climbing_rope_topmount",
     "meadow:cooking_cauldron",
-    "meadow:flower_pot",
+    "meadow:wooden_flower_pot",
     "meadow:furnace_cobblestone",
     "meadow:oil_lantern",
     "meadow:stove_tiles_bench",
     "meadow:stove_tiles_lid",
-    "meadow:stove_tiles_wood_on",
     "meadow:stove_tiles_wood",
     "meadow:stove_tiles",
     "meadow:limestone_bricks",
@@ -19,6 +18,6 @@
     "meadow:limestone",
     "meadow:cobbled_limestone",
     "meadow:mossy_cobbled_limestone",
-    "meadow:polished_limestone"
+    "meadow:polished_limestone_bricks"
   ]
 }

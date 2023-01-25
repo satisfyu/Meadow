@@ -21,7 +21,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "meadow:glass_pane"
+          "name": "meadow:window"
         }
       ],
       "rolls": 1.0

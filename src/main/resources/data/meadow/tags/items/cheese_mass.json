@@ -1,13 +1,11 @@
 {
   "values": [
-    "meadow:cow_cheese_mass_bucket",
     "meadow:buffalo_cheese_mass_bucket",
     "meadow:goat_cheese_mass_bucket",
     "meadow:oat_cheese_mass_bucket",
     "meadow:sheep_cheese_mass_bucket",
     "meadow:lavender_cheese_mass_bucket",
     "meadow:herbs_cheese_mass_bucket",
-
     "meadow:wooden_cow_cheese_mass_bucket",
     "meadow:wooden_buffalo_cheese_mass_bucket",
     "meadow:wooden_goat_cheese_mass_bucket",
