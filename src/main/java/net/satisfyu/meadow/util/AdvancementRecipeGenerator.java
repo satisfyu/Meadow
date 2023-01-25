@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AdvancementRecipeGenerator {
 
-    public static final String FOLDER = "Documents/GitHub/meadow/src/main/resources/data/meadow/advancements/recipes/";
+    public static String FOLDER = "/Users/marco/Desktop/";
 
     public static void main(String[] args) {
         List<String> putRecipesHere = List.of("cobbled_limestone/chiseled_limestone_bricks",
@@ -46,18 +46,6 @@ public class AdvancementRecipeGenerator {
                 "pine_planks/pine_trapdoor",
                 "pine_planks/stick",
 
-                "acacia_log/acacia_boat",
-                "acacia_log/acacia_button",
-                "acacia_log/acacia_door",
-                "acacia_log/acacia_fence",
-                "acacia_log/acacia_fence_gate",
-                "acacia_log/acacia_planks",
-                "acacia_log/acacia_pressure_plate",
-                "acacia_log/acacia_sign",
-                "acacia_log/acacia_slab",
-                "acacia_log/acacia_stair",
-                "acacia_log/stick",
-                "acacia_log/acacia_trapdoor",
 
                 "iron_axe/axe_woodstack",
                 "pine_log/axe_woodstack",
@@ -66,19 +54,6 @@ public class AdvancementRecipeGenerator {
                 "stick/bench",
 
                 "pine_log/big_woodstack",
-
-                "birch_log/birch_boat",
-                "birch_log/birch_button",
-                "birch_log/birch_door",
-                "birch_log/birch_fence",
-                "birch_log/birch_fence_gate",
-                "birch_log/birch_planks",
-                "birch_log/birch_pressure_plate",
-                "birch_log/birch_sign",
-                "birch_log/birch_slab",
-                "birch_log/birch_stair",
-                "birch_log/stick",
-                "birch_log/birch_trapdoor",
 
                 "small_fir/green_dye",
 
@@ -145,30 +120,6 @@ public class AdvancementRecipeGenerator {
 
                 "cheese_mass/cream_cheese",
 
-                "crimson_stem/crimson_button",
-                "crimson_stem/crimson_door",
-                "crimson_stem/crimson_fence",
-                "crimson_stem/crimson_fence_gate",
-                "crimson_stem/crimson_planks",
-                "crimson_stem/crimson_pressure_plate",
-                "crimson_stem/crimson_sign",
-                "crimson_stem/crimson_slab",
-                "crimson_stem/crimson_stair",
-                "crimson_stem/stick",
-                "crimson_stem/crimson_trapdoor",
-
-                "dark_oak_log/dark_oak_boat",
-                "dark_oak_log/dark_oak_button",
-                "dark_oak_log/dark_oak_door",
-                "dark_oak_log/dark_oak_fence",
-                "dark_oak_log/dark_oak_fence_gate",
-                "dark_oak_log/dark_oak_planks",
-                "dark_oak_log/dark_oak_pressure_plate",
-                "dark_oak_log/dark_oak_sign",
-                "dark_oak_log/dark_oak_slab",
-                "dark_oak_log/dark_oak_stair",
-                "dark_oak_log/stick",
-                "dark_oak_log/dark_oak_trapdoor",
 
                 "oat/doormat",
                 "flecked_wool/flecked_bed",
@@ -209,18 +160,7 @@ public class AdvancementRecipeGenerator {
                 "jug/jug_yarrow_tea",
                 "bag_of_yarrow/jug_yarrow_tea",
 
-                "jungle_log/jungle_boat",
-                "jungle_log/jungle_button",
-                "jungle_log/jungle_door",
-                "jungle_log/jungle_fence",
-                "jungle_log/jungle_fence_gate",
-                "jungle_log/jungle_planks",
-                "jungle_log/jungle_pressure_plate",
-                "jungle_log/jungle_sign",
-                "jungle_log/jungle_slab",
-                "jungle_log/jungle_stair",
-                "jungle_log/stick",
-                "jungle_log/jungle_trapdoor",
+
 
                 "lavender_cheese_mass/lavender_cheese_block",
                 "is_milk/lavender_cheese_mass_bucket",
@@ -246,18 +186,6 @@ public class AdvancementRecipeGenerator {
                 "limestone/limestone_slab",
                 "limestone/limestone_stairs",
 
-                "mangrove_log/mangrove_boat",
-                "mangrove_log/mangrove_button",
-                "mangrove_log/mangrove_door",
-                "mangrove_log/mangrove_fence",
-                "mangrove_log/mangrove_fence_gate",
-                "mangrove_log/mangrove_planks",
-                "mangrove_log/mangrove_pressure_plate",
-                "mangrove_log/mangrove_sign",
-                "mangrove_log/mangrove_slab",
-                "mangrove_log/stick",
-                "mangrove_log/mangrove_trapdoor",
-
                 "pine_log/mid_woodstack",
                 "mossy_limestone_bricks/mossy_limestone_brick_slab",
                 "mossy_limestone_bricks/mossy_limestone_brick_slab",
@@ -270,18 +198,6 @@ public class AdvancementRecipeGenerator {
                 "limestone_bricks/mossy_limestone_bricks",
                 "vine/mossy_limestone_bricks",
 
-                "oak_log/oak_boat",
-                "oak_log/oak_button",
-                "oak_log/oak_door",
-                "oak_log/oak_fence",
-                "oak_log/oak_fence_gate",
-                "oak_log/oak_planks",
-                "oak_log/oak_pressure_plate",
-                "oak_log/oak_sign",
-                "oak_log/oak_slab",
-                "oak_log/oak_stair",
-                "oak_log/stick",
-                "oak_log/oak_trapdoor",
 
                 "oat/oat_bread",
                 "oat_cheese_mass/oat_cheese_block",
@@ -318,18 +234,7 @@ public class AdvancementRecipeGenerator {
 
                 "pine_log/small_woodstack",
 
-                "spruce_log/spruce_boat",
-                "spruce_log/spruce_button",
-                "spruce_log/spruce_door",
-                "spruce_log/spruce_fence",
-                "spruce_log/spruce_fence_gate",
-                "spruce_log/spruce_planks",
-                "spruce_log/spruce_pressure_plate",
-                "spruce_log/spruce_sign",
-                "spruce_log/spruce_slab",
-                "spruce_log/spruce_stair",
-                "spruce_log/stick",
-                "spruce_log/spruce_trapdoor",
+
 
                 "limestone_bricks/stove_tiles",
                 "iron_ingot/stove_tiles",
@@ -347,17 +252,7 @@ public class AdvancementRecipeGenerator {
                 "planks/umbra_bed",
                 "red_wool/red_carpet",
 
-                "warped_stem/warped_button",
-                "warped_stem/warped_door",
-                "warped_stem/warped_fence",
-                "warped_stem/warped_fence_gate",
-                "warped_stem/warped_planks",
-                "warped_stem/warped_pressure_plate",
-                "warped_stem/warped_sign",
-                "warped_stem/warped_slab",
-                "warped_stem/warped_stair",
-                "warped_stem/stick",
-                "warped_stem/warped_trapdoor",
+
 
                 "pine_planks/watering_can",
                 "wooden_water_bucket/watering_can",
