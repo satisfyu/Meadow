@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:rocky_carpet"
+          "name": "meadow:rocky_carpet"
         }
       ],
       "rolls": 1.0

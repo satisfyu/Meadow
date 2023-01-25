@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:cobbled_limestone_stairs"
+          "name": "meadow:cobbled_limestone_stairs"
         }
       ],
       "rolls": 1.0

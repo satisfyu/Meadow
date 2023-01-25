@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:cracked_limestone_bricks"
+          "name": "meadow:cracked_limestone_bricks"
         }
       ],
       "rolls": 1.0

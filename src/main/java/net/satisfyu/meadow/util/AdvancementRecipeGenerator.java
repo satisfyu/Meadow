@@ -9,18 +9,383 @@ import java.util.List;
 
 public class AdvancementRecipeGenerator {
 
-    public static final String FOLDER = "C:/Users/Admin/Documents/GitHub/meadow/src/main/resources/data/meadow/advancements/recipes/";
+    public static final String FOLDER = "Documents/GitHub/meadow/src/main/resources/data/meadow/advancements/recipes/";
 
     public static void main(String[] args) {
-        /*
-        Mach die item condition und das Rezept in die Liste und trenne sie mit einem "/" (so wie die Beispiele in der Liste). So kannst du viele Advancements auf einmal erstellen.
-        FOLDER gibt das Verzeichnis an, in dem die Advancements landen mit / am Ende! Wichtig!
-        Drücke dann auf das play Symbol links von der main method und die Advancements sollten generiert werden.
-         */
-        List<String> putRecipesHere = List.of("cobbled_limestone/chiseled_limestone_bricks");
+        List<String> putRecipesHere = List.of("cobbled_limestone/chiseled_limestone_bricks",
+                "cobbled_limestone/limestone_bricks",
+                "cobbled_limestone/limestone_bricks_wall",
+                "cobbled_limestone/limestone_bricks_stairs",
+                "cobbled_limestone/limestone_slab",
+                "cobbled_limestone/limestone_brick_slab",
+                "cobbled_limestone/limestone_brick_stairs",
 
+                "pine_log/pine_wood",
+                "pine_log/pine_planks",
+                "pine_log/pine_boat",
+                "pine_log/pine_button",
+                "pine_log/pine_door",
+                "pine_log/pine_fence",
+                "pine_log/pine_fence_gate",
+                "pine_log/pine_pressure_plate",
+                "pine_log/pine_sign",
+                "pine_log/pine_slab",
+                "pine_log/pine_stairs",
+                "pine_log/pine_trapdoor",
+                "pine_log/stick",
+                "pine_wood/pine_planks",
+                "pine_planks/pine_boat",
+                "pine_planks/pine_button",
+                "pine_planks/pine_door",
+                "pine_planks/pine_fence",
+                "pine_planks/pine_fence_gate",
+                "pine_planks/pine_pressure_plate",
+                "pine_planks/pine_sign",
+                "pine_planks/pine_slab",
+                "pine_planks/pine_stairs",
+                "pine_planks/pine_trapdoor",
+                "pine_planks/stick",
 
+                "acacia_log/acacia_boat",
+                "acacia_log/acacia_button",
+                "acacia_log/acacia_door",
+                "acacia_log/acacia_fence",
+                "acacia_log/acacia_fence_gate",
+                "acacia_log/acacia_planks",
+                "acacia_log/acacia_pressure_plate",
+                "acacia_log/acacia_sign",
+                "acacia_log/acacia_slab",
+                "acacia_log/acacia_stair",
+                "acacia_log/stick",
+                "acacia_log/acacia_trapdoor",
 
+                "iron_axe/axe_woodstack",
+                "pine_log/axe_woodstack",
+
+                "pine_slab/bench",
+                "stick/bench",
+
+                "pine_log/big_woodstack",
+
+                "birch_log/birch_boat",
+                "birch_log/birch_button",
+                "birch_log/birch_door",
+                "birch_log/birch_fence",
+                "birch_log/birch_fence_gate",
+                "birch_log/birch_planks",
+                "birch_log/birch_pressure_plate",
+                "birch_log/birch_sign",
+                "birch_log/birch_slab",
+                "birch_log/birch_stair",
+                "birch_log/stick",
+                "birch_log/birch_trapdoor",
+
+                "small_fir/green_dye",
+
+                "bowl_milk/bowl_cornflakes",
+                "wheat/bowl_cornflakes",
+
+                "bowl_milk/bowl_honey",
+                "honey_bottle/bowl_honey",
+
+                "bowl/bowl_milk",
+                "milk_bucket/bowl_milk",
+
+                "bowl_milk,bowl_sweetberries",
+                "sweet_berries/bowl_sweetberries",
+
+                "buffalo_cheese_mass/bowl_mozzarella",
+
+                "buffalo_milk/buffalo_cheese_mass_bucket",
+                "lab/buffalo_cheese_mass_bucket",
+                "alpine_salt/buffalo_cheese_mass_bucket",
+
+                "redstone_lamp/camera",
+                "stick/camera",
+
+                "iron_ingot/can",
+
+                "stick/chair",
+                "pine_slab/chair",
+
+                "bread/cheese_bread",
+                "cheese/cheese_bread",
+
+                "pine_slab/cheese_form",
+
+                "stick/cheese_stick",
+                "cheese/cheese_stick",
+
+                "cheese/cheese_tart",
+                "egg/cheese_tart",
+                "milk_bucket/cheese_tart",
+                "wheat/cheese_tart",
+
+                "cream_cheese/cheesecake",
+                "egg/cheesecake",
+                "milk_bucket/cheesecake",
+                "wheat/cheesecake",
+
+                "limestone/chiseled_limestone_bricks",
+
+                "iron_ingot/climbing_rope_topmount",
+                "lead/climbing_rope_topmount",
+
+                "iron_ingot/cooking_cauldron",
+
+                "cow_cheese_mass/cheese_block",
+                "cow_milk/cow_cheese_mass_bucket",
+                "lab/cow_cheese_mass_bucket",
+                "alpine_salt/cow_cheese_mass_bucket",
+                "cow_milk/wooden_cow_cheese_mass_bucket",
+                "lab/wooden_cow_cheese_mass_bucket",
+                "alpine_salt/wooden_cow_cheese_mass_bucket",
+
+                "limestone_bricks/cracked_limestone_bricks",
+
+                "cheese_mass/cream_cheese",
+
+                "crimson_stem/crimson_button",
+                "crimson_stem/crimson_door",
+                "crimson_stem/crimson_fence",
+                "crimson_stem/crimson_fence_gate",
+                "crimson_stem/crimson_planks",
+                "crimson_stem/crimson_pressure_plate",
+                "crimson_stem/crimson_sign",
+                "crimson_stem/crimson_slab",
+                "crimson_stem/crimson_stair",
+                "crimson_stem/stick",
+                "crimson_stem/crimson_trapdoor",
+
+                "dark_oak_log/dark_oak_boat",
+                "dark_oak_log/dark_oak_button",
+                "dark_oak_log/dark_oak_door",
+                "dark_oak_log/dark_oak_fence",
+                "dark_oak_log/dark_oak_fence_gate",
+                "dark_oak_log/dark_oak_planks",
+                "dark_oak_log/dark_oak_pressure_plate",
+                "dark_oak_log/dark_oak_sign",
+                "dark_oak_log/dark_oak_slab",
+                "dark_oak_log/dark_oak_stair",
+                "dark_oak_log/stick",
+                "dark_oak_log/dark_oak_trapdoor",
+
+                "oat/doormat",
+                "flecked_wool/flecked_bed",
+                "planks/flecked_bed",
+                "flecked_wool/flecked_carpet",
+
+                "stick/frame",
+                "campfire/frame",
+                "cobbled_limestone/furnace_cobblestone",
+                "campfire/furnace_cobblestone",
+
+                "goat_cheese_mass/goat_cheese_block",
+                "goat_milk/goat_cheese_mass_bucket",
+                "lab/goat_cheese_mass_bucket",
+                "alpine_salt/goat_cheese_mass_bucket",
+                "goat_milk/wooden_goat_cheese_mass_bucket",
+                "lab/wooden_goat_cheese_mass_bucket",
+                "alpine_salt/wooden_goat_cheese_mass_bucket",
+
+                "wheat/hayblock_rug",
+
+                "herbs_cheese_mass/herb_cheese_block",
+
+                "is_milk/herbs_cheese_mass_bucket",
+                "lab/herbs_cheese_mass_bucket",
+                "herbs_ingredients/herbs_cheese_mass_bucket",
+                "is_milk/meadow:wooden_herbs_cheese_mass_bucket",
+                "lab/meadow:wooden_herbs_cheese_mass_bucket",
+                "herbs_ingredients/meadow:wooden_herbs_cheese_mass_bucket",
+
+                "highland_wool/highland_bed",
+                "planks/highland_bed",
+                "highland_wool/highland_carpet",
+
+                "glass_bottle/jug",
+                "jug/jug_juniper_tea",
+                "bag_of_juniper/jug_juniper_tea",
+                "jug/jug_yarrow_tea",
+                "bag_of_yarrow/jug_yarrow_tea",
+
+                "jungle_log/jungle_boat",
+                "jungle_log/jungle_button",
+                "jungle_log/jungle_door",
+                "jungle_log/jungle_fence",
+                "jungle_log/jungle_fence_gate",
+                "jungle_log/jungle_planks",
+                "jungle_log/jungle_pressure_plate",
+                "jungle_log/jungle_sign",
+                "jungle_log/jungle_slab",
+                "jungle_log/jungle_stair",
+                "jungle_log/stick",
+                "jungle_log/jungle_trapdoor",
+
+                "lavender_cheese_mass/lavender_cheese_block",
+                "is_milk/lavender_cheese_mass_bucket",
+                "lab/lavender_cheese_mass_bucket",
+                "bag_of_lavender/lavender_cheese_mass_bucket",
+                "is_milk/wooden_lavender_cheese_mass_bucket",
+                "lab/wooden_lavender_cheese_mass_bucket",
+                "bag_of_lavender/wooden_lavender_cheese_mass_bucket",
+
+                "cobbled_limestone/limestone",
+                "limestone_bricks/limestone_brick_slab",
+                "limestone_bricks/limestone_brick_slab",
+                "limestone/limestone_brick_slab",
+                "limestone_bricks/limestone_brick_stairs",
+                "limestone_bricks/limestone_brick_stairs",
+                "limestone/limestone_brick_stairs",
+                "limestone_bricks/limestone_brick_wall",
+                "limestone_bricks/limestone_brick_wall",
+                "limestone/limestone_brick_wall",
+                "limestone/limestone_bricks",
+                "limestone/limestone_bricks",
+                "limestone/limestone_bricks_stairs",
+                "limestone/limestone_slab",
+                "limestone/limestone_stairs",
+
+                "mangrove_log/mangrove_boat",
+                "mangrove_log/mangrove_button",
+                "mangrove_log/mangrove_door",
+                "mangrove_log/mangrove_fence",
+                "mangrove_log/mangrove_fence_gate",
+                "mangrove_log/mangrove_planks",
+                "mangrove_log/mangrove_pressure_plate",
+                "mangrove_log/mangrove_sign",
+                "mangrove_log/mangrove_slab",
+                "mangrove_log/stick",
+                "mangrove_log/mangrove_trapdoor",
+
+                "pine_log/mid_woodstack",
+                "mossy_limestone_bricks/mossy_limestone_brick_slab",
+                "mossy_limestone_bricks/mossy_limestone_brick_slab",
+                "mossy_limestone_bricks/mossy_limestone_brick_stairs",
+                "mossy_limestone_bricks/mossy_limestone_brick_stairs",
+                "mossy_limestone_bricks/mossy_limestone_brick_wall",
+                "mossy_limestone_bricks/mossy_limestone_brick_wall",
+                "limestone_bricks/mossy_limestone_bricks",
+                "moss_block/mossy_limestone_bricks",
+                "limestone_bricks/mossy_limestone_bricks",
+                "vine/mossy_limestone_bricks",
+
+                "oak_log/oak_boat",
+                "oak_log/oak_button",
+                "oak_log/oak_door",
+                "oak_log/oak_fence",
+                "oak_log/oak_fence_gate",
+                "oak_log/oak_planks",
+                "oak_log/oak_pressure_plate",
+                "oak_log/oak_sign",
+                "oak_log/oak_slab",
+                "oak_log/oak_stair",
+                "oak_log/stick",
+                "oak_log/oak_trapdoor",
+
+                "oat/oat_bread",
+                "oat_cheese_mass/oat_cheese_block",
+                "oat_milk/oat_cheese_mass_bucket",
+                "lab/oat_cheese_mass_bucket",
+                "alpine_salt/oat_cheese_mass_bucket",
+                "oat_milk/wooden_oat_cheese_mass_bucket",
+                "lab/wooden_oat_cheese_mass_bucket",
+                "alpine_salt/wooden_oat_cheese_mass_bucket",
+                "oat/oat_oil",
+                "glass_bottle/oat_oil",
+
+                "iron_ingot/oil_lantern",
+                "oat_oil/oil_lantern",
+                "iron_nugget/oil_lantern",
+
+                "patched_wool/patched_bed",
+                "planks/patched_bed",
+                "patched_wool/patched_carpet",
+
+                "bag_of_juniper/ricola",
+                "bad_of_yarrow/ricola",
+                "sugar/ricola",
+
+                "rocky_sheep_wool/rocky_sheep_carpet",
+
+                "sheep_cheese_mass/sheep_cheese_block",
+                "sheep_milk/sheep_cheese_mass_bucket",
+                "lab/sheep_cheese_mass_bucket",
+                "alpine_salt/sheep_cheese_mass_bucket",
+                "sheep_milk/wooden_sheep_cheese_mass_bucket",
+                "lab/wooden_sheep_cheese_mass_bucket",
+                "alpine_salt/wooden_sheep_cheese_mass_bucket",
+
+                "pine_log/small_woodstack",
+
+                "spruce_log/spruce_boat",
+                "spruce_log/spruce_button",
+                "spruce_log/spruce_door",
+                "spruce_log/spruce_fence",
+                "spruce_log/spruce_fence_gate",
+                "spruce_log/spruce_planks",
+                "spruce_log/spruce_pressure_plate",
+                "spruce_log/spruce_sign",
+                "spruce_log/spruce_slab",
+                "spruce_log/spruce_stair",
+                "spruce_log/stick",
+                "spruce_log/spruce_trapdoor",
+
+                "limestone_bricks/stove_tiles",
+                "iron_ingot/stove_tiles",
+                "limestone_bricks/stove_tiles_bench",
+                "iron_ingot/stove_tiles_bench",
+                "limestone_bricks/stove_tiles_lid",
+                "iron_trapdoor/stove_tiles_lid",
+                "iron_ingot/stove_tiles_lid",
+                "limestone_bricks/stove_tiles_wood",
+                "campfire/stove_tiles_wood",
+                "iron_ingot/stove_tiles_wood",
+
+                "stripped_pine_log/stripped_pine_wood",
+                "umbra_wool/umbra_bed",
+                "planks/umbra_bed",
+                "red_wool/red_carpet",
+
+                "warped_stem/warped_button",
+                "warped_stem/warped_door",
+                "warped_stem/warped_fence",
+                "warped_stem/warped_fence_gate",
+                "warped_stem/warped_planks",
+                "warped_stem/warped_pressure_plate",
+                "warped_stem/warped_sign",
+                "warped_stem/warped_slab",
+                "warped_stem/warped_stair",
+                "warped_stem/stick",
+                "warped_stem/warped_trapdoor",
+
+                "pine_planks/watering_can",
+                "wooden_water_bucket/watering_can",
+
+                "eriophorum/white_dye",
+                "eriophorum_tall/white_dye",
+                "red_stained_glass_pane/window",
+                "black_stained_glass_pane/window",
+                "green_stained_glass_pane/window",
+
+                "pine_planks/window_shutter_1",
+                "poppy/window_shutter_1",
+                "pine_planks/window_shutter_2",
+                "sweet_berries/window_shutter_2",
+                "pine_planks/window_shutter_3",
+                "spruce_sapling/window_shutter_3",
+
+                "iron_axe/woodcutter",
+                "pine_log/woodcutter",
+
+                "planks/wooden_bucket",
+                "planks/wooden_cauldron",
+                "iron_ingot/wooden_cauldron",
+                "brick/wooden_flower_pot",
+                "blue_dye/wooden_flower_pot",
+
+                "wooly_wool/wooly_bed",
+                "planks/wooly_bed");
 
         for(String s : putRecipesHere){
             List<String> list1 = Arrays.stream(s.split("/")).toList();

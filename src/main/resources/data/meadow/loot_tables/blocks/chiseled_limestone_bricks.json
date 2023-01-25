@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:chiseled_limestone_bricks"
+          "name": "meadow:chiseled_limestone_bricks"
         }
       ],
       "rolls": 1.0

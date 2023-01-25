@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:limestone_pressure_plate"
+          "name": "meadow:limestone_pressure_plate"
         }
       ],
       "rolls": 1.0

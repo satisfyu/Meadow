@@ -11,8 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:flower_pot",
-          "name": "meadow:flower_pot"
+          "name": "minecraft:flower_pot"
         }
       ],
       "rolls": 1.0

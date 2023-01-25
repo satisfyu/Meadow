@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "meadow:yarrow_seeds"
+    }
+  },
+  "result": {
+    "item": "meadow:bag_of_yarrow",
+    "count": 1
+  }
+}

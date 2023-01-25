@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B"
+  ],
+  "key": {
+    "#": {
+      "item": "meadow:jug"
+    },
+    "B": {
+      "tag": "meadow:is_milk"
+    }
+  },
+  "result": {
+    "item": "meadow:jug_milk",
+    "count": 1
+  }
+}

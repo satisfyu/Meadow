@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "minecraft:limestone"
+              "name": "meadow:limestone"
             },
             {
               "type": "minecraft:item",
@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "minecraft:cobblelimestone"
+              "name": "meadow:cobbled_limestone"
             }
           ]
         }

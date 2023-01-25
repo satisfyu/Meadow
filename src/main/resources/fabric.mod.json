@@ -18,6 +18,9 @@
 
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "net.satisfyu.meadow.datagen.DataGeneration"
+    ],
     "main": [
       "net.satisfyu.meadow.Meadow"
     ],
