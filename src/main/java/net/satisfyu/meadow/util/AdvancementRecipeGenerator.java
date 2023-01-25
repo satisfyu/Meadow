@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AdvancementRecipeGenerator {
 
-    public static String FOLDER = "/Users/marco/Desktop/";
+    public static String FOLDER = "C:/Users/Admin/Desktop/Neuer Ordner/";
 
     public static void main(String[] args) {
         List<String> putRecipesHere = List.of("cobbled_limestone/chiseled_limestone_bricks",
@@ -66,7 +66,7 @@ public class AdvancementRecipeGenerator {
                 "bowl/bowl_milk",
                 "milk_bucket/bowl_milk",
 
-                "bowl_milk,bowl_sweetberries",
+                "bowl_milk/bowl_sweetberries",
                 "sweet_berries/bowl_sweetberries",
 
                 "buffalo_cheese_mass/bowl_mozzarella",
@@ -284,6 +284,12 @@ public class AdvancementRecipeGenerator {
 
         for(String s : putRecipesHere){
             List<String> list1 = Arrays.stream(s.split("/")).toList();
+
+            if(list1.size() < 2){
+                System.out.println("False entry: " + s);
+                continue;
+            }
+
             write(list1.get(0), list1.get(1));
         }
     }

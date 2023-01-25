@@ -70,6 +70,36 @@ jar {
 	}
 }
 
+loom {
+	runs {
+		//
+		// This adds a new gradle task that runs the datagen API: "gradlew runDatagenClient"
+		//
+		datagenClient {
+			inherit client
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+			vmArg "-Dfabric-api.datagen.modid=${project.archivesBaseName}"
+
+			runDir "build/datagen"
+		}
+	}
+}
+
+//
+// Adds the generated files into the jar you distribute to players.
+//
+sourceSets {
+	main {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
+	}
+}
+
 // configure the maven publication
 publishing {
 	publications {
@@ -87,28 +117,5 @@ publishing {
 	}
 
 
-	loom {
-		runs {
-			// This adds a new gradle task that runs the datagen API: "gradlew runDatagenClient"
-			datagenClient {
-				inherit client
-				name "Data Generation"
-				vmArg "-Dfabric-api.datagen"
-				vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-				vmArg "-Dfabric-api.datagen.strict-validation"
 
-				runDir "build/datagen"
-			}
-		}
-	}
-
-	sourceSets {
-		main {
-			resources {
-				srcDirs += [
-						'src/main/generated'
-				]
-			}
-		}
-	}
 }
