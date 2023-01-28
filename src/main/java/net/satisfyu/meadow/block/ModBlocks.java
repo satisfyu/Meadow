@@ -99,7 +99,7 @@ public class ModBlocks {
             new WallBlock(FabricBlockSettings.copyOf(MOSSY_LIMESTONE_BRICKS)), ModItemGroup.ALPINE_SALT);
     public static final Block CRACKED_LIMESTONE_BRICKS = registerBlock("cracked_limestone_bricks",
             new Block(FabricBlockSettings.copyOf(Blocks.CRACKED_STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
-    public static final Block CHISELD_LIMESTONE_BRICKS = registerBlock("chiseled_limestone_bricks",
+    public static final Block CHISELED_LIMESTONE_BRICKS = registerBlock("chiseled_limestone_bricks",
             new Block(FabricBlockSettings.copyOf(Blocks.CHISELED_STONE_BRICKS)), ModItemGroup.ALPINE_SALT);
     public static final Block POLISHED_LIMESTONE_BRICKS = registerBlock("polished_limestone_bricks",
             new Block(FabricBlockSettings.copyOf(Blocks.POLISHED_ANDESITE)), ModItemGroup.ALPINE_SALT);
@@ -294,7 +294,7 @@ public class ModBlocks {
             new BowlBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
     public static final Block BOWL_MILK = registerBlock("bowl_milk",
             new BowlBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
-    public static final Block BOWL_MOZERELLA = registerBlock("bowl_mozzarella",
+    public static final Block BOWL_MOZRELLA = registerBlock("bowl_mozzarella",
             new BowlEatBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
     public static final Block BOWL_SWEETBERRIES = registerBlock("bowl_sweetberries",
             new BowlBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
