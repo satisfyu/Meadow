@@ -1,0 +1,20 @@
+{
+  "type": "meadow:pot_cooking",
+  "ingredients": [
+    {
+      "item": "meadow:bag_of_juniper"
+    },
+    {
+      "item": "meadow:bag_of_yarrow"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "container": {
+    "item": "minecraft:paper"
+  },
+  "result": {
+    "item": "meadow:ricola"
+  }
+}

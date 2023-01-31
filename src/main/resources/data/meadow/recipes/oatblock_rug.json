@@ -5,11 +5,11 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:wheat"
+            "item": "meadow:oat"
         }
     },
     "result": {
-        "item": "meadow:hayblock_rug",
-        "count": 1
+        "item": "meadow:oatblock_rug",
+        "count": 3
     }
 }

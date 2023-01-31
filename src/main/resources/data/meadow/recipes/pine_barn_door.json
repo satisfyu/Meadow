@@ -3,16 +3,19 @@
   "group": "door",
   "pattern": [
     "##",
-    "##",
+    "#B",
     "##"
   ],
   "key": {
     "#": {
       "item": "meadow:pine_planks"
+    },
+    "B": {
+      "item": "meadow:pine_slab"
     }
   },
   "result": {
-    "item": "meadow:pine_door",
+    "item": "meadow:pine_barn_door",
     "count": 3
   }
 }

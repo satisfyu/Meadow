@@ -1,0 +1,17 @@
+{
+  "type": "meadow:pot_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "meadow:bag_of_yarrow"
+    }
+  ],
+  "container": {
+    "item": "meadow:jug"
+  },
+  "result": {
+    "item": "meadow:jug_yarrow_tea"
+  }
+}

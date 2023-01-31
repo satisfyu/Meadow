@@ -1,0 +1,17 @@
+{
+  "type": "meadow:pot_cooking",
+  "ingredients": [
+    {
+      "item": "meadow:alpine_salt"
+    },
+    {
+      "item": "minecraft:beef"
+    }
+  ],
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "item": "meadow:lab"
+  }
+}
