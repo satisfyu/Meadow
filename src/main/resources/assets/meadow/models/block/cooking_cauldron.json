@@ -3,7 +3,8 @@
 	"parent": "block/block",
 	"ambientocclusion": false,
 	"textures": {
-		"5": "meadow:block/cooking_cauldron"
+		"5": "meadow:block/cooking_cauldron",
+		"particle": "meadow:block/cooking_cauldron"
 	},
 	"elements": [
 		{

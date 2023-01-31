@@ -241,7 +241,7 @@ public class ModBlocks {
     public static final Block OIL_LANTERN = registerBlock("oil_lantern",
             new OilLantern(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5f).sounds(BlockSoundGroup.LANTERN).luminance(state -> state.get(OilLantern.LUMINANCE)).nonOpaque().ticksRandomly()), ModItemGroup.ALPINE_SALT);
     public static final Block FIR_CONE = registerBlock("fir_cone",
-            new FirConeBlock(FabricBlockSettings.of(Material.LEAVES).noCollision().dropsLike(PINE_SIGN)), ModItemGroup.ALPINE_SALT);
+            new FirConeDecorationBlock(FabricBlockSettings.of(Material.LEAVES).noCollision().dropsLike(PINE_SIGN)), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_SAPLING = registerBlock("pine_sapling",
             new SaplingBlock(new PineSaplingGenerator(),
                     FabricBlockSettings.copy(Blocks.SPRUCE_SAPLING)), ModItemGroup.ALPINE_SALT);

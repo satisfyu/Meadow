@@ -4,7 +4,8 @@
 	"ambientocclusion": false,
 	"textures": {
 		"5": "meadow:block/cooking_cauldron",
-		"6": "meadow:block/milk_cow_cauldron"
+		"6": "meadow:block/milk_cow_cauldron",
+		"particle": "meadow:block/cooking_cauldron"
 	},
 	"elements": [
 		{

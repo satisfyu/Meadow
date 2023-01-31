@@ -40,7 +40,7 @@ public class ConfiguredFeatures {
 
     public static void init() {
         BiomeModification world = BiomeModifications.create(new MeadowIdentifier("world_features"));
-        Predicate<BiomeSelectionContext> meadowWetBiomes = BiomeSelectors.includeByKey(ModRegion.MEADOW_CLEARING_KEY, ModRegion.MEADOW_FOREST_KEY);
+        Predicate<BiomeSelectionContext> meadowWetBiomes = BiomeSelectors.includeByKey(BiomeKeys.MEADOW);
         Predicate<BiomeSelectionContext> meadowDryBiomes = BiomeSelectors.includeByKey(BiomeKeys.MEADOW);
 
 

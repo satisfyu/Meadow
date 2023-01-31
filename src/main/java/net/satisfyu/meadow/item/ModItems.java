@@ -82,15 +82,15 @@ public class ModItems {
     public static final Item JUG = registerItem("jug", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item JUG_MILK = registerItem("jug_milk",
-            new DrinkItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+            new JugItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
 
     public static final Item JUG_YARROW_TEA = registerItem("jug_yarrow_tea",
-            new DrinkItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+            new JugItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
 
     public static final Item JUG_JUNIPER_TEA = registerItem("jug_juniper_tea",
-            new DrinkItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+            new JugItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
     public static final Item LAB = registerItem("lab", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item WATERING_CAN = registerItem("watering_can", new WateringCanItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxDamage(25)));
@@ -119,7 +119,6 @@ public class ModItems {
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item OAT = registerItem("oat",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item OAT_OIL = registerItem("oat_oil", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BEAR_FUR = registerItem("bear_fur", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BEAR_FUR_HELMET = registerItem("bear_fur_helmet", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.HEAD, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BEAR_FUR_CHESTPLATE = registerItem("bear_fur_chestplate", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.CHEST, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));

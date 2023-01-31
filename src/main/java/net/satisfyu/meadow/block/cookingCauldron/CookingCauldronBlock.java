@@ -5,8 +5,10 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.sound.SoundCategory;
@@ -14,6 +16,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -28,6 +31,8 @@ import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.sound.ModSounds;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class CookingCauldronBlock extends BlockWithEntity {
 
@@ -150,6 +155,9 @@ public class CookingCauldronBlock extends BlockWithEntity {
                 world.addParticle(ParticleTypes.BUBBLE_POP, d, e , f, r.nextFloat(-0.03f, 0.03f), 0, r.nextFloat(-0.03f, 0.03f));
             }
         }
-
+    }
+    @Override
+    public void appendTooltip(ItemStack itemStack, BlockView world, List< Text > tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.meadow.cauldron.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
