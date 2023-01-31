@@ -1,10 +1,14 @@
 {
   "values": [
     "meadow:alpine_salt_ore",
+    "meadow:alpine_coal_ore",
+    "meadow:alpine_lapis_ore",
+    "meadow:alpine_gold_ore",
+    "meadow:alpine_emerald_ore",
+    "meadow:alpine_iron_ore",
     "meadow:can",
     "meadow:climbing_rope_topmount",
     "meadow:cooking_cauldron",
-    "meadow:wooden_flower_pot",
     "meadow:furnace_cobblestone",
     "meadow:oil_lantern",
     "meadow:stove_tiles_bench",

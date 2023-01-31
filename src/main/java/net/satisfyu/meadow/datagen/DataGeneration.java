@@ -7,7 +7,5 @@ public class DataGeneration implements DataGeneratorEntrypoint {
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
-
-
     }
 }

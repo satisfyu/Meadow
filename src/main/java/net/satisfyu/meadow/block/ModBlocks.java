@@ -137,6 +137,10 @@ public class ModBlocks {
             new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_TRAPDOOR)), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_DOOR = registerBlock("pine_door",
             new DoorBlock(AbstractBlock.Settings.of(Material.WOOD, PINE_PLANKS.getDefaultMapColor()).strength(3.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
+    public static final Block PINE_BARN_TRAPDOOR = registerBlock("pine_barn_trapdoor",
+            new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_TRAPDOOR)), ModItemGroup.ALPINE_SALT);
+    public static final Block PINE_BARN_DOOR = registerBlock("pine_barn_door",
+            new DoorBlock(AbstractBlock.Settings.of(Material.WOOD, PINE_PLANKS.getDefaultMapColor()).strength(3.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_FENCE = registerBurningBlock("pine_fence",
             new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT, 5, 20);
     public static final Block PINE_RAILING = registerBurningBlock("pine_railing",

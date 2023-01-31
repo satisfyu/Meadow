@@ -8,6 +8,11 @@
     "meadow:highland_carpet",
     "meadow:rocky_carpet",
     "meadow:patched_carpet",
-    "meadow:flecked_carpet"
+    "meadow:flecked_carpet",
+    "meadow:umbra_wool",
+    "meadow:highland_wool",
+    "meadow:rocky_wool",
+    "meadow:patched_wool",
+    "meadow:flecked_wool"
   ]
 }
