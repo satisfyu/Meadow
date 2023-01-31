@@ -1,6 +1,6 @@
 <a href="https://www.curseforge.com/minecraft/mc-mods/">
     <p align="center">
-        <img src="https://imgur.com/r1piLtJ.png" alt="Logo" width="1000"/> 
+        <img src="https://imgur.com/43Nn6nW.png" alt="Logo" width="1000"/> 
     </p>
 </a>
 
