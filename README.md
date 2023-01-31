@@ -1,9 +1,13 @@
-# Fabric Example Mod
+<a href="https://www.curseforge.com/minecraft/mc-mods/">
+    <p align="center">
+        <img src="https://imgur.com/r1piLtJ.png" alt="Logo" width="1000"/> 
+    </p>
+</a>
 
-## Setup
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
 
-## License
+A small mod Vanilla+ Mod that aims to improve the meadow biome and adds a new way to create food. It also brings back a few animals from Minecraft:Earth and gives and make them actually useful.
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+
+
+All Rights Reserved
