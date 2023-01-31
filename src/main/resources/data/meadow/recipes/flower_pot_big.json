@@ -1,15 +1,13 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "#B#",
+        "# #",
+        "# #",
         " # "
     ],
     "key": {
         "#": {
             "tag": "meadow:planks"
-        },
-        "B": {
-            "item": "minecraft:dirt"
         }
     },
     "result": {
