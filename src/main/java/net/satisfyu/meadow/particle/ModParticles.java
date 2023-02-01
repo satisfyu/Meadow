@@ -8,8 +8,6 @@ import net.satisfyu.meadow.Meadow;
 
 public class ModParticles {
 
-    public static final DefaultParticleType SPLASH = FabricParticleTypes.simple();
-
     public static final DefaultParticleType CHEESE_SPLASH = FabricParticleTypes.simple();
 
     private static void registerParticle(String id, DefaultParticleType particle) {
@@ -19,7 +17,6 @@ public class ModParticles {
     public static void registerParticles(){
         Meadow.LOGGER.debug("Registering Mod Particles for " + Meadow.MOD_ID);
 
-        registerParticle("splash", SPLASH);
         registerParticle("cheese_splash", CHEESE_SPLASH);
     }
 

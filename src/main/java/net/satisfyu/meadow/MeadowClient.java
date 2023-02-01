@@ -145,7 +145,6 @@ public class MeadowClient implements ClientModInitializer {
     }
 
     private void registerParticles(){
-        ParticleFactoryRegistry.getInstance().register(ModParticles.SPLASH, SplashParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.CHEESE_SPLASH, SplashParticle.Factory::new);
     }
 

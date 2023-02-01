@@ -323,9 +323,6 @@ public class ModBlocks {
     public static final Block CHEESECAKE = registerBlock("cheesecake",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.CHEESECAKE_SLICE, true), ModItemGroup.ALPINE_SALT);
 
-
-
-
     public static final Block PINE_LEAVES_2 = registerBlockWithoutItem("pine_leaves_2",
             new LeavesBlock(FabricBlockSettings.copyOf(SPRUCE_LEAVES)));
 
