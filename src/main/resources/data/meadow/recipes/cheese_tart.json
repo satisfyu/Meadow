@@ -12,7 +12,7 @@
             "item": "minecraft:egg"
         },
         "M": {
-            "tag": "meadow:is_milk"
+            "item": "minecraft:milk_bucket"
         },
         "W": {
             "item": "minecraft:wheat"

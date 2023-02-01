@@ -5,16 +5,12 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -26,8 +22,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.satisfyu.meadow.entity.ModEntities;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class CheeseFormBlock extends BlockWithEntity {
 
@@ -100,17 +94,9 @@ public class CheeseFormBlock extends BlockWithEntity {
     }
 
 
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(VAR, DONE);
     }
-
-    @Override
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.form.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
-    }
-
 }
-
-
-
