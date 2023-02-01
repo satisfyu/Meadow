@@ -3,8 +3,11 @@ package net.satisfyu.meadow.block.custom;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -15,6 +18,8 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.satisfyu.meadow.block.ModBlocks;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ClimbingRopeTopmountBlock extends Block {
     protected static final VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(7, 0, 7, 9, 16, 9), Block.createCuboidShape(6, 8, 6, 10, 12, 10));
@@ -55,5 +60,9 @@ public class ClimbingRopeTopmountBlock extends Block {
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return Block.sideCoversSmallSquare(world, pos.up(), Direction.DOWN) && world.isAir(pos.down());
+    }
+    @Override
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.meadow.rope.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }

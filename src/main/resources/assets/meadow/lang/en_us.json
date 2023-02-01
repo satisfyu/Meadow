@@ -228,13 +228,15 @@
   "meadow.tooltip.fur_armor3":"Knockback Resistance +2",
   "block.meadow.canbeplaced.tooltip": "Can be placed",
   "block.meadow.lantern.tooltip":"Generates a warm, flickering light",
-  "block.meadow.woodcutter.tooltip":"Save some ressources by using",
-  "block.meadow.doormat.tooltip": "Welcome, Visitors! Please clean your Shoes before entering.",
+  "block.meadow.woodcutter.tooltip":"Save some ressources by chopping Logs.",
+  "block.meadow.doormat.tooltip": "Can be placed",
   "block.meadow.camera.tooltip": "Click, click, click. Only for Decoration Purpose.",
   "block.meadow.form.tooltip": "Used to process Cheese Mass into Cheese.",
   "block.meadow.cauldron.tooltip": "Used to process Milk into Cheese Mass. Can be placed on a Stove or attached on a Frame.",
   "block.meadow.rope.tooltip": "Attach it on the bottom of a Block to cope height differences with ease.",
   "block.meadow.rack.tooltip": "Storage for Cheese Wheels.",
+  "block.meadow.frame.tooltip": "Cooking Cauldron can be hung on a frame.",
+
 
   "subtitles.meadow.slurping_bowl": "Slurping Bowl",
   "subtitles.meadow.click_camera": "Clicking Camera",

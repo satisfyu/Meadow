@@ -76,12 +76,12 @@ public class CheeseFormBlock extends Block {
     }
 
     @Override
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.form.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.meadow.form.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
