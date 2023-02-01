@@ -2,14 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
-      "item": "meadow:limestone_brick_slab"
+      "item": "meadow:limestone"
     }
   },
   "pattern": [
-    "#",
-    "#"
+    "###",
+    "###"
   ],
   "result": {
-    "item": "meadow:chiseled_limestone_bricks"
+    "count": 6,
+    "item": "meadow:limestone_wall"
   }
 }

@@ -10,7 +10,7 @@
             "item": "meadow:cobbled_limestone"
         },
         "C": {
-            "item": "minecraft:campfire"
+            "item": "meadow:fire_log"
         }
     },
     "result": {

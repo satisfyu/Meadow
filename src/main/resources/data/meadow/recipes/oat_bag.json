@@ -3,18 +3,15 @@
     "pattern": [
         "# #",
         "# #",
-        "i#i"
+        "###"
     ],
     "key": {
         "#": {
-            "tag": "minecraft:planks"
-        },
-        "i": {
-            "item": "minecraft:iron_ingot"
+            "item": "meadow:oat"
         }
     },
     "result": {
-        "item": "meadow:wooden_cauldron",
+        "item": "meadow:oat_bag",
         "count": 1
     }
 }

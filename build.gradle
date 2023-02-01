@@ -11,14 +11,12 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
 	maven {
 		url = "https://maven.minecraftforge.net/"
 	}
+	maven { url "https://maven.shedaniel.me/" }
+	maven { url "https://maven.architectury.dev/" }
+
 
 	maven {
 		name "terraform wood api, trinkets"
@@ -37,6 +35,12 @@ dependencies {
 
 	modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.minecraft_version}-${project.terrablender_version}"
 	include(modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"))
+
+	// REI Runtime for Fabric
+	modApi "dev.architectury:architectury-fabric:$architectury_version"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"
 
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.

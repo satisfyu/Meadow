@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {"id":"minecraft:wheat","required":false},
+    {"id":"farmersdelight:straw","required":false},
+    {"id":"supplementaries:flax","required":false},
+    {"id":"meadow:oat","required":false}
+  ]
+}
