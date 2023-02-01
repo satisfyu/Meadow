@@ -7,7 +7,8 @@
 		"4": "meadow:block/fondue_roster",
 		"6": "meadow:block/frame_fire",
 		"7": "meadow:block/frame_fire_logs",
-		"8": "meadow:block/fondue_cheese"
+		"8": "meadow:block/fondue_cheese",
+		"particle": "meadow:block/fondue_pan"
 	},
 	"elements": [
 		{
