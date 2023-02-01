@@ -1,6 +1,8 @@
 {
   "textures": [
+    "meadow:cheese_splash_0",
     "meadow:cheese_splash_1",
-    "meadow:cheese_splash_2"
+    "meadow:cheese_splash_2",
+    "meadow:cheese_splash_3"
   ]
 }

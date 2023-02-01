@@ -1,5 +1,7 @@
 {
   "itemGroup.meadow.alpine_salt": "Meadow",
+  "biome.meadow.meadow_forest": "Meadow Forest",
+  "biome.meadow.meadow_clearing": "Meadow Clearing",
   "block.meadow.alpine_salt_ore": "Alpine Salt Ore",
   "block.meadow.alpine_grass": "Alpine Grass",
   "block.meadow.alpine_grass_tall": "Tall Alpine Grass",
@@ -132,12 +134,11 @@
   "block.meadow.meadow.alpine_salt": "Alpine Salt",
   "block.meadow.pine_sign": "Pine Sign",
   "block.meadow.pine_railing": "Pine Railing",
-
   "block.meadow.limestone_brick_wall": "Limestone Brick Wall",
   "block.meadow:cobbled_limestone_wall": "Cobbled Limestone Wall",
   "block.meadow:mossy_cobbled_limestone_wall": "Mossy Cobbled Limestone Wall",
   "block.meadow.limestone_wall": "Limestone Wall",
-  "block.meadow.straw_bed": "Straw",
+  "block.meadow.straw_bed": "Straw Bed",
   "item.meadow.bear_fur": "Bear Fur",
   "item.meadow.bear_fur_helmet": "Bear Fur Helmet",
   "item.meadow.bear_fur_chestplate": "Bear Fur Chestplate",
@@ -222,6 +223,8 @@
   "item.meadow.rocky_sheep_spawn_egg":"Rocky Sheep Spawn Egg",
   "item.meadow.pine_boat": "Pine Boat",
   "item.meadow.pine_chest_boat": "Pine Chest Boat",
+  "item.meadow.bear_stew": "Bear Stew",
+  "item.meadow.raw_bear_meat": "Raw Bear Meat",
   "item.meadow.jug.tooltip": "Removes a negative Status Effect",
   "meadow.tooltip.fur_armor":"Bearhunters Armor:",
   "meadow.tooltip.fur_armor2":"Full set bonus:",
@@ -236,15 +239,11 @@
   "block.meadow.rope.tooltip": "Attach it on the bottom of a Block to cope height differences with ease.",
   "block.meadow.rack.tooltip": "Storage for Cheese Wheels.",
   "block.meadow.frame.tooltip": "Cooking Cauldron can be hung on a frame.",
-
-
   "subtitles.meadow.slurping_bowl": "Slurping Bowl",
   "subtitles.meadow.click_camera": "Clicking Camera",
   "subtitles.meadow.woodcutter": "Woodcutter used",
   "subtitles.meadow.cooking_cauldron": "Cauldron cooking",
-
   "container.woodcutter": "",
   "container.cooking_cauldron": "",
   "container.cheese_form": ""
-
 }
