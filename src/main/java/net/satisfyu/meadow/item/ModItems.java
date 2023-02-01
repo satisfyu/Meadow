@@ -75,6 +75,14 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.6f).build())));
 
+    public static final Item RAW_BEAR_MEAT = registerItem("raw_bear_meat",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+
+    public static final Item BEAR_STEW = registerItem("bear_stew",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.9f).build())));
+
     public static final Item RICOLA = registerItem("ricola",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
