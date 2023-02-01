@@ -2,7 +2,7 @@ package net.satisfyu.meadow.item.custom;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.world.ServerWorld;
@@ -27,18 +27,17 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-public class WateringCanItem extends Item {
-    public WateringCanItem(Settings settings) {
-        super(settings);
+public class WateringCanItem extends BlockItem {
+    public WateringCanItem(Block block, Settings settings) {
+        super(block, settings);
     }
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-
-
-
-        ItemStack stack = context.getStack();
         PlayerEntity playerEntity = context.getPlayer();
+        if(playerEntity == null || playerEntity.isSneaking()) return super.useOnBlock(context);
+        ItemStack stack = context.getStack();
+
         World world = context.getWorld();
         BlockHitResult hitResult = WateringCanItem.raycast(world, playerEntity, RaycastContext.FluidHandling.SOURCE_ONLY);
         if (hitResult.getType() == HitResult.Type.BLOCK) {

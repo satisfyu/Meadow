@@ -201,9 +201,10 @@
 
       "meadow:patch_fern",
       "meadow:small_fir",
-      "meadow:fern/wild_juniper",
-      "meadow:fern/wild_mountain_lavender",
-      "meadow:fern/wild_yarrow",
+      "meadow:meadow_fern",
+      //"meadow:fern/wild_juniper",
+      //"meadow:fern/wild_mountain_lavender",
+      //"meadow:fern/wild_yarrow",
       "meadow:meadow_forest_trees",
       "meadow:fir",
 

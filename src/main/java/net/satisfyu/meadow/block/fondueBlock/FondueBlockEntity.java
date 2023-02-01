@@ -21,14 +21,17 @@ import net.minecraft.world.World;
 import net.satisfyu.meadow.block.ImplementedInventory;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItems;
+import net.satisfyu.meadow.util.Tags;
 import org.jetbrains.annotations.Nullable;
 
 public class FondueBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
     private int maxProgress = 72;
+
+    private int fuelAmount = 0;
 
     public FondueBlockEntity(BlockPos pos, BlockState state) {
         super(ModEntities.FONDUE, pos, state);
@@ -75,12 +78,14 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
         nbt.putInt("fondue.progress", progress);
+        nbt.putInt("fondue.fuelAmount", fuelAmount);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         Inventories.readNbt(nbt, inventory);
         progress = nbt.getInt("fondue.progress");
+        fuelAmount = nbt.getInt("fondue.fuelAmount");
         super.readNbt(nbt);
 
     }
@@ -94,7 +99,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
             return;
         }
 
-        if(hasRecipe(entity)) {
+        if(hasRecipe(entity) && hasFuel(entity)) {
             entity.progress++;
             markDirty(world, blockPos, state);
             if(entity.progress >= entity.maxProgress) {
@@ -106,39 +111,35 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
         }
     }
 
+    private static boolean hasFuel(FondueBlockEntity entity){
+        if(entity.fuelAmount > 0) return true;
+        ItemStack stack = entity.inventory.get(2);
+        if(stack.isIn(Tags.CHEESE_BLOCKS)){
+            entity.fuelAmount = 10;
+            stack.decrement(1);
+            return true;
+        }
+        return false;
+    }
+
     private static void craftItem(FondueBlockEntity entity) {
-        SimpleInventory inventory = new SimpleInventory(entity.size());
-        for (int i = 0; i < entity.size(); i++) {
-            inventory.setStack(i, entity.getStack(i));
-        }
-
-        if(hasRecipe(entity)) {
-            entity.removeStack(0, 1);
-
-            entity.setStack(1, new ItemStack(ModItems.CHEESE_STICK,
-                    entity.getStack(1).getCount() + 1));
-
-            entity.resetProgress();
-        }
+        entity.removeStack(0, 1);
+        entity.setStack(1, new ItemStack(ModItems.CHEESE_STICK, entity.getStack(1).getCount() + 1));
+        entity.resetProgress();
+        entity.fuelAmount--;
     }
 
     private static boolean hasRecipe(FondueBlockEntity entity) {
-        SimpleInventory inventory = new SimpleInventory(entity.size());
-        for (int i = 0; i < entity.size(); i++) {
-            inventory.setStack(i, entity.getStack(i));
-        }
-
         boolean hasBreadInFirstSlot = entity.getStack(0).getItem() == Items.BREAD;
-
-        return hasBreadInFirstSlot && canInsertAmountIntoOutputSlot(inventory)
-                && canInsertItemIntoOutputSlot(inventory, ModItems.CHEESE_STICK);
+        return hasBreadInFirstSlot && canInsertAmountIntoOutputSlot(entity.inventory)
+                && canInsertItemIntoOutputSlot(entity.inventory, ModItems.CHEESE_STICK);
     }
 
-    private static boolean canInsertItemIntoOutputSlot(SimpleInventory inventory, Item output) {
-        return inventory.getStack(1).getItem() == output || inventory.getStack(1).isEmpty();
+    private static boolean canInsertItemIntoOutputSlot(DefaultedList<ItemStack> inventory, Item output) {
+        return inventory.get(1).getItem() == output || inventory.get(1).isEmpty();
     }
 
-    private static boolean canInsertAmountIntoOutputSlot(SimpleInventory inventory) {
-        return inventory.getStack(1).getMaxCount() > inventory.getStack(1).getCount();
+    private static boolean canInsertAmountIntoOutputSlot(DefaultedList<ItemStack> inventory) {
+        return inventory.get(1).getMaxCount() > inventory.get(1).getCount();
     }
 }

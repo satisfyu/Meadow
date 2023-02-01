@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:flower",
+  "config": {
+    "tries": 96,
+    "xz_spread": 6,
+    "y_spread": 2,
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:noise_provider",
+            "seed": 2345,
+            "noise": {
+              "firstOctave": 0,
+              "amplitudes": [
+                1
+              ]
+            },
+            "scale": 0.036833334,
+            "states": [
+              {
+                "Name": "meadow:wild_juniper"
+              },
+              {
+                "Name": "meadow:wild_mountain_lavender"
+              },
+              {
+                "Name": "meadow:wild_yarrow"
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    }
+  }
+}

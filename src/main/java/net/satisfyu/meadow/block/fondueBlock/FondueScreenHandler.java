@@ -17,18 +17,19 @@ public class FondueScreenHandler extends ScreenHandler {
     private final PropertyDelegate propertyDelegate;
 
     public FondueScreenHandler(int syncId, PlayerInventory inventory) {
-        this(syncId, inventory, new SimpleInventory(2), new ArrayPropertyDelegate(2));
+        this(syncId, inventory, new SimpleInventory(3), new ArrayPropertyDelegate(2));
     }
 
     public FondueScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
         super(ModScreenHandlers.FONDUE_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 2);
+        checkSize(inventory, 3);
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
 
-        this.addSlot(new Slot(inventory, 1, 48, 26));
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 3, 124, 28));
+        this.addSlot(new Slot(inventory, 0, 48, 26));
+        this.addSlot(new Slot(inventory, 2, 48, 5));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 1, 124, 28));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);

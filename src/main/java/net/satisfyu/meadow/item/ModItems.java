@@ -1,6 +1,8 @@
 package net.satisfyu.meadow.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -11,6 +13,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.block.custom.FacingBlock;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.custom.*;
 
@@ -93,15 +96,7 @@ public class ModItems {
             new JugItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
     public static final Item LAB = registerItem("lab", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item WATERING_CAN = registerItem("watering_can", new WateringCanItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxDamage(25)));
-
-
-
-
-
-
-
-
+    public static final Item WATERING_CAN_ITEM = registerItem("watering_can", new WateringCanItem(ModBlocks.WATERING_CAN, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxDamage(25)));
     public static final Item MOUNTAIN_LAVENDER_SEEDS = registerItem("mountain_lavender_seeds",
             new AliasedBlockItem(ModBlocks.MOUNTAIN_LAVENDER_CROP,
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
