@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_cheese": {
+    "has_bread": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:cheese"
+              "minecraft:bread"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_cheese",
+      "has_bread",
       "has_the_recipe"
     ]
   ]

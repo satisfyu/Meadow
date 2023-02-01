@@ -2,7 +2,6 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"0": "meadow:block/cheese_rack_side",
-		"1": "meadow:block/cheese_rack_inlay",
 		"particle": "meadow:block/cheese_rack_side"
 	},
 	"elements": [
@@ -15,8 +14,8 @@
 				"east": {"uv": [6, 0, 10, 16], "texture": "#0"},
 				"south": {"uv": [6, 0, 10, 16], "texture": "#0"},
 				"west": {"uv": [6, 0, 10, 16], "texture": "#0"},
-				"up": {"uv": [6, 12, 2, 8], "texture": "#1", "cullface": "up"},
-				"down": {"uv": [0, 0, 4, 4], "texture": "#1", "cullface": "down"}
+				"up": {"uv": [4, 4, 0, 0], "texture": "#0", "cullface": "up"},
+				"down": {"uv": [4, 4, 0, 0], "texture": "#0", "cullface": "down"}
 			}
 		}
 	]

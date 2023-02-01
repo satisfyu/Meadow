@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:lavender_cheese_block"
+      "meadow:window_shutter_0"
     ]
   },
   "criteria": {
-    "has_lavender_cheese_mass": {
+    "has_pine_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:lavender_cheese_mass"
+              "meadow:pine_planks"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:lavender_cheese_block"
+        "recipe": "meadow:window_shutter_0"
       }
     }
   },
   "requirements": [
     [
-      "has_lavender_cheese_mass",
+      "has_pine_planks",
       "has_the_recipe"
     ]
   ]

@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:red_carpet"
+      "meadow:pine_railing"
     ]
   },
   "criteria": {
-    "has_red_wool": {
+    "has_pine_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:red_wool"
+              "meadow:pine_planks"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:red_carpet"
+        "recipe": "meadow:pine_railing"
       }
     }
   },
   "requirements": [
     [
-      "has_red_wool",
+      "has_pine_planks",
       "has_the_recipe"
     ]
   ]

@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:goat_cheese_mass_bucket"
+      "meadow:stove_lid"
     ]
   },
   "criteria": {
-    "has_alpine_salt": {
+    "has_limestone_bricks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:alpine_salt"
+              "meadow:limestone_bricks"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:goat_cheese_mass_bucket"
+        "recipe": "meadow:stove_lid"
       }
     }
   },
   "requirements": [
     [
-      "has_alpine_salt",
+      "has_limestone_bricks",
       "has_the_recipe"
     ]
   ]

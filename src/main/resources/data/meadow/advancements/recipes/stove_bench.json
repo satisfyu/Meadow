@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:oat_cheese_block"
+      "meadow:stove_bench"
     ]
   },
   "criteria": {
-    "has_oat_cheese_mass": {
+    "has_limestone_bricks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:oat_cheese_mass"
+              "meadow:limestone_bricks"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:oat_cheese_block"
+        "recipe": "meadow:stove_bench"
       }
     }
   },
   "requirements": [
     [
-      "has_oat_cheese_mass",
+      "has_limestone_bricks",
       "has_the_recipe"
     ]
   ]

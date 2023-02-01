@@ -15,7 +15,7 @@
     "content=sunflower": {
       "model": "meadow:block/flower_pot_sunflower"
     },
-    "content=eriophorum_tall": {
+    "content=eriophorum": {
       "model": "meadow:block/flower_pot_eriophorum"
   }
 }

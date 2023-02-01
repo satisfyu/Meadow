@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:herbs_cheese_mass_bucket"
+      "meadow:window_1"
     ]
   },
   "criteria": {
-    "has_herbs_ingredients": {
+    "has_glass": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:herbs_ingredients"
+              "minecraft:glass"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:herbs_cheese_mass_bucket"
+        "recipe": "meadow:window_1"
       }
     }
   },
   "requirements": [
     [
-      "has_herbs_ingredients",
+      "has_glass",
       "has_the_recipe"
     ]
   ]

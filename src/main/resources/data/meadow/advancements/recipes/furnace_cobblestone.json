@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_campfire": {
+    "has_fire_log": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:campfire"
+              "meadow:fire_log"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_campfire",
+      "has_fire_log",
       "has_the_recipe"
     ]
   ]

@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:sheep_cheese_block"
+      "meadow:cheese_rack"
     ]
   },
   "criteria": {
-    "has_sheep_cheese_mass": {
+    "has_pine_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:sheep_cheese_mass"
+              "meadow:pine_planks"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:sheep_cheese_block"
+        "recipe": "meadow:cheese_rack"
       }
     }
   },
   "requirements": [
     [
-      "has_sheep_cheese_mass",
+      "has_pine_planks",
       "has_the_recipe"
     ]
   ]

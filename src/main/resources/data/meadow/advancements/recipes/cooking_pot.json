@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:goat_cheese_block"
+      "meadow:cooking_pot"
     ]
   },
   "criteria": {
-    "has_goat_cheese_mass": {
+    "has_iron_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:goat_cheese_mass"
+              "minecraft:iron_ingot"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:goat_cheese_block"
+        "recipe": "meadow:cooking_pot"
       }
     }
   },
   "requirements": [
     [
-      "has_goat_cheese_mass",
+      "has_iron_ingot",
       "has_the_recipe"
     ]
   ]

@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:wooden_goat_cheese_mass_bucket"
+      "meadow:pine_barn_door"
     ]
   },
   "criteria": {
-    "has_alpine_salt": {
+    "has_pine_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:alpine_salt"
+              "meadow:pine_planks"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:wooden_goat_cheese_mass_bucket"
+        "recipe": "meadow:pine_barn_door"
       }
     }
   },
   "requirements": [
     [
-      "has_alpine_salt",
+      "has_pine_planks",
       "has_the_recipe"
     ]
   ]

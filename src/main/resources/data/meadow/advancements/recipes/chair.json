@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_pine_slab": {
+    "has_pine_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:pine_slab"
+              "meadow:pine_planks"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_pine_slab",
+      "has_pine_planks",
       "has_the_recipe"
     ]
   ]
