@@ -5,13 +5,13 @@
       "tag": "minecraft:water_buckets"
     },
     {
-      "item": "meadow:bag_of_yarrow"
+      "item": "meadow:oat"
     }
   ],
   "container": {
-    "item": "meadow:jug"
+    "item": "meadow:wooden_bucket"
   },
   "result": {
-    "item": "meadow:jug_yarrow_tea"
+    "item": "meadow:wooden_oat_milk_bucket"
   }
 }

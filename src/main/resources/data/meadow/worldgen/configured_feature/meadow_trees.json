@@ -3,12 +3,16 @@
   "config": {
     "features": [
       {
-        "chance": 0.55,
+        "chance": 0.3,
         "feature": "meadow:oak_pine_checked"
       },
       {
+        "chance": 0.2,
+        "feature": "meadow:pine_hanging_checked"
+      },
+      {
         "chance": 0.25,
-        "feature": "meadow:old_birch_tree_bees_checked"
+        "feature": "meadow:birch_pine_hanging_checked"
       }
     ],
     "default": "meadow:pine_checked"

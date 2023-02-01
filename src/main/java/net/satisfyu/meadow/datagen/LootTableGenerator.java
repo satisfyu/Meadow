@@ -20,6 +20,9 @@ public class LootTableGenerator extends SimpleFabricLootTableProvider {
     public void accept(BiConsumer<Identifier, LootTable.Builder> identifierBuilderBiConsumer) {
 
         identifierBuilderBiConsumer.accept(new Identifier(Meadow.MOD_ID, "blocks/alpine_birch_log"),
+                BlockLootTableGenerator.drops(Blocks.BIRCH_LOG));
+        identifierBuilderBiConsumer.accept(new Identifier(Meadow.MOD_ID, "blocks/alpine_oak_log"),
                 BlockLootTableGenerator.drops(Blocks.OAK_LOG));
+
     }
 }

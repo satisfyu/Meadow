@@ -233,7 +233,7 @@ public class ModBlocks {
     public static final Block COOKING_POT = registerBlock("cooking_pot",
             new CookingPotBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
     public static final Block FONDUE = registerBlock("fondue",
-            new FondueBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
+            new FondueBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL).luminance(13)), ModItemGroup.ALPINE_SALT);
     public static final Block CAN = registerBlock("can",
             new CanBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(0.8f).nonOpaque().sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
     public static final Block CLIMBING_ROPE = registerBlockWithoutItem("climbing_rope",

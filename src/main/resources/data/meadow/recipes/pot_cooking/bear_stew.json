@@ -1,0 +1,17 @@
+{
+  "type": "meadow:pot_cooking",
+  "ingredients": [
+    {
+      "item": "meadow:raw_bear_meat"
+    },
+    {
+      "item": "meadow:raw_bear_meat"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "meadow:bear_stew"
+  }
+}

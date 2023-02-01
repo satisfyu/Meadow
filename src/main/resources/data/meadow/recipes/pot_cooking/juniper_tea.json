@@ -2,7 +2,7 @@
   "type": "meadow:pot_cooking",
   "ingredients": [
     {
-      "item": "minecraft:water_bucket"
+      "tag": "minecraft:water_buckets"
     },
     {
       "item": "meadow:bag_of_juniper"
