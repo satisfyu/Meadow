@@ -9,6 +9,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.sound.SoundCategory;
@@ -26,12 +27,14 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.custom.FrameBlock;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.sound.ModSounds;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CookingCauldronBlock extends BlockWithEntity {
@@ -160,4 +163,15 @@ public class CookingCauldronBlock extends BlockWithEntity {
     public void appendTooltip(ItemStack itemStack, BlockView world, List< Text > tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.cauldron.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
+    
+    @Override
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> list = new ArrayList<>();
+        list.add(new ItemStack(this));
+        if (state.get(HANGING)) {
+            list.add(new ItemStack(ModBlocks.FRAME));
+        }
+        return list;
+    }
+    
 }
