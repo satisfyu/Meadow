@@ -3,6 +3,9 @@
   "values": [
     "minecraft:smoker",
     "meadow:stove_tiles_wood",
-    "meadow:furnace_cobblestone"
+    "meadow:furnace_cobblestone",
+    "farmersdelight:stove",
+    "vinery:stove",
+    "vinery:wood_fired_oven"
   ]
 }

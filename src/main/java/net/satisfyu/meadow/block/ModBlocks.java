@@ -370,12 +370,6 @@ public class ModBlocks {
     public static final Block W_POTTED_ENZIAN = registerWFPBlock(ENZIAN);
     public static final Block W_POTTED_FIRE_LILY = registerWFPBlock(FIRE_LILY);
     public static final Block W_POTTED_ERIOPHORUM = registerWFPBlock(ERIOPHORUM);
-    public static final Block WINDOW_SHUTTER_1 = registerBlock("window_shutter_1",
-            new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), null);
-    public static final Block WINDOW_SHUTTER_2 = registerBlock("window_shutter_2",
-            new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), null);
-    public static final Block WINDOW_SHUTTER_3 = registerBlock("window_shutter_3",
-            new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), null);
     public static final Block ALPINE_OAK_LOG = registerBurningBlock("alpine_oak_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), null,  5, 5);
     public static final Block ALPINE_BIRCH_LOG = registerBurningBlock("alpine_birch_log",
