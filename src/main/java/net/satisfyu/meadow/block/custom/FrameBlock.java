@@ -12,17 +12,23 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.util.GeneralUtil;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock.HANGING;
 
@@ -30,16 +36,42 @@ public class FrameBlock extends Block {
 
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
-    private static final VoxelShape SHAPE_H = Block.createCuboidShape(3, 0, 3, 13, 21, 13);
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 1.875, 0.4375, 1.0625, 2, 0.5625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 1, 0.4375, 0.0625, 1.875, 0.5625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 0, 0.4375, 0.0625, 1, 0.5625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.9375, 0, 0.4375, 1.0625, 1, 0.5625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.9375, 1, 0.4375, 1.0625, 1.875, 0.5625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 1.875, 0.4375, 0.1875, 2, 0.5625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 1.25, 0.4375, 0.5, 1.9375, 0.5625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 1.25, 0.5, 0.5625, 1.9375, 0.5), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5125, 0, 0.125, 0.5125, 0.75, 0.875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0, 0.4875, 0.875, 0.75, 0.4875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.125, 0.375, 0.1875, 0.875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.625, 0, 0.125, 0.8125, 0.1875, 0.875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.1875, 0.1875, 0.875, 0.375, 0.375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.1875, 0.625, 0.875, 0.375, 0.8125), BooleanBiFunction.OR);
+        return shape;
+    };
+
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE.get(state.get(FACING));
+    }
+
 
     public FrameBlock(Settings settings) {
         super(settings);
     }
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE_H;
-    }
+
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

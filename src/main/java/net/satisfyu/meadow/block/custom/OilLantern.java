@@ -22,8 +22,10 @@ import java.util.List;
 public class OilLantern extends LanternBlock{
 
     public static final IntProperty LUMINANCE = IntProperty.of("luminance", 10, 13);
-    protected static final VoxelShape STANDING_SHAPE = VoxelShapes.union(Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 7.0, 11.0), Block.createCuboidShape(6.0, 7.0, 6.0, 10.0, 9.0, 10.0));
-    protected static final VoxelShape HANGING_SHAPE = VoxelShapes.union(Block.createCuboidShape(5.0, 5.0, 5.0, 11.0, 13.0, 11.0), Block.createCuboidShape(6.0, 13.0, 6.0, 10.0, 15.0, 10.0));
+    protected static final VoxelShape STANDING_SHAPE =
+            VoxelShapes.union(Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 7.0, 11.0), Block.createCuboidShape(6.0, 7.0, 6.0, 10.0, 9.0, 10.0));
+    protected static final VoxelShape HANGING_SHAPE =
+            VoxelShapes.union(Block.createCuboidShape(5.0, 5.0, 5.0, 11.0, 13.0, 11.0), Block.createCuboidShape(6.0, 13.0, 6.0, 10.0, 15.0, 10.0));
 
     public OilLantern(Settings settings) {
         super(settings);

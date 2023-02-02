@@ -4,30 +4,60 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.text.Text;
+import net.minecraft.util.*;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.sound.ModSounds;
+import net.satisfyu.meadow.util.GeneralUtil;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class BowlBlock extends Block {
 
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(3, 0, 3, 13, 4, 13);
+
+
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3, 0, 0.175, 0.7, 0.05, 0.575), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3, 0.05, 0.175, 0.35, 0.2, 0.575), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.35, 0.05, 0.525, 0.65, 0.2, 0.575), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.35, 0.05, 0.175, 0.65, 0.2, 0.225), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.65, 0.05, 0.175, 0.7, 0.2, 0.575), BooleanBiFunction.OR);
+        return shape;
+    };
+
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE.get(state.get(FACING));
+    }
+
 
     public BowlBlock(Settings settings) {
         super(settings);
@@ -53,11 +83,6 @@ public class BowlBlock extends Block {
 
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
-
-    @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return Block.sideCoversSmallSquare(world, pos.down(), Direction.UP);
     }
@@ -76,5 +101,10 @@ public class BowlBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }

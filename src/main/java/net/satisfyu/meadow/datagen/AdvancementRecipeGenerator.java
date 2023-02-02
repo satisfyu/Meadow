@@ -14,7 +14,7 @@ public class AdvancementRecipeGenerator {
     public static void main(String[] args) {
         List<String> putRecipesHere = List.of(
 
-                "minecraft:stick/cheese_stick"
+                "minecraft:blue_dye/enzian"
 
 
         );

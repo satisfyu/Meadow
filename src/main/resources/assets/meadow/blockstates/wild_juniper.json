@@ -1,7 +1,5 @@
 {
   "variants": {
-    "": {
-      "model": "meadow:block/wild_juniper"
-    }
-  }
+    "": [ { "model": "meadow:block/wild_juniper", "weight":1 }
+    ]   }
 }

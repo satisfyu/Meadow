@@ -300,8 +300,6 @@ public class ModBlocks {
             new BowlBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
     public static final Block BOWL_MILK = registerBlock("bowl_milk",
             new BowlBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
-    public static final Block BOWL_MOZRELLA = registerBlock("bowl_mozzarella",
-            new BowlEatBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
     public static final Block BOWL_SWEETBERRIES = registerBlock("bowl_sweetberries",
             new BowlBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
     public static final Block BOWL_EMPTY_NO_FORK = registerBlockWithoutItem("bowl_empty_no_fork",

@@ -1,7 +1,7 @@
 {
   "variants": {
-    "": {
-      "model": "meadow:block/wild_mountain_lavender"
-    }
-  }
+    "": [ { "model": "meadow:block/wild_mountain_lavender", "weight":1 }
+    ,{ "model": "meadow:block/wild_mountain_lavender_1", "weight":1 }
+    ,{ "model": "meadow:block/wild_mountain_lavender_2", "weight":1 }
+    ]   }
 }

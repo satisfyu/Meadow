@@ -43,7 +43,6 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ModBlocks.BOWL_EMPTY, Items.BOWL);
         this.addDrop(ModBlocks.BOWL_HONEY, Items.BOWL);
         this.addDrop(ModBlocks.BOWL_MILK, Items.BOWL);
-        this.addDrop(ModBlocks.BOWL_MOZRELLA, Items.BOWL);
         this.addDrop(ModBlocks.BOWL_EMPTY_NO_FORK, Items.BOWL);
         this.addDrop(ModBlocks.FIR, ModBlocks.FIR_CONE);
         this.addDrop(ModBlocks.WINDOW_SHUTTER_0);

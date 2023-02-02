@@ -1,7 +1,7 @@
 {
   "variants": {
-    "": {
-      "model": "meadow:block/wild_yarrow"
-    }
-  }
+    "": [ { "model": "meadow:block/wild_yarrow", "weight":1 }
+    ,{ "model": "meadow:block/wild_yarrow_1", "weight":1 }
+    ,{ "model": "meadow:block/wild_yarrow_2", "weight":1 }
+    ]   }
 }

@@ -1,6 +1,7 @@
 package net.satisfyu.meadow.item.custom;
 
 import net.minecraft.block.*;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
@@ -9,10 +10,15 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.tag.BiomeTags;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Util;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -20,17 +26,56 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.event.GameEvent;
+import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class WateringCanItem extends BlockItem {
     public WateringCanItem(Block block, Settings settings) {
         super(block, settings);
     }
+
+    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0, 0.25, 0.75, 0.0625, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.75, 0.8125, 0.5, 0.8125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.5, 0.25), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.25, 0.25, 0.5, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.75, 0, 0.25, 0.8125, 0.5, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.3125, 0.25, 0.1875, 0.4375, 0.3125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.3125, 0.6875, 0.9375, 0.4375, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.3125, 0.6875, 0.1875, 0.4375, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.3125, 0.25, 0.9375, 0.4375, 0.3125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.3125, 0.3125, 0.125, 0.4375, 0.6875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.875, 0.3125, 0.3125, 0.9375, 0.4375, 0.6875), BooleanBiFunction.OR);
+        return shape;
+    };
+
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
+
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE.get(state.get(FACING));
+    }
+
+
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
@@ -140,5 +185,13 @@ public class WateringCanItem extends BlockItem {
         if(damage < 25){
             stack.setDamage(damage + 1);
         }
+    }
+
+    @Override
+    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("item.meadow.canline1.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(Text.translatable("item.meadow.canline2.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(Text.translatable("item.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+
     }
 }

@@ -59,6 +59,10 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.6f).build())));
 
+    public static final Item BOWL_MOZRELLA = registerItem("bowl_mozzarella",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.6f).build())));
+
     public static final Item ALPINE_SALT = registerItem("alpine_salt",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 

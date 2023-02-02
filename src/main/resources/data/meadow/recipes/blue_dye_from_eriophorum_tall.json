@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "white_dye",
+  "group": "blue_dye",
   "ingredients": [
     {
-      "item": "meadow:eriophorum"
+      "item": "meadow:eriophorum_tall"
     }
   ],
   "result": {
-    "item": "minecraft:white_dye"
+    "item": "minecraft:blue_dye"
   }
 }

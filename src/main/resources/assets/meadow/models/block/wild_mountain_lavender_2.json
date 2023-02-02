@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "meadow:block/wild_mountain_lavender_2"
+  }
+}
