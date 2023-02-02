@@ -1,0 +1,62 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "meadow:fire_log",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "stage": "1"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "meadow:fire_log",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "stage": "2"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "meadow:fire_log",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "stage": "3"
+                  }
+                }
+              ],
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "meadow:fire_log"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

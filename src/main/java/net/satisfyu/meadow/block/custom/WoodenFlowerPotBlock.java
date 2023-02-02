@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -24,8 +25,7 @@ import net.minecraft.world.event.GameEvent;
 import java.util.List;
 import java.util.Map;
 
-public class WoodenFlowerPotBlock
-        extends Block {
+public class WoodenFlowerPotBlock extends Block {
     private static final Map<Block, Block> WOODEN_CONTENT_TO_POTTED = Maps.newHashMap();
     protected static final VoxelShape SHAPE = Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 6.0, 11.0);
     private final Block content;
@@ -98,5 +98,9 @@ public class WoodenFlowerPotBlock
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
+    
+    public ItemConvertible getContent() {
+        return this.content;
+    }
+    
 }
-
