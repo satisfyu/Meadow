@@ -24,7 +24,7 @@ public class ModScreenHandlers {
         CHEESE_FORM_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(Meadow.MOD_ID, "cheese_form"), new ScreenHandlerType<>(CheeseFormScreenHandler::new));
         WOODCUTTOR_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(Meadow.MOD_ID, "woodcutter"), new ScreenHandlerType<>(WoodcuttorScreenHandler::new));
         COOKING_CAULDRON_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(Meadow.MOD_ID, "cooking_cauldron"), new ScreenHandlerType<>(CookingCauldronScreenHandler::new));
-       FONDUE_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(Meadow.MOD_ID, "fondue"), new ScreenHandlerType<>(FondueScreenHandler::new));
+        FONDUE_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(Meadow.MOD_ID, "fondue"), new ScreenHandlerType<>(FondueScreenHandler::new));
 
         COOKING_POT_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, new Identifier(Meadow.MOD_ID, "cooking_pot"), new ScreenHandlerType<>(CookingPotScreenHandler::new));
     }

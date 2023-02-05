@@ -34,8 +34,6 @@ import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 import java.util.Arrays;
 import java.util.List;
 
-import static net.minecraft.block.Blocks.AIR;
-import static net.minecraft.block.Blocks.SPRUCE_LEAVES;
 
 public class ModBlocks {
 
@@ -213,7 +211,7 @@ public class ModBlocks {
     public static final Block DOORMAT = registerBlock("doormat",
             new DoormatBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
     public static final Block FLOWER_POT_BIG = registerBlock("flower_pot_big", new WoodenBigFlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)), ModItemGroup.ALPINE_SALT);
-    public static final Block WOODEN_FLOWER_POT = registerBlock("wooden_flower_pot", new WoodenFlowerPotBlock(AIR, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
+    public static final Block WOODEN_FLOWER_POT = registerBlock("wooden_flower_pot", new WoodenFlowerPotBlock(Blocks.AIR, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESE_FORM = registerBlock("cheese_form",
             new CheeseFormBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
     public static final Block WOODEN_CAULDRON = registerBlock("wooden_cauldron",
@@ -306,6 +304,7 @@ public class ModBlocks {
             new BowlBlock(bowlSettings()));
     public static final Block CHEESE_BLOCK = registerBlock("cheese_block",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_CHEESE, false), ModItemGroup.ALPINE_SALT);
+
     public static final Block SHEEP_CHEESE_BLOCK = registerBlock("sheep_cheese_block",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_SHEEP_CHEESE, false), ModItemGroup.ALPINE_SALT);
     public static final Block OAT_CHEESE_BLOCK = registerBlock("oat_cheese_block",
@@ -322,7 +321,7 @@ public class ModBlocks {
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.CHEESECAKE_SLICE, true), ModItemGroup.ALPINE_SALT);
 
     public static final Block PINE_LEAVES_2 = registerBlockWithoutItem("pine_leaves_2",
-            new LeavesBlock(FabricBlockSettings.copyOf(SPRUCE_LEAVES)));
+            new LeavesBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_LEAVES)));
 
     public static final Block FIR = registerBlockWithoutItem("fir",
             new Block(FabricBlockSettings.of(Material.LEAVES).breakInstantly()));

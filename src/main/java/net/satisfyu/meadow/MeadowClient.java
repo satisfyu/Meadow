@@ -7,11 +7,19 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.SpriteIdentifier;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormScreen;
@@ -46,9 +54,14 @@ import net.satisfyu.meadow.entity.custom.sheep.inky.InkySheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.long_nosed.LongNosedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepRenderer;
+import net.satisfyu.meadow.item.ModItems;
+import net.satisfyu.meadow.item.custom.FurArmorItem;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 import static net.satisfyu.meadow.Meadow.*;
 
@@ -223,6 +236,27 @@ public class MeadowClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.CHICKEN3, Chicken3Renderer::new);
         EntityModelLayerRegistry.registerModelLayer(CHICKEN3_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
+    }
+
+    public static void appendToolTip(@NotNull List<Text> tooltip){
+        PlayerEntity player = MinecraftClient.getInstance().player;
+        if (player == null) return;
+        ItemStack helmet = player.getEquippedStack(EquipmentSlot.HEAD);
+        ItemStack chestplate = player.getEquippedStack(EquipmentSlot.CHEST);
+        ItemStack leggings = player.getEquippedStack(EquipmentSlot.LEGS);
+        ItemStack boots = player.getEquippedStack(EquipmentSlot.FEET);
+        tooltip.add(Text.of(""));
+        tooltip.add(Text.of(Formatting.DARK_GREEN + I18n.translate("meadow.tooltip.fur_armor")));
+        tooltip.add(Text.of((helmet != null && helmet.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ModItems.BEAR_FUR_HELMET.getName().getString() + "]"));
+        tooltip.add(Text.of((chestplate != null && chestplate.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ModItems.BEAR_FUR_CHESTPLATE.getName().getString() + "]"));
+        tooltip.add(Text.of((leggings != null && leggings.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ModItems.BEAR_FUR_LEGGINGS.getName().getString() + "]"));
+        tooltip.add(Text.of((boots != null && boots.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ModItems.BEAR_FUR_BOOTS.getName().getString() + "]"));
+        tooltip.add(Text.of(""));
+        tooltip.add(Text.of(Formatting.GRAY + I18n.translate("meadow.tooltip.fur_armor2")));
+        tooltip.add(Text.of(((helmet != null && helmet.getItem() instanceof FurArmorItem &&
+                chestplate != null && chestplate.getItem() instanceof FurArmorItem &&
+                leggings != null && leggings.getItem() instanceof FurArmorItem &&
+                boots != null && boots.getItem() instanceof FurArmorItem) ? Formatting.DARK_GREEN.toString() : Formatting.GRAY.toString()) + I18n.translate("meadow.tooltip.fur_armor3")));
     }
 
 }
