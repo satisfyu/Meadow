@@ -37,6 +37,10 @@ To craft Cheese you will need following Ingredients: Salt, Lab and Milk. You can
 Flecked and Patched Sheeps can be found nearly everything where a regular Sheep will spawn too. Fuzzy Sheeps can mostly be found in Dark Forest or Birch Forest Biomes. Horned Sheeps do like cold biomes: If there is snow your chance finding a Horned Sheep will be certainly higher. Rocky Sheeps therefore can be found on rough terrain biomes. Inky Sheeps can be found in meadow biomes such as Long Nosed Sheeps. 
 
 
+## **And what about Cows?** 
+You can find Highland Cattles and Dairy Cows in the Meadow Biome. Sunset and Cream Cows as well as Buffalos can mostly be found in warm biomes such as the Savanna, Savanna Plateau. If you're looking especially for Buffalos just keep an eye on water resources. Cookie and Umbra Cows can be found in Forests and all the other Cows do share Spawn Locations with Vanilla Cows. 
+Anything special about these cows? Buffalo Milk can only be optained from Buffalos, Umbra and Highland Cattles can be sheared.
+
 **Meadow requires Terrablender to work and should therefore be compatible with most WorldGen Mods such as WiliamWythersOverhauledOverworld or Terralith.**
 
 

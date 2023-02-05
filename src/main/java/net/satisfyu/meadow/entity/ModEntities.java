@@ -215,7 +215,7 @@ public class ModEntities {
         registerCow(ALBINO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(CREAM_COW, BiomeSelectors.includeByKey(BiomeKeys.BADLANDS).or(BiomeSelectors.tag(BiomeTags.IS_BADLANDS)));
         registerCow(DAIRY_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
-        registerCow(WATER_BUFFALO, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST));
+        registerCow(WATER_BUFFALO, BiomeSelectors.includeByKey(BiomeKeys.SAVANNA, BiomeKeys.SAVANNA_PLATEAU, BiomeKeys.WINDSWEPT_SAVANNA).or(BiomeSelectors.tag(BiomeTags.IS_RIVER)));
         registerCow(DARK_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(PINTO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(SUNSET_COW, BiomeSelectors.includeByKey(BiomeKeys.SAVANNA).or(BiomeSelectors.tag(BiomeTags.IS_SAVANNA)));

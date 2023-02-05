@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:stove_tiles_bench"
+      "meadow:oat_ball"
     ]
   },
   "criteria": {
-    "has_iron_ingot": {
+    "has_oat": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:iron_ingot"
+              "meadow:oat"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:stove_tiles_bench"
+        "recipe": "meadow:oat_ball"
       }
     }
   },
   "requirements": [
     [
-      "has_iron_ingot",
+      "has_oat",
       "has_the_recipe"
     ]
   ]

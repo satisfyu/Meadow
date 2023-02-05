@@ -14,7 +14,10 @@ public class AdvancementRecipeGenerator {
     public static void main(String[] args) {
         List<String> putRecipesHere = List.of(
 
-                "minecraft:blue_dye/enzian"
+                "oat/oat_ball",
+                "oat/oatblock_rug",
+                "oat/oat_bag",
+                "oat/straw_bed"
 
 
         );

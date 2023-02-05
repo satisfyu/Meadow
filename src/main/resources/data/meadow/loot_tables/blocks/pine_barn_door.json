@@ -11,7 +11,16 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "meadow:wooden_cauldron"
+          "conditions": [
+            {
+              "block": "meadow:pine_door",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "meadow:pine_barn_door"
         }
       ],
       "rolls": 1.0

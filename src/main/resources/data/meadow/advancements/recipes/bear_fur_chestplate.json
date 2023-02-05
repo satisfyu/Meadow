@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:stove_tiles"
+      "meadow:bear_fur_chestplate"
     ]
   },
   "criteria": {
-    "has_iron_ingot": {
+    "has_bear_fur": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:iron_ingot"
+              "meadow:bear_fur"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:stove_tiles"
+        "recipe": "meadow:bear_fur_chestplate"
       }
     }
   },
   "requirements": [
     [
-      "has_iron_ingot",
+      "has_bear_fur",
       "has_the_recipe"
     ]
   ]

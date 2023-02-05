@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:oat_bag"
+    ]
+  },
+  "criteria": {
+    "has_oat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:oat"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:oat_bag"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_oat",
+      "has_the_recipe"
+    ]
+  ]
+}

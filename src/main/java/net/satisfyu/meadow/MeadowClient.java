@@ -9,7 +9,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.entity.model.*;
@@ -30,13 +29,13 @@ import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntityModel;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntityRenderer;
+import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntityModel;
+import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntityRenderer;
 import net.satisfyu.meadow.entity.custom.chair.ChairEntityRenderer;
 import net.satisfyu.meadow.entity.custom.chicken.chicken1.Chicken1Renderer;
 import net.satisfyu.meadow.entity.custom.chicken.chicken2.Chicken2Renderer;
 import net.satisfyu.meadow.entity.custom.chicken.chicken3.Chicken3Renderer;
 import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowRenderer;
-import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntityModel;
-import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntityRenderer;
 import net.satisfyu.meadow.entity.custom.cow.cookie_cow.CookieCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.cream_cow.CreamCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.dairy_cow.DairyCowRenderer;
@@ -63,7 +62,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static net.satisfyu.meadow.Meadow.*;
+import static net.satisfyu.meadow.Meadow.MOD_ID;
+import static net.satisfyu.meadow.Meadow.PINE_ID;
 
 public class MeadowClient implements ClientModInitializer {
 
@@ -258,5 +258,10 @@ public class MeadowClient implements ClientModInitializer {
                 leggings != null && leggings.getItem() instanceof FurArmorItem &&
                 boots != null && boots.getItem() instanceof FurArmorItem) ? Formatting.DARK_GREEN.toString() : Formatting.GRAY.toString()) + I18n.translate("meadow.tooltip.fur_armor3")));
     }
+
+    public static PlayerEntity getClientPlayer() {
+        return MinecraftClient.getInstance().player;
+    }
+
 
 }
