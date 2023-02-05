@@ -42,7 +42,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:wheat_seeds"
+              "name": "meadow:oat_seeds"
             }
           ]
         }

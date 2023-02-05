@@ -45,6 +45,7 @@
     "meadow:umbra_bed",
     "meadow:shelf",
     "meadow:woodcutter",
-    "meadow:cheese_form"
+    "meadow:cheese_form",
+    "#meadow:cauldrons"
   ]
 }
