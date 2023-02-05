@@ -189,7 +189,7 @@ public class ModItems {
 
     public static final Item ALBINO_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ALBINO_COW, 16777215, 16721408);
 
-    public static final Item ASHEN_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.ASHEN_COW, 4473924, 8026746);
+    public static final Item WATER_BUFFALO_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.WATER_BUFFALO, 4473924, 8026746);
 
     public static final Item COOKIE_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.COOKIE_COW, 16757823, 16777215);
 

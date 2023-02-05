@@ -20,13 +20,15 @@ import net.satisfyu.meadow.block.cookingPot.CookingPotScreen;
 import net.satisfyu.meadow.block.fondueBlock.FondueScreen;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterScreen;
 import net.satisfyu.meadow.entity.ModEntities;
-import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearRenderer;
-import net.satisfyu.meadow.entity.custom.chair.ChairRenderer;
+import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntityModel;
+import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntityRenderer;
+import net.satisfyu.meadow.entity.custom.chair.ChairEntityRenderer;
 import net.satisfyu.meadow.entity.custom.chicken.chicken1.Chicken1Renderer;
 import net.satisfyu.meadow.entity.custom.chicken.chicken2.Chicken2Renderer;
 import net.satisfyu.meadow.entity.custom.chicken.chicken3.Chicken3Renderer;
 import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowRenderer;
-import net.satisfyu.meadow.entity.custom.cow.ashen_cow.AshenCowRenderer;
+import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntityModel;
+import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntityRenderer;
 import net.satisfyu.meadow.entity.custom.cow.cookie_cow.CookieCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.cream_cow.CreamCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.dairy_cow.DairyCowRenderer;
@@ -44,10 +46,8 @@ import net.satisfyu.meadow.entity.custom.sheep.inky.InkySheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.long_nosed.LongNosedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepRenderer;
-import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
-import net.satisfyu.meadow.recipes.pot.CookingPotRecipe;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 
 import static net.satisfyu.meadow.Meadow.*;
@@ -82,7 +82,7 @@ public class MeadowClient implements ClientModInitializer {
     public static final EntityModelLayer HIGHLAND_CATTLE_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "highland_cattle"), "head");
 
     public static final EntityModelLayer ALBINO_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "albino_cow"), "head");
-    public static final EntityModelLayer ASHEN_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "ashen_cow"), "head");
+    public static final EntityModelLayer WATER_BUFFALO_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "water_buffalo"), "head");
 
     public static final EntityModelLayer COOKIE_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "cookie_cow"), "head");
 
@@ -104,8 +104,6 @@ public class MeadowClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-
-
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.WOODCUTTER, ModBlocks.OAT_CROP, ModBlocks.JUNIPER_CROP, ModBlocks.YARROW_CROP, ModBlocks.MOUNTAIN_LAVENDER_CROP, ModBlocks.ALPINE_GRASS, ModBlocks.ALPINE_GRASS_TALL,
                 ModBlocks.PINE_DOOR, ModBlocks.PINE_TRAPDOOR, ModBlocks.DELPHINIUM, ModBlocks.ALPINE_POPPY, ModBlocks.SAXIFRAGE,
                 ModBlocks.ENZIAN, ModBlocks.COOKING_CAULDRON, ModBlocks.FRAME, ModBlocks.TABLE, ModBlocks.FIRE_LOG, ModBlocks.ERIOPHORUM,
@@ -128,14 +126,13 @@ public class MeadowClient implements ClientModInitializer {
         registerSheeps();
         registerParticles();
         registerChicken();
+        registerOtherEntities();
 
-        EntityRendererRegistry.register(ModEntities.BROWN_BEAR, BrownBearRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(BROWN_BEAR_MODEL_LAYER, PolarBearEntityModel::getTexturedModelData);
-        EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
+
         TerraformBoatClientHelper.registerModelLayers(PINE_ID);
     }
 
-    public static void registerClientScreens(){
+    private static void registerClientScreens(){
         HandledScreens.register(ModScreenHandlers.CHEESE_FORM_SCREEN_HANDLER, CheeseFormScreen::new);
         HandledScreens.register(ModScreenHandlers.WOODCUTTOR_SCREEN_HANDLER, WoodcutterScreen::new);
         HandledScreens.register(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
@@ -148,7 +145,14 @@ public class MeadowClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(ModParticles.CHEESE_SPLASH, SplashParticle.Factory::new);
     }
 
-    private void registerCows(){
+
+    private static void registerOtherEntities(){
+        EntityRendererRegistry.register(ModEntities.BROWN_BEAR, BrownBearEntityRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(BROWN_BEAR_MODEL_LAYER, BrownBearEntityModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.CHAIR, ChairEntityRenderer::new);
+    }
+
+    private static void registerCows(){
         EntityRendererRegistry.register(ModEntities.UMBRA_COW, UmbraCowRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(UMBRA_COW_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
 
@@ -158,8 +162,8 @@ public class MeadowClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.ALBINO_COW, AlbinoCowRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ALBINO_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
 
-        EntityRendererRegistry.register(ModEntities.ASHEN_COW, AshenCowRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(ASHEN_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.WATER_BUFFALO, WaterBuffaloEntityRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(WATER_BUFFALO_MODEL_LAYER, WaterBuffaloEntityModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.COOKIE_COW, CookieCowRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(COOKIE_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);

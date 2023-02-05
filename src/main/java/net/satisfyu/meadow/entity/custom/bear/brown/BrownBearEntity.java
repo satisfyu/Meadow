@@ -24,6 +24,6 @@ public class BrownBearEntity extends PolarBearEntity {
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(1, new AttackGoal(this));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, AnimalEntity.class, true, livingEntity -> livingEntity != this));
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, AnimalEntity.class, true, livingEntity -> livingEntity != this && !livingEntity.getType().equals(ModEntities.BROWN_BEAR)));
     }
 }

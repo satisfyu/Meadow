@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.custom.cow.ashen_cow;
+package net.satisfyu.meadow.entity.custom.buffalo.water_buffalo;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.CowEntity;
@@ -16,14 +16,14 @@ import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItems;
 
 
-public class AshenCowEntity extends CowEntity {
-    public AshenCowEntity(EntityType<? extends CowEntity> entityType, World world) {
+public class WaterBuffaloEntity extends CowEntity {
+    public WaterBuffaloEntity(EntityType<? extends CowEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     public CowEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        return ModEntities.ASHEN_COW.create(serverWorld);
+        return ModEntities.WATER_BUFFALO.create(serverWorld);
     }
 
     @Override
@@ -39,6 +39,9 @@ public class AshenCowEntity extends CowEntity {
             return super.interactMob(player, hand);
         }
     }
+
+    @Override
+    public int getMaxHeadRotation() {
+        return 35;
+    }
 }
-
-

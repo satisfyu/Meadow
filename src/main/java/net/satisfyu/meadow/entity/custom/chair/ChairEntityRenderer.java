@@ -5,10 +5,10 @@ import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.Identifier;
 
-public class ChairRenderer extends EntityRenderer<ChairEntity> {
+public class ChairEntityRenderer extends EntityRenderer<ChairEntity> {
 
 
-    public ChairRenderer(EntityRendererFactory.Context ctx) {
+    public ChairEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
     }
 

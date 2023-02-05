@@ -23,8 +23,7 @@ import static terrablender.api.ParameterUtils.Weirdness.*;
 
 public class ModRegion extends Region {
 
-    public static final RegistryKey<Biome> MEADOW_CLEARING_KEY = register("meadow_clearing");
-    public static final RegistryKey<Biome> MEADOW_FOREST_KEY = register("meadow_forest");
+
     public ModRegion(Identifier name, int weight) {
         super(name, RegionType.OVERWORLD, weight);
     }
@@ -54,7 +53,7 @@ public class ModRegion extends Region {
                     .weirdness(HIGH_SLICE_NORMAL_ASCENDING, PEAK_NORMAL, HIGH_SLICE_NORMAL_DESCENDING, MID_SLICE_NORMAL_DESCENDING, MID_SLICE_VARIANT_ASCENDING, HIGH_SLICE_VARIANT_ASCENDING, PEAK_VARIANT, HIGH_SLICE_VARIANT_DESCENDING, MID_SLICE_VARIANT_DESCENDING)
                     .build();
 
-            meadowForestPoints.forEach(point -> builder.replaceBiome(point, MEADOW_FOREST_KEY));
+            meadowForestPoints.forEach(point -> builder.replaceBiome(point, ModSurfaceRules.MEADOW_FOREST_KEY));
 
             List<MultiNoiseUtil.NoiseHypercube> meadowClearingPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(MultiNoiseUtil.ParameterRange.of(-0.45F,-0.15F), MultiNoiseUtil.ParameterRange.of(-0.15F, 0.2F))
@@ -65,7 +64,7 @@ public class ModRegion extends Region {
                     .weirdness(HIGH_SLICE_NORMAL_ASCENDING, HIGH_SLICE_NORMAL_DESCENDING, MID_SLICE_NORMAL_DESCENDING, MID_SLICE_VARIANT_ASCENDING, HIGH_SLICE_VARIANT_ASCENDING, HIGH_SLICE_VARIANT_DESCENDING, MID_SLICE_VARIANT_DESCENDING)
                     .build();
 
-            meadowClearingPoints.forEach(point -> builder.replaceBiome(point, MEADOW_CLEARING_KEY));
+            meadowClearingPoints.forEach(point -> builder.replaceBiome(point, ModSurfaceRules.MEADOW_CLEARING_KEY));
         });
     }
 
@@ -74,9 +73,7 @@ public class ModRegion extends Region {
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, makeRules());
     }
 
-    private static RegistryKey<Biome> register(String name) {
-        return RegistryKey.of(Registry.BIOME_KEY, new Identifier(MOD_ID, name));
-    }
+
 
 
 }

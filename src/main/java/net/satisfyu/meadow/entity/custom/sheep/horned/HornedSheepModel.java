@@ -5,21 +5,8 @@ import net.minecraft.client.render.entity.model.QuadrupedEntityModel;
 import net.minecraft.client.render.entity.model.SheepEntityModel;
 
 public class HornedSheepModel<T extends HornedSheepEntity> extends SheepEntityModel<T> {
-    /* This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-    private final ModelPart body;
-    private final ModelPart head;
-    private final ModelPart horn;
-    private float headXRot;
-
-     */
-
     public HornedSheepModel(ModelPart root) {
         super(root);
-        /*
-        this.body = root.getChild("body");
-        this.head = root.getChild("head");
-        this.horn = this.head.getChild("horn");
-         */
     }
 
     public static TexturedModelData getTexturedModelData() {

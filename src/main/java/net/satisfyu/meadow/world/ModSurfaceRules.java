@@ -6,12 +6,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.satisfyu.meadow.block.ModBlocks;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
-import static net.satisfyu.meadow.world.ModRegion.MEADOW_CLEARING_KEY;
-import static net.satisfyu.meadow.world.ModRegion.MEADOW_FOREST_KEY;
 
 public class ModSurfaceRules {
 
@@ -27,6 +26,14 @@ public class ModSurfaceRules {
     private static final MaterialRules.MaterialRule COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
 
     private static final MaterialRules.MaterialRule DIRT_BLOCK = makeStateRule(Blocks.DIRT);
+
+
+    public static final RegistryKey<Biome> MEADOW_CLEARING_KEY = createBiomeKey("meadow_clearing");
+    public static final RegistryKey<Biome> MEADOW_FOREST_KEY = createBiomeKey("meadow_forest");
+
+    private static RegistryKey<Biome> createBiomeKey(String name) {
+        return RegistryKey.of(Registry.BIOME_KEY, new Identifier(MOD_ID, name));
+    }
 
 
 

@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 import java.util.Map;
 
-public class MeadowSheepEntity extends SheepEntity{
+public class MeadowSheepEntity extends SheepEntity {
 
     private final Block woolBlock;
 

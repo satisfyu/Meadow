@@ -31,7 +31,7 @@ import net.satisfyu.meadow.entity.custom.chicken.chicken1.Chicken1Entity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken2.Chicken2Entity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken3.Chicken3Entity;
 import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowEntity;
-import net.satisfyu.meadow.entity.custom.cow.ashen_cow.AshenCowEntity;
+import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntity;
 import net.satisfyu.meadow.entity.custom.cow.cookie_cow.CookieCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.cream_cow.CreamCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.dairy_cow.DairyCowEntity;
@@ -48,6 +48,7 @@ import net.satisfyu.meadow.entity.custom.sheep.long_nosed.LongNosedSheepEntity;
 import net.satisfyu.meadow.entity.custom.sheep.patched.PatchedSheepEntity;
 import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepEntity;
 import net.satisfyu.meadow.mixin.SpawnMobAccessor;
+import net.satisfyu.meadow.world.ModSurfaceRules;
 
 import java.util.function.Predicate;
 
@@ -63,7 +64,7 @@ public class ModEntities {
 
     public static final EntityType<AlbinoCowEntity> ALBINO_COW = Registry.register(Registry.ENTITY_TYPE,
             new Identifier(MOD_ID, "albino_cow"),
-            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AlbinoCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AlbinoCowEntity::new).dimensions(EntityDimensions.fixed(1.4f, 1.4f)).build()
     );
 
     public static final EntityType<BrownBearEntity> BROWN_BEAR = Registry.register(Registry.ENTITY_TYPE,
@@ -72,9 +73,9 @@ public class ModEntities {
     );
 
 
-    public static final EntityType<AshenCowEntity> ASHEN_COW = Registry.register(Registry.ENTITY_TYPE,
-            new Identifier(MOD_ID, "ashen_cow"),
-            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AshenCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    public static final EntityType<WaterBuffaloEntity> WATER_BUFFALO = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "water_buffalo"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, WaterBuffaloEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
     );
 
     public static final EntityType<CookieCowEntity> COOKIE_COW = Registry.register(Registry.ENTITY_TYPE,
@@ -192,7 +193,7 @@ public class ModEntities {
 
         FabricDefaultAttributeRegistry.register(BROWN_BEAR, PolarBearEntity.createPolarBearAttributes());
         SpawnMobAccessor.callRegister(BROWN_BEAR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.MEADOW), SpawnGroup.CREATURE, BROWN_BEAR, 1, 1, 2);
+        BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModSurfaceRules.MEADOW_CLEARING_KEY, ModSurfaceRules.MEADOW_FOREST_KEY, BiomeKeys.MEADOW), SpawnGroup.CREATURE, BROWN_BEAR, 1, 1, 2);
 
 
         registerChicken(CHICKEN1, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
@@ -214,7 +215,7 @@ public class ModEntities {
         registerCow(ALBINO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(CREAM_COW, BiomeSelectors.includeByKey(BiomeKeys.BADLANDS).or(BiomeSelectors.tag(BiomeTags.IS_BADLANDS)));
         registerCow(DAIRY_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
-        registerCow(ASHEN_COW, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST));
+        registerCow(WATER_BUFFALO, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST));
         registerCow(DARK_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(PINTO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(SUNSET_COW, BiomeSelectors.includeByKey(BiomeKeys.SAVANNA).or(BiomeSelectors.tag(BiomeTags.IS_SAVANNA)));
