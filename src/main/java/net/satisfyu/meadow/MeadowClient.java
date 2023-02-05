@@ -7,11 +7,13 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.SpriteIdentifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormScreen;
@@ -224,5 +226,10 @@ public class MeadowClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.CHICKEN3, Chicken3Renderer::new);
         EntityModelLayerRegistry.registerModelLayer(CHICKEN3_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
     }
+
+    public static PlayerEntity getClientPlayer() {
+        return MinecraftClient.getInstance().player;
+    }
+
 
 }
