@@ -28,7 +28,7 @@ public class CookingCauldronScreen extends HandledScreen<CookingCauldronScreenHa
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
-        k = this.handler.getSyncedNumber() / (getTimeToCook() / 22);
+        k = this.handler.getSyncedNumber() / (CookingCauldronBlockEntity.getTimeToCook() / 22);
         this.drawTexture(matrices, x + 90, y + 26, 176, 15, k + 1, 16);
         if(handler.getIsCooking()) this.drawTexture(matrices, x + 124, y + 51, 176, 0, 16, 14);
     }
@@ -40,9 +40,7 @@ public class CookingCauldronScreen extends HandledScreen<CookingCauldronScreenHa
         drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
 
-    public static int getTimeToCook(){
-        return 6000;
-    }
+
 
 
 

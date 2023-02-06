@@ -146,6 +146,10 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
         }
     }
 
+    public static int getTimeToCook(){
+        return 6000;
+    }
+
     public static int getVar(Item outputItem){
         if(outputItem.equals(ModItems.CHEESE_MASS) || outputItem.equals(ModItems.WOODEN_CHEESE_MASS)) return 2;
         else if(outputItem.equals(ModItems.BUFFALO_CHEESE_MASS) || outputItem.equals(ModItems.WOODEN_BUFFALO_CHEESE_MASS)) return 1;
