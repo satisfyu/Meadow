@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.block.ImplementedInventory;
 import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
@@ -28,7 +29,6 @@ import java.util.Optional;
 
 import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock.DONE;
 import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock.VAR;
-import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen.getTimeToCook;
 
 public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
 
@@ -89,7 +89,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHan
                 if(!state.get(CheeseFormBlock.DONE) && state.get(VAR) > 0){
                     syncedInt++;
                 }
-                if(syncedInt >= getTimeToCook()){
+                if(syncedInt >= CookingCauldronBlockEntity.getTimeToCook()){
                     done = true;
                     Item bucket = items.get(0).isIn(Tags.WOODEN_BUCKETS) ? ModItems.WOODEN_BUCKET : Items.BUCKET;
                     items.set(0, new ItemStack(bucket));
