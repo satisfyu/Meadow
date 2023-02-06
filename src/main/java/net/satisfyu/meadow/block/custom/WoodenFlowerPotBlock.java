@@ -21,6 +21,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.GameEvent;
+import net.satisfyu.meadow.block.ModBlocks;
 
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,7 @@ public class WoodenFlowerPotBlock extends Block {
                 } else if (!player.giveItemStack(itemStack2)) {
                     player.dropItem(itemStack2, false);
                 }
-                world.setBlockState(pos, Blocks.FLOWER_POT.getDefaultState(), Block.NOTIFY_ALL);
+                world.setBlockState(pos, ModBlocks.WOODEN_FLOWER_POT.getDefaultState(), Block.NOTIFY_ALL);
             }
             world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
             return ActionResult.success(world.isClient);

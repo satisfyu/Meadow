@@ -161,8 +161,6 @@ public class ModBlocks {
             new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block BENCH = registerBlock("bench",
             new BenchBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
-    public static final Block WINDOW_SHUTTER_0 = registerBlock("window_shutter_0",
-            new WindowShutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block WINDOW = registerBlock("window",
             new WindowBlock(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block WINDOW_2 = registerBlock("window_2",
@@ -329,17 +327,17 @@ public class ModBlocks {
     public static final Block POTTED_ENZIAN = registerBlockWithoutItem("potted_enzian",
             new FlowerPotBlock(ModBlocks.ENZIAN, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY)));
     public static final Block POTTED_FIRE_LILY = registerBlockWithoutItem("potted_fire_lily",
-            new FlowerPotBlock(ModBlocks.FIRE_LILY, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+            new FlowerPotBlock(ModBlocks.FIRE_LILY, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY)));
     public static final Block POTTED_ALPINE_POPPY = registerBlockWithoutItem("potted_alpine_poppy",
-            new FlowerPotBlock(ModBlocks.ALPINE_POPPY, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+            new FlowerPotBlock(ModBlocks.ALPINE_POPPY, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY)));
     public static final Block POTTED_SAXIFRAGE = registerBlockWithoutItem("potted_saxifrage",
-            new FlowerPotBlock(ModBlocks.SAXIFRAGE, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+            new FlowerPotBlock(ModBlocks.SAXIFRAGE, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY)));
     public static final Block POTTED_DELPHINIUM = registerBlockWithoutItem("potted_delphinium",
-            new FlowerPotBlock(ModBlocks.DELPHINIUM, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+            new FlowerPotBlock(ModBlocks.DELPHINIUM, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY)));
     public static final Block POTTED_ERIOPHORUM = registerBlockWithoutItem("potted_eriophorum",
-            new FlowerPotBlock(ModBlocks.ERIOPHORUM, FabricBlockSettings.copyOf(Blocks.DANDELION)));
+            new FlowerPotBlock(ModBlocks.ERIOPHORUM, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY)));
     public static final Block POTTED_PINE_SAPLING = registerBlockWithoutItem("potted_pine_sapling",
-            new FlowerPotBlock(ModBlocks.PINE_SAPLING, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
+            new FlowerPotBlock(ModBlocks.PINE_SAPLING, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY)));
     public static final Block POTTED_OAK_SAPLING = registerWFPBlock(Blocks.OAK_SAPLING);
     public static final Block POTTED_SPRUCE_SAPLING = registerWFPBlock(Blocks.SPRUCE_SAPLING);
     public static final Block POTTED_BIRCH_SAPLING = registerWFPBlock(Blocks.BIRCH_SAPLING);
