@@ -29,7 +29,6 @@ import java.util.Optional;
 
 import static net.minecraft.state.property.Properties.LIT;
 import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock.*;
-import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen.getTimeToCook;
 
 public class CookingCauldronBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
 
