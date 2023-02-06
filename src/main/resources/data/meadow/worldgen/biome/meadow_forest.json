@@ -202,16 +202,15 @@
     [
       "minecraft:glow_lichen",
 
-      "meadow:small_fir",
       "meadow:meadow_fern",
-      //"meadow:fern/wild_juniper",
-      //"meadow:fern/wild_mountain_lavender",
-      //"meadow:fern/wild_yarrow",
       "meadow:meadow_forest_trees",
       "meadow:fir",
-
       "meadow:patch_alpine_grass",
       "meadow:patch_tall_alpine_grass"
+    ],
+    [
+      "meadow:small_fir",
+      "meadow:tall_fern"
     ],
     [
       "minecraft:freeze_top_layer"

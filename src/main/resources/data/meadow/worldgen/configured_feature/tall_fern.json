@@ -1,7 +1,7 @@
 {
   "type": "minecraft:random_patch",
   "config": {
-    "tries": 77,
+    "tries": 22,
     "xz_spread": 5,
     "y_spread": 3,
     "feature": {
@@ -11,7 +11,7 @@
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "meadow:small_fir",
+              "Name": "minecraft:large_fern",
               "Properties": {
                 "half": "lower"
               }
