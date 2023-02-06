@@ -227,7 +227,7 @@ public class ModBlocks {
     public static final Block FRAME = registerBlock("frame",
             new FrameBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().luminance(13).strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block COOKING_CAULDRON = registerBlock("cooking_cauldron",
-            new CookingCauldronBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
+            new CookingCauldronBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL).luminance(state -> state.get(CookingCauldronBlock.HANGING) ? 13 : 0)), ModItemGroup.ALPINE_SALT);
     public static final Block COOKING_POT = registerBlock("cooking_pot",
             new CookingPotBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL)), ModItemGroup.ALPINE_SALT);
     public static final Block FONDUE = registerBlock("fondue",

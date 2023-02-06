@@ -1,0 +1,17 @@
+{
+  "type": "meadow:pot_cooking",
+  "ingredients": [
+    {
+      "item": "meadow:oat"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "container": {
+    "item": "minecraft:paper"
+  },
+  "result": {
+    "item": "meadow:oat_milk_bucket"
+  }
+}
