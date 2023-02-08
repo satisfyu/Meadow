@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-public class FirConeDecorationBlock extends FacingBlock {
+public class FirConeDecorationBlock extends HFacingBlock {
     private static final Map<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.createCuboidShape(0, 0, 15.0, 16, 16, 16.0), Direction.SOUTH, Block.createCuboidShape(0, 0, 0.0, 16, 16, 1.0), Direction.WEST, Block.createCuboidShape(15.0, 0, 0, 16.0, 16, 16), Direction.EAST, Block.createCuboidShape(0.0, 0, 0, 1.0, 16, 16)));
 
     public FirConeDecorationBlock(AbstractBlock.Settings settings) {
