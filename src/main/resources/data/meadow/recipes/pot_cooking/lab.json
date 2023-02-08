@@ -2,7 +2,7 @@
   "type": "meadow:pot_cooking",
   "ingredients": [
     {
-      "item": "meadow:alpine_salt"
+      "tag": "meadow:salt"
     },
     {
       "item": "minecraft:beef"

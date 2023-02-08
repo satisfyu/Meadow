@@ -152,7 +152,10 @@ public class CookingCauldronBlock extends BlockWithEntity {
         java.util.Random r = new java.util.Random();
         if(r.nextFloat() < 0.3f){
             if(!state.get(DONE)){
-                world.addParticle(ModParticles.CHEESE_SPLASH, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
+                world.addParticle(ParticleTypes.SMOKE, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
+                world.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
+                world.addParticle(ParticleTypes.BUBBLE, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
+                world.addParticle(ParticleTypes.BUBBLE_POP, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
             }
             else {
                 world.addParticle(ParticleTypes.BUBBLE_POP, d, e , f, r.nextFloat(-0.03f, 0.03f), 0, r.nextFloat(-0.03f, 0.03f));

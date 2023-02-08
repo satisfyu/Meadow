@@ -7,7 +7,7 @@
     "item": "meadow:lab"
   },
   "inputItem3": {
-    "item": "meadow:alpine_salt"
+    "tag": "meadow:salt"
   },
   "outputItem": "meadow:buffalo_cheese_mass_bucket",
   "outputItemIfWoodBucket": "meadow:wooden_buffalo_cheese_mass_bucket"

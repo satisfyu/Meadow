@@ -94,7 +94,7 @@ public class FrameBlock extends Block {
     public static void displayTickLikeCampfire(BlockState state, World world, BlockPos pos, Random random, boolean isSignal){
         if (random.nextFloat() < 0.11f) {
             for (int i = 0; i < random.nextInt(2) + 2; ++i) {
-                CampfireBlock.spawnSmokeParticle(world, pos, isSignal, false);
+                CampfireBlock.spawnSmokeParticle(world, pos, isSignal, true);
             }
         }
         if (random.nextInt(10) == 0) {
