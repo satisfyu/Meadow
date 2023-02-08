@@ -20,7 +20,7 @@ import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlock;
 import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
 
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlock;
-import net.satisfyu.meadow.block.custom.FacingBlock;
+import net.satisfyu.meadow.block.custom.HFacingBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
@@ -128,7 +128,7 @@ public class ModBlocks {
     public static final Block PINE_SLAB = registerBurningBlock("pine_slab",
             new SlabBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_SLAB)), ModItemGroup.ALPINE_SALT, 5, 20);
     public static final Block WATERING_CAN = registerBlockWithoutItem("watering_can",
-            new FacingBlock(FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
+            new HFacingBlock(FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
     public static final Block PINE_PRESSURE_PLATE = registerBlock("pine_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.of(Material.WOOD, PINE_PLANKS.getDefaultMapColor()).noCollision().strength(0.5f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_BUTTON = registerBlock("pine_button",
@@ -153,7 +153,7 @@ public class ModBlocks {
     public static final Block PINE_WALL_SIGN = registerBlockWithoutItem("pine_wall_sign",
             new TerraformWallSignBlock(SIGN_TEXTURE_ID, FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD).dropsLike(ModBlocks.PINE_SIGN)));
     public static final Block SHELF = registerBlock("shelf",
-            new FacingBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+            new HFacingBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESE_RACK = registerBlock("cheese_rack", new CheeseRackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block TABLE = registerBlock("table",
             new TableBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);

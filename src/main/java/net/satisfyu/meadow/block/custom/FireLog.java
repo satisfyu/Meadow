@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class FireLog extends FacingBlock {
+public class FireLog extends HFacingBlock {
 
     public static final IntProperty STAGE = IntProperty.of("stage", 0, 3);
 

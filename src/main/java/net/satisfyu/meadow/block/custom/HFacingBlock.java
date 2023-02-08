@@ -8,9 +8,9 @@ import net.minecraft.state.StateManager;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
-public class FacingBlock extends HorizontalFacingBlock {
+public class HFacingBlock extends HorizontalFacingBlock {
 
-    public FacingBlock(Settings settings) {
+    public HFacingBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH));
     }

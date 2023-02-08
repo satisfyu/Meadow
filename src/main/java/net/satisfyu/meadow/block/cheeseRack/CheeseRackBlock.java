@@ -21,7 +21,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.block.custom.FacingBlock;
+import net.satisfyu.meadow.block.custom.HFacingBlock;
 import net.satisfyu.meadow.util.GeneralUtil;
 import net.satisfyu.meadow.util.Tags;
 import org.jetbrains.annotations.Nullable;
@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class CheeseRackBlock extends FacingBlock implements BlockEntityProvider {
+public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider {
 
     public static final IntProperty STAGE = IntProperty.of("stage", 0, 2);
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;

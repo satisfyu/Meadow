@@ -14,7 +14,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.entity.custom.chair.ChairUtil;
 
-public class TiledBench extends FacingBlock {
+public class TiledBench extends HFacingBlock {
 
     public static final VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(0, 0, 0, 4, 2, 4), Block.createCuboidShape(12, 0, 0, 16, 2, 4), Block.createCuboidShape(0, 0, 12, 4, 2, 16), Block.createCuboidShape(12, 0, 12, 16, 2, 16));
 

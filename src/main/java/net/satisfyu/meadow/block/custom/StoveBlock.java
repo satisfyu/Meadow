@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class StoveBlock extends FacingBlock {
+public class StoveBlock extends HFacingBlock {
 
     public static final BooleanProperty CONNECTED = BooleanProperty.of("connected");
 
