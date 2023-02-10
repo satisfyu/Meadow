@@ -104,7 +104,7 @@ public class ModBlocks {
     public static final Block FURNACE_COBBLESTONE = registerBlock("furnace_cobblestone",
             new CobblestoneFurnaceBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(13)), ModItemGroup.ALPINE_SALT);
     public static final Block STOVE = registerBlock("stove_tiles",
-            new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), Direction.DOWN), ModItemGroup.ALPINE_SALT);
+            new MainStoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block STOVE_WOOD = registerBlock("stove_tiles_wood",
             new StoveBlockWood(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(state -> state.get(StoveBlockWood.LIT) ? 13 : 0), Direction.UP), ModItemGroup.ALPINE_SALT);
     public static final Block STOVE_LID = registerBlock("stove_tiles_lid",
