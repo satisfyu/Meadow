@@ -75,23 +75,23 @@ public class FrameBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient) {
-            ItemStack stack = player.getStackInHand(hand);
-            if(stack.getItem().equals(ModBlocks.COOKING_CAULDRON.asItem())){
+        ItemStack stack = player.getStackInHand(hand);
+        if(stack.getItem().equals(ModBlocks.COOKING_CAULDRON.asItem())){
+            if(!world.isClient()){
                 if(!player.getAbilities().creativeMode) stack.decrement(1);
                 world.setBlockState(pos , ModBlocks.COOKING_CAULDRON.getDefaultState().with(HANGING, true).with(FACING, state.get(FACING)));
-                return ActionResult.SUCCESS;
             }
+            return ActionResult.success(world.isClient());
         }
         return ActionResult.PASS;
     }
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        displayTickLikeCampfire(state, world, pos, random, world.getBlockState(pos.down()).isOf(Blocks.HAY_BLOCK));
+        displayTickLikeCampfire(world, pos, random, world.getBlockState(pos.down()).isOf(Blocks.HAY_BLOCK));
     }
 
-    public static void displayTickLikeCampfire(BlockState state, World world, BlockPos pos, Random random, boolean isSignal){
+    public static void displayTickLikeCampfire(World world, BlockPos pos, Random random, boolean isSignal){
         if (random.nextFloat() < 0.11f) {
             for (int i = 0; i < random.nextInt(2) + 2; ++i) {
                 CampfireBlock.spawnSmokeParticle(world, pos, isSignal, true);
