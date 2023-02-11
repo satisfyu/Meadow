@@ -16,7 +16,7 @@ public class BrownBearEntityModel extends PolarBearEntityModel<BrownBearEntity> 
 		.uv(50, 34).mirrored().cuboid(-2.5F, 0.0F, -6.0F, 5.0F, 4.0F, 3.0F, new Dilation(0.0F)).mirrored(false)
 		.uv(0, 37).cuboid(-5.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F, new Dilation(0.0F))
 		.uv(0, 37).mirrored().cuboid(3.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
-		.uv(12, 2).cuboid(-1.5F, -3.0F, 29.0F, 3.0F, 3.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 10.0F, -16.0F));
+		.uv(12, 2), ModelTransform.pivot(0.0F, 10.0F, -16.0F));
 
 
 		modelPartData.addChild("right_hind_leg", ModelPartBuilder.create().uv(50, 48).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(-4.5F, 14.0F, 6.0F));
