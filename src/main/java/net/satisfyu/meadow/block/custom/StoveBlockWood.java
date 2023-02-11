@@ -1,5 +1,9 @@
 package net.satisfyu.meadow.block.custom;
 
+import com.google.common.collect.ImmutableMap;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -25,6 +29,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
 
+import java.util.Collections;
 import java.util.List;
 
 public class StoveBlockWood extends StoveBlock {
@@ -90,4 +95,33 @@ public class StoveBlockWood extends StoveBlock {
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.stove.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
+
+    public int method_9505(class_2680 state, class_1922 worldIn, class_2338 pos) {
+        return 15;
+    }
+
+    public List<class_1799> method_9560(class_2680 state, class_47.class_48 builder) {
+        List<class_1799> dropsOriginal = super.method_9560(state, builder);
+        return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new class_1799(this, 1));
+    }
+
+    public void method_9615(class_2680 blockstate, class_1937 world, class_2338 pos, class_2680 oldState, boolean moving) {
+        super.method_9615(blockstate, world, pos, oldState, moving);
+        world.method_39279(pos, this, 1);
+    }
+
+    public void method_9588(class_2680 blockstate, class_3218 world, class_2338 pos, class_5819 random) {
+        super.method_9588(blockstate, world, pos, random);
+        int x = pos.method_10263();
+        int y = pos.method_10264();
+        int z = pos.method_10260();
+        TiledStoveUpdateTickProcedure.execute(ImmutableMap.builder().put("world", world).put("x", x).put("y", y).put("z", z).build());
+        world.method_39279(pos, this, 10);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static void clientInit() {
+        BlockRenderLayerMap.INSTANCE.putBlock(TiledStoveModBlocks.TILED_STOVE, class_1921.method_23577());
+    }
+}
 }

@@ -36,11 +36,13 @@ public class CookingPotDisplay extends BasicDisplay {
         return COOKING_POT_DISPLAY;
     }
 
+
     public static ItemStack getContainer(Recipe<Inventory> recipe){
         if(recipe instanceof CookingPotRecipe c){
             return c.getContainer();
         }
         else return ItemStack.EMPTY;
     }
+
 
 }
