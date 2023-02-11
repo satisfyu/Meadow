@@ -127,7 +127,6 @@
   "item.meadow.bowl_mozzarella": "Bowl Full of Mozzarella",
   "block.meadow.bowl_sweetberries": "Bowl Full of Milk with Sweetberries",
   "block.meadow.can": "Can",
-  "block.meadow.carpet": "Carpet",
   "block.meadow.cheese_form": "Cheese Form",
   "block.meadow.woodcutter": "Woodcutter",
   "block.meadow.meadow.alpine_salt": "Alpine Salt",
@@ -242,7 +241,7 @@
   "block.meadow.rope.tooltip": "Attach it on the bottom of a Block to cope height differences with ease.",
   "block.meadow.rack.tooltip": "Storage for Cheese Wheels.",
   "block.meadow.frame.tooltip": "Cooking Cauldron can be hung on a frame.",
-
+  "block.meadow.stove.tooltip": "Make your home a bit more comfortable.",
   "block.meadow.uc.tooltip": "This block has effects that are not yet implemented.",
   "biome.meadow.meadow_clearing": "Meadow Clearing",
   "biome.meadow.meadow_forest": "Meadow Forest",

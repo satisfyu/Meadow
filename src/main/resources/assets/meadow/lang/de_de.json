@@ -275,5 +275,6 @@
   "entity.meadow.inky_sheep": "Tintenfarbenes Schaf",
   "entity.meadow.long_nosed_sheep": "Schwarznasenschaf",
   "entity.meadow.patched_sheep": "Dickhornschaf",
-  "entity.meadow.rocky_sheep": "Felsenfarbenes Schaf"
+  "entity.meadow.rocky_sheep": "Felsenfarbenes Schaf",
+  "block.meadow.stove.tooltip": "Mach dein Heim ein wenig gemütlicher."
 }
