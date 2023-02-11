@@ -116,10 +116,6 @@ public class MainStoveBlock extends HFacingBlock {
         builder.add(CONNECTED_UP);
     }
 
-    @Override
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.uc.tooltip").formatted(Formatting.ITALIC, Formatting.DARK_RED));
-    }
 
     public boolean isBlockStove(ItemPlacementContext ctx, Direction direction){
         return isBlockStove(ctx.getWorld().getBlockState(ctx.getBlockPos().offset(direction)));

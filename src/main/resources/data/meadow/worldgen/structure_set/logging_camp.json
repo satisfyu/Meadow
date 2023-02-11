@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "meadow:logging_camp",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 42069,
+    "spacing": 20,
+    "separation": 10,
+    "type": "minecraft:random_spread"
+  }
+}
