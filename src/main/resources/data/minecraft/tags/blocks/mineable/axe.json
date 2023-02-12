@@ -46,6 +46,7 @@
     "meadow:shelf",
     "meadow:woodcutter",
     "meadow:cheese_form",
-    "#meadow:cauldrons"
+    "#meadow:cauldrons",
+    "meadow:fire_log"
   ]
 }
