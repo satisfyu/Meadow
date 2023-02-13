@@ -35,6 +35,7 @@ import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.WeakHashMap;
 
 
 public class ModBlocks {
@@ -218,6 +219,8 @@ public class ModBlocks {
             new WoodenCauldronBlock(FabricBlockSettings.of(Material.WOOD, MapColor.SPRUCE_BROWN).requiresTool().strength(2.0f).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block WOODCUTTER = registerBlock("woodcutter",
             new WoodcutterBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+    public static final Block WHEELBARROW = registerBlock("wheelbarrow",
+            new WheelBarrowBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block WOODEN_WATER_CAULDRON = registerBlockWithoutItem("wooden_water_cauldron",
             new LeveledCauldronBlock(FabricBlockSettings.copyOf(ModBlocks.WOODEN_CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, WoodenCauldronBehavior.WATER_CAULDRON_BEHAVIOR));
     public static final Block WOODEN_POWDER_SNOW_CAULDRON = registerBlockWithoutItem("wooden_powder_snow_cauldron",

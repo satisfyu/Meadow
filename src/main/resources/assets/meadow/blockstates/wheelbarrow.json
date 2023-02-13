@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "meadow:block/wheelbarrow",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "meadow:block/wheelbarrow"
+    },
+    "facing=south": {
+      "model": "meadow:block/wheelbarrow",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "meadow:block/wheelbarrow",
+      "y": 270
+    }
+  }
+}

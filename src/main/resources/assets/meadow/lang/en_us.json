@@ -132,6 +132,8 @@
   "block.meadow.meadow.alpine_salt": "Alpine Salt",
   "block.meadow.pine_sign": "Pine Sign",
   "block.meadow.pine_railing": "Pine Railing",
+  "block.meadow.wheelbarrow": "Wheelbarrow",
+  "block.meadow.wheelbarrow.tooltip": "For decoration only",
 
   "block.meadow.limestone_brick_wall": "Limestone Brick Wall",
   "block.meadow:cobbled_limestone_wall": "Cobbled Limestone Wall",
