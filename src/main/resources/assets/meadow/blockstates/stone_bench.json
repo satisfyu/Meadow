@@ -1,0 +1,52 @@
+{
+  "variants": {
+
+    "facing=east,type=single": {
+      "model": "meadow:block/stone_bench",
+      "y": 90
+    },
+    "facing=north,type=single": {
+      "model": "meadow:block/stone_bench"
+    },
+    "facing=south,type=single": {
+      "model": "meadow:block/stone_bench",
+      "y": 180
+    },
+    "facing=west,type=single": {
+      "model": "meadow:block/stone_bench",
+      "y": 270
+    },
+
+    "facing=east,type=left": {
+      "model": "meadow:block/stone_bench_connected_main",
+      "y": 90
+    },
+    "facing=north,type=left": {
+      "model": "meadow:block/stone_bench_connected_main"
+    },
+    "facing=south,type=left": {
+      "model": "meadow:block/stone_bench_connected_main",
+      "y": 180
+    },
+    "facing=west,type=left": {
+      "model": "meadow:block/stone_bench_connected_main",
+      "y": 270
+    },
+
+    "facing=east,type=right": {
+      "model": "meadow:block/stone_bench_connected_main",
+      "y": 270
+    },
+    "facing=north,type=right": {
+      "model": "meadow:block/stone_bench_connected_main",
+      "y": 180
+    },
+    "facing=south,type=right": {
+      "model": "meadow:block/stone_bench_connected_main"
+    },
+    "facing=west,type=right": {
+      "model": "meadow:block/stone_bench_connected_main",
+      "y": 90
+    }
+  }
+}

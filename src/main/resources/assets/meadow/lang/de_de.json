@@ -284,5 +284,6 @@
   "block.meadow.wheelbarrow": "Schubkarre",
   "block.meadow.wheelbarrow.tooltip": "Dient als Blumenkasten für Blumen",
   "subtitles.meadow.shelf_open": "Kommode öffnet",
-  "subtitles.meadow.shelf_closed": "Kommode schliesst"
+  "subtitles.meadow.shelf_closed": "Kommode schliesst",
+  "block.meadow.stone_bench": "Steinbank"
 }
