@@ -22,6 +22,7 @@ import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlock;
 import net.satisfyu.meadow.block.custom.HFacingBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
+import net.satisfyu.meadow.block.shelfBlock.ShelfBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
@@ -29,6 +30,7 @@ import net.satisfyu.meadow.block.custom.*;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
 import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
+import net.satisfyu.meadow.sound.ModSounds;
 import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
 import java.util.Arrays;
@@ -153,7 +155,7 @@ public class ModBlocks {
     public static final Block PINE_WALL_SIGN = registerBlockWithoutItem("pine_wall_sign",
             new TerraformWallSignBlock(SIGN_TEXTURE_ID, FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD).dropsLike(ModBlocks.PINE_SIGN)));
     public static final Block SHELF = registerBlock("shelf",
-            new HFacingBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+            new ShelfBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), ModSounds.SHELF_OPEN, ModSounds.SHELF_CLOSED), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESE_RACK = registerBlock("cheese_rack", new CheeseRackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block TABLE = registerBlock("table",
             new TableBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);

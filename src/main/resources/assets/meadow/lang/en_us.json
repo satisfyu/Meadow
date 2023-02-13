@@ -270,9 +270,11 @@
   "subtitles.meadow.click_camera": "Clicking Camera",
   "subtitles.meadow.woodcutter": "Woodcutter used",
   "subtitles.meadow.cooking_cauldron": "Cauldron cooking",
+  "subtitles.meadow.shelf_open": "Opening shelf",
+  "subtitles.meadow.shelf_closed": "Closing shelf",
 
   "container.woodcutter": "",
   "container.cooking_cauldron": "",
-  "container.cheese_form": ""
-
+  "container.cheese_form": "",
+  "container.shelf": ""
 }
