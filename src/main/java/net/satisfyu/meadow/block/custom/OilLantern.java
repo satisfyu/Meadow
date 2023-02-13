@@ -11,6 +11,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
@@ -22,12 +23,43 @@ import java.util.List;
 public class OilLantern extends LanternBlock{
 
     public static final IntProperty LUMINANCE = IntProperty.of("luminance", 12, 15);
+    protected static final VoxelShape HANGING_SHAPE = makeShapeHS();
+    protected static final VoxelShape STANDING_SHAPE = makeShapeSS();
 
-    
-    protected static final VoxelShape STANDING_SHAPE =
-            VoxelShapes.union(Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 7.0, 11.0), Block.createCuboidShape(6.0, 7.0, 6.0, 10.0, 9.0, 10.0));
-    protected static final VoxelShape HANGING_SHAPE =
-            VoxelShapes.union(Block.createCuboidShape(5.0, 5.0, 5.0, 11.0, 13.0, 11.0), Block.createCuboidShape(6.0, 13.0, 6.0, 10.0, 15.0, 10.0));
+    public static VoxelShape makeShapeHS() {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0, 0.3125, 0.6875, 0.4375, 0.6875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.4375, 0.375, 0.625, 0.5625, 0.625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.359375, 0.5, 0.359375, 0.640625, 0.5625, 0.640625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.40625, 0.625, 0.5, 0.59375, 0.875, 0.5), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 0.5625, 0.40625, 0.5, 0.6875, 0.59375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 0.8125, 0.40625, 0.5, 1, 0.59375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.265625, 0, 0.265625, 0.734375, 0.0625, 0.734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.265625, 0.375, 0.265625, 0.734375, 0.4375, 0.734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.640625, 0.0625, 0.296875, 0.703125, 0.375, 0.359375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.296875, 0.0625, 0.296875, 0.359375, 0.375, 0.359375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.296875, 0.0625, 0.640625, 0.359375, 0.375, 0.703125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.640625, 0.0625, 0.640625, 0.703125, 0.375, 0.703125), BooleanBiFunction.OR);
+        return shape;
+    }
+
+    public static VoxelShape makeShapeSS() {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0, 0.3125, 0.6875, 0.4375, 0.6875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.4375, 0.375, 0.625, 0.5625, 0.625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.359375, 0.500625, 0.359375, 0.640625, 0.563125, 0.640625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.40625, 0.5625, 0.5, 0.59375, 0.6875, 0.5), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 0.5625, 0.40625, 0.5, 0.6875, 0.59375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.265625, 0, 0.265625, 0.734375, 0.0625, 0.734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.265625, 0.375625, 0.265625, 0.734375, 0.438125, 0.734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.640625, 0.0625, 0.296875, 0.703125, 0.375, 0.359375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.296875, 0.0625, 0.296875, 0.359375, 0.375, 0.359375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.296875, 0.0625, 0.640625, 0.359375, 0.375, 0.703125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.640625, 0.0625, 0.640625, 0.703125, 0.375, 0.703125), BooleanBiFunction.OR);
+
+        return shape;
+    }
+
 
     public OilLantern(Settings settings) {
         super(settings);
