@@ -282,7 +282,7 @@
   "block.meadow.stove.tooltip": "Mach dein Heim ein wenig gemütlicher.",
   "container.shelf": "",
   "block.meadow.wheelbarrow": "Schubkarre",
-  "block.meadow.wheelbarrow.tooltip": "Nur zur Dekoration",
+  "block.meadow.wheelbarrow.tooltip": "Dient als Blumenkasten für Blumen",
   "subtitles.meadow.shelf_open": "Kommode öffnet",
   "subtitles.meadow.shelf_closed": "Kommode schliesst"
 }

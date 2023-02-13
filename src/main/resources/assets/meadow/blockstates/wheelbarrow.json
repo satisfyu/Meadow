@@ -1,19 +1,215 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,content=none": {
       "model": "meadow:block/wheelbarrow",
       "y": 90
     },
-    "facing=north": {
+    "facing=north,content=none": {
       "model": "meadow:block/wheelbarrow"
     },
-    "facing=south": {
+    "facing=south,content=none": {
       "model": "meadow:block/wheelbarrow",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,content=none": {
       "model": "meadow:block/wheelbarrow",
+      "y": 270
+    },
+    "facing=east,content=poppy": {
+      "model": "meadow:block/wheelbarrow_poppy",
+      "y": 90
+    },
+    "facing=north,content=poppy": {
+      "model": "meadow:block/wheelbarrow_poppy"
+    },
+    "facing=south,content=poppy": {
+      "model": "meadow:block/wheelbarrow_poppy",
+      "y": 180
+    },
+    "facing=west,content=poppy": {
+      "model": "meadow:block/wheelbarrow_poppy",
+      "y": 270
+    },
+    "facing=east,content=dandelion": {
+      "model": "meadow:block/wheelbarrow_dandelion",
+      "y": 90
+    },
+    "facing=north,content=dandelion": {
+      "model": "meadow:block/wheelbarrow_dandelion"
+    },
+    "facing=south,content=dandelion": {
+      "model": "meadow:block/wheelbarrow_dandelion",
+      "y": 180
+    },
+    "facing=west,content=dandelion": {
+      "model": "meadow:block/wheelbarrow_dandelion",
+      "y": 270
+    },
+    "facing=east,content=blue_orchid": {
+      "model": "meadow:block/wheelbarrow_blue_orchid",
+      "y": 90
+    },
+    "facing=north,content=blue_orchid": {
+      "model": "meadow:block/wheelbarrow_blue_orchid"
+    },
+    "facing=south,content=blue_orchid": {
+      "model": "meadow:block/wheelbarrow_blue_orchid",
+      "y": 180
+    },
+    "facing=west,content=blue_orchid": {
+      "model": "meadow:block/wheelbarrow_blue_orchid",
+      "y": 270
+    },
+    "facing=east,content=allium": {
+      "model": "meadow:block/wheelbarrow_allium",
+      "y": 90
+    },
+    "facing=north,content=allium": {
+      "model": "meadow:block/wheelbarrow_allium"
+    },
+    "facing=south,content=allium": {
+      "model": "meadow:block/wheelbarrow_allium",
+      "y": 180
+    },
+    "facing=west,content=allium": {
+      "model": "meadow:block/wheelbarrow_allium",
+      "y": 270
+    },
+    "facing=east,content=azure_bluet": {
+      "model": "meadow:block/wheelbarrow_azure_bluet",
+      "y": 90
+    },
+    "facing=north,content=azure_bluet": {
+      "model": "meadow:block/wheelbarrow_azure_bluet"
+    },
+    "facing=south,content=azure_bluet": {
+      "model": "meadow:block/wheelbarrow_azure_bluet",
+      "y": 180
+    },
+    "facing=west,content=azure_bluet": {
+      "model": "meadow:block/wheelbarrow_azure_bluet",
+      "y": 270
+    },
+    "facing=east,content=red_tulip": {
+      "model": "meadow:block/wheelbarrow_red_tulip",
+      "y": 90
+    },
+    "facing=north,content=red_tulip": {
+      "model": "meadow:block/wheelbarrow_red_tulip"
+    },
+    "facing=south,content=red_tulip": {
+      "model": "meadow:block/wheelbarrow_red_tulip",
+      "y": 180
+    },
+    "facing=west,content=red_tulip": {
+      "model": "meadow:block/wheelbarrow_red_tulip",
+      "y": 270
+    },
+    "facing=east,content=white_tulip": {
+      "model": "meadow:block/wheelbarrow_white_tulip",
+      "y": 90
+    },
+    "facing=north,content=white_tulip": {
+      "model": "meadow:block/wheelbarrow_white_tulip"
+    },
+    "facing=south,content=white_tulip": {
+      "model": "meadow:block/wheelbarrow_white_tulip",
+      "y": 180
+    },
+    "facing=west,content=white_tulip": {
+      "model": "meadow:block/wheelbarrow_white_tulip",
+      "y": 270
+    },
+    "facing=east,content=orange_tulip": {
+      "model": "meadow:block/wheelbarrow_orange_tulip",
+      "y": 90
+    },
+    "facing=north,content=orange_tulip": {
+      "model": "meadow:block/wheelbarrow_orange_tulip"
+    },
+    "facing=south,content=orange_tulip": {
+      "model": "meadow:block/wheelbarrow_orange_tulip",
+      "y": 180
+    },
+    "facing=west,content=orange_tulip": {
+      "model": "meadow:block/wheelbarrow_orange_tulip",
+      "y": 270
+    },
+    "facing=east,content=pink_tulip": {
+      "model": "meadow:block/wheelbarrow_pink_tulip",
+      "y": 90
+    },
+    "facing=north,content=pink_tulip": {
+      "model": "meadow:block/wheelbarrow_pink_tulip"
+    },
+    "facing=south,content=pink_tulip": {
+      "model": "meadow:block/wheelbarrow_pink_tulip",
+      "y": 180
+    },
+    "facing=west,content=pink_tulip": {
+      "model": "meadow:block/wheelbarrow_pink_tulip",
+      "y": 270
+    },
+    "facing=east,content=oxeye_daisy": {
+      "model": "meadow:block/wheelbarrow_oxeye_daisy",
+      "y": 90
+    },
+    "facing=north,content=oxeye_daisy": {
+      "model": "meadow:block/wheelbarrow_oxeye_daisy"
+    },
+    "facing=south,content=oxeye_daisy": {
+      "model": "meadow:block/wheelbarrow_oxeye_daisy",
+      "y": 180
+    },
+    "facing=west,content=oxeye_daisy": {
+      "model": "meadow:block/wheelbarrow_oxeye_daisy",
+      "y": 270
+    },
+    "facing=east,content=cornflower": {
+      "model": "meadow:block/wheelbarrow_cornflower",
+      "y": 90
+    },
+    "facing=north,content=cornflower": {
+      "model": "meadow:block/wheelbarrow_cornflower"
+    },
+    "facing=south,content=cornflower": {
+      "model": "meadow:block/wheelbarrow_cornflower",
+      "y": 180
+    },
+    "facing=west,content=cornflower": {
+      "model": "meadow:block/wheelbarrow_cornflower",
+      "y": 270
+    },
+    "facing=east,content=lily_of_the_valley": {
+      "model": "meadow:block/wheelbarrow_lily_of_the_valley",
+      "y": 90
+    },
+    "facing=north,content=lily_of_the_valley": {
+      "model": "meadow:block/wheelbarrow_lily_of_the_valley"
+    },
+    "facing=south,content=lily_of_the_valley": {
+      "model": "meadow:block/wheelbarrow_lily_of_the_valley",
+      "y": 180
+    },
+    "facing=west,content=lily_of_the_valley": {
+      "model": "meadow:block/wheelbarrow_lily_of_the_valley",
+      "y": 270
+    },
+    "facing=east,content=wither_rose": {
+      "model": "meadow:block/wheelbarrow_wither_rose",
+      "y": 90
+    },
+    "facing=north,content=wither_rose": {
+      "model": "meadow:block/wheelbarrow_wither_rose"
+    },
+    "facing=south,content=wither_rose": {
+      "model": "meadow:block/wheelbarrow_wither_rose",
+      "y": 180
+    },
+    "facing=west,content=wither_rose": {
+      "model": "meadow:block/wheelbarrow_wither_rose",
       "y": 270
     }
   }
 }
+
