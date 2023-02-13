@@ -21,7 +21,9 @@ import java.util.List;
 
 public class OilLantern extends LanternBlock{
 
-    public static final IntProperty LUMINANCE = IntProperty.of("luminance", 10, 13);
+    public static final IntProperty LUMINANCE = IntProperty.of("luminance", 12, 15);
+
+    
     protected static final VoxelShape STANDING_SHAPE =
             VoxelShapes.union(Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 7.0, 11.0), Block.createCuboidShape(6.0, 7.0, 6.0, 10.0, 9.0, 10.0));
     protected static final VoxelShape HANGING_SHAPE =
@@ -29,7 +31,7 @@ public class OilLantern extends LanternBlock{
 
     public OilLantern(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(HANGING, false).with(WATERLOGGED, false).with(LUMINANCE, 10));
+        this.setDefaultState(this.getDefaultState().with(HANGING, false).with(WATERLOGGED, false).with(LUMINANCE, 12));
     }
 
     @Override
@@ -44,7 +46,7 @@ public class OilLantern extends LanternBlock{
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        world.setBlockState(pos, this.getDefaultState().with(WATERLOGGED, state.get(WATERLOGGED)).with(LUMINANCE, Random.create().nextBetween(10, 13)).with(HANGING, state.get(HANGING)));
+        world.setBlockState(pos, this.getDefaultState().with(WATERLOGGED, state.get(WATERLOGGED)).with(LUMINANCE, Random.create().nextBetween(12, 15)).with(HANGING, state.get(HANGING)));
     }
 
     @Override
