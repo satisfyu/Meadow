@@ -3,6 +3,7 @@ package net.satisfyu.meadow.util;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.StringIdentifiable;
+import net.satisfyu.meadow.block.ModBlocks;
 
 public enum EnumFlower implements StringIdentifiable {
 	NONE("none", Blocks.AIR),
@@ -18,7 +19,14 @@ public enum EnumFlower implements StringIdentifiable {
 	OXEYE_DAISY("oxeye_daisy", Blocks.OXEYE_DAISY),
 	CORNFLOWER("cornflower", Blocks.CORNFLOWER),
 	LILY_OF_THE_VALLEY("lily_of_the_valley", Blocks.LILY_OF_THE_VALLEY),
-	WITHER_ROSE("wither_rose", Blocks.WITHER_ROSE);
+	WITHER_ROSE("wither_rose", Blocks.WITHER_ROSE),
+
+	DELPHINIUM("delphinium", ModBlocks.DELPHINIUM),
+	ENZIAN("enzian", ModBlocks.ENZIAN),
+	FIRE_LILY("fire_lily", ModBlocks.FIRE_LILY),
+	ALPINE_POPPY("alpine_poppy", ModBlocks.ALPINE_POPPY),
+	ERIOPHORUM("eriophorum", ModBlocks.ERIOPHORUM),
+	SAXIFRAGE("saxifrage", ModBlocks.SAXIFRAGE);
 
 
 	private final String name;
