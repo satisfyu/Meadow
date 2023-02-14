@@ -285,5 +285,7 @@
   "block.meadow.wheelbarrow.tooltip": "Dient als Blumenkasten für Blumen",
   "subtitles.meadow.shelf_open": "Kommode öffnet",
   "subtitles.meadow.shelf_closed": "Kommode schliesst",
-  "block.meadow.stone_bench": "Steinbank"
+  "block.meadow.stone_bench": "Steinbank",
+  "block.meadow.stone_table": "Steintisch"
+
 }

@@ -36,7 +36,9 @@
     "meadow:limestone_brick_slab",
     "meadow:limestone_brick_stairs",
     "meadow:mossy_cobbled_limestone",
-    "meadow:stone_bench"
+    "meadow:stone_bench",
+    "meadow:stone_table"
+
 
   ]
 }

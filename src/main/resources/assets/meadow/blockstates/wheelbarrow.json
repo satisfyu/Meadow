@@ -209,6 +209,81 @@
     "facing=west,content=wither_rose": {
       "model": "meadow:block/wheelbarrow_wither_rose",
       "y": 270
+    },
+    "facing=east,content=enzian": {
+      "model": "meadow:block/wheelbarrow_enzian",
+      "y": 90
+    },
+    "facing=north,content=enzian": {
+      "model": "meadow:block/wheelbarrow_enzian"
+    },
+    "facing=south,content=enzian": {
+      "model": "meadow:block/wheelbarrow_enzian",
+      "y": 180
+    },
+    "facing=west,content=enzian": {
+      "model": "meadow:block/wheelbarrow_enzian",
+      "y": 270
+    },
+    "facing=east,content=delphinium": {
+      "model": "meadow:block/wheelbarrow_delphinium",
+      "y": 90
+    },
+    "facing=north,content=delphinium": {
+      "model": "meadow:block/wheelbarrow_delphinium"
+    },
+    "facing=south,content=delphinium": {
+      "model": "meadow:block/wheelbarrow_delphinium",
+      "y": 180
+    },
+    "facing=west,content=delphinium": {
+      "model": "meadow:block/wheelbarrow_delphinium",
+      "y": 270
+    },
+    "facing=east,content=alpine_poppy": {
+      "model": "meadow:block/wheelbarrow_alpine_poppy",
+      "y": 90
+    },
+    "facing=north,content=alpine_poppy": {
+      "model": "meadow:block/wheelbarrow_alpine_poppy"
+    },
+    "facing=south,content=alpine_poppy": {
+      "model": "meadow:block/wheelbarrow_alpine_poppy",
+      "y": 180
+    },
+    "facing=west,content=alpine_poppy": {
+      "model": "meadow:block/wheelbarrow_alpine_poppy",
+      "y": 270
+    },
+    "facing=east,content=saxifrage": {
+      "model": "meadow:block/wheelbarrow_saxifrage",
+      "y": 90
+    },
+    "facing=north,content=saxifrage": {
+      "model": "meadow:block/wheelbarrow_saxifrage"
+    },
+    "facing=south,content=saxifrage": {
+      "model": "meadow:block/wheelbarrow_saxifrage",
+      "y": 180
+    },
+    "facing=west,content=saxifrage": {
+      "model": "meadow:block/wheelbarrow_saxifrage",
+      "y": 270
+    },
+    "facing=east,content=eriophorum": {
+      "model": "meadow:block/wheelbarrow_eriophorum",
+      "y": 90
+    },
+    "facing=north,content=eriophorum": {
+      "model": "meadow:block/wheelbarrow_eriophorum"
+    },
+    "facing=south,content=eriophorum": {
+      "model": "meadow:block/wheelbarrow_eriophorum",
+      "y": 180
+    },
+    "facing=west,content=eriophorum": {
+      "model": "meadow:block/wheelbarrow_eriophorum",
+      "y": 270
     }
   }
 }

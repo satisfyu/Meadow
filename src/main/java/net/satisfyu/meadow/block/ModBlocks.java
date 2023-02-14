@@ -166,6 +166,8 @@ public class ModBlocks {
             new BenchBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block STONE_BENCH = registerBlock("stone_bench",
             new BenchBlock(FabricBlockSettings.of(Material.STONE).strength(4f, 0.0f).sounds(BlockSoundGroup.STONE)), ModItemGroup.ALPINE_SALT);
+    public static final Block STONE_TABLE = registerBlock("stone_table",
+            new TableBlock(FabricBlockSettings.of(Material.STONE).strength(4f, 0.0f).sounds(BlockSoundGroup.STONE).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block WINDOW = registerBlock("window",
             new WindowBlock(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block WINDOW_2 = registerBlock("window_2",
