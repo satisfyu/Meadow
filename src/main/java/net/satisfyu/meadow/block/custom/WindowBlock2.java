@@ -37,7 +37,7 @@ public class WindowBlock2 extends PaneBlock {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 
-        updateWindows((World) world, getHighestWindow((World) world, pos));
+        updateWindows2(world, getHighestWindow2(world, pos));
 
         if (state.get(WATERLOGGED)) {
             world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
@@ -51,7 +51,6 @@ public class WindowBlock2 extends PaneBlock {
 
 
     private void updateWindows(World world, BlockPos pos){
-        Meadow.LOGGER.error("current" + pos.toShortString());
         int i = getWindowHeight(world, pos);
 
         if(i == 3){
@@ -73,9 +72,6 @@ public class WindowBlock2 extends PaneBlock {
             pos = pos.up();
         }
         while(world.getBlockState(pos).isOf(ModBlocks.WINDOW_2));
-
-        Meadow.LOGGER.error(pos.down().toShortString());
-
         return pos.down();
     }
 
@@ -88,7 +84,44 @@ public class WindowBlock2 extends PaneBlock {
             highestPos = highestPos.down();
         }
         while(world.getBlockState(highestPos).isOf(ModBlocks.WINDOW_2));
-        Meadow.LOGGER.error(String.valueOf(i));
+        return i;
+    }
+
+
+    private void updateWindows2(WorldAccess world, BlockPos pos){
+        int i = getWindowHeight2(world, pos);
+
+        if(i == 3){
+            world.setBlockState(pos, world.getBlockState(pos).with(PART, 3), 3);
+            world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 2), 3);
+            world.setBlockState(pos.down(2), world.getBlockState(pos.down(2)).with(PART, 1), 3);
+        }
+        else if(i == 2){
+            world.setBlockState(pos, world.getBlockState(pos).with(PART, 3), 3);
+            world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 1), 3);
+        }
+        else if(i == 1){
+            world.setBlockState(pos, world.getBlockState(pos).with(PART, 0), 3);
+        }
+    }
+
+    private BlockPos getHighestWindow2(WorldAccess world, BlockPos pos){
+        do{
+            pos = pos.up();
+        }
+        while(world.getBlockState(pos).isOf(ModBlocks.WINDOW_2));
+        return pos.down();
+    }
+
+
+    private int getWindowHeight2(WorldAccess world, BlockPos pos){
+        BlockPos highestPos = getHighestWindow2(world, pos);
+        int i = 0;
+        do{
+            i++;
+            highestPos = highestPos.down();
+        }
+        while(world.getBlockState(highestPos).isOf(ModBlocks.WINDOW_2));
         return i;
     }
 
