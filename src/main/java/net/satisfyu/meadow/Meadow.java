@@ -51,8 +51,7 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 		WoodenCauldronBehavior.registerBehavior();
 		MeadowEffects.init();
 		ModPaintings.registerPaintings();
-		ModVillagers.registerVillagers();
-		ModVillagers.registerTrades();
+		ModVillagers.init();
 		ModRecipes.registerRecipes();
 		ModScreenHandlers.registerScreenHandler();
 
