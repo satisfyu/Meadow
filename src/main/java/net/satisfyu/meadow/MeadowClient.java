@@ -73,7 +73,6 @@ public class MeadowClient implements ClientModInitializer {
     public static final EntityModelLayer FUZZY_SHEEP_FUR = new EntityModelLayer(new Identifier(MOD_ID, "fuzzy_sheep"), "fur");
     public static final EntityModelLayer FUZZY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "fuzzy_sheep"), "main");
 
-
     public static final EntityModelLayer HORNED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "horned_sheep"), "main");
 
     public static final EntityModelLayer BROWN_BEAR_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "brown_bear"), "main");
@@ -141,7 +140,6 @@ public class MeadowClient implements ClientModInitializer {
         registerChicken();
         registerOtherEntities();
 
-
         TerraformBoatClientHelper.registerModelLayers(PINE_ID);
     }
 
@@ -151,13 +149,11 @@ public class MeadowClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
         HandledScreens.register(ModScreenHandlers.COOKING_POT_SCREEN_HANDLER, CookingPotScreen::new);
         HandledScreens.register(ModScreenHandlers.FONDUE_SCREEN_HANDLER, FondueScreen::new);
-
     }
 
     private void registerParticles(){
         ParticleFactoryRegistry.getInstance().register(ModParticles.CHEESE_SPLASH, SplashParticle.Factory::new);
     }
-
 
     private static void registerOtherEntities(){
         EntityRendererRegistry.register(ModEntities.BROWN_BEAR, BrownBearEntityRenderer::new);
@@ -262,6 +258,5 @@ public class MeadowClient implements ClientModInitializer {
     public static PlayerEntity getClientPlayer() {
         return MinecraftClient.getInstance().player;
     }
-
-
+    
 }
