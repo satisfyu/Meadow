@@ -4,6 +4,9 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -18,6 +21,7 @@ import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.recipes.ModRecipes;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import net.satisfyu.meadow.sound.ModSounds;
+import net.satisfyu.meadow.util.MeadowIdentifier;
 import net.satisfyu.meadow.util.ModStrippableBlocks;
 import net.satisfyu.meadow.villager.ModVillagers;
 import net.satisfyu.meadow.world.ModRegion;
@@ -59,6 +63,9 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 		ModParticles.registerParticles();
 		ModFeatures.registerFeatures();
 
+		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> {
+			ResourceManagerHelper.registerBuiltinResourcePack(new MeadowIdentifier("bushy_leaves"), container, ResourcePackActivationType.DEFAULT_ENABLED);
+		});
 
 		PINE_BOAT = new TerraformBoatType.Builder()
 				.item(PINE_BOAT_ITEM)
