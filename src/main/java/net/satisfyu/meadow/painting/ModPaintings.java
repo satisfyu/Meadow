@@ -13,8 +13,7 @@ public class ModPaintings {
     public static final PaintingVariant SEA = registerPainting("sea", new PaintingVariant(64, 48));
     public static final PaintingVariant WASTELAND = registerPainting("wasteland", new PaintingVariant(32, 32));
     public static final PaintingVariant BUST = registerPainting("bust", new PaintingVariant(32, 32));
-
-
+    
     private static PaintingVariant registerPainting(String name, PaintingVariant paintingVariant) {
         return Registry.register(Registry.PAINTING_VARIANT, new Identifier(Meadow.MOD_ID, name), paintingVariant);
     }

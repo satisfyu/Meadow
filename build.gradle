@@ -17,7 +17,6 @@ repositories {
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.architectury.dev/" }
 
-
 	maven {
 		name "terraform wood api, trinkets"
 		url "https://maven.terraformersmc.com"
@@ -39,7 +38,6 @@ dependencies {
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"
-
 
 }
 
@@ -114,7 +112,5 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
-
-
 
 }
