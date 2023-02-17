@@ -26,6 +26,7 @@ import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlockEntity;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlockEntity;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlockEntity;
+import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlockEntity;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken1.Chicken1Entity;
@@ -175,6 +176,8 @@ public class ModEntities {
     public static final BlockEntityType<CheeseFormBlockEntity> CHEESE_FORM_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "cheese_form"), FabricBlockEntityTypeBuilder.create(CheeseFormBlockEntity::new, ModBlocks.CHEESE_FORM).build());
 
     public static final BlockEntityType<CheeseRackBlockEntity> CHEESE_RACK_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "cheese_rack"), FabricBlockEntityTypeBuilder.create(CheeseRackBlockEntity::new, ModBlocks.CHEESE_RACK).build());
+
+    public static final BlockEntityType<WheelBarrowBlockEntity> WHEEL_BARROW_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "wheel_barrow"), FabricBlockEntityTypeBuilder.create(WheelBarrowBlockEntity::new, ModBlocks.WHEELBARROW).build());
 
     public static final BlockEntityType<CookingPotBlockEntity> COOKING_POT = Registry.register(Registry.BLOCK_ENTITY_TYPE,
             new Identifier(MOD_ID, "cooking_pot"),

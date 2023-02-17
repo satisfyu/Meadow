@@ -1,17 +1,14 @@
-package net.satisfyu.meadow.block.custom;
+package net.satisfyu.meadow.block.wheelbarrow;
 
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.EnumProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -22,90 +19,69 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.event.GameEvent;
-import net.satisfyu.meadow.util.EnumFlower;
+import net.satisfyu.meadow.block.custom.HFacingBlock;
 import net.satisfyu.meadow.util.GeneralUtil;
+import net.satisfyu.meadow.util.Tags;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Supplier;
 
 
-public class WheelBarrowBlock extends Block {
-    public WheelBarrowBlock(Settings settings) {
-        super(settings);
-        this.setDefaultState(this.getDefaultState().with(CONTENT, EnumFlower.NONE));
-    }
+public class WheelBarrowBlock extends HFacingBlock implements BlockEntityProvider {
 
-    public static final EnumProperty<EnumFlower> CONTENT = EnumProperty.of("content", EnumFlower.class);
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
-    @Override
-    protected void appendProperties(StateManager.Builder< Block, BlockState> builder) {
-        builder.add(CONTENT, FACING);
+    public WheelBarrowBlock(AbstractBlock.Settings settings) {
+        super(settings);
     }
 
+
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand
-            hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(hand);
-        Item item = itemStack.getItem();
-        if (item instanceof BlockItem blockItem) {
-            Block block = blockItem.getBlock();
-            if (block instanceof PlantBlock) {
-                EnumFlower flower = EnumFlower.NONE;
-                for (EnumFlower f : EnumFlower.values()) {
-                    if (f.getFlower() == block) {
-                        flower = f;
-                        break;
-                    }
-                }
-                if (flower == EnumFlower.NONE) {
-                    return ActionResult.FAIL;
-                }
-                world.setBlockState(pos, state.with(CONTENT, flower));
-                if (!player.getAbilities().creativeMode) {
-                    itemStack.decrement(1);
-                }
-                world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-                return ActionResult.success(world.isClient);
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (world.isClient) return ActionResult.SUCCESS;
+        WheelBarrowBlockEntity be = (WheelBarrowBlockEntity) world.getBlockEntity(pos);
+        if(be == null || player.isSneaking()) return ActionResult.PASS;
+        ItemStack stack = player.getStackInHand(hand);
+        List<Item> list = be.getItems();
+
+        if (stack.isEmpty()) {
+            Optional<Item> stackOutOfList = list.stream().findFirst();
+            if(stackOutOfList.isPresent()){
+                Item item = stackOutOfList.get();
+                player.giveItemStack(new ItemStack(item));
+                list.remove(item);
+                be.setItems(list);
+                return ActionResult.SUCCESS;
             }
-        } else if (player.isSneaking() && !isEmpty(state)) {
-            player.giveItemStack(new ItemStack(state.get(CONTENT).getFlower()));
-            world.setBlockState(pos, state.with(CONTENT, EnumFlower.NONE));
-            world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            return ActionResult.success(world.isClient);
+        } else if (stack.isIn(Tags.SMALL_FLOWER) && list.size() < 1) {
+            list.add(stack.getItem());
+            stack.decrement(1);
+            be.setItems(list);
+            return ActionResult.SUCCESS;
         }
-        return ActionResult.PASS;
+        return super.onUse(state, world, pos, player, hand, hit);
     }
 
     @Override
-    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return this.isEmpty(state) ? super.getPickStack(world, pos, state) : new ItemStack(state.get(CONTENT).getFlower());
-    }
-
-    private boolean isEmpty(BlockState state) {
-        return state.get(CONTENT) == EnumFlower.NONE;
+    public PistonBehavior getPistonBehavior(BlockState state) {
+        return PistonBehavior.IGNORE;
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess
-            world, BlockPos pos, BlockPos neighborPos) {
-        return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof WheelBarrowBlockEntity be) {
+                for(Item stack : be.getItems()){
+                    ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(stack));
+                }
+                world.updateComparators(pos,this);
+            }
+            super.onStateReplaced(state, world, pos, newState, moved);
+        }
     }
 
-    @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-        return false;
-    }
-
-    @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> list = new ArrayList<>();
-        list.add(new ItemStack(this));
-        Optional.of(state.get(CONTENT)).filter(a -> a != EnumFlower.NONE).map(EnumFlower::getFlower).map(ItemStack::new).ifPresent(list::add);
-        return list;
-    }
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
@@ -147,6 +123,12 @@ public class WheelBarrowBlock extends Block {
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new WheelBarrowBlockEntity(pos, state);
     }
 
     @Override

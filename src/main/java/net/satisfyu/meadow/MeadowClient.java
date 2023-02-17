@@ -59,6 +59,7 @@ import net.satisfyu.meadow.item.custom.FurArmorItem;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
 import net.satisfyu.meadow.render.CheeseRackBlockEntityRenderer;
+import net.satisfyu.meadow.render.WheelBarrowBlockEntityRenderer;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import org.jetbrains.annotations.NotNull;
 
@@ -143,8 +144,11 @@ public class MeadowClient implements ClientModInitializer {
         registerOtherEntities();
 
         TerraformBoatClientHelper.registerModelLayers(PINE_ID);
-    
+
         BlockEntityRendererFactories.register(ModEntities.CHEESE_RACK_BLOCK_ENTITY, CheeseRackBlockEntityRenderer::new);
+
+        BlockEntityRendererFactories.register(ModEntities.WHEEL_BARROW_BLOCK_ENTITY, WheelBarrowBlockEntityRenderer::new);
+
     }
 
     private static void registerClientScreens(){

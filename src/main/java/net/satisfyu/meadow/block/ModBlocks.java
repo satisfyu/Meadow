@@ -23,6 +23,7 @@ import net.satisfyu.meadow.block.cookingPot.CookingPotBlock;
 import net.satisfyu.meadow.block.custom.HFacingBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlock;
+import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
@@ -35,7 +36,6 @@ import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.WeakHashMap;
 
 
 public class ModBlocks {
