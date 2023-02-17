@@ -11,6 +11,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.SpriteIdentifier;
@@ -57,6 +58,7 @@ import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.item.custom.FurArmorItem;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
+import net.satisfyu.meadow.render.CheeseRackBlockEntityRenderer;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import org.jetbrains.annotations.NotNull;
 
@@ -141,6 +143,8 @@ public class MeadowClient implements ClientModInitializer {
         registerOtherEntities();
 
         TerraformBoatClientHelper.registerModelLayers(PINE_ID);
+    
+        BlockEntityRendererFactories.register(ModEntities.CHEESE_RACK_BLOCK_ENTITY, CheeseRackBlockEntityRenderer::new);
     }
 
     private static void registerClientScreens(){
