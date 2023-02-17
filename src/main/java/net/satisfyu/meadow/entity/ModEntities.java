@@ -214,10 +214,10 @@ public class ModEntities {
 
         registerCow(HIGHLAND_CATTLE, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
         registerCow(UMBRA_COW, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.TAIGA, BiomeKeys.FOREST, BiomeKeys.DARK_FOREST));
-        registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));
-        registerCow(ALBINO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
+        registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));
+        registerCow(ALBINO_COW, BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));
         registerCow(CREAM_COW, BiomeSelectors.includeByKey(BiomeKeys.BADLANDS).or(BiomeSelectors.tag(BiomeTags.IS_BADLANDS)));
-        registerCow(DAIRY_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
+        registerCow(DAIRY_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(WATER_BUFFALO, BiomeSelectors.includeByKey(BiomeKeys.SAVANNA, BiomeKeys.SAVANNA_PLATEAU, BiomeKeys.WINDSWEPT_SAVANNA).or(BiomeSelectors.tag(BiomeTags.IS_RIVER)));
         registerCow(DARK_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(PINTO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
