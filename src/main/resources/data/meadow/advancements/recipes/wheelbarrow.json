@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:wheelbarrow"
+    ]
+  },
+  "criteria": {
+    "has_wooden_cauldron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:wooden_cauldron"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:wheelbarrow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wooden_cauldron",
+      "has_the_recipe"
+    ]
+  ]
+}

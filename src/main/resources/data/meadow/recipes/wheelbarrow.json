@@ -1,20 +1,23 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "  /",
-        " M ",
-        "/  "
+        " / ",
+        " M/",
+        "W  "
     ],
     "key": {
         "/": {
             "item": "minecraft:stick"
         },
         "M": {
-   	   "tag": "meadow:cheese"
+            "item": "meadow:wooden_cauldron"
+        },
+        "W": {
+            "item": "meadow:polished_limestone_bricks"
         }
     },
     "result": {
-        "item": "meadow:cheese_stick",
+        "item": "meadow:wheelbarrow",
         "count": 1
     }
 }

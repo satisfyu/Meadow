@@ -22,58 +22,58 @@ public class ModItems {
 
     public static final Item PIECE_OF_CHEESE = registerItem("piece_of_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item PIECE_OF_GOAT_CHEESE = registerItem("piece_of_goat_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item PIECE_OF_OAT_CHEESE = registerItem("piece_of_oat_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item PIECE_OF_HERB_CHEESE = registerItem("piece_of_herb_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item PIECE_OF_LAVENDER_CHEESE = registerItem("piece_of_lavender_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item PIECE_OF_SHEEP_CHEESE = registerItem("piece_of_sheep_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item CHEESECAKE_SLICE = registerItem("cheesecake_slice",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item CHEESE_TART_SLICE = registerItem("cheese_tart_slice",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item CREAM_CHEESE = registerItem("cream_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.6f).build())));
+                    .food(new FoodComponent.Builder().hunger(5).saturationModifier(1.2f).build())));
 
     public static final Item BOWL_MOZRELLA = registerItem("bowl_mozzarella",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.6f).build())));
+                    .food(new FoodComponent.Builder().hunger(5).saturationModifier(1.2f).build())));
 
     public static final Item ALPINE_SALT = registerItem("alpine_salt",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item CHEESE_SANDWICH = registerItem("cheese_sandwich",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item CHEESE_ROLL = registerItem("cheese_roll",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item CHEESE_STICK = registerItem("cheese_stick",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item OAT_BREAD = registerItem("oat_bread",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
@@ -85,7 +85,7 @@ public class ModItems {
 
     public static final Item BEAR_STEW = registerItem("bear_stew",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.9f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
     public static final Item RICOLA = registerItem("ricola",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)

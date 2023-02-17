@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "meadow:monument",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 62069,
+    "spacing": 20,
+    "separation": 10,
+    "type": "minecraft:random_spread"
+  }
+}

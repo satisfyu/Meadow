@@ -3,6 +3,9 @@
     "done=false,var=0": {
       "model": "meadow:block/cheese_form"
     },
+    "done=true,var=0": {
+      "model": "meadow:block/cheese_form"
+    },
     "done=false,var=1": {
       "model": "meadow:block/cheese_form_filled_buffalo"
     },

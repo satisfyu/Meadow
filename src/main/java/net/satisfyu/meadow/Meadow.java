@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
+import net.satisfyu.meadow.effects.MeadowEffects;
 import net.satisfyu.meadow.entity.ModEntities;
 import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
@@ -48,10 +49,9 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 		ModItems.registerModItems();
 		ModStrippableBlocks.registerStrippables();
 		WoodenCauldronBehavior.registerBehavior();
-
+		MeadowEffects.init();
 		ModPaintings.registerPaintings();
-		ModVillagers.registerVillagers();
-		ModVillagers.registerTrades();
+		ModVillagers.init();
 		ModRecipes.registerRecipes();
 		ModScreenHandlers.registerScreenHandler();
 

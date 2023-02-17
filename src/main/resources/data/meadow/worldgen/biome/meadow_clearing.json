@@ -201,7 +201,10 @@
     [
       "minecraft:glow_lichen",
       "meadow:eriophorum_tall",
+      "meadow:small_fir",
+      "meadow:tall_fern",
       "meadow:patch_alpine_grass",
+      "meadow:meadow_clearing_trees",
       "meadow:patch_tall_alpine_grass"
     ],
     [

@@ -1,15 +1,16 @@
 package net.satisfyu.meadow.block.cheeseRack;
 
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
@@ -34,10 +35,8 @@ import java.util.function.Supplier;
 
 public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider {
 
-    public static final IntProperty STAGE = IntProperty.of("stage", 0, 2);
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-
-
+    
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.4375, 0.0625, 0.9375, 0.5, 0.9375), BooleanBiFunction.OR);
@@ -61,7 +60,6 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
 
     public CheeseRackBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(STAGE, 0));
     }
 
     @Override
@@ -72,22 +70,19 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
         ItemStack stack = player.getStackInHand(hand);
         List<Item> list = be.getItems();
 
-        if(stack.isEmpty()){
+        if (stack.isEmpty()) {
             Optional<Item> stackOutOfList = list.stream().findFirst();
             if(stackOutOfList.isPresent()){
                 Item item = stackOutOfList.get();
                 player.giveItemStack(new ItemStack(item));
                 list.remove(item);
                 be.setItems(list);
-                world.setBlockState(pos, state.with(STAGE, list.size()));
                 return ActionResult.SUCCESS;
             }
-        }
-        else if (stack.isIn(Tags.CHEESE_BLOCKS) && list.size() < 2) {
+        } else if (stack.isIn(Tags.CHEESE_BLOCKS) && list.size() < 2) {
             list.add(stack.getItem());
             stack.decrement(1);
             be.setItems(list);
-            world.setBlockState(pos, state.with(STAGE, list.size()));
             return ActionResult.SUCCESS;
         }
         return super.onUse(state, world, pos, player, hand, hit);
@@ -117,13 +112,7 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new CheeseRackBlockEntity(pos, state);
     }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(STAGE);
-    }
-
+    
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.uc.tooltip").formatted(Formatting.ITALIC, Formatting.DARK_RED));

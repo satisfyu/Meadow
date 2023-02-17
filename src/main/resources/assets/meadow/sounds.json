@@ -34,5 +34,17 @@
     "sounds": [
       "meadow:eating_bowl"
     ]
+  },
+  "shelf_open": {
+    "subtitle": "subtitles.meadow.shelf_open",
+    "sounds": [
+      "meadow:shelf_open"
+    ]
+  },
+  "shelf_closed": {
+    "subtitle": "subtitles.meadow.shelf_closed",
+    "sounds": [
+      "meadow:shelf_closed"
+    ]
   }
 }

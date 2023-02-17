@@ -86,6 +86,7 @@ public class StoveBlock extends HFacingBlock {
 
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.uc.tooltip").formatted(Formatting.ITALIC, Formatting.DARK_RED));
+        tooltip.add(Text.translatable("block.meadow.stove.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
+

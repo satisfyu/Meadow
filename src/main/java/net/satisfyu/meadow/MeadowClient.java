@@ -11,6 +11,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.SpriteIdentifier;
@@ -57,6 +58,7 @@ import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.item.custom.FurArmorItem;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
+import net.satisfyu.meadow.render.CheeseRackBlockEntityRenderer;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import org.jetbrains.annotations.NotNull;
 
@@ -72,7 +74,6 @@ public class MeadowClient implements ClientModInitializer {
 
     public static final EntityModelLayer FUZZY_SHEEP_FUR = new EntityModelLayer(new Identifier(MOD_ID, "fuzzy_sheep"), "fur");
     public static final EntityModelLayer FUZZY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "fuzzy_sheep"), "main");
-
 
     public static final EntityModelLayer HORNED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "horned_sheep"), "main");
 
@@ -128,7 +129,7 @@ public class MeadowClient implements ClientModInitializer {
                 ModBlocks.POTTED_DARK_OAK_SAPLING, ModBlocks.POTTED_DANDELION, ModBlocks.POTTED_POPPY, ModBlocks.POTTED_BLUE_ORCHID, ModBlocks.POTTED_ALLIUM, ModBlocks.POTTED_AZURE_BLUET,
                 ModBlocks.POTTED_RED_TULIP, ModBlocks.POTTED_ORANGE_TULIP, ModBlocks.POTTED_WHITE_TULIP, ModBlocks.POTTED_PINK_TULIP, ModBlocks.POTTED_OXEYE_DAISY, ModBlocks.POTTED_CORNFLOWER,
                 ModBlocks.POTTED_LILY_OF_THE_VALLEY, ModBlocks.POTTED_WITHER_ROSE, ModBlocks.W_POTTED_PINE_SAPLING, ModBlocks.W_POTTED_DELPHINIUM, ModBlocks.W_POTTED_ALPINE_POPPY, ModBlocks.W_POTTED_SAXIFRAGE,
-                ModBlocks.W_POTTED_ENZIAN, ModBlocks.W_POTTED_FIRE_LILY, ModBlocks.W_POTTED_ERIOPHORUM, ModBlocks.POTTED_AZALEA, ModBlocks.POTTED_FLOWERING_AZALEA, ModBlocks.FLOWER_POT_BIG, ModBlocks.FONDUE, ModBlocks.OIL_LANTERN);
+                ModBlocks.W_POTTED_ENZIAN, ModBlocks.W_POTTED_FIRE_LILY, ModBlocks.W_POTTED_ERIOPHORUM, ModBlocks.POTTED_AZALEA, ModBlocks.POTTED_FLOWERING_AZALEA, ModBlocks.FLOWER_POT_BIG, ModBlocks.FONDUE, ModBlocks.OIL_LANTERN, ModBlocks.WHEELBARROW);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW, ModBlocks.WINDOW_2, ModBlocks.WINDOW_3);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
@@ -141,8 +142,9 @@ public class MeadowClient implements ClientModInitializer {
         registerChicken();
         registerOtherEntities();
 
-
         TerraformBoatClientHelper.registerModelLayers(PINE_ID);
+    
+        BlockEntityRendererFactories.register(ModEntities.CHEESE_RACK_BLOCK_ENTITY, CheeseRackBlockEntityRenderer::new);
     }
 
     private static void registerClientScreens(){
@@ -151,13 +153,11 @@ public class MeadowClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, CookingCauldronScreen::new);
         HandledScreens.register(ModScreenHandlers.COOKING_POT_SCREEN_HANDLER, CookingPotScreen::new);
         HandledScreens.register(ModScreenHandlers.FONDUE_SCREEN_HANDLER, FondueScreen::new);
-
     }
 
     private void registerParticles(){
         ParticleFactoryRegistry.getInstance().register(ModParticles.CHEESE_SPLASH, SplashParticle.Factory::new);
     }
-
 
     private static void registerOtherEntities(){
         EntityRendererRegistry.register(ModEntities.BROWN_BEAR, BrownBearEntityRenderer::new);
@@ -262,6 +262,5 @@ public class MeadowClient implements ClientModInitializer {
     public static PlayerEntity getClientPlayer() {
         return MinecraftClient.getInstance().player;
     }
-
-
+    
 }

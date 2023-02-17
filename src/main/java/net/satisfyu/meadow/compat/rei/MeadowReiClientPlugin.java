@@ -34,9 +34,7 @@ public class MeadowReiClientPlugin implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(CookingPotRecipe.class, CookingPotDisplay::new);
-
     }
-
 
 
     public static List<Ingredient> ingredients(Recipe<Inventory> recipe, ItemStack stack){

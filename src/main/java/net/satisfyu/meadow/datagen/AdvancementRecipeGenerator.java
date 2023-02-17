@@ -14,7 +14,8 @@ public class AdvancementRecipeGenerator {
     public static void main(String[] args) {
         List<String> putRecipesHere = List.of(
 
-                "pine_log/fire_log"
+                "pine_log/fire_log",
+                "wooden_cauldron/wheelbarrow"
 
 
 

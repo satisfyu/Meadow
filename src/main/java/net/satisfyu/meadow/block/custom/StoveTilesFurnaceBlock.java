@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +18,9 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -30,6 +33,8 @@ import net.satisfyu.meadow.block.woodenCauldren.DamageSourceRegistry;
 import net.satisfyu.meadow.util.BlockStateUtils;
 import net.satisfyu.meadow.util.MathUtils;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class StoveTilesFurnaceBlock extends Block {
 
@@ -153,6 +158,11 @@ public class StoveTilesFurnaceBlock extends Block {
         double dy = pos.getY();
         double dz = pos.getZ() + .5d;
         world.playSound(dx, dy, dz, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5f, 2.6f, false);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.meadow.stove.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
 

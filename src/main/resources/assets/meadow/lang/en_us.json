@@ -39,6 +39,7 @@
   "block.meadow.rocky_carpet": "White Stitched Carpet",
   "block.meadow.flower_pot_big": "Big Wooden Flower Pot",
   "block.meadow.fondue": "Fondue",
+  "block.meadow.watering_can": "Watering Can",
   "block.meadow.fire_log": "Fire Log",
   "block.meadow.umbra_wool": "Blue Patterned Wool",
   "block.meadow.flecked_carpet": "Brown Patterned Carpet",
@@ -126,12 +127,14 @@
   "item.meadow.bowl_mozzarella": "Bowl Full of Mozzarella",
   "block.meadow.bowl_sweetberries": "Bowl Full of Milk with Sweetberries",
   "block.meadow.can": "Can",
-  "block.meadow.carpet": "Carpet",
   "block.meadow.cheese_form": "Cheese Form",
   "block.meadow.woodcutter": "Woodcutter",
   "block.meadow.meadow.alpine_salt": "Alpine Salt",
   "block.meadow.pine_sign": "Pine Sign",
   "block.meadow.pine_railing": "Pine Railing",
+  "block.meadow.wheelbarrow": "Wheelbarrow",
+  "block.meadow.wheelbarrow.tooltip": "Can hold Flowers",
+  "block.meadow.stone_bench": "Stone Bench",
 
   "block.meadow.limestone_brick_wall": "Limestone Brick Wall",
   "block.meadow:cobbled_limestone_wall": "Cobbled Limestone Wall",
@@ -161,7 +164,7 @@
   "item.meadow.jug_milk": "Jug Milk",
   "item.meadow.jug_yarrow_tea": "Jug Yarrow Tea",
   "item.meadow.jug_juniper_tea": "Jug Juniper Tea",
-  "item.meadow.lab": "Lab",
+  "item.meadow.lab": "Rennet",
   "item.meadow.watering_can": "Watering Can",
   "item.meadow.oat_oil": "Oat Oil",
   "item.meadow.oat_seeds": "Oat Seeds",
@@ -241,7 +244,7 @@
   "block.meadow.rope.tooltip": "Attach it on the bottom of a Block to cope height differences with ease.",
   "block.meadow.rack.tooltip": "Storage for Cheese Wheels.",
   "block.meadow.frame.tooltip": "Cooking Cauldron can be hung on a frame.",
-
+  "block.meadow.stove.tooltip": "Make your home a bit more comfortable.",
   "block.meadow.uc.tooltip": "This block has effects that are not yet implemented.",
   "biome.meadow.meadow_clearing": "Meadow Clearing",
   "biome.meadow.meadow_forest": "Meadow Forest",
@@ -270,9 +273,14 @@
   "subtitles.meadow.click_camera": "Clicking Camera",
   "subtitles.meadow.woodcutter": "Woodcutter used",
   "subtitles.meadow.cooking_cauldron": "Cauldron cooking",
+  "subtitles.meadow.shelf_open": "Opening shelf",
+  "subtitles.meadow.shelf_closed": "Closing shelf",
+  "block.meadow.stone_table": "Stone Table",
+  "entity.minecraft.villager.cheesemaker": "Cheesemaker",
+  "entity.minecraft.villager.hermit": "Hermit",
 
   "container.woodcutter": "",
   "container.cooking_cauldron": "",
-  "container.cheese_form": ""
-
+  "container.cheese_form": "",
+  "container.shelf": ""
 }

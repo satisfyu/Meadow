@@ -135,7 +135,7 @@ public class CookingCauldronBlock extends BlockWithEntity {
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if(state.get(HANGING)){
-            FrameBlock.displayTickLikeCampfire(state, world, pos, random, world.getBlockState(pos.down()).isOf(Blocks.HAY_BLOCK));
+            FrameBlock.displayTickLikeCampfire(world, pos, random, world.getBlockState(pos.down()).isOf(Blocks.HAY_BLOCK));
         }
         if (state.get(VAR) <= 0) {
             return;
