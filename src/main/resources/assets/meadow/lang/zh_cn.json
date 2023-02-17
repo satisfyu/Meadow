@@ -78,7 +78,7 @@
   "block.meadow.oat_ball": "燕麦球",
   "block.meadow.oat_bag": "袋装燕麦",
   "block.meadow.climbing_rope_topmount": "绳索",
-  "block.meadow.shelf": "置物架",
+  "block.meadow.shelf": "货物柜",
   "block.meadow.furnace_cobblestone": "圆石火炉",
   "block.meadow.stove_tiles": "铺砖火炉",
   "block.meadow.stove_tiles_wood": "铺砖火炉（木堆)",
@@ -92,7 +92,7 @@
   "block.meadow.table": "桌子",
   "block.meadow.chair": "椅子",
   "block.meadow.frame": "营火架",
-  "block.meadow.bench": "凳子",
+  "block.meadow.bench": "长凳",
   "block.meadow.cooking_pot": "烹饪锅",
   "block.meadow.wooden_flower_pot": "木质花盆",
   "block.meadow.window_shutter_0": "窗户遮板",
@@ -132,6 +132,9 @@
   "block.meadow.meadow.alpine_salt": "山地盐",
   "block.meadow.pine_sign": "松木告示牌",
   "block.meadow.pine_railing": "松木扶手",
+  "block.meadow.wheelbarrow": "独轮车",
+  "block.meadow.wheelbarrow.tooltip": "独轮车装花",
+  "block.meadow.stone_bench": "石长凳",
 
   "block.meadow.limestone_brick_wall": "石灰岩石砖墙",
   "block.meadow:cobbled_limestone_wall": "碎石灰岩墙",
@@ -200,6 +203,7 @@
   "item.meadow.wooden_oat_milk_bucket": "木桶装燕麦奶",
   "item.meadow.wooden_sheep_milk_bucket": "木桶装羊奶",
   "item.meadow.albino_cow_spawn_egg":"白化牛刷怪蛋",
+  "item.meadow.water_buffalo_spawn_egg":"水牛刷怪蛋",
   "item.meadow.cookie_cow_spawn_egg":"曲奇牛刷怪蛋",
   "item.meadow.cream_cow_spawn_egg":"奶油牛刷怪蛋",
   "item.meadow.dairy_cow_spawn_egg":"奶牛刷怪蛋",
@@ -240,7 +244,7 @@
   "block.meadow.rope.tooltip": "将其安装在方块的底部，以轻松应对高度差异。",
   "block.meadow.rack.tooltip": "奶酪轮的储存。",
   "block.meadow.frame.tooltip": "炼奶锅可以挂在一个营火架上。",
-
+  "block.meadow.stove.tooltip": "让你的家更舒适一点。",
   "block.meadow.uc.tooltip": "此方块具有尚未实现的效果。",
   "biome.meadow.meadow_clearing": "草甸空地",
   "biome.meadow.meadow_forest": "草甸森林",
@@ -252,9 +256,9 @@
   "entity.meadow.albino_cow": "白化牛",
   "entity.meadow.cookie_cow": "曲奇牛",
   "entity.meadow.cream_cow": "奶油牛",
-  "entity.meadow.dairy_cow": "黑白花牛",
+  "entity.meadow.dairy_cow": "奶牛",
   "entity.meadow.dark_cow": "深色牛",
-  "entity.meadow.pinto_cow": "花斑奶牛",
+  "entity.meadow.pinto_cow": "花斑牛",
   "entity.meadow.sunset_cow": "日落牛",
   "entity.meadow.highland_cattle": "羊毛牛",
   "entity.meadow.umbra_cow": "阴影牛",
@@ -269,9 +273,14 @@
   "subtitles.meadow.click_camera": "照相机快门",
   "subtitles.meadow.woodcutter": "切木机切割",
   "subtitles.meadow.cooking_cauldron": "炼奶锅咕嘟",
+  "subtitles.meadow.shelf_open": "打开货物柜",
+  "subtitles.meadow.shelf_closed": "关闭货物柜",
+  "block.meadow.stone_table": "石桌子",
+  "entity.minecraft.villager.cheesemaker": "奶酪商人",
+  "entity.minecraft.villager.hermit": "隐士",
+
 
   "container.woodcutter": "",
   "container.cooking_cauldron": "",
   "container.cheese_form": ""
-
 }
