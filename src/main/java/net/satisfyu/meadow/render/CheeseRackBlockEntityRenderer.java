@@ -31,11 +31,11 @@ public class CheeseRackBlockEntityRenderer implements BlockEntityRenderer<Cheese
             applyBlockAngle(matrices, selfState, 180);
             if (!items.isEmpty()) {
                 BlockState state = ((BlockItem) items.get(0)).getBlock().getDefaultState();
-                matrices.translate(0f, 0f, 0f);
+                matrices.translate(-0.5f, 0.1f, -0.5f);
                 renderBlock(state, matrices, vertexConsumers, entity);
                 if (items.size() > 1) {
                     state = ((BlockItem) items.get(1)).getBlock().getDefaultState();
-                    matrices.translate(0f, 0.5f, 0f);
+                    matrices.translate(0f, 0.4f, 0f);
                     renderBlock(state, matrices, vertexConsumers, entity);
                 }
             }
