@@ -7,8 +7,7 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.world.feature.custom.CobbledLimestoneRock;
 
 public class ModFeatures {
-
-
+    
     public static void registerFeatures(){
         Meadow.LOGGER.debug("Registering the ModFeatures for " + Meadow.MOD_ID);
 
