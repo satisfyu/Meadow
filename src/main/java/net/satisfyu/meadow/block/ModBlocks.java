@@ -15,6 +15,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.bigFlowerPot.BigFlowerPotBlock;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlock;
 import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
@@ -212,7 +213,7 @@ public class ModBlocks {
             new CameraBlock(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT);
     public static final Block DOORMAT = registerBlock("doormat",
             new DoormatBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
-    public static final Block FLOWER_POT_BIG = registerBlock("flower_pot_big", new WoodenBigFlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)), ModItemGroup.ALPINE_SALT);
+    public static final Block FLOWER_POT_BIG = registerBlock("flower_pot_big", new BigFlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)), ModItemGroup.ALPINE_SALT);
     public static final Block WOODEN_FLOWER_POT = registerBlock("wooden_flower_pot", new WoodenFlowerPotBlock(Blocks.AIR, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESE_FORM = registerBlock("cheese_form",
             new CheeseFormBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);

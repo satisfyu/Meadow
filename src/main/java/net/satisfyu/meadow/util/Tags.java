@@ -23,4 +23,7 @@ public class Tags {
     public static final TagKey<Item> BUCKETS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "buckets"));
 
     public static final TagKey<Item> SMALL_FLOWER = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "small_flower"));
+
+    public static final TagKey<Item> BIG_FLOWER = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "big_flower"));
+
 }

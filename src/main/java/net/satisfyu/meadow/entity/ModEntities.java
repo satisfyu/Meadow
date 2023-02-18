@@ -18,6 +18,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.BiomeKeys;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.bigFlowerPot.BigFlowerPotBlockEntity;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlockEntity;
 import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlockEntity;
@@ -178,6 +179,8 @@ public class ModEntities {
     public static final BlockEntityType<CheeseRackBlockEntity> CHEESE_RACK_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "cheese_rack"), FabricBlockEntityTypeBuilder.create(CheeseRackBlockEntity::new, ModBlocks.CHEESE_RACK).build());
 
     public static final BlockEntityType<WheelBarrowBlockEntity> WHEEL_BARROW_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "wheel_barrow"), FabricBlockEntityTypeBuilder.create(WheelBarrowBlockEntity::new, ModBlocks.WHEELBARROW).build());
+
+    public static final BlockEntityType<BigFlowerPotBlockEntity> BIG_FLOWER_POT_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "big_flower_pot"), FabricBlockEntityTypeBuilder.create(BigFlowerPotBlockEntity::new, ModBlocks.FLOWER_POT_BIG).build());
 
     public static final BlockEntityType<CookingPotBlockEntity> COOKING_POT = Registry.register(Registry.BLOCK_ENTITY_TYPE,
             new Identifier(MOD_ID, "cooking_pot"),

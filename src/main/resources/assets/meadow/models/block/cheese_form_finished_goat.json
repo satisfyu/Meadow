@@ -2,8 +2,8 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"1": "meadow:block/form",
-		"2": "meadow:block/cheese_goat",
-		"particle": "meadow:block/cheese_goat"
+		"2": "meadow:block/cheese/herb_cheese_top",
+		"particle": "meadow:block/cheese/goat_cheese_top"
 	},
 	"elements": [
 		{

@@ -8,39 +8,41 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.Vec3f;
+import net.satisfyu.meadow.block.bigFlowerPot.BigFlowerPotBlock;
+import net.satisfyu.meadow.block.bigFlowerPot.BigFlowerPotBlockEntity;
 import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlock;
-import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlockEntity;
+
 
 import java.util.List;
 
 import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
 
-public class WheelBarrowBlockEntityRenderer implements BlockEntityRenderer<WheelBarrowBlockEntity> {
+public class BigFlowerPotBlockEntityRenderer implements BlockEntityRenderer<BigFlowerPotBlockEntity> {
 
-    public WheelBarrowBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {}
-    
+    public BigFlowerPotBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {}
+
     @Override
-    public void render(WheelBarrowBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    public void render(BigFlowerPotBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         if (!entity.hasWorld()) {
             return;
         }
         BlockState selfState = entity.getCachedState();
-        if (selfState.getBlock() instanceof WheelBarrowBlock) {
+        if (selfState.getBlock() instanceof BigFlowerPotBlock) {
             List<Item> items = entity.getItems();
             matrices.push();
             applyBlockAngle(matrices, selfState, 180);
             if (!items.isEmpty()) {
                 BlockState state = ((BlockItem) items.get(0)).getBlock().getDefaultState();
-                matrices.translate(0f, 0.625f, 0f);
+                matrices.translate(0f, 0.4f, 0f);
                 renderBlock(state, matrices, vertexConsumers, entity);
-                }
             }
-            matrices.pop();
         }
-    
+        matrices.pop();
+    }
+
     public static void applyBlockAngle(MatrixStack matrices, BlockState state, float angleOffset) {
-        float angle = state.get(WheelBarrowBlock.FACING).asRotation();
-        matrices.translate(1, 0, 1);
+        float angle = state.get(BigFlowerPotBlock.FACING).asRotation();
+        matrices.translate(1, 0, 0);
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(angleOffset - angle));
     }
 }

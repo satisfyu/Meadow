@@ -1,22 +1,19 @@
 {
   "variants": {
-    "content=none": {
-      "model": "meadow:block/flower_pot_empty"
+    "facing=east": {
+      "model": "meadow:block/flower_pot_main",
+      "y": 90
     },
-    "content=lilac": {
-      "model": "meadow:block/flower_pot_lilac"
+    "facing=north": {
+      "model": "meadow:block/flower_pot_main"
     },
-    "content=peony": {
-      "model": "meadow:block/flower_pot_peony"
+    "facing=south": {
+      "model": "meadow:block/flower_pot_main",
+      "y": 180
     },
-    "content=rose_bush": {
-      "model": "meadow:block/flower_pot_rose_bush"
-    },
-    "content=sunflower": {
-      "model": "meadow:block/flower_pot_sunflower"
-    },
-    "content=eriophorum": {
-      "model": "meadow:block/flower_pot_eriophorum"
+    "facing=west": {
+      "model": "meadow:block/flower_pot_main",
+      "y": 270
+    }
   }
-}
 }
