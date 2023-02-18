@@ -21,6 +21,7 @@ import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlock;
 import net.satisfyu.meadow.block.custom.*;
+import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlock;
 import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlock;
@@ -215,6 +216,7 @@ public class ModBlocks {
             new DoormatBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
     public static final Block FLOWER_POT_BIG = registerBlock("flower_pot_big", new BigFlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)), ModItemGroup.ALPINE_SALT);
     public static final Block WOODEN_FLOWER_POT = registerBlock("wooden_flower_pot", new WoodenFlowerPotBlock(Blocks.AIR, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
+    public static final Block WOODEN_FLOWER_BOX = registerBlock("flower_box", new FlowerBoxBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESE_FORM = registerBlock("cheese_form",
             new CheeseFormBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
     public static final Block WOODEN_CAULDRON = registerBlock("wooden_cauldron",

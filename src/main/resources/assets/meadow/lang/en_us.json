@@ -276,6 +276,8 @@
   "subtitles.meadow.shelf_open": "Opening shelf",
   "subtitles.meadow.shelf_closed": "Closing shelf",
   "block.meadow.stone_table": "Stone Table",
+  "block.meadow.flower_box": "Flower Box",
+
   "entity.minecraft.villager.cheesemaker": "Cheesemaker",
   "entity.minecraft.villager.hermit": "Hermit",
   "effect.meadow.cozy_home": "Cozy Home", 

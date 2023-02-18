@@ -60,6 +60,7 @@ import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
 import net.satisfyu.meadow.render.BigFlowerPotBlockEntityRenderer;
 import net.satisfyu.meadow.render.CheeseRackBlockEntityRenderer;
+import net.satisfyu.meadow.render.FlowerBoxBlockEntityRenderer;
 import net.satisfyu.meadow.render.WheelBarrowBlockEntityRenderer;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import org.jetbrains.annotations.NotNull;
@@ -151,6 +152,8 @@ public class MeadowClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModEntities.WHEEL_BARROW_BLOCK_ENTITY, WheelBarrowBlockEntityRenderer::new);
 
         BlockEntityRendererFactories.register(ModEntities.BIG_FLOWER_POT_BLOCK_ENTITY, BigFlowerPotBlockEntityRenderer::new);
+
+        BlockEntityRendererFactories.register(ModEntities.FLOWER_BOX_BLOCK_ENTITY, FlowerBoxBlockEntityRenderer::new);
 
     }
 

@@ -25,6 +25,7 @@ import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlockEntity;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlockEntity;
 import net.satisfyu.meadow.block.custom.StoveBlockWoodBlockEntity;
+import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlockEntity;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlockEntity;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlockEntity;
 import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlockEntity;
@@ -179,6 +180,8 @@ public class ModEntities {
     public static final BlockEntityType<CheeseRackBlockEntity> CHEESE_RACK_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "cheese_rack"), FabricBlockEntityTypeBuilder.create(CheeseRackBlockEntity::new, ModBlocks.CHEESE_RACK).build());
 
     public static final BlockEntityType<WheelBarrowBlockEntity> WHEEL_BARROW_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "wheel_barrow"), FabricBlockEntityTypeBuilder.create(WheelBarrowBlockEntity::new, ModBlocks.WHEELBARROW).build());
+
+    public static final BlockEntityType<FlowerBoxBlockEntity> FLOWER_BOX_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "flower_box"), FabricBlockEntityTypeBuilder.create(FlowerBoxBlockEntity::new, ModBlocks.WOODEN_FLOWER_BOX).build());
 
     public static final BlockEntityType<BigFlowerPotBlockEntity> BIG_FLOWER_POT_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "big_flower_pot"), FabricBlockEntityTypeBuilder.create(BigFlowerPotBlockEntity::new, ModBlocks.FLOWER_POT_BIG).build());
 
