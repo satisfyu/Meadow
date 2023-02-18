@@ -22,17 +22,17 @@ import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlockEntity;
 import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlockEntity;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
-
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlockEntity;
+import net.satisfyu.meadow.block.custom.StoveBlockWoodBlockEntity;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlockEntity;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlockEntity;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntity;
+import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken1.Chicken1Entity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken2.Chicken2Entity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken3.Chicken3Entity;
 import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowEntity;
-import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntity;
 import net.satisfyu.meadow.entity.custom.cow.cookie_cow.CookieCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.cream_cow.CreamCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.dairy_cow.DairyCowEntity;
@@ -187,9 +187,7 @@ public class ModEntities {
                     ModBlocks.FONDUE).build());
 
     public static final BlockEntityType<ShelfBlockEntity> SHELF_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "shelf"), FabricBlockEntityTypeBuilder.create(ShelfBlockEntity::new, ModBlocks.SHELF).build());
-
-
-
+    public static final BlockEntityType<StoveBlockWoodBlockEntity> STOVE_BLOCK_WOOD_BLOCK_ENTITY_ = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "stove_block_wood"), FabricBlockEntityTypeBuilder.create(StoveBlockWoodBlockEntity::new, ModBlocks.STOVE_WOOD).build());
 
     public static void registerEntities(){
         Meadow.LOGGER.debug("Registering Mod Entities for " + Meadow.MOD_ID);

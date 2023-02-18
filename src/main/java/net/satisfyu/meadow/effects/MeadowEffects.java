@@ -7,9 +7,7 @@ import net.satisfyu.meadow.util.MeadowIdentifier;
 
 
 public class MeadowEffects {
-
-
-
+    
     public static final StatusEffect COZY_HOME = registerEffekt("cozy_home", new CozyHomeEffect());
 
     public static void init(){
