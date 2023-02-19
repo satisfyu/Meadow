@@ -82,7 +82,7 @@ public class FlowerBoxBlockEntity extends BlockEntity {
 
 	@Override
 	public void markDirty() {
-		if (!world.isClient()) {
+		if(world != null && !world.isClient()) {
 			Packet<ClientPlayPacketListener> updatePacket = toUpdatePacket();
 
 			for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
