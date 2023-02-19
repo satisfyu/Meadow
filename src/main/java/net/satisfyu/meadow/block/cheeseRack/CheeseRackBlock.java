@@ -113,7 +113,7 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
     
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.uc.tooltip").formatted(Formatting.ITALIC, Formatting.DARK_RED));
+        tooltip.add(Text.translatable("block.meadow.rack.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
 
