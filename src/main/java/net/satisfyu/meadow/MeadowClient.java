@@ -55,6 +55,7 @@ import net.satisfyu.meadow.entity.custom.sheep.long_nosed.LongNosedSheepRenderer
 import net.satisfyu.meadow.entity.custom.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepRenderer;
 import net.satisfyu.meadow.item.ModItems;
+import net.satisfyu.meadow.item.custom.BowModelProvider;
 import net.satisfyu.meadow.item.custom.FurArmorItem;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
@@ -138,12 +139,15 @@ public class MeadowClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.WINDOW);
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ModBlocks.SIGN_TEXTURE_ID));
 
+
         registerClientScreens();
         registerCows();
         registerSheeps();
         registerParticles();
         registerChicken();
         registerOtherEntities();
+
+        BowModelProvider.registerModModels();
 
         TerraformBoatClientHelper.registerModelLayers(PINE_ID);
 

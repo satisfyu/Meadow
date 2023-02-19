@@ -289,5 +289,9 @@
   "block.meadow.stone_bench": "Steinbank",
   "block.meadow.stone_table": "Steintisch",
   "entity.minecraft.villager.cheesemaker": "Käser",
-  "entity.minecraft.villager.hermit": "Einsiedler"
+  "entity.minecraft.villager.hermit": "Einsiedler",
+  "item.meadow.hunting_bow": "Jagdbogen",
+  "item.meadow.cord": "Schnur",
+  "item.meadow.ingredient.tooltip": "Handwerkszutat",
+  "block.meadow.woodencauldron.tooltip": "Funktioniert wie ein Kessel"
 }

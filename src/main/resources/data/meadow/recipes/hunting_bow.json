@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "meadow:cord"
+    }
+  },
+  "pattern": [
+    " #X",
+    "# B",
+    " #X"
+  ],
+  "result": {
+    "item": "meadow:hunting_bow"
+  }
+}

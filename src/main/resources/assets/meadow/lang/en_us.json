@@ -277,6 +277,8 @@
   "subtitles.meadow.shelf_closed": "Closing shelf",
   "block.meadow.stone_table": "Stone Table",
   "block.meadow.flower_box": "Flower Box",
+  "item.meadow.hunting_bow": "Hunting Bow",
+  "item.meadow.ingredient.tooltip": "Crafting Ingredient",
 
   "entity.minecraft.villager.cheesemaker": "Cheesemaker",
   "entity.minecraft.villager.hermit": "Hermit",
@@ -284,5 +286,7 @@
   "container.woodcutter": "",
   "container.cooking_cauldron": "",
   "container.cheese_form": "",
-  "container.shelf": ""
+  "container.shelf": "",
+  "block.meadow.woodencauldron.tooltip": "Same functions as a Cauldron",
+  "item.meadow.cord": "Schnur"
 }
