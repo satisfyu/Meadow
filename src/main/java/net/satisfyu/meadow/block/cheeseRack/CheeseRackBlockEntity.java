@@ -84,10 +84,14 @@ public class CheeseRackBlockEntity extends BlockEntity {
 	public void markDirty() {
 		if (!world.isClient()) {
 			Packet<ClientPlayPacketListener> updatePacket = toUpdatePacket();
-			
-			for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
+
+				for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
 				player.networkHandler.sendPacket(updatePacket);
-			}
+
+					if (world == null);
+
+
+				}
 		}
 		super.markDirty();
 	}
