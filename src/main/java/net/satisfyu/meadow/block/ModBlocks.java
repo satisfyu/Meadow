@@ -5,6 +5,7 @@ import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
@@ -411,6 +412,14 @@ public class ModBlocks {
     private static void registerBlockItem(String name, Block block, ItemGroup tab) {
         Registry.register(Registry.ITEM, new Identifier(Meadow.MOD_ID, name),
                 new BlockItem(block, tab == null ? new FabricItemSettings() : new FabricItemSettings().group(tab)));
+    }
+
+
+    private static void registerFuels() {
+        Meadow.LOGGER.info("Registering Fuels for " + Meadow.MOD_ID);
+        FuelRegistry registry = FuelRegistry.INSTANCE;
+
+        registry.add(ModBlocks.FIRE_LOG, 200);
     }
 
     public static void registerModBlocks() {
