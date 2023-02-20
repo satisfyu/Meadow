@@ -89,8 +89,6 @@ public class BigFlowerPotBlockEntity extends BlockEntity {
 			for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
 				player.networkHandler.sendPacket(updatePacket);
 
-				if(world != null);
-
 			}
 		}
 		super.markDirty();
