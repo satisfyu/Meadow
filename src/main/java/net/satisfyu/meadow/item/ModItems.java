@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.sound.SoundEvents;
@@ -47,7 +49,7 @@ public class ModItems {
 
     public static final Item PIECE_OF_WARPED_CHEESE = registerItem("piece_of_warped_cheese",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
-                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 300, 1), 1.0F).build())));
 
     public static final Item CHEESECAKE_SLICE = registerItem("cheesecake_slice",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
