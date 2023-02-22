@@ -47,7 +47,7 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 	@Override
 	public void onInitialize() {
 
-
+		ModBlocks.registerFuel();
 		ModBlocks.registerModBlocks();
 		ModEntities.registerEntities();
 		ModItems.registerModItems();

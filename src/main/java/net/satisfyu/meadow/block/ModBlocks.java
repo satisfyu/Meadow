@@ -414,12 +414,15 @@ public class ModBlocks {
                 new BlockItem(block, tab == null ? new FabricItemSettings() : new FabricItemSettings().group(tab)));
     }
 
+    public static void registerFuel() {
+        registerFuels();
+    }
 
     private static void registerFuels() {
         Meadow.LOGGER.info("Registering Fuels for " + Meadow.MOD_ID);
         FuelRegistry registry = FuelRegistry.INSTANCE;
 
-        registry.add(ModBlocks.FIRE_LOG, 200);
+        registry.add(ModBlocks.FIRE_LOG, 400);
     }
 
     public static void registerModBlocks() {
