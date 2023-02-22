@@ -45,6 +45,10 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
+    public static final Item PIECE_OF_WARPED_CHEESE = registerItem("piece_of_warped_cheese",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
+
     public static final Item CHEESECAKE_SLICE = registerItem("cheesecake_slice",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
@@ -146,6 +150,7 @@ public class ModItems {
 
     public static final Item HERBS_CHEESE_MASS = registerItem("herbs_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
+    public static final Item WARPED_CHEESE_MASS = registerItem("warped_cheese_mass_bucket", new WarpedMassItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
     public static final Item WOODEN_CHEESE_MASS = registerItem("wooden_cow_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
@@ -161,6 +166,7 @@ public class ModItems {
 
     public static final Item WOODEN_HERBS_CHEESE_MASS = registerItem("wooden_herbs_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
+    public static final Item WOODEN_WARPED_CHEESE_MASS = registerItem("wooden_warped_cheese_mass_bucket", new WarpedMassItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
     public static final Item BUFFALO_MILK = registerItem("buffalo_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 

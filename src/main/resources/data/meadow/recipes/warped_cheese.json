@@ -1,0 +1,7 @@
+{
+  "type": "meadow:cheese",
+  "inputItem": {
+    "tag": "meadow:warped_cheese_mass"
+  },
+  "outputItem": "meadow:warped_cheese_block"
+}

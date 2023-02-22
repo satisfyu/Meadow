@@ -293,5 +293,6 @@
   "item.meadow.hunting_bow": "Jagdbogen",
   "item.meadow.cord": "Schnur",
   "item.meadow.ingredient.tooltip": "Handwerkszutat",
-  "block.meadow.woodencauldron.tooltip": "Funktioniert wie ein Kessel"
+  "block.meadow.woodencauldron.tooltip": "Funktioniert wie ein Kessel",
+  "item.meadow.warped.tooltip": "Fühlt sich warm und fest an"
 }

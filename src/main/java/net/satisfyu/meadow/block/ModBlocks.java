@@ -204,6 +204,13 @@ public class ModBlocks {
     public static final Block INKY_CARPET = registerBlock("inky_carpet",
             new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
     public static final Block INKY_BED = registerBlock("inky_bed", new MeadowBedBlock(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOD).strength(0.2F).nonOpaque()), ModItemGroup.ALPINE_SALT);
+    public static final Block WARPED_WOOL = registerBurningBlock("warped_wool",
+            new Block(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT, 30, 60);
+    public static final Block WARPED_CARPET = registerBlock("warped_carpet",
+            new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
+    public static final Block WARPED_BED = registerBlock("warped_bed", new MeadowBedBlock(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOD).strength(0.2F).nonOpaque()), ModItemGroup.ALPINE_SALT);
+
+
     public static final Block OAT_BALL = registerBlock("oat_ball",
             new HayBlock(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT);
     public static final Block OATBLOCK_RUG = registerBlock("oatblock_rug",
@@ -323,6 +330,8 @@ public class ModBlocks {
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_HERB_CHEESE, false), ModItemGroup.ALPINE_SALT);
     public static final Block GOAT_CHEESE_BLOCK = registerBlock("goat_cheese_block",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_GOAT_CHEESE, false), ModItemGroup.ALPINE_SALT);
+    public static final Block WARPED_CHEESE_BLOCK = registerBlock("warped_cheese_block",
+            new WarpedCheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_WARPED_CHEESE, false), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESE_TART = registerBlock("cheese_tart",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.CHEESE_TART_SLICE, true), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESECAKE = registerBlock("cheesecake",

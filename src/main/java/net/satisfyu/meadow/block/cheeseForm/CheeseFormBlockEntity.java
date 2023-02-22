@@ -124,6 +124,10 @@ public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHan
         } else if (ModItems.HERBS_CHEESE_MASS.equals(item) || ModItems.WOODEN_HERBS_CHEESE_MASS.equals(item) || ModBlocks.HERB_CHEESE_BLOCK.asItem().equals(item)) {
             return 7;
         }
+          else if (ModItems.WARPED_CHEESE_MASS.equals(item) || ModItems.WOODEN_WARPED_CHEESE_MASS.equals(item) || ModBlocks.WARPED_CHEESE_BLOCK.asItem().equals(item)) {
+            return 8;
+        }
+
         else{
             return 2;
         }
