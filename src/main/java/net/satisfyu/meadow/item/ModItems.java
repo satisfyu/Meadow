@@ -136,8 +136,7 @@ public class ModItems {
     public static final Item BEAR_FUR_CHESTPLATE = registerItem("bear_fur_chestplate", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.CHEST, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BEAR_FUR_LEGGINGS = registerItem("bear_fur_leggings", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.LEGS, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BEAR_FUR_BOOTS = registerItem("bear_fur_boots", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.FEET, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item HUNTING_BOW = registerItem("hunting_bow", new BowItem(new FabricItemSettings().rarity(Rarity.EPIC).maxDamage(760).group(ModItemGroup.ALPINE_SALT)));
-
+    public static final Item HUNTING_BOW = registerItem("hunting_bow", new HuntingBowItem(BowUtil.HUNTING, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item CHEESE_MASS = registerItem("cow_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
     public static final Item BUFFALO_CHEESE_MASS = registerItem("buffalo_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));

@@ -296,7 +296,9 @@
   "item.meadow.warped_cheese_mass_bucket": "Warped Cheese Mass Bucket",
   "item.meadow.wooden_warped_cheese_mass_bucket": "Wooden Warped Cheese Mass Bucket",
   "item.meadow.piece_of_warped_cheese": "Piece of Warped Cheese",
-  "item.meadow.warped_cow_spawn_egg": "Warped Cow Spawn Egg"
+  "item.meadow.warped_cow_spawn_egg": "Warped Cow Spawn Egg",
+  "item.meadow.tooltip.damage": "Attack Damage"
+
 
 
 }

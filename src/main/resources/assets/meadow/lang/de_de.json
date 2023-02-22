@@ -302,5 +302,7 @@
   "item.meadow.warped_cheese_mass_bucket": "Eimer voller Wirrkäsemasse",
   "item.meadow.wooden_warped_cheese_mass_bucket": "Holzeimer voller Wirrkäsemasse",
   "item.meadow.piece_of_warped_cheese": "Stück Wirrkäse",
-  "item.meadow.warped_cow_spawn_egg": "Wirrkuh-Spawn-Ei "
+  "item.meadow.warped_cow_spawn_egg": "Wirrkuh-Spawn-Ei",
+  "item.meadow.tooltip.damage": "Angriffsschaden"
+
 }
