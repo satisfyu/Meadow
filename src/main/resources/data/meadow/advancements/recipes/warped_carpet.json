@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "meadow:warped_carpet"
+    ]
+  },
+  "criteria": {
+    "has_warped_wool": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:warped_wool"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "meadow:warped_carpet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_warped_wool",
+      "has_the_recipe"
+    ]
+  ]
+}

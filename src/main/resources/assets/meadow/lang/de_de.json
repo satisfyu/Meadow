@@ -136,7 +136,7 @@
   "item.meadow.piece_of_herb_cheese": "Kräuterkäse",
   "item.meadow.piece_of_lavender_cheese": "Lavendelkäse",
   "item.meadow.piece_of_sheep_cheese": "Schafskäse",
-  "item.meadow.cheesecake_slice": "Stück Kärsekuchen",
+  "item.meadow.cheesecake_slice": "Stück Käsekuchen",
   "item.meadow.cheese_tart_slice": "Stück Käsetorte",
   "item.meadow.cream_cheese":"Frischkäse",
   "item.meadow.cheese_sandwich": "Käsesandwich",
@@ -294,5 +294,13 @@
   "item.meadow.cord": "Schnur",
   "item.meadow.ingredient.tooltip": "Handwerkszutat",
   "block.meadow.woodencauldron.tooltip": "Funktioniert wie ein Kessel",
-  "item.meadow.warped.tooltip": "Fühlt sich warm und fest an"
+  "item.meadow.warped.tooltip": "Fühlt sich warm und fest an",
+  "block.meadow.warped_carpet": "Wirrwollteppich",
+  "block.meadow.warped_bed": "Bett aus Wirrwolle",
+  "block.meadow.warped_wool": "Wirrwolle",
+  "block.meadow.warped_cheese_block": "Wirrkäserad",
+  "item.meadow.warped_cheese_mass_bucket": "Eimer voller Wirrkäsemasse",
+  "item.meadow.wooden_warped_cheese_mass_bucket": "Holzeimer voller Wirrkäsemasse",
+  "item.meadow.piece_of_warped_cheese": "Stück Wirrkäse",
+  "item.meadow.warped_cow_spawn_egg": "Wirrkuh-Spawn-Ei "
 }

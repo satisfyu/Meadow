@@ -45,6 +45,7 @@ import net.satisfyu.meadow.entity.custom.cow.pinto_cow.PintoCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.shearable.WoolyCowModel;
 import net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle.HighlandCattleRenderer;
 import net.satisfyu.meadow.entity.custom.cow.shearable.umbra.UmbraCowRenderer;
+import net.satisfyu.meadow.entity.custom.cow.shearable.warped.WarpedCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.sunset_cow.SunsetCowRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.flecked.FleckedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.fuzzy.FuzzySheepRenderer;
@@ -96,6 +97,7 @@ public class MeadowClient implements ClientModInitializer {
     public static final EntityModelLayer ROCKY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "rocky_sheep"), "main");
 
     public static final EntityModelLayer UMBRA_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "umbra_cow"), "head");
+    public static final EntityModelLayer WARPED_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "warped_cow"), "head");
 
     public static final EntityModelLayer HIGHLAND_CATTLE_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "highland_cattle"), "head");
 
@@ -182,6 +184,9 @@ public class MeadowClient implements ClientModInitializer {
     private static void registerCows(){
         EntityRendererRegistry.register(ModEntities.UMBRA_COW, UmbraCowRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(UMBRA_COW_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.WARPED_COW, WarpedCowRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(WARPED_COW_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.HIGHLAND_CATTLE, HighlandCattleRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(HIGHLAND_CATTLE_MODEL_LAYER, WoolyCowModel::getTexturedModelData);

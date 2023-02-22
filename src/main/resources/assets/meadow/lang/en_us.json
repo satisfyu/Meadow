@@ -288,5 +288,15 @@
   "container.cheese_form": "",
   "container.shelf": "",
   "block.meadow.woodencauldron.tooltip": "Same functions as a Cauldron",
-  "item.meadow.cord": "Schnur"
+  "item.meadow.cord": "Cord",
+  "block.meadow.warped_carpet": "Warped Carpet",
+  "block.meadow.warped_bed": "Warped Bed",
+  "block.meadow.warped_wool": "Warped Wool",
+  "block.meadow.warped_cheese_block": "Warped Cheese Block",
+  "item.meadow.warped_cheese_mass_bucket": "Warped Cheese Mass Bucket",
+  "item.meadow.wooden_warped_cheese_mass_bucket": "Wooden Warped Cheese Mass Bucket",
+  "item.meadow.piece_of_warped_cheese": "Piece of Warped Cheese",
+  "item.meadow.warped_cow_spawn_egg": "Warped Cow Spawn Egg"
+
+
 }

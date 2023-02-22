@@ -1,9 +1,8 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "meadow:block/window_3_main",
-		"1": "meadow:block/window_pane_top3",
-		"particle": "meadow:block/window_3_main"
+		"1": "meadow:block/window_pane_top",
+		"2": "meadow:block/window_main"
 	},
 	"elements": [
 		{
@@ -11,11 +10,11 @@
 			"to": [16, 16, 9.5],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 7.5]},
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
 				"east": {"uv": [7, 0, 9, 16], "texture": "#1"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"west": {"uv": [7, 0, 9, 16], "texture": "#1"},
-				"up": {"uv": [7, 0, 9, 16], "rotation": 90, "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"west": {"uv": [9, 0, 7, 16], "texture": "#1"},
+				"up": {"uv": [9, 16, 7, 0], "rotation": 90, "texture": "#1"},
 				"down": {"uv": [7, 0, 9, 16], "rotation": 90, "texture": "#1"}
 			}
 		}

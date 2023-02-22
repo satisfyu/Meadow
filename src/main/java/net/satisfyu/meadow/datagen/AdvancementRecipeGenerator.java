@@ -14,14 +14,13 @@ public class AdvancementRecipeGenerator {
     public static void main(String[] args) {
         List<String> putRecipesHere = List.of(
 
-                "limestone/stove_tiles",
-                "limestone/stove_tiles_wood",
-                "limestone/stove_tiles_lid",
-                "limestone/stove_tiles_bench"
+                "warped_wool/warped_bed",
+                "warped_wool/warped_carpet"
 
 
 
-        );
+
+                );
 
         for(String s : putRecipesHere){
             List<String> list1 = Arrays.stream(s.split("/")).toList();

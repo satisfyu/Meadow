@@ -43,6 +43,7 @@ import net.satisfyu.meadow.entity.custom.cow.dark_cow.DarkCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.pinto_cow.PintoCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle.HighlandCattleEntity;
 import net.satisfyu.meadow.entity.custom.cow.shearable.umbra.UmbraCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.shearable.warped.WarpedCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.sunset_cow.SunsetCowEntity;
 import net.satisfyu.meadow.entity.custom.sheep.flecked.FleckedSheepEntity;
 import net.satisfyu.meadow.entity.custom.sheep.fuzzy.FuzzySheepEntity;
@@ -122,6 +123,10 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, UmbraCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
     );
 
+    public static final EntityType<WarpedCowEntity> WARPED_COW = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "warped_cow"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, WarpedCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
     public static final EntityType<FleckedSheepEntity> FLECKED_SHEEP = Registry.register(Registry.ENTITY_TYPE,
             new Identifier(MOD_ID, "flecked_sheep"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, FleckedSheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.3f)).build()
@@ -219,6 +224,7 @@ public class ModEntities {
         registerSheep(PATCHED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
         registerSheep(ROCKY_SHEEP, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.GROVE, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.TAIGA, BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA, BiomeKeys.OLD_GROWTH_PINE_TAIGA, BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA));
 
+        registerCow(WARPED_COW, BiomeSelectors.includeByKey(BiomeKeys.WARPED_FOREST).or(BiomeSelectors.tag(BiomeTags.IS_NETHER)));
         registerCow(HIGHLAND_CATTLE, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
         registerCow(UMBRA_COW, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.TAIGA, BiomeKeys.FOREST, BiomeKeys.DARK_FOREST));
         registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));

@@ -5,6 +5,7 @@
     "meadow:patched_bed",
     "meadow:wooly_bed",
     "meadow:umbra_bed",
-    "meadow:inky_bed"
+    "meadow:inky_bed",
+    "meadow:warped_bed"
   ]
 }

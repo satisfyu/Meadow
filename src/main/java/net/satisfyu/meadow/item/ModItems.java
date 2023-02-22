@@ -214,6 +214,8 @@ public class ModItems {
 
     public static final Item HIGHLAND_CATTLE_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.HIGHLAND_CATTLE, 11102208, 16755200);
 
+    public static final Item WARPED_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.WARPED_COW,  43690, 11141290);
+
     public static final Item BROWN_BEAR_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.BROWN_BEAR, 5780480, 5586176);
 
     public static final Item CHICKEN1_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.CHICKEN1, 17066, 11353600);

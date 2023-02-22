@@ -12,6 +12,9 @@
     "meadow:wooden_oat_cheese_mass_bucket",
     "meadow:wooden_sheep_cheese_mass_bucket",
     "meadow:wooden_lavender_cheese_mass_bucket",
-    "meadow:wooden_herbs_cheese_mass_bucket"
+    "meadow:wooden_herbs_cheese_mass_bucket",
+    "meadow:warped_cheese_mass_bucket",
+    "meadow:wooden_warped_cheese_mass_bucket"
+
   ]
 }
