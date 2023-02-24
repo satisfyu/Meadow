@@ -1,6 +1,7 @@
-package net.satisfyu.meadow.block.windowShutter;
+package net.satisfyu.meadow.block;
 
 import net.minecraft.state.property.EnumProperty;
+import net.satisfyu.meadow.block.windowShutter.ShutterType;
 
 public class ModProperties{
     public static final EnumProperty<ShutterType> SHUTTER_TYPE;

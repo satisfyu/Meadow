@@ -1,10 +1,6 @@
 package net.satisfyu.meadow.block.windowShutter;
 
-import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.BlockHalf;
-import net.minecraft.client.sound.Sound;
-import net.minecraft.data.client.VariantSettings;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -25,9 +21,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.satisfyu.meadow.block.ModProperties;
 
 import javax.annotation.Nullable;
-import java.util.logging.Level;
 
 public class WindowShutterBlock extends Block implements Waterloggable {
 
@@ -46,7 +42,7 @@ public class WindowShutterBlock extends Block implements Waterloggable {
 
     public WindowShutterBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(TYPE, ShutterType.NONE)).with(OPEN, false)).with(LEFT, false).with(POWERED, false)).with(WATERLOGGED, false));
+        this.setDefaultState(((((this.stateManager.getDefaultState().with(FACING, Direction.NORTH)).with(TYPE, ShutterType.NONE)).with(OPEN, false)).with(LEFT, false).with(POWERED, false)).with(WATERLOGGED, false));
     }
 
     @Override
@@ -61,7 +57,7 @@ public class WindowShutterBlock extends Block implements Waterloggable {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        Direction facing = Direction.byId(context.getPlayerFacing().getOpposite().getHorizontal());
+        Direction facing = context.getPlayerFacing().getOpposite();
         BlockState blockState = this.getDefaultState().with(FACING, facing);
 
         World world = context.getWorld();

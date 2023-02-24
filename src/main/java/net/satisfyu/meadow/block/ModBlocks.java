@@ -265,7 +265,6 @@ public class ModBlocks {
             new WindowShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
 
-
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
             new OatCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
     public static final Block YARROW_CROP = registerBlockWithoutItem("yarrow_crop",
