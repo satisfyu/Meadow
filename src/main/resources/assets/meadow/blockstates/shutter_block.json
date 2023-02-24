@@ -1,48 +1,48 @@
 {
   "variants": {
     "type=none,facing=north,open=false": {
-      "model": "meadow:block/shutter/shutter_none"
+      "model": "meadow:block/shutter/shutter_main"
     },
     "type=none,facing=east,open=false": {
-      "model": "meadow:block/shutter/shutter_none",
+      "model": "meadow:block/shutter/shutter_main",
       "y": 90
     },
     "type=none,facing=south,open=false": {
-      "model": "meadow:block/shutter/shutter_none",
+      "model": "meadow:block/shutter/shutter_main",
       "y": 180
     },
     "type=none,facing=west,open=false": {
-      "model": "meadow:block/shutter/shutter_none",
+      "model": "meadow:block/shutter/shutter_main",
       "y": 270
     },
     "type=none,facing=north,open=true,left=false": {
-      "model": "meadow:block/shutter/shutter_none",
+      "model": "meadow:block/shutter/shutter_main",
       "y": 90
     },
     "type=none,facing=east,open=true,left=false": {
-      "model": "meadow:block/shutter/shutter_none",
+      "model": "meadow:block/shutter/shutter_main",
       "y": 180
     },
     "type=none,facing=south,open=true,left=false": {
-      "model": "meadow:block/shutter/shutter_none",
+      "model": "meadow:block/shutter/shutter_main",
       "y": 270
     },
     "type=none,facing=west,open=true,left=false": {
-      "model": "meadow:block/shutter/shutter_none"
+      "model": "meadow:block/shutter/shutter_main"
     },
     "type=none,facing=north,open=true,left=true": {
-      "model": "meadow:block/shutter/shutter_none",
+      "model": "meadow:block/shutter/shutter_main",
       "y": 270
     },
     "type=none,facing=east,open=true,left=true": {
-      "model": "meadow:block/shutter/shutter_none"
+      "model": "meadow:block/shutter/shutter_main"
     },
     "type=none,facing=south,open=true,left=true": {
-      "model": "meadow:block/shutter/shutter_none",
+      "model": "meadow:block/shutter/shutter_main",
       "y": 90
     },
     "type=none,facing=west,open=true,left=true": {
-      "model": "meadow:block/shutter/shutter_none",
+      "model": "meadow:block/shutter/shutter_main",
       "y": 180
     },
     "type=top,facing=north,open=false": {

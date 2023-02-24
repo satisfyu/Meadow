@@ -175,6 +175,8 @@ public class ModBlocks {
             new WindowBlock2(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block WINDOW_3 = registerBlock("window_3",
             new WindowBlock3(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
+    public static final Block SHUTTER_BLOCK = registerBlock("shutter_block",
+            new WindowShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block FLECKED_WOOL = registerBurningBlock("flecked_wool",
             new Block(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT, 30, 60);
     public static final Block FLECKED_CARPET = registerBlock("flecked_carpet",
@@ -268,9 +270,6 @@ public class ModBlocks {
             new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.2f).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque().blockVision((state, world, pos) -> false)
                     .suffocates((state, world, pos) -> false)), ModItemGroup.ALPINE_SALT,  30, 60);
 
-
-    public static final Block SHUTTER_BLOCK = registerBlock("shutter_block",
-            new WindowShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
 
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
