@@ -26,6 +26,7 @@ import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlock;
 import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlock;
+import net.satisfyu.meadow.block.windowShutter.WindowShutterBlock;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
@@ -268,7 +269,8 @@ public class ModBlocks {
                     .suffocates((state, world, pos) -> false)), ModItemGroup.ALPINE_SALT,  30, 60);
 
 
-
+    public static final Block SHUTTER_BLOCK = registerBlock("shutter_block",
+            new WindowShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
 
 
     public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
