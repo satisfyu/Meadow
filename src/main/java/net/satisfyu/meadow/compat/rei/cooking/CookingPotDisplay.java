@@ -21,7 +21,6 @@ public class CookingPotDisplay extends BasicDisplay {
 
     public static final CategoryIdentifier<CookingPotDisplay> COOKING_POT_DISPLAY = CategoryIdentifier.of(Meadow.MOD_ID, "cooking_pot_display");
 
-
     public CookingPotDisplay(Recipe<Inventory> recipe) {
         this(EntryIngredients.ofIngredients(MeadowReiClientPlugin.ingredients(recipe, getContainer(recipe))), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), Optional.ofNullable(recipe.getId()));
     }
