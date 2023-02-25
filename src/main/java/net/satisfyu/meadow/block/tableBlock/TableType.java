@@ -4,7 +4,7 @@ import net.minecraft.util.StringIdentifiable;
 
 public enum TableType implements StringIdentifiable {
     NONE("none"),
-    MIDDLE("middle"),
+    CENTER("center"),
 
     NORTH("north"),
     EAST("east"),
@@ -14,10 +14,15 @@ public enum TableType implements StringIdentifiable {
     NORTH_SOUTH("north_south"),
     EAST_WEST("east_west"),
 
-    NORTH_EAST("north_east"),
-    EAST_SOUTH("east_south"),
-    SOUTH_WEST("south_west"),
-    WEST_NORTH("west_north");
+    NORTH_CORNER("north_corner"),
+    EAST_CORNER("east_corner"),
+    SOUTH_CORNER("south_corner"),
+    WEST_CORNER("west_corner"),
+
+    NORTH_EDGE("north_edge"),
+    EAST_EDGE("east_edge"),
+    SOUTH_EDGE("south_edge"),
+    WEST_EDGE("west_edge");
 
     private final String name;
 

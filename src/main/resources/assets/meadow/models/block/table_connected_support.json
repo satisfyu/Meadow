@@ -2,8 +2,8 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"particle": "meadow:block/table_connected",
-		"top": "meadow:block/table_connected",
-		"side": "meadow:block/table"
+		"top": "meadow:block/table_center",
+		"side": "meadow:block/table_side"
 	},
 	"elements": [
 		{

@@ -114,8 +114,8 @@ public class ModBlocks {
             new StoveBlockWood(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(state -> state.get(StoveBlockWood.LIT) ? 13 : 0).ticksRandomly(), Direction.UP), ModItemGroup.ALPINE_SALT);
     public static final Block STOVE_LID = registerBlock("stove_tiles_lid",
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), Direction.UP), ModItemGroup.ALPINE_SALT);
-    public static final Block STOVE_BENCH = registerBlock("stove_tiles_bench",
-            new TiledBench(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
+    //public static final Block STOVE_BENCH = registerBlock("stove_tiles_bench",
+    //        new TiledBench(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_LOG = registerBurningBlock("pine_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
     public static final Block PINE_WOOD = registerBurningBlock("pine_wood",
@@ -164,10 +164,10 @@ public class ModBlocks {
             new TableBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block CHAIR = registerBlock("chair",
             new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
-    public static final Block BENCH = registerBlock("bench",
-            new BenchBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
-    public static final Block STONE_BENCH = registerBlock("stone_bench",
-            new BenchBlock(FabricBlockSettings.of(Material.STONE).strength(4f, 0.0f).sounds(BlockSoundGroup.STONE)), ModItemGroup.ALPINE_SALT);
+    //public static final Block BENCH = registerBlock("bench",
+    //        new BenchBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+    //public static final Block STONE_BENCH = registerBlock("stone_bench",
+    //        new BenchBlock(FabricBlockSettings.of(Material.STONE).strength(4f, 0.0f).sounds(BlockSoundGroup.STONE)), ModItemGroup.ALPINE_SALT);
     public static final Block STONE_TABLE = registerBlock("stone_table",
             new TableBlock(FabricBlockSettings.of(Material.STONE).strength(4f, 0.0f).sounds(BlockSoundGroup.STONE).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block WINDOW = registerBlock("window",

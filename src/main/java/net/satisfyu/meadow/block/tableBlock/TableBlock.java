@@ -35,55 +35,49 @@ public class TableBlock extends Block implements Waterloggable {
 
     public TableBlock(Settings settings) {
         super(settings);
-        this.setDefaultState();
+        this.setDefaultState(((this.stateManager.getDefaultState().with(TYPE, TableType.NONE)).with(WATERLOGGED, false)));
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         VoxelShape top = Block.createCuboidShape(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
-        VoxelShape leg1 = Block.createCuboidShape(1.0, 0.0, 1.0, 4.0, 13.0, 4.0);
-        VoxelShape leg2 = Block.createCuboidShape(1.0, 0.0, 12.0, 4.0, 13.0, 15.0);
-        VoxelShape leg3 = Block.createCuboidShape(12.0, 0.0, 12.0, 15.0, 13.0, 15.0);
-        VoxelShape leg4 = Block.createCuboidShape(12.0, 0.0, 1.0, 15.0, 13.0, 4.0);
+        VoxelShape north_leg = Block.createCuboidShape(1.0, 0.0, 1.0, 4.0, 13.0, 4.0);
+        VoxelShape east_leg = Block.createCuboidShape(12.0, 0.0, 1.0, 15.0, 13.0, 4.0);
+        VoxelShape south_leg = Block.createCuboidShape(12.0, 0.0, 12.0, 15.0, 13.0, 15.0);
+        VoxelShape west_leg = Block.createCuboidShape(1.0, 0.0, 12.0, 4.0, 13.0, 15.0);
 
         TableType type = state.get(TYPE);
 
-        if (type == TableType.NONE || type == TableType.NORTH_SOUTH || type == TableType.EAST_WEST) {
-            return VoxelShapes.union(top);
+        switch (type) {
+            case CENTER, NORTH_SOUTH, EAST_WEST, NORTH_EDGE, EAST_EDGE, SOUTH_EDGE, WEST_EDGE -> {
+                return VoxelShapes.union(top);
+            }
+            case NORTH -> {
+                return VoxelShapes.union(top, south_leg, west_leg);
+            }
+            case EAST -> {
+                return VoxelShapes.union(top, north_leg, west_leg);
+            }
+            case SOUTH -> {
+                return VoxelShapes.union(top, north_leg, east_leg);
+            }
+            case WEST -> {
+                return VoxelShapes.union(top, east_leg, south_leg);
+            }
+            case NORTH_CORNER -> {
+                return VoxelShapes.union(top, north_leg);
+            }
+            case EAST_CORNER -> {
+                return VoxelShapes.union(top, east_leg);
+            }
+            case SOUTH_CORNER -> {
+                return VoxelShapes.union(top, south_leg);
+            }
+            case WEST_CORNER -> {
+                return VoxelShapes.union(top, west_leg);
+            }
         }
-        if (type == TableType.MIDDLE) {
-            return VoxelShapes.union(top, leg1, leg2, leg3, leg4);
-        }
-
-        VoxelShape legs1;
-        if (type == TableType.MIDDLE) {
-            return VoxelShapes.union(top, leg1, leg2, leg3, leg4);
-        }
-
-        VoxelShape legs2;
-        VoxelShape legs3;
-
-        if((direction == Direction.NORTH && chestType == ChestType.LEFT) || (direction == Direction.SOUTH && chestType == ChestType.RIGHT)){
-            legs1 = leg1;
-            legs2 = leg2;
-        }
-        else if((direction == Direction.NORTH && chestType == ChestType.RIGHT) || (direction == Direction.SOUTH && chestType == ChestType.LEFT)){
-            legs1 = leg3;
-            legs2 = leg4;
-        }
-        else if((direction == Direction.EAST && chestType == ChestType.RIGHT) || (direction == Direction.WEST && chestType == ChestType.LEFT)){
-            legs1 = leg2;
-            legs2 = leg3;
-        }
-        else if((direction == Direction.EAST && chestType == ChestType.LEFT) || (direction == Direction.WEST && chestType == ChestType.RIGHT)){
-            legs1 = leg1;
-            legs2 = leg4;
-        }
-        else {
-            Meadow.LOGGER.error("Table blockstate not correct!");
-            return top;
-        }
-        return VoxelShapes.union(top, legs1, legs2);
+        return VoxelShapes.union(top, north_leg, east_leg, south_leg, west_leg);
     }
 
     @Override
@@ -117,7 +111,7 @@ public class TableBlock extends Block implements Waterloggable {
         boolean shape_west_same = west.getBlock() == state.getBlock();
 
         if (shape_north_same && shape_east_same && shape_south_same && shape_west_same) {
-            return TableType.MIDDLE;
+            return TableType.CENTER;
         } else if (shape_north_same && !shape_east_same && !shape_south_same && !shape_west_same) {
             return TableType.NORTH;
         } else if (!shape_north_same && shape_east_same && !shape_south_same && !shape_west_same) {
@@ -130,14 +124,22 @@ public class TableBlock extends Block implements Waterloggable {
             return TableType.NORTH_SOUTH;
         } else if (!shape_north_same && shape_east_same && !shape_south_same && shape_west_same) {
             return TableType.EAST_WEST;
-        } else if (shape_north_same && shape_east_same && !shape_south_same && !shape_west_same) {
-            return TableType.NORTH_EAST;
         } else if (!shape_north_same && shape_east_same && shape_south_same && !shape_west_same) {
-            return TableType.EAST_SOUTH;
+            return TableType.NORTH_CORNER;
         } else if (!shape_north_same && !shape_east_same && shape_south_same && shape_west_same) {
-            return TableType.SOUTH_WEST;
+            return TableType.EAST_CORNER;
         } else if (shape_north_same && !shape_east_same && !shape_south_same && shape_west_same) {
-            return TableType.WEST_NORTH;
+            return TableType.SOUTH_CORNER;
+        } else if (shape_north_same && shape_east_same && !shape_south_same && !shape_west_same) {
+            return TableType.WEST_CORNER;
+        } else if (!shape_north_same && shape_east_same && shape_south_same && shape_west_same) {
+            return TableType.NORTH_EDGE;
+        } else if (shape_north_same && !shape_east_same && shape_south_same && shape_west_same) {
+            return TableType.EAST_EDGE;
+        } else if (shape_north_same && shape_east_same && !shape_south_same && shape_west_same) {
+            return TableType.SOUTH_EDGE;
+        } else if (shape_north_same && shape_east_same && shape_south_same && !shape_west_same) {
+            return TableType.WEST_EDGE;
         }
         return TableType.NONE;
     }

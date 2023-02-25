@@ -43,8 +43,10 @@ public class BenchBlock extends TableBlock {
         ChairUtil.onStateReplaced(world, pos);
     }
 
+    /*
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+
         boolean isX = state.get(FACING).getAxis() == Direction.Axis.X;
         Direction direction = state.get(FACING);
         if (state.get(CHEST_TYPE) == ChestType.SINGLE) {
@@ -71,5 +73,7 @@ public class BenchBlock extends TableBlock {
             return TOP_SHAPE[0];
         }
         return VoxelShapes.union(isX ? TOP_SHAPE[0] : TOP_SHAPE[1], SHAPE[i]);
+
     }
+    */
 }
