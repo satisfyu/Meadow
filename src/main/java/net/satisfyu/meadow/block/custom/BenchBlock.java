@@ -16,6 +16,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.tableBlock.TableBlock;
 import net.satisfyu.meadow.entity.custom.chair.ChairUtil;
 
 public class BenchBlock extends TableBlock {

@@ -25,6 +25,7 @@ import net.satisfyu.meadow.block.custom.*;
 import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlock;
+import net.satisfyu.meadow.block.tableBlock.TableBlock;
 import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlock;
 import net.satisfyu.meadow.block.windowShutter.WindowShutterBlock;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
