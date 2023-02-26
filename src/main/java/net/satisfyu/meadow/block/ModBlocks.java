@@ -16,6 +16,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.custom.BenchBlock;
 import net.satisfyu.meadow.block.bigFlowerPot.BigFlowerPotBlock;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlock;
 import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
@@ -25,9 +26,9 @@ import net.satisfyu.meadow.block.custom.*;
 import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlock;
-import net.satisfyu.meadow.block.tableBlock.TableBlock;
+import net.satisfyu.meadow.block.custom.TableBlock;
 import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlock;
-import net.satisfyu.meadow.block.windowShutter.WindowShutterBlock;
+import net.satisfyu.meadow.block.windowShutter.ShutterBlock;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
@@ -114,8 +115,8 @@ public class ModBlocks {
             new StoveBlockWood(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(state -> state.get(StoveBlockWood.LIT) ? 13 : 0).ticksRandomly(), Direction.UP), ModItemGroup.ALPINE_SALT);
     public static final Block STOVE_LID = registerBlock("stove_tiles_lid",
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), Direction.UP), ModItemGroup.ALPINE_SALT);
-    //public static final Block STOVE_BENCH = registerBlock("stove_tiles_bench",
-    //        new TiledBench(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
+    public static final Block STOVE_BENCH = registerBlock("stove_tiles_bench",
+            new TiledBench(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_LOG = registerBurningBlock("pine_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), ModItemGroup.ALPINE_SALT,  5, 5);
     public static final Block PINE_WOOD = registerBurningBlock("pine_wood",
@@ -164,10 +165,10 @@ public class ModBlocks {
             new TableBlock(FabricBlockSettings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block CHAIR = registerBlock("chair",
             new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
-    //public static final Block BENCH = registerBlock("bench",
-    //        new BenchBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
-    //public static final Block STONE_BENCH = registerBlock("stone_bench",
-    //        new BenchBlock(FabricBlockSettings.of(Material.STONE).strength(4f, 0.0f).sounds(BlockSoundGroup.STONE)), ModItemGroup.ALPINE_SALT);
+    public static final Block BENCH = registerBlock("bench",
+            new BenchBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+    public static final Block STONE_BENCH = registerBlock("stone_bench",
+            new BenchBlock(FabricBlockSettings.of(Material.STONE).strength(4f, 0.0f).sounds(BlockSoundGroup.STONE)), ModItemGroup.ALPINE_SALT);
     public static final Block STONE_TABLE = registerBlock("stone_table",
             new TableBlock(FabricBlockSettings.of(Material.STONE).strength(4f, 0.0f).sounds(BlockSoundGroup.STONE).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block WINDOW = registerBlock("window",
@@ -177,7 +178,7 @@ public class ModBlocks {
     public static final Block WINDOW_3 = registerBlock("window_3",
             new WindowBlock3(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block SHUTTER_BLOCK = registerBlock("shutter_block",
-            new WindowShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+            new ShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block FLECKED_WOOL = registerBurningBlock("flecked_wool",
             new Block(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT, 30, 60);
     public static final Block FLECKED_CARPET = registerBlock("flecked_carpet",
