@@ -1,8 +1,5 @@
 package net.satisfyu.meadow.compat.rei.cooking;
 
-
-import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.compat.rei.MeadowReiClientPlugin;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -11,6 +8,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.Identifier;
+import net.satisfyu.meadow.compat.rei.MeadowReiClientPlugin;
 import net.satisfyu.meadow.recipes.pot.CookingPotRecipe;
 
 import java.util.Collections;
@@ -19,9 +17,8 @@ import java.util.Optional;
 
 public class CookingPotDisplay extends BasicDisplay {
 
-    public static final CategoryIdentifier<CookingPotDisplay> COOKING_POT_DISPLAY = CategoryIdentifier.of(Meadow.MOD_ID, "cooking_pot_display");
 
-    public CookingPotDisplay(Recipe<Inventory> recipe) {
+    public CookingPotDisplay(CookingPotRecipe recipe) {
         this(EntryIngredients.ofIngredients(MeadowReiClientPlugin.ingredients(recipe, getContainer(recipe))), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), Optional.ofNullable(recipe.getId()));
     }
 
@@ -32,7 +29,7 @@ public class CookingPotDisplay extends BasicDisplay {
 
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
-        return COOKING_POT_DISPLAY;
+        return CookingPotCategory.COOKING_POT_DISPLAY;
     }
 
 
@@ -42,6 +39,5 @@ public class CookingPotDisplay extends BasicDisplay {
         }
         else return ItemStack.EMPTY;
     }
-
 
 }

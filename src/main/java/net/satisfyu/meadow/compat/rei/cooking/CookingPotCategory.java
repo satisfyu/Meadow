@@ -1,6 +1,7 @@
 package net.satisfyu.meadow.compat.rei.cooking;
 
 import com.google.common.collect.Lists;
+import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlockEntity;
 import me.shedaniel.math.Point;
@@ -17,9 +18,12 @@ import java.util.List;
 
 public class CookingPotCategory implements DisplayCategory<CookingPotDisplay> {
 
+
+    public static final CategoryIdentifier<CookingPotDisplay> COOKING_POT_DISPLAY = CategoryIdentifier.of(Meadow.MOD_ID, "cooking_pot_display");
+
     @Override
     public CategoryIdentifier<CookingPotDisplay> getCategoryIdentifier() {
-        return CookingPotDisplay.COOKING_POT_DISPLAY;
+        return COOKING_POT_DISPLAY;
     }
 
     @Override
@@ -30,6 +34,16 @@ public class CookingPotCategory implements DisplayCategory<CookingPotDisplay> {
     @Override
     public Renderer getIcon() {
         return EntryStacks.of(ModBlocks.COOKING_POT);
+    }
+
+    @Override
+    public int getDisplayWidth(CookingPotDisplay display) {
+        return 150;
+    }
+
+    @Override
+    public int getDisplayHeight() {
+        return 99;
     }
 
     @Override

@@ -27,8 +27,13 @@
     "client": [
       "net.satisfyu.meadow.MeadowClient"
     ],
+
     "terrablender":  [
       "net.satisfyu.meadow.Meadow"
+    ],
+
+    "rei_client": [
+      "net.satisfyu.meadow.compat.rei.MeadowReiClientPlugin"
     ]
   },
   "mixins": [
