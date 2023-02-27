@@ -134,7 +134,7 @@ public class ModBlocks {
     public static final Block PINE_SLAB = registerBurningBlock("pine_slab",
             new SlabBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_SLAB)), ModItemGroup.ALPINE_SALT, 5, 20);
     public static final Block WATERING_CAN = registerBlockWithoutItem("watering_can",
-            new HFacingBlock(FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
+            new WateringCanBlock(FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
     public static final Block PINE_PRESSURE_PLATE = registerBlock("pine_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.of(Material.WOOD, PINE_PLANKS.getDefaultMapColor()).noCollision().strength(0.5f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_BUTTON = registerBlock("pine_button",
