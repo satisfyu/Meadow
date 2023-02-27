@@ -303,6 +303,9 @@
   "item.meadow.wooden_warped_cheese_mass_bucket": "Holzeimer voller Wirrkäsemasse",
   "item.meadow.piece_of_warped_cheese": "Stück Wirrkäse",
   "item.meadow.warped_cow_spawn_egg": "Wirrkuh-Spawn-Ei",
-  "item.meadow.tooltip.damage": "Angriffsschaden"
-
+  "item.meadow.tooltip.damage": "Angriffsschaden",
+  "block.meadow.shutter_block": "Fensterladen",
+  "block.meadow.shutter_block_fir": "Bemalter Fensterladen",
+  "block.meadow.shutter_block_poppy": "Bemalter Fensterladen",
+  "block.meadow.shutter_block_berry": "Bemalter Fensterladen"
 }
