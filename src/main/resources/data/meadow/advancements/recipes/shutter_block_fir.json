@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:window_shutter_2"
+      "meadow:shutter_block_fir"
     ]
   },
   "criteria": {
-    "has_sweet_berries": {
+    "has_shutter_block": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:sweet_berries"
+              "meadow:shutter_block"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:window_shutter_2"
+        "recipe": "meadow:shutter_block_fir"
       }
     }
   },
   "requirements": [
     [
-      "has_sweet_berries",
+      "has_shutter_block",
       "has_the_recipe"
     ]
   ]

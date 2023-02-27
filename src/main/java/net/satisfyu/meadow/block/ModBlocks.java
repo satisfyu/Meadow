@@ -393,8 +393,12 @@ public class ModBlocks {
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), null,  5, 5);
     public static final Block ALPINE_BIRCH_LOG = registerBurningBlock("alpine_birch_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), null,  5, 5);
-
-
+    public static final Block SHUTTER_BLOCK_POPPY = registerBlock("shutter_block_poppy",
+            new ShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), null);
+    public static final Block SHUTTER_BLOCK_FIR = registerBlock("shutter_block_fir",
+            new ShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), null);
+    public static final Block SHUTTER_BLOCK_BERRY = registerBlock("shutter_block_berry",
+            new ShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), null);
 
     private static FabricBlockSettings bowlSettings(){
         return FabricBlockSettings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);
