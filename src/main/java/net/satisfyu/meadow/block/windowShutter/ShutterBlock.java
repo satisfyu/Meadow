@@ -21,26 +21,21 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.block.ModProperties;
+import net.satisfyu.meadow.block.ModBlockProperties;
 
 import javax.annotation.Nullable;
 
-public class WindowShutterBlock extends Block implements Waterloggable {
+public class ShutterBlock extends Block implements Waterloggable {
 
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final EnumProperty<ShutterType> TYPE = ModProperties.SHUTTER_TYPE;
-    public static final BooleanProperty OPEN = Properties.OPEN;
-    public static final BooleanProperty LEFT = BooleanProperty.of("left");
-    public static final BooleanProperty POWERED = Properties.POWERED;
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+    public static final DirectionProperty FACING;
+    public static final EnumProperty<ShutterType> TYPE;
+    public static final BooleanProperty LEFT;
+    public static final BooleanProperty OPEN;
+    public static final BooleanProperty POWERED;
+    public static final BooleanProperty WATERLOGGED;
+    protected static final VoxelShape[] SHAPES;
 
-    protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 3.0D, 16.0D, 16.0D);
-    protected static final VoxelShape WEST_SHAPE = Block.createCuboidShape(13.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-    protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 3.0D);
-    protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D);
-    protected static final VoxelShape[] SHAPES = new VoxelShape[]{SOUTH_SHAPE, WEST_SHAPE, NORTH_SHAPE, EAST_SHAPE};
-
-    public WindowShutterBlock(Settings settings) {
+    public ShutterBlock(Settings settings) {
         super(settings);
         this.setDefaultState(((((this.stateManager.getDefaultState().with(FACING, Direction.NORTH)).with(TYPE, ShutterType.NONE)).with(OPEN, false)).with(LEFT, false).with(POWERED, false)).with(WATERLOGGED, false));
     }
@@ -179,7 +174,7 @@ public class WindowShutterBlock extends Block implements Waterloggable {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING, TYPE, OPEN, LEFT, POWERED, WATERLOGGED});
+        builder.add(FACING, TYPE, OPEN, LEFT, POWERED, WATERLOGGED);
     }
 
     @Override
@@ -195,5 +190,20 @@ public class WindowShutterBlock extends Block implements Waterloggable {
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
+    }
+
+    static {
+        FACING = Properties.HORIZONTAL_FACING;
+        TYPE = ModBlockProperties.SHUTTER_TYPE;
+        LEFT = BooleanProperty.of("left");
+        OPEN = Properties.OPEN;
+        POWERED = Properties.POWERED;
+        WATERLOGGED = Properties.WATERLOGGED;
+        SHAPES = new VoxelShape[]{
+                Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 3.0D),  //south
+                Block.createCuboidShape(13.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), //west
+                Block.createCuboidShape(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D),//north
+                Block.createCuboidShape(0.0D, 0.0D, 0.0D, 3.0D, 16.0D, 16.0D)  //east
+        };
     }
 }

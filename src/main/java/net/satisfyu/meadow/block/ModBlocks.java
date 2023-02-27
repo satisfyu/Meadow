@@ -16,6 +16,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.custom.BenchBlock;
 import net.satisfyu.meadow.block.bigFlowerPot.BigFlowerPotBlock;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlock;
 import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
@@ -25,8 +26,9 @@ import net.satisfyu.meadow.block.custom.*;
 import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlock;
+import net.satisfyu.meadow.block.custom.TableBlock;
 import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlock;
-import net.satisfyu.meadow.block.windowShutter.WindowShutterBlock;
+import net.satisfyu.meadow.block.windowShutter.ShutterBlock;
 import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
@@ -176,7 +178,7 @@ public class ModBlocks {
     public static final Block WINDOW_3 = registerBlock("window_3",
             new WindowBlock3(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block SHUTTER_BLOCK = registerBlock("shutter_block",
-            new WindowShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
+            new ShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block FLECKED_WOOL = registerBurningBlock("flecked_wool",
             new Block(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT, 30, 60);
     public static final Block FLECKED_CARPET = registerBlock("flecked_carpet",

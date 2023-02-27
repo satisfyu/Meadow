@@ -118,7 +118,7 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ModBlocks.STOVE);
         this.addDrop(ModBlocks.STOVE_WOOD);
         this.addDrop(ModBlocks.STOVE_LID);
-        this.addDrop(ModBlocks.STOVE_BENCH);
+        //this.addDrop(ModBlocks.STOVE_BENCH);
         this.addDrop(ModBlocks.PINE_LOG);
         this.addDrop(ModBlocks.PINE_WOOD);
         this.addDrop(ModBlocks.STRIPPED_PINE_WOOD);
@@ -140,7 +140,7 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ModBlocks.CHEESE_RACK);
         this.addDrop(ModBlocks.TABLE);
         this.addDrop(ModBlocks.CHAIR);
-        this.addDrop(ModBlocks.BENCH);
+        //this.addDrop(ModBlocks.BENCH);
         this.addDrop(ModBlocks.FLECKED_WOOL);
         this.addDrop(ModBlocks.FLECKED_CARPET);
         this.addDrop(ModBlocks.FLECKED_BED, b -> dropsWithProperty(b, BedBlock.PART, BedPart.HEAD));

@@ -1,51 +1,67 @@
 {
   "variants": {
 
-    "facing=east,type=single": {
-      "model": "meadow:block/table",
+    "facing=north,type=none": {
+      "model": "meadow:block/table/table"
+    },
+    "facing=east,type=none": {
+      "model": "meadow:block/table/table",
       "y": 90
     },
-    "facing=north,type=single": {
-      "model": "meadow:block/table"
-    },
-    "facing=south,type=single": {
-      "model": "meadow:block/table",
+    "facing=south,type=none": {
+      "model": "meadow:block/table/table",
       "y": 180
     },
-    "facing=west,type=single": {
-      "model": "meadow:block/table",
+    "facing=west,type=none": {
+      "model": "meadow:block/table/table",
       "y": 270
     },
 
-    "facing=east,type=left": {
-      "model": "meadow:block/table_connected_support",
+    "facing=north,type=middle": {
+      "model": "meadow:block/table/table_middle"
+    },
+    "facing=east,type=middle": {
+      "model": "meadow:block/table/table_middle",
       "y": 90
     },
+    "facing=south,type=middle": {
+      "model": "meadow:block/table/table_middle",
+      "y": 180
+    },
+    "facing=west,type=middle": {
+      "model": "meadow:block/table/table_middle",
+      "y": 270
+    },
+
     "facing=north,type=left": {
-      "model": "meadow:block/table_connected_support"
+      "model": "meadow:block/table/table_side"
+    },
+    "facing=east,type=left": {
+      "model": "meadow:block/table/table_side",
+      "y": 90
     },
     "facing=south,type=left": {
-      "model": "meadow:block/table_connected_support",
+      "model": "meadow:block/table/table_side",
       "y": 180
     },
     "facing=west,type=left": {
-      "model": "meadow:block/table_connected_support",
+      "model": "meadow:block/table/table_side",
       "y": 270
     },
 
-    "facing=east,type=right": {
-      "model": "meadow:block/table_connected_support",
-      "y": 270
-    },
     "facing=north,type=right": {
-      "model": "meadow:block/table_connected_support",
+      "model": "meadow:block/table/table_side",
       "y": 180
     },
+    "facing=east,type=right": {
+      "model": "meadow:block/table/table_side",
+      "y": 270
+    },
     "facing=south,type=right": {
-      "model": "meadow:block/table_connected_support"
+      "model": "meadow:block/table/table_side"
     },
     "facing=west,type=right": {
-      "model": "meadow:block/table_connected_support",
+      "model": "meadow:block/table/table_side",
       "y": 90
     }
   }

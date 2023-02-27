@@ -170,4 +170,11 @@ public class WoodcutterScreen extends HandledScreen<WoodcuttorScreenHandler> {
             this.scrollOffset = 0;
         }
     }
+
+    @Override
+    protected void init() {
+        super.init();
+        // Center the title
+        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+    }
 }

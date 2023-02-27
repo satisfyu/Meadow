@@ -62,7 +62,7 @@ public class ModVillagers {
             factories.add(new SellItemFactory(ModBlocks.OAT_CHEESE_BLOCK, 12, 1, 15));
         });
         TradeOfferHelper.registerVillagerOffers(HERMIT, 1, factories -> {
-            factories.add(new BuyForOneEmeraldFactory(ModBlocks.BENCH, 15, 4, 5));
+            //factories.add(new BuyForOneEmeraldFactory(ModBlocks.BENCH, 15, 4, 5));
             factories.add(new BuyForOneEmeraldFactory(ModItems.JUG_JUNIPER_TEA, 4, 4, 5));
             factories.add(new BuyForOneEmeraldFactory(ModBlocks.PINE_LOG, 10, 4, 5));
             factories.add(new SellItemFactory(ModBlocks.PINE_SAPLING, 10, 6, 5));
