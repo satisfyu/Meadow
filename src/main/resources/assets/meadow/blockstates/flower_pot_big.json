@@ -1,19 +1,7 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "meadow:block/flower_pot_main",
-      "y": 90
-    },
-    "facing=north": {
+    "": {
       "model": "meadow:block/flower_pot_main"
-    },
-    "facing=south": {
-      "model": "meadow:block/flower_pot_main",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "meadow:block/flower_pot_main",
-      "y": 270
     }
   }
 }

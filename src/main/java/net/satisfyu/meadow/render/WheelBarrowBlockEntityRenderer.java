@@ -8,10 +8,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.Vec3f;
-import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlock;
-import net.satisfyu.meadow.block.wheelbarrow.WheelBarrowBlockEntity;
-
-import java.util.List;
+import net.satisfyu.meadow.block.flowerPot.WheelBarrowBlock;
+import net.satisfyu.meadow.block.flowerPot.WheelBarrowBlockEntity;
 
 import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
 
@@ -26,18 +24,19 @@ public class WheelBarrowBlockEntityRenderer implements BlockEntityRenderer<Wheel
         }
         BlockState selfState = entity.getCachedState();
         if (selfState.getBlock() instanceof WheelBarrowBlock) {
-            List<Item> items = entity.getItems();
+            Item item = entity.getFlower();
             matrices.push();
-            applyBlockAngle(matrices, selfState, 180);
-            if (!items.isEmpty()) {
-                BlockState state = ((BlockItem) items.get(0)).getBlock().getDefaultState();
+            //applyBlockAngle(matrices, selfState, 180);
+            if (item instanceof BlockItem) {
+                BlockState state = ((BlockItem) item).getBlock().getDefaultState();
                 matrices.translate(0f, 0.625f, 0f);
                 renderBlock(state, matrices, vertexConsumers, entity);
-                }
             }
-            matrices.pop();
         }
-    
+        matrices.pop();
+    }
+
+    //NoUse
     public static void applyBlockAngle(MatrixStack matrices, BlockState state, float angleOffset) {
         float angle = state.get(WheelBarrowBlock.FACING).asRotation();
         matrices.translate(1, 0, 1);
