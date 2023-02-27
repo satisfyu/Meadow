@@ -67,6 +67,10 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 			ResourceManagerHelper.registerBuiltinResourcePack(new MeadowIdentifier("bushy_leaves"), container, ResourcePackActivationType.DEFAULT_ENABLED);
 		});
 
+		FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> {
+			ResourceManagerHelper.registerBuiltinResourcePack(new MeadowIdentifier("optifine_support"), container, ResourcePackActivationType.DEFAULT_ENABLED);
+		});
+
 		PINE_BOAT = new TerraformBoatType.Builder()
 				.item(PINE_BOAT_ITEM)
 				.chestItem(PINE_BOAT_CHEST_ITEM)
