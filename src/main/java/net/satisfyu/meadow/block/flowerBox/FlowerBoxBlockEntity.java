@@ -14,6 +14,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.satisfyu.meadow.block.flowerPot.ModFlowerPotBlockEntity;
 import net.satisfyu.meadow.entity.ModEntities;
 
 import java.util.ArrayList;
@@ -21,48 +22,48 @@ import java.util.List;
 
 public class FlowerBoxBlockEntity extends BlockEntity {
 
-	private DefaultedList<ItemStack> inventory;
+	private DefaultedList<ItemStack> flowers;
 
 	public FlowerBoxBlockEntity(BlockPos pos, BlockState state) {
 		super(ModEntities.FLOWER_BOX_BLOCK_ENTITY, pos, state);
-		this.inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
+		this.flowers = DefaultedList.ofSize(2, ItemStack.EMPTY);
 	}
 
 	@Override
 	public void writeNbt(NbtCompound nbt) {
-		Inventories.writeNbt(nbt, this.inventory);
+		Inventories.writeNbt(nbt, this.flowers);
 		super.writeNbt(nbt);
 	}
 
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		this.inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
-		Inventories.readNbt(nbt, this.inventory);
+		this.flowers = DefaultedList.ofSize(3, ItemStack.EMPTY);
+		Inventories.readNbt(nbt, this.flowers);
 	}
 
-	public ItemStack removeStack(int slot){
-		ItemStack stack = inventory.set(slot, ItemStack.EMPTY);
+	public void addFlower(ItemStack stack, int slot){
+		flowers.set(slot, stack);
+		markDirty();
+	}
+
+	public ItemStack removeFlower(int slot){
+		ItemStack stack = flowers.set(slot, ItemStack.EMPTY);
 		markDirty();
 		return stack;
 	}
 
-	public void setStack(int slot, ItemStack stack){
-		inventory.set(slot, stack);
-		markDirty();
+	public ItemStack getFlower(int slot) {
+		return flowers.get(slot);
 	}
 
-	public boolean hasStack(int slot) {
-		return !inventory.get(slot).isEmpty();
+	public boolean isSlotEmpty(int slot) {
+		return slot < flowers.size() && flowers.get(slot).isEmpty();
 	}
 
-	public ItemStack getStack(int slot) {
-		return inventory.get(slot);
-	}
-
-	public Item[] getItems() {
+	public Item[] getFlowers() {
 		List<Item> items = new ArrayList<>();
-		for (ItemStack stack : inventory) {
+		for (ItemStack stack : flowers) {
 			if (!stack.isEmpty()) {
 				items.add(stack.getItem());
 			}
@@ -91,5 +92,4 @@ public class FlowerBoxBlockEntity extends BlockEntity {
 		}
 		super.markDirty();
 	}
-
 }

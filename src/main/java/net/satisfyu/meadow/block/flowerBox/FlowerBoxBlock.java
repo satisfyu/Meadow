@@ -18,6 +18,7 @@ import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -63,29 +64,50 @@ public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider 
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) return ActionResult.SUCCESS;
-        FlowerBoxBlockEntity be = (FlowerBoxBlockEntity) world.getBlockEntity(pos);
-        if(be == null || player.isSneaking()) return ActionResult.PASS;
-        ItemStack handStack = player.getStackInHand(hand);
-        int slot = -1;
-        Optional<Pair<Float, Float>> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.get(FACING), null);
-        if(optional.isPresent()){
-            Pair<Float, Float> pair = optional.get();
-            slot = pair.getRight() > 0.5 ? 1 : 0;
-            System.out.println(pair.getLeft() + " " + pair.getRight());
+        if (world.isClient) {
+            return ActionResult.SUCCESS;
         }
 
-        if (slot == -1)
+        FlowerBoxBlockEntity blockEntity = (FlowerBoxBlockEntity) world.getBlockEntity(pos);
+        if (blockEntity == null || player.isSneaking()) {
             return ActionResult.PASS;
-
-        if (handStack.isEmpty() && be.hasStack(slot)) {
-            player.giveItemStack(be.removeStack(slot));
-            return ActionResult.SUCCESS;
-        } else if (handStack.isIn(Tags.SMALL_FLOWER) && !be.hasStack(slot)) {
-            be.setStack(slot, new ItemStack(handStack.getItem()));
-            handStack.decrement(1);
-            return ActionResult.SUCCESS;
         }
+
+        Direction facing = state.get(FACING);
+        boolean left = (facing.getAxis() == Direction.Axis.X) ? (hit.getPos().z - pos.getZ() > 0.5D) : (hit.getPos().x - pos.getX() > 0.5D);
+        left = (facing == Direction.NORTH || facing == Direction.WEST) != left;
+
+        System.out.println(left);
+
+        ItemStack handStack = player.getStackInHand(hand);
+        if (handStack.isEmpty()) {
+            ItemStack flowerStack = blockEntity.removeFlower(left ? 0 : 1);
+            if (!flowerStack.isEmpty()) {
+                player.giveItemStack(flowerStack);
+                return ActionResult.SUCCESS;
+            }
+            flowerStack = blockEntity.removeFlower(left ? 1 : 0);
+            if (!flowerStack.isEmpty()) {
+                player.giveItemStack(flowerStack);
+                return ActionResult.SUCCESS;
+            }
+        } else if (handStack.isIn(Tags.SMALL_FLOWER)) {
+            if (blockEntity.isSlotEmpty(left ? 0 : 1)) {
+                blockEntity.addFlower(new ItemStack(handStack.getItem()), left ? 0 : 1);
+                if (!player.isCreative()) {
+                    handStack.decrement(1);
+                }
+                return ActionResult.SUCCESS;
+            }
+            if (blockEntity.isSlotEmpty(left ? 1 : 0)) {
+                blockEntity.addFlower(new ItemStack(handStack.getItem()), left ? 1 : 0);
+                if (!player.isCreative()) {
+                    handStack.decrement(1);
+                }
+                return ActionResult.SUCCESS;
+            }
+        }
+
         return super.onUse(state, world, pos, player, hand, hit);
     }
 
@@ -99,7 +121,7 @@ public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider 
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof FlowerBoxBlockEntity be) {
-                for(Item stack : be.getItems()){
+                for(Item stack : be.getFlowers()){
                     ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(stack));
                 }
                 world.updateComparators(pos,this);
@@ -116,7 +138,7 @@ public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider 
 
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.uc.tooltip").formatted(Formatting.ITALIC, Formatting.DARK_RED));
+        tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
 

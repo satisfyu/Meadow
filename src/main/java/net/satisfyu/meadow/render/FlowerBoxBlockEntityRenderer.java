@@ -6,6 +6,8 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3f;
 import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlock;
 import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlockEntity;
@@ -24,30 +26,37 @@ public class FlowerBoxBlockEntityRenderer implements BlockEntityRenderer<FlowerB
         BlockState selfState = entity.getCachedState();
         if (selfState.getBlock() instanceof FlowerBoxBlock) {
             matrices.push();
-            applyBlockAngle(matrices, selfState, 180);
-            matrices.translate(-0.5f, 0.4f, -0.5f);
-            if (entity.hasStack(0)) {
-                BlockState state = ((BlockItem) entity.getStack(0).getItem()).getBlock().getDefaultState();
+            applyBlockAngle(matrices, selfState);
+            matrices.translate(-0.25f, 0.25f, 0.25f);
+            if (!entity.isSlotEmpty(0)) {
+                BlockState state = ((BlockItem) entity.getFlower(0).getItem()).getBlock().getDefaultState();
                 renderBlock(state, matrices, vertexConsumers, entity);
             }
-            matrices.translate(0f, 0.4f, 0f);
-            if (entity.hasStack(1)) {
-                BlockState state = ((BlockItem) entity.getStack(1).getItem()).getBlock().getDefaultState();
-                renderBlock(state, matrices, vertexConsumers, entity);
-            }
-            matrices.translate(0f, 0.4f, 0f);
-            if (entity.hasStack(2)) {
-                BlockState state = ((BlockItem) entity.getStack(2).getItem()).getBlock().getDefaultState();
+            matrices.translate(0.5f, 0f, 0f);
+            if (!entity.isSlotEmpty(1)) {
+                BlockState state = ((BlockItem) entity.getFlower(1).getItem()).getBlock().getDefaultState();
                 renderBlock(state, matrices, vertexConsumers, entity);
             }
             matrices.pop();
         }
     }
 
-    public static void applyBlockAngle(MatrixStack matrices, BlockState state, float angleOffset) {
-        float angle = state.get(FlowerBoxBlock.FACING).asRotation();
-        matrices.translate(0.5, 0, 0.5);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(angleOffset - angle));
+    public static void applyBlockAngle(MatrixStack matrices, BlockState state) {
+        switch (state.get(FlowerBoxBlock.FACING)) {
+            case EAST -> {
+                matrices.translate(-0.5f, 0f, 1f);
+                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90));
+            }
+            case SOUTH -> {
+                matrices.translate(1f, 0f, 1f);
+                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+            }
+            case WEST -> {
+                matrices.translate(1.5f, 0f, 0f);
+                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(270));
+            }
+        }
     }
+
 
 }
