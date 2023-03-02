@@ -25,7 +25,7 @@ public class CheeseRackBlockEntityRenderer implements BlockEntityRenderer<Cheese
         if (selfState.getBlock() instanceof CheeseRackBlock) {
             matrices.push();
             applyBlockAngle(matrices, selfState, 180);
-            matrices.translate(-0.5f, 0.1f, -0.5f);
+            matrices.translate(-0.5f, 0.05f, -0.5f);
             if (entity.hasStack(0)) {
                 BlockState state = ((BlockItem) entity.getStack(0).getItem()).getBlock().getDefaultState();
                 renderBlock(state, matrices, vertexConsumers, entity);

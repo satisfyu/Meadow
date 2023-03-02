@@ -114,7 +114,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
     private static boolean hasFuel(FondueBlockEntity entity){
         if(entity.fuelAmount > 0) return true;
         ItemStack stack = entity.inventory.get(2);
-        if(stack.isIn(Tags.CHEESE_BLOCKS)){
+        if(stack.isIn(Tags.CHEESE)){
             entity.fuelAmount = 10;
             stack.decrement(1);
             return true;

@@ -42,9 +42,6 @@ public class ShutterBlock extends Block implements Waterloggable {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        // 3 = open + hinge left
-        // 1 open + hinge right
-        // 0 not open
         int shape = state.get(FACING).getHorizontal() + (state.get(OPEN) ? (state.get(LEFT) ? 3 : 1) : 0);
         return SHAPES[shape % 4];
     }

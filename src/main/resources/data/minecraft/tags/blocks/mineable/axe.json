@@ -48,6 +48,12 @@
     "meadow:wheelbarrow",
     "meadow:cheese_form",
     "#meadow:cauldrons",
-    "meadow:fire_log"
+    "meadow:fire_log",
+    "meadow:shutter_block",
+    "meadow:shutter_block_fir",
+    "meadow:shutter_block_poppy",
+    "meadow:shutter_block_berry"
+
+
   ]
 }
