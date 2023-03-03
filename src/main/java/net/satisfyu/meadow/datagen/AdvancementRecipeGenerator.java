@@ -14,9 +14,7 @@ public class AdvancementRecipeGenerator {
     public static void main(String[] args) {
         List<String> putRecipesHere = List.of(
 
-                "shutter_block/shutter_block_poppy",
-                "shutter_block/shutter_block_fir",
-                "shutter_block/shutter_block_berry"
+                "cooking_pot/fondue"
 
 
 

@@ -2,10 +2,7 @@
   "type": "meadow:pot_cooking",
   "ingredients": [
     {
-      "item": "meadow:bag_of_juniper"
-    },
-    {
-      "item": "meadow:bag_of_yarrow"
+      "tag": "meadow:herbs"
     },
     {
       "item": "minecraft:sugar"
