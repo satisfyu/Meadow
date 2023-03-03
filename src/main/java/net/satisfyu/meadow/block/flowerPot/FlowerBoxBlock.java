@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.block.flowerBox;
+package net.satisfyu.meadow.block.flowerPot;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockEntityProvider;
@@ -18,7 +18,6 @@ import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -31,7 +30,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider {

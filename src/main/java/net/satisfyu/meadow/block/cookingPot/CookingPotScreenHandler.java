@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block.cookingPot;
 
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -9,10 +10,12 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.recipes.ModRecipes;
 import net.satisfyu.meadow.recipes.pot.CookingPotRecipe;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
+import net.satisfyu.meadow.screenHandler.SideTipButton;
 import net.satisfyu.meadow.util.GeneralUtil;
 
 import java.util.stream.Stream;
@@ -21,9 +24,12 @@ public class CookingPotScreenHandler extends ScreenHandler {
 
     private final PropertyDelegate propertyDelegate;
     private final World world;
+
     public CookingPotScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(8), new ArrayPropertyDelegate(2));
     }
+
+
 
     public CookingPotScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(ModScreenHandlers.COOKING_POT_SCREEN_HANDLER, syncId);
@@ -33,6 +39,8 @@ public class CookingPotScreenHandler extends ScreenHandler {
         this.propertyDelegate = propertyDelegate;
         addProperties(this.propertyDelegate);
     }
+
+
 
     private void buildBlockEntityContainer(Inventory inventory) {
         for (int row = 0; row < 2; row++) {

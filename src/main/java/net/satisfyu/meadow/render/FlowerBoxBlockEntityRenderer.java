@@ -6,11 +6,9 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3f;
-import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlock;
-import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlockEntity;
+import net.satisfyu.meadow.block.flowerPot.FlowerBoxBlock;
+import net.satisfyu.meadow.block.flowerPot.FlowerBoxBlockEntity;
 
 import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
 

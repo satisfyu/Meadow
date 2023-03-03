@@ -23,7 +23,7 @@ import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlock;
 import net.satisfyu.meadow.block.custom.*;
-import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlock;
+import net.satisfyu.meadow.block.flowerPot.FlowerBoxBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlock;
 import net.satisfyu.meadow.block.custom.TableBlock;

@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.block.flowerBox;
+package net.satisfyu.meadow.block.flowerPot;
 
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.block.BlockState;

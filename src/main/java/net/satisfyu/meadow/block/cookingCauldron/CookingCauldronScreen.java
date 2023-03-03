@@ -17,8 +17,6 @@ public class CookingCauldronScreen extends HandledScreen<CookingCauldronScreenHa
         super(handler, inventory, title);
     }
 
-
-
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         int k;
@@ -39,11 +37,6 @@ public class CookingCauldronScreen extends HandledScreen<CookingCauldronScreenHa
         super.render(matrices, mouseX, mouseY, delta);
         drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
-
-
-
-
-
 
     @Override
     protected void init() {

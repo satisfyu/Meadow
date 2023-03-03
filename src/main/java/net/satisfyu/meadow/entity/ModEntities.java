@@ -25,7 +25,7 @@ import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlockEntity;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlockEntity;
 import net.satisfyu.meadow.block.custom.StoveBlockWoodBlockEntity;
-import net.satisfyu.meadow.block.flowerBox.FlowerBoxBlockEntity;
+import net.satisfyu.meadow.block.flowerPot.FlowerBoxBlockEntity;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlockEntity;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlockEntity;
 import net.satisfyu.meadow.block.flowerPot.WheelBarrowBlockEntity;
