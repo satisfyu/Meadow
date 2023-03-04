@@ -62,8 +62,8 @@ public class WoodcutterScreenHandler extends ScreenHandler {
 
 
     private void buildBlockEntityContainer(PlayerInventory playerInventory) {
-        this.inputSlot = this.addSlot(new Slot(this.input, 0, 20, 30));
-        this.outputSlot = this.addSlot(new FurnaceOutputSlot(playerInventory.player, this.output, 1, 144, 40){
+        this.inputSlot = this.addSlot(new Slot(this.input, 0, 33, 24));
+        this.outputSlot = this.addSlot(new FurnaceOutputSlot(playerInventory.player, this.output, 1, 144, 34){
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
                 stack.onCraft(player.world, player, stack.getCount());

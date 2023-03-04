@@ -37,7 +37,7 @@ public class FondueScreenHandler extends ScreenHandler {
     private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
         this.addSlot(new Slot(inventory, 0, 41, 9));
         this.addSlot(new Slot(inventory, 2, 41, 33));
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 1, 124, 28));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 1, 120, 25));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
