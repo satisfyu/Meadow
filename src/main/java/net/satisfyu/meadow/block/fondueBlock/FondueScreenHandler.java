@@ -27,40 +27,40 @@ public class FondueScreenHandler extends ScreenHandler {
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
 
+        this.addSlot(new Slot(inventory, 0, 48, 26));
+        this.addSlot(new Slot(inventory, 2, 48, 5));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 1, 124, 28));
 
-        buildBlockEntityContainer(playerInventory, inventory);
-        buildPlayerContainer(playerInventory);
+        addPlayerInventory(playerInventory);
+        addPlayerHotbar(playerInventory);
 
         addProperties(delegate);
     }
 
-    private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
-        this.addSlot(new Slot(inventory, 0, 41, 9));
-        this.addSlot(new Slot(inventory, 2, 41, 33));
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 1, 124, 28));
-    }
-
-    private void buildPlayerContainer(PlayerInventory playerInventory) {
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-            }
-        }
-
-        for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
-        }
-    }
-
     public boolean getIsCooking(){
         return propertyDelegate.get(1) != 0;
+    }
+    public int getSyncedNumber(){
+        return propertyDelegate.get(0);
+    }
+
+    public boolean isCrafting() {
+        return propertyDelegate.get(0) > 0;
+    }
+
+    public int getScaledProgress() {
+        int progress = this.propertyDelegate.get(0);
+        int maxProgress = this.propertyDelegate.get(1);  // Max Progress
+        int progressArrowSize = 26; // This is the width in pixels of your arrow
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
     @Override
     public ItemStack transferSlot(PlayerEntity player, int invSlot) {
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
-        if (slot.hasStack()) {
+        if (slot != null && slot.hasStack()) {
             ItemStack originalStack = slot.getStack();
             newStack = originalStack.copy();
             if (invSlot < this.inventory.size()) {
@@ -86,14 +86,17 @@ public class FondueScreenHandler extends ScreenHandler {
         return this.inventory.canPlayerUse(player);
     }
 
-    public int getScaledProgress() {
-        int progress = this.propertyDelegate.get(0);
-        int maxProgress = this.propertyDelegate.get(1);  // Max Progress
-        int arrowWidth = 15;
-
-        if (progress == 0) {
-            return 0;
+    private void addPlayerInventory(PlayerInventory playerInventory) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+            }
         }
-        return progress * (arrowWidth - 1)/ maxProgress + 1;
+    }
+
+    private void addPlayerHotbar(PlayerInventory playerInventory) {
+        for (int i = 0; i < 9; ++i) {
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
+        }
     }
 }

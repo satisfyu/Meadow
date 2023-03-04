@@ -17,26 +17,22 @@ public class FondueScreen extends HandledScreen<FondueScreenHandler> {
         super(handler, inventory, title);
     }
 
+
+
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
+        int k;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, background);
-
-        final int posX = this.x;
-        final int posY = this.y;
-        this.drawTexture(matrices, posX, posY, 0, 0, this.backgroundWidth - 1, this.backgroundHeight);
-
-        renderProgressArrow(matrices, posX, posY);
-        if(handler.getIsCooking())  {
-            this.drawTexture(matrices, posX + 40, posY + 54, 176, 0, 16, 14);
-        }
+        int x = (width - backgroundWidth) / 2;
+        int y = (height - backgroundHeight) / 2;
+        this.drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        k = this.handler.getSyncedNumber() / (getTimeToCook() / 22);
+        this.drawTexture(matrices, x + 90, y + 26, 176, 15, k + 1, 16);
+        if(handler.getIsCooking()) this.drawTexture(matrices, x + 124, y + 51, 176, 0, 16, 14);
     }
 
-    private void renderProgressArrow(MatrixStack matrices, int x, int y) {
-        int progress = this.handler.getScaledProgress();
-        this.drawTexture(matrices, x + 87, y + 25, 176, 17, progress, 14); //Position Arrow
-    }
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
@@ -44,6 +40,13 @@ public class FondueScreen extends HandledScreen<FondueScreenHandler> {
         super.render(matrices, mouseX, mouseY, delta);
         drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
+
+    public static int getTimeToCook(){
+        return 6000;
+    }
+
+
+
 
     @Override
     protected void init() {

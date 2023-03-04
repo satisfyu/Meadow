@@ -15,16 +15,18 @@ import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 
 import java.util.List;
 
-public class WoodcutterScreen extends HandledScreen<WoodcutterScreenHandler> {
+public class WoodcutterScreen extends HandledScreen<WoodcuttorScreenHandler> {
     private static final Identifier TEXTURE = new Identifier("meadow","textures/gui/woodcutter.png");
     private float scrollAmount;
     private boolean mouseClicked;
     private int scrollOffset;
     private boolean canCraft;
 
-    public WoodcutterScreen(WoodcutterScreenHandler handler, PlayerInventory inventory, Text title) {
+    public WoodcutterScreen(WoodcuttorScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         handler.setContentsChangedListener(this::onInventoryChange);
+        --this.titleY;
+
     }
 
     @Override
@@ -40,13 +42,13 @@ public class WoodcutterScreen extends HandledScreen<WoodcutterScreenHandler> {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        int posX = this.x;
-        int posY = this.y;
-        this.drawTexture(matrices, posX, posY, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        int i = this.x;
+        int j = this.y;
+        this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
         int k = (int)(41.0f * this.scrollAmount);
-        if(shouldScroll()) this.drawTexture(matrices, posX + 119, posY + 15 + k + 2, 176, 0, 12, 15);
-        int l = this.x + 53;
-        int m = this.y + 32;
+        if(shouldScroll()) this.drawTexture(matrices, i + 119, j + 15 + k + 2, 176, 0, 12, 15);
+        int l = this.x + 52 + 1;
+        int m = y + 14 + 21;
         int n = this.scrollOffset + 8;
         this.renderRecipeBackground(matrices, mouseX, mouseY, l, m, n);
         this.renderRecipeIcons(l, m, n);

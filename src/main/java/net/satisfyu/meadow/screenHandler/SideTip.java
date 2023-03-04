@@ -9,33 +9,25 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class SideTip extends DrawableHelper implements Drawable, Element{
-    private int x;
-    private int y;
-    private final int width;
-    private final int height;
-    private final Identifier TEXTURE;
+    public final Identifier TEXTURE;
+    protected int width;
+    protected int height;
+    public int x;
+    public int y;
     private final int textureWidth;
     private final int textureHeight;
-    private final int vOffset;
-    private final int frameTicks = 40;
-    private final int frames;
-    private int currentTick;
     protected boolean hovered;
     public boolean visible = false;
 
-    public SideTip(int x, int y, int width, int height, int vOffset, Identifier texture, int textureWidth, int textureHeight, int frames) {
+    public SideTip(int x, int y, int width, int height, Identifier texture, int textureWidth, int textureHeight) {
         TEXTURE = texture;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.vOffset = vOffset;
-        this.frames = frames;
-        this.currentTick = 0;
         this.textureWidth = textureWidth;
         this.textureHeight = textureHeight;
     }
-
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
@@ -45,14 +37,8 @@ public class SideTip extends DrawableHelper implements Drawable, Element{
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderTexture(0, TEXTURE);
             RenderSystem.enableDepthTest();
-            int offsetFactor = currentTick / frameTicks;
-            drawTexture(matrices, this.x, this.y, 0, vOffset * (offsetFactor % frames), this.width, this.height, this.textureWidth, this.textureHeight);
+            drawTexture(matrices, this.x, this.y, 0, 0, this.width, this.height, this.textureWidth, this.textureHeight);
         }
-    }
-
-    public void tick() {
-        currentTick++;
-        currentTick = currentTick % (frames * frameTicks);
     }
 
     public void setPos(int x, int y) {

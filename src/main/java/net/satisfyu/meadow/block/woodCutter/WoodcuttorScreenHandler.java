@@ -12,7 +12,6 @@ import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.World;
@@ -24,68 +23,63 @@ import net.satisfyu.meadow.sound.ModSounds;
 
 import java.util.List;
 
-public class WoodcutterScreenHandler extends ScreenHandler {
+public class WoodcuttorScreenHandler
+        extends ScreenHandler {
     private final ScreenHandlerContext context;
     private final Property selectedRecipe = Property.create();
     private final World world;
     private List<WoodcuttingRecipe> availableRecipes = Lists.newArrayList();
     private ItemStack inputStack = ItemStack.EMPTY;
-    private long lastTakeTime;
-    private Slot inputSlot;
-    private Slot outputSlot;
+    long lastTakeTime;
+    final Slot inputSlot;
+    final Slot outputSlot;
     Runnable contentsChangedListener = () -> {};
     public final Inventory input = new SimpleInventory(1){
+
         @Override
         public void markDirty() {
             super.markDirty();
-            WoodcutterScreenHandler.this.onContentChanged(this);
-            WoodcutterScreenHandler.this.contentsChangedListener.run();
+            WoodcuttorScreenHandler.this.onContentChanged(this);
+            WoodcuttorScreenHandler.this.contentsChangedListener.run();
         }
     };
     final CraftingResultInventory output = new CraftingResultInventory();
 
-    public WoodcutterScreenHandler(int syncId, PlayerInventory playerInventory) {
+    public WoodcuttorScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
     }
 
-    public WoodcutterScreenHandler(int syncId, PlayerInventory playerInventory, final ScreenHandlerContext context) {
+    public WoodcuttorScreenHandler(int syncId, PlayerInventory playerInventory, final ScreenHandlerContext context) {
         super(ModScreenHandlers.WOODCUTTOR_SCREEN_HANDLER, syncId);
+        int i;
         this.context = context;
         this.world = playerInventory.player.world;
+        this.inputSlot = this.addSlot(new Slot(this.input, 0, 20, 33));
+        this.outputSlot = this.addSlot(new Slot(this.output, 1, 143, 33){
 
-        buildBlockEntityContainer(playerInventory);
-        buildPlayerContainer(playerInventory);
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
 
-        this.addProperty(this.selectedRecipe);
-    }
-
-
-
-    private void buildBlockEntityContainer(PlayerInventory playerInventory) {
-        this.inputSlot = this.addSlot(new Slot(this.input, 0, 20, 30));
-        this.outputSlot = this.addSlot(new FurnaceOutputSlot(playerInventory.player, this.output, 1, 144, 40){
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
                 stack.onCraft(player.world, player, stack.getCount());
-                WoodcutterScreenHandler.this.output.unlockLastRecipe(player);
-                ItemStack itemStack = WoodcutterScreenHandler.this.inputSlot.takeStack(1);
+                WoodcuttorScreenHandler.this.output.unlockLastRecipe(player);
+                ItemStack itemStack = WoodcuttorScreenHandler.this.inputSlot.takeStack(1);
                 if (!itemStack.isEmpty()) {
-                    WoodcutterScreenHandler.this.populateResult();
+                    WoodcuttorScreenHandler.this.populateResult();
                 }
                 context.run((world, pos) -> {
                     long l = world.getTime();
-                    if (WoodcutterScreenHandler.this.lastTakeTime != l) {
+                    if (WoodcuttorScreenHandler.this.lastTakeTime != l) {
                         world.playSound(null, pos, ModSounds.WOODCUTTER, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                        WoodcutterScreenHandler.this.lastTakeTime = l;
+                        WoodcuttorScreenHandler.this.lastTakeTime = l;
                     }
                 });
                 super.onTakeItem(player, stack);
             }
         });
-    }
-
-    private void buildPlayerContainer(PlayerInventory playerInventory) {
-        int i;
         for (i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
                 this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
@@ -94,6 +88,7 @@ public class WoodcutterScreenHandler extends ScreenHandler {
         for (i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
+        this.addProperty(this.selectedRecipe);
     }
 
     public int getSelectedRecipe() {

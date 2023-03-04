@@ -33,7 +33,6 @@ import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock.*;
 public class CookingCauldronBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
 
     public static final Text TITLE = Text.translatable("container.cooking_cauldron");
-    public static final int MAX_COOKING_TIME = 6000; // Time in ticks (300s)
     private int syncedInt;
 
     private int isCooking;
@@ -96,7 +95,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
             boolean done = false;
 
             isCooking = isLit(state) ? 1 : 0;
-            if(syncedInt > MAX_COOKING_TIME){
+            if(syncedInt > getTimeToCook()){
                 boolean isWood = false;
                 for(ItemStack itemStack : items){
                     int index = items.indexOf(itemStack);
@@ -146,6 +145,10 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
         }
     }
 
+    public static int getTimeToCook(){
+        return 6000;
+    }
+
     public static int getVar(Item outputItem){
         if(outputItem.equals(ModItems.CHEESE_MASS) || outputItem.equals(ModItems.WOODEN_CHEESE_MASS)) return 2;
         else if(outputItem.equals(ModItems.BUFFALO_CHEESE_MASS) || outputItem.equals(ModItems.WOODEN_BUFFALO_CHEESE_MASS)) return 1;
@@ -169,10 +172,13 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
         else return downState.isOf(ModBlocks.STOVE_LID);
     }
 
+
+
+
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CookingCauldronScreenHandler(syncId, inv, this, propertyDelegate);
+        return new CookingCauldronScreenHandler(syncId, inv, propertyDelegate, this);
     }
 
     @Override

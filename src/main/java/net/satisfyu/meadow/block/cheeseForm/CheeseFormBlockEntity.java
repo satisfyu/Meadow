@@ -89,7 +89,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHan
                 if(!state.get(CheeseFormBlock.DONE) && state.get(VAR) > 0){
                     syncedInt++;
                 }
-                if(syncedInt >= CookingCauldronBlockEntity.MAX_COOKING_TIME){
+                if(syncedInt >= CookingCauldronBlockEntity.getTimeToCook()){
                     done = true;
                     Item bucket = items.get(0).isIn(Tags.WOODEN_BUCKETS) ? ModItems.WOODEN_BUCKET : Items.BUCKET;
                     items.set(0, new ItemStack(bucket));
@@ -138,7 +138,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHan
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CheeseFormScreenHandler(syncId, inv, this, propertyDelegate);
+        return new CheeseFormScreenHandler(syncId, inv, propertyDelegate, this);
     }
 
     @Override
