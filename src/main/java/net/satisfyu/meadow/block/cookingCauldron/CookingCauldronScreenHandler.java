@@ -28,7 +28,7 @@ public class CookingCauldronScreenHandler extends RecipeScreenHandler {
         this.addSlot(new Slot(inventory, 1, 48, 26));
         this.addSlot(new Slot(inventory, 2, 66, 26));
 
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 3, 120, 25));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 3, 124, 26));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {

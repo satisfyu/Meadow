@@ -39,7 +39,7 @@ public class CookingPotScreenHandler extends RecipeScreenHandler {
             }
         }
         this.addSlot(new Slot(inventory, 6,95, 50));
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 7, 124, 23));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 7, 124, 26));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {

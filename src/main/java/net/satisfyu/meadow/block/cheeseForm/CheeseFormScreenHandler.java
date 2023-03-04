@@ -24,8 +24,8 @@ public class CheeseFormScreenHandler extends RecipeScreenHandler {
     }
 
     private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
-        this.addSlot(new Slot(inventory, 0, 29 , 38));
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 1, 104, 38));
+        this.addSlot(new Slot(inventory, 0, 41 , 34));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 1, 123, 34));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
