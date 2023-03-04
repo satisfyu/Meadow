@@ -10,40 +10,38 @@ import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 
 public class SideTipButton extends ButtonWidget  {
+    int u;
+    int v;
+    int hoveredVOffset;
+    int textureWidth;
+    int textureHeight;
 
-    private final Identifier TEXTURE = new Identifier(Meadow.MOD_ID, "textures/gui/cooking_cauldron_gui.png");
+    private final Identifier texture;
 
     public SideTipButton(int x, int y, ButtonWidget.PressAction pressAction) {
+        this(x, y, 0, 0, 18, new Identifier(Meadow.MOD_ID, "textures/gui/recipe_book.png"), 20, 36, pressAction);
+    }
+    public SideTipButton(int x, int y, int u, int v, int hoveredVOffset, Identifier texture, int textureWidth , int textureHeight, ButtonWidget.PressAction pressAction) {
         super(x, y, 20, 18, ScreenTexts.EMPTY, pressAction, EMPTY);
+        this.u = u;
+        this.v = v;
+        this.hoveredVOffset = hoveredVOffset;
+        this.texture = texture;
+        this.textureWidth = textureWidth;
+        this.textureHeight = textureHeight;
     }
 
-    @Override
-    public void onPress() {
-        System.out.println("PRESS");
-        super.onPress();
-    }
-
-    @Override
-    public void onClick(double mouseX, double mouseY) {
-        System.out.println("CLICK");
-        super.onClick(mouseX, mouseY);
-    }
 
     @Override
     public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float delta) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, TEXTURE);
-        int v = 168;
+        RenderSystem.setShaderTexture(0, texture);
+        int i = v;
         if (this.isHovered()) {
-            int hoveredVOffset = 19;
-            v += hoveredVOffset;
+            i += hoveredVOffset;
         }
-
         RenderSystem.enableDepthTest();
-        int u = 0;
-        int TEXTURE_WIDTH = 256;
-        int TEXTURE_HEIGHT = 256;
-        drawTexture(matrixStack, this.x, this.y, (float) u, (float)v, this.width, this.height, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+        drawTexture(matrixStack, this.x, this.y, (float) u, (float)i, this.width, this.height, textureWidth, textureHeight);
         if (this.hovered) {
             this.renderTooltip(matrixStack, mouseX, mouseY);
         }
