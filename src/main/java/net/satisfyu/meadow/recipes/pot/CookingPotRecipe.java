@@ -11,6 +11,7 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.recipes.ModRecipes;
+import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.util.GeneralUtil;
 
 public class CookingPotRecipe implements Recipe<Inventory> {
@@ -105,5 +106,12 @@ public class CookingPotRecipe implements Recipe<Inventory> {
             buf.writeItemStack(recipe.getOutput());
         }
     }
-    
+
+    public static class Type implements RecipeType<CookingPotRecipe> {
+        private Type() {}
+
+        public static final CookingPotRecipe.Type INSTANCE = new CookingPotRecipe.Type();
+
+        public static final String ID = "cooking";
+    }
 }

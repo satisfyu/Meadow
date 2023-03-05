@@ -1,14 +1,21 @@
 package net.satisfyu.meadow.item.custom;
 
 import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MilkBucketItem;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.item.ModItems;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class WoodenMilkBucket extends MilkBucketItem {
     public WoodenMilkBucket(Settings settings) {
@@ -31,5 +38,11 @@ public class WoodenMilkBucket extends MilkBucketItem {
             return new ItemStack(ModItems.WOODEN_BUCKET);
         }
         return stack;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.translatable(  "item.meadow.ingredient.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+
     }
 }

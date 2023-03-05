@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
@@ -45,6 +46,7 @@ import net.satisfyu.meadow.entity.custom.cow.pinto_cow.PintoCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.shearable.WoolyCowModel;
 import net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle.HighlandCattleRenderer;
 import net.satisfyu.meadow.entity.custom.cow.shearable.umbra.UmbraCowRenderer;
+import net.satisfyu.meadow.entity.custom.cow.shearable.warped.WarpedCowRenderer;
 import net.satisfyu.meadow.entity.custom.cow.sunset_cow.SunsetCowRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.flecked.FleckedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.fuzzy.FuzzySheepRenderer;
@@ -54,11 +56,17 @@ import net.satisfyu.meadow.entity.custom.sheep.inky.InkySheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.long_nosed.LongNosedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepRenderer;
+import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
+import net.satisfyu.meadow.item.custom.BowModelProvider;
 import net.satisfyu.meadow.item.custom.FurArmorItem;
+import net.satisfyu.meadow.item.custom.HuntingBowItem;
 import net.satisfyu.meadow.particle.ModParticles;
 import net.satisfyu.meadow.particle.custom.SplashParticle;
+import net.satisfyu.meadow.render.BigFlowerPotBlockEntityRenderer;
 import net.satisfyu.meadow.render.CheeseRackBlockEntityRenderer;
+import net.satisfyu.meadow.render.FlowerBoxBlockEntityRenderer;
+import net.satisfyu.meadow.render.WheelBarrowBlockEntityRenderer;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import org.jetbrains.annotations.NotNull;
 
@@ -92,6 +100,7 @@ public class MeadowClient implements ClientModInitializer {
     public static final EntityModelLayer ROCKY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "rocky_sheep"), "main");
 
     public static final EntityModelLayer UMBRA_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "umbra_cow"), "head");
+    public static final EntityModelLayer WARPED_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "warped_cow"), "head");
 
     public static final EntityModelLayer HIGHLAND_CATTLE_MODEL_LAYER = new EntityModelLayer(new Identifier(MOD_ID, "highland_cattle"), "head");
 
@@ -142,9 +151,18 @@ public class MeadowClient implements ClientModInitializer {
         registerChicken();
         registerOtherEntities();
 
+        BowModelProvider.registerModModels();
+
         TerraformBoatClientHelper.registerModelLayers(PINE_ID);
-    
+
         BlockEntityRendererFactories.register(ModEntities.CHEESE_RACK_BLOCK_ENTITY, CheeseRackBlockEntityRenderer::new);
+
+        BlockEntityRendererFactories.register(ModEntities.WHEEL_BARROW_BLOCK_ENTITY, WheelBarrowBlockEntityRenderer::new);
+
+        BlockEntityRendererFactories.register(ModEntities.BIG_FLOWER_POT_BLOCK_ENTITY, BigFlowerPotBlockEntityRenderer::new);
+
+        BlockEntityRendererFactories.register(ModEntities.FLOWER_BOX_BLOCK_ENTITY, FlowerBoxBlockEntityRenderer::new);
+
     }
 
     private static void registerClientScreens(){
@@ -165,9 +183,30 @@ public class MeadowClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.CHAIR, ChairEntityRenderer::new);
     }
 
+    private void registerBowPredicate(HuntingBowItem bowItem) {
+        ModelPredicateProviderRegistry.register(bowItem, new Identifier("pull"),
+                (itemStack, clientWorld, livingEntity, i) -> {
+                    if (livingEntity == null) {
+                        return 0.0F;
+                    }
+                    return livingEntity.getActiveItem() != itemStack ? 0.0F
+                            : (itemStack.getMaxUseTime() - livingEntity.getItemUseTimeLeft()) / 20.0F;
+                });
+        ModelPredicateProviderRegistry.register(bowItem, new Identifier("pulling"),
+                (itemStack, clientWorld, livingEntity, i) -> {
+                    if (livingEntity == null) {
+                        return 0.0F;
+                    }
+                    return livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
+                });
+    }
+
     private static void registerCows(){
         EntityRendererRegistry.register(ModEntities.UMBRA_COW, UmbraCowRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(UMBRA_COW_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
+
+        EntityRendererRegistry.register(ModEntities.WARPED_COW, WarpedCowRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(WARPED_COW_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
 
         EntityRendererRegistry.register(ModEntities.HIGHLAND_CATTLE, HighlandCattleRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(HIGHLAND_CATTLE_MODEL_LAYER, WoolyCowModel::getTexturedModelData);

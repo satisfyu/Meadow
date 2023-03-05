@@ -1,0 +1,24 @@
+{
+  "name": "minecraft:village_meadow/town_center",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "minecraft:village_meadow/town_center/town_center1",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "minecraft:village_meadow/town_center/fountain1",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

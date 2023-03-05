@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/bow",
+  "textures": {
+    "layer0": "meadow:item/hunting_bow_pulling2"
+  }
+}

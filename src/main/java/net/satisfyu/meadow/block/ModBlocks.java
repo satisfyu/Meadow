@@ -5,8 +5,8 @@ import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
-
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
@@ -16,18 +16,22 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.custom.BenchBlock;
+import net.satisfyu.meadow.block.flowerPot.BigFlowerPotBlock;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlock;
 import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlock;
-
+import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlock;
-import net.satisfyu.meadow.block.custom.HFacingBlock;
+import net.satisfyu.meadow.block.custom.*;
+import net.satisfyu.meadow.block.flowerPot.FlowerBoxBlock;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlock;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlock;
+import net.satisfyu.meadow.block.custom.TableBlock;
+import net.satisfyu.meadow.block.flowerPot.WheelBarrowBlock;
+import net.satisfyu.meadow.block.windowShutter.ShutterBlock;
+import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBehavior;
 import net.satisfyu.meadow.block.woodenCauldren.WoodenCauldronBlock;
-import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock;
-import net.satisfyu.meadow.block.custom.*;
-import net.satisfyu.meadow.block.woodCutter.WoodcutterBlock;
 import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.sound.ModSounds;
@@ -35,7 +39,6 @@ import net.satisfyu.meadow.world.feature.custom.tree.PineSaplingGenerator;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.WeakHashMap;
 
 
 public class ModBlocks {
@@ -109,7 +112,7 @@ public class ModBlocks {
     public static final Block STOVE = registerBlock("stove_tiles",
             new MainStoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block STOVE_WOOD = registerBlock("stove_tiles_wood",
-            new StoveBlockWood(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(state -> state.get(StoveBlockWood.LIT) ? 13 : 0), Direction.UP), ModItemGroup.ALPINE_SALT);
+            new StoveBlockWood(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).luminance(state -> state.get(StoveBlockWood.LIT) ? 13 : 0).ticksRandomly(), Direction.UP), ModItemGroup.ALPINE_SALT);
     public static final Block STOVE_LID = registerBlock("stove_tiles_lid",
             new StoveBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD), Direction.UP), ModItemGroup.ALPINE_SALT);
     public static final Block STOVE_BENCH = registerBlock("stove_tiles_bench",
@@ -131,7 +134,7 @@ public class ModBlocks {
     public static final Block PINE_SLAB = registerBurningBlock("pine_slab",
             new SlabBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_SLAB)), ModItemGroup.ALPINE_SALT, 5, 20);
     public static final Block WATERING_CAN = registerBlockWithoutItem("watering_can",
-            new HFacingBlock(FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
+            new WateringCanBlock(FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
     public static final Block PINE_PRESSURE_PLATE = registerBlock("pine_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.of(Material.WOOD, PINE_PLANKS.getDefaultMapColor()).noCollision().strength(0.5f).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block PINE_BUTTON = registerBlock("pine_button",
@@ -174,6 +177,8 @@ public class ModBlocks {
             new WindowBlock2(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
     public static final Block WINDOW_3 = registerBlock("window_3",
             new WindowBlock3(FabricBlockSettings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()), ModItemGroup.ALPINE_SALT);
+    public static final Block SHUTTER_BLOCK = registerBlock("shutter_block",
+            new ShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), ModItemGroup.ALPINE_SALT);
     public static final Block FLECKED_WOOL = registerBurningBlock("flecked_wool",
             new Block(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT, 30, 60);
     public static final Block FLECKED_CARPET = registerBlock("flecked_carpet",
@@ -204,6 +209,13 @@ public class ModBlocks {
     public static final Block INKY_CARPET = registerBlock("inky_carpet",
             new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
     public static final Block INKY_BED = registerBlock("inky_bed", new MeadowBedBlock(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOD).strength(0.2F).nonOpaque()), ModItemGroup.ALPINE_SALT);
+    public static final Block WARPED_WOOL = registerBurningBlock("warped_wool",
+            new Block(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT, 30, 60);
+    public static final Block WARPED_CARPET = registerBlock("warped_carpet",
+            new CarpetBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
+    public static final Block WARPED_BED = registerBlock("warped_bed", new MeadowBedBlock(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOD).strength(0.2F).nonOpaque()), ModItemGroup.ALPINE_SALT);
+
+
     public static final Block OAT_BALL = registerBlock("oat_ball",
             new HayBlock(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT);
     public static final Block OATBLOCK_RUG = registerBlock("oatblock_rug",
@@ -215,8 +227,9 @@ public class ModBlocks {
             new CameraBlock(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.ALPINE_SALT);
     public static final Block DOORMAT = registerBlock("doormat",
             new DoormatBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CARPET)), ModItemGroup.ALPINE_SALT);
-    public static final Block FLOWER_POT_BIG = registerBlock("flower_pot_big", new WoodenBigFlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)), ModItemGroup.ALPINE_SALT);
+    public static final Block FLOWER_POT_BIG = registerBlock("flower_pot_big", new BigFlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)), ModItemGroup.ALPINE_SALT);
     public static final Block WOODEN_FLOWER_POT = registerBlock("wooden_flower_pot", new WoodenFlowerPotBlock(Blocks.AIR, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), ModItemGroup.ALPINE_SALT);
+    public static final Block WOODEN_FLOWER_BOX = registerBlock("flower_box", new FlowerBoxBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESE_FORM = registerBlock("cheese_form",
             new CheeseFormBlock(bowlSettings()), ModItemGroup.ALPINE_SALT);
     public static final Block WOODEN_CAULDRON = registerBlock("wooden_cauldron",
@@ -258,8 +271,6 @@ public class ModBlocks {
     public static final Block ALPINE_BIRCH_LEAVES_HANGING = registerBurningBlock("alpine_birch_leaves_hanging",
             new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.2f).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque().blockVision((state, world, pos) -> false)
                     .suffocates((state, world, pos) -> false)), ModItemGroup.ALPINE_SALT,  30, 60);
-
-
 
 
 
@@ -322,6 +333,8 @@ public class ModBlocks {
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_HERB_CHEESE, false), ModItemGroup.ALPINE_SALT);
     public static final Block GOAT_CHEESE_BLOCK = registerBlock("goat_cheese_block",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_GOAT_CHEESE, false), ModItemGroup.ALPINE_SALT);
+    public static final Block WARPED_CHEESE_BLOCK = registerBlock("warped_cheese_block",
+            new WarpedCheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.PIECE_OF_WARPED_CHEESE, false), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESE_TART = registerBlock("cheese_tart",
             new CheeseBlock(FabricBlockSettings.copyOf(Blocks.CAKE), ModItems.CHEESE_TART_SLICE, true), ModItemGroup.ALPINE_SALT);
     public static final Block CHEESECAKE = registerBlock("cheesecake",
@@ -380,8 +393,12 @@ public class ModBlocks {
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), null,  5, 5);
     public static final Block ALPINE_BIRCH_LOG = registerBurningBlock("alpine_birch_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), null,  5, 5);
-
-
+    public static final Block SHUTTER_BLOCK_POPPY = registerBlock("shutter_block_poppy",
+            new ShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), null);
+    public static final Block SHUTTER_BLOCK_FIR = registerBlock("shutter_block_fir",
+            new ShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), null);
+    public static final Block SHUTTER_BLOCK_BERRY = registerBlock("shutter_block_berry",
+            new ShutterBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0F).sounds(BlockSoundGroup.WOOD)), null);
 
     private static FabricBlockSettings bowlSettings(){
         return FabricBlockSettings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);
@@ -411,6 +428,17 @@ public class ModBlocks {
     private static void registerBlockItem(String name, Block block, ItemGroup tab) {
         Registry.register(Registry.ITEM, new Identifier(Meadow.MOD_ID, name),
                 new BlockItem(block, tab == null ? new FabricItemSettings() : new FabricItemSettings().group(tab)));
+    }
+
+    public static void registerFuel() {
+        registerFuels();
+    }
+
+    private static void registerFuels() {
+        Meadow.LOGGER.info("Registering Fuels for " + Meadow.MOD_ID);
+        FuelRegistry registry = FuelRegistry.INSTANCE;
+
+        registry.add(ModBlocks.FIRE_LOG, 400);
     }
 
     public static void registerModBlocks() {

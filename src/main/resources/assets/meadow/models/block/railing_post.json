@@ -1,8 +1,10 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "meadow:block/cheese_rack_side",
-		"particle": "meadow:block/cheese_rack_side"
+		"1": "meadow:block/shelf_side",
+		"2": "meadow:block/shelf_bottom",
+		"3": "meadow:block/shelf_top",
+		"particle": "meadow:block/shelf_side"
 	},
 	"elements": [
 		{
@@ -10,12 +12,12 @@
 			"from": [6, 0, 6],
 			"to": [10, 16, 10],
 			"faces": {
-				"north": {"uv": [6, 0, 10, 16], "texture": "#0"},
-				"east": {"uv": [6, 0, 10, 16], "texture": "#0"},
-				"south": {"uv": [6, 0, 10, 16], "texture": "#0"},
-				"west": {"uv": [6, 0, 10, 16], "texture": "#0"},
-				"up": {"uv": [4, 4, 0, 0], "texture": "#0", "cullface": "up"},
-				"down": {"uv": [4, 4, 0, 0], "texture": "#0", "cullface": "down"}
+				"north": {"uv": [6, 0, 10, 16], "texture": "#1"},
+				"east": {"uv": [6, 0, 10, 16], "texture": "#1"},
+				"south": {"uv": [8, 0, 12, 16], "texture": "#1"},
+				"west": {"uv": [4, 0, 8, 16], "texture": "#1"},
+				"up": {"uv": [14, 14, 10, 10], "texture": "#3", "cullface": "up"},
+				"down": {"uv": [6, 6, 2, 2], "texture": "#2", "cullface": "down"}
 			}
 		}
 	]

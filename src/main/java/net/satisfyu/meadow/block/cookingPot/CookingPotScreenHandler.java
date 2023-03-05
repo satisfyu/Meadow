@@ -7,46 +7,35 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.world.World;
 import net.satisfyu.meadow.recipes.ModRecipes;
 import net.satisfyu.meadow.recipes.pot.CookingPotRecipe;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
-import net.satisfyu.meadow.util.GeneralUtil;
+import net.satisfyu.meadow.screenHandler.RecipeScreenHandler;
 
 import java.util.stream.Stream;
 
-public class CookingPotScreenHandler extends ScreenHandler {
+public class CookingPotScreenHandler extends RecipeScreenHandler {
 
-    private final PropertyDelegate propertyDelegate;
-    private final World world;
     public CookingPotScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(8), new ArrayPropertyDelegate(2));
     }
 
     public CookingPotScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlers.COOKING_POT_SCREEN_HANDLER, syncId);
-        buildBlockEntityContainer(inventory);
+        super(ModScreenHandlers.COOKING_POT_SCREEN_HANDLER, syncId, playerInventory, inventory, 7, propertyDelegate);
+        buildBlockEntityContainer(playerInventory, inventory);
         buildPlayerContainer(playerInventory);
-        this.world = playerInventory.player.getWorld();
-        this.propertyDelegate = propertyDelegate;
-        addProperties(this.propertyDelegate);
     }
 
-    private void buildBlockEntityContainer(Inventory inventory) {
+    private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
         for (int row = 0; row < 2; row++) {
             for (int slot = 0; slot < 3; slot++) {
                 this.addSlot(new Slot(inventory, slot + row + (row * 2), 30 + (slot * 18), 17 + (row * 18)));
             }
         }
-        this.addSlot(new Slot(inventory, 6,92, 55));
-        this.addSlot(new Slot(inventory, 7, 124, 28) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                return false;
-            }
-        });
+        this.addSlot(new Slot(inventory, 6,95, 50));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 7, 124, 26));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
@@ -71,75 +60,24 @@ public class CookingPotScreenHandler extends ScreenHandler {
     }
 
 
-    @Override
-    public ItemStack transferSlot(PlayerEntity player, int index) {
-        ItemStack stack;
-        final Slot slot = this.getSlot(index);
-        if (slot != null && slot.hasStack()) {
-            final ItemStack stackInSlot = slot.getStack();
-            stack = stackInSlot.copy();
-            if (GeneralUtil.isIndexInRange(index, 0, 7)) {
-                if (!this.insertItem(stackInSlot, 8, 43, true)) {
-                    return ItemStack.EMPTY;
-                }
-                slot.onQuickTransfer(stackInSlot, stack);
-
-            } else if (isItemIngredient(stackInSlot)) {
-                if (!this.insertItem(stackInSlot, 0, 5, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (isItemContainer(stack)) {
-                if (!this.insertItem(stackInSlot, 6, 7, false)) {
-                    return ItemStack.EMPTY;
-                }
-            }
-            if (stackInSlot.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
-            } else {
-                slot.markDirty();
-            }
-            if (stackInSlot.getCount() == stack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-            slot.onTakeItem(player, stackInSlot);
-        }
-        return ItemStack.EMPTY;
-    }
-
     private boolean isItemIngredient(ItemStack stack) {
-        /*
-        if(VineryUtils.isFDLoaded()){
-            if(FarmersCookingPot.isItemIngredient(stack, this.world)){
-                return true;
-            }
-        }
-
-         */
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
 
     private Stream<CookingPotRecipe> recipeStream() {
         return this.world.getRecipeManager().listAllOfType(ModRecipes.POT_COOKING).stream();
     }
-    private boolean isItemContainer(ItemStack stack) {
-        /*
-        if(VineryUtils.isFDLoaded()){
-            if(FarmersCookingPot.isItemContainer(stack, this.world)){
-                return true;
-            }
-        }
 
-         */
+    private boolean isItemContainer(ItemStack stack) {
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getContainer().isOf(stack.getItem()));
     }
-
-    public int getScaledProgress() {
+    public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(0);
         final int totalProgress = CookingPotBlockEntity.MAX_COOKING_TIME;
         if (progress == 0) {
             return 0;
         }
-        return progress * 22 / totalProgress;
+        return progress * arrowWidth/ totalProgress + 1;
     }
 
 

@@ -63,17 +63,7 @@ public class ShelfBlock extends BlockWithEntity {
 			super.onStateReplaced(state, world, pos, newState, moved);
 		}
 	}
-/*
-	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof WineRackStorageBlockEntity blockEntity1) {
-			blockEntity1.tick();
-		}
-	}
-
- */
-
+	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {

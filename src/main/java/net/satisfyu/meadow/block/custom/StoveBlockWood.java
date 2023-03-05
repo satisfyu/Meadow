@@ -1,12 +1,12 @@
 package net.satisfyu.meadow.block.custom;
 
-import com.google.common.collect.ImmutableMap;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FireChargeItem;
@@ -28,11 +28,11 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
 import java.util.List;
 
-public class StoveBlockWood extends StoveBlock {
+public class StoveBlockWood extends StoveBlock implements BlockEntityProvider {
 
     public static final BooleanProperty LIT = BooleanProperty.of("lit");
 
@@ -84,7 +84,7 @@ public class StoveBlockWood extends StoveBlock {
             world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         }
     }
-
+    
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
@@ -95,5 +95,15 @@ public class StoveBlockWood extends StoveBlock {
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.stove.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
+    
+    @Nullable
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new StoveBlockWoodBlockEntity(pos, state);
+    }
+    
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return StoveBlockWoodBlockEntity::tick;
+    }
 }
-

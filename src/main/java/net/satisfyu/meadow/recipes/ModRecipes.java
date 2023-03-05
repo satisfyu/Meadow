@@ -35,6 +35,7 @@ public class ModRecipes {
         COOKING = Registry.register(Registry.RECIPE_TYPE, new Identifier(Meadow.MOD_ID, CookingCauldronRecipe.Type.ID), CookingCauldronRecipe.Type.INSTANCE);
         Registry.register(Registry.RECIPE_SERIALIZER, CookingCauldronRecipeSerializer.ID, CookingCauldronRecipeSerializer.INSTANCE);
 
+        //POT_COOKING = Registry.register(Registry.RECIPE_TYPE, new Identifier(Meadow.MOD_ID, CookingPotRecipe.Type.ID), CookingPotRecipe.Type.INSTANCE);
         POT_COOKING = create("pot_cooking");
         COOKING_POT_RECIPE_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(Meadow.MOD_ID, "pot_cooking"), new CookingPotRecipe.Serializer());
 

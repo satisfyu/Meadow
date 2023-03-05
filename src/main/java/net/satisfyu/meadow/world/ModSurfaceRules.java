@@ -17,25 +17,20 @@ public class ModSurfaceRules {
     private static final RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> SURFACE = register("surface");
     private static final RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> DIRT = register("dirt");
     private static final RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> CRACKS = register("cracks");
-
-
-
+    
     private static final MaterialRules.MaterialRule LIMESTONE = makeStateRule(ModBlocks.LIMESTONE);
     private static final MaterialRules.MaterialRule COBBLED_LIMESTONE = makeStateRule(ModBlocks.COBBLED_LIMESTONE);
     private static final MaterialRules.MaterialRule PODZOL = makeStateRule(Blocks.PODZOL);
     private static final MaterialRules.MaterialRule COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
 
     private static final MaterialRules.MaterialRule DIRT_BLOCK = makeStateRule(Blocks.DIRT);
-
-
+    
     public static final RegistryKey<Biome> MEADOW_CLEARING_KEY = createBiomeKey("meadow_clearing");
     public static final RegistryKey<Biome> MEADOW_FOREST_KEY = createBiomeKey("meadow_forest");
 
     private static RegistryKey<Biome> createBiomeKey(String name) {
         return RegistryKey.of(Registry.BIOME_KEY, new Identifier(MOD_ID, name));
     }
-
-
 
     protected static MaterialRules.MaterialRule makeRules() {
         MaterialRules.MaterialCondition isAtOrAboveWaterLevel = MaterialRules.water(-1, 0);
@@ -62,8 +57,7 @@ public class ModSurfaceRules {
     private static MaterialRules.MaterialRule makeStateRule(Block block) {
         return MaterialRules.block(block.getDefaultState());
     }
-
-
+    
     private static RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> register(String name) {
         return RegistryKey.of(Registry.NOISE_KEY, new Identifier(MOD_ID, name));
     }

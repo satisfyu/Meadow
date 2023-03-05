@@ -4,10 +4,13 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.block.ModBlocks;
@@ -44,6 +47,10 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
 
+    public static final Item PIECE_OF_WARPED_CHEESE = registerItem("piece_of_warped_cheese",
+            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+                    .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 300, 1), 1.0F).build())));
+
     public static final Item CHEESECAKE_SLICE = registerItem("cheesecake_slice",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
@@ -61,7 +68,7 @@ public class ModItems {
                     .food(new FoodComponent.Builder().hunger(5).saturationModifier(1.2f).build())));
 
     public static final Item ALPINE_SALT = registerItem("alpine_salt",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+            new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
 
     public static final Item CHEESE_SANDWICH = registerItem("cheese_sandwich",
             new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
@@ -80,7 +87,7 @@ public class ModItems {
                     .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.6f).build())));
 
     public static final Item RAW_BEAR_MEAT = registerItem("raw_bear_meat",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
+            new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
 
     public static final Item BEAR_STEW = registerItem("bear_stew",
@@ -104,59 +111,63 @@ public class ModItems {
     public static final Item JUG_JUNIPER_TEA = registerItem("jug_juniper_tea",
             new JugItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
-    public static final Item LAB = registerItem("lab", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item LAB = registerItem("lab", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item WATERING_CAN_ITEM = registerItem("watering_can", new WateringCanItem(ModBlocks.WATERING_CAN, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxDamage(25)));
     public static final Item MOUNTAIN_LAVENDER_SEEDS = registerItem("mountain_lavender_seeds",
             new AliasedBlockItem(ModBlocks.MOUNTAIN_LAVENDER_CROP,
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item BAG_OF_LAVENDER = registerItem("bag_of_lavender", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BAG_OF_LAVENDER = registerItem("bag_of_lavender", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item JUNIPER_SEEDS = registerItem("juniper_seeds",
             new AliasedBlockItem(ModBlocks.JUNIPER_CROP,
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item BAG_OF_JUNIPER = registerItem("bag_of_juniper", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BAG_OF_JUNIPER = registerItem("bag_of_juniper", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item YARROW_SEEDS = registerItem("yarrow_seeds",
             new AliasedBlockItem(ModBlocks.YARROW_CROP,
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item BAG_OF_YARROW = registerItem("bag_of_yarrow", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BAG_OF_YARROW = registerItem("bag_of_yarrow", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item OAT_SEEDS = registerItem("oat_seeds",
             new AliasedBlockItem(ModBlocks.OAT_CROP,
                     new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item OAT = registerItem("oat",
-            new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item BEAR_FUR = registerItem("bear_fur", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+            new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item CORD = registerItem("cord", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item BEAR_FUR = registerItem("bear_fur", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BEAR_FUR_HELMET = registerItem("bear_fur_helmet", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.HEAD, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BEAR_FUR_CHESTPLATE = registerItem("bear_fur_chestplate", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.CHEST, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BEAR_FUR_LEGGINGS = registerItem("bear_fur_leggings", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.LEGS, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
     public static final Item BEAR_FUR_BOOTS = registerItem("bear_fur_boots", new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.FEET, new Item.Settings().group(ModItemGroup.ALPINE_SALT)));
-    public static final Item CHEESE_MASS = registerItem("cow_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item HUNTING_BOW = registerItem("hunting_bow", new HuntingBowItem(BowUtil.HUNTING, new FabricItemSettings().group(ModItemGroup.ALPINE_SALT)));
+    public static final Item CHEESE_MASS = registerItem("cow_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item BUFFALO_CHEESE_MASS = registerItem("buffalo_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item BUFFALO_CHEESE_MASS = registerItem("buffalo_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item GOAT_CHEESE_MASS = registerItem("goat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item GOAT_CHEESE_MASS = registerItem("goat_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item OAT_CHEESE_MASS = registerItem("oat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item OAT_CHEESE_MASS = registerItem("oat_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item SHEEP_CHEESE_MASS = registerItem("sheep_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item SHEEP_CHEESE_MASS = registerItem("sheep_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item LAVENDER_CHEESE_MASS = registerItem("lavender_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item LAVENDER_CHEESE_MASS = registerItem("lavender_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item HERBS_CHEESE_MASS = registerItem("herbs_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item HERBS_CHEESE_MASS = registerItem("herbs_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
+    public static final Item WARPED_CHEESE_MASS = registerItem("warped_cheese_mass_bucket", new WarpedMassItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_CHEESE_MASS = registerItem("wooden_cow_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item WOODEN_CHEESE_MASS = registerItem("wooden_cow_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_BUFFALO_CHEESE_MASS = registerItem("wooden_buffalo_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item WOODEN_BUFFALO_CHEESE_MASS = registerItem("wooden_buffalo_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_GOAT_CHEESE_MASS = registerItem("wooden_goat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item WOODEN_GOAT_CHEESE_MASS = registerItem("wooden_goat_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_OAT_CHEESE_MASS = registerItem("wooden_oat_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item WOODEN_OAT_CHEESE_MASS = registerItem("wooden_oat_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_SHEEP_CHEESE_MASS = registerItem("wooden_sheep_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item WOODEN_SHEEP_CHEESE_MASS = registerItem("wooden_sheep_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_LAVENDER_CHEESE_MASS = registerItem("wooden_lavender_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item WOODEN_LAVENDER_CHEESE_MASS = registerItem("wooden_lavender_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
-    public static final Item WOODEN_HERBS_CHEESE_MASS = registerItem("wooden_herbs_cheese_mass_bucket", new Item(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
+    public static final Item WOODEN_HERBS_CHEESE_MASS = registerItem("wooden_herbs_cheese_mass_bucket", new CraftingIngredientItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
+    public static final Item WOODEN_WARPED_CHEESE_MASS = registerItem("wooden_warped_cheese_mass_bucket", new WarpedMassItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
     public static final Item BUFFALO_MILK = registerItem("buffalo_milk_bucket", new MilkBucketItem(new FabricItemSettings().group(ModItemGroup.ALPINE_SALT).maxCount(1)));
 
@@ -203,6 +214,8 @@ public class ModItems {
     public static final Item UMBRA_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.UMBRA_COW, 329011,1115451);
 
     public static final Item HIGHLAND_CATTLE_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.HIGHLAND_CATTLE, 11102208, 16755200);
+
+    public static final Item WARPED_COW_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.WARPED_COW,  43690, 11141290);
 
     public static final Item BROWN_BEAR_SPAWN_EGG_ITEM = registerSpawnEgg(ModEntities.BROWN_BEAR, 5780480, 5586176);
 

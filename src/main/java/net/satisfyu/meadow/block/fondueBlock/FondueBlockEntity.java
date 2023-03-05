@@ -29,7 +29,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxProgress = 72;
+    public int MAX_PROGRESS = 72;
 
     private int fuelAmount = 0;
 
@@ -39,7 +39,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
             public int get(int index) {
                 return switch (index) {
                     case 0 -> FondueBlockEntity.this.progress;
-                    case 1 -> FondueBlockEntity.this.maxProgress;
+                    case 1 -> FondueBlockEntity.this.MAX_PROGRESS;
                     default -> 0;
                 };
             }
@@ -47,7 +47,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
             public void set(int index, int value) {
                 switch (index) {
                     case 0 -> FondueBlockEntity.this.progress = value;
-                    case 1 -> FondueBlockEntity.this.maxProgress = value;
+                    case 1 -> FondueBlockEntity.this.MAX_PROGRESS = value;
                 }
             }
 
@@ -102,7 +102,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
         if(hasRecipe(entity) && hasFuel(entity)) {
             entity.progress++;
             markDirty(world, blockPos, state);
-            if(entity.progress >= entity.maxProgress) {
+            if(entity.progress >= entity.MAX_PROGRESS) {
                 craftItem(entity);
             }
         } else {
@@ -114,7 +114,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
     private static boolean hasFuel(FondueBlockEntity entity){
         if(entity.fuelAmount > 0) return true;
         ItemStack stack = entity.inventory.get(2);
-        if(stack.isIn(Tags.CHEESE_BLOCKS)){
+        if(stack.isIn(Tags.CHEESE)){
             entity.fuelAmount = 10;
             stack.decrement(1);
             return true;

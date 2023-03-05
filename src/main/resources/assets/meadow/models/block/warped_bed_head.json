@@ -1,0 +1,6 @@
+{
+  "parent": "meadow:block/bed_head",
+  "textures": {
+    "0": "meadow:entity/bed/warped"
+  }
+}

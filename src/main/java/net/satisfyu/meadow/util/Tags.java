@@ -21,4 +21,13 @@ public class Tags {
     public static final TagKey<Item> WOODEN_BUCKETS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "wooden_buckets"));
 
     public static final TagKey<Item> BUCKETS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "buckets"));
+
+    public static final TagKey<Item> SMALL_FLOWER = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "small_flower"));
+
+    public static final TagKey<Item> BIG_FLOWER = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "big_flower"));
+
+    public static final TagKey<Item> CHEESE = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "cheese"));
+
+    public static final TagKey<Block> CAN_NOT_CONNECT = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "can_not_connect"));
+
 }

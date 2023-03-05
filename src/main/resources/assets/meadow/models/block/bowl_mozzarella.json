@@ -2,7 +2,7 @@
 	"credit": "Made by Satisfy",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "meadow:block/cheese_rack_side",
+		"1": "meadow:block/shelf_side",
 		"2": "meadow:block/chesse_mass_goat",
 		"particle": "meadow:block/chesse_mass_goat"
 	},

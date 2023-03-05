@@ -18,21 +18,24 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.BiomeKeys;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.flowerPot.BigFlowerPotBlockEntity;
 import net.satisfyu.meadow.block.ModBlocks;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormBlockEntity;
 import net.satisfyu.meadow.block.cheeseRack.CheeseRackBlockEntity;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
-
 import net.satisfyu.meadow.block.cookingPot.CookingPotBlockEntity;
+import net.satisfyu.meadow.block.custom.StoveBlockWoodBlockEntity;
+import net.satisfyu.meadow.block.flowerPot.FlowerBoxBlockEntity;
 import net.satisfyu.meadow.block.fondueBlock.FondueBlockEntity;
 import net.satisfyu.meadow.block.shelfBlock.ShelfBlockEntity;
+import net.satisfyu.meadow.block.flowerPot.WheelBarrowBlockEntity;
 import net.satisfyu.meadow.entity.custom.bear.brown.BrownBearEntity;
+import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntity;
 import net.satisfyu.meadow.entity.custom.chair.ChairEntity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken1.Chicken1Entity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken2.Chicken2Entity;
 import net.satisfyu.meadow.entity.custom.chicken.chicken3.Chicken3Entity;
 import net.satisfyu.meadow.entity.custom.cow.albino_cow.AlbinoCowEntity;
-import net.satisfyu.meadow.entity.custom.buffalo.water_buffalo.WaterBuffaloEntity;
 import net.satisfyu.meadow.entity.custom.cow.cookie_cow.CookieCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.cream_cow.CreamCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.dairy_cow.DairyCowEntity;
@@ -40,6 +43,7 @@ import net.satisfyu.meadow.entity.custom.cow.dark_cow.DarkCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.pinto_cow.PintoCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.shearable.highland_cattle.HighlandCattleEntity;
 import net.satisfyu.meadow.entity.custom.cow.shearable.umbra.UmbraCowEntity;
+import net.satisfyu.meadow.entity.custom.cow.shearable.warped.WarpedCowEntity;
 import net.satisfyu.meadow.entity.custom.cow.sunset_cow.SunsetCowEntity;
 import net.satisfyu.meadow.entity.custom.sheep.flecked.FleckedSheepEntity;
 import net.satisfyu.meadow.entity.custom.sheep.fuzzy.FuzzySheepEntity;
@@ -119,6 +123,10 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, UmbraCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
     );
 
+    public static final EntityType<WarpedCowEntity> WARPED_COW = Registry.register(Registry.ENTITY_TYPE,
+            new Identifier(MOD_ID, "warped_cow"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, WarpedCowEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.4f)).build()
+    );
     public static final EntityType<FleckedSheepEntity> FLECKED_SHEEP = Registry.register(Registry.ENTITY_TYPE,
             new Identifier(MOD_ID, "flecked_sheep"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, FleckedSheepEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.3f)).build()
@@ -176,6 +184,12 @@ public class ModEntities {
 
     public static final BlockEntityType<CheeseRackBlockEntity> CHEESE_RACK_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "cheese_rack"), FabricBlockEntityTypeBuilder.create(CheeseRackBlockEntity::new, ModBlocks.CHEESE_RACK).build());
 
+    public static final BlockEntityType<WheelBarrowBlockEntity> WHEEL_BARROW_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "wheel_barrow"), FabricBlockEntityTypeBuilder.create(WheelBarrowBlockEntity::new, ModBlocks.WHEELBARROW).build());
+
+    public static final BlockEntityType<FlowerBoxBlockEntity> FLOWER_BOX_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "flower_box"), FabricBlockEntityTypeBuilder.create(FlowerBoxBlockEntity::new, ModBlocks.WOODEN_FLOWER_BOX).build());
+
+    public static final BlockEntityType<BigFlowerPotBlockEntity> BIG_FLOWER_POT_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "big_flower_pot"), FabricBlockEntityTypeBuilder.create(BigFlowerPotBlockEntity::new, ModBlocks.FLOWER_POT_BIG).build());
+
     public static final BlockEntityType<CookingPotBlockEntity> COOKING_POT = Registry.register(Registry.BLOCK_ENTITY_TYPE,
             new Identifier(MOD_ID, "cooking_pot"),
             FabricBlockEntityTypeBuilder.create(CookingPotBlockEntity::new,
@@ -187,9 +201,7 @@ public class ModEntities {
                     ModBlocks.FONDUE).build());
 
     public static final BlockEntityType<ShelfBlockEntity> SHELF_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "shelf"), FabricBlockEntityTypeBuilder.create(ShelfBlockEntity::new, ModBlocks.SHELF).build());
-
-
-
+    public static final BlockEntityType<StoveBlockWoodBlockEntity> STOVE_BLOCK_WOOD_BLOCK_ENTITY_ = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MOD_ID, "stove_block_wood"), FabricBlockEntityTypeBuilder.create(StoveBlockWoodBlockEntity::new, ModBlocks.STOVE_WOOD).build());
 
     public static void registerEntities(){
         Meadow.LOGGER.debug("Registering Mod Entities for " + Meadow.MOD_ID);
@@ -212,12 +224,13 @@ public class ModEntities {
         registerSheep(PATCHED_SHEEP, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
         registerSheep(ROCKY_SHEEP, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.GROVE, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.TAIGA, BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA, BiomeKeys.OLD_GROWTH_PINE_TAIGA, BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA));
 
+        registerCow(WARPED_COW, BiomeSelectors.includeByKey(BiomeKeys.WARPED_FOREST).or(BiomeSelectors.tag(BiomeTags.IS_NETHER)));
         registerCow(HIGHLAND_CATTLE, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
         registerCow(UMBRA_COW, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.TAIGA, BiomeKeys.FOREST, BiomeKeys.DARK_FOREST));
-        registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));
-        registerCow(ALBINO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
+        registerCow(COOKIE_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));
+        registerCow(ALBINO_COW, BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));
         registerCow(CREAM_COW, BiomeSelectors.includeByKey(BiomeKeys.BADLANDS).or(BiomeSelectors.tag(BiomeTags.IS_BADLANDS)));
-        registerCow(DAIRY_COW, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
+        registerCow(DAIRY_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(WATER_BUFFALO, BiomeSelectors.includeByKey(BiomeKeys.SAVANNA, BiomeKeys.SAVANNA_PLATEAU, BiomeKeys.WINDSWEPT_SAVANNA).or(BiomeSelectors.tag(BiomeTags.IS_RIVER)));
         registerCow(DARK_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));
         registerCow(PINTO_COW, BiomeSelectors.spawnsOneOf(EntityType.COW));

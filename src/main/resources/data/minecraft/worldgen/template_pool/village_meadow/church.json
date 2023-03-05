@@ -1,0 +1,15 @@
+{
+  "name": "minecraft:village_meadow/church",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "minecraft:village_meadow/church",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

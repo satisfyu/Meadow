@@ -3,22 +3,23 @@ package net.satisfyu.meadow.villager;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.village.TradeOffers;
-import net.satisfyu.meadow.block.ModBlocks;
-import net.satisfyu.meadow.item.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.village.TradeOffer;
+import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
+import net.minecraft.village.VillagerType;
 import net.minecraft.world.poi.PointOfInterestType;
+import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class ModVillagers {
@@ -30,6 +31,8 @@ public class ModVillagers {
     public static final PointOfInterestType HERMIT_POI = PointOfInterestHelper.register(HERMIT_POI_IDENTIFIER, 1, 12, ModBlocks.WOODCUTTER);
     public static final VillagerProfession HERMIT = Registry.register(Registry.VILLAGER_PROFESSION, new Identifier("meadow", "hermit"), VillagerProfessionBuilder.create().id(new Identifier("meadow", "hermit")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, HERMIT_POI_IDENTIFIER)).build());
 
+    public static final VillagerType MEADOW = Registry.register(Registry.VILLAGER_TYPE, new Identifier("meadow", "meadow"), new VillagerType("meadow"));
+    
     public static void init() {
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 1, factories -> {
             factories.add(new BuyForOneEmeraldFactory(ModItems.OAT_SEEDS, 15, 4, 5));
@@ -59,7 +62,7 @@ public class ModVillagers {
             factories.add(new SellItemFactory(ModBlocks.OAT_CHEESE_BLOCK, 12, 1, 15));
         });
         TradeOfferHelper.registerVillagerOffers(HERMIT, 1, factories -> {
-            factories.add(new BuyForOneEmeraldFactory(ModBlocks.BENCH, 15, 4, 5));
+            //factories.add(new BuyForOneEmeraldFactory(ModBlocks.BENCH, 15, 4, 5));
             factories.add(new BuyForOneEmeraldFactory(ModItems.JUG_JUNIPER_TEA, 4, 4, 5));
             factories.add(new BuyForOneEmeraldFactory(ModBlocks.PINE_LOG, 10, 4, 5));
             factories.add(new SellItemFactory(ModBlocks.PINE_SAPLING, 10, 6, 5));
@@ -87,14 +90,9 @@ public class ModVillagers {
         TradeOfferHelper.registerVillagerOffers(HERMIT, 5, factories -> {
             factories.add(new SellItemFactory(Items.IRON_AXE, 10, 1, 10));
             factories.add(new SellItemFactory(ModBlocks.WOODEN_CAULDRON, 5, 1, 10));
-
         });
 
-
-
-
-
-
+        VillagerType.BIOME_TO_TYPE.put(RegistryKey.of(Registry.BIOME_KEY, new Identifier("meadow")), MEADOW);
     }
 
     static class BuyForOneEmeraldFactory implements TradeOffers.Factory {

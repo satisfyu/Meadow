@@ -39,11 +39,7 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
     
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.4375, 0.0625, 0.9375, 0.5, 0.9375), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.9375, 0, 0.9375, 1, 1), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0, 0.9375, 0.0625, 1), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.9375, 0, 0, 1, 1, 1), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0, 0, 0.0625, 1, 1), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.01, 0.01, 0.01, 0.99, 0.99, 0.99), BooleanBiFunction.OR);
         return shape;
     };
 
@@ -67,22 +63,24 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
         if (world.isClient) return ActionResult.SUCCESS;
         CheeseRackBlockEntity be = (CheeseRackBlockEntity) world.getBlockEntity(pos);
         if(be == null || player.isSneaking()) return ActionResult.PASS;
-        ItemStack stack = player.getStackInHand(hand);
-        List<Item> list = be.getItems();
+        ItemStack handStack = player.getStackInHand(hand);
+        int slot = -1;
+        Optional<Pair<Float, Float>> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.get(FACING), null);
+        if(optional.isPresent()){
+            Pair<Float, Float> pair = optional.get();
+            slot = pair.getRight() > 0.5 ? 1 : 0;
+            System.out.println(pair.getLeft() + " " + pair.getRight());
+        }
+        
+        if (slot == -1)
+            return ActionResult.PASS;
 
-        if (stack.isEmpty()) {
-            Optional<Item> stackOutOfList = list.stream().findFirst();
-            if(stackOutOfList.isPresent()){
-                Item item = stackOutOfList.get();
-                player.giveItemStack(new ItemStack(item));
-                list.remove(item);
-                be.setItems(list);
-                return ActionResult.SUCCESS;
-            }
-        } else if (stack.isIn(Tags.CHEESE_BLOCKS) && list.size() < 2) {
-            list.add(stack.getItem());
-            stack.decrement(1);
-            be.setItems(list);
+        if (handStack.isEmpty() && be.hasStack(slot)) {
+            player.giveItemStack(be.removeStack(slot));
+            return ActionResult.SUCCESS;
+        } else if (handStack.isIn(Tags.CHEESE_BLOCKS) && !be.hasStack(slot)) {
+            be.setStack(slot, new ItemStack(handStack.getItem()));
+            handStack.decrement(1);
             return ActionResult.SUCCESS;
         }
         return super.onUse(state, world, pos, player, hand, hit);
@@ -115,7 +113,7 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
     
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.uc.tooltip").formatted(Formatting.ITALIC, Formatting.DARK_RED));
+        tooltip.add(Text.translatable("block.meadow.rack.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
 
