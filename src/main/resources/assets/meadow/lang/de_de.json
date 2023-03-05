@@ -307,5 +307,14 @@
   "block.meadow.shutter_block": "Fensterladen",
   "block.meadow.shutter_block_fir": "Bemalter Fensterladen",
   "block.meadow.shutter_block_poppy": "Bemalter Fensterladen",
-  "block.meadow.shutter_block_berry": "Bemalter Fensterladen"
+  "block.meadow.shutter_block_berry": "Bemalter Fensterladen",
+
+  "tooltip.meadow.recipe_book": "Rezeptbuch",
+  "tooltip.meadow.cooking_cauldron.milk_bucket": "Milcheimer",
+  "tooltip.meadow.cooking_cauldron.alpine_salt": "Alpensalz",
+  "tooltip.meadow.cooking_cauldron.output_slot": "Unterschiedliche Milch resultiert in unterschiedliche Käsemasse",
+  "tooltip.meadow.cheese_form.cheese_mass": "Käsemasse - Alle Sorten an Käsemasse kann verwendet werden",
+  "tooltip.meadow.cheese_form.cheese": "Unterschiedliche Käsemasse resultiert in unterschiedlichen Käse",
+  "tooltip.meadow.cooking_pot.crops": "Kräuter",
+  "tooltip.meadow.cooking_pot.oat_milk": "Hafermilch"
 }
