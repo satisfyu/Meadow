@@ -8,6 +8,7 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.recipes.ModRecipes;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import net.satisfyu.meadow.screenHandler.RecipeScreenHandler;
 
@@ -18,7 +19,7 @@ public class CheeseFormScreenHandler extends RecipeScreenHandler {
     }
 
     public CheeseFormScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlers.CHEESE_FORM_SCREEN_HANDLER, syncId, inventory, propertyDelegate);
+        super(ModScreenHandlers.CHEESE_FORM_SCREEN_HANDLER, syncId, playerInventory, inventory, 1, propertyDelegate);
         buildBlockEntityContainer(playerInventory, inventory);
         buildPlayerContainer(playerInventory);
     }
@@ -29,15 +30,14 @@ public class CheeseFormScreenHandler extends RecipeScreenHandler {
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
-        int m;
-        int l;
-        for (m = 0; m < 3; ++m) {
-            for (l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + m * 9 + 9, 8 + l * 18, 84 + m * 18));
+        int i;
+        for (i = 0; i < 3; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
-        for (m = 0; m < 9; ++m) {
-            this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 142));
+        for (i = 0; i < 9; ++i) {
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 

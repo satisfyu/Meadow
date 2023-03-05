@@ -1,48 +1,69 @@
 package net.satisfyu.meadow.screenHandler;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.world.World;
 
 public class RecipeScreenHandler extends ScreenHandler {
-
+    public final World world;
     public final Inventory inventory;
     public final PropertyDelegate propertyDelegate;
+    private final int inputSlots;
 
-    public RecipeScreenHandler(ScreenHandlerType<?> screenHandler, int syncId, Inventory inventory, PropertyDelegate propertyDelegate) {
+    public RecipeScreenHandler(ScreenHandlerType<?> screenHandler, int syncId, PlayerInventory playerInventory, Inventory inventory, int inputSlots, PropertyDelegate propertyDelegate) {
         super(screenHandler, syncId);
 
+        this.world = playerInventory.player.world;
         this.inventory = inventory;
+        this.inputSlots = inputSlots;
         this.propertyDelegate = propertyDelegate;
         addProperties(this.propertyDelegate);
     }
 
     @Override
     public ItemStack transferSlot(PlayerEntity player, int invSlot) {
-        ItemStack newStack = ItemStack.EMPTY;
+        final int entityInputStart = 0;
+        int entityOutputSlot = this.inputSlots;
+        final int inventoryStart = entityOutputSlot + 1;
+        final int hotbarStart = inventoryStart + 9 * 3;
+        final int hotbarEnd = hotbarStart + 9;
+
+
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
         if (slot.hasStack()) {
-            ItemStack originalStack = slot.getStack();
-            newStack = originalStack.copy();
-            if (invSlot < this.inventory.size()/* - 1*/) {
-                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+            ItemStack itemStack2 = slot.getStack();
+            Item item = itemStack2.getItem();
+            itemStack = itemStack2.copy();
+            if (invSlot == entityOutputSlot) {
+                item.onCraft(itemStack2, player.world, player);
+                if (!this.insertItem(itemStack2, inventoryStart, hotbarEnd, true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
+                slot.onQuickTransfer(itemStack2, itemStack);
+            } else if (invSlot >= entityInputStart && invSlot < entityOutputSlot ? !this.insertItem(itemStack2, inventoryStart, hotbarEnd, false) :
+                    !this.insertItem(itemStack2, entityInputStart, entityOutputSlot, false) && (invSlot >= inventoryStart && invSlot < hotbarStart ? !this.insertItem(itemStack2, hotbarStart, hotbarEnd, false) :
+                            invSlot >= hotbarStart && invSlot < hotbarEnd && !this.insertItem(itemStack2, inventoryStart, hotbarStart, false))) {
                 return ItemStack.EMPTY;
             }
-
-            if (originalStack.isEmpty()) {
+            if (itemStack2.isEmpty()) {
                 slot.setStack(ItemStack.EMPTY);
-            } else {
-                slot.markDirty();
             }
+            slot.markDirty();
+            if (itemStack2.getCount() == itemStack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+            slot.onTakeItem(player, itemStack2);
+            this.sendContentUpdates();
         }
-        return newStack;
+        return itemStack;
     }
 
     @Override

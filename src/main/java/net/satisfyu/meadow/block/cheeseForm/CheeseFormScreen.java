@@ -9,10 +9,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.screenHandler.RecipeHandledScreen;
-import net.satisfyu.meadow.screenHandler.RecipeScreenHandler;
-import net.satisfyu.meadow.screenHandler.SideTip;
-import net.satisfyu.meadow.screenHandler.SideTipButton;
+import net.satisfyu.meadow.screenHandler.*;
 
 public class CheeseFormScreen extends RecipeHandledScreen<CheeseFormScreenHandler> {
     private static final Identifier BACKGROUND;
@@ -27,9 +24,16 @@ public class CheeseFormScreen extends RecipeHandledScreen<CheeseFormScreenHandle
 
     public void renderProgressArrow(MatrixStack matrices, int x, int y) {
         final int progressX = this.handler.getScaledXProgress();
-        this.drawTexture(matrices, x + 65, y + 41, 177, 4, progressX, 10);
+        this.drawTexture(matrices, x + 79, y + 36, 178, 4, progressX, 10);
         final int progressY = this.handler.getScaledYProgress();
-        this.drawTexture(matrices, x + 67, y + 13, 180, 22, 16, progressY);
+        this.drawTexture(matrices, x + 81, y + 8, 180, 22, 16, progressY);
+    }
+
+    @Override
+    public void addToolTips() {
+        super.addToolTips();
+        addToolTip(new SideToolTip(54, 20, 34, 30, Text.translatable("tooltip.meadow.cheese_form.cheese_mass")));
+        addToolTip(new SideToolTip(54, 111, 34, 30, Text.translatable("tooltip.meadow.cheese_form.cheese")));
     }
 
     static {

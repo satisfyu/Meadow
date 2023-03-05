@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 public class SideTip extends DrawableHelper implements Drawable, Element{
     private int x;
     private int y;
-    private final int width;
+    public static final int WIDTH = 147;
     private final int height;
     private final Identifier TEXTURE;
     private final int textureWidth;
@@ -27,7 +27,7 @@ public class SideTip extends DrawableHelper implements Drawable, Element{
         TEXTURE = texture;
         this.x = x;
         this.y = y;
-        this.width = width;
+        //this.width = width;
         this.height = height;
         this.vOffset = vOffset;
         this.frames = frames;
@@ -40,13 +40,13 @@ public class SideTip extends DrawableHelper implements Drawable, Element{
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         if (this.visible) {
-            this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
+            this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.WIDTH && mouseY < this.y + this.height;
 
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderTexture(0, TEXTURE);
             RenderSystem.enableDepthTest();
             int offsetFactor = currentTick / frameTicks;
-            drawTexture(matrices, this.x, this.y, 0, vOffset * (offsetFactor % frames), this.width, this.height, this.textureWidth, this.textureHeight);
+            drawTexture(matrices, this.x, this.y, 0, vOffset * (offsetFactor % frames), this.WIDTH, this.height, this.textureWidth, this.textureHeight);
         }
     }
 
