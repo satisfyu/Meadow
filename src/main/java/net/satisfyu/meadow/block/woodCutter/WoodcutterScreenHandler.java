@@ -177,7 +177,7 @@ public class WoodcutterScreenHandler extends ScreenHandler {
     public ItemStack transferSlot(PlayerEntity player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
-        if (slot != null && slot.hasStack()) {
+        if (slot.hasStack()) {
             ItemStack itemStack2 = slot.getStack();
             Item item = itemStack2.getItem();
             itemStack = itemStack2.copy();
@@ -187,7 +187,10 @@ public class WoodcutterScreenHandler extends ScreenHandler {
                     return ItemStack.EMPTY;
                 }
                 slot.onQuickTransfer(itemStack2, itemStack);
-            } else if (index == 0 ? !this.insertItem(itemStack2, 2, 38, false) : (this.world.getRecipeManager().getFirstMatch(ModRecipes.WOODCUTTING, new SimpleInventory(itemStack2), this.world).isPresent() ? !this.insertItem(itemStack2, 0, 1, false) : (index >= 2 && index < 29 ? !this.insertItem(itemStack2, 29, 38, false) : index >= 29 && index < 38 && !this.insertItem(itemStack2, 2, 29, false)))) {
+            } else if (index == 0 ? !this.insertItem(itemStack2, 2, 38, false) :
+                    (this.world.getRecipeManager().getFirstMatch(ModRecipes.WOODCUTTING, new SimpleInventory(itemStack2), this.world).isPresent() ? !this.insertItem(itemStack2, 0, 1, false) :
+                            (index >= 2 && index < 29 ? !this.insertItem(itemStack2, 29, 38, false) :
+                                    index >= 29 && index < 38 && !this.insertItem(itemStack2, 2, 29, false)))) {
                 return ItemStack.EMPTY;
             }
             if (itemStack2.isEmpty()) {

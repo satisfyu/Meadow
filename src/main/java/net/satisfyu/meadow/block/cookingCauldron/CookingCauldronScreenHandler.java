@@ -18,7 +18,7 @@ public class CookingCauldronScreenHandler extends RecipeScreenHandler {
     }
 
     public CookingCauldronScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, syncId, inventory, propertyDelegate);
+        super(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER, syncId, playerInventory, inventory, 3, propertyDelegate);
         buildBlockEntityContainer(playerInventory, inventory);
         buildPlayerContainer(playerInventory);
     }
@@ -32,15 +32,14 @@ public class CookingCauldronScreenHandler extends RecipeScreenHandler {
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
-        int m;
-        int l;
-        for (m = 0; m < 3; ++m) {
-            for (l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + m * 9 + 9, 8 + l * 18, 84 + m * 18));
+        int i;
+        for (i = 0; i < 3; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
-        for (m = 0; m < 9; ++m) {
-            this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 142));
+        for (i = 0; i < 9; ++i) {
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 

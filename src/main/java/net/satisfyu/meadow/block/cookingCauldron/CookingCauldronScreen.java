@@ -6,6 +6,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.screenHandler.RecipeHandledScreen;
+import net.satisfyu.meadow.screenHandler.SideTip;
+import net.satisfyu.meadow.screenHandler.SideToolTip;
 
 public class CookingCauldronScreen extends RecipeHandledScreen<CookingCauldronScreenHandler> {
     private static final Identifier BACKGROUND;
@@ -28,6 +30,14 @@ public class CookingCauldronScreen extends RecipeHandledScreen<CookingCauldronSc
         if(handler.getIsCooking()) {
             this.drawTexture(matrices, posX + 124, posY + 51, 176, 0, 16, 14);
         }
+    }
+
+    @Override
+    public void addToolTips() {
+        super.addToolTips();
+        addToolTip(new SideToolTip(24, 20, 34, 30, Text.translatable("tooltip.meadow.cooking_cauldron.milk_bucket")));
+        addToolTip(new SideToolTip(86, 20, 34, 30, Text.translatable("tooltip.meadow.cooking_cauldron.alpine_salt")));
+        addToolTip(new SideToolTip(54, 111, 34, 30, Text.translatable("tooltip.meadow.cooking_cauldron.output_slot")));
     }
 
     static {

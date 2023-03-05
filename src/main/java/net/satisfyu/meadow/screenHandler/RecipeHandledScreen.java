@@ -8,30 +8,46 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecipeHandledScreen<T extends RecipeScreenHandler> extends HandledScreen<T> {
 
     private final SideTipButton SIDE_TIP_BUTTON = new SideTipButton(this.x, this.y, (buttonWidget) -> showSideTip());
     private final SideTip SIDE_TIP;
     private final Identifier BACKGROUND;
 
+    private final List<SideToolTip> sideToolTips = new ArrayList<>();
+
 
     public RecipeHandledScreen(T handler, PlayerInventory inventory, Text title, Identifier background, Identifier sideTip, int frames) {
         super(handler, inventory, title);
         BACKGROUND = background;
         SIDE_TIP = new SideTip(this.x, this.y, 147, 180, 256, sideTip, 256, 256 * frames, frames);
+        addToolTips();
     }
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
 
-        SIDE_TIP.setPos(this.x - 147, this.y); //Position Tip
-        SIDE_TIP_BUTTON.setPos(this.x + 4, this.y + 25); //Position Tip Btn
+        SIDE_TIP.setPos(this.x - SideTip.WIDTH, this.y);
+        SIDE_TIP_BUTTON.setPos(this.x + 4, this.y + 25);
         addDrawable(SIDE_TIP);
         addDrawableChild(SIDE_TIP_BUTTON);
 
         super.render(matrices, mouseX, mouseY, delta);
+
+        renderTooltips(matrices, mouseX, mouseY);
         drawMouseoverTooltip(matrices, mouseX, mouseY);
+    }
+
+    private void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+        for (SideToolTip sideToolTip : sideToolTips) {
+            if (sideToolTip.isMouseOver(mouseX - this.x, mouseY - this.y)) {
+                renderTooltip(matrices, sideToolTip.getText(), mouseX, mouseY);
+            }
+        }
     }
 
     @Override
@@ -63,4 +79,15 @@ public class RecipeHandledScreen<T extends RecipeScreenHandler> extends HandledS
     private void showSideTip() {
         SIDE_TIP.visible = !SIDE_TIP.visible;
     }
+
+    public void addToolTips() {
+        addToolTip(new SideToolTip(SideTip.WIDTH + 4, 25, 20, 18, Text.translatable("tooltip.meadow.recipe_book")));
+    }
+
+    public void addToolTip(SideToolTip sideToolTip) {
+        //pos in Book
+        this.sideToolTips.add(sideToolTip);
+    }
+
+
 }
