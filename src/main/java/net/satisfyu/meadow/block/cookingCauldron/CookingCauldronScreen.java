@@ -36,6 +36,7 @@ public class CookingCauldronScreen extends RecipeHandledScreen<CookingCauldronSc
     public void addToolTips() {
         super.addToolTips();
         addToolTip(new SideToolTip(24, 20, 34, 30, Text.translatable("tooltip.meadow.cooking_cauldron.milk_bucket")));
+        addToolTip(new SideToolTip(48, 20, 34, 30, Text.translatable("tooltip.meadow.cooking_cauldron.rennet")));
         addToolTip(new SideToolTip(86, 20, 34, 30, Text.translatable("tooltip.meadow.cooking_cauldron.alpine_salt")));
         addToolTip(new SideToolTip(54, 111, 34, 30, Text.translatable("tooltip.meadow.cooking_cauldron.output_slot")));
     }
