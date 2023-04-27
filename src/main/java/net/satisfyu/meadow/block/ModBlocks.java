@@ -274,14 +274,11 @@ public class ModBlocks {
 
 
 
-    public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop",
-            new OatCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
-    public static final Block YARROW_CROP = registerBlockWithoutItem("yarrow_crop",
-            new YarrowCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
+    public static final Block OAT_CROP = registerBlockWithoutItem("oat_crop", new OatCropBlock());
+    public static final Block YARROW_CROP = registerBlockWithoutItem("yarrow_crop", new YarrowCropBlock());
     public static final Block MOUNTAIN_LAVENDER_CROP = registerBlockWithoutItem("mountain_lavender_crop",
-            new MountainLavenderCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
-    public static final Block JUNIPER_CROP = registerBlockWithoutItem("juniper_crop",
-            new JuniperCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
+            new MountainLavenderCropBlock());
+    public static final Block JUNIPER_CROP = registerBlockWithoutItem("juniper_crop", new JuniperCropBlock());
     public static final Block ALPINE_GRASS = registerBlock("alpine_grass",
             new GrassBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.ALPINE_SALT);
     public static final Block WILD_MOUNTAIN_LAVENDER = registerBlock("wild_mountain_lavender",

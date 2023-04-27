@@ -1,9 +1,7 @@
 package net.satisfyu.meadow.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CropBlock;
-import net.minecraft.block.ShapeContext;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.*;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -22,8 +20,8 @@ public class JuniperCropBlock extends CropBlock {
     };
 
 
-    public JuniperCropBlock(Settings settings) {
-        super(settings);
+    public JuniperCropBlock() {
+        super(FabricBlockSettings.copy(Blocks.WHEAT));
     }
 
     @Override
