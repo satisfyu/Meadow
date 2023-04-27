@@ -283,13 +283,13 @@ public class ModBlocks {
     public static final Block JUNIPER_CROP = registerBlockWithoutItem("juniper_crop",
             new JuniperCropBlock(FabricBlockSettings.copy(Blocks.WHEAT)));
     public static final Block ALPINE_GRASS = registerBlock("alpine_grass",
-            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.ALPINE_SALT);
-    public static final Block WILD_MOUNTAIN_LAVENDER = registerBlockWithoutItem("wild_mountain_lavender",
-            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)));
-    public static final Block WILD_JUNIPER = registerBlockWithoutItem("wild_juniper",
-            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)));
-    public static final Block WILD_YARROW = registerBlockWithoutItem("wild_yarrow",
-            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)));
+            new GrassBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.ALPINE_SALT);
+    public static final Block WILD_MOUNTAIN_LAVENDER = registerBlock("wild_mountain_lavender",
+            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)),ModItemGroup.ALPINE_SALT);
+    public static final Block WILD_JUNIPER = registerBlock("wild_juniper",
+            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)),ModItemGroup.ALPINE_SALT);
+    public static final Block WILD_YARROW = registerBlock("wild_yarrow",
+            new FernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)),ModItemGroup.ALPINE_SALT);
     public static final Block ALPINE_GRASS_TALL = registerBlock("alpine_grass_tall",
             new TallPlantBlock(FabricBlockSettings.copyOf(Blocks.TALL_GRASS)), ModItemGroup.ALPINE_SALT);
     public static final Block DELPHINIUM = registerBlock("delphinium",

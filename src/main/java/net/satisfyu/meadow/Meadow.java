@@ -82,13 +82,6 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 	}
 
 	protected void registerCompostables(){
-
-		//Crops to be added to the ModItems List
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.YARROW_CROP,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.JUNIPER_CROP,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.MOUNTAIN_LAVENDER_CROP,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.OAT_CROP,.3f);
-
 		//Seeds
 		CompostingChanceRegistry.INSTANCE.add(ModItems.YARROW_SEEDS,.1f);
 		CompostingChanceRegistry.INSTANCE.add(ModItems.JUNIPER_SEEDS,.1f);
@@ -103,8 +96,10 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 		CompostingChanceRegistry.INSTANCE.add(ModItems.PIECE_OF_LAVENDER_CHEESE,.5f);
 		CompostingChanceRegistry.INSTANCE.add(ModItems.PIECE_OF_SHEEP_CHEESE,.5f);
 		CompostingChanceRegistry.INSTANCE.add(ModItems.PIECE_OF_WARPED_CHEESE,.5f);
+
 		CompostingChanceRegistry.INSTANCE.add(ModItems.CHEESECAKE_SLICE,.5f);
 		CompostingChanceRegistry.INSTANCE.add(ModItems.CHEESE_TART_SLICE,.5f);
+
 		CompostingChanceRegistry.INSTANCE.add(ModItems.CREAM_CHEESE,.5f);
 		CompostingChanceRegistry.INSTANCE.add(ModItems.BOWL_MOZRELLA,.5f);
 		CompostingChanceRegistry.INSTANCE.add(ModItems.CHEESE_SANDWICH,.5f);
@@ -113,29 +108,36 @@ public class Meadow implements ModInitializer, TerraBlenderApi {
 		CompostingChanceRegistry.INSTANCE.add(ModItems.OAT_BREAD,.5f);
 		CompostingChanceRegistry.INSTANCE.add(ModItems.RICOLA,.5f);
 
-		//Foods to be added to ModItems List
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.CHEESE_WHEEL,1f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.WARPED_CHEESE_WHEEL,1f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.GOAT_CHEESE_WHEEL,1f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.SHEEP_CHEESE_WHEEL,1f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.HERB_CHEESE_WHEEL,1f);
+		//Foods
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.CHEESE_BLOCK,1f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.WARPED_CHEESE_BLOCK,1f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.GOAT_CHEESE_BLOCK,1f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.SHEEP_CHEESE_BLOCK,1f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.HERB_CHEESE_BLOCK,1f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.LAVENDER_CHEESE_BLOCK,1f);
 
 
-		//Plants to be added to the ModItems List
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.ENZIAN,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.DELPHINIUM,.3f);
-//      CompostingChanceRegistry.INSTANCE.add(ModItems.ALPINE_POPPY,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.SAXIFRAGE,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.ERIOPHORUM,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.SMALL_FIR,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.PINE_SAPLING,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.WILD_JUNIPER,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.WILD_MOUNTAIN_LAVENDER,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.WILD_YARROW,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.ERIOPHORUM_TALL,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.ALPINE_GRASS_TALL,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.ALPINE_GRASS,.3f);
-//		CompostingChanceRegistry.INSTANCE.add(ModItems.FIRE_LILY,.3f);
+		//Plants
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.FIR_CONE,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.ENZIAN,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.DELPHINIUM,.3f);
+        CompostingChanceRegistry.INSTANCE.add(ModBlocks.ALPINE_POPPY,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.SAXIFRAGE,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.ERIOPHORUM,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.FIRE_LILY,.3f);
+
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.SMALL_FIR,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.PINE_SAPLING,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.PINE_LEAVES,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.PINE_LEAVES_2,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.ALPINE_BIRCH_LEAVES_HANGING,.3f);
+
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.WILD_JUNIPER,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.WILD_MOUNTAIN_LAVENDER,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.WILD_YARROW,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.ERIOPHORUM_TALL,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.ALPINE_GRASS_TALL,.3f);
+		CompostingChanceRegistry.INSTANCE.add(ModBlocks.ALPINE_GRASS,.3f);
 	}
 
 

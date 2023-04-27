@@ -184,9 +184,9 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ModBlocks.MOUNTAIN_LAVENDER_CROP);
         this.addDrop(ModBlocks.JUNIPER_CROP);
         this.addDrop(ModBlocks.ALPINE_GRASS, BlockLootTableGenerator::grassDrops);
-        this.addDrop(ModBlocks.WILD_MOUNTAIN_LAVENDER);
-        this.addDrop(ModBlocks.WILD_JUNIPER);
-        this.addDrop(ModBlocks.WILD_YARROW);
+        this.addDrop(ModBlocks.WILD_MOUNTAIN_LAVENDER, BlockLootTableGenerator::grassDrops);
+        this.addDrop(ModBlocks.WILD_JUNIPER, BlockLootTableGenerator::grassDrops);
+        this.addDrop(ModBlocks.WILD_YARROW, BlockLootTableGenerator::grassDrops);
         this.addDrop(ModBlocks.DELPHINIUM);
         this.addDrop(ModBlocks.ALPINE_POPPY);
         this.addDrop(ModBlocks.SAXIFRAGE);
@@ -194,7 +194,7 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ModBlocks.FIRE_LILY);
         this.addDrop(ModBlocks.ERIOPHORUM);
     }
-    
+
     private void addModPottedPlantDrop(Block block) {
         if (block instanceof FlowerPotBlock) {
             this.addDrop(block, flowerPot -> pottedPlantDrops(((FlowerPotBlock)flowerPot).getContent()));
