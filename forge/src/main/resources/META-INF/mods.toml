@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+#issueTrackerURL = ""
+license = "ARR"
+
+[[mods]]
+modId = "meadow"
+version = "${version}"
+displayName = "Meadow"
+authors = ["satisfy", "Cristelknight999", "BMJO"]
+description = '''
+This is an example description! Tell everyone what your mod is about!
+'''
+#logoFile = ""
+
+[[dependencies.meadow]]
+modId = "forge"
+mandatory = true
+versionRange = "[43,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.meadow]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.meadow]]
+modId = "architectury"
+mandatory = true
+versionRange = "[6.5.77,)"
+ordering = "AFTER"
+side = "BOTH"

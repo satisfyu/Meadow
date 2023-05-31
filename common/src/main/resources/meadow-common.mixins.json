@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "package": "net.satisfyu.meadow.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "FovMixin",
+    "NoUnknowRecipeCategoryMixin",
+    "entity.RabbitMixin"
+  ],
+  "mixins": [
+    "BlockMixin",
+    "FluidDecrementMixin",
+    "ItemsMixin",
+    "SpawnMobAccessor",
+    "entity.CowMixin",
+    "entity.GoatMixin",
+    "entity.RabbitSpawnMixin",
+    "entity.SheepMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
