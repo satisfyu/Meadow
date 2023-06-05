@@ -1,7 +1,0 @@
-{
-  "type": "meadow:cheese",
-  "inputItem": {
-    "tag": "meadow:cow_cheese_mass"
-  },
-  "outputItem": "meadow:cheese_block"
-}

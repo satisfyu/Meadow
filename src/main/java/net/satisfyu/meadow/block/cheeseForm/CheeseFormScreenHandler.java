@@ -8,7 +8,6 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
-import net.satisfyu.meadow.recipes.ModRecipes;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import net.satisfyu.meadow.screenHandler.RecipeScreenHandler;
 

@@ -2,147 +2,222 @@ package net.satisfyu.meadow.block.cheeseForm;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.block.ImplementedInventory;
-import net.satisfyu.meadow.block.ModBlocks;
-import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.entity.ModEntities;
-import net.satisfyu.meadow.item.ModItems;
+import net.satisfyu.meadow.recipes.ModRecipes;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
-import net.satisfyu.meadow.util.Tags;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
+public class CheeseFormBlockEntity extends BlockEntity implements Inventory, BlockEntityTicker<CheeseFormBlockEntity>, NamedScreenHandlerFactory {
 
-import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock.DONE;
-import static net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlock.VAR;
-
-public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
-
-    public static final Text TITLE = Text.translatable("container.cheese_form");
-
-    private int syncedInt;
-
-    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory;
+    public static final int CAPACITY = 3;
+    public static final int COOKING_TIME_IN_TICKS = 1800; // 90s or 3 minutes
+    private static final int OUTPUT_SLOT = 0;
+    private int fermentationTime = 0;
+    private int totalFermentationTime;
+    protected float experience;
 
     private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
+
         @Override
         public int get(int index) {
-            if (index == 0) {
-                return syncedInt;
-            }
-            return 0;
+            return switch (index) {
+                case 0 -> CheeseFormBlockEntity.this.fermentationTime;
+                case 1 -> CheeseFormBlockEntity.this.totalFermentationTime;
+                default -> 0;
+            };
         }
+
 
         @Override
         public void set(int index, int value) {
-            if (index == 0) {
-                syncedInt = value;
+            switch (index) {
+                case 0 -> CheeseFormBlockEntity.this.fermentationTime = value;
+                case 1 -> CheeseFormBlockEntity.this.totalFermentationTime = value;
             }
         }
+
         @Override
         public int size() {
-            return 1;
+            return 2;
         }
-
     };
 
     public CheeseFormBlockEntity(BlockPos pos, BlockState state) {
         super(ModEntities.CHEESE_FORM_BLOCK_ENTITY, pos, state);
+        this.inventory = DefaultedList.ofSize(CAPACITY, ItemStack.EMPTY);
     }
 
-
-    @Override
-    public void writeNbt(NbtCompound nbt) {
-        nbt.putInt("syncedInt", syncedInt);
-        Inventories.writeNbt(nbt, items);
-        super.writeNbt(nbt);
+    public void dropExperience(ServerWorld world, Vec3d pos) {
+        ExperienceOrbEntity.spawn(world, pos, (int) experience);
     }
+
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        Inventories.readNbt(nbt, items);
-        syncedInt = nbt.getInt("syncedInt");
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
+        Inventories.readNbt(nbt, this.inventory);
+        this.fermentationTime = nbt.getShort("FermentationTime");
+        this.experience = nbt.getFloat("Experience");
+
     }
 
-    public void tick(World world, BlockPos pos, BlockState state, CheeseFormBlockEntity be) {
-        if(!world.isClient){
-            Optional<CheeseFormRecipe> recipe = world.getRecipeManager().getFirstMatch(CheeseFormRecipe.Type.INSTANCE, this, world);
-            int var = 0;
-            boolean done = false;
-            if(recipe.isPresent() && items.get(1).isEmpty()){
-                var = getVar(items.get(0).getItem());
-                if(!state.get(CheeseFormBlock.DONE) && state.get(VAR) > 0){
-                    syncedInt++;
-                }
-                if(syncedInt >= CookingCauldronBlockEntity.MAX_COOKING_TIME){
-                    done = true;
-                    Item bucket = items.get(0).isIn(Tags.WOODEN_BUCKETS) ? ModItems.WOODEN_BUCKET : Items.BUCKET;
-                    items.set(0, new ItemStack(bucket));
-                    items.set(1, recipe.get().getOutput());
-                    syncedInt = 0;
-                }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt, this.inventory);
+        nbt.putFloat("Experience", this.experience);
+        nbt.putShort("FermentationTime", (short) this.fermentationTime);
+    }
+
+    @Override
+    public void tick(World world, BlockPos pos, BlockState state, CheeseFormBlockEntity blockEntity) {
+        if (world.isClient) return;
+        boolean dirty = false;
+        final var recipeType = world.getRecipeManager()
+                .getFirstMatch(ModRecipes.CHEESE_CRAFTING, blockEntity, world)
+                .orElse(null);
+        if (canCraft(recipeType)) {
+            this.fermentationTime++;
+
+            if (this.fermentationTime == this.totalFermentationTime) {
+                this.fermentationTime = 0;
+                craft(recipeType);
+                dirty = true;
             }
-            else{
-                syncedInt = 0;
-                if(!items.get(1).isEmpty()){
-                    done = true;
-                    var = getVar(items.get(1).getItem());
-                }
+        } else {
+            this.fermentationTime = 0;
+        }
+        if (dirty) {
+            markDirty();
+        }
+
+    }
+
+    private boolean canCraft(CheeseFormRecipe recipe) {
+        if (recipe == null || recipe.getOutput().isEmpty()) {
+            return false;
+        } else if (areInputsEmpty()) {
+            return false;
+        }
+        ItemStack itemStack = this.getStack(OUTPUT_SLOT);
+        return itemStack.isEmpty() || itemStack == recipe.getOutput();
+    }
+
+
+    private boolean areInputsEmpty() {
+        int emptyStacks = 0;
+        for (int i = 1; i <= 2; i++) {
+            if (this.getStack(i).isEmpty()) emptyStacks++;
+        }
+        return emptyStacks == 2;
+    }
+
+    private void craft(CheeseFormRecipe recipe) {
+        if (!canCraft(recipe)) {
+            return;
+        }
+        final ItemStack recipeOutput = recipe.getOutput();
+        final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+        if (outputSlotStack.isEmpty()) {
+            ItemStack output = recipeOutput.copy();
+            setStack(OUTPUT_SLOT, output);
+        }
+        for (Ingredient entry : recipe.getIngredients()) {
+            if (entry.test(this.getStack(1))) {
+                removeStack(1, 1);
             }
-            world.setBlockState(pos, ModBlocks.CHEESE_FORM.getDefaultState().with(VAR, var).with(DONE, done));
+            if (entry.test(this.getStack(2))) {
+                removeStack(2, 1);
+            }
         }
     }
 
-    public static int getVar(Item item){
-        if (ModItems.CHEESE_MASS.equals(item) || ModItems.WOODEN_CHEESE_MASS.equals(item) || ModBlocks.CHEESE_BLOCK.asItem().equals(item)) {
-            return 2;
-        } else if (ModItems.BUFFALO_CHEESE_MASS.equals(item) || ModItems.WOODEN_BUFFALO_CHEESE_MASS.equals(item) || ModItems.BOWL_MOZRELLA.asItem().equals(item)) {
-            return 1;
-        } else if (ModItems.GOAT_CHEESE_MASS.equals(item) || ModItems.WOODEN_GOAT_CHEESE_MASS.equals(item) || ModBlocks.GOAT_CHEESE_BLOCK.asItem().equals(item)) {
-            return 3;
-        } else if (ModItems.OAT_CHEESE_MASS.equals(item) || ModItems.WOODEN_OAT_CHEESE_MASS.equals(item) || ModBlocks.OAT_CHEESE_BLOCK.asItem().equals(item)) {
-            return 5;
-        } else if (ModItems.SHEEP_CHEESE_MASS.equals(item) || ModItems.WOODEN_SHEEP_CHEESE_MASS.equals(item) || ModBlocks.SHEEP_CHEESE_BLOCK.asItem().equals(item)) {
-            return 6;
-        } else if (ModItems.LAVENDER_CHEESE_MASS.equals(item) || ModItems.WOODEN_LAVENDER_CHEESE_MASS.equals(item) || ModBlocks.LAVENDER_CHEESE_BLOCK.asItem().equals(item)) {
-            return 4;
-        } else if (ModItems.HERBS_CHEESE_MASS.equals(item) || ModItems.WOODEN_HERBS_CHEESE_MASS.equals(item) || ModBlocks.HERB_CHEESE_BLOCK.asItem().equals(item)) {
-            return 7;
-        }
 
-        else{
-            return 2;
+    @Override
+    public int size() {
+        return CAPACITY;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return inventory.stream().allMatch(ItemStack::isEmpty);
+    }
+
+    @Override
+    public ItemStack getStack(int slot) {
+        return this.inventory.get(slot);
+    }
+
+    @Override
+    public ItemStack removeStack(int slot, int amount) {
+        return Inventories.splitStack(this.inventory, slot, amount);
+    }
+
+    @Override
+    public ItemStack removeStack(int slot) {
+        return Inventories.removeStack(this.inventory, slot);
+    }
+
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        final ItemStack stackInSlot = this.inventory.get(slot);
+        boolean dirty = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(stackInSlot) && ItemStack.areNbtEqual(stack, stackInSlot);
+        this.inventory.set(slot, stack);
+        if (stack.getCount() > this.getMaxCountPerStack()) {
+            stack.setCount(this.getMaxCountPerStack());
+        }
+        if (slot == 1 || slot == 2) {
+            if (!dirty) {
+                this.totalFermentationTime = 50;
+                this.fermentationTime = 0;
+                markDirty();
+            }
+        }
+    }
+    @Override
+    public boolean canPlayerUse(PlayerEntity player) {
+        if (this.world.getBlockEntity(this.pos) != this) {
+            return false;
+        } else {
+            return player.squaredDistanceTo((double)this.pos.getX() + 0.5, (double)this.pos.getY() + 0.5, (double)this.pos.getZ() + 0.5) <= 64.0;
         }
     }
 
     @Override
+    public void clear() {
+        this.inventory.clear();
+    }
+
+
+    @Override
     public Text getDisplayName() {
-        return TITLE;
+        return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
     }
 
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CheeseFormScreenHandler(syncId, inv, this, propertyDelegate);
-    }
-
-    @Override
-    public DefaultedList<ItemStack> getItems() {
-        return items;
+        return new CheeseFormScreenHandler(syncId, inv, this, this.propertyDelegate);
     }
 }

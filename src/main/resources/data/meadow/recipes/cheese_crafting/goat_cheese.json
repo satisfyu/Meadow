@@ -1,5 +1,5 @@
 {
-  "type": "meadow:cheese",
+  "type": "meadow:cheese_crafting",
   "inputItem": {
     "tag": "meadow:goat_cheese_mass"
   },

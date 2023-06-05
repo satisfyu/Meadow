@@ -56,7 +56,6 @@ import net.satisfyu.meadow.entity.custom.sheep.inky.InkySheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.long_nosed.LongNosedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepRenderer;
-import net.satisfyu.meadow.item.ModItemGroup;
 import net.satisfyu.meadow.item.ModItems;
 import net.satisfyu.meadow.item.custom.BowModelProvider;
 import net.satisfyu.meadow.item.custom.FurArmorItem;

@@ -20,7 +20,7 @@ public abstract class NoUnknowRecipeCategoryMixin {
 
 
     private static void get(Recipe<?> recipe, CallbackInfoReturnable<RecipeBookGroup> cir) {
-        if(recipe.getType() == WoodcuttingRecipe.Type.INSTANCE || recipe.getType() == CookingCauldronRecipe.Type.INSTANCE || recipe.getType() == CheeseFormRecipe.Type.INSTANCE){
+        if(recipe.getType() == WoodcuttingRecipe.Type.INSTANCE || recipe.getType() == CookingCauldronRecipe.Type.INSTANCE){
             cir.setReturnValue(RecipeBookGroup.UNKNOWN);
         }
     }

@@ -1,67 +1,48 @@
 package net.satisfyu.meadow.recipes.cheese;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.block.ModBlocks;
+import net.satisfyu.meadow.recipes.ModRecipes;
+import net.satisfyu.meadow.util.GeneralUtil;
 
 public class CheeseFormRecipe implements Recipe<Inventory> {
-    private final Ingredient input;
-
-    private final ItemStack outputStack;
 
     private final Identifier id;
+    private final Ingredient input;
+    private final ItemStack output;
 
-    public CheeseFormRecipe(Ingredient input, ItemStack outputStack, Identifier id) {
-        this.input = input;
-        this.outputStack = outputStack;
+    public CheeseFormRecipe(Identifier id, Ingredient input, ItemStack output) {
         this.id = id;
+        this.input = input;
+        this.output = output;
     }
-
-
 
     @Override
     public boolean matches(Inventory inventory, World world) {
-        return input.test(inventory.getStack(0));
-    }
-
-
-    @Override
-    public DefaultedList<Ingredient> getIngredients() {
-        DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-        defaultedList.add(this.input);
-        return defaultedList;
+        return GeneralUtil.matchesRecipe(inventory, DefaultedList.copyOf(Ingredient.EMPTY, input), 0, 1);
     }
 
     @Override
     public ItemStack craft(Inventory inventory) {
-        return this.outputStack.copy();
+        return ItemStack.EMPTY;
     }
 
     @Override
     public boolean fits(int width, int height) {
-        return true;
+        return false;
     }
 
     @Override
     public ItemStack getOutput() {
-        return outputStack;
-    }
-
-    public Ingredient getInput() {
-        return input;
-    }
-
-
-    @Override
-    public ItemStack createIcon() {
-        return new ItemStack(ModBlocks.CHEESE_FORM);
+        return this.output.copy();
     }
 
     @Override
@@ -69,21 +50,52 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
         return id;
     }
 
-
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return CheeseFormRecipeSerializer.INSTANCE;
+        return ModRecipes.CHEESE_FORM_RECIPE_SERIALIZER;
+    }
+
+    @Override
+    public RecipeType<?> getType() {
+        return ModRecipes.CHEESE_CRAFTING;
+    }
+
+    @Override
+    public DefaultedList<Ingredient> getIngredients() {
+        return DefaultedList.copyOf(Ingredient.EMPTY, input);
+    }
+
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
+
+    public static class Serializer implements RecipeSerializer<CheeseFormRecipe> {
+
+        @Override
+        public CheeseFormRecipe read(Identifier id, JsonObject json) {
+            final Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
+            return new CheeseFormRecipe(id, ingredient, ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result")));
+        }
+
+        @Override
+        public CheeseFormRecipe read(Identifier id, PacketByteBuf buf) {
+            final Ingredient ingredient = Ingredient.fromPacket(buf);
+            return new CheeseFormRecipe(id, ingredient, buf.readItemStack());
+        }
+
+        @Override
+        public void write(PacketByteBuf buf, CheeseFormRecipe recipe) {
+            recipe.input.write(buf);
+            buf.writeItemStack(recipe.getOutput());
+        }
     }
 
     public static class Type implements RecipeType<CheeseFormRecipe> {
         private Type() {}
 
-        public static final Type INSTANCE = new Type();
+        public static final CheeseFormRecipe.Type INSTANCE = new CheeseFormRecipe.Type();
 
         public static final String ID = "cheese";
-    }
-    @Override
-    public RecipeType<?> getType() {
-        return Type.INSTANCE;
     }
 }

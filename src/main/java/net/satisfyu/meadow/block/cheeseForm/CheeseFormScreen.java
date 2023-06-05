@@ -1,15 +1,13 @@
 package net.satisfyu.meadow.block.cheeseForm;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.screenHandler.*;
+import net.satisfyu.meadow.screenHandler.RecipeHandledScreen;
+import net.satisfyu.meadow.screenHandler.SideToolTip;
 
 public class CheeseFormScreen extends RecipeHandledScreen<CheeseFormScreenHandler> {
     private static final Identifier BACKGROUND;
