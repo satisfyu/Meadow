@@ -1,7 +1,10 @@
 {
   "type": "meadow:cheese_crafting",
-  "inputItem": {
+  "ingredient": {
     "tag": "meadow:sheep_cheese_mass"
   },
-  "outputItem": "meadow:sheep_cheese_block"
+  "result": {
+    "item": "meadow:sheep_cheese_block",
+    "count": 1
+  }
 }

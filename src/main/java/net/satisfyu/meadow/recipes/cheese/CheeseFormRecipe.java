@@ -27,7 +27,7 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
 
     @Override
     public boolean matches(Inventory inventory, World world) {
-        return GeneralUtil.matchesRecipe(inventory, DefaultedList.copyOf(Ingredient.EMPTY, input), 0, 1);
+        return GeneralUtil.matchesRecipe(inventory, input, 0, 6);
     }
 
     @Override
@@ -62,7 +62,9 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
-        return DefaultedList.copyOf(Ingredient.EMPTY, input);
+        DefaultedList<Ingredient> ingredients = DefaultedList.of();
+        ingredients.add(input);
+        return ingredients;
     }
 
     @Override
@@ -74,7 +76,7 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
 
         @Override
         public CheeseFormRecipe read(Identifier id, JsonObject json) {
-            final Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
+            final Ingredient ingredient = GeneralUtil.deserializeIngredient(JsonHelper.getObject(json, "ingredient"));
             return new CheeseFormRecipe(id, ingredient, ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result")));
         }
 
@@ -96,6 +98,6 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
 
         public static final CheeseFormRecipe.Type INSTANCE = new CheeseFormRecipe.Type();
 
-        public static final String ID = "cheese";
+        public static final String ID = "cooking";
     }
 }

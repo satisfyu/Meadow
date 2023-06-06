@@ -22,7 +22,7 @@ import java.util.List;
 
 public class OilLantern extends LanternBlock{
 
-    public static final IntProperty LUMINANCE = IntProperty.of("luminance", 12, 15);
+    public static final IntProperty LUMINANCE = IntProperty.of("luminance", 10, 12);
     protected static final VoxelShape HANGING_SHAPE = makeShapeHS();
     protected static final VoxelShape STANDING_SHAPE = makeShapeSS();
 
@@ -78,7 +78,7 @@ public class OilLantern extends LanternBlock{
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        world.setBlockState(pos, this.getDefaultState().with(WATERLOGGED, state.get(WATERLOGGED)).with(LUMINANCE, Random.create().nextBetween(12, 15)).with(HANGING, state.get(HANGING)));
+        world.setBlockState(pos, this.getDefaultState().with(WATERLOGGED, state.get(WATERLOGGED)).with(LUMINANCE, Random.create().nextBetween(10, 12)).with(HANGING, state.get(HANGING)));
     }
 
     @Override

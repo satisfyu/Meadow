@@ -1,5 +1,5 @@
 {
-  "type": "cheese_crafting",
+  "type": "meadow:cheese_crafting",
   "ingredient": {
     "tag": "meadow:cow_cheese_mass"
   },

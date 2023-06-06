@@ -1,7 +1,10 @@
 {
   "type": "meadow:cheese_crafting",
-  "inputItem": {
+  "ingredient": {
     "tag": "meadow:lavender_cheese_mass"
   },
-  "outputItem": "meadow:lavender_cheese_block"
+  "result": {
+    "item": "meadow:lavender_cheese_block",
+    "count": 1
+  }
 }
