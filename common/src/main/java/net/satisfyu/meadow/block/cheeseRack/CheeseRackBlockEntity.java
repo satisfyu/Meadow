@@ -6,10 +6,15 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.satisfyu.meadow.block.ModBlockEntities;
+import net.satisfyu.meadow.util.GeneralUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,19 +80,16 @@ public class CheeseRackBlockEntity extends BlockEntity {
 		return this.createNbt();
 	}
 
-	//TODO
-	/*
 	@Override
 	public void markDirty() {
 		if(world != null && !world.isClient()) {
 			Packet<ClientPlayPacketListener> updatePacket = toUpdatePacket();
 
-				for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-					player.networkHandler.sendPacket(updatePacket);
-				}
+			for (ServerPlayerEntity player : GeneralUtil.tracking((ServerWorld) world, getPos())) {
+				player.networkHandler.sendPacket(updatePacket);
+			}
 		}
 		super.markDirty();
 	}
-	 */
 	
 }

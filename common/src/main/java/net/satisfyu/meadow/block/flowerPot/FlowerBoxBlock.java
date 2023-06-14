@@ -10,6 +10,8 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
@@ -81,12 +83,14 @@ public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider 
             ItemStack flowerStack = blockEntity.removeFlower(left ? 0 : 1);
             if (!flowerStack.isEmpty()) {
                 player.giveItemStack(flowerStack);
+                world.playSound(null, pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
                 return ActionResult.SUCCESS;
             }
             flowerStack = blockEntity.removeFlower(left ? 1 : 0);
             if (!flowerStack.isEmpty()) {
                 player.giveItemStack(flowerStack);
+                world.playSound(null, pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
                 return ActionResult.SUCCESS;
             }
@@ -96,6 +100,7 @@ public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider 
                 if (!player.isCreative()) {
                     handStack.decrement(1);
                 }
+                world.playSound(null, pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
                 return ActionResult.SUCCESS;
             }
@@ -104,6 +109,7 @@ public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider 
                 if (!player.isCreative()) {
                     handStack.decrement(1);
                 }
+                world.playSound(null, pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
                 return ActionResult.SUCCESS;
             }

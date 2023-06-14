@@ -14,7 +14,9 @@ import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
 
 public class FlowerBoxBlockEntityRenderer implements BlockEntityRenderer<FlowerBoxBlockEntity> {
 
-    public FlowerBoxBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {}
+    public FlowerBoxBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+
+    }
 
     @Override
     public void render(FlowerBoxBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {

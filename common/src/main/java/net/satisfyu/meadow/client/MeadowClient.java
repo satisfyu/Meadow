@@ -2,6 +2,7 @@ package net.satisfyu.meadow.client;
 
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
+import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.client.MinecraftClient;
@@ -15,6 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.ModBlockEntities;
 import net.satisfyu.meadow.block.cheeseForm.CheeseFormScreen;
 import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronScreen;
 import net.satisfyu.meadow.block.cookingPot.CookingPotScreen;
@@ -51,6 +53,7 @@ import net.satisfyu.meadow.entity.custom.sheep.rocky.RockySheepRenderer;
 import net.satisfyu.meadow.item.custom.BowModelProvider;
 import net.satisfyu.meadow.item.custom.FurArmorItem;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import net.satisfyu.meadow.render.FlowerBoxBlockEntityRenderer;
 import net.satisfyu.meadow.screenHandler.ModScreenHandlers;
 import org.jetbrains.annotations.NotNull;
 
@@ -134,6 +137,7 @@ public class MeadowClient {
         //TODO
         //SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ObjectRegistry.SIGN_TEXTURE_ID));
 
+        registerBlockRenderer();
         registerClientScreens();
         registerParticles();
 
@@ -142,7 +146,11 @@ public class MeadowClient {
         //TerraformBoatClientHelper.registers(PINE_ID);
     }
 
-    private static void registerClientScreens(){
+    private static void registerBlockRenderer() {
+        BlockEntityRendererRegistry.register(ModBlockEntities.FLOWER_BOX_BLOCK_ENTITY.get(), FlowerBoxBlockEntityRenderer::new);
+    }
+
+    private static void registerClientScreens() {
         MenuRegistry.registerScreenFactory(ModScreenHandlers.CHEESE_FORM_SCREEN_HANDLER.get(), CheeseFormScreen::new);
         MenuRegistry.registerScreenFactory(ModScreenHandlers.WOODCUTTOR_SCREEN_HANDLER.get(), WoodcutterScreen::new);
         MenuRegistry.registerScreenFactory(ModScreenHandlers.COOKING_CAULDRON_SCREEN_HANDLER.get(), CookingCauldronScreen::new);
@@ -150,7 +158,7 @@ public class MeadowClient {
         MenuRegistry.registerScreenFactory(ModScreenHandlers.FONDUE_SCREEN_HANDLER.get(), FondueScreen::new);
     }
 
-    private static void registerParticles(){
+    private static void registerParticles() {
         //TODO
         //ParticleFactoryRegistry.getInstance().registerArmor(ModParticles.CHEESE_SPLASH, SplashParticle.Factory::new);
     }

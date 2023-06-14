@@ -4,12 +4,15 @@ import com.google.gson.JsonArray;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
@@ -19,17 +22,27 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.satisfyu.meadow.Meadow;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class GeneralUtil {
-	
+
 	public static RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
 		return RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(Meadow.MOD_ID, name));
 	}
-	
+
+	public static Collection<ServerPlayerEntity> tracking(ServerWorld world, BlockPos pos) {
+		Objects.requireNonNull(pos, "BlockPos cannot be null");
+
+		return tracking(world, new ChunkPos(pos));
+	}
+
+	public static Collection<ServerPlayerEntity> tracking(ServerWorld world, ChunkPos pos) {
+		Objects.requireNonNull(world, "The world cannot be null");
+		Objects.requireNonNull(pos, "The chunk pos cannot be null");
+
+		return world.getChunkManager().threadedAnvilChunkStorage.getPlayersWatchingChunk(pos, false);
+	}
+
 	public static boolean matchesRecipe(Inventory inventory, DefaultedList<Ingredient> recipe, int startIndex, int endIndex) {
 		final List<ItemStack> validStacks = new ArrayList<>();
 		for (int i = startIndex; i <= endIndex; i++) {
