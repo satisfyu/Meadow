@@ -5,17 +5,14 @@
   "minVersion": "0.8",
   "client": [
     "FovMixin",
-    "NoUnknowRecipeCategoryMixin",
-    "entity.RabbitMixin"
+    "NoUnknowRecipeCategoryMixin"
   ],
   "mixins": [
     "BlockMixin",
     "FluidDecrementMixin",
-    "ItemsMixin",
     "SpawnMobAccessor",
     "entity.CowMixin",
     "entity.GoatMixin",
-    "entity.RabbitSpawnMixin",
     "entity.SheepMixin"
   ],
   "injectors": {

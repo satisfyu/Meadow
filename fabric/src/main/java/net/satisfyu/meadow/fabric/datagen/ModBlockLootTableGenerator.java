@@ -15,8 +15,8 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
-import net.satisfyu.meadow.block.custom.FireLog;
-import net.satisfyu.meadow.block.custom.WoodenFlowerPotBlock;
+import net.satisfyu.meadow.block.FireLog;
+import net.satisfyu.meadow.block.WoodenFlowerPotBlock;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
@@ -38,12 +38,6 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ObjectRegistry.ALPINE_BIRCH_LOG.get(), Blocks.BIRCH_LOG);
         this.addDrop(ObjectRegistry.ALPINE_OAK_LOG.get(), Blocks.OAK_LOG);
         this.addDrop(ObjectRegistry.FIRE_LOG.get(), ModBlockLootTableGenerator::fireLogStageDrops);
-        this.addDrop(ObjectRegistry.BOWL_CORNFLAKES.get(), Items.BOWL);
-        this.addDrop(ObjectRegistry.BOWL_EMPTY.get(), Items.BOWL);
-        this.addDrop(ObjectRegistry.BOWL_HONEY.get(), Items.BOWL);
-        this.addDrop(ObjectRegistry.BOWL_MILK.get(), Items.BOWL);
-        this.addDrop(ObjectRegistry.BOWL_EMPTY_NO_FORK.get(), Items.BOWL);
-        this.addDrop(ObjectRegistry.FIR.get(), ObjectRegistry.FIR_CONE.get());
         this.addDropWithSilkTouch(ObjectRegistry.WINDOW.get());
         this.addDropWithSilkTouch(ObjectRegistry.WINDOW_2.get());
         this.addDropWithSilkTouch(ObjectRegistry.WINDOW_3.get());
@@ -112,7 +106,6 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ObjectRegistry.ALPINE_BIRCH_LEAVES_HANGING.get(), b -> leavesDrop(b, Blocks.BIRCH_SAPLING, SAPLING_DROP_CHANCE));
         this.addDrop(ObjectRegistry.ERIOPHORUM_TALL.get(), b -> dropsWithProperty(b, TallPlantBlock.HALF, DoubleBlockHalf.LOWER));
         this.addDrop(ObjectRegistry.SMALL_FIR.get(), b -> dropsWithProperty(b, TallPlantBlock.HALF, DoubleBlockHalf.LOWER));
-        this.addDrop(ObjectRegistry.ALPINE_GRASS_TALL.get(), b -> dropsWithProperty(b, TallPlantBlock.HALF, DoubleBlockHalf.LOWER));
         this.addDrop(ObjectRegistry.FRAME.get());
         this.addDrop(ObjectRegistry.STOVE.get());
         this.addDrop(ObjectRegistry.STOVE_WOOD.get());
@@ -158,10 +151,7 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ObjectRegistry.INKY_WOOL.get());
         this.addDrop(ObjectRegistry.INKY_CARPET.get());
         this.addDrop(ObjectRegistry.INKY_BED.get(), b -> dropsWithProperty(b, BedBlock.PART, BedPart.HEAD));
-        this.addDrop(ObjectRegistry.OAT_BALL.get());
-        this.addDrop(ObjectRegistry.OATBLOCK_RUG.get());
         this.addDrop(ObjectRegistry.STRAW_BED.get(), b -> dropsWithProperty(b, BedBlock.PART, BedPart.HEAD));
-        this.addDrop(ObjectRegistry.OAT_BAG.get());
         this.addDrop(ObjectRegistry.CAMERA.get());
         this.addDrop(ObjectRegistry.DOORMAT.get());
         this.addDrop(ObjectRegistry.WOODEN_FLOWER_POT.get());
@@ -171,21 +161,11 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ObjectRegistry.WOODEN_WATER_CAULDRON.get());
         this.addDrop(ObjectRegistry.WOODEN_POWDER_SNOW_CAULDRON.get());
         this.addDrop(ObjectRegistry.FRAME.get());
-        this.addDrop(ObjectRegistry.COOKING_POT.get());
         this.addDrop(ObjectRegistry.FONDUE.get());
         this.addDrop(ObjectRegistry.CAN.get());
         this.addDrop(ObjectRegistry.CLIMBING_ROPE_TOPMOUNT.get());
         this.addDrop(ObjectRegistry.OIL_LANTERN.get());
-        this.addDrop(ObjectRegistry.FIR_CONE.get());
         this.addDrop(ObjectRegistry.PINE_SAPLING.get());
-        this.addDrop(ObjectRegistry.OAT_CROP.get());
-        this.addDrop(ObjectRegistry.YARROW_CROP.get());
-        this.addDrop(ObjectRegistry.MOUNTAIN_LAVENDER_CROP.get());
-        this.addDrop(ObjectRegistry.JUNIPER_CROP.get());
-        this.addDrop(ObjectRegistry.ALPINE_GRASS.get(), BlockLootTableGenerator::grassDrops);
-        this.addDrop(ObjectRegistry.WILD_MOUNTAIN_LAVENDER.get());
-        this.addDrop(ObjectRegistry.WILD_JUNIPER.get());
-        this.addDrop(ObjectRegistry.WILD_YARROW.get());
         this.addDrop(ObjectRegistry.DELPHINIUM.get());
         this.addDrop(ObjectRegistry.ALPINE_POPPY.get());
         this.addDrop(ObjectRegistry.SAXIFRAGE.get());

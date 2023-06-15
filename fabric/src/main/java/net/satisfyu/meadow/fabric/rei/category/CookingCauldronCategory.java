@@ -11,7 +11,7 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.block.cookingCauldron.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.fabric.rei.display.CookingCauldronDisplay;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
