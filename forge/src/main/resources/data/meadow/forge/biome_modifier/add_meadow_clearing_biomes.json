@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#meadow:meadow_clearing_biomes",
+  "features": "meadow:",
+  "step": "vegetal_decoration"
+}

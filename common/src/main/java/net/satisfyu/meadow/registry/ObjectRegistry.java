@@ -233,7 +233,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WOODEN_FLOWER_POT = registerBlock("wooden_flower_pot", () -> new WoodenFlowerPotBlock(Blocks.AIR, AbstractBlock.Settings.of(Material.DECORATION).breakInstantly().nonOpaque()));
     public static final RegistrySupplier<Block> WOODEN_FLOWER_BOX = registerBlock("flower_box", () -> new FlowerBoxBlock(AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
     public static final RegistrySupplier<Block> CHEESE_FORM = registerBlock("cheese_form",
-            () -> new CheeseFormBlock(bowlSettings()));
+            () -> new CheeseFormBlock(AbstractBlock.Settings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING)));
     public static final RegistrySupplier<Block> WOODEN_CAULDRON = registerBlock("wooden_cauldron",
             () -> new WoodenCauldronBlock(AbstractBlock.Settings.of(Material.WOOD, MapColor.SPRUCE_BROWN).requiresTool().strength(2.0f).nonOpaque().sounds(BlockSoundGroup.WOOD)));
     public static final RegistrySupplier<Block> WOODCUTTER = registerBlock("woodcutter",
@@ -520,10 +520,6 @@ public class ObjectRegistry {
         registerFuels();
     }
 
-    private static AbstractBlock.Settings bowlSettings(){
-        return AbstractBlock.Settings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING);
-    }
-
     public static <T extends Block> RegistrySupplier<T> registerBlock(String name, Supplier<T> block) {
         return registerBlock(name, block, Meadow.MEADOW_TAB);
     }
@@ -532,7 +528,7 @@ public class ObjectRegistry {
         return registerBlock(new MeadowIdentifier(name), block, tab);
     }
 
-    public static <T extends Block> RegistrySupplier<T> registerBlock(Identifier name, Supplier<T> block, @Nullable ItemGroup tab) {
+    public static <T extends Block> RegistrySupplier<T> registerBlock(MeadowIdentifier name, Supplier<T> block, @Nullable ItemGroup tab) {
         RegistrySupplier<T> toReturn = registerBlockWithoutItem(name, block);
         Item.Settings properties = new Item.Settings();
         if(tab != null) properties.group(tab);
@@ -544,7 +540,7 @@ public class ObjectRegistry {
         return registerBlockWithoutItem(new MeadowIdentifier(path), block);
     }
 
-    public static <T extends Block> RegistrySupplier<T> registerBlockWithoutItem(Identifier path, Supplier<T> block) {
+    public static <T extends Block> RegistrySupplier<T> registerBlockWithoutItem(MeadowIdentifier path, Supplier<T> block) {
         if (Platform.isForge()) {
             return BLOCKS.register(path.getPath(), block);
         }
@@ -553,9 +549,10 @@ public class ObjectRegistry {
 
     private static void registerFuels() {
         Meadow.LOGGER.info("Registering Fuels for " + Meadow.MOD_ID);
-        FuelRegistry.register(300, PINE_LOG.get(), PINE_WOOD.get(), STRIPPED_PINE_LOG.get(), STRIPPED_PINE_WOOD.get(), PINE_BEAM.get(), PINE_PLANKS.get(), PINE_STAIRS.get(), PINE_SLAB.get(), PINE_FENCE.get(), PINE_RAILING.get(),
+        FuelRegistry.register(300, PINE_WOOD.get(), STRIPPED_PINE_LOG.get(), STRIPPED_PINE_WOOD.get(), PINE_BEAM.get(), PINE_PLANKS.get(), PINE_STAIRS.get(), PINE_SLAB.get(), PINE_FENCE.get(), PINE_RAILING.get(),
                 FLECKED_WOOL.get(), HIGHLAND_WOOL.get(), PATCHED_WOOL.get(), ROCKY_SHEEP_WOOL.get(), UMBRA_WOOL.get(), INKY_WOOL.get(), WARPED_WOOL.get(),
                 ALPINE_OAK_LOG.get(), ALPINE_BIRCH_LOG.get(), PINE_LEAVES.get(), ALPINE_BIRCH_LEAVES_HANGING.get());
+        FuelRegistry.register(4000, PINE_LOG.get());
     }
 
     public static void registerArmor() {
@@ -569,7 +566,7 @@ public class ObjectRegistry {
         return registerItem(new MeadowIdentifier(path), itemSupplier);
     }
 
-    public static <T extends Item> RegistrySupplier<T> registerItem(Identifier path, Supplier<T> itemSupplier) {
+    public static <T extends Item> RegistrySupplier<T> registerItem(MeadowIdentifier path, Supplier<T> itemSupplier) {
         if (Platform.isForge()) {
             return ITEMS.register(path.getPath(), itemSupplier);
         }

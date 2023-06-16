@@ -10,12 +10,11 @@
     "BMJO"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://legacy.curseforge.com/minecraft/mc-mods/welcome-to-meadow",
+    "sources": "https://github.com/satisfyu/Meadow/"
   },
 
   "license": "ARR",
-  "icon": "assets/meadow/icon.png",
 
   "environment": "*",
   "entrypoints": {
