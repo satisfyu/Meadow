@@ -1,6 +1,16 @@
 {
   "type": "forge:add_features",
-  "biomes": "#meadow:meadow_biomes",
-  "features": "meadow:",
+  "biomes": "#meadow:meadow_clearing_biomes",
+  "features": [
+    "meadow:birch_pine_hanging_checked",
+    "meadow:bush_checked",
+    "meadow:oak_pine_checked",
+    "meadow:old_birch_trees_checked",
+    "meadow:old_birch_trees_bees_checked",
+    "meadow:orange_spruce_pine_checked",
+    "meadow:pine_checked",
+    "meadow:pine_hanging_checked",
+    "meadow:spruce_pine_checked"
+  ],
   "step": "vegetal_decoration"
 }

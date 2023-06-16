@@ -1,6 +1,22 @@
 {
   "type": "forge:add_features",
-  "biomes": "#meadow:meadow_forest_biomes",
-  "features": "meadow:",
+  "biomes": "#meadow:meadow_clearing_biomes",
+  "features": [
+    "meadow:bush_checked",
+    "meadow:cobbled_limestone_rock",
+    "meadow:eriophorum_tall",
+    "meadow:fir",
+    "meadow:forest_rock_limestone",
+    "meadow:meadow_fern",
+    "meadow:meadow_forest_trees",
+    "meadow:orange_spruce_pine_checked",
+    "meadow:pine_checked",
+    "meadow:small_fir",
+    "meadow:ore_limestone_lower",
+    "meadow:ore_limestone_upper",
+    "meadow:ore_salt_lower",
+    "meadow:ore_salt_small",
+    "meadow:ore_salt_upper"
+  ],
   "step": "vegetal_decoration"
 }
