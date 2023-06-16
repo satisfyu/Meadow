@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.screenHandler;
+package net.satisfyu.meadow.client.screen.screenhandler.screenHandler;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.Drawable;

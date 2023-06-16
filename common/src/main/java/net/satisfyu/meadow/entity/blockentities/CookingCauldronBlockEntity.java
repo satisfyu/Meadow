@@ -147,14 +147,9 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     }
 
     public static int getVar(Item outputItem){
-        if(outputItem.equals(ObjectRegistry.CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_CHEESE_MASS)) return 2;
-        else if(outputItem.equals(ObjectRegistry.BUFFALO_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_BUFFALO_CHEESE_MASS)) return 1;
-        else if(outputItem.equals(ObjectRegistry.GOAT_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_GOAT_CHEESE_MASS)) return 3;
-        else if(outputItem.equals(ObjectRegistry.OAT_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_OAT_CHEESE_MASS)) return 5;
-        else if(outputItem.equals(ObjectRegistry.SHEEP_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_SHEEP_CHEESE_MASS)) return 5;
-        else if(outputItem.equals(ObjectRegistry.LAVENDER_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_LAVENDER_CHEESE_MASS)) return 4;
-        else if(outputItem.equals(ObjectRegistry.HERBS_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_HERBS_CHEESE_MASS)) return 7;
-        else return 2;
+         if(outputItem.equals(ObjectRegistry.OAT_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_HERBS_CHEESE_MASS)) return 5;
+
+        else return 5;
     }
 
     //   /data modify block -216 68 -461 syncedInt set value 47750

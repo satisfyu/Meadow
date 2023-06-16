@@ -6,8 +6,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.screen.screenhandler.CookingCauldronScreenHandler;
-import net.satisfyu.meadow.screenHandler.RecipeHandledScreen;
-import net.satisfyu.meadow.screenHandler.SideToolTip;
+import net.satisfyu.meadow.client.screen.screenhandler.screenHandler.RecipeHandledScreen;
+import net.satisfyu.meadow.client.screen.screenhandler.screenHandler.SideToolTip;
 
 public class CookingCauldronScreen extends RecipeHandledScreen<CookingCauldronScreenHandler> {
     private static final Identifier BACKGROUND;

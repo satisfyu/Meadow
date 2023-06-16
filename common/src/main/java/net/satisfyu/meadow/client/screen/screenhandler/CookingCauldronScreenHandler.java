@@ -10,7 +10,7 @@ import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
-import net.satisfyu.meadow.screenHandler.RecipeScreenHandler;
+import net.satisfyu.meadow.client.screen.screenhandler.screenHandler.RecipeScreenHandler;
 
 public class CookingCauldronScreenHandler extends RecipeScreenHandler {
 

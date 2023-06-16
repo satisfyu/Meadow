@@ -35,7 +35,7 @@ public abstract class SheepMixin extends AnimalEntity {
         boolean bl;
         if (((bl = itemStack.isOf(Items.BUCKET)) || itemStack.isOf(ObjectRegistry.WOODEN_BUCKET.get())) && !this.isBaby()) {
             player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-            ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, bl ? ObjectRegistry.SHEEP_MILK.get().getDefaultStack() : ObjectRegistry.WOODEN_SHEEP_MILK.get().getDefaultStack());
+            ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, bl ? ObjectRegistry.WOODEN_MILK_BUCKET.get().getDefaultStack() : ObjectRegistry.WOODEN_MILK_BUCKET.get().getDefaultStack());
             player.setStackInHand(hand, itemStack2);
             cir.setReturnValue(ActionResult.success(this.world.isClient));
         }

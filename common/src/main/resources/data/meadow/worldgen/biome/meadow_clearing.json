@@ -156,8 +156,6 @@
     [],
     [],
     [
-      "meadow:ore_limestone_upper",
-      "meadow:ore_limestone_lower",
       "minecraft:ore_dirt",
       "minecraft:ore_gravel",
       "minecraft:ore_granite_upper",
@@ -172,9 +170,6 @@
       "minecraft:ore_iron_upper",
       "minecraft:ore_iron_middle",
       "minecraft:ore_iron_small",
-      "meadow:ore_salt_upper",
-      "meadow:ore_salt_lower",
-      "meadow:ore_salt_small",
       "minecraft:ore_gold",
       "minecraft:ore_gold_lower",
       "minecraft:ore_redstone",
@@ -199,13 +194,7 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:glow_lichen",
-      "meadow:eriophorum_tall",
-      "meadow:small_fir",
-      "meadow:tall_fern",
-      "meadow:patch_alpine_grass",
-      "meadow:meadow_clearing_trees",
-      "meadow:patch_tall_alpine_grass"
+      "minecraft:glow_lichen"
     ],
     [
       "minecraft:freeze_top_layer"

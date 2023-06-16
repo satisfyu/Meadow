@@ -109,22 +109,12 @@ public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHan
     }
 
     public static int getVar(Item item){
-        if (ObjectRegistry.CHEESE_MASS.equals(item) || ObjectRegistry.WOODEN_CHEESE_MASS.equals(item) || ObjectRegistry.CHEESE_BLOCK.get().asItem().equals(item)) {
-            return 2;
-        } else if (ObjectRegistry.GOAT_CHEESE_MASS.equals(item) || ObjectRegistry.WOODEN_GOAT_CHEESE_MASS.equals(item) || ObjectRegistry.GOAT_CHEESE_BLOCK.get().asItem().equals(item)) {
-            return 3;
-        } else if (ObjectRegistry.OAT_CHEESE_MASS.equals(item) || ObjectRegistry.WOODEN_OAT_CHEESE_MASS.equals(item) || ObjectRegistry.OAT_CHEESE_BLOCK.get().asItem().equals(item)) {
+        if (ObjectRegistry.OAT_CHEESE_MASS.equals(item) || ObjectRegistry.WOODEN_HERBS_CHEESE_MASS.equals(item) || ObjectRegistry.OAT_CHEESE_BLOCK.get().asItem().equals(item)) {
             return 5;
-        } else if (ObjectRegistry.SHEEP_CHEESE_MASS.equals(item) || ObjectRegistry.WOODEN_SHEEP_CHEESE_MASS.equals(item) || ObjectRegistry.SHEEP_CHEESE_BLOCK.get().asItem().equals(item)) {
-            return 6;
-        } else if (ObjectRegistry.LAVENDER_CHEESE_MASS.equals(item) || ObjectRegistry.WOODEN_LAVENDER_CHEESE_MASS.equals(item) || ObjectRegistry.LAVENDER_CHEESE_BLOCK.get().asItem().equals(item)) {
-            return 4;
-        } else if (ObjectRegistry.HERBS_CHEESE_MASS.equals(item) || ObjectRegistry.WOODEN_HERBS_CHEESE_MASS.equals(item) || ObjectRegistry.HERB_CHEESE_BLOCK.get().asItem().equals(item)) {
-            return 7;
         }
 
         else{
-            return 2;
+            return 5;
         }
     }
 

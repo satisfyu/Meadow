@@ -1,5 +1,5 @@
 {
-  "feature": "meadow:old_birch_tree",
+  "feature": "meadow:old_birch_tree_bees",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",
