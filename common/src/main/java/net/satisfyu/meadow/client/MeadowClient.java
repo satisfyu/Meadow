@@ -49,7 +49,6 @@ import net.satisfyu.meadow.entity.sheep.inky.InkySheepRenderer;
 import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.rocky.RockySheepRenderer;
-import net.satisfyu.meadow.item.BowModelProvider;
 import net.satisfyu.meadow.item.FurArmorItem;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.client.render.FlowerBoxBlockEntityRenderer;
@@ -133,15 +132,8 @@ public class MeadowClient {
 
         RenderTypeRegistry.register(RenderLayer.getTranslucent(), ObjectRegistry.WINDOW.get(), ObjectRegistry.WINDOW_2.get(), ObjectRegistry.WINDOW_3.get());
 
-        //TODO
-        //SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ObjectRegistry.SIGN_TEXTURE_ID));
-
         registerBlockRenderer();
         registerClientScreens();
-
-        BowModelProvider.registerModModels();
-
-        //TerraformBoatClientHelper.registers(PINE_ID);
     }
 
     private static void registerBlockRenderer() {
@@ -164,27 +156,6 @@ public class MeadowClient {
         EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearEntityModel::getTexturedModelData);
     }
 
-    //TODO
-    /*
-    private void registerBowPredicate(HuntingBowItem bowItem) {
-        ModelPredicateProviderRegistry.registerArmor(bowItem, new Identifier("pull"),
-                (itemStack, clientWorld, livingEntity, i) -> {
-                    if (livingEntity == null) {
-                        return 0.0F;
-                    }
-                    return livingEntity.getActiveItem() != itemStack ? 0.0F
-                            : (itemStack.getMaxUseTime() - livingEntity.getItemUseTimeLeft()) / 20.0F;
-                });
-        ModelPredicateProviderRegistry.registerArmor(bowItem, new Identifier("pulling"),
-                (itemStack, clientWorld, livingEntity, i) -> {
-                    if (livingEntity == null) {
-                        return 0.0F;
-                    }
-                    return livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
-                });
-    }
-    
-     */
 
     private static void registerCows(){
         EntityRendererRegistry.register(EntityRegistry.UMBRA_COW, UmbraCowRenderer::new);

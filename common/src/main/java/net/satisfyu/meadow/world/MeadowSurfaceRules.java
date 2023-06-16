@@ -22,7 +22,6 @@ public class MeadowSurfaceRules {
     private static final MaterialRules.MaterialRule COBBLED_LIMESTONE = makeStateRule(ObjectRegistry.COBBLED_LIMESTONE.get());
     private static final MaterialRules.MaterialRule PODZOL = makeStateRule(Blocks.PODZOL);
     private static final MaterialRules.MaterialRule COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
-
     private static final MaterialRules.MaterialRule DIRT_BLOCK = makeStateRule(Blocks.DIRT);
     
     public static final RegistryKey<Biome> MEADOW_CLEARING_KEY = createBiomeKey("meadow_clearing");
@@ -50,8 +49,7 @@ public class MeadowSurfaceRules {
 
         return MaterialRules.sequence(
                 MaterialRules.condition(MaterialRules.biome(MEADOW_CLEARING_KEY), MaterialRules.condition(isAtOrAboveWaterLevel, MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH, MaterialRules.sequence(MaterialRules.condition(MaterialRules.steepSlope(), LIMESTONE), clearing)))),
-                MaterialRules.condition(MaterialRules.biome(MEADOW_FOREST_KEY), MaterialRules.condition(isAtOrAboveWaterLevel, /*MaterialRules.sequence(MaterialRules.condition(MaterialRules.steepSlope(), LIMESTONE),*/ forest/*)*/))
-                );
+                MaterialRules.condition(MaterialRules.biome(MEADOW_FOREST_KEY), MaterialRules.condition(isAtOrAboveWaterLevel, MaterialRules.sequence(MaterialRules.condition(MaterialRules.steepSlope(), LIMESTONE), forest))));
     }
 
     private static MaterialRules.MaterialRule makeStateRule(Block block) {

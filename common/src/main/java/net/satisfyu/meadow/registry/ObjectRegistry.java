@@ -6,8 +6,8 @@ import dev.architectury.registry.fuel.FuelRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.block.*;
 import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -15,7 +15,6 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
@@ -157,11 +156,6 @@ public class ObjectRegistry {
                     .suffocates((state, world, pos) -> false)));
     public static final RegistrySupplier<Block> PINE_LEAVES_2 = registerBlockWithoutItem("pine_leaves_2",
             () -> new LeavesBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_LEAVES)));
-    //public static final Identifier SIGN_TEXTURE_ID = new Identifier("entity/signs/pine");
-    //public static final RegistrySupplier<Block> PINE_SIGN = registerBlockWithoutItem("pine_sign",
-    //        () -> new TerraformSignBlock(SIGN_TEXTURE_ID, AbstractBlock.Settings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD)));
-    //public static final RegistrySupplier<Block> PINE_WALL_SIGN = registerBlockWithoutItem("pine_wall_sign",
-    //        () -> new TerraformWallSignBlock(SIGN_TEXTURE_ID, AbstractBlock.Settings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.WOOD).dropsLike(ObjectRegistry.PINE_SIGN)));
     public static final RegistrySupplier<Block> SHELF = registerBlock("shelf",
             () -> new ShelfBlock(AbstractBlock.Settings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), SoundRegistry.SHELF_OPEN, SoundRegistry.SHELF_CLOSED));
     public static final RegistrySupplier<Block> CHEESE_RACK = registerBlock("cheese_rack", () -> new CheeseRackBlock(AbstractBlock.Settings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
@@ -382,7 +376,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> BEAR_FUR_CHESTPLATE = registerItem("bear_fur_chestplate", () -> new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.CHEST, getSettings().group(Meadow.MEADOW_TAB)));
     public static final RegistrySupplier<Item> BEAR_FUR_LEGGINGS = registerItem("bear_fur_leggings", () -> new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.LEGS, getSettings().group(Meadow.MEADOW_TAB)));
     public static final RegistrySupplier<Item> BEAR_FUR_BOOTS = registerItem("bear_fur_boots", () -> new FurArmorItem(MeadowMaterials.BEAR_FUR_ARMOR, EquipmentSlot.FEET, getSettings().group(Meadow.MEADOW_TAB)));
-    public static final RegistrySupplier<Item> HUNTING_BOW = registerItem("hunting_bow", () -> new HuntingBowItem(BowUtil.HUNTING, getSettings()));
 
     public static final RegistrySupplier<Item> CHEESE_MASS = registerItem("cow_cheese_mass_bucket", () -> new CraftingIngredientItem(getSettings().maxCount(1)));
 
@@ -399,7 +392,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> HERBS_CHEESE_MASS = registerItem("herbs_cheese_mass_bucket", () -> new CraftingIngredientItem(getSettings().maxCount(1)));
 
     public static final RegistrySupplier<Item> WARPED_CHEESE_MASS = registerItem("warped_cheese_mass_bucket", () -> new CraftingIngredientItem(getSettings().maxCount(1)));
-
     public static final RegistrySupplier<Item> WOODEN_CHEESE_MASS = registerItem("wooden_cow_cheese_mass_bucket", () -> new CraftingIngredientItem(getSettings().maxCount(1)));
 
     public static final RegistrySupplier<Item> WOODEN_BUFFALO_CHEESE_MASS = registerItem("wooden_buffalo_cheese_mass_bucket", () -> new CraftingIngredientItem(getSettings().maxCount(1)));
@@ -438,12 +430,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> WOODEN_OAT_MILK = registerItem("wooden_oat_milk_bucket", () -> new WoodenMilkBucket(getSettings().maxCount(1)));
 
     public static final RegistrySupplier<Item> WOODEN_SHEEP_MILK = registerItem("wooden_sheep_milk_bucket", () -> new WoodenMilkBucket(getSettings().maxCount(1)));
-
-    //TODO
-    //public static final RegistrySupplier<Item> PINE_SIGN = registerItem("pine_sign",
-    //        new SignItem(getSettings().maxCount(16).group(Meadow.MEADOW_TAB), ObjectRegistry.PINE_SIGN, ObjectRegistry.PINE_WALL_SIGN));
-
-
     public static final RegistrySupplier<Item> ALBINO_COW_SPAWN_EGG_ITEM = registerItem( "albino_cow_spawn_egg",
             () -> new ArchitecturySpawnEggItem(EntityRegistry.ALBINO_COW, 16777215, 16721408, getSettings()));
 

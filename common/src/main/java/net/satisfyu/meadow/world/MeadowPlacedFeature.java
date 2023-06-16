@@ -35,9 +35,6 @@ public class MeadowPlacedFeature {
     public static final RegistryKey<PlacedFeature> ORE_SALT_SMALL = registerKey("ore_salt_small");
     public static final RegistryKey<PlacedFeature> ORE_SALT_UPPER = registerKey("ore_salt_upper");
 
-
-
-
     public static RegistryKey<PlacedFeature> registerKey(String name) {
         return RegistryKey.of(Registry.PLACED_FEATURE_KEY, new MeadowIdentifier(name));
     }

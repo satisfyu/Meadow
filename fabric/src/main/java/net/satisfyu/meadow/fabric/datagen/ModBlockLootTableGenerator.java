@@ -6,6 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.enums.BedPart;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.data.server.BlockLootTableGenerator;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
@@ -29,7 +30,7 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
     
     @Override
     protected void generateBlockLootTables() {
-        //this.addDrop(ObjectRegistry.ALPINE_SALT_ORE, b -> oreDrops(b, ObjectRegistry.ALPINE_SALT));
+        this.addDrop(ObjectRegistry.ALPINE_COAL_ORE.get(), b -> oreDrops(b, (Item) ObjectRegistry.ALPINE_SALT));
         this.addDrop(ObjectRegistry.ALPINE_COAL_ORE.get(), b -> oreDrops(b, Items.COAL));
         this.addDrop(ObjectRegistry.ALPINE_LAPIS_ORE.get(), b -> oreDrops(b, Items.LAPIS_LAZULI));
         this.addDrop(ObjectRegistry.ALPINE_GOLD_ORE.get(), b -> oreDrops(b, Items.RAW_GOLD));
@@ -126,13 +127,11 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ObjectRegistry.PINE_FENCE.get());
         this.addDrop(ObjectRegistry.PINE_RAILING.get());
         this.addDrop(ObjectRegistry.PINE_FENCE_GATE.get());
-        //this.addDrop(ObjectRegistry.PINE_SIGN.get());
-        //this.addDrop(ObjectRegistry.PINE_WALL_SIGN.get());
         this.addDrop(ObjectRegistry.SHELF.get());
         this.addDrop(ObjectRegistry.CHEESE_RACK.get());
         this.addDrop(ObjectRegistry.TABLE.get());
         this.addDrop(ObjectRegistry.CHAIR.get());
-        //this.addDrop(ObjectRegistry.BENCH.get());
+        this.addDrop(ObjectRegistry.BENCH.get());
         this.addDrop(ObjectRegistry.FLECKED_WOOL.get());
         this.addDrop(ObjectRegistry.FLECKED_CARPET.get());
         this.addDrop(ObjectRegistry.FLECKED_BED.get(), b -> dropsWithProperty(b, BedBlock.PART, BedPart.HEAD));
