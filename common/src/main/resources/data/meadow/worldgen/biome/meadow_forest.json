@@ -147,7 +147,8 @@
       "minecraft:lake_lava_surface"
     ],
     [
-      "minecraft:amethyst_geode"
+      "minecraft:amethyst_geode",
+      "meadow:forest_rock_limestone"
     ],
     [
       "minecraft:monster_room",
@@ -156,6 +157,8 @@
     [],
     [],
     [
+      "meadow:ore_limestone_upper",
+      "meadow:ore_limestone_lower",
       "minecraft:ore_dirt",
       "minecraft:ore_gravel",
       "minecraft:ore_granite_upper",
@@ -170,6 +173,9 @@
       "minecraft:ore_iron_upper",
       "minecraft:ore_iron_middle",
       "minecraft:ore_iron_small",
+      "meadow:ore_salt_upper",
+      "meadow:ore_salt_lower",
+      "meadow:ore_salt_small",
       "minecraft:ore_gold",
       "minecraft:ore_gold_lower",
       "minecraft:ore_redstone",
@@ -194,10 +200,8 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:glow_lichen"
-    ],
-    [
-
+      "minecraft:glow_lichen",
+      "meadow:meadow_forest_trees"
     ],
     [
       "minecraft:freeze_top_layer"

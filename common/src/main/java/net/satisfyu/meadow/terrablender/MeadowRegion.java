@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
-import static net.satisfyu.meadow.world.MeadowSurfaceRules.makeRules;
-import static terrablender.api.ParameterUtils.Temperature;
 
 
 public class MeadowRegion extends Region {
@@ -27,6 +25,7 @@ public class MeadowRegion extends Region {
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
         addModifiedVanillaOverworldBiomes(mapper, builder -> {
 
+            /*
             List<MultiNoiseUtil.NoiseHypercube> meadowPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(Temperature.COOL, Temperature.NEUTRAL)
                     .humidity(ParameterUtils.Humidity.ARID, ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL, ParameterUtils.Humidity.WET)
@@ -35,6 +34,8 @@ public class MeadowRegion extends Region {
                     .weirdness(ParameterUtils.Weirdness.HIGH_SLICE_NORMAL_ASCENDING, ParameterUtils.Weirdness.PEAK_NORMAL, ParameterUtils.Weirdness.HIGH_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.PEAK_VARIANT, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_DESCENDING)
                     .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.UNDERGROUND)
                     .build();
+
+             */
 
             List<MultiNoiseUtil.NoiseHypercube> meadowForestPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(MultiNoiseUtil.ParameterRange.of(-0.45F, -0.15F), MultiNoiseUtil.ParameterRange.of(-0.15F, 0.2F))
@@ -62,7 +63,7 @@ public class MeadowRegion extends Region {
 
     public static void loadTerrablender(){
         Regions.register(new MeadowRegion(new Identifier(MOD_ID, "overworld"), 2));
-        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, makeRules());
+        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, MeadowSurfaceRules.makeRules());
     }
 
 }

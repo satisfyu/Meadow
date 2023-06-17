@@ -1,5 +1,5 @@
 {
-  "feature": "meadow:oak_pine",
+  "feature": "meadow:bush",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",

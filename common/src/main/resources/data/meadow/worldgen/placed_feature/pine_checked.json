@@ -1,5 +1,5 @@
 {
-  "feature": "meadow:configured_tree/pine",
+  "feature": "meadow:pine",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",

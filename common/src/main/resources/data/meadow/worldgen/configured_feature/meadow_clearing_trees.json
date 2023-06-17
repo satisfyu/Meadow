@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "features": [
+      {
+        "chance": 0.38,
+        "feature": "meadow:oak_pine_checked"
+      },
+      {
+        "chance": 0.54,
+        "feature": "meadow:birch_pine_hanging_checked"
+      },
+      {
+        "chance": 0.3,
+        "feature": "meadow:pine_hanging_checked"
+      },
+      {
+        "chance": 0.3,
+        "feature": "meadow:pine_checked"
+      }
+    ],
+    "default": "meadow:pine_checked"
+  }
+}

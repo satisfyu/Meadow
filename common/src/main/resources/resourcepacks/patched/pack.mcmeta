@@ -1,7 +1,7 @@
 {
   "pack": {
-    "description": "Meadow",
     "pack_format": 10,
+    "description": "Better leaves for Meadow",
     "patched:has_patches": true
   }
 }

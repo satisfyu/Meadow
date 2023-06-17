@@ -1,7 +1,7 @@
 {
   "type": "minecraft:random_patch",
   "config": {
-    "tries": 48,
+    "tries": 96,
     "xz_spread": 7,
     "y_spread": 3,
     "feature": {
@@ -9,15 +9,13 @@
         "type": "minecraft:simple_block",
         "config": {
           "to_place": {
-            "type": "minecraft:weighted_state_provider",
-            "entries": [
-              {
-                "weight": 1,
-                "data": {
-                  "Name": "minecraft:grass"
-                }
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "meadow:eriophorum_tall",
+              "Properties": {
+                "half": "lower"
               }
-            ]
+            }
           }
         }
       },

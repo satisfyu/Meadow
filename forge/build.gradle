@@ -32,6 +32,7 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
     modImplementation "com.github.glitchfiend:TerraBlender-forge:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
+    modLocalRuntime "maven.modrinth:patched:forge-1.19.2-1.1.0"
 
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }

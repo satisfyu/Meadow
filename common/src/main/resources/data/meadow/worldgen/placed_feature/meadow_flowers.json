@@ -1,9 +1,13 @@
 {
-  "feature": "meadow:flowers_clearing",
+  "feature": "meadow:meadow_flowers",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 5
+      "count": 6
+    },
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 2
     },
     {
       "type": "minecraft:in_square"
