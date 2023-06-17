@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.fabric.region;
+package net.satisfyu.meadow.terrablender;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.util.Identifier;

@@ -1,12 +1,12 @@
 package net.satisfyu.meadow.fabric;
 
 
-import net.satisfyu.meadow.fabric.region.MeadowRegion;
+import net.satisfyu.meadow.terrablender.MeadowRegion;
 import terrablender.api.TerraBlenderApi;
 
 public class MeadowTerrablenderInit implements TerraBlenderApi {
-   /* @Override
+    @Override
     public void onTerraBlenderInitialized() {
         MeadowRegion.loadTerrablender();
-    }*/
+    }
 }

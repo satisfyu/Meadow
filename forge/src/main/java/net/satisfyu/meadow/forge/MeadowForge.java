@@ -6,6 +6,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.satisfyu.meadow.Meadow;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.satisfyu.meadow.terrablender.MeadowRegion;
+import terrablender.core.TerraBlender;
 
 @Mod(Meadow.MOD_ID)
 public class MeadowForge {
@@ -22,7 +24,7 @@ public class MeadowForge {
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork( () -> {
             //VillagersForge.registerPOIs();
-
+            MeadowRegion.loadTerrablender();
         });
         Meadow.commonSetup();
     }
