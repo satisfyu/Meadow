@@ -224,28 +224,27 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> WOODEN_MILK_BUCKET = registerItem("wooden_milk_bucket", () -> new WoodenMilkBucket(getSettings().maxCount(1)));
 
     //spawn eggs
-    public static final RegistrySupplier<Item> ALBINO_COW_SPAWN_EGG_ITEM = registerItem("albino_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.ALBINO_COW, 16777215, 16721408, getSettings()));
-    public static final RegistrySupplier<Item> WATER_BUFFALO_SPAWN_EGG_ITEM = registerItem("water_buffalo_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.WATER_BUFFALO, 4473924, 8026746, getSettings()));
-    public static final RegistrySupplier<Item> COOKIE_COW_SPAWN_EGG_ITEM = registerItem("cookie_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.COOKIE_COW, 16757823, 16777215, getSettings()));
-    public static final RegistrySupplier<Item> CREAM_COW_SPAWN_EGG_ITEM = registerItem("cream_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.CREAM_COW, 16767095, 16777215, getSettings()));
-    public static final RegistrySupplier<Item> DAIRY_COW_SPAWN_EGG_ITEM = registerItem("dairy_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.DAIRY_COW, 16777215, 0, getSettings()));
-    public static final RegistrySupplier<Item> DARK_COW_SPAWN_EGG_ITEM = registerItem("dark_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.DARK_COW, 0, 2302755, getSettings()));
-    public static final RegistrySupplier<Item> PINTO_COW_SPAWN_EGG_ITEM = registerItem("pinto_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.PINTO_COW, 16738816, 16777215, getSettings()));
-    public static final RegistrySupplier<Item> SUNSET_COW_SPAWN_EGG_ITEM = registerItem("sunset_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.SUNSET_COW, 11868672, 0, getSettings()));
-    public static final RegistrySupplier<Item> UMBRA_COW_SPAWN_EGG_ITEM = registerItem("umbra_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.UMBRA_COW, 329011, 1115451, getSettings()));
-    public static final RegistrySupplier<Item> HIGHLAND_CATTLE_SPAWN_EGG_ITEM = registerItem("highland_cattle_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.HIGHLAND_CATTLE, 11102208, 16755200, getSettings()));
-    public static final RegistrySupplier<Item> WARPED_COW_SPAWN_EGG_ITEM = registerItem("warped_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.WARPED_COW, 43690, 11141290, getSettings()));
-    public static final RegistrySupplier<Item> BROWN_BEAR_SPAWN_EGG_ITEM = registerItem("brown_bear_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.BROWN_BEAR, 5780480, 5586176, getSettings()));
-    public static final RegistrySupplier<Item> CHICKEN1_SPAWN_EGG_ITEM = registerItem("chicken_1_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.CHICKEN1, 17066, 11353600, getSettings()));
-    public static final RegistrySupplier<Item> CHICKEN2_SPAWN_EGG_ITEM = registerItem("chicken_2_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.CHICKEN2, 36020, 12893184, getSettings()));
-    public static final RegistrySupplier<Item> CHICKEN3_SPAWN_EGG_ITEM = registerItem("chicken_3_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.CHICKEN3, 16775019, 12893184, getSettings()));
-    public static final RegistrySupplier<Item> FLECKED_SHEEP_SPAWN_EGG_ITEM = registerItem("flecked_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.FLECKED_SHEEP, 11172162, 14079702, getSettings()));
-    public static final RegistrySupplier<Item> FUZZY_SHEEP_SPAWN_EGG_ITEM = registerItem("fuzzy_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.FUZZY_SHEEP, 14079702, 6316128, getSettings()));
-    public static final RegistrySupplier<Item> HORNED_SHEEP_SPAWN_EGG_ITEM = registerItem("horned_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.HORNED_SHEEP, 14079702, 0, getSettings()));
-    public static final RegistrySupplier<Item> INKY_SHEEP_SPAWN_EGG_ITEM = registerItem("inky_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.INKY_SHEEP, 6316128, 0, getSettings()));
-    public static final RegistrySupplier<Item> LONG_NOSED_SHEEP_SPAWN_EGG_ITEM = registerItem("long_nosed_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.LONG_NOSED_SHEEP, 5780480, 2302755, getSettings()));
-    public static final RegistrySupplier<Item> PATCHED_SHEEP_SPAWN_EGG_ITEM = registerItem("patched_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.PATCHED_SHEEP, 11184810, 4473924, getSettings()));
-    public static final RegistrySupplier<Item> ROCKY_SHEEP_SPAWN_EGG_ITEM = registerItem("rocky_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.ROCKY_SHEEP, 4473924, 0, getSettings()));
+    public static final RegistrySupplier<Item> ALBINO_COW_SPAWN_EGG_ITEM = registerItem("albino_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.ALBINO_COW, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> WATER_BUFFALO_SPAWN_EGG_ITEM = registerItem("water_buffalo_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.WATER_BUFFALO, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> COOKIE_COW_SPAWN_EGG_ITEM = registerItem("cookie_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.COOKIE_COW, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> CREAM_COW_SPAWN_EGG_ITEM = registerItem("cream_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.CREAM_COW, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> DAIRY_COW_SPAWN_EGG_ITEM = registerItem("dairy_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.DAIRY_COW, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> DARK_COW_SPAWN_EGG_ITEM = registerItem("dark_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.DARK_COW, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> PINTO_COW_SPAWN_EGG_ITEM = registerItem("pinto_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.PINTO_COW, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> SUNSET_COW_SPAWN_EGG_ITEM = registerItem("sunset_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.SUNSET_COW, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> UMBRA_COW_SPAWN_EGG_ITEM = registerItem("umbra_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.UMBRA_COW, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> HIGHLAND_CATTLE_SPAWN_EGG_ITEM = registerItem("highland_cattle_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.HIGHLAND_CATTLE, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> WARPED_COW_SPAWN_EGG_ITEM = registerItem("warped_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.WARPED_COW, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> BROWN_BEAR_SPAWN_EGG_ITEM = registerItem("brown_bear_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.BROWN_BEAR, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> MEADOW_CHICKEN_SPAWN_EGG_ITEM = registerItem("meadow_chicken_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.MEADOW_CHICKEN, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> FLECKED_SHEEP_SPAWN_EGG_ITEM = registerItem("flecked_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.FLECKED_SHEEP, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> FUZZY_SHEEP_SPAWN_EGG_ITEM = registerItem("fuzzy_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.FUZZY_SHEEP, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> HORNED_SHEEP_SPAWN_EGG_ITEM = registerItem("horned_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.HORNED_SHEEP, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> INKY_SHEEP_SPAWN_EGG_ITEM = registerItem("inky_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.INKY_SHEEP, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> LONG_NOSED_SHEEP_SPAWN_EGG_ITEM = registerItem("long_nosed_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.LONG_NOSED_SHEEP, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> PATCHED_SHEEP_SPAWN_EGG_ITEM = registerItem("patched_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.PATCHED_SHEEP, -1, -1, getSettings()));
+    public static final RegistrySupplier<Item> ROCKY_SHEEP_SPAWN_EGG_ITEM = registerItem("rocky_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.ROCKY_SHEEP, -1, -1, getSettings()));
+
 
     //not registered
     public static final RegistrySupplier<Block> POTTED_ENZIAN = registerBlockWithoutItem("potted_enzian", () -> new FlowerPotBlock(ObjectRegistry.ENZIAN.get(), AbstractBlock.Settings.copy(Blocks.POTTED_POPPY)));

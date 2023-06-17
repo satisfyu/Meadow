@@ -10,11 +10,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.bear.BrownBearEntity;
-import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntity;
 import net.satisfyu.meadow.entity.blockentities.ChairEntity;
-import net.satisfyu.meadow.entity.chicken.chicken1.Chicken1Entity;
-import net.satisfyu.meadow.entity.chicken.chicken2.Chicken2Entity;
-import net.satisfyu.meadow.entity.chicken.chicken3.Chicken3Entity;
+import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntity;
+import net.satisfyu.meadow.entity.chicken.MeadowChickenEntity;
 import net.satisfyu.meadow.entity.cow.albino_cow.AlbinoCowEntity;
 import net.satisfyu.meadow.entity.cow.cookie_cow.CookieCowEntity;
 import net.satisfyu.meadow.entity.cow.cream_cow.CreamCowEntity;
@@ -118,17 +116,10 @@ public class EntityRegistry {
             () -> EntityType.Builder.create(RockySheepEntity::new, SpawnGroup.CREATURE).setDimensions(0.9f, 1.3f).build(new Identifier(Meadow.MOD_ID, "rocky_sheep").toString())
     );
 
-    public static final RegistrySupplier<EntityType<Chicken1Entity>> CHICKEN1 = create("chicken_1",
-            () -> EntityType.Builder.create(Chicken1Entity::new, SpawnGroup.CREATURE).setDimensions(0.4f, 0.7f).build(new Identifier(Meadow.MOD_ID, "chicken_1").toString())
+    public static final RegistrySupplier<EntityType<MeadowChickenEntity>> MEADOW_CHICKEN = create("chicken_1",
+            () -> EntityType.Builder.create(MeadowChickenEntity::new, SpawnGroup.CREATURE).setDimensions(0.4f, 0.7f).build(new Identifier(Meadow.MOD_ID, "chicken_1").toString())
     );
 
-    public static final RegistrySupplier<EntityType<Chicken2Entity>> CHICKEN2 = create("chicken_2",
-            () -> EntityType.Builder.create(Chicken2Entity::new, SpawnGroup.CREATURE).setDimensions(0.4f, 0.7f).build(new Identifier(Meadow.MOD_ID, "chicken_2").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<Chicken3Entity>> CHICKEN3 = create("chicken_3",
-            () -> EntityType.Builder.create(Chicken3Entity::new, SpawnGroup.CREATURE).setDimensions(0.4f, 0.7f).build(new Identifier(Meadow.MOD_ID, "chicken_3").toString())
-    );
 
     public static void init(){
         Meadow.LOGGER.debug("Registering Mod Entities for " + Meadow.MOD_ID);
@@ -141,9 +132,8 @@ public class EntityRegistry {
         //BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModSurfaceRules.MEADOW_CLEARING_KEY, ModSurfaceRules.MEADOW_FOREST_KEY, BiomeKeys.MEADOW), SpawnGroup.CREATURE, BROWN_BEAR, 1, 1, 2);
 
 
-        registerChicken(CHICKEN1); //, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
-        registerChicken(CHICKEN2); //, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
-        registerChicken(CHICKEN3); //, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
+        registerChicken(MEADOW_CHICKEN); //, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
+
 
 
         registerSheep(FLECKED_SHEEP); //, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));

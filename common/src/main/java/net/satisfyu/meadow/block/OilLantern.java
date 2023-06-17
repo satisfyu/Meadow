@@ -78,8 +78,10 @@ public class OilLantern extends LanternBlock{
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        world.setBlockState(pos, this.getDefaultState().with(WATERLOGGED, state.get(WATERLOGGED)).with(LUMINANCE, Random.create().nextBetween(12, 15)).with(HANGING, state.get(HANGING)));
+        int randomLuminance = random.nextInt(4) + 12;
+        world.setBlockState(pos, this.getDefaultState().with(WATERLOGGED, state.get(WATERLOGGED)).with(LUMINANCE, randomLuminance).with(HANGING, state.get(HANGING)));
     }
+
 
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {

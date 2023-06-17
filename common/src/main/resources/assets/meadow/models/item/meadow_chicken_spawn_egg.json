@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "meadow:item/spawn_eggs/meadow_chicken_spawn_egg"
+  }
+}

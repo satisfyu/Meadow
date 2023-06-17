@@ -27,9 +27,7 @@ import net.satisfyu.meadow.entity.bear.BrownBearEntityRenderer;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntityModel;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntityRenderer;
 import net.satisfyu.meadow.client.render.ChairEntityRenderer;
-import net.satisfyu.meadow.entity.chicken.chicken1.Chicken1Renderer;
-import net.satisfyu.meadow.entity.chicken.chicken2.Chicken2Renderer;
-import net.satisfyu.meadow.entity.chicken.chicken3.Chicken3Renderer;
+import net.satisfyu.meadow.entity.chicken.MeadowChickenRenderer;
 import net.satisfyu.meadow.entity.cow.albino_cow.AlbinoCowRenderer;
 import net.satisfyu.meadow.entity.cow.cookie_cow.CookieCowRenderer;
 import net.satisfyu.meadow.entity.cow.cream_cow.CreamCowRenderer;
@@ -101,11 +99,7 @@ public class MeadowClient {
 
     public static final EntityModelLayer SUNSET_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "sunset_cow"), "head");
 
-    public static final EntityModelLayer CHICKEN1_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "chicken_1"), "main");
-
-    public static final EntityModelLayer CHICKEN2_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "chicken_2"), "main");
-
-    public static final EntityModelLayer CHICKEN3_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "chicken_3"), "main");
+    public static final EntityModelLayer MEADOW_CHICKEN_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "meadow_chicken"), "main");
 
     public static void preInitClient(){
         registerEntityRenderers();
@@ -223,14 +217,9 @@ public class MeadowClient {
     }
 
     private static void registerChicken(){
-        EntityRendererRegistry.register(EntityRegistry.CHICKEN1, Chicken1Renderer::new);
-        EntityModelLayerRegistry.register(CHICKEN1_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
+        EntityRendererRegistry.register(EntityRegistry.MEADOW_CHICKEN, MeadowChickenRenderer::new);
+        EntityModelLayerRegistry.register(MEADOW_CHICKEN_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
 
-        EntityRendererRegistry.register(EntityRegistry.CHICKEN2, Chicken2Renderer::new);
-        EntityModelLayerRegistry.register(CHICKEN2_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
-
-        EntityRendererRegistry.register(EntityRegistry.CHICKEN3, Chicken3Renderer::new);
-        EntityModelLayerRegistry.register(CHICKEN3_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
     }
 
     public static void appendToolTip(@NotNull List<Text> tooltip){
