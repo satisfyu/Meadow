@@ -32,6 +32,7 @@ import java.util.function.Supplier;
 
 import static net.satisfyu.meadow.block.CookingCauldronBlock.HANGING;
 
+
 public class FrameBlock extends Block {
 
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;

@@ -120,7 +120,7 @@ public class MeadowClient {
         RenderTypeRegistry.register(RenderLayer.getCutout(), ObjectRegistry.WOODCUTTER.get(),
                 ObjectRegistry.PINE_DOOR.get(), ObjectRegistry.PINE_TRAPDOOR.get(), ObjectRegistry.DELPHINIUM.get(), ObjectRegistry.ALPINE_POPPY.get(), ObjectRegistry.SAXIFRAGE.get(),
                 ObjectRegistry.ENZIAN.get(), ObjectRegistry.COOKING_CAULDRON.get(), ObjectRegistry.FRAME.get(), ObjectRegistry.TABLE.get(), ObjectRegistry.FIRE_LOG.get(), ObjectRegistry.ERIOPHORUM.get(),
-                ObjectRegistry.ERIOPHORUM_TALL.get(), ObjectRegistry.FURNACE_COBBLESTONE.get(), ObjectRegistry.SMALL_FIR.get(), ObjectRegistry.PINE_SAPLING.get(), ObjectRegistry.CHAIR.get(),
+                ObjectRegistry.ERIOPHORUM_TALL.get(), ObjectRegistry.SMALL_FIR.get(), ObjectRegistry.PINE_SAPLING.get(), ObjectRegistry.CHAIR.get(),
                 ObjectRegistry.POTTED_DELPHINIUM.get(), ObjectRegistry.POTTED_ALPINE_POPPY.get(), ObjectRegistry.POTTED_SAXIFRAGE.get(), ObjectRegistry.POTTED_ENZIAN.get(),
                 ObjectRegistry.POTTED_ERIOPHORUM.get(),
                 ObjectRegistry.POTTED_ERIOPHORUM.get(), ObjectRegistry.ERIOPHORUM_TALL.get(), ObjectRegistry.PINE_SAPLING.get(), ObjectRegistry.POTTED_PINE_SAPLING.get(), ObjectRegistry.FIRE_LILY.get(), ObjectRegistry.POTTED_FIRE_LILY.get(),
@@ -242,10 +242,10 @@ public class MeadowClient {
         ItemStack boots = player.getEquippedStack(EquipmentSlot.FEET);
         tooltip.add(Text.of(""));
         tooltip.add(Text.of(Formatting.DARK_GREEN + I18n.translate("meadow.tooltip.fur_armor")));
-        tooltip.add(Text.of((helmet != null && helmet.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.BEAR_FUR_HELMET.get().getName().getString() + "]"));
-        tooltip.add(Text.of((chestplate != null && chestplate.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.BEAR_FUR_CHESTPLATE.get().getName().getString() + "]"));
-        tooltip.add(Text.of((leggings != null && leggings.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.BEAR_FUR_LEGGINGS.get().getName().getString() + "]"));
-        tooltip.add(Text.of((boots != null && boots.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.BEAR_FUR_BOOTS.get().getName().getString() + "]"));
+        tooltip.add(Text.of((helmet != null && helmet.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_HELMET.get().getName().getString() + "]"));
+        tooltip.add(Text.of((chestplate != null && chestplate.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_CHESTPLATE.get().getName().getString() + "]"));
+        tooltip.add(Text.of((leggings != null && leggings.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_LEGGINGS.get().getName().getString() + "]"));
+        tooltip.add(Text.of((boots != null && boots.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_BOOTS.get().getName().getString() + "]"));
         tooltip.add(Text.of(""));
         tooltip.add(Text.of(Formatting.GRAY + I18n.translate("meadow.tooltip.fur_armor2")));
         tooltip.add(Text.of(((helmet != null && helmet.getItem() instanceof FurArmorItem &&

@@ -77,7 +77,7 @@
               "function": "minecraft:looting_enchant"
             }
           ],
-          "name": "meadow:bear_fur"
+          "name": "minecraft:leather"
         }
       ],
       "rolls": 1.0

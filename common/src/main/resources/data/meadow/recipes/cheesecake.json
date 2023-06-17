@@ -1,18 +1,15 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "/EM",
+        "E/E",
         "WWW"
     ],
     "key": {
         "/": {
-            "item": "meadow:cream_cheese"
+            "tag": "meadow:cheese"
         },
         "E": {
             "item": "minecraft:egg"
-        },
-        "M": {
-            "item": "minecraft:milk_bucket"
         },
         "W": {
             "item": "minecraft:wheat"

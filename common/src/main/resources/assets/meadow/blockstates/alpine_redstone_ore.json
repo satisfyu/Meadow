@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": [ { "model": "meadow:block/alpine_redstone_ore", "weight":1 }
+    ]   }
+}

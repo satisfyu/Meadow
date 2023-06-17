@@ -101,7 +101,6 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         this.addDrop(ObjectRegistry.CRACKED_LIMESTONE_BRICKS.get());
         this.addDrop(ObjectRegistry.CHISELED_LIMESTONE_BRICKS.get());
         this.addDrop(ObjectRegistry.POLISHED_LIMESTONE_BRICKS.get());
-        this.addDrop(ObjectRegistry.FURNACE_COBBLESTONE.get());
         this.addDrop(ObjectRegistry.PINE_LEAVES.get(), b -> leavesDrop(b, ObjectRegistry.PINE_SAPLING.get(), SAPLING_DROP_CHANCE));
         this.addDrop(ObjectRegistry.PINE_LEAVES_2.get(), b -> leavesDrop(b, ObjectRegistry.PINE_SAPLING.get(), SAPLING_DROP_CHANCE));
         this.addDrop(ObjectRegistry.ALPINE_BIRCH_LEAVES_HANGING.get(), b -> leavesDrop(b, Blocks.BIRCH_SAPLING, SAPLING_DROP_CHANCE));

@@ -19,7 +19,7 @@
                   }
                 }
               ],
-              "name": "meadow:small_fir"
+              "name": "minecraft:stick"
             },
             {
               "type": "minecraft:item",
@@ -42,7 +42,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "meadow:fir_cone"
+              "name": "minecraft:stick"
             }
           ]
         }

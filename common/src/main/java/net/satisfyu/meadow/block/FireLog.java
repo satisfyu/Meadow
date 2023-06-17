@@ -92,6 +92,8 @@ public class FireLog extends HFacingBlock {
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(Text.translatable("block.meadow.fuel_item.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+
     }
 
 }

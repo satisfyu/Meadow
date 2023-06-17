@@ -5,8 +5,7 @@ import net.satisfyu.meadow.fabric.region.MeadowRegion;
 import terrablender.api.TerraBlenderApi;
 
 public class MeadowTerrablenderInit implements TerraBlenderApi {
-/*
-    @Override
+   /* @Override
     public void onTerraBlenderInitialized() {
         MeadowRegion.loadTerrablender();
     }*/

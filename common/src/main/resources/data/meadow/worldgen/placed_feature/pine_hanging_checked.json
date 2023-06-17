@@ -1,5 +1,5 @@
 {
-  "feature": "meadow:pine_hanging",
+  "feature": "meadow:configured_tree/pine_hanging",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",

@@ -3,13 +3,14 @@ package net.satisfyu.meadow.item;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ArmorMaterials;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 public class MeadowMaterials {
 
-    public static final ArmorMaterial BEAR_FUR_ARMOR = new ArmorMaterial() {
+    public static final ArmorMaterial FUR_ARMOR = new ArmorMaterial() {
         @Override
         public int getDurability(EquipmentSlot slot) {
             return ArmorMaterials.CHAIN.getDurability(slot);
@@ -33,13 +34,13 @@ public class MeadowMaterials {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.ofItems(ObjectRegistry.BEAR_FUR.get());
+            return Ingredient.ofItems(Items.RABBIT_HIDE);
         }
 
 
         @Override
         public String getName() {
-            return "bear_fur";
+            return "fur";
         }
 
         @Override

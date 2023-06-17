@@ -15,12 +15,18 @@ public class MeadowBiomeModification {
 
     public static void init() {
         BiomeModification world = BiomeModifications.create(new MeadowIdentifier("world_features"));
+        Predicate<BiomeSelectionContext> meadowBiomes = getMeadowSelector("meadow_biomes");
+
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FLOWERS_MEADOW_PATCH_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, GRASS_PATCH_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, GRASS_PATCH_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, TREES_MEADOW_KEY));
+
     }
 
     private static Predicate<BiomeSelectionContext> getMeadowSelector(String path) {
         return BiomeSelectors.tag(TagKey.of(Registry.BIOME_KEY, new MeadowIdentifier(path)));
     }
-
 
 
 }
