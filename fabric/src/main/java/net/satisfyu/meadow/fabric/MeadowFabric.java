@@ -6,6 +6,7 @@ import net.satisfyu.meadow.Meadow;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.satisfyu.meadow.fabric.villager.FabricVillager;
+import net.satisfyu.meadow.fabric.world.MeadowBiomeModification;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 import terrablender.api.TerraBlenderApi;
 
@@ -18,6 +19,7 @@ public class MeadowFabric implements ModInitializer {
 
         Meadow.init();
         Meadow.commonSetup();
+        MeadowBiomeModification.init();
         Meadow.LOGGER.error("LOL");
         FabricVillager.init();
 

@@ -3,15 +3,15 @@
   "config": {
     "features": [
       {
-        "chance": 0.3,
+        "chance": 0.8,
         "feature": "meadow:oak_pine_checked"
       },
       {
-        "chance": 0.2,
+        "chance": 0.6,
         "feature": "meadow:pine_hanging_checked"
       },
       {
-        "chance": 0.25,
+        "chance": 0.8,
         "feature": "meadow:birch_pine_hanging_checked"
       }
     ],
