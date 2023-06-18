@@ -15,8 +15,7 @@ public class StoveBlockWoodBlockEntity extends BlockEntity {
         super(BlockEntityRegistry.STOVE_BLOCK_WOOD_BLOCK_ENTITY.get(), pos, state);
     }
 
-    public static void tick(World world, BlockPos pos) {
-        world.getEntitiesByClass(PlayerEntity.class, new Box(pos).expand(12F), player -> true).forEach(
-                player -> player.addStatusEffect(new StatusEffectInstance(EffectRegistry.COZY_HOME.get(), 200, 0, true, false, true)));
+    public static void tick(World world, BlockPos pos, BlockState state, BlockEntity blockEntity) {
+        world.getEntitiesByClass(PlayerEntity.class, new Box(pos).expand(12F), player -> true).forEach(player -> player.addStatusEffect(new StatusEffectInstance(EffectRegistry.COZY_HOME.get(), 200, 0, true, false, true)));
     }
 }
