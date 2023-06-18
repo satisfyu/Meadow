@@ -11,17 +11,12 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import static net.satisfyu.meadow.Meadow.MOD_ID;
-
 public class CookingCauldronRecipeSerializer implements RecipeSerializer<CookingCauldronRecipe> {
 
     private CookingCauldronRecipeSerializer() {
     }
 
     public static final CookingCauldronRecipeSerializer INSTANCE = new CookingCauldronRecipeSerializer();
-
-    // This will be the "type" field in the json
-    public static final Identifier ID = new Identifier(MOD_ID,"cooking");
 
     @Override
     // Turns json into Recipe
