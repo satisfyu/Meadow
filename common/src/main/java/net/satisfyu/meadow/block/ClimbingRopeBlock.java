@@ -26,7 +26,7 @@ public class ClimbingRopeBlock extends Block {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if(!world.isClient()){
+        if (!world.isClient()) {
             BlockState blockState = world.getBlockState(pos.up());
             if (blockState.isOf(ObjectRegistry.CLIMBING_ROPE.get()) || blockState.isOf(ObjectRegistry.CLIMBING_ROPE_TOPMOUNT.get())) {
                 return state;

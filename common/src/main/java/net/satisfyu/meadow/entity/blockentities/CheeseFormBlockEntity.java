@@ -6,7 +6,6 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -147,8 +146,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
                 if (slot1Stack.isIn(MeadowTags.MILK)) {
                     ItemStack bucket = slot1Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultStack() : Items.BUCKET.getDefaultStack();
                     this.setStack(1, bucket);
-                }
-                else {
+                } else {
                     removeStack(1, 1);
                 }
             }
@@ -157,8 +155,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
                 if (slot2Stack.isIn(MeadowTags.MILK)) {
                     ItemStack bucket = slot2Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultStack() : Items.BUCKET.getDefaultStack();
                     this.setStack(2, bucket);
-                }
-                else {
+                } else {
                     removeStack(2, 1);
                 }
             }
@@ -206,12 +203,13 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
             }
         }
     }
+
     @Override
     public boolean canPlayerUse(PlayerEntity player) {
         if (this.world.getBlockEntity(this.pos) != this) {
             return false;
         } else {
-            return player.squaredDistanceTo((double)this.pos.getX() + 0.5, (double)this.pos.getY() + 0.5, (double)this.pos.getZ() + 0.5) <= 64.0;
+            return player.squaredDistanceTo((double) this.pos.getX() + 0.5, (double) this.pos.getY() + 0.5, (double) this.pos.getZ() + 0.5) <= 64.0;
         }
     }
 

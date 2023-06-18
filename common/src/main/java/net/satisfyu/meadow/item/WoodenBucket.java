@@ -56,19 +56,18 @@ public class WoodenBucket extends BucketItem {
                 BlockState blockState = world.getBlockState(blockPos);
                 if (blockState.getBlock() instanceof FluidDrainable f) {
 
-                    if(blockState.getBlock().equals(Blocks.LAVA)){
+                    if (blockState.getBlock().equals(Blocks.LAVA)) {
                         return TypedActionResult.pass(itemStack);
                     }
                     itemStack2 = (fluidDrainable = f).tryDrainFluid(world, blockPos, blockState);
 
-                    if(itemStack2.isEmpty()){
+                    if (itemStack2.isEmpty()) {
                         return TypedActionResult.pass(itemStack);
                     }
 
-                    if(itemStack2.getItem().equals(Items.WATER_BUCKET)){
+                    if (itemStack2.getItem().equals(Items.WATER_BUCKET)) {
                         itemStack2 = new ItemStack(ObjectRegistry.WOODEN_WATER_BUCKET.get());
-                    }
-                    else if(itemStack2.getItem().equals(Items.POWDER_SNOW_BUCKET)){
+                    } else if (itemStack2.getItem().equals(Items.POWDER_SNOW_BUCKET)) {
                         itemStack2 = new ItemStack(ObjectRegistry.WOODEN_POWDER_SNOW_BUCKET.get());
                     }
                     user.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -76,7 +75,7 @@ public class WoodenBucket extends BucketItem {
                     world.emitGameEvent(user, GameEvent.FLUID_PICKUP, blockPos);
                     ItemStack itemStack3 = ItemUsage.exchangeStack(itemStack, user, itemStack2);
                     if (!world.isClient) {
-                        Criteria.FILLED_BUCKET.trigger((ServerPlayerEntity)user, itemStack2);
+                        Criteria.FILLED_BUCKET.trigger((ServerPlayerEntity) user, itemStack2);
                     }
                     return TypedActionResult.success(itemStack3, world.isClient());
                 }
@@ -87,7 +86,7 @@ public class WoodenBucket extends BucketItem {
             if (this.placeFluid(user, world, blockPos3, blockHitResult)) {
                 this.onEmptied(user, world, itemStack, blockPos3);
                 if (user instanceof ServerPlayerEntity) {
-                    Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)user, blockPos3, itemStack);
+                    Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity) user, blockPos3, itemStack);
                 }
                 user.incrementStat(Stats.USED.getOrCreateStat(this));
                 return TypedActionResult.success(WoodenBucket.getEmptiedStack(itemStack, user), world.isClient());
@@ -128,12 +127,12 @@ public class WoodenBucket extends BucketItem {
             int k = pos.getZ();
             world.playSound(player, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5f, 2.6f + (world.random.nextFloat() - world.random.nextFloat()) * 0.8f);
             for (int l = 0; l < 8; ++l) {
-                world.addParticle(ParticleTypes.LARGE_SMOKE, (double)i + Math.random(), (double)j + Math.random(), (double)k + Math.random(), 0.0, 0.0, 0.0);
+                world.addParticle(ParticleTypes.LARGE_SMOKE, (double) i + Math.random(), (double) j + Math.random(), (double) k + Math.random(), 0.0, 0.0, 0.0);
             }
             return true;
         }
         if (block instanceof FluidFillable && this.fluid == Fluids.WATER) {
-            ((FluidFillable) block).tryFillWithFluid(world, pos, blockState, ((FlowableFluid)this.fluid).getStill(false));
+            ((FluidFillable) block).tryFillWithFluid(world, pos, blockState, ((FlowableFluid) this.fluid).getStill(false));
             this.playEmptyingSound(player, world, pos);
             return true;
         }

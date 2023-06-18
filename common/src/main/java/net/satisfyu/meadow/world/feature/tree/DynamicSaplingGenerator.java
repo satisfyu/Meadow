@@ -26,10 +26,10 @@ public abstract class DynamicSaplingGenerator extends SaplingGenerator {
 
     public boolean generate(ServerWorld world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random random) {
         RegistryEntry<? extends ConfiguredFeature<?, ?>> registryEntry = this.getTreeFeature(world, random, this.areFlowersNearby(world, pos));
-        if(registryEntry == null) return false;
+        if (registryEntry == null) return false;
         ConfiguredFeature<?, ?> configuredFeature = registryEntry.value();
         world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NO_REDRAW);
-        if(configuredFeature.generate(world, chunkGenerator, random, pos)) {
+        if (configuredFeature.generate(world, chunkGenerator, random, pos)) {
             return true;
         }
         world.setBlockState(pos, state, Block.NO_REDRAW);
@@ -37,8 +37,8 @@ public abstract class DynamicSaplingGenerator extends SaplingGenerator {
     }
 
     private boolean areFlowersNearby(WorldAccess world, BlockPos pos) {
-        for(BlockPos blockPos : BlockPos.Mutable.iterate(pos.down().north(2).west(2), pos.up().south(2).east(2))) {
-            if(!world.getBlockState(blockPos).isIn(BlockTags.FLOWERS)) continue;
+        for (BlockPos blockPos : BlockPos.Mutable.iterate(pos.down().north(2).west(2), pos.up().south(2).east(2))) {
+            if (!world.getBlockState(blockPos).isIn(BlockTags.FLOWERS)) continue;
             return true;
         }
         return false;

@@ -16,7 +16,8 @@ import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
 
 public class BigFlowerPotBlockEntityRenderer implements BlockEntityRenderer<BigFlowerPotBlockEntity> {
 
-    public BigFlowerPotBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {}
+    public BigFlowerPotBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+    }
 
     @Override
     public void render(BigFlowerPotBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
@@ -38,5 +39,5 @@ public class BigFlowerPotBlockEntityRenderer implements BlockEntityRenderer<BigF
         }
         matrices.pop();
     }
-    
+
 }

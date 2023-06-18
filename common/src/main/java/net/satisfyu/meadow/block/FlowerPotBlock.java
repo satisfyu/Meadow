@@ -8,7 +8,9 @@ import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,7 +26,7 @@ public abstract class FlowerPotBlock extends Block implements BlockEntityProvide
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient || hand == Hand.OFF_HAND) return ActionResult.SUCCESS;
-        FlowerPotBlockEntity be = (FlowerPotBlockEntity)world.getBlockEntity(pos);
+        FlowerPotBlockEntity be = (FlowerPotBlockEntity) world.getBlockEntity(pos);
         if (be == null || player.isSneaking()) return ActionResult.PASS;
 
         ItemStack handStack = player.getStackInHand(hand);
@@ -57,7 +59,7 @@ public abstract class FlowerPotBlock extends Block implements BlockEntityProvide
                 if (flower != null) {
                     ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), flower.getDefaultStack());
                 }
-                world.updateComparators(pos,this);
+                world.updateComparators(pos, this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
         }

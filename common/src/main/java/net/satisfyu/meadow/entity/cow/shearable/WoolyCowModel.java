@@ -35,8 +35,8 @@ public class WoolyCowModel<T extends CowEntity> extends CowEntityModel<T> {
     @Override
     public void animateModel(T entity, float f, float g, float h) {
         super.animateModel(entity, f, g, h);
-        this.head.pivotY = 6.0f + ((ShearableCowEntity)entity).getNeckAngle(h) * 9.0f;
-        this.headPitchModifier = ((ShearableCowEntity)entity).getHeadAngle(h);
+        this.head.pivotY = 6.0f + ((ShearableCowEntity) entity).getNeckAngle(h) * 9.0f;
+        this.headPitchModifier = ((ShearableCowEntity) entity).getHeadAngle(h);
     }
 
     @Override

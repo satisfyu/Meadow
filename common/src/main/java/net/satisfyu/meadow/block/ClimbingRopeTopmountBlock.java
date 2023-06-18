@@ -30,10 +30,10 @@ public class ClimbingRopeTopmountBlock extends Block {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if(!world.isClient){
-            for(int i = 1; i <= 10; i++){
+        if (!world.isClient) {
+            for (int i = 1; i <= 10; i++) {
                 BlockPos blockPos = pos.offset(Direction.DOWN, i);
-                if(world.canSetBlock(blockPos) && world.getBlockState(blockPos).isAir()){
+                if (world.canSetBlock(blockPos) && world.getBlockState(blockPos).isAir()) {
                     world.setBlockState(blockPos, ObjectRegistry.CLIMBING_ROPE.get().getDefaultState());
                 }
             }
@@ -42,7 +42,7 @@ public class ClimbingRopeTopmountBlock extends Block {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if(!world.isClient()){
+        if (!world.isClient()) {
             if (Block.sideCoversSmallSquare(world, pos.up(), Direction.DOWN)) {
                 return state;
             }
@@ -61,6 +61,7 @@ public class ClimbingRopeTopmountBlock extends Block {
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return Block.sideCoversSmallSquare(world, pos.up(), Direction.DOWN) && world.isAir(pos.down());
     }
+
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.rope.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));

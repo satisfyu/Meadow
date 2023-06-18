@@ -28,7 +28,7 @@ public class WoodenMilkBucket extends MilkBucketItem {
             Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
             serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
         }
-        if (user instanceof PlayerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
+        if (user instanceof PlayerEntity && !((PlayerEntity) user).getAbilities().creativeMode) {
             stack.decrement(1);
         }
         if (!world.isClient) {
@@ -42,7 +42,7 @@ public class WoodenMilkBucket extends MilkBucketItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable(  "item.meadow.ingredient.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(Text.translatable("item.meadow.ingredient.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
 
     }
 }

@@ -16,7 +16,7 @@ import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 import java.util.List;
 
 public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
-    private static final Identifier TEXTURE = new Identifier("meadow","textures/gui/woodcutter.png");
+    private static final Identifier TEXTURE = new Identifier("meadow", "textures/gui/woodcutter.png");
     private final int recipeIconPosX = 58;
     private final int recipeIconPosY = 15;
     private final int maxRecipeIcons = 16;
@@ -102,9 +102,10 @@ public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
             int i = this.x + recipeIconPosX;
             int j = this.y + recipeIconPosY;
             for (int l = 0; l < maxRecipeIcons; l++) {
-                double d = mouseX - (double)(i + l % recipeIconPerLine * recipeIconWidth);
-                double e = mouseY - (double)(j + l / recipeIconPerLine * recipeIconHeight);
-                if (!(d >= 0.0) || !(e >= 0.0) || !(d < (float)recipeIconWidth) || !(e < (float)recipeIconHeight) || !this.handler.onButtonClick(this.client.player, l)) continue;
+                double d = mouseX - (double) (i + l % recipeIconPerLine * recipeIconWidth);
+                double e = mouseY - (double) (j + l / recipeIconPerLine * recipeIconHeight);
+                if (!(d >= 0.0) || !(e >= 0.0) || !(d < (float) recipeIconWidth) || !(e < (float) recipeIconHeight) || !this.handler.onButtonClick(this.client.player, l))
+                    continue;
                 MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0f));
                 this.client.interactionManager.clickButton(this.handler.syncId, l);
                 return true;

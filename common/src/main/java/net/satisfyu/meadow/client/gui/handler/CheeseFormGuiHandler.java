@@ -19,8 +19,8 @@ import java.util.List;
 
 public class CheeseFormGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
-    public CheeseFormGuiHandler(int syncId, PlayerInventory playerInventory){
-        this(syncId, playerInventory,  new SimpleInventory(3), new ArrayPropertyDelegate(2));
+    public CheeseFormGuiHandler(int syncId, PlayerInventory playerInventory) {
+        this(syncId, playerInventory, new SimpleInventory(3), new ArrayPropertyDelegate(2));
     }
 
     public CheeseFormGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
@@ -31,8 +31,8 @@ public class CheeseFormGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
     private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
         this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 0, 123, 34));
-        this.addSlot(new Slot(inventory, 1, 33 , 33));
-        this.addSlot(new Slot(inventory, 2, 51 , 33));
+        this.addSlot(new Slot(inventory, 1, 33, 33));
+        this.addSlot(new Slot(inventory, 2, 51, 33));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {

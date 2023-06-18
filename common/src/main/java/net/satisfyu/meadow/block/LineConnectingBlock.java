@@ -54,14 +54,10 @@ public class LineConnectingBlock extends Block {
 
         LineConnectingType type;
         switch (facing) {
-            case EAST ->
-                    type = getType(state, world.getBlockState(pos.south()), world.getBlockState(pos.north()));
-            case SOUTH ->
-                    type =  getType(state, world.getBlockState(pos.west()), world.getBlockState(pos.east()));
-            case WEST ->
-                    type =  getType(state, world.getBlockState(pos.north()), world.getBlockState(pos.south()));
-            default ->
-                    type =  getType(state, world.getBlockState(pos.east()), world.getBlockState(pos.west()));
+            case EAST -> type = getType(state, world.getBlockState(pos.south()), world.getBlockState(pos.north()));
+            case SOUTH -> type = getType(state, world.getBlockState(pos.west()), world.getBlockState(pos.east()));
+            case WEST -> type = getType(state, world.getBlockState(pos.north()), world.getBlockState(pos.south()));
+            default -> type = getType(state, world.getBlockState(pos.east()), world.getBlockState(pos.west()));
         }
         if (state.get(TYPE) != type) {
             state = state.with(TYPE, type);

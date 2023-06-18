@@ -36,20 +36,19 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
     }
 
 
-
     @Override
     public boolean matches(Inventory inventory, World world) {
         DefaultedList<Ingredient> items = getIngredients();
         List<ItemStack> items2 = new ArrayList<>(List.of(inventory.getStack(0), inventory.getStack(1), inventory.getStack(2)));
-        for(Ingredient i : items){
+        for (Ingredient i : items) {
             boolean matches = false;
-            for(ItemStack stack : items2){
-                if(i.test(stack)){
+            for (ItemStack stack : items2) {
+                if (i.test(stack)) {
                     matches = true;
                     break;
                 }
             }
-            if(!matches){
+            if (!matches) {
                 return false;
             }
         }

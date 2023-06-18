@@ -63,33 +63,33 @@ public class PrivateRecipeAlternativesWidget extends DrawableHelper implements D
         boolean bl = MeadowClient.rememberedCraftableToggle;
 
         int k = 4;
-        int l = (int)Math.ceil(((float)1 / (float)k));
+        int l = (int) Math.ceil(((float) 1 / (float) k));
 
         this.buttonX = buttonX;
         this.buttonY = buttonY;
 
-        float f = (float)(this.buttonX + 25);
-        float g = (float)(areaCenterX + 50);
+        float f = (float) (this.buttonX + 25);
+        float g = (float) (areaCenterX + 50);
         if (f > g) {
-            this.buttonX = (int)((float)this.buttonX - delta * (float)((int)((f - g) / delta)));
+            this.buttonX = (int) ((float) this.buttonX - delta * (float) ((int) ((f - g) / delta)));
         }
 
-        float h = (float)(this.buttonY + l * 25);
-        float n = (float)(areaCenterY + 50);
+        float h = (float) (this.buttonY + l * 25);
+        float n = (float) (areaCenterY + 50);
         if (h > n) {
-            this.buttonY = (int)((float)this.buttonY - delta * (float)MathHelper.ceil((h - n) / delta));
+            this.buttonY = (int) ((float) this.buttonY - delta * (float) MathHelper.ceil((h - n) / delta));
         }
 
-        float o = (float)this.buttonY;
-        float p = (float)(areaCenterY - 100);
+        float o = (float) this.buttonY;
+        float p = (float) (areaCenterY - 100);
         if (o < p) {
-            this.buttonY = (int)((float)this.buttonY - delta * (float)MathHelper.ceil((o - p) / delta));
+            this.buttonY = (int) ((float) this.buttonY - delta * (float) MathHelper.ceil((o - p) / delta));
         }
 
         this.visible = true;
         this.alternativeButtons.clear();
 
-        this.alternativeButtons.add(new CustomAlternativeButtonWidget(this.buttonX + 6, this.buttonY+ 6, this.recipe, bl));
+        this.alternativeButtons.add(new CustomAlternativeButtonWidget(this.buttonX + 6, this.buttonY + 6, this.recipe, bl));
 
         this.lastClickedRecipe = null;
     }
@@ -107,7 +107,7 @@ public class PrivateRecipeAlternativesWidget extends DrawableHelper implements D
                 }
 
                 alternativeButtonWidget = var6.next();
-            } while(!alternativeButtonWidget.mouseClicked(mouseX, mouseY, button));
+            } while (!alternativeButtonWidget.mouseClicked(mouseX, mouseY, button));
 
             this.lastClickedRecipe = alternativeButtonWidget.recipe;
             return true;
@@ -124,7 +124,7 @@ public class PrivateRecipeAlternativesWidget extends DrawableHelper implements D
             matrices.translate(0.0, 0.0, 170.0);
             int i = this.alternativeButtons.size() <= 16 ? 4 : 5;
             int j = Math.min(this.alternativeButtons.size(), i);
-            int k = MathHelper.ceil((float)this.alternativeButtons.size() / (float)i);
+            int k = MathHelper.ceil((float) this.alternativeButtons.size() / (float) i);
             this.renderGrid(matrices, j, k, 24, 4, 82, 208);
             RenderSystem.disableBlend();
 
@@ -142,11 +142,11 @@ public class PrivateRecipeAlternativesWidget extends DrawableHelper implements D
         this.drawTexture(matrices, this.buttonX, this.buttonY + l * 2 + j * k, m, n + k + l, l, l);
         this.drawTexture(matrices, this.buttonX + l * 2 + i * k, this.buttonY + l * 2 + j * k, m + k + l, n + k + l, l, l);
 
-        for(int o = 0; o < i; ++o) {
+        for (int o = 0; o < i; ++o) {
             this.drawTexture(matrices, this.buttonX + l + o * k, this.buttonY, m + l, n, k, l);
             this.drawTexture(matrices, this.buttonX + l + (o + 1) * k, this.buttonY, m + l, n, l, l);
 
-            for(int p = 0; p < j; ++p) {
+            for (int p = 0; p < j; ++p) {
                 if (o == 0) {
                     this.drawTexture(matrices, this.buttonX, this.buttonY + l + p * k, m, n + l, l, k);
                     this.drawTexture(matrices, this.buttonX, this.buttonY + l + (p + 1) * k, m, n + l, l, l);
@@ -214,7 +214,7 @@ public class PrivateRecipeAlternativesWidget extends DrawableHelper implements D
             this.drawTexture(matrices, this.x, this.y, i, j, this.width, this.height);
             MatrixStack matrixStack = RenderSystem.getModelViewStack();
             matrixStack.push();
-            matrixStack.translate( (this.x + 2), (this.y + 2), 125.0);
+            matrixStack.translate((this.x + 2), (this.y + 2), 125.0);
 
             for (InputSlot inputSlot : this.slots) {
                 matrixStack.push();

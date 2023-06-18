@@ -29,7 +29,7 @@ public class FondueGui extends HandledScreen<FondueGuiHandler> {
         this.drawTexture(matrices, posX, posY, 0, 0, this.backgroundWidth - 1, this.backgroundHeight);
 
         renderProgressArrow(matrices, posX, posY);
-        if(handler.getIsCooking())  {
+        if (handler.getIsCooking()) {
             this.drawTexture(matrices, posX + 40, posY + 54, 176, 0, 16, 14);
         }
     }

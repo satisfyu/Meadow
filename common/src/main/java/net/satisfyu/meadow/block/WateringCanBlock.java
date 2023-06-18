@@ -15,14 +15,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class WateringCanBlock extends  HFacingBlock{
+public class WateringCanBlock extends HFacingBlock {
     public WateringCanBlock(Settings settings) {
         super(settings);
     }
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0, 0.3125, 0.6875, 0.4375, 0.6875), BooleanBiFunction.OR);;
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0, 0.3125, 0.6875, 0.4375, 0.6875), BooleanBiFunction.OR);
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.6875, 0.125, 0.4375, 0.8125, 0.125, 0.5625), BooleanBiFunction.OR);
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.125, 0.4375, 0.8125, 0.375, 0.5625), BooleanBiFunction.OR);
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.6875, 0.375, 0.4375, 0.8125, 0.375, 0.5625), BooleanBiFunction.OR);
@@ -42,7 +42,6 @@ public class WateringCanBlock extends  HFacingBlock{
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE.get(state.get(FACING));
     }
-
 
 
 }

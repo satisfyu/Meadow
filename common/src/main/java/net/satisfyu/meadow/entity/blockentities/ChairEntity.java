@@ -24,9 +24,9 @@ public class ChairEntity extends Entity {
 
     @Override
     public Vec3d updatePassengerForDismount(LivingEntity passenger) {
-        if(passenger instanceof PlayerEntity p) {
+        if (passenger instanceof PlayerEntity p) {
             BlockPos pos = ChairUtil.getPreviousPlayerPosition(p, this);
-            if(pos != null) {
+            if (pos != null) {
                 discard();
                 return new Vec3d(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
             }

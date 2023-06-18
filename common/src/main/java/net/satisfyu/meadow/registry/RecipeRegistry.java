@@ -9,10 +9,10 @@ import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipeSerializer;
-import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
-import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipeSerializer;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipeSerializer;
+import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
+import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipeSerializer;
 
 import java.util.function.Supplier;
 
@@ -30,7 +30,7 @@ public class RecipeRegistry {
     public static final RegistrySupplier<RecipeSerializer<CheeseFormRecipe>> CHEESE_SERIALIZER = create("cheese", () -> CheeseFormRecipeSerializer.INSTANCE);
 
 
-    public static void init(){
+    public static void init() {
         Meadow.LOGGER.debug("Registering Recipies for " + Meadow.MOD_ID);
         RECIPE_SERIALIZERS.register();
         RECIPE_TYPES.register();

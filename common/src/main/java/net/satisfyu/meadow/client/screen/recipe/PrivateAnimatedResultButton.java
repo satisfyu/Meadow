@@ -57,7 +57,7 @@ public class PrivateAnimatedResultButton extends ClickableWidget {
         boolean bl = this.bounce > 0.0F;
         MatrixStack matrixStack = RenderSystem.getModelViewStack();
         if (bl) {
-            float f = 1.0F + 0.1F * (float)Math.sin((this.bounce / 15.0F * 3.1415927F));
+            float f = 1.0F + 0.1F * (float) Math.sin((this.bounce / 15.0F * 3.1415927F));
             matrixStack.push();
             matrixStack.translate((this.x + 8), (this.y + 12), 0.0);
             matrixStack.scale(f, f, 1.0F);
@@ -92,7 +92,7 @@ public class PrivateAnimatedResultButton extends ClickableWidget {
 
     @Override
     protected boolean isValidClickButton(int button) {
-        return button == 0 ||button == 1;
+        return button == 0 || button == 1;
     }
 
     public List<Text> getTooltip(Screen screen) {

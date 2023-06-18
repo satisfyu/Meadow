@@ -49,7 +49,6 @@ public class CheeseFormBlock extends BlockWithEntity {
     }
 
 
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
@@ -78,7 +77,7 @@ public class CheeseFormBlock extends BlockWithEntity {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof CheeseFormBlockEntity be) {
                 ItemScatterer.spawn(world, pos, be);
-                world.updateComparators(pos,this);
+                world.updateComparators(pos, this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
         }
@@ -99,7 +98,6 @@ public class CheeseFormBlock extends BlockWithEntity {
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
-
 
 
     @Override

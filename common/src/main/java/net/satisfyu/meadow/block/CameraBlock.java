@@ -57,7 +57,6 @@ public class CameraBlock extends Block {
     }
 
 
-
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.playSound(null, pos, new Random().nextBoolean() ? SoundRegistry.CLICK_CAMERA.get() : SoundRegistry.CLICK_CAMERA2.get(), SoundCategory.BLOCKS, 1.0f, 1.0f);

@@ -11,6 +11,7 @@ import static net.satisfyu.meadow.Meadow.MOD_ID;
 public class CookieCowRenderer extends MobEntityRenderer<CookieCowEntity, CowEntityModel<CookieCowEntity>> {
 
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/cow/cookie_cow.png");
+
     public CookieCowRenderer(EntityRendererFactory.Context context) {
         super(context, new CowEntityModel<>(context.getPart(MeadowClient.COOKIE_COW_MODEL_LAYER)), 0.7f);
     }

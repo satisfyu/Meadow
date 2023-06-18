@@ -35,7 +35,7 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
         this.addDrawableChild(new TexturedButtonWidget(this.x + 5, this.y + 25, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (button) -> {
             this.recipeBook.toggleOpen();
             this.x = this.recipeBook.findLeftEdge(this.width, this.backgroundWidth);
-            ((TexturedButtonWidget)button).setPos(this.x +  5, this.y + 25);
+            ((TexturedButtonWidget) button).setPos(this.x + 5, this.y + 25);
         }));
         this.titleX += 20;
     }
@@ -104,7 +104,7 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
 
     @Override
     protected boolean isClickOutsideBounds(double mouseX, double mouseY, int left, int top, int button) {
-        boolean bl = mouseX < (double)left || mouseY < (double)top || mouseX >= (double)(left + this.backgroundWidth) || mouseY >= (double)(top + this.backgroundHeight);
+        boolean bl = mouseX < (double) left || mouseY < (double) top || mouseX >= (double) (left + this.backgroundWidth) || mouseY >= (double) (top + this.backgroundHeight);
         return this.recipeBook.isClickOutsideBounds(mouseX, mouseY, this.x, this.y, this.backgroundWidth, this.backgroundHeight) && bl;
     }
 

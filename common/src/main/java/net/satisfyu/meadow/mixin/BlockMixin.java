@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class BlockMixin {
     @Inject(method = "cannotConnect(Lnet/minecraft/block/BlockState;)Z", at = @At("HEAD"), cancellable = true)
     private static void checkCannotConnect(BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        if(state.isIn(MeadowTags.CAN_NOT_CONNECT)) cir.setReturnValue(true);
+        if (state.isIn(MeadowTags.CAN_NOT_CONNECT)) cir.setReturnValue(true);
     }
 }

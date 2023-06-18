@@ -23,7 +23,7 @@ public class SoundRegistry {
         return SOUND_EVENTS.register(new MeadowIdentifier(name), () -> new SoundEvent(new MeadowIdentifier(name)));
     }
 
-    public static void init(){
+    public static void init() {
         Meadow.LOGGER.debug("Registering Mod Sounds for " + Meadow.MOD_ID);
     }
 

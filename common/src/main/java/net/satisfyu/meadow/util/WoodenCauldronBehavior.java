@@ -1,9 +1,14 @@
 package net.satisfyu.meadow.util;
 
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.cauldron.CauldronBehavior;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
 import net.minecraft.sound.SoundCategory;
@@ -31,6 +36,7 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
     CauldronBehavior FILL_WITH_POWDER_SNOW = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_POWDER_SNOW_CAULDRON.get().getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW, Items.BUCKET);
     CauldronBehavior FILL_WITH_WATER_W = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_WATER_CAULDRON.get().getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY, ObjectRegistry.WOODEN_BUCKET.get());
     CauldronBehavior FILL_WITH_POWDER_SNOW_W = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_POWDER_SNOW_CAULDRON.get().getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW, ObjectRegistry.WOODEN_BUCKET.get());
+
     ActionResult interact(BlockState var1, World var2, BlockPos var3, PlayerEntity var4, Hand var5, ItemStack var6);
 
     static void registerBehavior() {
@@ -155,7 +161,7 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
         return ActionResult.success(world.isClient);
     }
 
-    static void registerCauldronBehavior(){
+    static void registerCauldronBehavior() {
         CauldronBehavior.WATER_CAULDRON_BEHAVIOR.put(ObjectRegistry.WOODEN_BUCKET.get(), (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(ObjectRegistry.WOODEN_WATER_BUCKET.get()), state -> state.get(LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
         CauldronBehavior.POWDER_SNOW_CAULDRON_BEHAVIOR.put(ObjectRegistry.WOODEN_BUCKET.get(), (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(ObjectRegistry.WOODEN_POWDER_SNOW_BUCKET.get()), state -> state.get(LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL_POWDER_SNOW));
         registerBucketBehaviorForNormalCauldron(CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR);

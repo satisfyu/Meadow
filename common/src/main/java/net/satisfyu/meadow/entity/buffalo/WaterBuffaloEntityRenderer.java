@@ -10,6 +10,7 @@ import static net.satisfyu.meadow.Meadow.MOD_ID;
 public class WaterBuffaloEntityRenderer extends MobEntityRenderer<WaterBuffaloEntity, WaterBuffaloEntityModel> {
 
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/buffalo/water_buffalo.png");
+
     public WaterBuffaloEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new WaterBuffaloEntityModel(context.getPart(MeadowClient.WATER_BUFFALO_MODEL_LAYER)), 0.9f);
     }

@@ -45,7 +45,8 @@ public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider 
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0, 0.5625, 0.0625, 0.375, 1), BooleanBiFunction.OR);
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.5625, 0.9375, 0.375, 0.625), BooleanBiFunction.OR);
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.9375, 0.9375, 0.375, 1), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.625, 0.9375, 0.3125, 0.9375), BooleanBiFunction.OR);        return shape;
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.625, 0.9375, 0.3125, 0.9375), BooleanBiFunction.OR);
+        return shape;
     };
 
     public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
@@ -128,10 +129,10 @@ public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider 
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof FlowerBoxBlockEntity be) {
-                for(Item stack : be.getFlowers()){
+                for (Item stack : be.getFlowers()) {
                     ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(stack));
                 }
-                world.updateComparators(pos,this);
+                world.updateComparators(pos, this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
         }

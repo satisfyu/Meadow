@@ -48,7 +48,7 @@ public class MeadowRegion extends Region {
             meadowForestPoints.forEach(point -> builder.replaceBiome(point, MeadowSurfaceRules.MEADOW_FOREST_KEY));
 
             List<MultiNoiseUtil.NoiseHypercube> meadowClearingPoints = new ParameterUtils.ParameterPointListBuilder()
-                    .temperature(MultiNoiseUtil.ParameterRange.of(-0.45F,-0.15F), MultiNoiseUtil.ParameterRange.of(-0.15F, 0.2F))
+                    .temperature(MultiNoiseUtil.ParameterRange.of(-0.45F, -0.15F), MultiNoiseUtil.ParameterRange.of(-0.15F, 0.2F))
                     .humidity(MultiNoiseUtil.ParameterRange.of(-1.0F, -0.35F), MultiNoiseUtil.ParameterRange.of(-0.35F, -0.1F), MultiNoiseUtil.ParameterRange.of(-0.1F, 0.1F), MultiNoiseUtil.ParameterRange.of(0.1F, 0.3F))
                     .continentalness(ParameterUtils.Continentalness.FAR_INLAND)
                     .erosion(ParameterUtils.Erosion.EROSION_1, ParameterUtils.Erosion.EROSION_2, ParameterUtils.Erosion.EROSION_3)
@@ -60,7 +60,7 @@ public class MeadowRegion extends Region {
         });
     }
 
-    public static void loadTerrablender(){
+    public static void loadTerrablender() {
         Regions.register(new MeadowRegion(new Identifier(MOD_ID, "overworld"), 5));
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, MeadowSurfaceRules.makeRules());
     }

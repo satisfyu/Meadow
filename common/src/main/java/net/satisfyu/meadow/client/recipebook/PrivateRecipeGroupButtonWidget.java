@@ -25,7 +25,7 @@ public class PrivateRecipeGroupButtonWidget extends ToggleButtonWidget {
 
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         if (this.bounce > 0.0F) {
-            float f = 1.0F + 0.1F * (float)Math.sin((this.bounce / 15.0F * 3.1415927F));
+            float f = 1.0F + 0.1F * (float) Math.sin((this.bounce / 15.0F * 3.1415927F));
             matrices.push();
             matrices.translate((this.x + 8), (this.y + 12), 0.0);
             matrices.scale(1.0F, f, 1.0F);
@@ -65,10 +65,10 @@ public class PrivateRecipeGroupButtonWidget extends ToggleButtonWidget {
         List<ItemStack> list = this.group.getIcons();
         int i = this.toggled ? -2 : 0;
         if (list.size() == 1) {
-            itemRenderer.renderInGui( list.get(0), this.x + 9 + i, this.y + 5);
+            itemRenderer.renderInGui(list.get(0), this.x + 9 + i, this.y + 5);
         } else if (list.size() == 2) {
-            itemRenderer.renderInGui( list.get(0), this.x + 3 + i, this.y + 5);
-            itemRenderer.renderInGui( list.get(1), this.x + 14 + i, this.y + 5);
+            itemRenderer.renderInGui(list.get(0), this.x + 3 + i, this.y + 5);
+            itemRenderer.renderInGui(list.get(1), this.x + 14 + i, this.y + 5);
         }
 
     }

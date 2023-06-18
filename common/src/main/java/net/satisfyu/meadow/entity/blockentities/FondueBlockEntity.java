@@ -17,10 +17,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.util.ImplementedInventory;
 import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import net.satisfyu.meadow.util.ImplementedInventory;
 import net.satisfyu.meadow.util.MeadowTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -95,14 +95,14 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
     }
 
     public static void tick(World world, BlockPos blockPos, BlockState state, FondueBlockEntity entity) {
-        if(world.isClient()) {
+        if (world.isClient()) {
             return;
         }
 
-        if(hasRecipe(entity) && hasFuel(entity)) {
+        if (hasRecipe(entity) && hasFuel(entity)) {
             entity.progress++;
             markDirty(world, blockPos, state);
-            if(entity.progress >= entity.MAX_PROGRESS) {
+            if (entity.progress >= entity.MAX_PROGRESS) {
                 craftItem(entity);
             }
         } else {
@@ -111,10 +111,10 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
         }
     }
 
-    private static boolean hasFuel(FondueBlockEntity entity){
-        if(entity.fuelAmount > 0) return true;
+    private static boolean hasFuel(FondueBlockEntity entity) {
+        if (entity.fuelAmount > 0) return true;
         ItemStack stack = entity.inventory.get(2);
-        if(stack.isIn(MeadowTags.CHEESE)){
+        if (stack.isIn(MeadowTags.CHEESE)) {
             entity.fuelAmount = 10;
             stack.decrement(1);
             return true;

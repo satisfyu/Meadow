@@ -1,6 +1,9 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.Waterloggable;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -35,16 +38,13 @@ public class TableBlock extends LineConnectingBlock implements Waterloggable {
             return TOP_SHAPE;
         }
 
-        if((direction == Direction.NORTH && type == LineConnectingType.LEFT) || (direction == Direction.SOUTH && type == LineConnectingType.RIGHT)){
+        if ((direction == Direction.NORTH && type == LineConnectingType.LEFT) || (direction == Direction.SOUTH && type == LineConnectingType.RIGHT)) {
             return VoxelShapes.union(TOP_SHAPE, LEG_SHAPES[0], LEG_SHAPES[3]);
-        }
-        else if((direction == Direction.NORTH && type == LineConnectingType.RIGHT) || (direction == Direction.SOUTH && type == LineConnectingType.LEFT)){
+        } else if ((direction == Direction.NORTH && type == LineConnectingType.RIGHT) || (direction == Direction.SOUTH && type == LineConnectingType.LEFT)) {
             return VoxelShapes.union(TOP_SHAPE, LEG_SHAPES[1], LEG_SHAPES[2]);
-        }
-        else if((direction == Direction.EAST && type == LineConnectingType.LEFT) || (direction == Direction.WEST && type == LineConnectingType.RIGHT)){
+        } else if ((direction == Direction.EAST && type == LineConnectingType.LEFT) || (direction == Direction.WEST && type == LineConnectingType.RIGHT)) {
             return VoxelShapes.union(TOP_SHAPE, LEG_SHAPES[0], LEG_SHAPES[1]);
-        }
-        else if((direction == Direction.EAST && type == LineConnectingType.RIGHT) || (direction == Direction.WEST && type == LineConnectingType.LEFT)){
+        } else if ((direction == Direction.EAST && type == LineConnectingType.RIGHT) || (direction == Direction.WEST && type == LineConnectingType.LEFT)) {
             return VoxelShapes.union(TOP_SHAPE, LEG_SHAPES[2], LEG_SHAPES[3]);
         }
         return VoxelShapes.union(TOP_SHAPE, LEG_SHAPES);

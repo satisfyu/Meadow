@@ -25,6 +25,7 @@ public class DoormatBlock extends CarpetBlock {
             Block.createCuboidShape(3.0, 0.0, 1.5, 13.0, 0.5, 14.5),
             Block.createCuboidShape(1.5, 0.0, 3.0, 14.5, 0.5, 13.0)
     };
+
     public DoormatBlock(Settings settings) {
         super(settings);
     }

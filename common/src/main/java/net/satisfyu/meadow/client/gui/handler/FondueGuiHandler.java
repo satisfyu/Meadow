@@ -52,7 +52,7 @@ public class FondueGuiHandler extends ScreenHandler {
         }
     }
 
-    public boolean getIsCooking(){
+    public boolean getIsCooking() {
         return propertyDelegate.get(1) != 0;
     }
 
@@ -94,6 +94,6 @@ public class FondueGuiHandler extends ScreenHandler {
         if (progress == 0) {
             return 0;
         }
-        return progress * (arrowWidth - 1)/ maxProgress + 1;
+        return progress * (arrowWidth - 1) / maxProgress + 1;
     }
 }

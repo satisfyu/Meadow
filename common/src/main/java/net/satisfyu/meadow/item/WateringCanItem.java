@@ -41,7 +41,7 @@ public class WateringCanItem extends BlockItem {
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         PlayerEntity playerEntity = context.getPlayer();
-        if(playerEntity == null || playerEntity.isSneaking()) return super.useOnBlock(context);
+        if (playerEntity == null || playerEntity.isSneaking()) return super.useOnBlock(context);
         ItemStack stack = context.getStack();
 
         World world = context.getWorld();
@@ -61,7 +61,8 @@ public class WateringCanItem extends BlockItem {
         }
 
 
-        if(stack.getDamage() >= stack.getMaxDamage() && !playerEntity.getAbilities().creativeMode) return ActionResult.PASS;
+        if (stack.getDamage() >= stack.getMaxDamage() && !playerEntity.getAbilities().creativeMode)
+            return ActionResult.PASS;
         BlockPos blockPos = context.getBlockPos();
         BlockPos blockPos2 = blockPos.offset(context.getSide());
         if (WateringCanItem.useOnFertilizable(stack, world, blockPos, playerEntity)) {
@@ -87,7 +88,7 @@ public class WateringCanItem extends BlockItem {
         if (blockState.getBlock() instanceof Fertilizable && (fertilizable = (Fertilizable) blockState.getBlock()).isFertilizable(world, pos, blockState, world.isClient)) {
             if (world instanceof ServerWorld) {
                 if (fertilizable.canGrow(world, world.random, pos, blockState)) {
-                    fertilizable.grow((ServerWorld)world, world.random, pos, blockState);
+                    fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
                 }
                 damage(stack, playerEntity);
             }
@@ -105,11 +106,13 @@ public class WateringCanItem extends BlockItem {
             return true;
         }
         Random random = world.getRandom();
-        block0: for (int i = 0; i < 128; ++i) {
+        block0:
+        for (int i = 0; i < 128; ++i) {
             BlockPos blockPos2 = blockPos;
             BlockState blockState = Blocks.SEAGRASS.getDefaultState();
             for (int j = 0; j < i / 16; ++j) {
-                if (world.getBlockState(blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1)).isFullCube(world, blockPos2)) continue block0;
+                if (world.getBlockState(blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1)).isFullCube(world, blockPos2))
+                    continue block0;
             }
             RegistryEntry<Biome> registryEntry = world.getBiome(blockPos2);
             if (registryEntry.isIn(BiomeTags.PRODUCES_CORALS_FROM_BONEMEAL)) {
@@ -134,16 +137,16 @@ public class WateringCanItem extends BlockItem {
                 continue;
             }
             if (!blockState2.isOf(Blocks.SEAGRASS) || random.nextInt(10) != 0) continue;
-            ((Fertilizable) Blocks.SEAGRASS).grow((ServerWorld)world, random, blockPos2, blockState2);
+            ((Fertilizable) Blocks.SEAGRASS).grow((ServerWorld) world, random, blockPos2, blockState2);
         }
         damage(stack, playerEntity);
         return true;
     }
 
-    public static void damage(ItemStack stack, PlayerEntity entity){
-        if(entity.getAbilities().creativeMode) return;
+    public static void damage(ItemStack stack, PlayerEntity entity) {
+        if (entity.getAbilities().creativeMode) return;
         int damage = stack.getDamage();
-        if(damage < 25){
+        if (damage < 25) {
             stack.setDamage(damage + 1);
         }
     }

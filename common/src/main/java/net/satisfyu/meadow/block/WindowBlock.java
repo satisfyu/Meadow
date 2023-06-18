@@ -28,7 +28,7 @@ public class WindowBlock extends PaneBlock {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if(!world.isClient()){
+        if (!world.isClient()) {
             updateWindows(world, getHighestWindow(world, pos));
         }
     }
@@ -48,82 +48,76 @@ public class WindowBlock extends PaneBlock {
     }
 
 
-
-    private void updateWindows(World world, BlockPos pos){
+    private void updateWindows(World world, BlockPos pos) {
         int i = getWindowHeight(world, pos);
 
-        if(i == 3){
+        if (i == 3) {
             world.setBlockState(pos, world.getBlockState(pos).with(PART, 3));
             world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 2));
             world.setBlockState(pos.down(2), world.getBlockState(pos.down(2)).with(PART, 1));
-        }
-        else if(i == 2){
+        } else if (i == 2) {
             world.setBlockState(pos, world.getBlockState(pos).with(PART, 3));
             world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 1));
-        }
-        else if(i == 1){
+        } else if (i == 1) {
             world.setBlockState(pos, world.getBlockState(pos).with(PART, 0));
         }
     }
 
-    private BlockPos getHighestWindow(World world, BlockPos pos){
-        do{
+    private BlockPos getHighestWindow(World world, BlockPos pos) {
+        do {
             pos = pos.up();
         }
-        while(world.getBlockState(pos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(pos).isOf(ObjectRegistry.WINDOW_2.get()));
         return pos.down();
     }
 
 
-    private int getWindowHeight(World world, BlockPos pos){
+    private int getWindowHeight(World world, BlockPos pos) {
         BlockPos highestPos = getHighestWindow(world, pos);
         int i = 0;
-        do{
+        do {
             i++;
             highestPos = highestPos.down();
         }
-        while(world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW_2.get()));
         return i;
     }
 
 
-    private void updateWindows2(WorldAccess world, BlockPos pos){
+    private void updateWindows2(WorldAccess world, BlockPos pos) {
         int i = getWindowHeight2(world, pos);
 
-        if(i == 3){
+        if (i == 3) {
             world.setBlockState(pos, world.getBlockState(pos).with(PART, 3), 3);
             world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 2), 3);
             world.setBlockState(pos.down(2), world.getBlockState(pos.down(2)).with(PART, 1), 3);
-        }
-        else if(i == 2){
+        } else if (i == 2) {
             world.setBlockState(pos, world.getBlockState(pos).with(PART, 3), 3);
             world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 1), 3);
-        }
-        else if(i == 1){
+        } else if (i == 1) {
             world.setBlockState(pos, world.getBlockState(pos).with(PART, 0), 3);
         }
     }
 
-    private BlockPos getHighestWindow2(WorldAccess world, BlockPos pos){
-        do{
+    private BlockPos getHighestWindow2(WorldAccess world, BlockPos pos) {
+        do {
             pos = pos.up();
         }
-        while(world.getBlockState(pos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(pos).isOf(ObjectRegistry.WINDOW_2.get()));
         return pos.down();
     }
 
 
-    private int getWindowHeight2(WorldAccess world, BlockPos pos){
+    private int getWindowHeight2(WorldAccess world, BlockPos pos) {
         BlockPos highestPos = getHighestWindow2(world, pos);
         int i = 0;
-        do{
+        do {
             i++;
             highestPos = highestPos.down();
         }
-        while(world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW_2.get()));
         return i;
     }
-
 
 
     @Override

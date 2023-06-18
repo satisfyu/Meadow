@@ -13,8 +13,8 @@ import java.util.function.Supplier;
 public class FeatureRegistry {
     public static DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Meadow.MOD_ID, Registry.FEATURE_KEY);
     public static final RegistrySupplier<Feature<?>> COBBLED_LIMESTONE_ROCK = create("cobbled_limestone_rock", CobbledLimestoneRock::new);
-    
-    public static void init(){
+
+    public static void init() {
         Meadow.LOGGER.debug("Registering the ModFeatures for " + Meadow.MOD_ID);
         FEATURES.register();
     }

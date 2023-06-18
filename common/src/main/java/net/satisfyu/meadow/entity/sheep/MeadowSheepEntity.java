@@ -22,6 +22,7 @@ public class MeadowSheepEntity extends SheepEntity {
     private final Block woolBlock;
 
     private final Identifier lootTable;
+
     public MeadowSheepEntity(EntityType<? extends SheepEntity> entityType, World world, Block woolBlock, Identifier lootTable) {
         super(entityType, world);
         this.woolBlock = woolBlock;
@@ -49,12 +50,12 @@ public class MeadowSheepEntity extends SheepEntity {
 
     @Override
     public void sheared(SoundCategory shearedSoundCategory) {
-        if(!DROPS.containsValue(woolBlock)) DROPS.put(DyeColor.WHITE, woolBlock);
+        if (!DROPS.containsValue(woolBlock)) DROPS.put(DyeColor.WHITE, woolBlock);
         this.world.playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
         this.setSheared(true);
         int i = 1 + this.random.nextInt(3);
 
-        for(int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; ++j) {
             ItemEntity itemEntity = this.dropItem(DROPS.get(this.getColor()), 1);
             if (itemEntity != null) {
                 itemEntity.setVelocity(itemEntity.getVelocity().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));

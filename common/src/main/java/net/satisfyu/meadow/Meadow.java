@@ -28,7 +28,7 @@ public class Meadow {
         FeatureRegistry.init();
     }
 
-    public static void commonSetup(){
+    public static void commonSetup() {
         ObjectRegistry.commonInit();
         WoodenCauldronBehavior.registerBehavior();
 

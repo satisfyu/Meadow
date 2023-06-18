@@ -22,7 +22,7 @@ import net.satisfyu.meadow.registry.BlockEntityRegistry;
 
 public class ShelfBlockEntity extends LootableContainerBlockEntity {
     private DefaultedList<ItemStack> inventory;
-    private ViewerCountManager stateManager;
+    private final ViewerCountManager stateManager;
 
     public ShelfBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SHELF_BLOCK_ENTITY.get(), pos, state);
@@ -46,7 +46,7 @@ public class ShelfBlockEntity extends LootableContainerBlockEntity {
             @Override
             protected boolean isPlayerViewing(PlayerEntity player) {
                 if (player.currentScreenHandler instanceof GenericContainerScreenHandler) {
-                    Inventory inventory = ((GenericContainerScreenHandler)player.currentScreenHandler).getInventory();
+                    Inventory inventory = ((GenericContainerScreenHandler) player.currentScreenHandler).getInventory();
                     return inventory == ShelfBlockEntity.this;
                 } else {
                     return false;
@@ -120,7 +120,7 @@ public class ShelfBlockEntity extends LootableContainerBlockEntity {
     }
 
     public void setOpen(BlockState state, boolean open) {
-        if(state.getBlock() instanceof ShelfBlock rack) rack.playSound(world, this.getPos(), open);
+        if (state.getBlock() instanceof ShelfBlock rack) rack.playSound(world, this.getPos(), open);
         this.world.setBlockState(this.getPos(), state.with(Properties.OPEN, open), 3);
     }
 

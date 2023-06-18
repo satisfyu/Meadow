@@ -16,9 +16,9 @@ import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 import net.satisfyu.meadow.registry.SoundRegistry;
 
@@ -33,8 +33,9 @@ public class WoodcutterGuiHandler extends ScreenHandler {
     private long lastTakeTime;
     private Slot inputSlot;
     private Slot outputSlot;
-    Runnable contentsChangedListener = () -> {};
-    public final Inventory input = new SimpleInventory(1){
+    Runnable contentsChangedListener = () -> {
+    };
+    public final Inventory input = new SimpleInventory(1) {
         @Override
         public void markDirty() {
             super.markDirty();
@@ -60,10 +61,9 @@ public class WoodcutterGuiHandler extends ScreenHandler {
     }
 
 
-
     private void buildBlockEntityContainer(PlayerInventory playerInventory) {
         this.inputSlot = this.addSlot(new Slot(this.input, 0, 33, 24));
-        this.outputSlot = this.addSlot(new FurnaceOutputSlot(playerInventory.player, this.output, 1, 144, 34){
+        this.outputSlot = this.addSlot(new FurnaceOutputSlot(playerInventory.player, this.output, 1, 144, 34) {
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
                 stack.onCraft(player.world, player, stack.getCount());

@@ -73,14 +73,13 @@ public class FrameBlock extends Block {
     }
 
 
-
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack stack = player.getStackInHand(hand);
-        if(stack.getItem().equals(ObjectRegistry.COOKING_CAULDRON.get().asItem())){
-            if(!world.isClient()){
-                if(!player.getAbilities().creativeMode) stack.decrement(1);
-                world.setBlockState(pos , ObjectRegistry.COOKING_CAULDRON.get().getDefaultState().with(HANGING, true).with(FACING, state.get(FACING)));
+        if (stack.getItem().equals(ObjectRegistry.COOKING_CAULDRON.get().asItem())) {
+            if (!world.isClient()) {
+                if (!player.getAbilities().creativeMode) stack.decrement(1);
+                world.setBlockState(pos, ObjectRegistry.COOKING_CAULDRON.get().getDefaultState().with(HANGING, true).with(FACING, state.get(FACING)));
             }
             return ActionResult.success(world.isClient());
         }
@@ -92,18 +91,18 @@ public class FrameBlock extends Block {
         displayTickLikeCampfire(world, pos, random, world.getBlockState(pos.down()).isOf(Blocks.HAY_BLOCK));
     }
 
-    public static void displayTickLikeCampfire(World world, BlockPos pos, Random random, boolean isSignal){
+    public static void displayTickLikeCampfire(World world, BlockPos pos, Random random, boolean isSignal) {
         if (random.nextFloat() < 0.11f) {
             for (int i = 0; i < random.nextInt(2) + 2; ++i) {
                 CampfireBlock.spawnSmokeParticle(world, pos, isSignal, true);
             }
         }
         if (random.nextInt(10) == 0) {
-            world.playSound((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5f + random.nextFloat(), random.nextFloat() * 0.7f + 0.6f, false);
+            world.playSound((double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5f + random.nextFloat(), random.nextFloat() * 0.7f + 0.6f, false);
         }
         if (random.nextInt(5) == 0) {
             for (int i = 0; i < random.nextInt(1) + 1; ++i) {
-                world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, random.nextFloat() / 2.0f, 5.0E-5, random.nextFloat() / 2.0f);
+                world.addParticle(ParticleTypes.LAVA, (double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, random.nextFloat() / 2.0f, 5.0E-5, random.nextFloat() / 2.0f);
             }
         }
     }

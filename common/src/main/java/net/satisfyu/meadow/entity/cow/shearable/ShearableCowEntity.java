@@ -145,19 +145,19 @@ public class ShearableCowEntity extends CowEntity implements Shearable {
             return 1.0f;
         }
         if (this.eatGrassTimer < 4) {
-            return ((float)this.eatGrassTimer - delta) / 4.0f;
+            return ((float) this.eatGrassTimer - delta) / 4.0f;
         }
-        return -((float)(this.eatGrassTimer - 40) - delta) / 4.0f;
+        return -((float) (this.eatGrassTimer - 40) - delta) / 4.0f;
     }
 
     public float getHeadAngle(float delta) {
         if (this.eatGrassTimer > 4 && this.eatGrassTimer <= 36) {
-            float f = ((float)(this.eatGrassTimer - 4) - delta) / 32.0f;
+            float f = ((float) (this.eatGrassTimer - 4) - delta) / 32.0f;
             return 0.62831855f + 0.21991149f * MathHelper.sin(f * 28.7f);
         }
         if (this.eatGrassTimer > 0) {
             return 0.62831855f;
         }
-        return this.getPitch() * ((float)Math.PI / 180);
+        return this.getPitch() * ((float) Math.PI / 180);
     }
 }

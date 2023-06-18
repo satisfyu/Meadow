@@ -16,17 +16,16 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.client.gui.CheeseFormGui;
 import net.satisfyu.meadow.client.gui.CookingCauldronGui;
 import net.satisfyu.meadow.client.gui.FondueGui;
 import net.satisfyu.meadow.client.gui.WoodcutterGui;
-import net.satisfyu.meadow.registry.EntityRegistry;
+import net.satisfyu.meadow.client.render.ChairEntityRenderer;
+import net.satisfyu.meadow.client.render.FlowerBoxBlockEntityRenderer;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityModel;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityRenderer;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntityModel;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntityRenderer;
-import net.satisfyu.meadow.client.render.ChairEntityRenderer;
 import net.satisfyu.meadow.entity.chicken.MeadowChickenRenderer;
 import net.satisfyu.meadow.entity.cow.albino_cow.AlbinoCowRenderer;
 import net.satisfyu.meadow.entity.cow.cookie_cow.CookieCowRenderer;
@@ -48,8 +47,9 @@ import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.rocky.RockySheepRenderer;
 import net.satisfyu.meadow.item.FurArmorItem;
+import net.satisfyu.meadow.registry.BlockEntityRegistry;
+import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
-import net.satisfyu.meadow.client.render.FlowerBoxBlockEntityRenderer;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 import org.jetbrains.annotations.NotNull;
 
@@ -104,7 +104,7 @@ public class MeadowClient {
 
     public static final EntityModelLayer MEADOW_CHICKEN_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "meadow_chicken"), "main");
 
-    public static void preInitClient(){
+    public static void preInitClient() {
         registerEntityRenderers();
         registerEntityModelLayers();
 
@@ -144,17 +144,17 @@ public class MeadowClient {
         MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.FONDUE_SCREEN_HANDLER.get(), FondueGui::new);
     }
 
-    private static void registerEntityRenderers(){
+    private static void registerEntityRenderers() {
         EntityRendererRegistry.register(EntityRegistry.BROWN_BEAR, BrownBearEntityRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.CHAIR, ChairEntityRenderer::new);
     }
 
-    public static void registerEntityModelLayers(){
+    public static void registerEntityModelLayers() {
         EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearEntityModel::getTexturedModelData);
     }
 
 
-    private static void registerCows(){
+    private static void registerCows() {
         EntityRendererRegistry.register(EntityRegistry.UMBRA_COW, UmbraCowRenderer::new);
         EntityModelLayerRegistry.register(UMBRA_COW_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
 
@@ -189,7 +189,7 @@ public class MeadowClient {
         EntityModelLayerRegistry.register(SUNSET_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
     }
 
-    private static void registerSheeps(){
+    private static void registerSheeps() {
         EntityRendererRegistry.register(EntityRegistry.FLECKED_SHEEP, FleckedSheepRenderer::new);
         EntityModelLayerRegistry.register(FLECKED_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.register(FLECKED_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
@@ -219,13 +219,13 @@ public class MeadowClient {
         EntityModelLayerRegistry.register(ROCKY_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
     }
 
-    private static void registerChicken(){
+    private static void registerChicken() {
         EntityRendererRegistry.register(EntityRegistry.MEADOW_CHICKEN, MeadowChickenRenderer::new);
         EntityModelLayerRegistry.register(MEADOW_CHICKEN_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
 
     }
 
-    public static void appendToolTip(@NotNull List<Text> tooltip){
+    public static void appendToolTip(@NotNull List<Text> tooltip) {
         PlayerEntity player = MinecraftClient.getInstance().player;
         if (player == null) return;
         ItemStack helmet = player.getEquippedStack(EquipmentSlot.HEAD);

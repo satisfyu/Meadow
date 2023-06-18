@@ -11,8 +11,6 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import static net.satisfyu.meadow.Meadow.MOD_ID;
-
 public class CheeseFormRecipeSerializer implements RecipeSerializer<CheeseFormRecipe> {
 
     private CheeseFormRecipeSerializer() {
@@ -40,6 +38,7 @@ public class CheeseFormRecipeSerializer implements RecipeSerializer<CheeseFormRe
 
         return new CheeseFormRecipe(bucket, input, output, id);
     }
+
     @Override
     // Turns Recipe into PacketByteBuf
     public void write(PacketByteBuf packetData, CheeseFormRecipe recipe) {

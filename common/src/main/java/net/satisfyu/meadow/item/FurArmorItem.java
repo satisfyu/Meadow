@@ -20,7 +20,7 @@ public class FurArmorItem extends ArmorItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
-        if(world != null && world.isClient()){
+        if (world != null && world.isClient()) {
             MeadowClient.appendToolTip(tooltip);
         }
 

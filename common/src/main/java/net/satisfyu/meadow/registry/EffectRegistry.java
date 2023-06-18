@@ -16,15 +16,15 @@ import java.util.function.Supplier;
 public class EffectRegistry {
     public static final DeferredRegister<StatusEffect> STATUS_EFFECTS = DeferredRegister.create(Meadow.MOD_ID, Registry.MOB_EFFECT_KEY);
     public static final Registrar<StatusEffect> STATUS_EFFECTS_REGISTRAR = STATUS_EFFECTS.getRegistrar();
-    
+
     public static final RegistrySupplier<StatusEffect> COZY_HOME = registerEffect("cozy_home", CozyHomeEffect::new);
 
-    public static void init(){
+    public static void init() {
         Meadow.LOGGER.debug("Mob effects");
         STATUS_EFFECTS.register();
     }
 
-    private static RegistrySupplier<StatusEffect> registerEffect(String name, Supplier<StatusEffect> effect){
+    private static RegistrySupplier<StatusEffect> registerEffect(String name, Supplier<StatusEffect> effect) {
         if (Platform.isForge()) {
             return STATUS_EFFECTS.register(name, effect);
         }

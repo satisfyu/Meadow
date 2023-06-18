@@ -20,7 +20,7 @@ public class CraftingIngredientItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable(  "item.meadow.ingredient.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(Text.translatable("item.meadow.ingredient.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
 
 
     }

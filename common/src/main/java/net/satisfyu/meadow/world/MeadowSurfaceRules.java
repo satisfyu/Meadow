@@ -17,13 +17,13 @@ public class MeadowSurfaceRules {
     private static final RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> SURFACE = register("surface");
     private static final RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> DIRT = register("dirt");
     private static final RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> CRACKS = register("cracks");
-    
+
     private static final MaterialRules.MaterialRule LIMESTONE = makeStateRule(ObjectRegistry.LIMESTONE.get());
     private static final MaterialRules.MaterialRule COBBLED_LIMESTONE = makeStateRule(ObjectRegistry.COBBLED_LIMESTONE.get());
     private static final MaterialRules.MaterialRule PODZOL = makeStateRule(Blocks.PODZOL);
     private static final MaterialRules.MaterialRule COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
     private static final MaterialRules.MaterialRule DIRT_BLOCK = makeStateRule(Blocks.DIRT);
-    
+
     public static final RegistryKey<Biome> MEADOW_CLEARING_KEY = createBiomeKey("meadow_clearing");
     public static final RegistryKey<Biome> MEADOW_FOREST_KEY = createBiomeKey("meadow_forest");
 
@@ -38,7 +38,7 @@ public class MeadowSurfaceRules {
 
         MaterialRules.MaterialRule clearing = MaterialRules.sequence(MaterialRules.condition(MaterialRules.noiseThreshold(CRACKS, -0.15, 0.15), MaterialRules.sequence(MaterialRules.condition(MaterialRules.noiseThreshold(SURFACE, Double.parseDouble("-1e+308"), 0.1), COARSE_DIRT), COBBLED_LIMESTONE)),
                 MaterialRules.condition(MaterialRules.noiseThreshold(SURFACE, 0, Double.parseDouble("1.7976931348623157e+308")), MaterialRules.condition(MaterialRules.noiseThreshold(DIRT, 0.3, Double.parseDouble("1e+308")), COARSE_DIRT)),
-        MaterialRules.condition(MaterialRules.noiseThreshold(SURFACE, 0.2, Double.parseDouble("1.7976931348623157e+308")), LIMESTONE),
+                MaterialRules.condition(MaterialRules.noiseThreshold(SURFACE, 0.2, Double.parseDouble("1.7976931348623157e+308")), LIMESTONE),
                 MaterialRules.condition(MaterialRules.noiseThreshold(SURFACE, 0, Double.parseDouble("1.7976931348623157e+308")), COARSE_DIRT));
 
 
@@ -55,7 +55,7 @@ public class MeadowSurfaceRules {
     private static MaterialRules.MaterialRule makeStateRule(Block block) {
         return MaterialRules.block(block.getDefaultState());
     }
-    
+
     private static RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> register(String name) {
         return RegistryKey.of(Registry.NOISE_KEY, new Identifier(MOD_ID, name));
     }

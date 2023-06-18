@@ -5,9 +5,9 @@ import net.satisfyu.meadow.Meadow;
 
 public class DamageSourceRegistry extends DamageSource {
 
-public static final DamageSource COBBLESTONE_FURNACE_BLOCK = (new DamageSourceRegistry("cobblestone_furnace_block")).setFire();
+    public static final DamageSource COBBLESTONE_FURNACE_BLOCK = (new DamageSourceRegistry("cobblestone_furnace_block")).setFire();
 
-protected DamageSourceRegistry(String name) {
+    protected DamageSourceRegistry(String name) {
         super(Meadow.MOD_ID + "." + name);
-        }
+    }
 }

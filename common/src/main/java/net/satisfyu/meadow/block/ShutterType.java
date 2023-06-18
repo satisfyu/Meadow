@@ -10,16 +10,12 @@ public enum ShutterType implements StringIdentifiable {
 
     private final String name;
 
-    private ShutterType(String type) {
+    ShutterType(String type) {
         this.name = type;
     }
 
     @Override
     public String asString() {
-        return this.name;
-    }
-
-    public String getSerializedName() {
         return this.name;
     }
 }

@@ -47,7 +47,7 @@ public class WoodenFlowerPotBlock extends Block {
         boolean bl2;
         ItemStack itemStack = player.getStackInHand(hand);
         Item item = itemStack.getItem();
-        BlockState blockState = (item instanceof BlockItem ? WOODEN_CONTENT_TO_POTTED.getOrDefault(((BlockItem)item).getBlock(), Blocks.AIR) : Blocks.AIR).getDefaultState();
+        BlockState blockState = (item instanceof BlockItem ? WOODEN_CONTENT_TO_POTTED.getOrDefault(((BlockItem) item).getBlock(), Blocks.AIR) : Blocks.AIR).getDefaultState();
         boolean bl = blockState.isOf(Blocks.AIR);
         if (bl != (bl2 = this.isEmpty())) {
             if (bl2) {
@@ -99,9 +99,9 @@ public class WoodenFlowerPotBlock extends Block {
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
-    
+
     public ItemConvertible getContent() {
         return this.content;
     }
-    
+
 }

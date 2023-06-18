@@ -71,12 +71,14 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
     }
 
     public static class Type implements RecipeType<WoodcuttingRecipe> {
-        private Type() {}
+        private Type() {
+        }
 
         public static final Type INSTANCE = new Type();
 
         public static final String ID = "woodcutting";
     }
+
     @Override
     public RecipeType<?> getType() {
         return Type.INSTANCE;

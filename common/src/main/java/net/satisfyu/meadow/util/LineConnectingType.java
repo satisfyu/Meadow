@@ -10,16 +10,12 @@ public enum LineConnectingType implements StringIdentifiable {
 
     private final String name;
 
-    private LineConnectingType(String type) {
+    LineConnectingType(String type) {
         this.name = type;
     }
 
     @Override
     public String asString() {
-        return this.name;
-    }
-
-    public String getSerializedName() {
         return this.name;
     }
 }

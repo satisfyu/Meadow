@@ -15,8 +15,9 @@ import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
 
 public class WheelBarrowBlockEntityRenderer implements BlockEntityRenderer<WheelBarrowBlockEntity> {
 
-    public WheelBarrowBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {}
-    
+    public WheelBarrowBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+    }
+
     @Override
     public void render(WheelBarrowBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         if (!entity.hasWorld()) {

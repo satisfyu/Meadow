@@ -22,7 +22,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class GoatMixin extends AnimalEntity {
 
 
-    @Shadow public abstract boolean isScreaming();
+    @Shadow
+    public abstract boolean isScreaming();
 
     protected GoatMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);

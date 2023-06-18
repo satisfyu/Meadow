@@ -33,7 +33,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 @Environment(EnvType.CLIENT)
-public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements RecipeGridAligner<Ingredient>, Drawable, Element, RecipeDisplayListener {
+public abstract class PrivateRecipeBookWidget extends DrawableHelper implements RecipeGridAligner<Ingredient>, Drawable, Element, RecipeDisplayListener {
     public static final Identifier TEXTURE = new Identifier("textures/gui/recipe_book.png");
     private static final Text SEARCH_HINT_TEXT;
     private static final Text TOGGLE_CRAFTABLE_RECIPES_TEXT;
@@ -59,10 +59,13 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
     private boolean open;
     private boolean narrow;
 
-    public PrivateRecipeBookWidget() {}
+    public PrivateRecipeBookWidget() {
+    }
 
     protected abstract RecipeType<? extends Recipe<Inventory>> getRecipeType();
-    public abstract void insertRecipe(Recipe<?> recipe) ;
+
+    public abstract void insertRecipe(Recipe<?> recipe);
+
     public abstract void showGhostRecipe(Recipe<?> recipe, List<Slot> slots);
 
     public void initialize(int parentWidth, int parentHeight, MinecraftClient client, boolean narrow, AbstractPrivateRecipeScreenHandler craftingScreenHandler) {
@@ -93,18 +96,23 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
             this.recipesArea.hideAlternates();
         }
     }
+
     public boolean isOpen() {
         return this.open;
     }
+
     private boolean isGuiOpen() {
         return MeadowClient.rememberedRecipeBookOpen;
     }
+
     public void toggleOpen() {
         this.setOpen(!this.isOpen());
     }
+
     public void close() {
         this.client.keyboard.setRepeatEvents(false);
     }
+
     private boolean toggleFilteringCraftable() {
         boolean bl = !MeadowClient.rememberedCraftableToggle;
         MeadowClient.rememberedCraftableToggle = bl;
@@ -158,7 +166,7 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
     private void drawGhostSlotTooltip(MatrixStack matrices, int x, int y, int mouseX, int mouseY) {
         ItemStack itemStack = null;
 
-        for(int i = 0; i < this.ghostSlots.getSlotCount(); ++i) {
+        for (int i = 0; i < this.ghostSlots.getSlotCount(); ++i) {
             PrivateRecipeBookGhostSlots.PrivateGhostInputSlot ghostInputSlot = this.ghostSlots.getSlot(i);
             int j = ghostInputSlot.getX() + x;
             int k = ghostInputSlot.getY() + y;
@@ -430,8 +438,8 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
         if (!this.isOpen()) {
             return true;
         } else {
-            boolean bl = mouseX < (double)x || mouseY < (double)y || mouseX >= (double)(x + backgroundWidth) || mouseY >= (double)(y + backgroundHeight);
-            boolean bl2 = (double)(x - 147) < mouseX && mouseX < (double)x && (double)y < mouseY && mouseY < (double)(y + backgroundHeight);
+            boolean bl = mouseX < (double) x || mouseY < (double) y || mouseX >= (double) (x + backgroundWidth) || mouseY >= (double) (y + backgroundHeight);
+            boolean bl2 = (double) (x - 147) < mouseX && mouseX < (double) x && (double) y < mouseY && mouseY < (double) (y + backgroundHeight);
             return bl && !bl2 && !this.currentTab.isHovered();
         }
     }
@@ -464,10 +472,12 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
     }
 
     @Override
-    public void acceptAlignedInput(Iterator<Ingredient> inputs, int slot, int amount, int gridX, int gridY) {}
+    public void acceptAlignedInput(Iterator<Ingredient> inputs, int slot, int amount, int gridX, int gridY) {
+    }
 
     @Override
-    public void onRecipesDisplayed(List<Recipe<?>> recipes) {}
+    public void onRecipesDisplayed(List<Recipe<?>> recipes) {
+    }
 
     static {
         SEARCH_HINT_TEXT = Text.translatable("gui.recipebook.search_hint").formatted(Formatting.ITALIC).formatted(Formatting.GRAY);

@@ -18,11 +18,11 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
+import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
+import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.util.ImplementedInventory;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
-import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.util.MeadowTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -66,6 +66,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
                 case 1 -> isCooking = value;
             }
         }
+
         @Override
         public int size() {
             return 2;
@@ -89,27 +90,25 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     }
 
     public void tick(World world, BlockPos pos, BlockState state, CookingCauldronBlockEntity be) {
-        if(!world.isClient){
+        if (!world.isClient) {
             int var = 0;
             Optional<CookingCauldronRecipe> recipe = world.getRecipeManager().getFirstMatch(RecipeRegistry.COOKING.get(), this, world);
 
             boolean done = false;
 
             isCooking = isLit(state) ? 1 : 0;
-            if(syncedInt > MAX_COOKING_TIME){
+            if (syncedInt > MAX_COOKING_TIME) {
                 boolean isWood = false;
-                for(ItemStack itemStack : items){
+                for (ItemStack itemStack : items) {
                     int index = items.indexOf(itemStack);
-                    if(index > 2) continue;
+                    if (index > 2) continue;
 
-                    if(itemStack.isIn(MeadowTags.WOODEN_BUCKETS)){
+                    if (itemStack.isIn(MeadowTags.WOODEN_BUCKETS)) {
                         isWood = true;
                         items.set(index, new ItemStack(ObjectRegistry.WOODEN_BUCKET.get()));
-                    }
-                    else if(itemStack.isIn(MeadowTags.BUCKETS)){
+                    } else if (itemStack.isIn(MeadowTags.BUCKETS)) {
                         items.set(index, new ItemStack(Items.BUCKET));
-                    }
-                    else {
+                    } else {
                         itemStack.decrement(1);
                         items.set(index, itemStack);
                     }
@@ -117,37 +116,34 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
                 items.set(3, isWood ? recipe.get().craftIfWoodBucket(this) : recipe.get().craft(this));
                 syncedInt = 0;
                 done = true;
-            }
-            else if(isLit(state) && items.get(3).isEmpty()){
-                if(recipe.isPresent()){
+            } else if (isLit(state) && items.get(3).isEmpty()) {
+                if (recipe.isPresent()) {
                     syncedInt++;
-                }
-                else {
+                } else {
                     syncedInt = 0;
                 }
-            }
-            else {
+            } else {
                 syncedInt = 0;
-                if(!items.get(3).isEmpty()){
+                if (!items.get(3).isEmpty()) {
                     done = true;
                 }
-                if(!done){
+                if (!done) {
                     recipe = Optional.empty();
                 }
             }
 
-            if(recipe.isPresent()){
+            if (recipe.isPresent()) {
                 var = getVar(recipe.get().getOutput().getItem());
-            }
-            else if(!items.get(3).isEmpty()) {
+            } else if (!items.get(3).isEmpty()) {
                 var = getVar(items.get(3).getItem());
             }
             world.setBlockState(pos, state.with(VAR, var).with(HANGING, state.get(HANGING)).with(DONE, done).with(FACING, state.get(FACING)), Block.NOTIFY_ALL);
         }
     }
 
-    public static int getVar(Item outputItem){
-         if(outputItem.equals(ObjectRegistry.OAT_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_HERBS_CHEESE_MASS)) return 5;
+    public static int getVar(Item outputItem) {
+        if (outputItem.equals(ObjectRegistry.OAT_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_HERBS_CHEESE_MASS))
+            return 5;
 
         else return 5;
     }
@@ -155,13 +151,12 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     //   /data modify block -216 68 -461 syncedInt set value 47750
     //   /kill @e[type=minecraft:item]
 
-    public boolean isLit(BlockState state){
-        if(state.get(HANGING)) return true;
+    public boolean isLit(BlockState state) {
+        if (state.get(HANGING)) return true;
         BlockState downState = world.getBlockState(pos.down());
-        if(downState.contains(LIT)){
+        if (downState.contains(LIT)) {
             return downState.get(LIT);
-        }
-        else return downState.isOf(ObjectRegistry.STOVE_LID.get());
+        } else return downState.isOf(ObjectRegistry.STOVE_LID.get());
     }
 
     @Nullable

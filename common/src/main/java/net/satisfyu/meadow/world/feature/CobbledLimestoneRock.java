@@ -26,27 +26,26 @@ public class CobbledLimestoneRock extends Feature<SingleStateFeatureConfig> {
         StructureWorldAccess world = context.getWorld();
         int radius = random.nextBetween(3, 7);
         BlockPos pos = context.getOrigin();
-        for(; pos.getY() > world.getBottomY() + radius; pos = pos.down()) {
-            if(!world.isAir(pos)) {
-                if(world.getBlockState(pos).isIn(BlockTags.DIRT)) {
+        for (; pos.getY() > world.getBottomY() + radius; pos = pos.down()) {
+            if (!world.isAir(pos)) {
+                if (world.getBlockState(pos).isIn(BlockTags.DIRT)) {
                     break;
                 }
             }
         }
-        if(pos.getY() <= world.getBottomY() + radius) {
+        if (pos.getY() <= world.getBottomY() + radius) {
             return false;
-        }
-        else {
+        } else {
             //boolean wasInit = false;
             //boolean gerade = false;
-            for(int i = 0; i < 1; ++i) {
+            for (int i = 0; i < 1; ++i) {
                 int j = random.nextInt(radius);
                 int k = random.nextInt(radius);
                 int l = random.nextInt(radius);
                 float f = (float) (j + k + l) * 0.333F + 0.5F;
 
-                for(BlockPos pos2 : BlockPos.iterate(pos.add(-j, -k, -l), pos.add(j, k, l))) {
-                    if(pos2.getSquaredDistance(pos) <= (double) (f * f)) {
+                for (BlockPos pos2 : BlockPos.iterate(pos.add(-j, -k, -l), pos.add(j, k, l))) {
+                    if (pos2.getSquaredDistance(pos) <= (double) (f * f)) {
                         this.setBlockState(world, pos2, config.state);
                         /*
                         if(!wasInit){
@@ -65,8 +64,8 @@ public class CobbledLimestoneRock extends Feature<SingleStateFeatureConfig> {
         }
     }
 
-    private void setSlab(StructureWorldAccess world, BlockPos pos2, boolean gerade){
-        if((pos2.getY() % 2 == 0) == gerade) {
+    private void setSlab(StructureWorldAccess world, BlockPos pos2, boolean gerade) {
+        if ((pos2.getY() % 2 == 0) == gerade) {
             if (world.getBlockState(pos2.up()).isOf(Blocks.AIR)) {
                 this.setBlockState(world, pos2.up(), ObjectRegistry.COBBLED_LIMESTONE_SLAB.get().getDefaultState());
             }

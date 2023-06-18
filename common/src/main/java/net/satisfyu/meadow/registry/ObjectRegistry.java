@@ -50,8 +50,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> ALPINE_REDSTONE_ORE = registerBlock("alpine_redstone_ore", () -> new OreBlock(AbstractBlock.Settings.of(Material.STONE).strength(4f).requiresTool()));
 
 
-
-
     public static final RegistrySupplier<Block> LIMESTONE = registerBlock("limestone", () -> new Block(AbstractBlock.Settings.copy(Blocks.STONE)));
     public static final RegistrySupplier<Block> LIMESTONE_STAIRS = registerBlock("limestone_stairs", () -> new StairsBlock(LIMESTONE.get().getDefaultState(), AbstractBlock.Settings.copy(LIMESTONE.get())));
     public static final RegistrySupplier<Block> LIMESTONE_SLAB = registerBlock("limestone_slab", () -> new SlabBlock(AbstractBlock.Settings.copy(LIMESTONE.get())));
@@ -308,7 +306,7 @@ public class ObjectRegistry {
     public static <T extends Block> RegistrySupplier<T> registerBlock(MeadowIdentifier name, Supplier<T> block, @Nullable ItemGroup tab) {
         RegistrySupplier<T> toReturn = registerBlockWithoutItem(name, block);
         Item.Settings properties = new Item.Settings();
-        if(tab != null) properties.group(tab);
+        if (tab != null) properties.group(tab);
         ObjectRegistry.registerItem(name, () -> new BlockItem(toReturn.get(), properties));
         return toReturn;
     }

@@ -11,6 +11,7 @@ import static net.satisfyu.meadow.Meadow.MOD_ID;
 public class AlbinoCowRenderer extends MobEntityRenderer<AlbinoCowEntity, CowEntityModel<AlbinoCowEntity>> {
 
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/cow/albino_cow.png");
+
     public AlbinoCowRenderer(EntityRendererFactory.Context context) {
         super(context, new CowEntityModel<>(context.getPart(MeadowClient.ALBINO_COW_MODEL_LAYER)), 0.7f);
     }

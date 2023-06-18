@@ -5,15 +5,8 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.entity.blockentities.CheeseFormBlockEntity;
-import net.satisfyu.meadow.entity.blockentities.CheeseRackBlockEntity;
-import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.block.StoveBlockWoodBlockEntity;
-import net.satisfyu.meadow.entity.blockentities.BigFlowerPotBlockEntity;
-import net.satisfyu.meadow.entity.blockentities.FlowerBoxBlockEntity;
-import net.satisfyu.meadow.entity.blockentities.WheelBarrowBlockEntity;
-import net.satisfyu.meadow.entity.blockentities.FondueBlockEntity;
-import net.satisfyu.meadow.entity.blockentities.ShelfBlockEntity;
+import net.satisfyu.meadow.entity.blockentities.*;
 
 import java.util.function.Supplier;
 
@@ -35,7 +28,7 @@ public class BlockEntityRegistry {
         return BLOCK_ENTITY_TYPES.register(path, type);
     }
 
-    public static void init(){
+    public static void init() {
         Meadow.LOGGER.debug("Registering Mod BlockEntities for " + Meadow.MOD_ID);
         BLOCK_ENTITY_TYPES.register();
     }

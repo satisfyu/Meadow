@@ -12,6 +12,7 @@ public class WaterBuffaloEntityModel extends QuadrupedEntityModel<WaterBuffaloEn
     private final ModelPart leg1;
     private final ModelPart leg2;
     private final ModelPart leg3;
+
     public WaterBuffaloEntityModel(ModelPart root) {
         super(root, true, 16.0F, 4.0F, 2.25F, 2.0F, 24);
         this.body = root.getChild("body");
@@ -21,6 +22,7 @@ public class WaterBuffaloEntityModel extends QuadrupedEntityModel<WaterBuffaloEn
         this.leg2 = root.getChild("left_front_leg");
         this.leg3 = root.getChild("right_front_leg");
     }
+
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
@@ -45,6 +47,7 @@ public class WaterBuffaloEntityModel extends QuadrupedEntityModel<WaterBuffaloEn
         ModelPartData leg3 = modelPartData.addChild("right_front_leg", ModelPartBuilder.create().uv(16, 30).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(3.5F, 14.0F, -8.0F));
         return TexturedModelData.of(modelData, 128, 64);
     }
+
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
         body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);

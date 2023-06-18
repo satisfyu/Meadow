@@ -7,8 +7,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.gui.handler.CheeseFormGuiHandler;
-import net.satisfyu.meadow.client.gui.handler.screenHandler.RecipeHandledScreen;
-import net.satisfyu.meadow.client.gui.handler.screenHandler.SideToolTip;
 import net.satisfyu.meadow.client.screen.recipe.custom.CheeseFormRecipeBook;
 
 public class CheeseFormGui extends AbstractRecipeBookGUIScreen<CheeseFormGuiHandler> {

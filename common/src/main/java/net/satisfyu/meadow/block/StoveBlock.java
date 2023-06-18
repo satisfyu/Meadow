@@ -37,15 +37,16 @@ public class StoveBlock extends HFacingBlock {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if(directionToCheck == Direction.DOWN && state.get(CONNECTED)) return super.getOutlineShape(state, world, pos, context);
+        if (directionToCheck == Direction.DOWN && state.get(CONNECTED))
+            return super.getOutlineShape(state, world, pos, context);
         return SHAPE_BIG;
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
         List<Block> block = getBlocksToCheck();
-        if(!block.isEmpty()){
-            if(block.contains(ctx.getWorld().getBlockState(ctx.getBlockPos().offset(directionToCheck)).getBlock())){
+        if (!block.isEmpty()) {
+            if (block.contains(ctx.getWorld().getBlockState(ctx.getBlockPos().offset(directionToCheck)).getBlock())) {
                 return this.getDefaultState().with(CONNECTED, true).with(FACING, ctx.getPlayerFacing().getOpposite());
             }
         }
@@ -55,13 +56,12 @@ public class StoveBlock extends HFacingBlock {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         List<Block> block = getBlocksToCheck();
-        if(!world.isClient() && !block.isEmpty()){
-            if(direction == directionToCheck){
+        if (!world.isClient() && !block.isEmpty()) {
+            if (direction == directionToCheck) {
                 boolean connected = state.get(CONNECTED);
-                if(!connected) {
+                if (!connected) {
                     if (block.contains(neighborState.getBlock())) return state.with(CONNECTED, true);
-                }
-                else if(!block.contains(neighborState.getBlock())) return state.with(CONNECTED, false);
+                } else if (!block.contains(neighborState.getBlock())) return state.with(CONNECTED, false);
 
             }
         }
@@ -74,14 +74,12 @@ public class StoveBlock extends HFacingBlock {
         builder.add(CONNECTED);
     }
 
-    private List<Block> getBlocksToCheck(){
-        if(directionToCheck == Direction.UP){
+    private List<Block> getBlocksToCheck() {
+        if (directionToCheck == Direction.UP) {
             return List.of(ObjectRegistry.STOVE.get());
-        }
-        else if(directionToCheck == Direction.DOWN){
+        } else if (directionToCheck == Direction.DOWN) {
             return List.of(ObjectRegistry.STOVE_WOOD.get(), ObjectRegistry.STOVE_LID.get());
-        }
-        else return List.of();
+        } else return List.of();
     }
 
     @Override

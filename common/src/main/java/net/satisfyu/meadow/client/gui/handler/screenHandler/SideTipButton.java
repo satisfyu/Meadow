@@ -9,7 +9,7 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 
-public class SideTipButton extends ButtonWidget  {
+public class SideTipButton extends ButtonWidget {
     int u;
     int v;
     int hoveredVOffset;
@@ -21,7 +21,8 @@ public class SideTipButton extends ButtonWidget  {
     public SideTipButton(int x, int y, ButtonWidget.PressAction pressAction) {
         this(x, y, 0, 0, 18, new Identifier(Meadow.MOD_ID, "textures/gui/recipe_book.png"), 20, 36, pressAction);
     }
-    public SideTipButton(int x, int y, int u, int v, int hoveredVOffset, Identifier texture, int textureWidth , int textureHeight, ButtonWidget.PressAction pressAction) {
+
+    public SideTipButton(int x, int y, int u, int v, int hoveredVOffset, Identifier texture, int textureWidth, int textureHeight, ButtonWidget.PressAction pressAction) {
         super(x, y, 20, 18, ScreenTexts.EMPTY, pressAction, EMPTY);
         this.u = u;
         this.v = v;
@@ -41,7 +42,7 @@ public class SideTipButton extends ButtonWidget  {
             i += hoveredVOffset;
         }
         RenderSystem.enableDepthTest();
-        drawTexture(matrixStack, this.x, this.y, (float) u, (float)i, this.width, this.height, textureWidth, textureHeight);
+        drawTexture(matrixStack, this.x, this.y, (float) u, (float) i, this.width, this.height, textureWidth, textureHeight);
         if (this.hovered) {
             this.renderTooltip(matrixStack, mouseX, mouseY);
         }

@@ -9,7 +9,10 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.*;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
@@ -56,11 +59,12 @@ public class ShutterBlock extends Block implements Waterloggable {
 
         boolean left;
         if (facing.getAxis() == Direction.Axis.X) {
-            left = clickLocation.z - (double)clickedPos.getZ() > 0.5D;
+            left = clickLocation.z - (double) clickedPos.getZ() > 0.5D;
         } else {
-            left = clickLocation.x - (double)clickedPos.getX() > 0.5D;
+            left = clickLocation.x - (double) clickedPos.getX() > 0.5D;
         }
-        if (context.getPlayerLookDirection() == Direction.NORTH || context.getPlayerLookDirection() == Direction.EAST) left = !left;
+        if (context.getPlayerLookDirection() == Direction.NORTH || context.getPlayerLookDirection() == Direction.EAST)
+            left = !left;
         blockState = blockState.with(LEFT, left);
 
         if (world.isReceivingRedstonePower(clickedPos)) {

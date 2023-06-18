@@ -40,45 +40,42 @@ public class FireLog extends HFacingBlock {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         int stage = state.get(STAGE);
-        if(stage == 0) return SHAPE_AXE;
-        else if(stage == 1) return SHAPE_SMALL;
-        else if(stage == 2) return SHAPE_MID;
-        else if(stage == 3) return SHAPE_BIG;
+        if (stage == 0) return SHAPE_AXE;
+        else if (stage == 1) return SHAPE_SMALL;
+        else if (stage == 2) return SHAPE_MID;
+        else if (stage == 3) return SHAPE_BIG;
         else return SHAPE_AXE;
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(world.isClient) return ActionResult.SUCCESS;
+        if (world.isClient) return ActionResult.SUCCESS;
         int stage = state.get(STAGE);
         ItemStack stack = player.getStackInHand(hand);
-        if(stack.isOf(this.asItem())){
-            if(stage < 3 && stage > 0){
+        if (stack.isOf(this.asItem())) {
+            if (stage < 3 && stage > 0) {
                 stage++;
-                if(!player.getAbilities().creativeMode) stack.decrement(1);
+                if (!player.getAbilities().creativeMode) stack.decrement(1);
             }
-        }
-        else if (stack.isOf(Items.IRON_AXE) && stage == 1 && stack.getDamage() == 0) {
+        } else if (stack.isOf(Items.IRON_AXE) && stage == 1 && stack.getDamage() == 0) {
             stage = 0;
-            if(!player.getAbilities().creativeMode) stack.decrement(1);
-        }
-        else if(player.isSneaking() && stack.isEmpty()) {
+            if (!player.getAbilities().creativeMode) stack.decrement(1);
+        } else if (player.isSneaking() && stack.isEmpty()) {
             Item item;
-            if(stage == 0) {
+            if (stage == 0) {
                 stage = 1;
                 item = Items.IRON_AXE;
-            }
-            else {
+            } else {
                 stage--;
                 item = this.asItem();
             }
-            if(!player.getAbilities().creativeMode) player.giveItemStack(new ItemStack(item));
-            if(stage == 0){
+            if (!player.getAbilities().creativeMode) player.giveItemStack(new ItemStack(item));
+            if (stage == 0) {
                 world.breakBlock(pos, false);
                 return ActionResult.SUCCESS;
             }
         }
-        if(stage == state.get(STAGE)) return ActionResult.PASS;
+        if (stage == state.get(STAGE)) return ActionResult.PASS;
         world.setBlockState(pos, state.with(STAGE, stage));
         return ActionResult.SUCCESS;
     }

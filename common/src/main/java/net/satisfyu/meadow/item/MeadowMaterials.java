@@ -6,7 +6,6 @@ import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
-import net.satisfyu.meadow.registry.ObjectRegistry;
 
 public class MeadowMaterials {
 

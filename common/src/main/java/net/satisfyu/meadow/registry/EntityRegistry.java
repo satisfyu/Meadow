@@ -1,17 +1,13 @@
 package net.satisfyu.meadow.registry;
 
-import dev.architectury.registry.level.biome.BiomeModifications;
 import dev.architectury.registry.level.entity.EntityAttributeRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.passive.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.biome.BiomeKeys;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.bear.BrownBearEntity;
 import net.satisfyu.meadow.entity.blockentities.ChairEntity;
@@ -34,7 +30,6 @@ import net.satisfyu.meadow.entity.sheep.inky.InkySheepEntity;
 import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepEntity;
 import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepEntity;
 import net.satisfyu.meadow.entity.sheep.rocky.RockySheepEntity;
-import net.satisfyu.meadow.mixin.SpawnMobAccessor;
 
 import java.util.function.Supplier;
 
@@ -53,15 +48,15 @@ public class EntityRegistry {
             () -> EntityType.Builder.create(BrownBearEntity::new, SpawnGroup.CREATURE).setDimensions(1.4f, 1.4f).build(new Identifier(Meadow.MOD_ID, "brown_bear").toString())
     );
 
-    public static final RegistrySupplier<EntityType<WaterBuffaloEntity>> WATER_BUFFALO =create("water_buffalo",
+    public static final RegistrySupplier<EntityType<WaterBuffaloEntity>> WATER_BUFFALO = create("water_buffalo",
             () -> EntityType.Builder.create(WaterBuffaloEntity::new, SpawnGroup.CREATURE).setDimensions(0.9f, 1.4f).build(new Identifier(Meadow.MOD_ID, "water_buffalo").toString())
     );
 
-    public static final RegistrySupplier<EntityType<CookieCowEntity>> COOKIE_COW = create( "cookie_cow",
+    public static final RegistrySupplier<EntityType<CookieCowEntity>> COOKIE_COW = create("cookie_cow",
             () -> EntityType.Builder.create(CookieCowEntity::new, SpawnGroup.CREATURE).setDimensions(0.9f, 1.4f).build(new Identifier(Meadow.MOD_ID, "cookie_cow").toString())
     );
 
-    public static final RegistrySupplier<EntityType<CreamCowEntity>> CREAM_COW = create( "cream_cow",
+    public static final RegistrySupplier<EntityType<CreamCowEntity>> CREAM_COW = create("cream_cow",
             () -> EntityType.Builder.create(CreamCowEntity::new, SpawnGroup.CREATURE).setDimensions(0.9f, 1.4f).build(new Identifier(Meadow.MOD_ID, "cream_cow").toString())
     );
 
@@ -126,7 +121,7 @@ public class EntityRegistry {
     );
 
 
-    public static void init(){
+    public static void init() {
         Meadow.LOGGER.debug("Registering Mod Entities for " + Meadow.MOD_ID);
         ENTITY_TYPES.register();
 
@@ -138,7 +133,6 @@ public class EntityRegistry {
 
 
         registerChicken(MEADOW_CHICKEN); //, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
-
 
 
         registerSheep(FLECKED_SHEEP); //, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
@@ -162,20 +156,20 @@ public class EntityRegistry {
         registerCow(SUNSET_COW); //, BiomeSelectors.includeByKey(BiomeKeys.SAVANNA).or(BiomeSelectors.tag(BiomeTags.IS_SAVANNA)));
     }
 
-    public static void registerCow(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier){
+    public static void registerCow(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier) {
         EntityAttributeRegistry.register(typeSupplier, CowEntity::createCowAttributes);
         //SpawnMobAccessor.callRegister(typeSupplier.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
         //BiomeModifications.addSpawn(biomes, SpawnGroup.CREATURE, typeSupplier, 8, 4, 4);
     }
 
 
-    public static void registerSheep(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier){
+    public static void registerSheep(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier) {
         EntityAttributeRegistry.register(typeSupplier, SheepEntity::createSheepAttributes);
         //SpawnMobAccessor.callRegister(typeSupplier.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
         //BiomeModifications.addSpawn(biomes, SpawnGroup.CREATURE, typeSupplier, 2, 2, 4);
     }
 
-    public static void registerChicken(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier){
+    public static void registerChicken(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier) {
         EntityAttributeRegistry.register(typeSupplier, ChickenEntity::createChickenAttributes);
         //SpawnMobAccessor.callRegister(typeSupplier.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
         //BiomeModifications.addProperties(biomes, SpawnGroup.CREATURE, typeSupplier, 10, 4, 4);

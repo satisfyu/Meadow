@@ -9,21 +9,23 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.EntityModelLoader;
+import net.minecraft.client.render.entity.model.SheepEntityModel;
+import net.minecraft.client.render.entity.model.SheepWoolEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 
-@Environment(value= EnvType.CLIENT)
+@Environment(value = EnvType.CLIENT)
 public class MeadowSheepWoolFeatureRenderer<T extends SheepEntity, F extends SheepEntityModel<T>>
         extends FeatureRenderer<T, F> {
 
     private final SheepWoolEntityModel<T> model;
 
     private final String name;
-
 
 
     public MeadowSheepWoolFeatureRenderer(FeatureRendererContext<T, F> context, EntityModelLoader loader, String name, EntityModelLayer sheepWoolModel) {
@@ -35,13 +37,11 @@ public class MeadowSheepWoolFeatureRenderer<T extends SheepEntity, F extends She
     @Override
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T sheepEntity, float f, float g, float h, float j, float k, float l) {
         Identifier skin;
-        if(name.equals("DEFAULT")){
+        if (name.equals("DEFAULT")) {
             skin = new Identifier("textures/entity/sheep/sheep_fur.png");
+        } else {
+            skin = new Identifier(Meadow.MOD_ID, "textures/entity/sheep/" + name + "_sheep_fur.png");
         }
-        else {
-            skin = new Identifier(Meadow.MOD_ID, "textures/entity/sheep/"+ name + "_sheep_fur.png");
-        }
-
 
 
         float u;
@@ -67,7 +67,7 @@ public class MeadowSheepWoolFeatureRenderer<T extends SheepEntity, F extends She
             int o = DyeColor.values().length;
             int p = n % o;
             int q = (n + 1) % o;
-            float r = ((float)(sheepEntity.age % 25) + h) / 25.0f;
+            float r = ((float) (sheepEntity.age % 25) + h) / 25.0f;
             float[] fs = SheepEntity.getRgbColor(DyeColor.byId(p));
             float[] gs = SheepEntity.getRgbColor(DyeColor.byId(q));
             s = fs[0] * (1.0f - r) + gs[0] * r;

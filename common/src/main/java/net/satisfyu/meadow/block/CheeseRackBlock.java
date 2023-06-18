@@ -36,7 +36,7 @@ import java.util.function.Supplier;
 public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider {
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    
+
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.01, 0.01, 0.01, 0.99, 0.99, 0.99), BooleanBiFunction.OR);
@@ -62,16 +62,16 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) return ActionResult.SUCCESS;
         CheeseRackBlockEntity be = (CheeseRackBlockEntity) world.getBlockEntity(pos);
-        if(be == null || player.isSneaking()) return ActionResult.PASS;
+        if (be == null || player.isSneaking()) return ActionResult.PASS;
         ItemStack handStack = player.getStackInHand(hand);
         int slot = -1;
         Optional<Pair<Float, Float>> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.get(FACING), null);
-        if(optional.isPresent()){
+        if (optional.isPresent()) {
             Pair<Float, Float> pair = optional.get();
             slot = pair.getRight() > 0.5 ? 1 : 0;
             System.out.println(pair.getLeft() + " " + pair.getRight());
         }
-        
+
         if (slot == -1)
             return ActionResult.PASS;
 
@@ -96,10 +96,10 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof CheeseRackBlockEntity be) {
-                for(Item stack : be.getItems()){
+                for (Item stack : be.getItems()) {
                     ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(stack));
                 }
-                world.updateComparators(pos,this);
+                world.updateComparators(pos, this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
         }
@@ -110,7 +110,7 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new CheeseRackBlockEntity(pos, state);
     }
-    
+
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.rack.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));

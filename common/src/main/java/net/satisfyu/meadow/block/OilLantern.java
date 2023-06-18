@@ -20,7 +20,7 @@ import net.minecraft.world.BlockView;
 
 import java.util.List;
 
-public class OilLantern extends LanternBlock{
+public class OilLantern extends LanternBlock {
 
     public static final IntProperty LUMINANCE = IntProperty.of("luminance", 12, 15);
     protected static final VoxelShape HANGING_SHAPE = makeShapeHS();

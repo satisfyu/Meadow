@@ -12,7 +12,7 @@ public abstract class AbstractPrivateRecipeScreenHandler extends ScreenHandler {
         super(type, syncId);
     }
 
-    public abstract List<IRecipeBookGroup>  getGroups();
+    public abstract List<IRecipeBookGroup> getGroups();
 
     public abstract boolean hasIngredient(Recipe<?> recipe);
 

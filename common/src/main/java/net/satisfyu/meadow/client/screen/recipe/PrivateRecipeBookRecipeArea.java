@@ -33,7 +33,7 @@ public class PrivateRecipeBookRecipeArea {
     private AbstractPrivateRecipeScreenHandler cookingPanScreenHandler;
 
     public PrivateRecipeBookRecipeArea() {
-        for(int i = 0; i < 20; ++i) {
+        for (int i = 0; i < 20; ++i) {
             this.resultButtons.add(new PrivateAnimatedResultButton());
         }
 
@@ -43,7 +43,7 @@ public class PrivateRecipeBookRecipeArea {
         this.client = client;
         this.cookingPanScreenHandler = cookingPanScreenHandler;
 
-        for(int i = 0; i < this.resultButtons.size(); ++i) {
+        for (int i = 0; i < this.resultButtons.size(); ++i) {
             this.resultButtons.get(i).setPos(parentLeft + 11 + 25 * (i % 5), parentTop + 31 + 25 * (i / 5));
         }
 
@@ -55,7 +55,7 @@ public class PrivateRecipeBookRecipeArea {
 
     public void setResults(List<? extends Recipe<Inventory>> resultCollections, boolean resetCurrentPage) {
         this.resultCollections = resultCollections;
-        this.pageCount = (int)Math.ceil((double)resultCollections.size() / 20.0);
+        this.pageCount = (int) Math.ceil((double) resultCollections.size() / 20.0);
         if (this.pageCount <= this.currentPage || resetCurrentPage) {
             this.currentPage = 0;
         }
@@ -66,7 +66,7 @@ public class PrivateRecipeBookRecipeArea {
     private void refreshResultButtons() {
         int i = 20 * this.currentPage;
 
-        for(int j = 0; j < this.resultButtons.size(); ++j) {
+        for (int j = 0; j < this.resultButtons.size(); ++j) {
             PrivateAnimatedResultButton animatedResultButton = this.resultButtons.get(j);
             if (i + j < this.resultCollections.size()) {
                 Recipe<?> recipe = this.resultCollections.get(i + j);
@@ -88,9 +88,9 @@ public class PrivateRecipeBookRecipeArea {
     public void draw(MatrixStack matrices, int x, int y, int mouseX, int mouseY, float delta) {
         if (this.pageCount > 1) {
             int var10000 = this.currentPage + 1;
-            String string = "" + var10000 + "/" + this.pageCount;
+            String string = var10000 + "/" + this.pageCount;
             int i = this.client.textRenderer.getWidth(string);
-            this.client.textRenderer.draw(matrices, string, (float)(x - i / 2 + 73), (float)(y + 141), -1);
+            this.client.textRenderer.draw(matrices, string, (float) (x - i / 2 + 73), (float) (y + 141), -1);
         }
 
         this.hoveredResultButton = null;
@@ -150,7 +150,7 @@ public class PrivateRecipeBookRecipeArea {
                     return false;
                 }
                 animatedResultButton = var10.next();
-            } while(!animatedResultButton.mouseClicked(mouseX, mouseY, button));
+            } while (!animatedResultButton.mouseClicked(mouseX, mouseY, button));
             if (button == 0) {
                 this.lastClickedRecipe = animatedResultButton.currentRecipe();
             }

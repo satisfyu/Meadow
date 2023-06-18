@@ -1,6 +1,5 @@
 package net.satisfyu.meadow.client.gui.handler;
 
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
@@ -11,18 +10,16 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.satisfyu.meadow.client.recipebook.IRecipeBookGroup;
-import net.satisfyu.meadow.client.recipebook.custom.CheeseFormRecipeBookGroup;
 import net.satisfyu.meadow.client.recipebook.custom.CookingCauldronRecipeBookGroup;
 import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
-import net.satisfyu.meadow.client.gui.handler.screenHandler.RecipeScreenHandler;
 
 import java.util.List;
 
 public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
-    public CookingCauldronGuiHandler(int syncId, PlayerInventory playerInventory){
+    public CookingCauldronGuiHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(7), new ArrayPropertyDelegate(2));
     }
 
@@ -56,7 +53,7 @@ public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandle
         }
     }
 
-    public boolean getIsCooking(){
+    public boolean getIsCooking() {
         return propertyDelegate.get(1) != 0;
     }
 
@@ -66,7 +63,7 @@ public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandle
         if (progress == 0) {
             return 0;
         }
-        return progress * arrowWidth/ totalProgress + 1;
+        return progress * arrowWidth / totalProgress + 1;
     }
 
     @Override

@@ -11,17 +11,12 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import static net.satisfyu.meadow.Meadow.MOD_ID;
-
 public class WoodcuttingRecipeSerializer implements RecipeSerializer<WoodcuttingRecipe> {
 
     private WoodcuttingRecipeSerializer() {
     }
 
     public static final WoodcuttingRecipeSerializer INSTANCE = new WoodcuttingRecipeSerializer();
-
-    // This will be the "type" field in the json
-    public static final Identifier ID = new Identifier(MOD_ID,"woodcutting");
 
     @Override
     // Turns json into Recipe
@@ -44,6 +39,7 @@ public class WoodcuttingRecipeSerializer implements RecipeSerializer<Woodcutting
 
         return new WoodcuttingRecipe(input, output, id);
     }
+
     @Override
     // Turns Recipe into PacketByteBuf
     public void write(PacketByteBuf packetData, WoodcuttingRecipe recipe) {

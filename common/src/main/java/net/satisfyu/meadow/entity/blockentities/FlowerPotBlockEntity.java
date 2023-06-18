@@ -16,7 +16,7 @@ import net.satisfyu.meadow.util.GeneralUtil;
 
 public class FlowerPotBlockEntity extends BlockEntity {
     private Item flower;
-    public static final String FLOWER_KEY ="flower";
+    public static final String FLOWER_KEY = "flower";
 
     public FlowerPotBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -54,7 +54,7 @@ public class FlowerPotBlockEntity extends BlockEntity {
 
     public Item readFlower(NbtCompound nbt) {
         super.readNbt(nbt);
-        if(nbt.contains(FLOWER_KEY)) {
+        if (nbt.contains(FLOWER_KEY)) {
             NbtCompound nbtCompound = nbt.getCompound(FLOWER_KEY);
             if (!nbtCompound.isEmpty()) {
                 return ItemStack.fromNbt(nbtCompound).getItem();
@@ -75,7 +75,7 @@ public class FlowerPotBlockEntity extends BlockEntity {
 
     @Override
     public void markDirty() {
-        if(world != null && !world.isClient()) {
+        if (world != null && !world.isClient()) {
             Packet<ClientPlayPacketListener> updatePacket = toUpdatePacket();
 
             for (ServerPlayerEntity player : GeneralUtil.tracking((ServerWorld) world, getPos())) {

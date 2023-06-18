@@ -42,7 +42,7 @@ public class PrivateRecipeBookGhostSlots {
             this.time += f;
         }
 
-        for(int k = 0; k < this.slots.size(); ++k) {
+        for (int k = 0; k < this.slots.size(); ++k) {
             PrivateGhostInputSlot ghostInputSlot = this.slots.get(k);
             int l = ghostInputSlot.getX() + i;
             int m = ghostInputSlot.getY() + j;

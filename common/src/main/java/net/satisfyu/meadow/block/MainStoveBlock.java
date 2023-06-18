@@ -30,11 +30,11 @@ public class MainStoveBlock extends HFacingBlock {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if(state.get(CONNECTED_DOWN)) return super.getOutlineShape(state, world, pos, context);
+        if (state.get(CONNECTED_DOWN)) return super.getOutlineShape(state, world, pos, context);
         return SHAPE_BIG;
     }
 
-    public boolean isConnected(BlockState state, Direction direction){
+    public boolean isConnected(BlockState state, Direction direction) {
         return state.get(direction == Direction.UP ? CONNECTED_UP : CONNECTED_DOWN);
     }
 
@@ -51,14 +51,13 @@ public class MainStoveBlock extends HFacingBlock {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if(!world.isClient()) {
+        if (!world.isClient()) {
             if (direction == Direction.DOWN || direction == Direction.UP) {
                 if (!isConnected(state, direction)) {
                     if (isBlockStove(neighborState)) {
                         return state.with(direction == Direction.UP ? CONNECTED_UP : CONNECTED_DOWN, true);
                     }
-                }
-                else {
+                } else {
                     if (!isBlockStove(neighborState)) {
                         return state.with(direction == Direction.UP ? CONNECTED_UP : CONNECTED_DOWN, false);
                     }
@@ -76,15 +75,15 @@ public class MainStoveBlock extends HFacingBlock {
     }
 
 
-    public boolean isBlockStove(ItemPlacementContext ctx, Direction direction){
+    public boolean isBlockStove(ItemPlacementContext ctx, Direction direction) {
         return isBlockStove(ctx.getWorld().getBlockState(ctx.getBlockPos().offset(direction)));
     }
 
-    public boolean isBlockStove(BlockState blockState){
+    public boolean isBlockStove(BlockState blockState) {
         return isBlockStove(blockState.getBlock());
     }
 
-    public boolean isBlockStove(Block block){
+    public boolean isBlockStove(Block block) {
         return block instanceof StoveBlock || block instanceof MainStoveBlock;
     }
 }

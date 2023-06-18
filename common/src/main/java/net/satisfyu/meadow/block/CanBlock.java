@@ -89,15 +89,14 @@ public class CanBlock extends Block {
 
             boolean water = false;
             boolean wood = false;
-            if(state.get(FLUID) == 0 && (item.equals(Items.MILK_BUCKET) || (water = item.equals(Items.WATER_BUCKET)) || (wood = item.equals(ObjectRegistry.WOODEN_MILK_BUCKET)) || (water = wood = item.equals(ObjectRegistry.WOODEN_WATER_BUCKET)))){
+            if (state.get(FLUID) == 0 && (item.equals(Items.MILK_BUCKET) || (water = item.equals(Items.WATER_BUCKET)) || (wood = item.equals(ObjectRegistry.WOODEN_MILK_BUCKET)) || (water = wood = item.equals(ObjectRegistry.WOODEN_WATER_BUCKET)))) {
                 player.setStackInHand(hand, ItemUsage.exchangeStack(itemStack, player, new ItemStack(wood ? ObjectRegistry.WOODEN_BUCKET.get() : Items.BUCKET)));
                 player.incrementStat(Stats.USED.getOrCreateStat(item));
                 world.setBlockState(pos, state.with(FLUID, water ? 2 : 1));
                 world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 world.emitGameEvent(null, GameEvent.FLUID_PLACE, pos);
                 return ActionResult.SUCCESS;
-            }
-            else if((state.get(FLUID) == 1 || state.get(FLUID) == 2) && (item.equals(Items.BUCKET) || item.equals(ObjectRegistry.WOODEN_BUCKET))){
+            } else if ((state.get(FLUID) == 1 || state.get(FLUID) == 2) && (item.equals(Items.BUCKET) || item.equals(ObjectRegistry.WOODEN_BUCKET))) {
                 //player.setStackInHand(hand, ItemUsage.exchangeStack(itemStack, player, new ItemStack(state.get(FLUID) == 2 ? Items.WATER_BUCKET : Items.MILK_BUCKET)));
 
                 boolean bl = item.equals(ObjectRegistry.WOODEN_BUCKET);

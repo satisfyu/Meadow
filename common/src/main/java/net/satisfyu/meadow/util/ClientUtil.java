@@ -15,34 +15,34 @@ import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 public class ClientUtil {
-	
-	public static int getLightLevel(World world, BlockPos pos) {
-		int bLight = world.getLightLevel(LightType.BLOCK, pos);
-		int sLight = world.getLightLevel(LightType.SKY, pos);
-		return LightmapTextureManager.pack(bLight, sLight);
-	}
-	
-	public static <T extends BlockEntity> void renderBlock(BlockState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity) {
-		MinecraftClient.getInstance()
-		               .getBlockRenderManager()
-		               .renderBlockAsEntity(state, matrices, vertexConsumers, ClientUtil.getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV);
-	}
-	
-	public static <T extends BlockEntity> void renderBlockFromItem(BlockItem item, MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity) {
-		renderBlock(item.getBlock().getDefaultState(), matrices, vertexConsumers, entity);
-	}
-	
-	public static <T extends BlockEntity> void renderItem(ItemStack stack, MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity) {
-		MinecraftClient.getInstance()
-		               .getItemRenderer()
-		               .renderItem(stack,
-				               ModelTransformation.Mode.GUI,
-				               ClientUtil.getLightLevel(entity.getWorld(), entity.getPos()),
-				               OverlayTexture.DEFAULT_UV,
-				               matrices,
-				               vertexConsumers,
-				               1
-		                          );
-	}
-	
+
+    public static int getLightLevel(World world, BlockPos pos) {
+        int bLight = world.getLightLevel(LightType.BLOCK, pos);
+        int sLight = world.getLightLevel(LightType.SKY, pos);
+        return LightmapTextureManager.pack(bLight, sLight);
+    }
+
+    public static <T extends BlockEntity> void renderBlock(BlockState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity) {
+        MinecraftClient.getInstance()
+                .getBlockRenderManager()
+                .renderBlockAsEntity(state, matrices, vertexConsumers, ClientUtil.getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV);
+    }
+
+    public static <T extends BlockEntity> void renderBlockFromItem(BlockItem item, MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity) {
+        renderBlock(item.getBlock().getDefaultState(), matrices, vertexConsumers, entity);
+    }
+
+    public static <T extends BlockEntity> void renderItem(ItemStack stack, MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity) {
+        MinecraftClient.getInstance()
+                .getItemRenderer()
+                .renderItem(stack,
+                        ModelTransformation.Mode.GUI,
+                        ClientUtil.getLightLevel(entity.getWorld(), entity.getPos()),
+                        OverlayTexture.DEFAULT_UV,
+                        matrices,
+                        vertexConsumers,
+                        1
+                );
+    }
+
 }

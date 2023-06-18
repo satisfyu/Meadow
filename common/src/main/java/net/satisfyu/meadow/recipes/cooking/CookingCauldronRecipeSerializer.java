@@ -41,8 +41,9 @@ public class CookingCauldronRecipeSerializer implements RecipeSerializer<Cooking
 
         ItemStack outputIfBucket = new ItemStack(outputItemIfBucket);
 
-        return new CookingCauldronRecipe(input1, input2, input3, output, outputIfBucket,  id);
+        return new CookingCauldronRecipe(input1, input2, input3, output, outputIfBucket, id);
     }
+
     @Override
     // Turns Recipe into PacketByteBuf
     public void write(PacketByteBuf packetData, CookingCauldronRecipe recipe) {

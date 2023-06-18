@@ -13,9 +13,10 @@ import net.satisfyu.meadow.entity.blockentities.CheeseRackBlockEntity;
 import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
 
 public class CheeseRackBlockEntityRenderer implements BlockEntityRenderer<CheeseRackBlockEntity> {
-    
-    public CheeseRackBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {}
-    
+
+    public CheeseRackBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+    }
+
     @Override
     public void render(CheeseRackBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         if (!entity.hasWorld()) {
@@ -38,7 +39,7 @@ public class CheeseRackBlockEntityRenderer implements BlockEntityRenderer<Cheese
             matrices.pop();
         }
     }
-    
+
     public static void applyBlockAngle(MatrixStack matrices, BlockState state, float angleOffset) {
         float angle = state.get(CheeseRackBlock.FACING).asRotation();
         matrices.translate(0.5, 0, 0.5);

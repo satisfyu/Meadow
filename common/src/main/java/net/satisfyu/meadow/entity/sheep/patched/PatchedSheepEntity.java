@@ -15,6 +15,7 @@ public class PatchedSheepEntity extends MeadowSheepEntity {
     public PatchedSheepEntity(EntityType<? extends SheepEntity> entityType, World world) {
         super(entityType, world, ObjectRegistry.PATCHED_WOOL.get(), new Identifier(Meadow.MOD_ID, "entities/sheep/patched"));
     }
+
     @Override
     public SheepEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
         return EntityRegistry.PATCHED_SHEEP.get().create(serverWorld);

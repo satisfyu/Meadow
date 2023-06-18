@@ -34,7 +34,7 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
     public boolean matches(Inventory inventory, World world) {
         DefaultedList<Ingredient> ingredients = getIngredients();
         List<ItemStack> items = new ArrayList<>(List.of(inventory.getStack(1), inventory.getStack(2)));
-        for (Ingredient ingredient : ingredients){
+        for (Ingredient ingredient : ingredients) {
             boolean matches = false;
             for (ItemStack stack : items) {
                 if (ingredient.test(stack)) {
