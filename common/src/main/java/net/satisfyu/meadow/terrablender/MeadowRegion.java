@@ -62,7 +62,7 @@ public class MeadowRegion extends Region {
     }
 
     public static void loadTerrablender(){
-        Regions.register(new MeadowRegion(new Identifier(MOD_ID, "overworld"), 5));
+        Regions.register(new MeadowRegion(new Identifier(MOD_ID, "overworld"), 2));
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, MeadowSurfaceRules.makeRules());
     }
 

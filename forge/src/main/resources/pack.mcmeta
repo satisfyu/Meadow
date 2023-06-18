@@ -1,7 +1,6 @@
 {
   "pack": {
     "description": "Meadow",
-    "pack_format": 10,
-    "patched:has_patches": true
+    "pack_format": 10
   }
 }
