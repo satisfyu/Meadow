@@ -1,13 +1,17 @@
 package net.satisfyu.meadow.registry;
 
+import dev.architectury.registry.level.biome.BiomeModifications;
 import dev.architectury.registry.level.entity.EntityAttributeRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.passive.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.Heightmap;
+import net.minecraft.world.biome.BiomeKeys;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.bear.BrownBearEntity;
 import net.satisfyu.meadow.entity.blockentities.ChairEntity;
@@ -30,6 +34,7 @@ import net.satisfyu.meadow.entity.sheep.inky.InkySheepEntity;
 import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepEntity;
 import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepEntity;
 import net.satisfyu.meadow.entity.sheep.rocky.RockySheepEntity;
+import net.satisfyu.meadow.mixin.SpawnMobAccessor;
 
 import java.util.function.Supplier;
 
@@ -127,9 +132,9 @@ public class EntityRegistry {
 
 
         EntityAttributeRegistry.register(BROWN_BEAR, PolarBearEntity::createPolarBearAttributes);
+        //--------TODO
         //SpawnMobAccessor.callRegister(BROWN_BEAR.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        //TODO
-        //BiomeModifications.addSpawn(BiomeSelectors.includeByKey(ModSurfaceRules.MEADOW_CLEARING_KEY, ModSurfaceRules.MEADOW_FOREST_KEY, BiomeKeys.MEADOW), SpawnGroup.CREATURE, BROWN_BEAR, 1, 1, 2);
+        //BiomeModifications.addProperties(BiomeSelectors.includeByKey(ModSurfaceRules.MEADOW_CLEARING_KEY, ModSurfaceRules.MEADOW_FOREST_KEY, BiomeKeys.MEADOW), SpawnGroup.CREATURE, BROWN_BEAR, 1, 1, 2);
 
 
         registerChicken(MEADOW_CHICKEN); //, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
@@ -160,7 +165,6 @@ public class EntityRegistry {
     public static void registerCow(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier){
         EntityAttributeRegistry.register(typeSupplier, CowEntity::createCowAttributes);
         //SpawnMobAccessor.callRegister(typeSupplier.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        //TODO
         //BiomeModifications.addSpawn(biomes, SpawnGroup.CREATURE, typeSupplier, 8, 4, 4);
     }
 
@@ -168,14 +172,12 @@ public class EntityRegistry {
     public static void registerSheep(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier){
         EntityAttributeRegistry.register(typeSupplier, SheepEntity::createSheepAttributes);
         //SpawnMobAccessor.callRegister(typeSupplier.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        //TODO
         //BiomeModifications.addSpawn(biomes, SpawnGroup.CREATURE, typeSupplier, 2, 2, 4);
     }
 
     public static void registerChicken(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier){
         EntityAttributeRegistry.register(typeSupplier, ChickenEntity::createChickenAttributes);
         //SpawnMobAccessor.callRegister(typeSupplier.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        //TODO
         //BiomeModifications.addProperties(biomes, SpawnGroup.CREATURE, typeSupplier, 10, 4, 4);
     }
 

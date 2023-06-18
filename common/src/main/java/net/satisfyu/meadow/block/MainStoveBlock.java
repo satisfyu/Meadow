@@ -34,17 +34,16 @@ public class MainStoveBlock extends HFacingBlock {
         return SHAPE_BIG;
     }
 
-    public boolean isConnected(BlockState state){
-        return state.get(CONNECTED_DOWN) || state.get(CONNECTED_UP);
+    public boolean isConnected(BlockState state, Direction direction){
+        return state.get(direction == Direction.UP ? CONNECTED_UP : CONNECTED_DOWN);
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-        if(isBlockStove(ctx, Direction.UP)){
-            return this.getDefaultState().with(CONNECTED_UP, true).with(FACING, ctx.getPlayerFacing().getOpposite());
-        }
-        else if(isBlockStove(ctx, Direction.DOWN)){
-            return this.getDefaultState().with(CONNECTED_DOWN, true).with(FACING, ctx.getPlayerFacing().getOpposite());
+        boolean up = isBlockStove(ctx, Direction.UP);
+        boolean down = isBlockStove(ctx, Direction.DOWN);
+        if (up || down) {
+            return this.getDefaultState().with(CONNECTED_UP, up).with(CONNECTED_DOWN, down).with(FACING, ctx.getPlayerFacing().getOpposite());
         }
 
         return super.getPlacementState(ctx);
@@ -52,54 +51,22 @@ public class MainStoveBlock extends HFacingBlock {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if(!world.isClient()){
-            if(direction == Direction.DOWN || direction == Direction.UP) {
-                if(!isConnected(state)) {
-                    if (isBlockStove(neighborState)) return state.with(direction == Direction.UP ? CONNECTED_UP : CONNECTED_DOWN, true);
+        if(!world.isClient()) {
+            if (direction == Direction.DOWN || direction == Direction.UP) {
+                if (!isConnected(state, direction)) {
+                    if (isBlockStove(neighborState)) {
+                        return state.with(direction == Direction.UP ? CONNECTED_UP : CONNECTED_DOWN, true);
+                    }
                 }
                 else {
-                    if(!isBlockStove(neighborState)) return state.with(direction == Direction.UP ? CONNECTED_UP : CONNECTED_DOWN, false);
+                    if (!isBlockStove(neighborState)) {
+                        return state.with(direction == Direction.UP ? CONNECTED_UP : CONNECTED_DOWN, false);
+                    }
                 }
             }
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
-//TODO
-    /*
-    @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if(!world.isClient()){
-
-            Meadow.LOGGER.error(direction.asString());
-
-            if(direction == Direction.DOWN || direction == Direction.UP) {
-                boolean connectedDown = state.get(CONNECTED_DOWN);
-                boolean connectedUp = state.get(CONNECTED_UP);
-
-
-                if(direction == Direction.DOWN){
-                    if(connectedDown){
-                        return state.with(CONNECTED_DOWN, false);
-                    }
-                    else {
-                        if(!connectedUp && isBlockStove(neighborState)) state.with(CONNECTED_DOWN, true);
-                    }
-                }
-                else {
-                    if(connectedUp){
-                        return state.with(CONNECTED_UP, false);
-                    }
-                    else {
-                        if(!connectedDown && isBlockStove(neighborState)) state.with(CONNECTED_UP, true);
-                    }
-                }
-
-
-            }
-        }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-    }
-     */
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

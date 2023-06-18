@@ -24,29 +24,27 @@ import net.satisfyu.meadow.util.MeadowIdentifier;
 public class FabricVillager {
     private static final MeadowIdentifier CHEESEMAKER_POI_IDENTIFIER = new MeadowIdentifier("cheesemaker_poi");
     public static final PointOfInterestType CHEESEMAKER_POI = PointOfInterestHelper.register(CHEESEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.CHEESE_RACK.get());
-    public static final VillagerProfession CHEESEMAKER = Registry.register(Registry.VILLAGER_PROFESSION, new Identifier("meadow", "cheesemaker"), VillagerProfessionBuilder.create().id(new Identifier("meadow", "cheesemaker")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, CHEESEMAKER_POI_IDENTIFIER)).build());
+    public static final VillagerProfession CHEESEMAKER = Registry.register(Registry.VILLAGER_PROFESSION, new MeadowIdentifier("cheesemaker"), VillagerProfessionBuilder.create().id(new MeadowIdentifier("cheesemaker")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, CHEESEMAKER_POI_IDENTIFIER)).build());
 
     private static final MeadowIdentifier HERMIT_POI_IDENTIFIER = new MeadowIdentifier("hermit_poi");
     public static final PointOfInterestType HERMIT_POI = PointOfInterestHelper.register(HERMIT_POI_IDENTIFIER, 1, 12, ObjectRegistry.WOODCUTTER.get());
-    public static final VillagerProfession HERMIT = Registry.register(Registry.VILLAGER_PROFESSION, new Identifier("meadow", "hermit"), VillagerProfessionBuilder.create().id(new Identifier("meadow", "hermit")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, HERMIT_POI_IDENTIFIER)).build());
+    public static final VillagerProfession HERMIT = Registry.register(Registry.VILLAGER_PROFESSION, new MeadowIdentifier("hermit"), VillagerProfessionBuilder.create().id(new MeadowIdentifier("hermit")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, HERMIT_POI_IDENTIFIER)).build());
 
-    public static final VillagerType MEADOW = Registry.register(Registry.VILLAGER_TYPE, new Identifier("meadow", "meadow"), new VillagerType("meadow"));
+    public static final VillagerType MEADOW = Registry.register(Registry.VILLAGER_TYPE, new MeadowIdentifier("meadow"), new VillagerType("meadow"));
     
     public static void init() {
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 1, factories -> {
-
-        });
-        TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 2, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.RENNET.get(), 1, 2, 7));
         });
-        TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 3, factories -> {
-
+        TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 2, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.COOKING_CAULDRON.get(), 7, 1, 10));
+        });
+        TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 3, factories -> {
+            factories.add(new SellItemFactory(ObjectRegistry.STOVE.get(), 6, 1, 10));
         });
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 4, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.WOODEN_BUCKET.get(), 5, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.WOODEN_MILK_BUCKET.get(), 12, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.STOVE.get(), 6, 1, 10));
         });
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 5, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.CHEESE_BLOCK.get(), 10, 1, 10));
@@ -54,9 +52,9 @@ public class FabricVillager {
             factories.add(new SellItemFactory(ObjectRegistry.LAVENDER_CHEESE_BLOCK.get(), 12, 1, 15));
             factories.add(new SellItemFactory(ObjectRegistry.OAT_CHEESE_BLOCK.get(), 12, 1, 15));
         });
+
         TradeOfferHelper.registerVillagerOffers(HERMIT, 1, factories -> {
-            //TODO
-            //factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.BENCH, 15, 4, 5));
+            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.BENCH.get(), 15, 4, 5));
             factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.PINE_LOG.get(), 10, 4, 5));
             factories.add(new SellItemFactory(ObjectRegistry.PINE_SAPLING.get(), 10, 6, 5));
             factories.add(new SellItemFactory(ObjectRegistry.PINE_SLAB.get(), 7, 4, 5));
@@ -81,7 +79,7 @@ public class FabricVillager {
             factories.add(new SellItemFactory(ObjectRegistry.WOODEN_CAULDRON.get(), 5, 1, 10));
         });
 
-        VillagerType.BIOME_TO_TYPE.put(RegistryKey.of(Registry.BIOME_KEY, new Identifier("meadow")), MEADOW);
+        //VillagerType.BIOME_TO_TYPE.put(RegistryKey.of(Registry.BIOME_KEY, new Identifier("meadow")), MEADOW);
     }
 
     static class BuyForOneEmeraldFactory implements TradeOffers.Factory {
