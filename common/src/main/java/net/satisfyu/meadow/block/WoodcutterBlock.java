@@ -18,7 +18,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.client.screen.screenhandler.WoodcutterScreenHandler;
+import net.satisfyu.meadow.client.gui.handler.WoodcutterGuiHandler;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class WoodcutterBlock extends Block {
 
     @Override
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> new WoodcutterScreenHandler(i, playerInventory, ScreenHandlerContext.create(world, pos)), TITLE);
+        return new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> new WoodcutterGuiHandler(i, playerInventory, ScreenHandlerContext.create(world, pos)), TITLE);
     }
 
     @Override

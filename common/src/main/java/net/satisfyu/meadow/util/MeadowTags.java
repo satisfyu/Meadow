@@ -13,6 +13,7 @@ public class MeadowTags {
     public static final TagKey<Biome> MEADOW_RABBIT_BIOMES = TagKey.of(Registry.BIOME_KEY, new Identifier(MOD_ID, "meadow_rabbit_biomes"));
 
     public static final TagKey<Item> CHEESE_MASS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "cheese_mass"));
+    public static final TagKey<Item> MILK = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "milk"));
 
     public static final TagKey<Item> CHEESE_BLOCKS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "cheese_blocks"));
 

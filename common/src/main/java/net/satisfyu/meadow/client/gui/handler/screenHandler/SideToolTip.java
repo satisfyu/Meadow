@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen.screenhandler.screenHandler;
+package net.satisfyu.meadow.client.gui.handler.screenHandler;
 
 import net.minecraft.text.Text;
 

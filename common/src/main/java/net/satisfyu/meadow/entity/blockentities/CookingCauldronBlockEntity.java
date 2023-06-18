@@ -17,8 +17,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.client.screen.screenhandler.CookingCauldronScreenHandler;
+import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
+import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.util.ImplementedInventory;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
@@ -35,11 +36,10 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     public static final Text TITLE = Text.translatable("container.cooking_cauldron");
     public static final int MAX_COOKING_TIME = 6000; // Time in ticks (300s)
     private int syncedInt;
-
     private int isCooking;
 
 
-    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(4, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(7, ItemStack.EMPTY);
 
     public CookingCauldronBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.COOKING_CAULDRON_BLOCK_ENTITY.get(), pos, state);
@@ -91,7 +91,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     public void tick(World world, BlockPos pos, BlockState state, CookingCauldronBlockEntity be) {
         if(!world.isClient){
             int var = 0;
-            Optional<CookingCauldronRecipe> recipe = world.getRecipeManager().getFirstMatch(CookingCauldronRecipe.Type.INSTANCE, this, world);
+            Optional<CookingCauldronRecipe> recipe = world.getRecipeManager().getFirstMatch(RecipeRegistry.COOKING.get(), this, world);
 
             boolean done = false;
 
@@ -167,7 +167,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CookingCauldronScreenHandler(syncId, inv, this, propertyDelegate);
+        return new CookingCauldronGuiHandler(syncId, inv, this, propertyDelegate);
     }
 
     @Override

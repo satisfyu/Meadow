@@ -10,6 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import net.satisfyu.meadow.registry.RecipeRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,18 +102,11 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return CookingCauldronRecipeSerializer.INSTANCE;
+        return RecipeRegistry.COOKING_SERIALIZER.get();
     }
 
-    public static class Type implements RecipeType<CookingCauldronRecipe> {
-        private Type() {}
-
-        public static final CookingCauldronRecipe.Type INSTANCE = new CookingCauldronRecipe.Type();
-
-        public static final String ID = "cooking";
-    }
     @Override
     public RecipeType<?> getType() {
-        return CookingCauldronRecipe.Type.INSTANCE;
+        return RecipeRegistry.COOKING.get();
     }
 }

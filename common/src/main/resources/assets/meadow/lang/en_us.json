@@ -278,5 +278,7 @@
   "tooltip.meadow.cooking_cauldron.milk_bucket": "Milk Bucket",
   "tooltip.meadow.cooking_cauldron.output_slot": "Different milk results in a different cheese mass",
   "tooltip.meadow.cooking_cauldron.rennet": "Rennet",
-  "tooltip.meadow.recipe_book": "Recipe Book"
+  "tooltip.meadow.recipe_book": "Recipe Book",
+  "gui.meadow.recipebook.toggleRecipes.cookable": "Cookable",
+  "gui.meadow.recipebook.toggleRecipes.cheeseable": "Cheeseable"
 }

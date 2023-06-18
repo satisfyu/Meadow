@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen.screenhandler;
+package net.satisfyu.meadow.client.gui.handler;
 
 import com.google.common.collect.Lists;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,7 +24,7 @@ import net.satisfyu.meadow.registry.SoundRegistry;
 
 import java.util.List;
 
-public class WoodcutterScreenHandler extends ScreenHandler {
+public class WoodcutterGuiHandler extends ScreenHandler {
     private final ScreenHandlerContext context;
     private final Property selectedRecipe = Property.create();
     private final World world;
@@ -38,17 +38,17 @@ public class WoodcutterScreenHandler extends ScreenHandler {
         @Override
         public void markDirty() {
             super.markDirty();
-            WoodcutterScreenHandler.this.onContentChanged(this);
-            WoodcutterScreenHandler.this.contentsChangedListener.run();
+            WoodcutterGuiHandler.this.onContentChanged(this);
+            WoodcutterGuiHandler.this.contentsChangedListener.run();
         }
     };
     final CraftingResultInventory output = new CraftingResultInventory();
 
-    public WoodcutterScreenHandler(int syncId, PlayerInventory playerInventory) {
+    public WoodcutterGuiHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
     }
 
-    public WoodcutterScreenHandler(int syncId, PlayerInventory playerInventory, final ScreenHandlerContext context) {
+    public WoodcutterGuiHandler(int syncId, PlayerInventory playerInventory, final ScreenHandlerContext context) {
         super(ScreenHandlerRegistry.WOODCUTTER_SCREEN_HANDLER.get(), syncId);
         this.context = context;
         this.world = playerInventory.player.world;
@@ -67,16 +67,16 @@ public class WoodcutterScreenHandler extends ScreenHandler {
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
                 stack.onCraft(player.world, player, stack.getCount());
-                WoodcutterScreenHandler.this.output.unlockLastRecipe(player);
-                ItemStack itemStack = WoodcutterScreenHandler.this.inputSlot.takeStack(1);
+                WoodcutterGuiHandler.this.output.unlockLastRecipe(player);
+                ItemStack itemStack = WoodcutterGuiHandler.this.inputSlot.takeStack(1);
                 if (!itemStack.isEmpty()) {
-                    WoodcutterScreenHandler.this.populateResult();
+                    WoodcutterGuiHandler.this.populateResult();
                 }
                 context.run((world, pos) -> {
                     long l = world.getTime();
-                    if (WoodcutterScreenHandler.this.lastTakeTime != l) {
+                    if (WoodcutterGuiHandler.this.lastTakeTime != l) {
                         world.playSound(null, pos, SoundRegistry.WOODCUTTER.get(), SoundCategory.BLOCKS, 1.0f, 1.0f);
-                        WoodcutterScreenHandler.this.lastTakeTime = l;
+                        WoodcutterGuiHandler.this.lastTakeTime = l;
                     }
                 });
                 super.onTakeItem(player, stack);

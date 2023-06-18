@@ -10,31 +10,50 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import net.satisfyu.meadow.registry.RecipeRegistry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheeseFormRecipe implements Recipe<Inventory> {
+    private final Ingredient bucket;
     private final Ingredient input;
 
     private final ItemStack outputStack;
 
     private final Identifier id;
 
-    public CheeseFormRecipe(Ingredient input, ItemStack outputStack, Identifier id) {
+    public CheeseFormRecipe(Ingredient bucket, Ingredient input, ItemStack outputStack, Identifier id) {
+        this.bucket = bucket;
         this.input = input;
         this.outputStack = outputStack;
         this.id = id;
     }
 
-
-
     @Override
     public boolean matches(Inventory inventory, World world) {
-        return input.test(inventory.getStack(0));
+        DefaultedList<Ingredient> ingredients = getIngredients();
+        List<ItemStack> items = new ArrayList<>(List.of(inventory.getStack(1), inventory.getStack(2)));
+        for (Ingredient ingredient : ingredients){
+            boolean matches = false;
+            for (ItemStack stack : items) {
+                if (ingredient.test(stack)) {
+                    matches = true;
+                    break;
+                }
+            }
+            if (!matches) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
         DefaultedList<Ingredient> defaultedList = DefaultedList.of();
+        defaultedList.add(this.bucket);
         defaultedList.add(this.input);
         return defaultedList;
     }
@@ -54,11 +73,6 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
         return outputStack;
     }
 
-    public Ingredient getInput() {
-        return input;
-    }
-
-
     @Override
     public ItemStack createIcon() {
         return new ItemStack(ObjectRegistry.CHEESE_FORM.get());
@@ -72,18 +86,11 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return CheeseFormRecipeSerializer.INSTANCE;
+        return RecipeRegistry.CHEESE_SERIALIZER.get();
     }
 
-    public static class Type implements RecipeType<CheeseFormRecipe> {
-        private Type() {}
-
-        public static final Type INSTANCE = new Type();
-
-        public static final String ID = "cheese";
-    }
     @Override
     public RecipeType<?> getType() {
-        return Type.INSTANCE;
+        return RecipeRegistry.CHEESE.get();
     }
 }

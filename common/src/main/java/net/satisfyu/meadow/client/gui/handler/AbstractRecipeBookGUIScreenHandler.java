@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen.screenhandler.screenHandler;
+package net.satisfyu.meadow.client.gui.handler;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -6,20 +6,19 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
+import net.satisfyu.meadow.client.recipebook.AbstractPrivateRecipeScreenHandler;
 
-public class RecipeScreenHandler extends ScreenHandler {
-    public final World world;
-    public final Inventory inventory;
-    public final PropertyDelegate propertyDelegate;
+public abstract class AbstractRecipeBookGUIScreenHandler extends AbstractPrivateRecipeScreenHandler {
+    protected final Inventory inventory;
+    protected final PropertyDelegate propertyDelegate;
+    protected final World world;
     private final int inputSlots;
 
-    public RecipeScreenHandler(ScreenHandlerType<?> screenHandler, int syncId, PlayerInventory playerInventory, Inventory inventory, int inputSlots, PropertyDelegate propertyDelegate) {
+    protected AbstractRecipeBookGUIScreenHandler(ScreenHandlerType<?> screenHandler, int syncId, int inputSlots, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(screenHandler, syncId);
-
         this.world = playerInventory.player.world;
         this.inventory = inventory;
         this.inputSlots = inputSlots;

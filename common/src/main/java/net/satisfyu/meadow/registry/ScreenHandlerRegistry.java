@@ -5,20 +5,20 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.screen.screenhandler.CheeseFormScreenHandler;
-import net.satisfyu.meadow.client.screen.screenhandler.CookingCauldronScreenHandler;
-import net.satisfyu.meadow.client.screen.screenhandler.FondueScreenHandler;
-import net.satisfyu.meadow.client.screen.screenhandler.WoodcutterScreenHandler;
+import net.satisfyu.meadow.client.gui.handler.CheeseFormGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.WoodcutterGuiHandler;
 
 import java.util.function.Supplier;
 
 public class ScreenHandlerRegistry {
     public static final DeferredRegister<ScreenHandlerType<?>> SCREEN_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registry.MENU_KEY);
 
-    public static final RegistrySupplier<ScreenHandlerType<WoodcutterScreenHandler>> WOODCUTTER_SCREEN_HANDLER = create("woodcutter", () -> new ScreenHandlerType<>(WoodcutterScreenHandler::new));
-    public static final RegistrySupplier<ScreenHandlerType<CookingCauldronScreenHandler>> COOKING_CAULDRON_SCREEN_HANDLER = create("cooking_cauldron", () -> new ScreenHandlerType<>(CookingCauldronScreenHandler::new));
-    public static final RegistrySupplier<ScreenHandlerType<CheeseFormScreenHandler>> CHEESE_FORM_SCREEN_HANDLER = create("cheese_form", () -> new ScreenHandlerType<>(CheeseFormScreenHandler::new));
-    public static final RegistrySupplier<ScreenHandlerType<FondueScreenHandler>> FONDUE_SCREEN_HANDLER = create("fondue", () -> new ScreenHandlerType<>(FondueScreenHandler::new));
+    public static final RegistrySupplier<ScreenHandlerType<WoodcutterGuiHandler>> WOODCUTTER_SCREEN_HANDLER = create("woodcutter", () -> new ScreenHandlerType<>(WoodcutterGuiHandler::new));
+    public static final RegistrySupplier<ScreenHandlerType<CookingCauldronGuiHandler>> COOKING_CAULDRON_SCREEN_HANDLER = create("cooking_cauldron", () -> new ScreenHandlerType<>(CookingCauldronGuiHandler::new));
+    public static final RegistrySupplier<ScreenHandlerType<CheeseFormGuiHandler>> CHEESE_FORM_SCREEN_HANDLER = create("cheese_form", () -> new ScreenHandlerType<>(CheeseFormGuiHandler::new));
+    public static final RegistrySupplier<ScreenHandlerType<FondueGuiHandler>> FONDUE_SCREEN_HANDLER = create("fondue", () -> new ScreenHandlerType<>(FondueGuiHandler::new));
 
 
     public static void init() {

@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen.screenhandler;
+package net.satisfyu.meadow.client.gui.handler;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -12,15 +12,15 @@ import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 
-public class FondueScreenHandler extends ScreenHandler {
+public class FondueGuiHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
 
-    public FondueScreenHandler(int syncId, PlayerInventory inventory) {
+    public FondueGuiHandler(int syncId, PlayerInventory inventory) {
         this(syncId, inventory, new SimpleInventory(3), new ArrayPropertyDelegate(2));
     }
 
-    public FondueScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
+    public FondueGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
         super(ScreenHandlerRegistry.FONDUE_SCREEN_HANDLER.get(), syncId);
         checkSize(inventory, 3);
         this.inventory = inventory;

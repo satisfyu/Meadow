@@ -20,18 +20,16 @@ public class CheeseFormRecipeSerializer implements RecipeSerializer<CheeseFormRe
 
     public static final CheeseFormRecipeSerializer INSTANCE = new CheeseFormRecipeSerializer();
 
-    // This will be the "type" field in the json
-    public static final Identifier ID = new Identifier(MOD_ID,"cheese");
-
     @Override
     // Turns json into Recipe
     public CheeseFormRecipe read(Identifier id, JsonObject json) {
         CheeseFormRecipeJsonFormat recipeJson = new Gson().fromJson(json, CheeseFormRecipeJsonFormat.class);
 
-        if (recipeJson.inputItem == null || recipeJson.outputItem == null) {
+        if (recipeJson.bucketItem == null || recipeJson.inputItem == null || recipeJson.outputItem == null) {
             throw new JsonSyntaxException("A required attribute is missing!");
         }
 
+        Ingredient bucket = Ingredient.fromJson(recipeJson.bucketItem);
         Ingredient input = Ingredient.fromJson(recipeJson.inputItem);
 
         Item outputItem = Registry.ITEM.getOrEmpty(new Identifier(recipeJson.outputItem))
@@ -40,20 +38,21 @@ public class CheeseFormRecipeSerializer implements RecipeSerializer<CheeseFormRe
         ItemStack output = new ItemStack(outputItem);
 
 
-        return new CheeseFormRecipe(input, output, id);
+        return new CheeseFormRecipe(bucket, input, output, id);
     }
     @Override
     // Turns Recipe into PacketByteBuf
     public void write(PacketByteBuf packetData, CheeseFormRecipe recipe) {
-        recipe.getInput().write(packetData);
+        recipe.getIngredients().forEach(ingredient -> ingredient.write(packetData));
         packetData.writeItemStack(recipe.getOutput());
     }
 
     @Override
     // Turns PacketByteBuf into Recipe
     public CheeseFormRecipe read(Identifier id, PacketByteBuf packetData) {
+        Ingredient bucket = Ingredient.fromPacket(packetData);
         Ingredient input = Ingredient.fromPacket(packetData);
         ItemStack output = packetData.readItemStack();
-        return new CheeseFormRecipe(input, output, id);
+        return new CheeseFormRecipe(bucket, input, output, id);
     }
 }

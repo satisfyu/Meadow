@@ -17,10 +17,10 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
-import net.satisfyu.meadow.client.screen.CheeseFormScreen;
-import net.satisfyu.meadow.client.screen.CookingCauldronScreen;
-import net.satisfyu.meadow.client.screen.FondueScreen;
-import net.satisfyu.meadow.client.screen.WoodcutterScreen;
+import net.satisfyu.meadow.client.gui.CheeseFormGui;
+import net.satisfyu.meadow.client.gui.CookingCauldronGui;
+import net.satisfyu.meadow.client.gui.FondueGui;
+import net.satisfyu.meadow.client.gui.WoodcutterGui;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityModel;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityRenderer;
@@ -56,6 +56,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class MeadowClient {
+
+    public static boolean rememberedRecipeBookOpen = false;
+    public static boolean rememberedCraftableToggle = false;
 
     public static final EntityModelLayer FLECKED_SHEEP_FUR = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "flecked_sheep"), "fur");
     public static final EntityModelLayer FLECKED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "flecked_sheep"), "main");
@@ -135,10 +138,10 @@ public class MeadowClient {
     }
 
     private static void registerClientScreens() {
-        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.CHEESE_FORM_SCREEN_HANDLER.get(), CheeseFormScreen::new);
-        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.WOODCUTTER_SCREEN_HANDLER.get(), WoodcutterScreen::new);
-        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.COOKING_CAULDRON_SCREEN_HANDLER.get(), CookingCauldronScreen::new);
-        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.FONDUE_SCREEN_HANDLER.get(), FondueScreen::new);
+        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.CHEESE_FORM_SCREEN_HANDLER.get(), CheeseFormGui::new);
+        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.WOODCUTTER_SCREEN_HANDLER.get(), WoodcutterGui::new);
+        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.COOKING_CAULDRON_SCREEN_HANDLER.get(), CookingCauldronGui::new);
+        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.FONDUE_SCREEN_HANDLER.get(), FondueGui::new);
     }
 
     private static void registerEntityRenderers(){

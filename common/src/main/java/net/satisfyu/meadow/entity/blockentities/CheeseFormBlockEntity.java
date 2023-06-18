@@ -2,6 +2,7 @@ package net.satisfyu.meadow.entity.blockentities;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -9,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -16,121 +18,222 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.block.CheeseFormBlock;
-import net.satisfyu.meadow.client.screen.screenhandler.CheeseFormScreenHandler;
-import net.satisfyu.meadow.registry.BlockEntityRegistry;
-import net.satisfyu.meadow.util.ImplementedInventory;
+import net.satisfyu.meadow.client.gui.handler.CheeseFormGuiHandler;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
+import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import net.satisfyu.meadow.registry.RecipeRegistry;
+import net.satisfyu.meadow.util.ImplementedInventory;
 import net.satisfyu.meadow.util.MeadowTags;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
+public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTicker<CheeseFormBlockEntity>, NamedScreenHandlerFactory, ImplementedInventory {
 
-import static net.satisfyu.meadow.block.CookingCauldronBlock.DONE;
-import static net.satisfyu.meadow.block.CookingCauldronBlock.VAR;
-
-public class CheeseFormBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
-
-    public static final Text TITLE = Text.translatable("container.cheese_form");
-
-    private int syncedInt;
-
-    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory;
+    public static final int CAPACITY = 3;
+    public static final int COOKING_TIME_IN_TICKS = 1800; // 90s or 3 minutes
+    private static final int OUTPUT_SLOT = 0;
+    private int fermentationTime = 0;
+    private int totalFermentationTime;
+    protected float experience;
 
     private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
+
         @Override
         public int get(int index) {
-            if (index == 0) {
-                return syncedInt;
-            }
-            return 0;
+            return switch (index) {
+                case 0 -> CheeseFormBlockEntity.this.fermentationTime;
+                case 1 -> CheeseFormBlockEntity.this.totalFermentationTime;
+                default -> 0;
+            };
         }
+
 
         @Override
         public void set(int index, int value) {
-            if (index == 0) {
-                syncedInt = value;
+            switch (index) {
+                case 0 -> CheeseFormBlockEntity.this.fermentationTime = value;
+                case 1 -> CheeseFormBlockEntity.this.totalFermentationTime = value;
             }
         }
+
         @Override
         public int size() {
-            return 1;
+            return 2;
         }
-
     };
 
     public CheeseFormBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.CHEESE_FORM_BLOCK_ENTITY.get(), pos, state);
-    }
-
-
-    @Override
-    public void writeNbt(NbtCompound nbt) {
-        nbt.putInt("syncedInt", syncedInt);
-        Inventories.writeNbt(nbt, items);
-        super.writeNbt(nbt);
+        this.inventory = DefaultedList.ofSize(CAPACITY, ItemStack.EMPTY);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        Inventories.readNbt(nbt, items);
-        syncedInt = nbt.getInt("syncedInt");
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
+        Inventories.readNbt(nbt, this.inventory);
+        this.fermentationTime = nbt.getShort("fermentationTime");
+        this.experience = nbt.getFloat("experience");
+
     }
 
-    public void tick(World world, BlockPos pos, BlockState state, CheeseFormBlockEntity be) {
-        if(!world.isClient){
-            Optional<CheeseFormRecipe> recipe = world.getRecipeManager().getFirstMatch(CheeseFormRecipe.Type.INSTANCE, this, world);
-            int var = 0;
-            boolean done = false;
-            if(recipe.isPresent() && items.get(1).isEmpty()){
-                var = getVar(items.get(0).getItem());
-                if(!state.get(CheeseFormBlock.DONE) && state.get(VAR) > 0){
-                    syncedInt++;
-                }
-                if(syncedInt >= CookingCauldronBlockEntity.MAX_COOKING_TIME){
-                    done = true;
-                    Item bucket = items.get(0).isIn(MeadowTags.WOODEN_BUCKETS) ? ObjectRegistry.WOODEN_BUCKET.get() : Items.BUCKET;
-                    items.set(0, new ItemStack(bucket));
-                    items.set(1, recipe.get().getOutput());
-                    syncedInt = 0;
-                }
-            }
-            else{
-                syncedInt = 0;
-                if(!items.get(1).isEmpty()){
-                    done = true;
-                    var = getVar(items.get(1).getItem());
-                }
-            }
-            world.setBlockState(pos, ObjectRegistry.CHEESE_FORM.get().getDefaultState().with(VAR, var).with(DONE, done));
-        }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt, this.inventory);
+        nbt.putFloat("experience", this.experience);
+        nbt.putShort("fermentationTime", (short) this.fermentationTime);
     }
 
-    public static int getVar(Item item){
-        if (ObjectRegistry.OAT_CHEESE_MASS.equals(item) || ObjectRegistry.WOODEN_HERBS_CHEESE_MASS.equals(item) || ObjectRegistry.OAT_CHEESE_BLOCK.get().asItem().equals(item)) {
-            return 5;
+
+    @Override
+    public void tick(World world, BlockPos pos, BlockState state, CheeseFormBlockEntity blockEntity) {
+        if (world.isClient) return;
+        boolean dirty = false;
+        final var recipeType = world.getRecipeManager()
+                .getFirstMatch(RecipeRegistry.CHEESE.get(), blockEntity, world)
+                .orElse(null);
+        if (canCraft(recipeType)) {
+            this.fermentationTime++;
+
+            if (this.fermentationTime == this.totalFermentationTime) {
+                this.fermentationTime = 0;
+                craft(recipeType);
+                dirty = true;
+            }
+        } else {
+            this.fermentationTime = 0;
+        }
+        if (dirty) {
+            markDirty();
         }
 
-        else{
-            return 5;
+    }
+
+    private boolean canCraft(CheeseFormRecipe recipe) {
+        if (recipe == null || recipe.getOutput().isEmpty()) {
+            return false;
+        } else if (areInputsEmpty()) {
+            return false;
+        }
+        ItemStack itemStack = this.getStack(OUTPUT_SLOT);
+        return itemStack.isEmpty() || itemStack == recipe.getOutput(); //TODO geht nicht
+    }
+
+
+    private boolean areInputsEmpty() {
+        int emptyStacks = 0;
+        for (int i = 1; i <= 2; i++) {
+            if (this.getStack(i).isEmpty()) emptyStacks++;
+        }
+        return emptyStacks == 2;
+    }
+
+    private void craft(CheeseFormRecipe recipe) {
+        if (!canCraft(recipe)) {
+            return;
+        }
+        final ItemStack recipeOutput = recipe.getOutput();
+        final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+        if (outputSlotStack.isEmpty()) {
+            ItemStack output = recipeOutput.copy();
+            setStack(OUTPUT_SLOT, output);
+        }//TODO bucket
+        for (Ingredient entry : recipe.getIngredients()) {
+            ItemStack slot1Stack = this.getStack(1);
+            if (entry.test(slot1Stack)) {
+                if (slot1Stack.isIn(MeadowTags.MILK)) {
+                    ItemStack bucket = slot1Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultStack() : Items.BUCKET.getDefaultStack();
+                    this.setStack(1, bucket);
+                }
+                else {
+                    removeStack(1, 1);
+                }
+            }
+            ItemStack slot2Stack = this.getStack(2);
+            if (entry.test(this.getStack(2))) {
+                if (slot2Stack.isIn(MeadowTags.MILK)) {
+                    ItemStack bucket = slot2Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultStack() : Items.BUCKET.getDefaultStack();
+                    this.setStack(2, bucket);
+                }
+                else {
+                    removeStack(2, 1);
+                }
+            }
         }
     }
 
     @Override
+    public int size() {
+        return CAPACITY;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return inventory.stream().allMatch(ItemStack::isEmpty);
+    }
+
+    @Override
+    public ItemStack getStack(int slot) {
+        return this.inventory.get(slot);
+    }
+
+    @Override
+    public ItemStack removeStack(int slot, int amount) {
+        return Inventories.splitStack(this.inventory, slot, amount);
+    }
+
+    @Override
+    public ItemStack removeStack(int slot) {
+        return Inventories.removeStack(this.inventory, slot);
+    }
+
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        final ItemStack stackInSlot = this.inventory.get(slot);
+        boolean dirty = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(stackInSlot) && ItemStack.areNbtEqual(stack, stackInSlot);
+        this.inventory.set(slot, stack);
+        if (stack.getCount() > this.getMaxCountPerStack()) {
+            stack.setCount(this.getMaxCountPerStack());
+        }
+        if (slot == 1 || slot == 2) {
+            if (!dirty) {
+                this.totalFermentationTime = CheeseFormBlockEntity.COOKING_TIME_IN_TICKS;
+                this.fermentationTime = 0;
+                markDirty();
+            }
+        }
+    }
+    @Override
+    public boolean canPlayerUse(PlayerEntity player) {
+        if (this.world.getBlockEntity(this.pos) != this) {
+            return false;
+        } else {
+            return player.squaredDistanceTo((double)this.pos.getX() + 0.5, (double)this.pos.getY() + 0.5, (double)this.pos.getZ() + 0.5) <= 64.0;
+        }
+    }
+
+    @Override
+    public void clear() {
+        this.inventory.clear();
+    }
+
+
+    @Override
     public Text getDisplayName() {
-        return TITLE;
+        return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
     }
 
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CheeseFormScreenHandler(syncId, inv, this, propertyDelegate);
+        return new CheeseFormGuiHandler(syncId, inv, this, this.propertyDelegate);
     }
 
     @Override
     public DefaultedList<ItemStack> getItems() {
-        return items;
+        return this.inventory;
     }
 }

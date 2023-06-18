@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen;
+package net.satisfyu.meadow.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
@@ -10,12 +10,12 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.satisfyu.meadow.client.screen.screenhandler.WoodcutterScreenHandler;
+import net.satisfyu.meadow.client.gui.handler.WoodcutterGuiHandler;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 
 import java.util.List;
 
-public class WoodcutterScreen extends HandledScreen<WoodcutterScreenHandler> {
+public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
     private static final Identifier TEXTURE = new Identifier("meadow","textures/gui/woodcutter.png");
     private final int recipeIconPosX = 58;
     private final int recipeIconPosY = 15;
@@ -25,7 +25,7 @@ public class WoodcutterScreen extends HandledScreen<WoodcutterScreenHandler> {
     private final int recipeIconPerLine = 4;
     private boolean canCraft;
 
-    public WoodcutterScreen(WoodcutterScreenHandler handler, PlayerInventory inventory, Text title) {
+    public WoodcutterGui(WoodcutterGuiHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         handler.setContentsChangedListener(this::onInventoryChange);
     }

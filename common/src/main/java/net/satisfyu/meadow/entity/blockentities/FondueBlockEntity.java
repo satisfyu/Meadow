@@ -18,7 +18,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.util.ImplementedInventory;
-import net.satisfyu.meadow.client.screen.screenhandler.FondueScreenHandler;
+import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.util.MeadowTags;
@@ -70,7 +70,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new FondueScreenHandler(syncId, inv, this, this.propertyDelegate);
+        return new FondueGuiHandler(syncId, inv, this, this.propertyDelegate);
     }
 
     @Override

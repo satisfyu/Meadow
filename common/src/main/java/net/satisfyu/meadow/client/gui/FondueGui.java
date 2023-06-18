@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen;
+package net.satisfyu.meadow.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -8,13 +8,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.screen.screenhandler.FondueScreenHandler;
+import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
 
-public class FondueScreen extends HandledScreen<FondueScreenHandler> {
+public class FondueGui extends HandledScreen<FondueGuiHandler> {
 
     private final Identifier background = new Identifier(Meadow.MOD_ID, "textures/gui/fondue_gui.png");
 
-    public FondueScreen(FondueScreenHandler handler, PlayerInventory inventory, Text title) {
+    public FondueGui(FondueGuiHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
 
