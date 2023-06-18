@@ -25,9 +25,9 @@ public class MeadowRegion extends Region {
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
         addModifiedVanillaOverworldBiomes(mapper, builder -> {
 
-            /*
+
             List<MultiNoiseUtil.NoiseHypercube> meadowPoints = new ParameterUtils.ParameterPointListBuilder()
-                    .temperature(Temperature.COOL, Temperature.NEUTRAL)
+                    .temperature(ParameterUtils.Temperature.COOL, ParameterUtils.Temperature.NEUTRAL)
                     .humidity(ParameterUtils.Humidity.ARID, ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL, ParameterUtils.Humidity.WET)
                     .continentalness(ParameterUtils.Continentalness.FAR_INLAND)
                     .erosion(ParameterUtils.Erosion.EROSION_1, ParameterUtils.Erosion.EROSION_2, ParameterUtils.Erosion.EROSION_3)
@@ -35,7 +35,6 @@ public class MeadowRegion extends Region {
                     .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.UNDERGROUND)
                     .build();
 
-             */
 
             List<MultiNoiseUtil.NoiseHypercube> meadowForestPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(MultiNoiseUtil.ParameterRange.of(-0.45F, -0.15F), MultiNoiseUtil.ParameterRange.of(-0.15F, 0.2F))
@@ -62,7 +61,7 @@ public class MeadowRegion extends Region {
     }
 
     public static void loadTerrablender(){
-        Regions.register(new MeadowRegion(new Identifier(MOD_ID, "overworld"), 2));
+        Regions.register(new MeadowRegion(new Identifier(MOD_ID, "overworld"), 5));
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, MeadowSurfaceRules.makeRules());
     }
 

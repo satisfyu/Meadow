@@ -1,21 +1,30 @@
 {
   "type": "minecraft:random_patch",
   "config": {
-    "tries": 96,
-    "xz_spread": 7,
+    "tries": 33,
+    "xz_spread": 12,
     "y_spread": 3,
     "feature": {
       "feature": {
         "type": "minecraft:simple_block",
         "config": {
           "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "meadow:eriophorum_tall",
-              "Properties": {
-                "half": "lower"
+            "type": "minecraft:noise_provider",
+            "seed": 69420,
+            "noise": {
+              "firstOctave": -7,
+              "amplitudes": [
+                1,
+                1,
+                1
+              ]
+            },
+            "scale": 1,
+            "states": [
+              {
+                "Name": "meadow:eriophorum_tall"
               }
-            }
+            ]
           }
         }
       },
@@ -24,7 +33,9 @@
           "type": "minecraft:block_predicate_filter",
           "predicate": {
             "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
+            "blocks": [
+              "minecraft:air"
+            ]
           }
         }
       ]
