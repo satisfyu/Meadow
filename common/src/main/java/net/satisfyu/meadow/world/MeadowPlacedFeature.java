@@ -14,6 +14,8 @@ public class MeadowPlacedFeature {
     public static final RegistryKey<PlacedFeature> GRASS_PATCH_KEY = registerKey("grass_patch");
     public static final RegistryKey<PlacedFeature> TREES_MEADOW_KEY = registerKey("meadow_trees");
     public static final RegistryKey<PlacedFeature> BUSH_KEY = registerKey("bush_checked");
+    public static final RegistryKey<PlacedFeature> MEADOW_BOULDERS_KEY = registerKey("meadow_boulders");
+    public static final RegistryKey<PlacedFeature> LIMESTONE_SLAB_KEY = registerKey("limestone_slab");
 
 
 

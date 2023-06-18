@@ -1,15 +1,15 @@
 {
-  "feature": "meadow:eriophorum_tall",
+  "feature": "meadow:forest_grass",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 30
+      "type": "minecraft:count",
+      "count": 20
     },
     {
       "type": "minecraft:in_square"
     },
     {
-      "type": "heightmap",
+      "type": "minecraft:heightmap",
       "heightmap": "WORLD_SURFACE_WG"
     },
     {

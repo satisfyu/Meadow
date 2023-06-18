@@ -148,7 +148,9 @@
     ],
     [
       "minecraft:amethyst_geode",
-      "meadow:forest_rock_limestone"
+      "meadow:forest_rock_limestone",
+      "meadow:meadow_boulders",
+      "meadow:limestone_slab"
     ],
     [
       "minecraft:monster_room",
@@ -201,7 +203,12 @@
     ],
     [
       "minecraft:glow_lichen",
-      "meadow:meadow_forest_trees"
+      "meadow:forest_grass_patch",
+      "meadow:meadow_forest_trees",
+      "meadow:eriophorum_tall",
+      "minecraft:brown_mushroom_taiga",
+      "minecraft:red_mushroom_taiga",
+      "minecraft:patch_berry_common"
     ],
     [
       "minecraft:freeze_top_layer"
