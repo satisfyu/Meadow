@@ -28,6 +28,7 @@ public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
         int slot = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
             ItemStack[] inputStacks = ingredient.getMatchingStacks();
+            if (inputStacks.length == 0) continue;
             ItemStack inputStack = inputStacks[Random.create().nextBetween(0, inputStacks.length - 1)];
             this.ghostSlots.addSlot(inputStack, slots.get(slot).x, slots.get(slot++).y);
         }

@@ -19,15 +19,13 @@ import java.util.List;
 public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
     private static final Text TOGGLE_COOKABLE_TEXT;
 
-    public CheeseFormRecipeBook() {
-    }
-
     @Override
     public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
         this.ghostSlots.addSlot(recipe.getOutput(), slots.get(0).x, slots.get(0).y);
         int slot = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
             ItemStack[] inputStacks = ingredient.getMatchingStacks();
+            if (inputStacks.length == 0) continue;
             ItemStack inputStack = inputStacks[Random.create().nextBetween(0, inputStacks.length - 1)];
             this.ghostSlots.addSlot(inputStack, slots.get(slot).x, slots.get(slot++).y);
         }
