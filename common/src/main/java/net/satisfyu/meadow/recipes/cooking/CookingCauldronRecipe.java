@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.util.GeneralUtil;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +24,12 @@ import java.util.List;
 public class CookingCauldronRecipe implements Recipe<Inventory> {
     private final DefaultedList<Ingredient> ingredients;
     private final ItemStack outputStack;
-    @Nullable
-    private final ItemStack outputStackIfWoodBucket;
     private final Identifier id;
 
-    public CookingCauldronRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack outputStack, @Nullable ItemStack outputStackIfWoodBucket) {
+    public CookingCauldronRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack outputStack) {
         this.id = id;
         this.ingredients = ingredients;
         this.outputStack = outputStack;
-        this.outputStackIfWoodBucket = outputStackIfWoodBucket;
     }
 
 
@@ -67,10 +63,6 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
         return this.outputStack.copy();
     }
 
-    public ItemStack craftIfWoodBucket() {
-        return this.outputStackIfWoodBucket == null ? this.outputStack : this.outputStackIfWoodBucket.copy();
-    }
-
     @Override
     public boolean fits(int width, int height) {
         return true;
@@ -79,10 +71,6 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
     @Override
     public ItemStack getOutput() {
         return outputStack;
-    }
-
-    public ItemStack getOutputIfWoodBucket() {
-        return outputStackIfWoodBucket;
     }
 
     @Override
@@ -117,8 +105,7 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
                 throw new JsonParseException("Too many ingredients for CookingCauldron Recipe");
             } else {
                 JsonElement jsonResultElement = json.get("result");
-                JsonElement jsonWoodResultElement = json.get("resultIfWoodBucket");
-                return new CookingCauldronRecipe(id, ingredients, JsonHelper.asItem(jsonResultElement, jsonResultElement.getAsString()).getDefaultStack(), JsonHelper.asItem(jsonWoodResultElement, jsonWoodResultElement.getAsString()).getDefaultStack());
+                return new CookingCauldronRecipe(id, ingredients, JsonHelper.asItem(jsonResultElement, jsonResultElement.getAsString()).getDefaultStack());
             }
         }
 
@@ -127,14 +114,13 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
             buf.writeVarInt(recipe.ingredients.size());
             recipe.ingredients.forEach(entry -> entry.write(buf));
             buf.writeItemStack(recipe.outputStack);
-            buf.writeItemStack(recipe.outputStackIfWoodBucket);
         }
 
         @Override
         public CookingCauldronRecipe read(Identifier id, PacketByteBuf buf) {
             final var ingredients = DefaultedList.ofSize(buf.readVarInt(), Ingredient.EMPTY);
             ingredients.replaceAll(ignored -> Ingredient.fromPacket(buf));
-            return new CookingCauldronRecipe(id, ingredients, buf.readItemStack(), buf.readItemStack());
+            return new CookingCauldronRecipe(id, ingredients, buf.readItemStack());
         }
     }
 }
