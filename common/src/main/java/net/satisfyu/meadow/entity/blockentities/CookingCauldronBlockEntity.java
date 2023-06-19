@@ -142,7 +142,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     }
 
     public static int getVar(Item outputItem) {
-        if (outputItem.equals(ObjectRegistry.OAT_CHEESE_MASS) || outputItem.equals(ObjectRegistry.WOODEN_HERBS_CHEESE_MASS))
+        if (outputItem.equals(ObjectRegistry.CHEESE_FORM) || outputItem.equals(ObjectRegistry.WOODEN_MILK_BUCKET))
             return 5;
 
         else return 5;

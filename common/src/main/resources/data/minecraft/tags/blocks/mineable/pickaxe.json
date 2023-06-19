@@ -6,11 +6,13 @@
     "meadow:alpine_gold_ore",
     "meadow:alpine_emerald_ore",
     "meadow:alpine_iron_ore",
+    "meadow:alpine_diamond_ore",
+    "meadow:alpine_copper_ore",
+    "meadow:alpine_redstone_ore",
     "meadow:can",
     "meadow:climbing_rope_topmount",
     "meadow:cooking_cauldron",
     "meadow:fondue",
-    "meadow:furnace_cobblestone",
     "meadow:oil_lantern",
     "meadow:stove_tiles_bench",
     "meadow:stove_tiles_lid",
@@ -37,7 +39,5 @@
     "meadow:mossy_cobbled_limestone",
     "meadow:stone_bench",
     "meadow:stone_table"
-
-
   ]
 }

@@ -49,8 +49,8 @@ public class FabricVillager {
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 5, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.CHEESE_BLOCK.get(), 10, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.CHEESE_FORM.get(), 4, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.LAVENDER_CHEESE_BLOCK.get(), 12, 1, 15));
-            factories.add(new SellItemFactory(ObjectRegistry.OAT_CHEESE_BLOCK.get(), 12, 1, 15));
+            factories.add(new SellItemFactory(ObjectRegistry.AMETHYST_CHEESE_BLOCK.get(), 12, 1, 15));
+            factories.add(new SellItemFactory(ObjectRegistry.GRAIN_CHEESE_BLOCK.get(), 12, 1, 15));
         });
 
         TradeOfferHelper.registerVillagerOffers(HERMIT, 1, factories -> {
@@ -61,7 +61,7 @@ public class FabricVillager {
         });
         TradeOfferHelper.registerVillagerOffers(HERMIT, 2, factories -> {
             factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.SHELF.get(), 15, 4, 5));
-            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.WOODEN_HERBS_CHEESE_MASS.get(), 10, 2, 5));
+            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.WOODEN_SHEEP_MILK_BUCKET.get(), 10, 2, 5));
             factories.add(new SellItemFactory(ObjectRegistry.WATERING_CAN_ITEM.get(), 25, 4, 5));
             factories.add(new SellItemFactory(ObjectRegistry.CHEESE_SANDWICH.get(), 4, 4, 5));
         });

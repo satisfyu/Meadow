@@ -1,0 +1,10 @@
+{
+  "type": "meadow:cheese",
+  "bucketItem": {
+    "item": "meadow:wooden_warped_milk_bucket"
+  },
+  "inputItem": {
+    "item": "meadow:rennet"
+  },
+  "outputItem": "meadow:warped_cheese_block"
+}

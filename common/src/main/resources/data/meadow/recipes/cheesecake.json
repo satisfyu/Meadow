@@ -9,10 +9,10 @@
             "tag": "meadow:cheese"
         },
         "E": {
-            "item": "minecraft:egg"
+            "tag": "meadow:egg"
         },
         "W": {
-            "item": "minecraft:wheat"
+            "tag": "meadow:wheat"
         }
     },
     "result": {

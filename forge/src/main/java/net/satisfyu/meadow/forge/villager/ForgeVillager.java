@@ -51,23 +51,22 @@ public class ForgeVillager {
                 Int2ObjectMap<List<TradeOffers.Factory>> trades = event.getTrades();
 
                 List<TradeOffers.Factory> level1 = trades.get(1);
-                level1.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.RENNET.get(), 1, 2, 7));
+                level1.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.WOODEN_BUCKET.get(), 5, 1, 10));
 
                 List<TradeOffers.Factory> level2 = trades.get(2);
                 level2.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.COOKING_CAULDRON.get(), 7, 1, 10));
+                level2.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.WOODEN_MILK_BUCKET.get(), 12, 1, 10));
 
                 List<TradeOffers.Factory> level3 = trades.get(3);
-                level3.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.FURNACE_COBBLESTONE.get(), 6, 1, 10));
+                level3.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.CHEESE_FORM.get(), 4, 1, 10));
+                level3.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.CHEESE_BLOCK.get(), 10, 1, 10));
 
                 List<TradeOffers.Factory> level4 = trades.get(4);
-                level4.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.WOODEN_BUCKET.get(), 5, 1, 10));
-                level4.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.WOODEN_MILK_BUCKET.get(), 12, 1, 10));
+                level4.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.RENNET.get(), 1, 2, 7));
 
                 List<TradeOffers.Factory> level5 = trades.get(5);
-                level5.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.CHEESE_BLOCK.get(), 10, 1, 10));
-                level5.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.CHEESE_FORM.get(), 4, 1, 10));
-                level5.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.LAVENDER_CHEESE_BLOCK.get(), 12, 1, 15));
-                level5.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.OAT_CHEESE_BLOCK.get(), 12, 1, 15));
+                level5.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.AMETHYST_CHEESE_BLOCK.get(), 12, 1, 15));
+                level5.add(new MeadowVillagerUtil.SellItemFactory(ObjectRegistry.GRAIN_CHEESE_BLOCK.get(), 12, 1, 15));
             }
         }
     }

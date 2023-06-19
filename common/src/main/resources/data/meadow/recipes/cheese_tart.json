@@ -9,13 +9,13 @@
             "tag": "meadow:cheese"
         },
         "E": {
-            "item": "minecraft:egg"
+            "tag": "meadow:egg"
         },
         "M": {
-            "item": "minecraft:milk_bucket"
+            "tag": "meadow:milk_bucket"
         },
         "W": {
-            "item": "minecraft:wheat"
+            "tag": "meadow:wheat"
         }
     },
     "result": {

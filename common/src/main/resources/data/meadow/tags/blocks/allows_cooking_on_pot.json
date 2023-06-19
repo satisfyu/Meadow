@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:smoker",
-    "meadow:stove_tiles_wood",
-    "meadow:furnace_cobblestone"
+    "meadow:stove_tiles_wood"
   ]
 }

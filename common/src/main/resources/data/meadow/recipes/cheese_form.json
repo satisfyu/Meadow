@@ -1,12 +1,16 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "_ _",
+        " _ ",
+        "B_B",
         "___"
     ],
     "key": {
         "_": {
             "item": "meadow:pine_slab"
+        },
+        "B": {
+            "item": "minecraft:stick"
         }
     },
     "result": {

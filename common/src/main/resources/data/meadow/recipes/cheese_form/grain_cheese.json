@@ -1,0 +1,10 @@
+{
+  "type": "meadow:cheese",
+  "bucketItem": {
+    "item": "meadow:wooden_grain_milk_bucket"
+  },
+  "inputItem": {
+    "item": "meadow:rennet"
+  },
+  "outputItem": "meadow:grain_cheese_block"
+}

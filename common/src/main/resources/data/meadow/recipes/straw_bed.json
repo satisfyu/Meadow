@@ -3,7 +3,7 @@
   "group": "bed",
   "key": {
     "#": {
-      "tag": "minecraft:straw"
+      "tag": "meadow:straw"
     },
     "X": {
       "tag": "minecraft:planks"

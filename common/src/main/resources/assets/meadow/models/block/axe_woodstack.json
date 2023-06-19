@@ -3,7 +3,7 @@
 	"textures": {
 		"0": "meadow:block/pine_log_side",
 		"1": "meadow:block/pine_log_top",
-		"2": "meadow:block/iron_axe",
+		"2": "minecraft:item/iron_axe",
 		"particle": "meadow:block/pine_log_side"
 	},
 	"elements": [

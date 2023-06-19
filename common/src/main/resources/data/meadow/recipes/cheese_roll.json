@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:bread"
+      "tag": "meadow:bread"
     },
     "M": {
       "tag": "meadow:cheese"

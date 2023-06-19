@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "# #",
+    "# B",
     "CCC",
     "###"
   ],
@@ -11,6 +11,9 @@
     },
     "C": {
       "item": "minecraft:rabbit_hide"
+    },
+    "B": {
+      "item": "minecraft:feather"
     }
   },
   "result": {

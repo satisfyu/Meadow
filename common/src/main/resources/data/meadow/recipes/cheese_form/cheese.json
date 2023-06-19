@@ -1,0 +1,10 @@
+{
+  "type": "meadow:cheese",
+  "bucketItem": {
+    "tag": "meadow:milk"
+  },
+  "inputItem": {
+    "item": "meadow:rennet"
+  },
+  "outputItem": "meadow:cheese_block"
+}

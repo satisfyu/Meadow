@@ -3,7 +3,7 @@
 	"textures": {
 		"0": "meadow:block/can_side",
 		"1": "meadow:block/can_bottom",
-		"3": "meadow:block/milk_cow_cauldron",
+		"3": "block/milk",
 		"particle": "meadow:block/can_side"
 	},
 	"elements": [
@@ -172,7 +172,7 @@
 				"east": {"uv": [5, 1, 11, 5], "texture": "#3"},
 				"south": {"uv": [4, 1, 5, 5], "texture": "#3"},
 				"west": {"uv": [5, 1, 11, 5], "texture": "#3"},
-				"up": {"uv": [10, 4, 14, 9], "texture": "#3"},
+				"up": {"uv": [10, 4, 14, 8], "texture": "#3"},
 				"down": {"uv": [0, 0, 1, 6], "texture": "#3"}
 			}
 		},

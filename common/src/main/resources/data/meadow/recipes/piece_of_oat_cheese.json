@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "meadow:oat_cheese_block"
+      "item": "meadow:grain_cheese_block"
     }
   ],
   "result": {
-    "item": "meadow:piece_of_oat_cheese",
+    "item": "meadow:piece_of_grain_cheese",
     "count": 4
   }
 }

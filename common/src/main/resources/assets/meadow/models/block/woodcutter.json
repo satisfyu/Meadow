@@ -1,10 +1,10 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "meadow:block/iron_axe",
+		"0": "item/iron_axe",
 		"1": "meadow:block/stripped_pine_log",
 		"2": "meadow:block/stripped_pine_top",
-		"particle": "meadow:block/iron_axe"
+		"particle": "meadow:block/stripped_pine_log"
 	},
 	"elements": [
 		{
