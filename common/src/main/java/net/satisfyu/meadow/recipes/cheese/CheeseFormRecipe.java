@@ -1,12 +1,16 @@
 package net.satisfyu.meadow.recipes.cheese;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.registry.ObjectRegistry;
@@ -17,17 +21,17 @@ import java.util.List;
 
 public class CheeseFormRecipe implements Recipe<Inventory> {
     private final Ingredient bucket;
-    private final Ingredient input;
+    private final Ingredient ingredient;
 
     private final ItemStack outputStack;
 
     private final Identifier id;
 
-    public CheeseFormRecipe(Ingredient bucket, Ingredient input, ItemStack outputStack, Identifier id) {
-        this.bucket = bucket;
-        this.input = input;
-        this.outputStack = outputStack;
+    public CheeseFormRecipe(Identifier id, Ingredient bucket, Ingredient ingredient, ItemStack outputStack) {
         this.id = id;
+        this.bucket = bucket;
+        this.ingredient = ingredient;
+        this.outputStack = outputStack;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
     public DefaultedList<Ingredient> getIngredients() {
         DefaultedList<Ingredient> defaultedList = DefaultedList.of();
         defaultedList.add(this.bucket);
-        defaultedList.add(this.input);
+        defaultedList.add(this.ingredient);
         return defaultedList;
     }
 
@@ -93,4 +97,36 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
     public RecipeType<?> getType() {
         return RecipeRegistry.CHEESE.get();
     }
+
+    public static class Serializer implements RecipeSerializer<CheeseFormRecipe> {
+
+        @Override
+        public CheeseFormRecipe read(Identifier id, JsonObject json) { //TODO jsons
+            JsonElement jsonResultElement = json.get("result");
+            ItemStack resultItem = JsonHelper.asItem(jsonResultElement, jsonResultElement.getAsString()).getDefaultStack();
+
+            JsonElement jsonBucketElement = json.get("ingredient");
+            Ingredient bucket = Ingredient.fromJson(jsonBucketElement);
+
+            JsonElement jsonIngredientElement = json.get("bucket");
+            Ingredient ingredient = Ingredient.fromJson(jsonIngredientElement);
+
+            return new CheeseFormRecipe(id, bucket, ingredient, resultItem);
+        }
+
+        @Override
+        public void write(PacketByteBuf packetData, CheeseFormRecipe recipe) {
+            recipe.getIngredients().forEach(ingredient -> ingredient.write(packetData));
+            packetData.writeItemStack(recipe.getOutput());
+        }
+
+        @Override
+        public CheeseFormRecipe read(Identifier id, PacketByteBuf packetData) {
+            Ingredient bucket = Ingredient.fromPacket(packetData);
+            Ingredient input = Ingredient.fromPacket(packetData);
+            ItemStack output = packetData.readItemStack();
+            return new CheeseFormRecipe(id, bucket, input, output);
+        }
+    }
+
 }
