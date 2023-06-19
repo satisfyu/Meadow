@@ -8,9 +8,7 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
-import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipeSerializer;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipeSerializer;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipeSerializer;
 
@@ -24,10 +22,10 @@ public class RecipeRegistry {
     public static final RegistrySupplier<RecipeSerializer<WoodcuttingRecipe>> WOODCUTTING_SERIALIZER = create("woodcutting", () -> WoodcuttingRecipeSerializer.INSTANCE);
 
     public static final RegistrySupplier<RecipeType<CookingCauldronRecipe>> COOKING = create("cooking");
-    public static final RegistrySupplier<RecipeSerializer<CookingCauldronRecipe>> COOKING_SERIALIZER = create("cooking", () -> CookingCauldronRecipeSerializer.INSTANCE);
+    public static final RegistrySupplier<RecipeSerializer<CookingCauldronRecipe>> COOKING_SERIALIZER = create("cooking", CookingCauldronRecipe.Serializer::new);
 
     public static final RegistrySupplier<RecipeType<CheeseFormRecipe>> CHEESE = create("cheese");
-    public static final RegistrySupplier<RecipeSerializer<CheeseFormRecipe>> CHEESE_SERIALIZER = create("cheese", () -> CheeseFormRecipeSerializer.INSTANCE);
+    public static final RegistrySupplier<RecipeSerializer<CheeseFormRecipe>> CHEESE_SERIALIZER = create("cheese", CheeseFormRecipe.Serializer::new);
 
 
     public static void init() {
