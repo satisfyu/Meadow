@@ -20,18 +20,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheeseFormRecipe implements Recipe<Inventory> {
+    private final Identifier id;
     private final Ingredient bucket;
     private final Ingredient ingredient;
+    private final ItemStack result;
 
-    private final ItemStack outputStack;
-
-    private final Identifier id;
-
-    public CheeseFormRecipe(Identifier id, Ingredient bucket, Ingredient ingredient, ItemStack outputStack) {
+    public CheeseFormRecipe(Identifier id, Ingredient bucket, Ingredient ingredient, ItemStack result) {
         this.id = id;
         this.bucket = bucket;
         this.ingredient = ingredient;
-        this.outputStack = outputStack;
+        this.result = result;
     }
 
     @Override
@@ -64,7 +62,7 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack craft(Inventory inventory) {
-        return this.outputStack.copy();
+        return this.result.copy();
     }
 
     @Override
@@ -74,7 +72,7 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack getOutput() {
-        return outputStack;
+        return result;
     }
 
     @Override
@@ -101,15 +99,15 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
     public static class Serializer implements RecipeSerializer<CheeseFormRecipe> {
 
         @Override
-        public CheeseFormRecipe read(Identifier id, JsonObject json) { //TODO jsons
+        public CheeseFormRecipe read(Identifier id, JsonObject json) {
             JsonElement jsonResultElement = json.get("result");
             ItemStack resultItem = JsonHelper.asItem(jsonResultElement, jsonResultElement.getAsString()).getDefaultStack();
 
-            JsonElement jsonBucketElement = json.get("ingredient");
-            Ingredient bucket = Ingredient.fromJson(jsonBucketElement);
+            JsonObject jsonBucketObject = json.getAsJsonObject("bucket");
+            Ingredient bucket = Ingredient.fromJson(jsonBucketObject);
 
-            JsonElement jsonIngredientElement = json.get("bucket");
-            Ingredient ingredient = Ingredient.fromJson(jsonIngredientElement);
+            JsonObject jsonIngredientObject = json.getAsJsonObject("ingredient");
+            Ingredient ingredient = Ingredient.fromJson(jsonIngredientObject);
 
             return new CheeseFormRecipe(id, bucket, ingredient, resultItem);
         }

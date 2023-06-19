@@ -1,14 +1,12 @@
 {
   "type": "meadow:cooking",
-  "inputItem1": {
-    "item": "minecraft:kelp"
-  },
-  "inputItem2": {
-    "item": "meadow:alpine_salt"
-  },
-  "inputItem3": {
-    "item": "meadow:fire_lily"
-  },
-  "outputItem": "meadow:fire_log",
-  "outputItemIfWoodBucket": "meadow:fire_log"
+  "ingredients": [
+    {
+      "item": "meadow:alpine_salt"
+    },
+    {
+      "item": "meadow:fire_lily"
+    }
+  ],
+  "result": "meadow:oat_cheese_mass_bucket"
 }

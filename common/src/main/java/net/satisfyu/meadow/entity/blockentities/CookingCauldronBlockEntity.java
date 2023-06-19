@@ -113,7 +113,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
                         items.set(index, itemStack);
                     }
                 }
-                items.set(3, isWood ? recipe.get().craftIfWoodBucket() : recipe.get().craft(this));
+                items.set(3, recipe.get().craft(this));
                 syncedInt = 0;
                 done = true;
             } else if (isLit(state) && items.get(3).isEmpty()) {
