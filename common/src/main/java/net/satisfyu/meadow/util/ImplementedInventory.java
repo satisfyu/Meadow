@@ -9,7 +9,7 @@ import net.minecraft.util.collection.DefaultedList;
 
 public interface ImplementedInventory extends Inventory {
 
-    DefaultedList<ItemStack> getItems();
+    DefaultedList<ItemStack> getInventory();
 
     static ImplementedInventory of(DefaultedList<ItemStack> items) {
         return () -> items;
@@ -23,7 +23,7 @@ public interface ImplementedInventory extends Inventory {
 
     @Override
     default int size() {
-        return getItems().size();
+        return getInventory().size();
     }
 
 
@@ -40,13 +40,13 @@ public interface ImplementedInventory extends Inventory {
 
     @Override
     default ItemStack getStack(int slot) {
-        return getItems().get(slot);
+        return getInventory().get(slot);
     }
 
 
     @Override
     default ItemStack removeStack(int slot, int count) {
-        ItemStack result = Inventories.splitStack(getItems(), slot, count);
+        ItemStack result = Inventories.splitStack(getInventory(), slot, count);
         if (!result.isEmpty()) {
             markDirty();
         }
@@ -55,12 +55,12 @@ public interface ImplementedInventory extends Inventory {
 
     @Override
     default ItemStack removeStack(int slot) {
-        return Inventories.removeStack(getItems(), slot);
+        return Inventories.removeStack(getInventory(), slot);
     }
 
     @Override
     default void setStack(int slot, ItemStack stack) {
-        getItems().set(slot, stack);
+        getInventory().set(slot, stack);
         if (stack.getCount() > stack.getMaxCount()) {
             stack.setCount(stack.getMaxCount());
         }
@@ -68,7 +68,7 @@ public interface ImplementedInventory extends Inventory {
 
     @Override
     default void clear() {
-        getItems().clear();
+        getInventory().clear();
     }
 
     @Override

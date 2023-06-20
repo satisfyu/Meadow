@@ -6,7 +6,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -36,10 +35,10 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     public static final Text TITLE = Text.translatable("container.cooking_cauldron");
     public static final int MAX_COOKING_TIME = 6000; // Time in ticks (300s)
     private int syncedInt;
-    private int isCooking;
+    private boolean isCooking;
 
 
-    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(7, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(7, ItemStack.EMPTY);
 
     public CookingCauldronBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.COOKING_CAULDRON_BLOCK_ENTITY.get(), pos, state);
@@ -48,28 +47,22 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
         @Override
         public int get(int index) {
-            switch (index) {
-                case 0 -> {
-                    return syncedInt;
-                }
-                case 1 -> {
-                    return isCooking;
-                }
+            if (index == 0) {
+                return syncedInt;
             }
             return 0;
         }
 
         @Override
         public void set(int index, int value) {
-            switch (index) {
-                case 0 -> syncedInt = value;
-                case 1 -> isCooking = value;
+            if (index == 0) {
+                syncedInt = value;
             }
         }
 
         @Override
         public int size() {
-            return 2;
+            return 1;
         }
 
     };
@@ -78,7 +71,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     @Override
     public void writeNbt(NbtCompound nbt) {
         nbt.putInt("syncedInt", syncedInt);
-        Inventories.writeNbt(nbt, items);
+        Inventories.writeNbt(nbt, inventory);
         super.writeNbt(nbt);
     }
 
@@ -86,66 +79,48 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         syncedInt = nbt.getInt("syncedInt");
-        Inventories.readNbt(nbt, items);
+        Inventories.readNbt(nbt, inventory);
     }
 
     public void tick(World world, BlockPos pos, BlockState state, CookingCauldronBlockEntity be) {
-        if (!world.isClient) {
-            int var = 0;
-            Optional<CookingCauldronRecipe> recipe = world.getRecipeManager().getFirstMatch(RecipeRegistry.COOKING.get(), this, world);
+        if (world.isClient) {
+            return;
+        }
+        Optional<CookingCauldronRecipe> recipe = world.getRecipeManager().getFirstMatch(RecipeRegistry.COOKING.get(), this, world);
 
-            boolean done = false;
+        boolean done = false;
 
-            isCooking = isLit(state) ? 1 : 0;
-            if (syncedInt > MAX_COOKING_TIME) {
-                boolean isWood = false;
-                for (ItemStack itemStack : items) {
-                    int index = items.indexOf(itemStack);
-                    if (index > 2) continue;
+        isCooking = isLit(state);
+        if (syncedInt > MAX_COOKING_TIME) {
+            for (ItemStack itemStack : inventory) {
+                int index = inventory.indexOf(itemStack);
+                if (index >= 6) continue;
 
-                    if (itemStack.isIn(MeadowTags.WOODEN_BUCKETS)) {
-                        isWood = true;
-                        items.set(index, new ItemStack(ObjectRegistry.WOODEN_BUCKET.get()));
-                    } else if (itemStack.isIn(MeadowTags.BUCKETS)) {
-                        items.set(index, new ItemStack(Items.BUCKET));
-                    } else {
-                        itemStack.decrement(1);
-                        items.set(index, itemStack);
-                    }
-                }
-                items.set(3, recipe.get().craft(this));
-                syncedInt = 0;
-                done = true;
-            } else if (isLit(state) && items.get(3).isEmpty()) {
-                if (recipe.isPresent()) {
-                    syncedInt++;
+                if (itemStack.isIn(MeadowTags.WOODEN_BUCKETS)) {
+                    inventory.set(index, new ItemStack(ObjectRegistry.WOODEN_BUCKET.get()));
+                } else if (itemStack.isIn(MeadowTags.BUCKETS)) {
+                    inventory.set(index, new ItemStack(Items.BUCKET));
                 } else {
-                    syncedInt = 0;
+                    itemStack.decrement(1);
+                    inventory.set(index, itemStack);
                 }
+            }
+            inventory.set(0, recipe.get().getOutput());
+            syncedInt = 0;
+            done = true;
+        } else if (isLit(state) && inventory.get(0).isEmpty()) {
+            if (recipe.isPresent()) {
+                syncedInt++;
             } else {
                 syncedInt = 0;
-                if (!items.get(3).isEmpty()) {
-                    done = true;
-                }
-                if (!done) {
-                    recipe = Optional.empty();
-                }
             }
-
-            if (recipe.isPresent()) {
-                var = getVar(recipe.get().getOutput().getItem());
-            } else if (!items.get(3).isEmpty()) {
-                var = getVar(items.get(3).getItem());
+        } else {
+            syncedInt = 0;
+            if (!inventory.get(0).isEmpty()) {
+                done = true;
             }
-            world.setBlockState(pos, state.with(VAR, var).with(HANGING, state.get(HANGING)).with(DONE, done).with(FACING, state.get(FACING)), Block.NOTIFY_ALL);
         }
-    }
-
-    public static int getVar(Item outputItem) {
-        if (outputItem.equals(ObjectRegistry.CHEESE_FORM) || outputItem.equals(ObjectRegistry.WOODEN_MILK_BUCKET))
-            return 5;
-
-        else return 5;
+        world.setBlockState(pos, state.with(VAR, 5).with(HANGING, state.get(HANGING)).with(DONE, done).with(FACING, state.get(FACING)), Block.NOTIFY_ALL);
     }
 
     //   /data modify block -216 68 -461 syncedInt set value 47750
@@ -172,7 +147,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements NamedScre
 
 
     @Override
-    public DefaultedList<ItemStack> getItems() {
-        return items;
+    public DefaultedList<ItemStack> getInventory() {
+        return inventory;
     }
 }

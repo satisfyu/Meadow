@@ -58,7 +58,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
     }
 
     @Override
-    public DefaultedList<ItemStack> getItems() {
+    public DefaultedList<ItemStack> getInventory() {
         return this.inventory;
     }
 

@@ -6,7 +6,6 @@ import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
-import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -19,26 +18,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SheepEntity.class)
 public abstract class SheepMixin extends AnimalEntity {
-
-
     protected SheepMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    @Inject(
-            method = "interactMob",
-            at = @At(value = "HEAD"),
-            cancellable = true)
-
-//TODO
-    private void addServerPackFinders(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    @Inject(method = "interactMob", at = @At(value = "HEAD"), cancellable = true)
+    private void woodMilk(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
-        boolean bl;
-        if (((bl = itemStack.isOf(ObjectRegistry.WOODEN_BUCKET.get())) && !this.isBaby())) {
+        if (itemStack.isOf(ObjectRegistry.WOODEN_BUCKET.get()) && !this.isBaby()) {
             player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-            ItemStack milkBucket = bl ? ObjectRegistry.WOODEN_SHEEP_MILK_BUCKET.get().getDefaultStack() : ItemStack.EMPTY;
-            ItemStack updatedStack = ItemUsage.exchangeStack(itemStack, player, milkBucket);
-            player.setStackInHand(hand, updatedStack);
+            ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, ObjectRegistry.WOODEN_SHEEP_MILK_BUCKET.get().getDefaultStack());
+            player.setStackInHand(hand, itemStack2);
             cir.setReturnValue(ActionResult.success(this.world.isClient));
         }
     }
