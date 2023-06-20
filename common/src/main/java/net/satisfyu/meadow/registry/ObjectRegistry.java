@@ -18,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
@@ -166,10 +167,11 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WOODEN_FLOWER_BOX = registerBlock("flower_box", () -> new FlowerBoxBlock(AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
 
     //armor
-    public static final RegistrySupplier<Item> FUR_HELMET = registerItem("fur_helmet", () -> new FurArmorItem(MaterialRegistry.FUR_ARMOR, EquipmentSlot.HEAD, getSettings()));
-    public static final RegistrySupplier<Item> FUR_CHESTPLATE = registerItem("fur_chestplate", () -> new FurArmorItem(MaterialRegistry.FUR_ARMOR, EquipmentSlot.CHEST, getSettings()));
-    public static final RegistrySupplier<Item> FUR_LEGGINGS = registerItem("fur_leggings", () -> new FurArmorItem(MaterialRegistry.FUR_ARMOR, EquipmentSlot.LEGS, getSettings()));
-    public static final RegistrySupplier<Item> FUR_BOOTS = registerItem("fur_boots", () -> new FurArmorItem(MaterialRegistry.FUR_ARMOR, EquipmentSlot.FEET, getSettings()));
+    public static final RegistrySupplier<Item> FUR_HELMET = registerItem("fur_helmet", () -> new FurHead(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.EPIC)));
+    public static final RegistrySupplier<Item> FUR_CHESTPLATE = registerItem("fur_chestplate", () -> new FurChest(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> FUR_LEGGINGS = registerItem("fur_leggings", () -> new FurLegs(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> FUR_BOOTS = registerItem("fur_boots", () -> new FurBoots(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
+
 
     //flowers
     public static final RegistrySupplier<Block> SMALL_FIR = registerBlock("small_fir", () -> new TallPlantBlock(AbstractBlock.Settings.copy(Blocks.ROSE_BUSH)));

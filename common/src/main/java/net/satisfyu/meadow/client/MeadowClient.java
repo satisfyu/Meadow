@@ -47,10 +47,7 @@ import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.rocky.RockySheepRenderer;
 import net.satisfyu.meadow.item.FurArmorItem;
-import net.satisfyu.meadow.registry.BlockEntityRegistry;
-import net.satisfyu.meadow.registry.EntityRegistry;
-import net.satisfyu.meadow.registry.ObjectRegistry;
-import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
+import net.satisfyu.meadow.registry.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -106,9 +103,9 @@ public class MeadowClient {
 
     public static void preInitClient() {
         registerEntityRenderers();
-        registerEntityModelLayers();
-
+        registerEntityModelLayer();
         registerCows();
+        registerEntityModelLayers();
         registerSheeps();
         registerChicken();
     }
@@ -224,6 +221,11 @@ public class MeadowClient {
         EntityModelLayerRegistry.register(MEADOW_CHICKEN_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
 
     }
+
+    public static void registerEntityModelLayer() {
+        ArmorRegistry.registerArmorModelLayers();
+    }
+
 
     public static void appendToolTip(@NotNull List<Text> tooltip) {
         PlayerEntity player = MinecraftClient.getInstance().player;
