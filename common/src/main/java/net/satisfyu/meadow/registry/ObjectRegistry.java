@@ -8,7 +8,6 @@ import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.*;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluids;
@@ -17,7 +16,6 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
@@ -32,6 +30,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
 public class ObjectRegistry {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Meadow.MOD_ID, Registry.ITEM_KEY);
