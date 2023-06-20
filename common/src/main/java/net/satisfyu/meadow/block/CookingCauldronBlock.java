@@ -45,9 +45,9 @@ public class CookingCauldronBlock extends BlockWithEntity {
 
     public static final BooleanProperty DONE = BooleanProperty.of("done");
 
-    private static final VoxelShape SHAPE = Block.createCuboidShape(3, 0, 3, 13, 5, 13);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(3, 0, 3, 14, 5, 14);
 
-    private static final VoxelShape SHAPE_H = Block.createCuboidShape(3, 0, 3, 13, 21, 13);
+    private static final VoxelShape SHAPE_H = Block.createCuboidShape(3, 0, 3, 14, 21, 14);
 
     public CookingCauldronBlock(Settings settings) {
         super(settings);

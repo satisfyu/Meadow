@@ -3,7 +3,7 @@ package net.satisfyu.meadow.block;
 import net.minecraft.state.property.EnumProperty;
 import net.satisfyu.meadow.util.LineConnectingType;
 
-public class ModBlockProperties {
+public class MeadowBlockProperties {
     public static final EnumProperty<ShutterType> SHUTTER_TYPE;
     public static final EnumProperty<LineConnectingType> LINE_CONNECTING_TYPE;
 

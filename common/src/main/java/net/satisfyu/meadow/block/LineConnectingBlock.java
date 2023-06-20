@@ -97,7 +97,7 @@ public class LineConnectingBlock extends Block {
 
     static {
         FACING = Properties.HORIZONTAL_FACING;
-        TYPE = ModBlockProperties.LINE_CONNECTING_TYPE;
+        TYPE = MeadowBlockProperties.LINE_CONNECTING_TYPE;
     }
 
 }

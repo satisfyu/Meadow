@@ -196,7 +196,7 @@ public class ShutterBlock extends Block implements Waterloggable {
 
     static {
         FACING = Properties.HORIZONTAL_FACING;
-        TYPE = ModBlockProperties.SHUTTER_TYPE;
+        TYPE = MeadowBlockProperties.SHUTTER_TYPE;
         LEFT = BooleanProperty.of("left");
         OPEN = Properties.OPEN;
         POWERED = Properties.POWERED;
