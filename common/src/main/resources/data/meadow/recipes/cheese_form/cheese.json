@@ -1,10 +1,10 @@
 {
   "type": "meadow:cheese",
   "bucket": {
-    "item": "meadow:bear_stew"
+    "tag": "meadow:milk"
   },
   "ingredient": {
-    "item": "meadow:bear_stew"
+    "item": "meadow:rennet"
   },
-  "result": "meadow:bear_stew"
+  "result": "meadow:cheese_block"
 }

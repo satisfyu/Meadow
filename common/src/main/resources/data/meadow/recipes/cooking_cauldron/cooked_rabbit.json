@@ -1,9 +1,13 @@
 {
-  "type": "minecraft:smoking",
-  "cookingtime": 100,
-  "experience": 0.35,
-  "ingredient": {
-    "item": "minecraft:rabbit"
-  },
-  "result": "minecraft:cooked_rabbit"
+  "type": "meadow:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "item": "meadow:alpine_salt"
+    }
+  ],
+  "result": "minecraft:cooked_rabbit",
+  "outputCount": 4
 }

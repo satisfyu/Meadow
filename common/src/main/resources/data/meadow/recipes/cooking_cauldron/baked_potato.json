@@ -1,9 +1,13 @@
 {
-  "type": "minecraft:smoking",
-  "cookingtime": 100,
-  "experience": 0.35,
-  "ingredient": {
-    "item": "minecraft:potato"
-  },
-  "result": "minecraft:baked_potato"
+  "type": "meadow:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "meadow:alpine_salt"
+    }
+  ],
+  "result": "minecraft:baked_potato",
+  "outputCount": 4
 }

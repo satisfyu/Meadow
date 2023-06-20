@@ -2,12 +2,15 @@
   "type": "meadow:cooking",
   "ingredients": [
     {
-      "item": "minecraft:mutton"
+      "item": "meadow:raw_bear_meat"
     },
     {
       "item": "meadow:alpine_salt"
+    },
+    {
+      "tag": "meadow:cheese"
     }
   ],
-  "result": "minecraft:cooked_mutton",
+  "result": "minecraft:baked_potato",
   "outputCount": 4
 }

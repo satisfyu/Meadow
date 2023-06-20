@@ -1,9 +1,13 @@
 {
-  "type": "minecraft:smoking",
-  "cookingtime": 100,
-  "experience": 0.35,
-  "ingredient": {
-    "item": "minecraft:porkchop"
-  },
-  "result": "minecraft:cooked_porkchop"
+  "type": "meadow:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "meadow:alpine_salt"
+    }
+  ],
+  "result": "minecraft:cooked_porkchop",
+  "outputCount": 4
 }

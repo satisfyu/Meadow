@@ -127,53 +127,41 @@ public class EntityRegistry {
 
 
         EntityAttributeRegistry.register(BROWN_BEAR, PolarBearEntity::createPolarBearAttributes);
-        //--------TODO
-        //SpawnMobAccessor.callRegister(BROWN_BEAR.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        //BiomeModifications.addProperties(BiomeSelectors.includeByKey(ModSurfaceRules.MEADOW_CLEARING_KEY, ModSurfaceRules.MEADOW_FOREST_KEY, BiomeKeys.MEADOW), SpawnGroup.CREATURE, BROWN_BEAR, 1, 1, 2);
+        registerChicken(MEADOW_CHICKEN);
 
+        registerSheep(FLECKED_SHEEP);
+        registerSheep(FUZZY_SHEEP);
+        registerSheep(HORNED_SHEEP);
+        registerSheep(INKY_SHEEP);
+        registerSheep(LONG_NOSED_SHEEP);
+        registerSheep(PATCHED_SHEEP);
+        registerSheep(ROCKY_SHEEP);
 
-        registerChicken(MEADOW_CHICKEN); //, BiomeSelectors.spawnsOneOf(EntityType.CHICKEN));
-
-
-        registerSheep(FLECKED_SHEEP); //, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
-        registerSheep(FUZZY_SHEEP); //, BiomeSelectors.includeByKey(BiomeKeys.DARK_FOREST, BiomeKeys.OLD_GROWTH_BIRCH_FOREST, BiomeKeys.BIRCH_FOREST));
-        registerSheep(HORNED_SHEEP); //, BiomeSelectors.includeByKey(BiomeKeys.SNOWY_BEACH, BiomeKeys.SNOWY_TAIGA, BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_SLOPES));
-        registerSheep(INKY_SHEEP); //, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
-        registerSheep(LONG_NOSED_SHEEP); //, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
-        registerSheep(PATCHED_SHEEP); //, BiomeSelectors.spawnsOneOf(EntityType.SHEEP));
-        registerSheep(ROCKY_SHEEP); //, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.GROVE, BiomeKeys.WINDSWEPT_HILLS, BiomeKeys.TAIGA, BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA, BiomeKeys.OLD_GROWTH_PINE_TAIGA, BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA));
-
-        registerCow(WARPED_COW); //, BiomeSe.includeByKey(BiomeKeys.WARPED_FOREST).or(BiomeSelectors.tag(BiomeTags.IS_NETHER)));
-        registerCow(HIGHLAND_CATTLE); //, BiomeSelectors.includeByKey(BiomeKeys.MEADOW));
-        registerCow(UMBRA_COW); //, BiomeSelectors.includeByKey(BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.TAIGA, BiomeKeys.FOREST, BiomeKeys.DARK_FOREST));
-        registerCow(COOKIE_COW); //, BiomeSelectors.includeByKey(BiomeKeys.MEADOW).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));
-        registerCow(ALBINO_COW); //, BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST).or(BiomeSelectors.tag(BiomeTags.IS_FOREST)));
-        registerCow(CREAM_COW); //, BiomeSelectors.includeByKey(BiomeKeys.BADLANDS).or(BiomeSelectors.tag(BiomeTags.IS_BADLANDS)));
-        registerCow(DAIRY_COW); //, BiomeSelectors.spawnsOneOf(EntityType.COW));
-        registerCow(WATER_BUFFALO); //, BiomeSelectors.includeByKey(BiomeKeys.SAVANNA, BiomeKeys.SAVANNA_PLATEAU, BiomeKeys.WINDSWEPT_SAVANNA).or(BiomeSelectors.tag(BiomeTags.IS_RIVER)));
-        registerCow(DARK_COW); //, BiomeSelectors.spawnsOneOf(EntityType.COW));
-        registerCow(PINTO_COW); //, BiomeSelectors.spawnsOneOf(EntityType.COW));
-        registerCow(SUNSET_COW); //, BiomeSelectors.includeByKey(BiomeKeys.SAVANNA).or(BiomeSelectors.tag(BiomeTags.IS_SAVANNA)));
+        registerCow(WARPED_COW);
+        registerCow(HIGHLAND_CATTLE);
+        registerCow(UMBRA_COW);
+        registerCow(COOKIE_COW);
+        registerCow(ALBINO_COW);
+        registerCow(CREAM_COW);
+        registerCow(DAIRY_COW);
+        registerCow(WATER_BUFFALO);
+        registerCow(DARK_COW);
+        registerCow(PINTO_COW);
+        registerCow(SUNSET_COW);
     }
 
     public static void registerCow(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier) {
         EntityAttributeRegistry.register(typeSupplier, CowEntity::createCowAttributes);
-        //SpawnMobAccessor.callRegister(typeSupplier.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        //BiomeModifications.addSpawn(biomes, SpawnGroup.CREATURE, typeSupplier, 8, 4, 4);
     }
-
 
     public static void registerSheep(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier) {
         EntityAttributeRegistry.register(typeSupplier, SheepEntity::createSheepAttributes);
-        //SpawnMobAccessor.callRegister(typeSupplier.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        //BiomeModifications.addSpawn(biomes, SpawnGroup.CREATURE, typeSupplier, 2, 2, 4);
     }
 
     public static void registerChicken(Supplier<? extends EntityType<? extends AnimalEntity>> typeSupplier) {
         EntityAttributeRegistry.register(typeSupplier, ChickenEntity::createChickenAttributes);
-        //SpawnMobAccessor.callRegister(typeSupplier.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-        //BiomeModifications.addProperties(biomes, SpawnGroup.CREATURE, typeSupplier, 10, 4, 4);
     }
+
 
     public static <T extends EntityType<?>> RegistrySupplier<T> create(final String path, final Supplier<T> type) {
         return ENTITY_TYPES.register(new Identifier(Meadow.MOD_ID, path), type);

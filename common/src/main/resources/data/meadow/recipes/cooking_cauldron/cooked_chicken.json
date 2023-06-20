@@ -1,9 +1,13 @@
 {
-  "type": "minecraft:smoking",
-  "cookingtime": 100,
-  "experience": 0.35,
-  "ingredient": {
-    "item": "minecraft:chicken"
-  },
-  "result": "minecraft:cooked_chicken"
+  "type": "meadow:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:chicken"
+    },
+    {
+      "item": "meadow:alpine_salt"
+    }
+  ],
+  "result": "minecraft:cooked_chicken",
+  "outputCount": 4
 }

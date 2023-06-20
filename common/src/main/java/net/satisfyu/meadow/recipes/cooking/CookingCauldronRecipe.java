@@ -25,13 +25,18 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
     private final DefaultedList<Ingredient> ingredients;
     private final ItemStack outputStack;
     private final Identifier id;
+    private final int outputCount; // New field to store the output count
 
-    public CookingCauldronRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack outputStack) {
+    public CookingCauldronRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack outputStack, int outputCount) {
         this.id = id;
         this.ingredients = ingredients;
         this.outputStack = outputStack;
+        this.outputCount = outputCount;
     }
 
+    public int getOutputCount() {
+        return outputCount;
+    }
 
     @Override
     public boolean matches(Inventory inventory, World world) {
@@ -51,7 +56,6 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
         }
         return true;
     }
-
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
@@ -83,7 +87,6 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
         return id;
     }
 
-
     @Override
     public RecipeSerializer<?> getSerializer() {
         return RecipeRegistry.COOKING_SERIALIZER.get();
@@ -105,7 +108,9 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
                 throw new JsonParseException("Too many ingredients for CookingCauldron Recipe");
             } else {
                 JsonElement jsonResultElement = json.get("result");
-                return new CookingCauldronRecipe(id, ingredients, JsonHelper.asItem(jsonResultElement, jsonResultElement.getAsString()).getDefaultStack());
+                ItemStack outputStack = JsonHelper.asItem(jsonResultElement, jsonResultElement.getAsString()).getDefaultStack();
+                int outputCount = JsonHelper.getInt(json, "outputCount", 1); // Read the output count from JSON, defaulting to 1
+                return new CookingCauldronRecipe(id, ingredients, outputStack, outputCount);
             }
         }
 
@@ -114,13 +119,16 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
             buf.writeVarInt(recipe.ingredients.size());
             recipe.ingredients.forEach(entry -> entry.write(buf));
             buf.writeItemStack(recipe.outputStack);
+            buf.writeInt(recipe.outputCount); // Write the output count to the packet buffer
         }
 
         @Override
         public CookingCauldronRecipe read(Identifier id, PacketByteBuf buf) {
             final var ingredients = DefaultedList.ofSize(buf.readVarInt(), Ingredient.EMPTY);
             ingredients.replaceAll(ignored -> Ingredient.fromPacket(buf));
-            return new CookingCauldronRecipe(id, ingredients, buf.readItemStack());
+            ItemStack outputStack = buf.readItemStack();
+            int outputCount = buf.readInt(); // Read the output count from the packet buffer
+            return new CookingCauldronRecipe(id, ingredients, outputStack, outputCount);
         }
     }
 }

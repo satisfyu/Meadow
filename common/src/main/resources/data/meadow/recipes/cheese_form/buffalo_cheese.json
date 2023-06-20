@@ -1,10 +1,10 @@
 {
   "type": "meadow:cheese",
-  "bucketItem": {
+  "bucket": {
     "item": "meadow:wooden_buffalo_milk_bucket"
   },
-  "inputItem": {
+  "ingredient": {
     "item": "meadow:rennet"
   },
-  "outputItem": "meadow:buffalo_cheese_block"
+  "result": "meadow:buffalo_cheese_block"
 }

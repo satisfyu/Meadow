@@ -1,9 +1,13 @@
 {
-  "type": "minecraft:smoking",
-  "cookingtime": 100,
-  "experience": 0.35,
-  "ingredient": {
-    "item": "minecraft:cod"
-  },
-  "result": "minecraft:cooked_cod"
+  "type": "meadow:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:cod"
+    },
+    {
+      "item": "meadow:alpine_salt"
+    }
+  ],
+  "result": "minecraft:cooked_cod",
+  "outputCount": 4
 }

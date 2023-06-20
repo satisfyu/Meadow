@@ -29,15 +29,18 @@ public abstract class CowMixin extends AnimalEntity {
             method = "interactMob",
             at = @At(value = "HEAD"),
             cancellable = true)
-
+//TODO
     private void addServerPackFinders(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
         boolean bl;
-        if (((bl = itemStack.isOf(Items.BUCKET)) || itemStack.isOf(ObjectRegistry.WOODEN_BUCKET.get())) && !this.isBaby()) {
+        if (((bl = itemStack.isOf(ObjectRegistry.WOODEN_BUCKET.get())) && !this.isBaby())) {
             player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-            ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, bl ? Items.MILK_BUCKET.getDefaultStack() : ObjectRegistry.WOODEN_MILK_BUCKET.get().getDefaultStack());
-            player.setStackInHand(hand, itemStack2);
+            ItemStack milkBucket = bl ? ObjectRegistry.WOODEN_MILK_BUCKET.get().getDefaultStack() : ItemStack.EMPTY;
+            ItemStack updatedStack = ItemUsage.exchangeStack(itemStack, player, milkBucket);
+            player.setStackInHand(hand, updatedStack);
             cir.setReturnValue(ActionResult.success(this.world.isClient));
         }
     }
 }
+
+
