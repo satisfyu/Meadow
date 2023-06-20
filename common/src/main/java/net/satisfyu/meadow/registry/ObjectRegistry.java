@@ -17,7 +17,6 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
@@ -31,6 +30,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
 public class ObjectRegistry {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Meadow.MOD_ID, Registry.ITEM_KEY);
