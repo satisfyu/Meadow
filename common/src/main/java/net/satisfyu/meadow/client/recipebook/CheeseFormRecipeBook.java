@@ -1,5 +1,6 @@
-package net.satisfyu.meadow.client.screen.recipe.custom;
+package net.satisfyu.meadow.client.recipebook;
 
+import de.cristelknight.doapi.client.recipebook.screen.widgets.PrivateRecipeBookWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -10,7 +11,6 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.random.Random;
-import net.satisfyu.meadow.client.recipebook.PrivateRecipeBookWidget;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,11 +32,11 @@ public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    public void insertRecipe(Recipe<?> recipe) {
+    public void insertRecipe(Recipe<?> recipe, List<Slot> slots) {
         int usedInputSlots = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
             int slotIndex = 0;
-            for (Slot slot : screenHandler.slots) {
+            for (Slot slot : slots) {
                 ItemStack itemStack = slot.getStack();
 
                 if (ingredient.test(itemStack) && usedInputSlots < 3) {

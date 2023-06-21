@@ -1,12 +1,12 @@
-package net.satisfyu.meadow.client.recipebook.custom;
+package net.satisfyu.meadow.client.recipebook.group;
 
 import com.google.common.collect.ImmutableList;
+import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Recipe;
-import net.satisfyu.meadow.client.recipebook.IRecipeBookGroup;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 

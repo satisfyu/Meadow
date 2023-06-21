@@ -1,5 +1,7 @@
-package net.satisfyu.meadow.client.gui.handler;
+package net.satisfyu.meadow.client.screen.handler;
 
+import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
+import de.cristelknight.doapi.client.recipebook.handler.AbstractRecipeBookGUIScreenHandler;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
@@ -9,8 +11,7 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.satisfyu.meadow.client.recipebook.IRecipeBookGroup;
-import net.satisfyu.meadow.client.recipebook.custom.CheeseFormRecipeBookGroup;
+import net.satisfyu.meadow.client.recipebook.group.CheeseFormRecipeBookGroup;
 import net.satisfyu.meadow.entity.blockentities.CheeseFormBlockEntity;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;

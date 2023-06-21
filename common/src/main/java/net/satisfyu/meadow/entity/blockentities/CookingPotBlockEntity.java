@@ -20,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.block.CookingPotBlock;
-import net.satisfyu.meadow.client.gui.handler.CookingPotGuiHandler;
+import net.satisfyu.meadow.client.screen.handler.CookingPotGuiHandler;
 import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;

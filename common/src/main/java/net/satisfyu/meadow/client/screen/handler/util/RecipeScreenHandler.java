@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.gui.handler.screenHandler;
+package net.satisfyu.meadow.client.screen.handler.util;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

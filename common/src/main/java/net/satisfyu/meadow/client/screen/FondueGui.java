@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.gui;
+package net.satisfyu.meadow.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
+import net.satisfyu.meadow.client.screen.handler.FondueGuiHandler;
 
 public class FondueGui extends HandledScreen<FondueGuiHandler> {
 

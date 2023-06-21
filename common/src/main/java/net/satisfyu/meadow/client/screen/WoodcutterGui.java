@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.gui;
+package net.satisfyu.meadow.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
@@ -10,7 +10,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.satisfyu.meadow.client.gui.handler.WoodcutterGuiHandler;
+import net.satisfyu.meadow.client.screen.handler.WoodcutterGuiHandler;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 
 import java.util.List;

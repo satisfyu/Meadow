@@ -5,9 +5,9 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLoader;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
-import net.satisfyu.meadow.client.render.armor.FurArmorHat;
-import net.satisfyu.meadow.client.render.armor.FurArmorInner;
-import net.satisfyu.meadow.client.render.armor.FurArmorOuter;
+import net.satisfyu.meadow.client.model.FurArmorHat;
+import net.satisfyu.meadow.client.model.FurArmorInner;
+import net.satisfyu.meadow.client.model.FurArmorOuter;
 
 
 import java.util.Map;

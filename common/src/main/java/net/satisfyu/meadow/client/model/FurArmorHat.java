@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.render.armor;
+package net.satisfyu.meadow.client.model;
 
 
 import de.cristelknight.doapi.DoApiRL;

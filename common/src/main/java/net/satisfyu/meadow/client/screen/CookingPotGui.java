@@ -1,14 +1,15 @@
-package net.satisfyu.meadow.client.gui;
+package net.satisfyu.meadow.client.screen;
 
 
+import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.gui.handler.CookingPotGuiHandler;
-import net.satisfyu.meadow.client.screen.recipe.custom.CookingCauldronRecipeBook;
+import net.satisfyu.meadow.client.screen.handler.CookingPotGuiHandler;
+import net.satisfyu.meadow.client.recipebook.CookingCauldronRecipeBook;
 
 
 public class CookingPotGui extends AbstractRecipeBookGUIScreen<CookingPotGuiHandler> {

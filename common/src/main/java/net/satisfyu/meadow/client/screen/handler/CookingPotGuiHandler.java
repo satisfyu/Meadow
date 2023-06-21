@@ -1,9 +1,8 @@
-package net.satisfyu.meadow.client.gui.handler;
+package net.satisfyu.meadow.client.screen.handler;
 
-<<<<<<<< HEAD:common/src/main/java/net/satisfyu/meadow/client/gui/handler/CookingCauldronGuiHandler.java
-========
+import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
+import de.cristelknight.doapi.client.recipebook.handler.AbstractRecipeBookGUIScreenHandler;
 import net.minecraft.entity.player.PlayerEntity;
->>>>>>>> 271c4f97f4c7b4d51e691ae9f001d7ca880efa5e:common/src/main/java/net/satisfyu/meadow/client/gui/handler/CookingPotGuiHandler.java
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
@@ -14,13 +13,8 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.satisfyu.meadow.client.recipebook.IRecipeBookGroup;
-import net.satisfyu.meadow.client.recipebook.custom.CookingCauldronRecipeBookGroup;
-<<<<<<<< HEAD:common/src/main/java/net/satisfyu/meadow/client/gui/handler/CookingCauldronGuiHandler.java
-import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
-========
+import net.satisfyu.meadow.client.recipebook.group.CookingCauldronRecipeBookGroup;
 import net.satisfyu.meadow.entity.blockentities.CookingPotBlockEntity;
->>>>>>>> 271c4f97f4c7b4d51e691ae9f001d7ca880efa5e:common/src/main/java/net/satisfyu/meadow/client/gui/handler/CookingPotGuiHandler.java
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
