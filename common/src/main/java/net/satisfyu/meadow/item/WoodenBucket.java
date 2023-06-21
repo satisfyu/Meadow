@@ -91,7 +91,7 @@ public class WoodenBucket extends BucketItem {
             }
             return TypedActionResult.fail(itemStack);
         }
-        return TypedActionResult.pass(itemStack);
+        return super.use(world, user, hand);
     }
 
     public static ItemStack getEmptiedStack(ItemStack stack, PlayerEntity player) {

@@ -10,7 +10,6 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
-import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipeSerializer;
 
 import java.util.function.Supplier;
 
@@ -19,7 +18,7 @@ public class RecipeRegistry {
     private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registry.RECIPE_TYPE_KEY);
 
     public static final RegistrySupplier<RecipeType<WoodcuttingRecipe>> WOODCUTTING = create("woodcutting");
-    public static final RegistrySupplier<RecipeSerializer<WoodcuttingRecipe>> WOODCUTTING_SERIALIZER = create("woodcutting", () -> WoodcuttingRecipeSerializer.INSTANCE);
+    public static final RegistrySupplier<RecipeSerializer<WoodcuttingRecipe>> WOODCUTTING_SERIALIZER = create("woodcutting", WoodcuttingRecipe.Serializer::new);
 
     public static final RegistrySupplier<RecipeType<CookingPotRecipe>> COOKING = create("cooking");
     public static final RegistrySupplier<RecipeSerializer<CookingPotRecipe>> COOKING_SERIALIZER = create("cooking", CookingPotRecipe.Serializer::new);

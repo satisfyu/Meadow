@@ -230,7 +230,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
     }
 
     @Override
-    public DefaultedList<ItemStack> getItems() {
+    public DefaultedList<ItemStack> getInventory() {
         return this.inventory;
     }
 }
