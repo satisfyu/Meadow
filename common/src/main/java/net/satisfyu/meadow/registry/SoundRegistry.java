@@ -1,6 +1,7 @@
 package net.satisfyu.meadow.registry;
 
 import dev.architectury.registry.registries.DeferredRegister;
+import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.registry.Registry;
@@ -8,7 +9,7 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class SoundRegistry {
-    public static DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Meadow.MOD_ID, Registry.SOUND_EVENT_KEY);
+    public static Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Meadow.MOD_ID, Registry.SOUND_EVENT_KEY).getRegistrar();
 
     public static final RegistrySupplier<SoundEvent> SLURPING_BOWL = create("slurping_bowl");
     public static final RegistrySupplier<SoundEvent> EATING_BOWL = create("eating_bowl");
@@ -26,5 +27,4 @@ public class SoundRegistry {
     public static void init() {
         Meadow.LOGGER.debug("Registering Mod Sounds for " + Meadow.MOD_ID);
     }
-
 }

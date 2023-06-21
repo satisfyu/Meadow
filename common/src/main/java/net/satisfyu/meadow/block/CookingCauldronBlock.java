@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -29,6 +30,7 @@ import net.minecraft.world.WorldView;
 import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import net.satisfyu.meadow.registry.SoundRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -141,8 +143,7 @@ public class CookingCauldronBlock extends BlockWithEntity {
         double e = pos.getY() + (state.get(HANGING) ? 0.9 : 0.45);
         double f = (double) pos.getZ() + 0.5;
         if (random.nextDouble() < 0.1) {
-            //TODO
-            //world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+            world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 1.0f, 1.0f, false);
         }
         if (random.nextFloat() < 0.15f && !state.get(DONE)) {
             world.addImportantParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, (double) pos.getX() + 0.5 + random.nextDouble() / 3.0 * (double) (random.nextBoolean() ? 1 : -1), (double) pos.getY() + random.nextDouble() + random.nextDouble() + (state.get(HANGING) ? 0.45 : 0), (double) pos.getZ() + 0.5 + random.nextDouble() / 3.0 * (double) (random.nextBoolean() ? 1 : -1), 0.0, 0.07, 0.0);
