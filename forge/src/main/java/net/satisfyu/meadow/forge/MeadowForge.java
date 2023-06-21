@@ -6,7 +6,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.forge.villager.ForgeVillager;
 import net.satisfyu.meadow.forge.world.ForgeEntitySpawn;
 import net.satisfyu.meadow.terrablender.MeadowRegion;
 
@@ -17,7 +16,6 @@ public class MeadowForge {
         EventBuses.registerModEventBus(Meadow.MOD_ID, modEventBus);
 
         Meadow.init();
-        ForgeVillager.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
     }
@@ -25,7 +23,6 @@ public class MeadowForge {
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork( () -> {
             MeadowRegion.loadTerrablender();
-           // ForgeVillager.registerPOIs();
             ForgeEntitySpawn.registerEntitySpawn();
         });
         Meadow.commonSetup();

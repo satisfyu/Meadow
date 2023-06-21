@@ -115,7 +115,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WINDOW_2 = registerBlock("window_2", () -> new WindowBlock(AbstractBlock.Settings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()));
     public static final RegistrySupplier<Block> WINDOW_3 = registerBlock("window_3", () -> new WindowBlock(AbstractBlock.Settings.of(Material.GLASS).strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque()));
 
-
     //wool
     public static final RegistrySupplier<Block> FLECKED_WOOL = registerBlock("flecked_wool", () -> new Block(AbstractBlock.Settings.copy(Blocks.BLACK_WOOL)));
     public static final RegistrySupplier<Block> FLECKED_CARPET = registerBlock("flecked_carpet", () -> new CarpetBlock(AbstractBlock.Settings.copy(Blocks.BLACK_CARPET)));
@@ -128,7 +127,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> PATCHED_BED = registerBlock("patched_bed", () -> new MeadowBedBlock(AbstractBlock.Settings.of(Material.WOOL).sounds(BlockSoundGroup.WOOD).strength(0.2F).nonOpaque()));
     public static final RegistrySupplier<Block> ROCKY_SHEEP_WOOL = registerBlock("rocky_sheep_wool", () -> new Block(AbstractBlock.Settings.copy(Blocks.BLACK_WOOL)));
     public static final RegistrySupplier<Block> ROCKY_CARPET = registerBlock("rocky_carpet", () -> new CarpetBlock(AbstractBlock.Settings.copy(Blocks.BLACK_CARPET)));
-    public static final RegistrySupplier<Block> WOOLY_BED = registerBlock("wooly_bed", () -> new MeadowBedBlock(AbstractBlock.Settings.of(Material.WOOL).sounds(BlockSoundGroup.WOOD).strength(0.2F).nonOpaque()));
+    public static final RegistrySupplier<Block> ROCKY_BED = registerBlock("rocky_bed", () -> new MeadowBedBlock(AbstractBlock.Settings.of(Material.WOOL).sounds(BlockSoundGroup.WOOD).strength(0.2F).nonOpaque()));
     public static final RegistrySupplier<Block> UMBRA_WOOL = registerBlock("umbra_wool", () -> new Block(AbstractBlock.Settings.copy(Blocks.BLACK_WOOL)));
     public static final RegistrySupplier<Block> UMBRA_CARPET = registerBlock("umbra_carpet", () -> new CarpetBlock(AbstractBlock.Settings.copy(Blocks.BLACK_CARPET)));
     public static final RegistrySupplier<Block> UMBRA_BED = registerBlock("umbra_bed", () -> new MeadowBedBlock(AbstractBlock.Settings.of(Material.WOOL).sounds(BlockSoundGroup.WOOD).strength(0.2F).nonOpaque()));

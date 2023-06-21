@@ -76,7 +76,7 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
 
         public static final Type INSTANCE = new Type();
 
-        public static final String ID = "woodcutting";
+        public static final String id = "woodcutting";
     }
 
     @Override
