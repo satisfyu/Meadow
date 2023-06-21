@@ -1,0 +1,19 @@
+{
+  "type": "meadow:cooking",
+  "ingredients": [
+    {
+      "item": "meadow:raw_bear_meat"
+    },
+    {
+      "item": "meadow:alpine_salt"
+    },
+    {
+      "tag": "meadow:cheese"
+    }
+  ],
+  "result": {
+    "item":  "minecraft:barrier",
+    "count": 64
+  }
+}
+

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:smoker",
+    "meadow:stove_tiles_wood",
+    "meadow:stove_tiles_lid"
+
+  ]
+}

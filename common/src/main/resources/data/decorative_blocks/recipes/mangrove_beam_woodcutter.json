@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "item": "minecraft:mangrove_log"
+  },
+  "outputItem": "decorative_blocks:mangrove_beam",
+  "outputAmount": 2
+}

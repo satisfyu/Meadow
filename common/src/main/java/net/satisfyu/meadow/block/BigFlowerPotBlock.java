@@ -15,7 +15,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.satisfyu.meadow.entity.blockentities.BigFlowerPotBlockEntity;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class BigFlowerPotBlock extends FlowerPotBlock implements BlockEntityProv
 
     @Override
     public boolean fitInPot(ItemStack item) {
-        return item.isIn(MeadowTags.BIG_FLOWER);
+        return item.isIn(TagRegistry.BIG_FLOWER);
     }
 
     @Override

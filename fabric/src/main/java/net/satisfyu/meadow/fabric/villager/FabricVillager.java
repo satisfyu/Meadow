@@ -37,7 +37,7 @@ public class FabricVillager {
             factories.add(new SellItemFactory(ObjectRegistry.RENNET.get(), 1, 2, 7));
         });
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 2, factories -> {
-            factories.add(new SellItemFactory(ObjectRegistry.COOKING_CAULDRON.get(), 7, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.COOKING_POT.get(), 7, 1, 10));
         });
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 3, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.STOVE.get(), 6, 1, 10));

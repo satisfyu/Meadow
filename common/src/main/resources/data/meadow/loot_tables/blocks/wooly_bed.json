@@ -13,14 +13,14 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "meadow:wooly_bed",
+              "block": "meadow:rocky_bed",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "part": "head"
               }
             }
           ],
-          "name": "meadow:wooly_bed"
+          "name": "meadow:rocky_bed"
         }
       ],
       "rolls": 1.0

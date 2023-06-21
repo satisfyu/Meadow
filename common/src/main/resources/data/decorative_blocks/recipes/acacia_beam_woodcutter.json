@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "item": "minecraft:acacia_log"
+  },
+  "outputItem": "decorative_blocks:acacia_beam",
+  "outputAmount": 2
+}

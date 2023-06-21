@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:mangrove_log"
-  },
-  "outputItem": "minecraft:stick",
-  "outputAmount": 10
-}

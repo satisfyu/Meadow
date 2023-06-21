@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static net.satisfyu.meadow.block.CookingCauldronBlock.HANGING;
+import static net.satisfyu.meadow.block.CookingPotBlock.HANGING;
 
 
 public class FrameBlock extends Block {
@@ -39,20 +39,7 @@ public class FrameBlock extends Block {
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 1.875, 0.4375, 1.0625, 2, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 1, 0.4375, 0.0625, 1.875, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 0, 0.4375, 0.0625, 1, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.9375, 0, 0.4375, 1.0625, 1, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.9375, 1, 0.4375, 1.0625, 1.875, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 1.875, 0.4375, 0.1875, 2, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 1.25, 0.4375, 0.5, 1.9375, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 1.25, 0.5, 0.5625, 1.9375, 0.5), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5125, 0, 0.125, 0.5125, 0.75, 0.875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0, 0.4875, 0.875, 0.75, 0.4875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.125, 0.375, 0.1875, 0.875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.625, 0, 0.125, 0.8125, 0.1875, 0.875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.1875, 0.1875, 0.875, 0.375, 0.375), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.1875, 0.625, 0.875, 0.375, 0.8125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 1.25, 0.8125), BooleanBiFunction.OR);
         return shape;
     };
 
@@ -76,10 +63,10 @@ public class FrameBlock extends Block {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack stack = player.getStackInHand(hand);
-        if (stack.getItem().equals(ObjectRegistry.COOKING_CAULDRON.get().asItem())) {
+        if (stack.getItem().equals(ObjectRegistry.COOKING_POT.get().asItem())) {
             if (!world.isClient()) {
                 if (!player.getAbilities().creativeMode) stack.decrement(1);
-                world.setBlockState(pos, ObjectRegistry.COOKING_CAULDRON.get().getDefaultState().with(HANGING, true).with(FACING, state.get(FACING)));
+                world.setBlockState(pos, ObjectRegistry.COOKING_POT.get().getDefaultState().with(HANGING, true).with(FACING, state.get(FACING)));
             }
             return ActionResult.success(world.isClient());
         }
@@ -94,7 +81,7 @@ public class FrameBlock extends Block {
     public static void displayTickLikeCampfire(World world, BlockPos pos, Random random, boolean isSignal) {
         if (random.nextFloat() < 0.11f) {
             for (int i = 0; i < random.nextInt(2) + 2; ++i) {
-                CampfireBlock.spawnSmokeParticle(world, pos, isSignal, true);
+                CampfireBlock.spawnSmokeParticle(world, pos, isSignal, false);
             }
         }
         if (random.nextInt(10) == 0) {

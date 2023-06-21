@@ -20,7 +20,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.satisfyu.meadow.entity.blockentities.WheelBarrowBlockEntity;
 import net.satisfyu.meadow.util.GeneralUtil;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -62,7 +62,7 @@ public class WheelBarrowBlock extends FlowerPotBlock implements BlockEntityProvi
 
     @Override
     public boolean fitInPot(ItemStack item) {
-        return item.isIn(MeadowTags.SMALL_FLOWER);
+        return item.isIn(TagRegistry.SMALL_FLOWER);
     }
 
     @Override

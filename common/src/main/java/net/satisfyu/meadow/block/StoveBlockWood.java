@@ -27,7 +27,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -47,7 +47,7 @@ public class StoveBlockWood extends StoveBlock implements BlockEntityProvider {
         boolean lit = state.get(LIT);
         ItemStack stack = player.getStackInHand(hand);
         boolean isFlint;
-        if (lit && stack.isIn(MeadowTags.SHOVEL)) {
+        if (lit && stack.isIn(TagRegistry.SHOVEL)) {
             world.setBlockState(pos, state.with(LIT, false));
             world.syncWorldEvent(null, WorldEvents.FIRE_EXTINGUISHED, pos, 0);
             if (!player.getAbilities().creativeMode) stack.damage(1, player, p -> p.sendToolBreakStatus(hand));

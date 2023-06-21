@@ -7,9 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class CozyHomeEffect extends StatusEffect {
     public CozyHomeEffect() {
-        super(
-                StatusEffectCategory.BENEFICIAL,
-                0x98D982);
+        super(StatusEffectCategory.BENEFICIAL, 0x98D982);
     }
 
     @Override
@@ -20,8 +18,10 @@ public class CozyHomeEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity.world.getTime() % 6 == 0) {
-            if (entity instanceof PlayerEntity _ent)
-                _ent.heal((float) 1);
+            if (entity instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) entity;
+                player.heal(0.77f);
+            }
         }
     }
 }

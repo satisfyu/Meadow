@@ -6,6 +6,7 @@
 		"5": "block/campfire_log",
 		"6": "meadow:block/pine_planks",
 		"7": "meadow:block/frame_fire",
+		"8": "block/water_still",
 		"11": "meadow:block/cooking_cauldron",
 		"particle": "meadow:block/pine_planks"
 	},
@@ -222,6 +223,34 @@
 			}
 		},
 		{
+			"name": "bottom",
+			"from": [3.96, 11, 4],
+			"to": [11.96, 12, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [17.616, 2.46, 6.47868]},
+			"faces": {
+				"north": {"uv": [0, 0, 8, 1], "texture": "#11"},
+				"east": {"uv": [0, 0, 8, 1], "texture": "#11"},
+				"south": {"uv": [0, 0, 8, 1], "texture": "#11"},
+				"west": {"uv": [0, 0, 8, 1], "texture": "#11"},
+				"up": {"uv": [8, 8, 16, 16], "rotation": 90, "texture": "#11"},
+				"down": {"uv": [8, 8, 16, 16], "rotation": 90, "texture": "#11"}
+			}
+		},
+		{
+			"name": "bottom",
+			"from": [3.96, 19, 4],
+			"to": [11.96, 19, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [17.616, 2.46, 6.47868]},
+			"faces": {
+				"north": {"uv": [0, 0, 8, 1], "texture": "#8"},
+				"east": {"uv": [0, 0, 8, 1], "texture": "#8"},
+				"south": {"uv": [0, 0, 8, 1], "texture": "#8"},
+				"west": {"uv": [0, 0, 8, 1], "texture": "#8"},
+				"up": {"uv": [4, 4, 12, 12], "rotation": 90, "texture": "#8"},
+				"down": {"uv": [8, 8, 16, 16], "rotation": 90, "texture": "#8"}
+			}
+		},
+		{
 			"name": "side_2",
 			"from": [2.96, 12, 3],
 			"to": [12.96, 20, 4],
@@ -414,11 +443,13 @@
 				17,
 				18,
 				19,
+				20,
+				21,
 				{
 					"name": "handle",
 					"origin": [8, 8, 8],
 					"color": 0,
-					"children": [20, 21, 22, 23, 24]
+					"children": [22, 23, 24, 25, 26]
 				}
 			]
 		}

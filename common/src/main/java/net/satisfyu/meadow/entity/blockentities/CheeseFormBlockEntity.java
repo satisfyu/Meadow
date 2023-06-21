@@ -23,7 +23,7 @@ import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.util.ImplementedInventory;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
 public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTicker<CheeseFormBlockEntity>, NamedScreenHandlerFactory, ImplementedInventory {
@@ -143,7 +143,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         for (Ingredient entry : recipe.getIngredients()) {
             ItemStack slot1Stack = this.getStack(1);
             if (entry.test(slot1Stack)) {
-                if (slot1Stack.isIn(MeadowTags.MILK)) {
+                if (slot1Stack.isIn(TagRegistry.MILK)) {
                     ItemStack bucket = slot1Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultStack() : Items.BUCKET.getDefaultStack();
                     this.setStack(1, bucket);
                 } else {
@@ -152,7 +152,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
             }
             ItemStack slot2Stack = this.getStack(2);
             if (entry.test(this.getStack(2))) {
-                if (slot2Stack.isIn(MeadowTags.MILK)) {
+                if (slot2Stack.isIn(TagRegistry.MILK)) {
                     ItemStack bucket = slot2Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultStack() : Items.BUCKET.getDefaultStack();
                     this.setStack(2, bucket);
                 } else {
@@ -221,9 +221,8 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
+        return Text.of("");
     }
-
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
