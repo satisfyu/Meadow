@@ -78,8 +78,8 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack createIcon() {
-        return new ItemStack(ObjectRegistry.COOKING_CAULDRON.get());
+    public boolean isIgnoredInRecipeBook() {
+        return true;
     }
 
     @Override

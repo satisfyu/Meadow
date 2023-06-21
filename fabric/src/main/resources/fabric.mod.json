@@ -27,7 +27,6 @@
     "terrablender":  [
       "net.satisfyu.meadow.fabric.terrablender.TerrablenderFabric"
     ],
-
     "rei_client": [
       "net.satisfyu.meadow.fabric.rei.MeadowReiClientPlugin"
     ],

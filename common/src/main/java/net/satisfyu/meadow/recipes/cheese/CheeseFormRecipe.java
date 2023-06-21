@@ -76,8 +76,8 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack createIcon() {
-        return new ItemStack(ObjectRegistry.CHEESE_FORM.get());
+    public boolean isIgnoredInRecipeBook() {
+        return true;
     }
 
     @Override

@@ -17,7 +17,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
+import net.satisfyu.meadow.client.screen.handler.FondueGuiHandler;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.util.ImplementedInventory;
