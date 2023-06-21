@@ -13,7 +13,7 @@ import net.satisfyu.meadow.registry.ObjectRegistry;
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
-public enum CookingCauldronRecipeBookGroup implements IRecipeBookGroup {
+public enum CookingPotRecipeBookGroup implements IRecipeBookGroup {
     SEARCH(new ItemStack(Items.COMPASS)),
     CHEESE(new ItemStack(ObjectRegistry.PIECE_OF_CHEESE.get())),
     MISC(new ItemStack(ObjectRegistry.ALPINE_SALT.get()));
@@ -22,7 +22,7 @@ public enum CookingCauldronRecipeBookGroup implements IRecipeBookGroup {
 
     private final List<ItemStack> icons;
 
-    CookingCauldronRecipeBookGroup(ItemStack... entries) {
+    CookingPotRecipeBookGroup(ItemStack... entries) {
         this.icons = ImmutableList.copyOf(entries);
     }
 

@@ -13,13 +13,11 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.satisfyu.meadow.client.recipebook.group.CookingCauldronRecipeBookGroup;
+import net.satisfyu.meadow.client.recipebook.group.CookingPotRecipeBookGroup;
 import net.satisfyu.meadow.entity.blockentities.CookingPotBlockEntity;
-import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
-
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -27,7 +25,7 @@ import java.util.stream.Stream;
 public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
     public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(8), new ArrayPropertyDelegate(2));
+        this(syncId, playerInventory, new SimpleInventory(7), new ArrayPropertyDelegate(2));
     }
 
     public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
@@ -42,7 +40,6 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
                 this.addSlot(new Slot(inventory, slot + row + (row * 2), 30 + (slot * 18), 17 + (row * 18)));
             }
         }
-        this.addSlot(new Slot(inventory, 6,95, 50));
         this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 7, 124, 26));
     }
 
@@ -88,13 +85,13 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
     @Override
     public List<IRecipeBookGroup> getGroups() {
-        return CookingCauldronRecipeBookGroup.CAULDRON_GROUPS;
+        return CookingPotRecipeBookGroup.CAULDRON_GROUPS;
     }
 
     @Override
     public boolean hasIngredient(Recipe<?> recipe) {
-        if (recipe instanceof CheeseFormRecipe cheeseFormRecipe) {
-            for (Ingredient ingredient : cheeseFormRecipe.getIngredients()) {
+        if (recipe instanceof CookingPotRecipe potRecipe) {
+            for (Ingredient ingredient : potRecipe.getIngredients()) {
                 boolean found = false;
                 for (Slot slot : this.slots) {
                     if (ingredient.test(slot.getStack())) {

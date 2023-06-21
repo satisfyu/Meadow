@@ -26,7 +26,5 @@ public class ArmorRegistry {
         models.put(ObjectRegistry.FUR_BOOTS.get(), new FurArmorOuter<>(modelLoader.getModelPart(FurArmorOuter.LAYER_LOCATION)));
         models.put(ObjectRegistry.FUR_CHESTPLATE.get(), new FurArmorOuter<>(modelLoader.getModelPart(FurArmorOuter.LAYER_LOCATION)));
         models.put(ObjectRegistry.FUR_LEGGINGS.get(), new FurArmorInner<>(modelLoader.getModelPart(FurArmorInner.LAYER_LOCATION)));
-
-
     }
 }

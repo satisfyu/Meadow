@@ -9,14 +9,14 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.screen.handler.CookingPotGuiHandler;
-import net.satisfyu.meadow.client.recipebook.CookingCauldronRecipeBook;
+import net.satisfyu.meadow.client.recipebook.CookingPotRecipeBook;
 
 
 public class CookingPotGui extends AbstractRecipeBookGUIScreen<CookingPotGuiHandler> {
     private static final Identifier BACKGROUND;
 
     public CookingPotGui(CookingPotGuiHandler handler, PlayerInventory inventory, Text title) {
-        super(handler, inventory, title, new CookingCauldronRecipeBook(), BACKGROUND);
+        super(handler, inventory, title, new CookingPotRecipeBook(), BACKGROUND);
         textRenderer = MinecraftClient.getInstance().textRenderer;
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }

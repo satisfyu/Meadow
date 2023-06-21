@@ -36,7 +36,7 @@ public class MeadowDoAPI implements DoApiAPI {
 
     @Override
     public <T extends LivingEntity> void registerArmor(Map<FullCustomArmor, Pair<BipedEntityModel<T>, BipedEntityModel<T>>> models, EntityModelLoader modelLoader) {
-        models.put(new FullCustomArmor(ObjectRegistry.FUR_BOOTS.get(), ObjectRegistry.FUR_CHESTPLATE.get(), ObjectRegistry.FUR_LEGGINGS.get(), new DoApiRL("textures/armor.png")), new Pair<>(new FurArmorOuter<>(modelLoader.getModelPart(FurArmorOuter.LAYER_LOCATION)), new FurArmorInner<>(modelLoader.getModelPart(FurArmorInner.LAYER_LOCATION))));
+        models.put(new FullCustomArmor(ObjectRegistry.FUR_BOOTS.get(), ObjectRegistry.FUR_CHESTPLATE.get(), ObjectRegistry.FUR_LEGGINGS.get(), new MeadowIdentifier("textures/models/armor/fur.png")), new Pair<>(new FurArmorOuter<>(modelLoader.getModelPart(FurArmorOuter.LAYER_LOCATION)), new FurArmorInner<>(modelLoader.getModelPart(FurArmorInner.LAYER_LOCATION))));
     }
     public static void registerArmorModelLayers(){
         EntityModelLayerRegistry.register(FurArmorOuter.LAYER_LOCATION, FurArmorOuter::createBodyLayer);

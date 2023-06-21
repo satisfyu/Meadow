@@ -51,19 +51,6 @@ public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    protected void setCraftableButtonTexture() {
-        this.toggleCraftableButton.setTextureUV(152, 41, 28, 18, TEXTURE);
-    }
-
-    @Override
-    public void slotClicked(@Nullable Slot slot) {
-        super.slotClicked(slot);
-        if (slot != null && slot.id < this.screenHandler.getCraftingSlotCount()) {
-            this.ghostSlots.reset();
-        }
-    }
-
-    @Override
     protected RecipeType<? extends Recipe<Inventory>> getRecipeType() {
         return RecipeRegistry.CHEESE.get();
     }

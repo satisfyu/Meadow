@@ -42,6 +42,6 @@ public class FurArmorHat<T extends Entity> extends EntityModel<T> {
 
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
-
+        head.render(matrices, vertices, light, overlay);
     }
 }
