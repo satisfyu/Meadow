@@ -31,6 +31,9 @@ allprojects {
     group = rootProject.maven_group
 
     repositories {
+        flatDir {
+            dirs 'lib'
+        }
         exclusiveContent {
             forRepository {
                 maven {
