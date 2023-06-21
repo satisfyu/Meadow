@@ -14,6 +14,8 @@
       "item": "meadow:wooden_bucket"
     }
   ],
-  "result": "meadow:wooden_amethyst_milk_bucket",
-  "outputCount": 1
+  "result": {
+    "item": "meadow:wooden_amethyst_milk_bucket",
+    "count": 1
+  }
 }

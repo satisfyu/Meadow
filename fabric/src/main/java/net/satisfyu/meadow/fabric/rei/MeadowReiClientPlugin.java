@@ -10,7 +10,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.satisfyu.meadow.fabric.rei.category.CookingCauldronCategory;
 import net.satisfyu.meadow.fabric.rei.display.CookingCauldronDisplay;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
+import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 import java.util.ArrayList;
@@ -22,12 +22,12 @@ public class MeadowReiClientPlugin implements REIClientPlugin {
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new CookingCauldronCategory());
 
-        registry.addWorkstations(CookingCauldronCategory.COOKING_CAULDRON_DISPLAY, EntryStacks.of(ObjectRegistry.COOKING_CAULDRON.get()));
+        registry.addWorkstations(CookingCauldronCategory.COOKING_CAULDRON_DISPLAY, EntryStacks.of(ObjectRegistry.COOKING_POT.get()));
     }
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        registry.registerFiller(CookingCauldronRecipe.class, CookingCauldronDisplay::new);
+        registry.registerFiller(CookingPotRecipe.class, CookingCauldronDisplay::new);
     }
 
     public static List<Ingredient> ingredients(Recipe<Inventory> recipe, ItemStack stack){

@@ -6,11 +6,10 @@
     },
     {
       "item": "meadow:alpine_salt"
-    },
-    {
-      "item": "minecraft:glass_bottle"
     }
   ],
-  "result": "meadow:rennet",
-  "outputCount": 2
+  "result": {
+    "item": "minecraft:cooked_beef",
+    "count": 4
+  }
 }

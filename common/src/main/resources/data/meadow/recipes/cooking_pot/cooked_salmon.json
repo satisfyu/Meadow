@@ -2,12 +2,14 @@
   "type": "meadow:cooking",
   "ingredients": [
     {
-      "item": "minecraft:porkchop"
+      "item": "minecraft:salmon"
     },
     {
       "item": "meadow:alpine_salt"
     }
   ],
-  "result": "minecraft:cooked_porkchop",
-  "outputCount": 4
+  "result": {
+    "item": "minecraft:cooked_salmon",
+    "count": 4
+  }
 }

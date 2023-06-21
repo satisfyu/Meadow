@@ -1,8 +1,10 @@
 package net.satisfyu.meadow.client.gui.handler;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.screen.ArrayPropertyDelegate;
@@ -11,34 +13,36 @@ import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.satisfyu.meadow.client.recipebook.IRecipeBookGroup;
 import net.satisfyu.meadow.client.recipebook.custom.CookingCauldronRecipeBookGroup;
-import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.entity.blockentities.CookingPotBlockEntity;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
+import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
+import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 
+
 import java.util.List;
+import java.util.stream.Stream;
 
-public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandler {
+public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
-    public CookingCauldronGuiHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(7), new ArrayPropertyDelegate(2));
+    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory) {
+        this(syncId, playerInventory, new SimpleInventory(8), new ArrayPropertyDelegate(2));
     }
 
-    public CookingCauldronGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
+    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(ScreenHandlerRegistry.COOKING_CAULDRON_SCREEN_HANDLER.get(), syncId, 6, playerInventory, inventory, propertyDelegate);
         buildBlockEntityContainer(playerInventory, inventory);
         buildPlayerContainer(playerInventory);
     }
 
     private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 0, 124, 26));
-
-        this.addSlot(new Slot(inventory, 1, 30, 17));
-        this.addSlot(new Slot(inventory, 2, 48, 17));
-        this.addSlot(new Slot(inventory, 3, 66, 17));
-        this.addSlot(new Slot(inventory, 4, 30, 35));
-        this.addSlot(new Slot(inventory, 5, 48, 35));
-        this.addSlot(new Slot(inventory, 6, 66, 35));
-
+        for (int row = 0; row < 2; row++) {
+            for (int slot = 0; slot < 3; slot++) {
+                this.addSlot(new Slot(inventory, slot + row + (row * 2), 30 + (slot * 18), 17 + (row * 18)));
+            }
+        }
+        this.addSlot(new Slot(inventory, 6,95, 50));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 7, 124, 26));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
@@ -53,18 +57,33 @@ public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandle
         }
     }
 
-    public boolean getIsCooking() {
+    @Override
+    public boolean canUse(PlayerEntity player) {
+        return true;
+    }
+
+    public boolean isBeingBurned() {
         return propertyDelegate.get(1) != 0;
+    }
+
+
+    private boolean isItemIngredient(ItemStack stack) {
+        return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
+    }
+
+    private Stream<CookingPotRecipe> recipeStream() {
+        return this.world.getRecipeManager().listAllOfType(RecipeRegistry.COOKING.get()).stream();
     }
 
     public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = CookingCauldronBlockEntity.MAX_COOKING_TIME;
+        final int totalProgress = CookingPotBlockEntity.MAX_COOKING_TIME;
         if (progress == 0) {
             return 0;
         }
-        return progress * arrowWidth / totalProgress + 1;
+        return progress * arrowWidth/ totalProgress + 1;
     }
+
 
     @Override
     public List<IRecipeBookGroup> getGroups() {

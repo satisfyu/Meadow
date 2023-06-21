@@ -7,7 +7,7 @@ import net.minecraft.tag.BiomeTags;
 import net.satisfyu.meadow.fabric.MeadowFabric;
 import net.satisfyu.meadow.fabric.client.MeadowFabricSpawnConfig;
 import net.satisfyu.meadow.registry.EntityRegistry;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 
 import java.util.function.Predicate;
 
@@ -24,7 +24,7 @@ public class FeatureModification {
         Predicate<BiomeSelectionContext> sunset_cow = (ctx -> ctx.hasTag(BiomeTags.IS_SAVANNA) || ctx.hasTag(BiomeTags.VILLAGE_SAVANNA_HAS_STRUCTURE));
         Predicate<BiomeSelectionContext> buffalo = (ctx -> ctx.hasTag(BiomeTags.IS_RIVER) || ctx.hasTag(BiomeTags.IS_SAVANNA));
         Predicate<BiomeSelectionContext> dark_cow = (ctx -> ctx.hasTag(BiomeTags.IS_FOREST) || ctx.hasTag(BiomeTags.WOODLAND_MANSION_HAS_STRUCTURE));
-        Predicate<BiomeSelectionContext> meadow = (ctx -> ctx.hasTag(MeadowTags.IS_MEADOW) || ctx.hasTag(BiomeTags.WOODLAND_MANSION_HAS_STRUCTURE));
+        Predicate<BiomeSelectionContext> meadow = (ctx -> ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(BiomeTags.WOODLAND_MANSION_HAS_STRUCTURE));
 
         BiomeModifications.addSpawn(meadow, SpawnGroup.CREATURE, EntityRegistry.DAIRY_COW.get(),
                 config.spawning.meadowSpawnWeight, config.spawning.meadowPackSizeMin, config.spawning.meadowPackSizeMax);

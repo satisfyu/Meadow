@@ -11,6 +11,9 @@
       "tag": "meadow:cheese"
     }
   ],
-  "result": "minecraft:baked_potato",
-  "outputCount": 4
+  "result": {
+    "item":  "minecraft:barrier",
+    "count": 64
+  }
 }
+

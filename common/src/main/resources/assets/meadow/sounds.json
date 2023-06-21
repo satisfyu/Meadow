@@ -1,9 +1,4 @@
 {
-  "slurping_bowl": {
-    "subtitle": "subtitles.meadow.slurping_bowl",
-    "sounds": [
-      "meadow:slurping_bowl"
-    ]
   },
   "woodcutter": {
     "subtitle": "subtitles.meadow.woodcutter",
@@ -27,12 +22,6 @@
     "subtitle": "subtitles.meadow.cooking_cauldron",
     "sounds": [
       "meadow:cooking_cauldron"
-    ]
-  },
-  "eating_bowl": {
-    "subtitle": "subtitles.meadow.eating_bowl",
-    "sounds": [
-      "meadow:eating_bowl"
     ]
   },
   "shelf_open": {

@@ -2,12 +2,14 @@
   "type": "meadow:cooking",
   "ingredients": [
     {
-      "item": "minecraft:salmon"
+      "item": "minecraft:rabbit"
     },
     {
       "item": "meadow:alpine_salt"
     }
   ],
-  "result": "minecraft:cooked_salmon",
-  "outputCount": 4
+  "result": {
+    "item": "minecraft:cooked_rabbit",
+    "count": 4
+  }
 }

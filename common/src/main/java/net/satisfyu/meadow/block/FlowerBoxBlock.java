@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.satisfyu.meadow.entity.blockentities.FlowerBoxBlockEntity;
 import net.satisfyu.meadow.util.GeneralUtil;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -95,7 +95,7 @@ public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider 
                 world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
                 return ActionResult.SUCCESS;
             }
-        } else if (handStack.isIn(MeadowTags.SMALL_FLOWER)) {
+        } else if (handStack.isIn(TagRegistry.SMALL_FLOWER)) {
             if (blockEntity.isSlotEmpty(left ? 0 : 1)) {
                 blockEntity.addFlower(new ItemStack(handStack.getItem()), left ? 0 : 1);
                 if (!player.isCreative()) {

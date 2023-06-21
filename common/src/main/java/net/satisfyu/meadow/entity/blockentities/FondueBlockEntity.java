@@ -21,7 +21,7 @@ import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.util.ImplementedInventory;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
 public class FondueBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
@@ -64,7 +64,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
+        return Text.of("");
     }
 
     @Nullable
@@ -114,7 +114,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
     private static boolean hasFuel(FondueBlockEntity entity) {
         if (entity.fuelAmount > 0) return true;
         ItemStack stack = entity.inventory.get(2);
-        if (stack.isIn(MeadowTags.CHEESE)) {
+        if (stack.isIn(TagRegistry.CHEESE)) {
             entity.fuelAmount = 10;
             stack.decrement(1);
             return true;

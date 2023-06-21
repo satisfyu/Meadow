@@ -2,12 +2,14 @@
   "type": "meadow:cooking",
   "ingredients": [
     {
-      "item": "minecraft:cod"
+      "item": "minecraft:chicken"
     },
     {
       "item": "meadow:alpine_salt"
     }
   ],
-  "result": "minecraft:cooked_cod",
-  "outputCount": 4
+  "result": {
+    "item": "minecraft:cooked_chicken",
+    "count": 4
+  }
 }

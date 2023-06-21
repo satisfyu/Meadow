@@ -1,9 +1,9 @@
 package net.satisfyu.meadow.entity.blockentities;
 
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -19,15 +19,15 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.block.CookingCauldronBlock;
-import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
+import net.satisfyu.meadow.block.CookingPotBlock;
+import net.satisfyu.meadow.client.gui.handler.CookingPotGuiHandler;
+import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
-public class CookingCauldronBlockEntity extends BlockEntity implements Inventory, NamedScreenHandlerFactory {
+public class CookingPotBlockEntity extends BlockEntity implements Inventory, NamedScreenHandlerFactory {
 
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
     private static final int MAX_CAPACITY = 8;
@@ -41,13 +41,13 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
 
     private final PropertyDelegate delegate;
 
-    public CookingCauldronBlockEntity(BlockPos pos, BlockState state) {
-        super((BlockEntityType<?>) BlockEntityRegistry.COOKING_CAULDRON_BLOCK_ENTITY, pos, state);
+    public CookingPotBlockEntity(BlockPos pos, BlockState state) {
+        super(BlockEntityRegistry.COOKING_POT.get(), pos, state);
         this.delegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 ->  cookingTime;
+                    case 0 -> cookingTime;
                     case 1 -> isBeingBurned ? 1 : 0;
                     default -> 0;
                 };
@@ -86,14 +86,14 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
         if (getWorld() == null)
             throw new NullPointerException("Null world invoked");
         final BlockState belowState = this.getWorld().getBlockState(getPos().down());
-        final var optionalList = Registry.BLOCK.getEntryList(MeadowTags.ALLOWS_COOKING_ON_POT);
+        final var optionalList = Registry.BLOCK.getEntryList(TagRegistry.ALLOWS_COOKING_ON_POT);
         final var entryList = optionalList.orElse(null);
         if (entryList == null) {
             return false;
         } else return entryList.contains(belowState.getBlock().getRegistryEntry());
     }
 
-    private boolean canCraft(CookingCauldronRecipe recipe) {
+    private boolean canCraft(CookingPotRecipe recipe) {
         if (recipe == null || recipe.getOutput().isEmpty()) {
             return false;
         } else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
@@ -112,7 +112,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
         }
     }
 
-    private void craft(CookingCauldronRecipe recipe) {
+    private void craft(CookingPotRecipe recipe) {
         if (!canCraft(recipe)) {
             return;
         }
@@ -148,16 +148,17 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
         this.getStack(BOTTLE_INPUT_SLOT).decrement(1);
     }
 
-    public void tick(World world, BlockPos pos, BlockState state, CookingCauldronBlockEntity blockEntity) {
+    public void tick(World world, BlockPos pos, BlockState state, CookingPotBlockEntity blockEntity) {
         if (world.isClient()) {
             return;
         }
         this.isBeingBurned = isBeingBurned();
-        if (!this.isBeingBurned){
-            if(state.get(CookingCauldronBlock.LIT)) world.setBlockState(pos, state.with(CookingCauldronBlock.LIT, false), Block.NOTIFY_ALL);
+        if (!this.isBeingBurned) {
+            if (state.get(CookingPotBlock.LIT))
+                world.setBlockState(pos, state.with(CookingPotBlock.LIT, false), Block.NOTIFY_ALL);
             return;
         }
-        CookingCauldronRecipe recipe = world.getRecipeManager().getFirstMatch(RecipeRegistry.COOKING, this, world).orElse(null);
+        CookingPotRecipe recipe = world.getRecipeManager().getFirstMatch(RecipeRegistry.COOKING.get(), this, world).orElse(null);
 
         boolean canCraft = canCraft(recipe);
         if (canCraft) {
@@ -170,15 +171,13 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
             this.cookingTime = 0;
         }
         if (canCraft) {
-            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingCauldronBlock.COOKING, true).with(CookingCauldronBlock.LIT, true), Block.NOTIFY_ALL);
-        } else if (state.get(CookingCauldronBlock.COOKING)) {
-            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingCauldronBlock.COOKING, false).with(CookingCauldronBlock.LIT, true), Block.NOTIFY_ALL);
-        }
-        else if(state.get(CookingCauldronBlock.LIT) != isBeingBurned){
-            world.setBlockState(pos, state.with(CookingCauldronBlock.LIT, isBeingBurned), Block.NOTIFY_ALL);
+            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.COOKING, true).with(CookingPotBlock.LIT, true), Block.NOTIFY_ALL);
+        } else if (state.get(CookingPotBlock.COOKING)) {
+            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.COOKING, false).with(CookingPotBlock.LIT, true), Block.NOTIFY_ALL);
+        } else if (state.get(CookingPotBlock.LIT) != isBeingBurned) {
+            world.setBlockState(pos, state.with(CookingPotBlock.LIT, isBeingBurned), Block.NOTIFY_ALL);
         }
     }
-
 
 
     @Override
@@ -232,13 +231,12 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
+        return Text.of("");
     }
 
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CookingCauldronGuiHandler(syncId, inv, this, this.delegate);
+        return new CookingPotGuiHandler(syncId, inv, this, this.delegate);
     }
 }
-

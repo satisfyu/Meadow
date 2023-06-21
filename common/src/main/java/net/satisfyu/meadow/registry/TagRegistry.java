@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.util;
+package net.satisfyu.meadow.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -9,7 +9,7 @@ import net.minecraft.world.biome.Biome;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 
-public class MeadowTags {
+public class TagRegistry {
     public static final TagKey<Biome> IS_MEADOW = TagKey.of(Registry.BIOME_KEY, new Identifier(MOD_ID, "is_meadow"));
 
     public static final TagKey<Item> MILK = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "milk"));

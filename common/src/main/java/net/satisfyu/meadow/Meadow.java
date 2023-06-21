@@ -18,12 +18,12 @@ public class Meadow {
             new ItemStack(ObjectRegistry.PIECE_OF_CHEESE.get()));
 
     public static void init() {
-        SoundRegistry.init();
         ObjectRegistry.init();
         EntityRegistry.init();
         BlockEntityRegistry.init();
         EffectRegistry.init();
         RecipeRegistry.init();
+        SoundRegistry.init();
         ScreenHandlerRegistry.init();
         FeatureRegistry.init();
     }

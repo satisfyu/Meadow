@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 import net.satisfyu.meadow.registry.DamageSourceRegistry;
 import net.satisfyu.meadow.util.BlockStateUtils;
 import net.satisfyu.meadow.util.MathUtils;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -99,7 +99,7 @@ public class StoveTilesFurnaceBlock extends Block {
         ItemStack stackHand = player.getStackInHand(hand);
         Item usedItem = stackHand.getItem();
 
-        if (!(stackHand.isIn(MeadowTags.SHOVEL)) && usedItem != Items.WATER_BUCKET) {
+        if (!(stackHand.isIn(TagRegistry.SHOVEL)) && usedItem != Items.WATER_BUCKET) {
             return ActionResult.PASS;
         }
 

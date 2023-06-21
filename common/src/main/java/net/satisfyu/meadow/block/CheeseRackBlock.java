@@ -24,7 +24,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.entity.blockentities.CheeseRackBlockEntity;
 import net.satisfyu.meadow.util.GeneralUtil;
-import net.satisfyu.meadow.util.MeadowTags;
+import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -78,7 +78,7 @@ public class CheeseRackBlock extends HFacingBlock implements BlockEntityProvider
         if (handStack.isEmpty() && be.hasStack(slot)) {
             player.giveItemStack(be.removeStack(slot));
             return ActionResult.SUCCESS;
-        } else if (handStack.isIn(MeadowTags.CHEESE_BLOCKS) && !be.hasStack(slot)) {
+        } else if (handStack.isIn(TagRegistry.CHEESE_BLOCKS) && !be.hasStack(slot)) {
             be.setStack(slot, new ItemStack(handStack.getItem()));
             handStack.decrement(1);
             return ActionResult.SUCCESS;
