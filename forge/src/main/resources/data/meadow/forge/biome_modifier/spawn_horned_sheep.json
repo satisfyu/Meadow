@@ -1,0 +1,18 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:grove",
+    "minecraft:snowy_slopes",
+    "minecraft:jagged_peaks",
+    "minecraft:frozen_peaks",
+    "minecraft:stony_peaks",
+    "minecraft:taiga",
+    "minecraft:old_growth_spruce_taiga"
+  ],
+  "spawners": {
+    "type": "meadow:horned_sheep",
+    "weight": 14,
+    "minCount": 4,
+    "maxCount": 3
+  }
+}

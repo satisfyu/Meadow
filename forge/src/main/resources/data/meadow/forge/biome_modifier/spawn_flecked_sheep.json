@@ -1,0 +1,14 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna"
+  ],
+  "spawners": {
+    "type": "meadow:flecked_sheep",
+    "weight": 9,
+    "minCount": 3,
+    "maxCount": 5
+  }
+}

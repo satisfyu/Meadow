@@ -1,0 +1,15 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna",
+    "minecraft:river"
+  ],
+  "spawners": {
+    "type": "meadow:water_buffalo",
+    "weight": 14,
+    "minCount": 8,
+    "maxCount": 12
+  }
+}

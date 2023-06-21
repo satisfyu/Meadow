@@ -1,0 +1,14 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna"
+  ],
+  "spawners": {
+    "type": "meadow:sunset_cow",
+    "weight": 13,
+    "minCount": 4,
+    "maxCount": 6
+  }
+}

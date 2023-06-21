@@ -1,0 +1,15 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:plains",
+    "minecraft:sunflower_plains",
+    "minecraft:meadow",
+    "meadow:meadow_clearing"
+  ],
+  "spawners": {
+    "type": "meadow:patched_sheep",
+    "weight": 14,
+    "minCount": 3,
+    "maxCount": 5
+  }
+}

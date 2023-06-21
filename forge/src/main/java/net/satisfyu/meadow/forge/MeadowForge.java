@@ -24,9 +24,8 @@ public class MeadowForge {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork( () -> {
-            ForgeVillager.registerPOIs();
             MeadowRegion.loadTerrablender();
-
+           // ForgeVillager.registerPOIs();
             ForgeEntitySpawn.registerEntitySpawn();
         });
         Meadow.commonSetup();

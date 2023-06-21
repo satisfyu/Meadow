@@ -1,0 +1,12 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:dark_forest"
+  ],
+  "spawners": {
+    "type": "meadow:dark_cow",
+    "weight": 21,
+    "minCount": 4,
+    "maxCount": 7
+  }
+}

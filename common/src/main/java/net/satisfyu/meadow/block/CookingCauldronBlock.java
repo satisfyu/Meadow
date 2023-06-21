@@ -4,78 +4,161 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
 import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
-import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.SoundRegistry;
+import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class CookingCauldronBlock extends BlockWithEntity {
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0, 0.25, 0.75, 0.0625, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.75, 0.8125, 0.5, 0.8125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.5, 0.25), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.25, 0.25, 0.5, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.75, 0, 0.25, 0.8125, 0.5, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.3125, 0.25, 0.1875, 0.4375, 0.3125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.3125, 0.6875, 0.9375, 0.4375, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.3125, 0.6875, 0.1875, 0.4375, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.3125, 0.25, 0.9375, 0.4375, 0.3125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.3125, 0.3125, 0.125, 0.4375, 0.6875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.875, 0.3125, 0.3125, 0.9375, 0.4375, 0.6875), BooleanBiFunction.OR);
+        return shape;
+    };
 
-    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final IntProperty VAR = IntProperty.of("var", 0, 7);
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
 
-    public static final BooleanProperty HANGING = BooleanProperty.of("hanging");
-
-    public static final BooleanProperty DONE = BooleanProperty.of("done");
-
-    private static final VoxelShape SHAPE = Block.createCuboidShape(3, 0, 3, 14, 5, 14);
-
-    private static final VoxelShape SHAPE_H = Block.createCuboidShape(3, 0, 3, 14, 21, 14);
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    public static final BooleanProperty LIT = BooleanProperty.of("lit");
+    public static final BooleanProperty COOKING = BooleanProperty.of("cooking");
 
     public CookingCauldronBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(VAR, 0).with(HANGING, false).with(DONE, false));
+        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(COOKING, false).with(LIT, false));
+    }
+
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState().with(FACING, ctx.getPlayerFacing());
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Boolean hanging = state.get(HANGING);
-        if (hanging) return SHAPE_H;
-        return SHAPE;
+        return SHAPE.get(state.get(FACING));
     }
+
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient) {
-            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-            if (screenHandlerFactory != null) {
-                player.openHandledScreen(screenHandlerFactory);
-            }
+        final BlockEntity entity = world.getBlockEntity(pos);
+        if (entity instanceof NamedScreenHandlerFactory factory) {
+            player.openHandledScreen(factory);
+            return ActionResult.SUCCESS;
+        } else {
+            return super.onUse(state, world, pos, player, hand, hit);
         }
-        return ActionResult.SUCCESS;
+    }
+
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!state.isOf(newState.getBlock())) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof CookingCauldronBlockEntity pot) {
+                if (world instanceof ServerWorld) {
+                    ItemScatterer.spawn(world, pos, pot);
+                }
+                world.updateComparators(pos, this);
+            }
+            super.onStateReplaced(state, world, pos, newState, moved);
+        }
+    }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (state.get(COOKING)) {
+            double d = (double)pos.getX() + 0.5;
+            double e = pos.getY() + 0.3;
+            double f = (double)pos.getZ() + 1.0;
+            if (random.nextDouble() < 0.3) {
+                world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            }
+            Direction direction = state.get(FACING);
+            Direction.Axis axis = direction.getAxis();
+            double h = random.nextDouble() * 0.6 - 0.3;
+            double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52 : h;
+            double j = random.nextDouble() * 9.0 / 16.0;
+            double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : h;
+            world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE_POP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+        }
+        if (state.get(LIT)) {
+            double d = (double)pos.getX() + 0.5;
+            double e = pos.getY() + 0.3;
+            double f = (double)pos.getZ() + 1.0;
+            if (random.nextDouble() < 0.3) {
+                world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            }
+            Direction direction = state.get(FACING);
+            Direction.Axis axis = direction.getAxis();
+            double h = random.nextDouble() * 0.6 - 0.3;
+            double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52 : h;
+            double j = random.nextDouble() * 9.0 / 16.0;
+            double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.7 : h;
+            world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+        }
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING, COOKING, LIT);
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockEntityRegistry.COOKING_CAULDRON_BLOCK_ENTITY.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
+        return checkType(type, BlockEntityRegistry.COOKING_CAULDRON_BLOCK_ENTITY, (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
     }
 
     @Nullable
@@ -85,95 +168,7 @@ public class CookingCauldronBlock extends BlockWithEntity {
     }
 
     @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.IGNORE;
-    }
-
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
-    }
-
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.getBlock() != newState.getBlock()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CookingCauldronBlockEntity be) {
-                ItemScatterer.spawn(world, pos, be);
-                world.updateComparators(pos, this);
-            }
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(VAR, HANGING, DONE, FACING);
-    }
-
-    @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return Block.sideCoversSmallSquare(world, pos.down(), Direction.UP);
-    }
-
-    @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
-    }
-
-    @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (state.get(HANGING)) {
-            FrameBlock.displayTickLikeCampfire(world, pos, random, world.getBlockState(pos.down()).isOf(Blocks.HAY_BLOCK));
-        }
-        if (state.get(VAR) <= 0) {
-            return;
-        }
-        double d = (double) pos.getX() + 0.5;
-        double e = pos.getY() + (state.get(HANGING) ? 0.9 : 0.45);
-        double f = (double) pos.getZ() + 0.5;
-        if (random.nextDouble() < 0.1) {
-            world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-        }
-        if (random.nextFloat() < 0.15f && !state.get(DONE)) {
-            world.addImportantParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, (double) pos.getX() + 0.5 + random.nextDouble() / 3.0 * (double) (random.nextBoolean() ? 1 : -1), (double) pos.getY() + random.nextDouble() + random.nextDouble() + (state.get(HANGING) ? 0.45 : 0), (double) pos.getZ() + 0.5 + random.nextDouble() / 3.0 * (double) (random.nextBoolean() ? 1 : -1), 0.0, 0.07, 0.0);
-        }
-        java.util.Random r = new java.util.Random();
-        if (r.nextFloat() < 0.3f) {
-            if (!state.get(DONE)) {
-                world.addParticle(ParticleTypes.SMOKE, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
-                world.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
-                world.addParticle(ParticleTypes.BUBBLE, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
-                world.addParticle(ParticleTypes.BUBBLE_POP, d, e, f, r.nextFloat(-0.1f, 0.1f), 0, r.nextFloat(-0.1f, 0.1f));
-            } else {
-                world.addParticle(ParticleTypes.BUBBLE_POP, d, e, f, r.nextFloat(-0.03f, 0.03f), 0, r.nextFloat(-0.03f, 0.03f));
-            }
-        }
-    }
-
-    @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.cauldron.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
-
-    @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> list = new ArrayList<>();
-        list.add(new ItemStack(this));
-        if (state.get(HANGING)) {
-            list.add(new ItemStack(ObjectRegistry.FRAME.get()));
-        }
-        return list;
-    }
-
 }
