@@ -39,20 +39,7 @@ public class FrameBlock extends Block {
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 1.875, 0.4375, 1.0625, 2, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 1, 0.4375, 0.0625, 1.875, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 0, 0.4375, 0.0625, 1, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.9375, 0, 0.4375, 1.0625, 1, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.9375, 1, 0.4375, 1.0625, 1.875, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 1.875, 0.4375, 0.1875, 2, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 1.25, 0.4375, 0.5, 1.9375, 0.5625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 1.25, 0.5, 0.5625, 1.9375, 0.5), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5125, 0, 0.125, 0.5125, 0.75, 0.875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0, 0.4875, 0.875, 0.75, 0.4875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.125, 0.375, 0.1875, 0.875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.625, 0, 0.125, 0.8125, 0.1875, 0.875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.1875, 0.1875, 0.875, 0.375, 0.375), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.1875, 0.625, 0.875, 0.375, 0.8125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 1.25, 0.8125), BooleanBiFunction.OR);
         return shape;
     };
 
@@ -94,7 +81,7 @@ public class FrameBlock extends Block {
     public static void displayTickLikeCampfire(World world, BlockPos pos, Random random, boolean isSignal) {
         if (random.nextFloat() < 0.11f) {
             for (int i = 0; i < random.nextInt(2) + 2; ++i) {
-                CampfireBlock.spawnSmokeParticle(world, pos, isSignal, true);
+                CampfireBlock.spawnSmokeParticle(world, pos, isSignal, false);
             }
         }
         if (random.nextInt(10) == 0) {

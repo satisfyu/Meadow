@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:dark_oak_log"
-  },
-  "outputItem": "minecraft:stick",
-  "outputAmount": 10
-}

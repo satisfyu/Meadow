@@ -3,6 +3,6 @@
   "inputItem": {
     "item": "minecraft:jungle_log"
   },
-  "outputItem": "minecraft:jungle_boat",
-  "outputAmount": 1
+  "outputItem": "decorative_blocks:jungle_beam",
+  "outputAmount": 2
 }

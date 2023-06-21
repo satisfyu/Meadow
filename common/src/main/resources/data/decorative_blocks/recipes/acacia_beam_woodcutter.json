@@ -3,6 +3,6 @@
   "inputItem": {
     "item": "minecraft:acacia_log"
   },
-  "outputItem": "minecraft:acacia_boat",
-  "outputAmount": 1
+  "outputItem": "decorative_blocks:acacia_beam",
+  "outputAmount": 2
 }

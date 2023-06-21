@@ -3,6 +3,6 @@
   "inputItem": {
     "item": "meadow:pine_log"
   },
-  "outputItem": "meadow:pine_button",
-  "outputAmount": 6
+  "outputItem": "meadow:shutter_block",
+  "outputAmount": 4
 }

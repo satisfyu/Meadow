@@ -3,6 +3,6 @@
   "inputItem": {
     "item": "minecraft:spruce_log"
   },
-  "outputItem": "minecraft:stick",
-  "outputAmount": 10
+  "outputItem": "decorative_blocks:spruce_beam",
+  "outputAmount": 2
 }

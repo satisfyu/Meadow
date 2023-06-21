@@ -3,6 +3,6 @@
   "inputItem": {
     "item": "minecraft:oak_log"
   },
-  "outputItem": "minecraft:stick",
-  "outputAmount": 10
+  "outputItem": "decorative_blocks:oak_beam",
+  "outputAmount": 2
 }

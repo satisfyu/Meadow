@@ -20,11 +20,15 @@ public class MeadowForge {
         modEventBus.addListener(this::commonSetup);
     }
 
+
+
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork( () -> {
             MeadowRegion.loadTerrablender();
             ForgeEntitySpawn.registerEntitySpawn();
         });
         Meadow.commonSetup();
+        Meadow.commonInit();
+
     }
 }

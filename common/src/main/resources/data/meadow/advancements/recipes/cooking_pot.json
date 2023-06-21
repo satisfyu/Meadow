@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "meadow:cord"
+      "meadow:cooking_pot"
     ]
   },
   "criteria": {
-    "has_stick": {
+    "has_iron_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:stick"
+              "minecraft:iron_ingot"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "meadow:cord"
+        "recipe": "meadow:cooking_pot"
       }
     }
   },
   "requirements": [
     [
-      "has_stick",
+      "has_iron_ingot",
       "has_the_recipe"
     ]
   ]

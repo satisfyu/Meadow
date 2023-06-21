@@ -16,7 +16,7 @@ public class TagRegistry {
 
     public static final TagKey<Item> CHEESE_BLOCKS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "cheese_blocks"));
 
-    public static final TagKey<Block> ALLOWS_COOKING_ON_POT = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "allows_cooking_on_pot"));
+    public static final TagKey<Block> ALLOWS_COOKING = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "allows_cooking"));
 
     public static final TagKey<Item> WOODEN_BUCKETS = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "wooden_buckets"));
 

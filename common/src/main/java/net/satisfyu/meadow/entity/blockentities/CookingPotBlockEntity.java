@@ -86,7 +86,7 @@ public class CookingPotBlockEntity extends BlockEntity implements Inventory, Nam
         if (getWorld() == null)
             throw new NullPointerException("Null world invoked");
         final BlockState belowState = this.getWorld().getBlockState(getPos().down());
-        final var optionalList = Registry.BLOCK.getEntryList(TagRegistry.ALLOWS_COOKING_ON_POT);
+        final var optionalList = Registry.BLOCK.getEntryList(TagRegistry.ALLOWS_COOKING );
         final var entryList = optionalList.orElse(null);
         if (entryList == null) {
             return false;

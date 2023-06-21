@@ -3,6 +3,6 @@
   "inputItem": {
     "item": "minecraft:warped_stem"
   },
-  "outputItem": "minecraft:stick",
-  "outputAmount": 10
+  "outputItem": "decorative_blocks:warped_beam",
+  "outputAmount": 2
 }

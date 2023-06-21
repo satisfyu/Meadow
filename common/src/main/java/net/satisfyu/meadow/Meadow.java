@@ -26,6 +26,13 @@ public class Meadow {
         SoundRegistry.init();
         ScreenHandlerRegistry.init();
         FeatureRegistry.init();
+        CompostableRegistry.init();
+
+
+    }
+
+    public static void commonInit(){
+        FlammableBlockRegistry.init();
     }
 
     public static void commonSetup() {

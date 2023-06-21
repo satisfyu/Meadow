@@ -32,6 +32,7 @@ import net.minecraft.world.World;
 import net.satisfyu.meadow.entity.blockentities.CookingPotBlockEntity;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import net.satisfyu.meadow.registry.SoundRegistry;
 import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.Nullable;
 
@@ -58,27 +59,7 @@ public class CookingPotBlock extends BlockWithEntity {
 
         public static VoxelShape makeShapeHanging() {
             VoxelShape shape = VoxelShapes.empty();
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.436875, 0.374375, 0.124375, 0.563125, 0.438125, 0.188125), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.436875, 0.374375, 0.811875, 0.563125, 0.438125, 0.875625), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2475, 0, 0.25, 0.7475, 0.0625, 0.75), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.1875, 0.81, 0.5625, 0.25), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.75, 0.81, 0.5625, 0.8125), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.25, 0.2475, 0.5625, 0.75), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.7475, 0.0625, 0.25, 0.81, 0.5625, 0.75), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 1.875, 0.4375, 1.0625, 2, 0.5625), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 1, 0.4375, 0.0625, 1.875, 0.5625), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 0, 0.4375, 0.0625, 1, 0.5625), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.9375, 0, 0.4375, 1.0625, 1, 0.5625), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.9375, 1, 0.4375, 1.0625, 1.875, 0.5625), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 1.875, 0.4375, 0.1875, 2, 0.5625), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 1.25, 0.4375, 0.5, 1.9375, 0.5625), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 1.25, 0.5, 0.5625, 1.9375, 0.5), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5125, 0, 0.125, 0.5125, 0.75, 0.875), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0, 0.4875, 0.875, 0.75, 0.4875), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.125, 0.375, 0.1875, 0.875), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.625, 0, 0.125, 0.8125, 0.1875, 0.875), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.1875, 0.1875, 0.875, 0.375, 0.375), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.1875, 0.625, 0.875, 0.375, 0.8125), BooleanBiFunction.OR);
+            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 1.25, 0.8125), BooleanBiFunction.OR);
             return shape;
         };
 
@@ -149,7 +130,8 @@ public class CookingPotBlock extends BlockWithEntity {
             double e = pos.getY() + 0.7;
             double f = (double) pos.getZ() + 0.5;
             if (random.nextDouble() < 0.3) {
-                world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+                world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.5f, 0.5f, false);
             }
             Direction direction = state.get(FACING);
             Direction.Axis axis = direction.getAxis();
@@ -166,7 +148,8 @@ public class CookingPotBlock extends BlockWithEntity {
                 double e = pos.getY() + 0.7;
                 double f = (double) pos.getZ() + 0.5;
                 if (random.nextDouble() < 0.3) {
-                    world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                    world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+                    world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.5f, 0.5f, false);
                 }
                 Direction direction = state.get(FACING);
                 Direction.Axis axis = direction.getAxis();
@@ -183,7 +166,8 @@ public class CookingPotBlock extends BlockWithEntity {
             double e = pos.getY() + 1.0;
             double f = (double) pos.getZ() + 0.5;
             if (random.nextDouble() < 0.3) {
-                world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+                world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.5f, 0.5f, false);
             }
             Direction direction = state.get(FACING);
             Direction.Axis axis = direction.getAxis();

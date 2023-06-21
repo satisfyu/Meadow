@@ -3,6 +3,6 @@
   "inputItem": {
     "item": "minecraft:birch_log"
   },
-  "outputItem": "minecraft:stick",
-  "outputAmount": 10
+  "outputItem": "decorative_blocks:birch_beam",
+  "outputAmount": 2
 }

@@ -3,6 +3,6 @@
   "inputItem": {
     "item": "minecraft:crimson_stem"
   },
-  "outputItem": "minecraft:stick",
-  "outputAmount": 10
+  "outputItem": "decorative_blocks:crimson_beam",
+  "outputAmount": 2
 }

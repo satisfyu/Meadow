@@ -8,6 +8,8 @@
       "item": "meadow:alpine_salt"
     }
   ],
-  "result": "meadow:cooked_bear_meat",
-  "count": 4
+  "result": {
+    "item": "meadow:cooked_bear_meat",
+    "count": 4
+  }
 }
