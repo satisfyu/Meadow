@@ -16,7 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;

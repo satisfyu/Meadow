@@ -5,10 +5,10 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.screen.handler.CheeseFormGuiHandler;
-import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
-import net.satisfyu.meadow.client.screen.handler.FondueGuiHandler;
-import net.satisfyu.meadow.client.screen.handler.WoodcutterGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CheeseFormGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.WoodcutterGuiHandler;
 
 import java.util.function.Supplier;
 

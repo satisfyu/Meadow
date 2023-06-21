@@ -17,7 +17,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.client.screen.handler.CheeseFormGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CheeseFormGuiHandler;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;

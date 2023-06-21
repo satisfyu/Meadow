@@ -27,6 +27,7 @@ repositories {
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
+    modLocalRuntime "maven.modrinth:patched:fabric-1.19.2-1.1.0"
 
     modApi("net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"){ exclude group: 'net.fabricmc', module: 'fabric-loader' }
     modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}"){ exclude group: 'net.fabricmc', module: 'fabric-loader' }

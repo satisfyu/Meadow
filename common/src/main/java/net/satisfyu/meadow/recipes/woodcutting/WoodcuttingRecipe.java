@@ -62,6 +62,11 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
     }
 
     @Override
+    public ItemStack createIcon() {
+        return new ItemStack(ObjectRegistry.WOODCUTTER.get());
+    }
+
+    @Override
     public Identifier getId() {
         return id;
     }
@@ -72,10 +77,6 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
         return RecipeRegistry.WOODCUTTING_SERIALIZER.get();
     }
 
-    @Override
-    public boolean isIgnoredInRecipeBook() {
-        return true;
-    }
 
     @Override
     public RecipeType<?> getType() {

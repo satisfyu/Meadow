@@ -339,6 +339,12 @@ public class ObjectRegistry {
         FuelRegistry.register(4000, PINE_LOG.get());
     }
 
+    public static void registerArmor() {
+        Registry.register(Registry.ITEM, new MeadowIdentifier("fur_helmet"), FUR_HELMET.get());
+        Registry.register(Registry.ITEM, new MeadowIdentifier("fur_chestplate"), FUR_CHESTPLATE.get());
+        Registry.register(Registry.ITEM, new MeadowIdentifier("fur_leggings"), FUR_LEGGINGS.get());
+        Registry.register(Registry.ITEM, new MeadowIdentifier("fur_boots"), FUR_BOOTS.get());
+    }
 
     public static <T extends Item> RegistrySupplier<T> registerItem(String path, Supplier<T> itemSupplier) {
         return registerItem(new MeadowIdentifier(path), itemSupplier);

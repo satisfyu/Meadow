@@ -18,7 +18,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.client.screen.handler.WoodcutterGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.WoodcutterGuiHandler;
 
 import java.util.List;
 
