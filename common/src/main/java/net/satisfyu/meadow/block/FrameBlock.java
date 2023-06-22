@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static net.satisfyu.meadow.block.CookingPotBlock.HANGING;
+import static net.satisfyu.meadow.block.CookingCauldronBlock.HANGING;
 
 
 public class FrameBlock extends Block {

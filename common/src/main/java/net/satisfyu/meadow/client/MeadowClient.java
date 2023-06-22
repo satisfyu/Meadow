@@ -16,12 +16,12 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.screen.CheeseFormGui;
-import net.satisfyu.meadow.client.screen.CookingPotGui;
-import net.satisfyu.meadow.client.screen.FondueGui;
-import net.satisfyu.meadow.client.screen.WoodcutterGui;
 import net.satisfyu.meadow.client.render.ChairEntityRenderer;
 import net.satisfyu.meadow.client.render.FlowerBoxBlockEntityRenderer;
+import net.satisfyu.meadow.client.screen.CheeseFormGui;
+import net.satisfyu.meadow.client.screen.CookingCauldronGui;
+import net.satisfyu.meadow.client.screen.FondueGui;
+import net.satisfyu.meadow.client.screen.WoodcutterGui;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityModel;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityRenderer;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntityModel;
@@ -137,7 +137,7 @@ public class MeadowClient {
     private static void registerClientScreens() {
         MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.CHEESE_FORM_SCREEN_HANDLER.get(), CheeseFormGui::new);
         MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.WOODCUTTER_SCREEN_HANDLER.get(), WoodcutterGui::new);
-        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.COOKING_CAULDRON_SCREEN_HANDLER.get(), CookingPotGui::new);
+        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.COOKING_CAULDRON_SCREEN_HANDLER.get(), CookingCauldronGui::new);
         MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.FONDUE_SCREEN_HANDLER.get(), FondueGui::new);
     }
 

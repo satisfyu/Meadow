@@ -1,9 +1,6 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -24,6 +21,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
@@ -34,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CheeseFormBlock extends BlockWithEntity {
-
+    private static final VoxelShape SHAPE = createCuboidShape(3, 0, 3, 13, 5, 13);
     public static final BooleanProperty WORKING = BooleanProperty.of("working");
     public static final BooleanProperty DONE = BooleanProperty.of("done");
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
@@ -42,6 +40,11 @@ public class CheeseFormBlock extends BlockWithEntity {
     public CheeseFormBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(DONE, false).with(WORKING, false).with(FACING, Direction.NORTH));
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
     }
 
     @Override
