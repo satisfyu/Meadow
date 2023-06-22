@@ -29,7 +29,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.entity.blockentities.CookingPotBlockEntity;
+import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.SoundRegistry;
@@ -42,60 +42,56 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class CookingPotBlock extends BlockWithEntity {
-        protected static final VoxelShape HANGING_SHAPE = makeShapeHanging();
+public class CookingCauldronBlock extends BlockWithEntity {
+    protected static final VoxelShape HANGING_SHAPE = makeShapeHanging();
 
-        private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
-            VoxelShape shape = VoxelShapes.empty();
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.436875, 0.374375, 0.124375, 0.563125, 0.438125, 0.188125), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.436875, 0.374375, 0.811875, 0.563125, 0.438125, 0.875625), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2475, 0, 0.25, 0.7475, 0.0625, 0.75), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.1875, 0.81, 0.5625, 0.25), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.75, 0.81, 0.5625, 0.8125), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.25, 0.2475, 0.5625, 0.75), BooleanBiFunction.OR);
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.7475, 0.0625, 0.25, 0.81, 0.5625, 0.75), BooleanBiFunction.OR);
-            return shape;
-        };
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.436875, 0.374375, 0.124375, 0.563125, 0.438125, 0.188125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.436875, 0.374375, 0.811875, 0.563125, 0.438125, 0.875625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2475, 0, 0.25, 0.7475, 0.0625, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.1875, 0.81, 0.5625, 0.25), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.75, 0.81, 0.5625, 0.8125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.25, 0.2475, 0.5625, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.7475, 0.0625, 0.25, 0.81, 0.5625, 0.75), BooleanBiFunction.OR);
+        return shape;
+    };
 
-        public static VoxelShape makeShapeHanging() {
-            VoxelShape shape = VoxelShapes.empty();
-            shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 1.25, 0.8125), BooleanBiFunction.OR);
-            return shape;
-        };
+    public static VoxelShape makeShapeHanging() {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 1.25, 0.8125), BooleanBiFunction.OR);
+        return shape;
+    }
 
-        public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
-            for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
-                map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
-            }
-        });
-
-        @Override
-        public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-            if (state.get(HANGING)) {
-                return HANGING_SHAPE;
-            } else {
-                return SHAPE.get(state.get(FACING));
-            }
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
         }
+    });
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(HANGING)) {
+            return HANGING_SHAPE;
+        } else {
+            return SHAPE.get(state.get(FACING));
+        }
+    }
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BooleanProperty.of("lit");
     public static final BooleanProperty COOKING = BooleanProperty.of("cooking");
     public static final BooleanProperty HANGING = BooleanProperty.of("hanging");
 
-    public CookingPotBlock(Settings settings) {
+    public CookingCauldronBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(HANGING, false).with(COOKING, false).with(LIT, false));
     }
-
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getPlayerFacing());
     }
-
-
-
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -113,7 +109,7 @@ public class CookingPotBlock extends BlockWithEntity {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CookingPotBlockEntity pot) {
+            if (blockEntity instanceof CookingCauldronBlockEntity pot) {
                 if (world instanceof ServerWorld) {
                     ItemScatterer.spawn(world, pos, pot);
                 }
@@ -211,7 +207,7 @@ public class CookingPotBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CookingPotBlockEntity(pos, state);
+        return new CookingCauldronBlockEntity(pos, state);
     }
 
     @Override

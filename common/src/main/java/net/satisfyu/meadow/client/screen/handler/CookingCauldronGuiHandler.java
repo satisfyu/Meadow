@@ -13,34 +13,34 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.satisfyu.meadow.client.recipebook.group.CookingPotRecipeBookGroup;
-import net.satisfyu.meadow.entity.blockentities.CookingPotBlockEntity;
-import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
+import net.satisfyu.meadow.client.recipebook.group.CookingCauldronRecipeBookGroup;
+import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
+public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
-    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory) {
+    public CookingCauldronGuiHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(7), new ArrayPropertyDelegate(2));
     }
 
-    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
+    public CookingCauldronGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(ScreenHandlerRegistry.COOKING_CAULDRON_SCREEN_HANDLER.get(), syncId, 6, playerInventory, inventory, propertyDelegate);
         buildBlockEntityContainer(playerInventory, inventory);
         buildPlayerContainer(playerInventory);
     }
 
     private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 0, 124, 26));
         for (int row = 0; row < 2; row++) {
             for (int slot = 0; slot < 3; slot++) {
-                this.addSlot(new Slot(inventory, slot + row + (row * 2), 30 + (slot * 18), 17 + (row * 18)));
+                this.addSlot(new Slot(inventory, 1 + slot + row + (row * 2), 30 + (slot * 18), 17 + (row * 18)));
             }
         }
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 7, 124, 26));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
@@ -69,13 +69,13 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
 
-    private Stream<CookingPotRecipe> recipeStream() {
+    private Stream<CookingCauldronRecipe> recipeStream() {
         return this.world.getRecipeManager().listAllOfType(RecipeRegistry.COOKING.get()).stream();
     }
 
     public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = CookingPotBlockEntity.MAX_COOKING_TIME;
+        final int totalProgress = CookingCauldronBlockEntity.MAX_COOKING_TIME;
         if (progress == 0) {
             return 0;
         }
@@ -85,12 +85,12 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
     @Override
     public List<IRecipeBookGroup> getGroups() {
-        return CookingPotRecipeBookGroup.CAULDRON_GROUPS;
+        return CookingCauldronRecipeBookGroup.CAULDRON_GROUPS;
     }
 
     @Override
     public boolean hasIngredient(Recipe<?> recipe) {
-        if (recipe instanceof CookingPotRecipe potRecipe) {
+        if (recipe instanceof CookingCauldronRecipe potRecipe) {
             for (Ingredient ingredient : potRecipe.getIngredients()) {
                 boolean found = false;
                 for (Slot slot : this.slots) {

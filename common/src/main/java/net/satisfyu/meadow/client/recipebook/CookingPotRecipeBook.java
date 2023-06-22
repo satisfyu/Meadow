@@ -11,7 +11,7 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.random.Random;
-import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
+import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 
 import java.util.List;
@@ -24,10 +24,10 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        if(recipe instanceof CookingPotRecipe potRecipe){
-            this.ghostSlots.addSlot(potRecipe.getOutput(), slots.get(6).x, slots.get(6).y);
+        if (recipe instanceof CookingCauldronRecipe potRecipe) {
+            this.ghostSlots.addSlot(potRecipe.getOutput(), slots.get(0).x, slots.get(0).y);
 
-            int slot = 0;
+            int slot = 1;
             for (Ingredient ingredient : potRecipe.getIngredients()) {
                 ItemStack[] inputStacks = ingredient.getMatchingStacks();
                 if (inputStacks.length == 0) continue;
@@ -40,13 +40,13 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     public void insertRecipe(Recipe<?> recipe, List<Slot> slots) {
-        int usedInputSlots = 0;
+        int usedInputSlots = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
             int slotIndex = 0;
             for (Slot slot : screenHandler.slots) {
                 ItemStack itemStack = slot.getStack();
 
-                if (ingredient.test(itemStack) && usedInputSlots < 6) {
+                if (ingredient.test(itemStack) && usedInputSlots < 7) {
                     MinecraftClient.getInstance().interactionManager.clickSlot(screenHandler.syncId, slotIndex, 0, SlotActionType.PICKUP, MinecraftClient.getInstance().player);
                     MinecraftClient.getInstance().interactionManager.clickSlot(screenHandler.syncId, usedInputSlots, 0, SlotActionType.PICKUP, MinecraftClient.getInstance().player);
                     ++usedInputSlots;

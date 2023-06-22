@@ -142,7 +142,7 @@ public class ObjectRegistry {
     //crafting blocks
     public static final RegistrySupplier<Block> CHEESE_FORM = registerBlock("cheese_form", () -> new CheeseFormBlock(AbstractBlock.Settings.of(Material.DECORATION).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.SCAFFOLDING)));
     public static final RegistrySupplier<Block> FONDUE = registerBlock("fondue", () -> new FondueBlock(AbstractBlock.Settings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL).luminance((blockState) -> 13)));
-    public static final RegistrySupplier<Block> COOKING_POT = registerBlock("cooking_pot", () -> new CookingPotBlock(AbstractBlock.Settings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL).luminance(state -> state.get(CookingPotBlock.HANGING) ? 13 : 0)));
+    public static final RegistrySupplier<Block> COOKING_POT = registerBlock("cooking_pot", () -> new CookingCauldronBlock(AbstractBlock.Settings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.METAL).luminance(state -> state.get(CookingCauldronBlock.HANGING) ? 13 : 0)));
     public static final RegistrySupplier<Block> FRAME = registerBlock("frame", () -> new FrameBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().luminance((blockState) -> 13).strength(3.5F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final RegistrySupplier<Block> WOODCUTTER = registerBlock("woodcutter", () -> new WoodcutterBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)));
 
@@ -187,7 +187,10 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> ALPINE_BIRCH_LEAVES_HANGING = registerBlock("alpine_birch_leaves_hanging", () -> new LeavesBlock(AbstractBlock.Settings.of(Material.LEAVES).strength(0.2f).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque().blockVision((state, world, pos) -> false).suffocates((state, world, pos) -> false)));
 
     //cheese&food
+    public static final RegistrySupplier<Item> CHEESECAKE_SLICE = registerItem("cheesecake_slice", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
     public static final RegistrySupplier<Block> CHEESECAKE = registerBlock("cheesecake", () -> new CheeseBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ObjectRegistry.CHEESECAKE_SLICE, true));
+    public static final RegistrySupplier<Item> CHEESE_TART_SLICE = registerItem("cheese_tart_slice", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
+
     public static final RegistrySupplier<Block> CHEESE_TART = registerBlock("cheese_tart", () -> new CheeseBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ObjectRegistry.CHEESE_TART_SLICE, true));
     public static final RegistrySupplier<Item> PIECE_OF_CHEESE = registerItem("piece_of_cheese", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
     public static final RegistrySupplier<Item> PIECE_OF_SHEEP_CHEESE = registerItem("piece_of_sheep_cheese", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
@@ -196,8 +199,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> PIECE_OF_BUFFALO_CHEESE = registerItem("piece_of_buffalo_cheese", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
     public static final RegistrySupplier<Item> PIECE_OF_GOAT_CHEESE = registerItem("piece_of_goat_cheese", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
     public static final RegistrySupplier<Item> PIECE_OF_WARPED_CHEESE = registerItem("piece_of_warped_cheese", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 300, 1), 1.0F).build())));
-    public static final RegistrySupplier<Item> CHEESECAKE_SLICE = registerItem("cheesecake_slice", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
-    public static final RegistrySupplier<Item> CHEESE_TART_SLICE = registerItem("cheese_tart_slice", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
     public static final RegistrySupplier<Block> CHEESE_BLOCK = registerBlock("cheese_block", () -> new CheeseBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ObjectRegistry.PIECE_OF_CHEESE, false));
     public static final RegistrySupplier<Block> SHEEP_CHEESE_BLOCK = registerBlock("sheep_cheese_block", () -> new CheeseBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ObjectRegistry.PIECE_OF_SHEEP_CHEESE, false));
     public static final RegistrySupplier<Block> GRAIN_CHEESE_BLOCK = registerBlock("grain_cheese_block", () -> new CheeseBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ObjectRegistry.PIECE_OF_GRAIN_CHEESE, false));

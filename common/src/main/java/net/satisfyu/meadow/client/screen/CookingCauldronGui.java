@@ -8,14 +8,14 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.screen.handler.CookingPotGuiHandler;
 import net.satisfyu.meadow.client.recipebook.CookingPotRecipeBook;
+import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
 
 
-public class CookingPotGui extends AbstractRecipeBookGUIScreen<CookingPotGuiHandler> {
+public class CookingCauldronGui extends AbstractRecipeBookGUIScreen<CookingCauldronGuiHandler> {
     private static final Identifier BACKGROUND;
 
-    public CookingPotGui(CookingPotGuiHandler handler, PlayerInventory inventory, Text title) {
+    public CookingCauldronGui(CookingCauldronGuiHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title, new CookingPotRecipeBook(), BACKGROUND);
         textRenderer = MinecraftClient.getInstance().textRenderer;
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;

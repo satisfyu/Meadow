@@ -22,8 +22,8 @@ import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
-import net.satisfyu.meadow.util.ImplementedInventory;
 import net.satisfyu.meadow.registry.TagRegistry;
+import net.satisfyu.meadow.util.ImplementedInventory;
 import org.jetbrains.annotations.Nullable;
 
 public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTicker<CheeseFormBlockEntity>, NamedScreenHandlerFactory, ImplementedInventory {
@@ -33,32 +33,29 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
     public static final int COOKING_TIME_IN_TICKS = 1800; // 90s or 3 minutes
     private static final int OUTPUT_SLOT = 0;
     private int fermentationTime = 0;
-    private int totalFermentationTime;
     protected float experience;
 
     private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
 
         @Override
         public int get(int index) {
-            return switch (index) {
-                case 0 -> CheeseFormBlockEntity.this.fermentationTime;
-                case 1 -> CheeseFormBlockEntity.this.totalFermentationTime;
-                default -> 0;
-            };
+            if (index == 0) {
+                return fermentationTime;
+            }
+            return 0;
         }
 
 
         @Override
         public void set(int index, int value) {
-            switch (index) {
-                case 0 -> CheeseFormBlockEntity.this.fermentationTime = value;
-                case 1 -> CheeseFormBlockEntity.this.totalFermentationTime = value;
+            if (index == 0) {
+                fermentationTime = value;
             }
         }
 
         @Override
         public int size() {
-            return 2;
+            return 1;
         }
     };
 
@@ -90,23 +87,19 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
     @Override
     public void tick(World world, BlockPos pos, BlockState state, CheeseFormBlockEntity blockEntity) {
         if (world.isClient) return;
-        boolean dirty = false;
         final var recipeType = world.getRecipeManager()
                 .getFirstMatch(RecipeRegistry.CHEESE.get(), blockEntity, world)
                 .orElse(null);
         if (canCraft(recipeType)) {
             this.fermentationTime++;
 
-            if (this.fermentationTime == this.totalFermentationTime) {
+            if (this.fermentationTime >= COOKING_TIME_IN_TICKS) {
                 this.fermentationTime = 0;
                 craft(recipeType);
-                dirty = true;
+                markDirty();
             }
         } else {
             this.fermentationTime = 0;
-        }
-        if (dirty) {
-            markDirty();
         }
 
     }
@@ -118,7 +111,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
             return false;
         }
         ItemStack itemStack = this.getStack(OUTPUT_SLOT);
-        return itemStack.isEmpty() || itemStack == recipe.getOutput(); //TODO geht nicht
+        return itemStack.isEmpty() || itemStack == recipe.getOutput();
     }
 
 
@@ -197,7 +190,6 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         }
         if (slot == 1 || slot == 2) {
             if (!dirty) {
-                this.totalFermentationTime = CheeseFormBlockEntity.COOKING_TIME_IN_TICKS;
                 this.fermentationTime = 0;
                 markDirty();
             }
