@@ -46,7 +46,7 @@ import net.satisfyu.meadow.entity.sheep.inky.InkySheepRenderer;
 import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.rocky.RockySheepRenderer;
-import net.satisfyu.meadow.item.FurArmorItem;
+import net.satisfyu.meadow.item.*;
 import net.satisfyu.meadow.registry.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -236,15 +236,15 @@ public class MeadowClient {
         ItemStack boots = player.getEquippedStack(EquipmentSlot.FEET);
         tooltip.add(Text.of(""));
         tooltip.add(Text.of(Formatting.DARK_GREEN + I18n.translate("meadow.tooltip.fur_armor")));
-        tooltip.add(Text.of((helmet != null && helmet.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_HELMET.get().getName().getString() + "]"));
-        tooltip.add(Text.of((chestplate != null && chestplate.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_CHESTPLATE.get().getName().getString() + "]"));
-        tooltip.add(Text.of((leggings != null && leggings.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_LEGGINGS.get().getName().getString() + "]"));
-        tooltip.add(Text.of((boots != null && boots.getItem() instanceof FurArmorItem ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_BOOTS.get().getName().getString() + "]"));
+        tooltip.add(Text.of((helmet != null && helmet.getItem() instanceof FurHead ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_HELMET.get().getName().getString() + "]"));
+        tooltip.add(Text.of((chestplate != null && chestplate.getItem() instanceof FurChest ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_CHESTPLATE.get().getName().getString() + "]"));
+        tooltip.add(Text.of((leggings != null && leggings.getItem() instanceof FurLegs ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_LEGGINGS.get().getName().getString() + "]"));
+        tooltip.add(Text.of((boots != null && boots.getItem() instanceof FurBoots ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_BOOTS.get().getName().getString() + "]"));
         tooltip.add(Text.of(""));
         tooltip.add(Text.of(Formatting.GRAY + I18n.translate("meadow.tooltip.fur_armor2")));
-        tooltip.add(Text.of(((helmet != null && helmet.getItem() instanceof FurArmorItem &&
-                chestplate != null && chestplate.getItem() instanceof FurArmorItem &&
-                leggings != null && leggings.getItem() instanceof FurArmorItem &&
-                boots != null && boots.getItem() instanceof FurArmorItem) ? Formatting.DARK_GREEN.toString() : Formatting.GRAY.toString()) + I18n.translate("meadow.tooltip.fur_armor3")));
+        tooltip.add(Text.of(((helmet != null && helmet.getItem() instanceof FurHead &&
+                chestplate != null && chestplate.getItem() instanceof FurChest &&
+                leggings != null && leggings.getItem() instanceof FurLegs &&
+                boots != null && boots.getItem() instanceof FurBoots) ? Formatting.DARK_GREEN.toString() : Formatting.GRAY.toString()) + I18n.translate("meadow.tooltip.fur_armor3")));
     }
 }

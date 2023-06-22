@@ -1,10 +1,19 @@
 package net.satisfyu.meadow.item;
 
 import de.cristelknight.doapi.item.CustomHatItem;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
+import net.satisfyu.meadow.client.MeadowClient;
 import net.satisfyu.meadow.util.MeadowIdentifier;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 
 public class FurHead extends CustomHatItem {
@@ -19,6 +28,13 @@ public class FurHead extends CustomHatItem {
 
     @Override
     public Float getOffset() {
-        return -1.85f;
+        return -1.9f;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
+        if(world != null && world.isClient()){
+            MeadowClient.appendToolTip(tooltip);
+        }
     }
 }

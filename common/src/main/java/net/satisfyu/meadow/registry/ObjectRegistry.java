@@ -170,7 +170,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> FUR_LEGGINGS = registerItem("fur_leggings", () -> new FurLegs(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Item> FUR_BOOTS = registerItem("fur_boots", () -> new FurBoots(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
 
-
     //flowers
     public static final RegistrySupplier<Block> SMALL_FIR = registerBlock("small_fir", () -> new TallPlantBlock(AbstractBlock.Settings.copy(Blocks.ROSE_BUSH)));
     public static final RegistrySupplier<Block> PINE_SAPLING = registerBlock("pine_sapling", () -> new SaplingBlock(new PineSaplingGenerator(), AbstractBlock.Settings.copy(Blocks.SPRUCE_SAPLING)));
@@ -250,7 +249,6 @@ public class ObjectRegistry {
 
 
     //not registered
-
     //flower pots
     public static final RegistrySupplier<Block> POTTED_ENZIAN = registerBlockWithoutItem("potted_enzian", () -> new FlowerPotBlock(ObjectRegistry.ENZIAN.get(), AbstractBlock.Settings.copy(Blocks.POTTED_POPPY)));
     public static final RegistrySupplier<Block> POTTED_FIRE_LILY = registerBlockWithoutItem("potted_fire_lily", () -> new FlowerPotBlock(ObjectRegistry.FIRE_LILY.get(), AbstractBlock.Settings.copy(Blocks.POTTED_POPPY)));
