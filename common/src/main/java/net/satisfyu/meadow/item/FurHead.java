@@ -19,6 +19,6 @@ public class FurHead extends CustomHatItem {
 
     @Override
     public Float getOffset() {
-        return -1.9f;
+        return -1.85f;
     }
 }

@@ -203,6 +203,7 @@
     ],
     [
       "minecraft:glow_lichen",
+      "meadow:small_fir_placed",
       "meadow:forest_grass_patch",
       "meadow:meadow_clearing_trees",
       "meadow:eriophorum_tall",
