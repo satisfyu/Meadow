@@ -10,8 +10,8 @@ dependencies {
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi("dev.architectury:architectury:${rootProject.architectury_version}"){ exclude group: 'net.fabricmc', module: 'fabric-loader' }
-    include modApi("de:doapi:${project.doapi_version}")
 
+    modImplementation "de:doapi:${project.doapi_version}"
 }
 
 publishing {

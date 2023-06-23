@@ -12,7 +12,6 @@ import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.random.Random;
 import net.satisfyu.meadow.registry.RecipeRegistry;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 

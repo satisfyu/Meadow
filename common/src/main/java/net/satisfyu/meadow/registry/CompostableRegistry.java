@@ -7,8 +7,6 @@ import net.minecraft.item.Items;
 public class CompostableRegistry {
 
     public static void init() {
-
-
         registerCompostableItem(ObjectRegistry.PIECE_OF_CHEESE.get(), .5f);
         registerCompostableItem(ObjectRegistry.PIECE_OF_GOAT_CHEESE.get(), .5f);
         registerCompostableItem(ObjectRegistry.PIECE_OF_CHEESE.get(), .5f);

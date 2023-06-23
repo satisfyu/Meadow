@@ -16,7 +16,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.render.ChairEntityRenderer;
 import net.satisfyu.meadow.client.render.FlowerBoxBlockEntityRenderer;
 import net.satisfyu.meadow.client.screen.CheeseFormGui;
 import net.satisfyu.meadow.client.screen.CookingCauldronGui;
@@ -53,9 +52,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class MeadowClient {
-
-    public static boolean rememberedRecipeBookOpen = false;
-    public static boolean rememberedCraftableToggle = false;
 
     public static final EntityModelLayer FLECKED_SHEEP_FUR = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "flecked_sheep"), "fur");
     public static final EntityModelLayer FLECKED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "flecked_sheep"), "main");
@@ -143,7 +139,6 @@ public class MeadowClient {
 
     private static void registerEntityRenderers() {
         EntityRendererRegistry.register(EntityRegistry.BROWN_BEAR, BrownBearEntityRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.CHAIR, ChairEntityRenderer::new);
     }
 
     public static void registerEntityModelLayers() {

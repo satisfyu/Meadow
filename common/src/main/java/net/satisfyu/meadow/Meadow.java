@@ -26,24 +26,17 @@ public class Meadow {
         SoundRegistry.init();
         ScreenHandlerRegistry.init();
         FeatureRegistry.init();
-        CompostableRegistry.init();
-
-
-    }
-
-    public static void commonInit(){
-        FlammableBlockRegistry.init();
     }
 
     public static void commonSetup() {
-        ObjectRegistry.commonInit();
+        FlammableBlockRegistry.init();
+        CompostableRegistry.init();
         WoodenCauldronBehavior.registerBehavior();
 
         AxeItemHooks.addStrippable(ObjectRegistry.PINE_LOG.get(), ObjectRegistry.STRIPPED_PINE_LOG.get());
         AxeItemHooks.addStrippable(ObjectRegistry.PINE_WOOD.get(), ObjectRegistry.STRIPPED_PINE_WOOD.get());
         AxeItemHooks.addStrippable(ObjectRegistry.ALPINE_BIRCH_LOG.get(), Blocks.STRIPPED_BIRCH_LOG);
         AxeItemHooks.addStrippable(ObjectRegistry.ALPINE_OAK_LOG.get(), Blocks.STRIPPED_OAK_LOG);
-
     }
 }
 

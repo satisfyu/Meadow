@@ -1,6 +1,6 @@
 package net.satisfyu.meadow.item;
 
-import de.cristelknight.doapi.item.CustomArmorItem;
+import de.cristelknight.doapi.common.item.CustomArmorItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;

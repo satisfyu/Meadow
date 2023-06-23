@@ -1,7 +1,8 @@
 package net.satisfyu.meadow.registry;
 
+import de.cristelknight.doapi.Util;
+import de.cristelknight.doapi.common.block.ChairBlock;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
-import dev.architectury.platform.Platform;
 import dev.architectury.registry.fuel.FuelRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
@@ -11,7 +12,6 @@ import net.minecraft.block.*;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -307,27 +307,17 @@ public class ObjectRegistry {
     }
 
     public static <T extends Block> RegistrySupplier<T> registerBlock(String name, Supplier<T> block, @Nullable ItemGroup tab) {
-        return registerBlock(new MeadowIdentifier(name), block, tab);
-    }
-
-    public static <T extends Block> RegistrySupplier<T> registerBlock(MeadowIdentifier name, Supplier<T> block, @Nullable ItemGroup tab) {
-        RegistrySupplier<T> toReturn = registerBlockWithoutItem(name, block);
-        Item.Settings properties = new Item.Settings();
-        if (tab != null) properties.group(tab);
-        ObjectRegistry.registerItem(name, () -> new BlockItem(toReturn.get(), properties));
-        return toReturn;
+        return Util.registerWithItem(BLOCKS, BLOCKS_REGISTRAR, ITEMS, ITEMS_REGISTRAR, new MeadowIdentifier(name), block, tab);
     }
 
     public static <T extends Block> RegistrySupplier<T> registerBlockWithoutItem(String path, Supplier<T> block) {
-        return registerBlockWithoutItem(new MeadowIdentifier(path), block);
+        return Util.registerWithoutItem(BLOCKS, BLOCKS_REGISTRAR, new MeadowIdentifier(path), block);
     }
 
-    public static <T extends Block> RegistrySupplier<T> registerBlockWithoutItem(MeadowIdentifier path, Supplier<T> block) {
-        if (Platform.isForge()) {
-            return BLOCKS.register(path.getPath(), block);
-        }
-        return BLOCKS_REGISTRAR.register(path, block);
+    public static <T extends Item> RegistrySupplier<T> registerItem(String path, Supplier<T> itemSupplier) {
+        return Util.registerItem(ITEMS, ITEMS_REGISTRAR, new MeadowIdentifier(path), itemSupplier);
     }
+
 
     private static void registerFuels() {
         Meadow.LOGGER.info("Registering Fuels for " + Meadow.MOD_ID);
@@ -344,16 +334,8 @@ public class ObjectRegistry {
         Registry.register(Registry.ITEM, new MeadowIdentifier("fur_boots"), FUR_BOOTS.get());
     }
 
-    public static <T extends Item> RegistrySupplier<T> registerItem(String path, Supplier<T> itemSupplier) {
-        return registerItem(new MeadowIdentifier(path), itemSupplier);
-    }
 
-    public static <T extends Item> RegistrySupplier<T> registerItem(MeadowIdentifier path, Supplier<T> itemSupplier) {
-        if (Platform.isForge()) {
-            return ITEMS.register(path.getPath(), itemSupplier);
-        }
-        return ITEMS_REGISTRAR.register(path, itemSupplier);
-    }
+
 
     private static Item.Settings getSettings() {
         return getSettings(settings -> {

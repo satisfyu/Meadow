@@ -62,8 +62,8 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack createIcon() {
-        return new ItemStack(ObjectRegistry.WOODCUTTER.get());
+    public boolean isIgnoredInRecipeBook() {
+        return true;
     }
 
     @Override
