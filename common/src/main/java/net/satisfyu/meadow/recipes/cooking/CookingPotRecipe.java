@@ -13,13 +13,13 @@ import net.minecraft.world.World;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.util.GeneralUtil;
 
-public class CookingCauldronRecipe implements Recipe<Inventory> {
+public class CookingPotRecipe implements Recipe<Inventory> {
 
     final Identifier id;
     private final DefaultedList<Ingredient> inputs;
     private final ItemStack output;
 
-    public CookingCauldronRecipe(Identifier id, DefaultedList<Ingredient> inputs, ItemStack output) {
+    public CookingPotRecipe(Identifier id, DefaultedList<Ingredient> inputs, ItemStack output) {
         this.id = id;
         this.inputs = inputs;
         this.output = output;
@@ -70,40 +70,40 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
         return true;
     }
 
-    public static class Serializer implements RecipeSerializer<CookingCauldronRecipe> {
+    public static class Serializer implements RecipeSerializer<CookingPotRecipe> {
 
         @Override
-        public CookingCauldronRecipe read(Identifier id, JsonObject json) {
+        public CookingPotRecipe read(Identifier id, JsonObject json) {
             final var ingredients = GeneralUtil.deserializeIngredients(JsonHelper.getArray(json, "ingredients"));
             if (ingredients.isEmpty()) {
                 throw new JsonParseException("No ingredients for CookingPot Recipe");
             } else if (ingredients.size() > 6) {
                 throw new JsonParseException("Too many ingredients for CookingPot Recipe");
             } else {
-                return new CookingCauldronRecipe(id, ingredients, ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result")));
+                return new CookingPotRecipe(id, ingredients, ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result")));
             }
         }
 
         @Override
-        public CookingCauldronRecipe read(Identifier id, PacketByteBuf buf) {
+        public CookingPotRecipe read(Identifier id, PacketByteBuf buf) {
             final var ingredients = DefaultedList.ofSize(buf.readVarInt(), Ingredient.EMPTY);
             ingredients.replaceAll(ignored -> Ingredient.fromPacket(buf));
-            return new CookingCauldronRecipe(id, ingredients, buf.readItemStack());
+            return new CookingPotRecipe(id, ingredients, buf.readItemStack());
         }
 
         @Override
-        public void write(PacketByteBuf buf, CookingCauldronRecipe recipe) {
+        public void write(PacketByteBuf buf, CookingPotRecipe recipe) {
             buf.writeVarInt(recipe.inputs.size());
             recipe.inputs.forEach(entry -> entry.write(buf));
             buf.writeItemStack(recipe.getOutput());
         }
     }
 
-    public static class Type implements RecipeType<CookingCauldronRecipe> {
+    public static class Type implements RecipeType<CookingPotRecipe> {
         private Type() {
         }
 
-        public static final CookingCauldronRecipe.Type INSTANCE = new CookingCauldronRecipe.Type();
+        public static final CookingPotRecipe.Type INSTANCE = new CookingPotRecipe.Type();
 
         public static final String ID = "cooking";
     }

@@ -8,12 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.registry.*;
 import net.satisfyu.meadow.util.WoodenCauldronBehavior;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Meadow {
     public static final String MOD_ID = "meadow";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+
     public static final ItemGroup MEADOW_TAB = CreativeTabRegistry.create(new Identifier(Meadow.MOD_ID, "meadow_tab"), () ->
             new ItemStack(ObjectRegistry.PIECE_OF_CHEESE.get()));
 

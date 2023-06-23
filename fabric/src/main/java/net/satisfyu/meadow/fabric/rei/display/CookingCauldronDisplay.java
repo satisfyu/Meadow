@@ -6,7 +6,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.fabric.rei.category.CookingCauldronCategory;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
+import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class CookingCauldronDisplay extends BasicDisplay {
 
 
-    public CookingCauldronDisplay(CookingCauldronRecipe recipe) {
+    public CookingCauldronDisplay(CookingPotRecipe recipe) {
         this(EntryIngredients.ofIngredients(new ArrayList<>(recipe.getIngredients())), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), Optional.ofNullable(recipe.getId()));
     }
 
