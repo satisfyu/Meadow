@@ -170,9 +170,9 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
             this.cookingTime = 0;
         }
         if (canCraft) {
-            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingCauldronBlock.COOKING, true).with(CookingCauldronBlock.LIT, true), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(CookingCauldronBlock.COOKING, true).with(CookingCauldronBlock.LIT, true), Block.NOTIFY_ALL);
         } else if (state.get(CookingCauldronBlock.COOKING)) {
-            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingCauldronBlock.COOKING, false).with(CookingCauldronBlock.LIT, true), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(CookingCauldronBlock.COOKING, false).with(CookingCauldronBlock.LIT, true), Block.NOTIFY_ALL);
         } else if (state.get(CookingCauldronBlock.LIT) != isBeingBurned) {
             world.setBlockState(pos, state.with(CookingCauldronBlock.LIT, isBeingBurned), Block.NOTIFY_ALL);
         }
