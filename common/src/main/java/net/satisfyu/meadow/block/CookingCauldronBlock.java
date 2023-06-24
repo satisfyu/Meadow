@@ -47,8 +47,8 @@ public class CookingCauldronBlock extends BlockWithEntity {
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.436875, 0.374375, 0.124375, 0.563125, 0.438125, 0.188125), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.436875, 0.374375, 0.811875, 0.563125, 0.438125, 0.875625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 0.375, 0.8125, 0.5625, 0.5, 0.875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 0.375, 0.125, 0.5625, 0.5, 0.1875), BooleanBiFunction.OR);
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.2475, 0, 0.25, 0.7475, 0.0625, 0.75), BooleanBiFunction.OR);
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.1875, 0.81, 0.5625, 0.25), BooleanBiFunction.OR);
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.185, 0.0625, 0.75, 0.81, 0.5625, 0.8125), BooleanBiFunction.OR);

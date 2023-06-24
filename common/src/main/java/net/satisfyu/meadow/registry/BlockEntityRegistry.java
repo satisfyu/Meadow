@@ -5,7 +5,7 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.block.StoveBlockWoodBlockEntity;
+import net.satisfyu.meadow.entity.blockentities.StoveBlockWoodBlockEntity;
 import net.satisfyu.meadow.entity.blockentities.*;
 
 import java.util.function.Supplier;

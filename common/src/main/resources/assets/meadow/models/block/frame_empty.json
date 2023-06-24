@@ -3,7 +3,6 @@
 	"textures": {
 		"1": "meadow:block/chain",
 		"4": "meadow:block/frame_logs",
-		"5": "block/campfire_log",
 		"6": "meadow:block/pine_planks",
 		"7": "meadow:block/frame_fire",
 		"particle": "meadow:block/pine_planks"
@@ -138,12 +137,12 @@
 			"from": [6, 0, 2],
 			"to": [10, 1, 14],
 			"faces": {
-				"north": {"uv": [1, 13, 5, 14], "texture": "#5", "cullface": "north"},
-				"east": {"uv": [0, 0, 0, 0], "texture": "#5"},
-				"south": {"uv": [1, 11, 5, 12], "texture": "#5", "cullface": "north"},
-				"west": {"uv": [0, 0, 0, 0], "texture": "#5"},
-				"up": {"uv": [0, 8, 12, 12], "rotation": 90, "texture": "#5", "cullface": "down"},
-				"down": {"uv": [0, 8, 12, 12], "rotation": 90, "texture": "#5", "cullface": "down"}
+				"north": {"uv": [1, 13, 5, 14], "texture": "#4", "cullface": "north"},
+				"east": {"uv": [0, 0, 0, 0], "texture": "#4"},
+				"south": {"uv": [1, 11, 5, 12], "texture": "#4", "cullface": "north"},
+				"west": {"uv": [0, 0, 0, 0], "texture": "#4"},
+				"up": {"uv": [0, 8, 12, 12], "rotation": 90, "texture": "#4", "cullface": "down"},
+				"down": {"uv": [0, 8, 12, 12], "rotation": 90, "texture": "#4", "cullface": "down"}
 			}
 		},
 		{

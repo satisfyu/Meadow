@@ -8,6 +8,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
@@ -20,7 +24,10 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import java.util.Collections;
 import java.util.List;
+
+import net.satisfyu.meadow.registry.ObjectRegistry;
 
 public class FireLog extends HFacingBlock {
 
@@ -71,13 +78,19 @@ public class FireLog extends HFacingBlock {
             }
             if (!player.getAbilities().creativeMode) player.giveItemStack(new ItemStack(item));
             if (stage == 0) {
+                dropItemStack(world, pos);
                 world.breakBlock(pos, false);
                 return ActionResult.SUCCESS;
             }
         }
         if (stage == state.get(STAGE)) return ActionResult.PASS;
         world.setBlockState(pos, state.with(STAGE, stage));
+        world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
         return ActionResult.SUCCESS;
+    }
+
+    private void dropItemStack(World world, BlockPos pos) {
+        Block.dropStack(world, pos, new ItemStack(ObjectRegistry.FIRE_LOG.get()));
     }
 
     @Override
@@ -90,7 +103,5 @@ public class FireLog extends HFacingBlock {
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
         tooltip.add(Text.translatable("block.meadow.fuel_item.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
-
     }
-
 }

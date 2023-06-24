@@ -27,6 +27,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
+import net.satisfyu.meadow.entity.blockentities.StoveBlockWoodBlockEntity;
 import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 

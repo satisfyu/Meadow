@@ -2,10 +2,10 @@
 	"credit": "Made by Satisfy",
 	"parent": "block/block",
 	"textures": {
-		"1": "meadow:block/pine_planks",
+		"1": "meadow:block/table_middle",
 		"2": "meadow:block/decor",
 		"3": "meadow:block/chair",
-		"particle": "meadow:block/pine_planks"
+		"particle": "meadow:block/table_middle"
 	},
 	"elements": [
 		{
@@ -168,8 +168,8 @@
 			"to": [11, 21, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 16]},
 			"faces": {
-				"north": {"uv": [12, 1, 5, 13], "texture": "#2"},
-				"south": {"uv": [12, 1, 5, 13], "texture": "#2"}
+				"north": {"uv": [12, 2, 5, 14], "texture": "#2"},
+				"south": {"uv": [12, 2, 5, 14], "texture": "#2"}
 			}
 		}
 	],

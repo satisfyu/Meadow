@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.block;
+package net.satisfyu.meadow.entity.blockentities;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
