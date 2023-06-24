@@ -21,7 +21,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.block.CookingCauldronBlock;
 import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
-import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
+import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
@@ -41,7 +41,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
     private final PropertyDelegate delegate;
 
     public CookingCauldronBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.COOKING_POT.get(), pos, state);
+        super(BlockEntityRegistry.COOKING_CAULDRON.get(), pos, state);
         this.delegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
@@ -93,7 +93,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
         } else return entryList.contains(belowState.getBlock().getRegistryEntry());
     }
 
-    private boolean canCraft(CookingPotRecipe recipe) {
+    private boolean canCraft(CookingCauldronRecipe recipe) {
         if (recipe == null || recipe.getOutput().isEmpty()) {
             return false;
         } else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
@@ -112,7 +112,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
         }
     }
 
-    private void craft(CookingPotRecipe recipe) {
+    private void craft(CookingCauldronRecipe recipe) {
         if (!canCraft(recipe)) {
             return;
         }
@@ -157,7 +157,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
                 world.setBlockState(pos, state.with(CookingCauldronBlock.LIT, false), Block.NOTIFY_ALL);
             return;
         }
-        CookingPotRecipe recipe = world.getRecipeManager().getFirstMatch(RecipeRegistry.COOKING.get(), this, world).orElse(null);
+        CookingCauldronRecipe recipe = world.getRecipeManager().getFirstMatch(RecipeRegistry.COOKING.get(), this, world).orElse(null);
 
         boolean canCraft = canCraft(recipe);
         if (canCraft) {

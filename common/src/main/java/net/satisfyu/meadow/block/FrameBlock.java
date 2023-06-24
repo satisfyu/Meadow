@@ -63,10 +63,10 @@ public class FrameBlock extends Block {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack stack = player.getStackInHand(hand);
-        if (stack.getItem().equals(ObjectRegistry.COOKING_POT.get().asItem())) {
+        if (stack.getItem().equals(ObjectRegistry.COOKING_CAULDRON.get().asItem())) {
             if (!world.isClient()) {
                 if (!player.getAbilities().creativeMode) stack.decrement(1);
-                world.setBlockState(pos, ObjectRegistry.COOKING_POT.get().getDefaultState().with(HANGING, true).with(FACING, state.get(FACING)));
+                world.setBlockState(pos, ObjectRegistry.COOKING_CAULDRON.get().getDefaultState().with(HANGING, true).with(FACING, state.get(FACING)));
             }
             return ActionResult.success(world.isClient());
         }

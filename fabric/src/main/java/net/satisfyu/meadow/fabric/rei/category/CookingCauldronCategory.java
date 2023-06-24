@@ -34,7 +34,7 @@ public class CookingCauldronCategory implements DisplayCategory<CookingCauldronD
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ObjectRegistry.COOKING_POT.get());
+        return EntryStacks.of(ObjectRegistry.COOKING_CAULDRON.get());
     }
 
     @Override

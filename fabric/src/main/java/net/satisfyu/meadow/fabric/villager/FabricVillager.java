@@ -9,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -37,7 +36,7 @@ public class FabricVillager {
             factories.add(new SellItemFactory(ObjectRegistry.RENNET.get(), 1, 2, 7));
         });
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 2, factories -> {
-            factories.add(new SellItemFactory(ObjectRegistry.COOKING_POT.get(), 7, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.COOKING_CAULDRON.get(), 7, 1, 10));
         });
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 3, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.STOVE.get(), 6, 1, 10));

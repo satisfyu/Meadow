@@ -12,20 +12,20 @@ import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.random.Random;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
+import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 
 import java.util.List;
 
-public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
+public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
     private static final Text TOGGLE_COOKABLE_TEXT;
 
-    public CookingPotRecipeBook() {
+    public CookingCauldronRecipeBook() {
     }
 
     @Override
     public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        if (recipe instanceof CookingPotRecipe potRecipe) {
+        if (recipe instanceof CookingCauldronRecipe potRecipe) {
             this.ghostSlots.addSlot(potRecipe.getOutput(), slots.get(0).x, slots.get(0).y);
 
             int slot = 1;
