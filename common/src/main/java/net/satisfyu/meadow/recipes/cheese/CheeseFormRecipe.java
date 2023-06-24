@@ -75,16 +75,11 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
         return result;
     }
 
-    @Override
-    public ItemStack createIcon() {
-        return new ItemStack(ObjectRegistry.CHEESE_FORM.get());
-    }
 
     @Override
     public Identifier getId() {
         return id;
     }
-
 
     @Override
     public RecipeSerializer<?> getSerializer() {
@@ -94,6 +89,11 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
     @Override
     public RecipeType<?> getType() {
         return RecipeRegistry.CHEESE.get();
+    }
+
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
     }
 
     public static class Serializer implements RecipeSerializer<CheeseFormRecipe> {

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Recipe;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
+import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public enum CookingCauldronRecipeBookGroup implements IRecipeBookGroup {
     }
 
     public boolean fitRecipe(Recipe<?> recipe) {
-        if (recipe instanceof CookingCauldronRecipe cookingCauldronRecipe) {
+        if (recipe instanceof CookingPotRecipe cookingCauldronRecipe) {
             return switch (this) {
                 case SEARCH -> true;
                 case MEADOW -> recipe.getOutput().getItem().getGroup() == Meadow.MEADOW_TAB;

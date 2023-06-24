@@ -15,7 +15,6 @@
   },
 
   "license": "ARR",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -36,12 +35,13 @@
     ]
   },
   "mixins": [
+    "meadow-common.mixins.json",
     "meadow.mixins.json"
   ],
-
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.19.2",
-    "architectury": ">=6.5.77"
+    "architectury": ">=6.5.77",
+    "doapi": ">=1.1.0"
   }
 }

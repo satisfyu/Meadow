@@ -28,7 +28,6 @@ public class MeadowForge {
             ForgeEntitySpawn.registerEntitySpawn();
         });
         Meadow.commonSetup();
-        Meadow.commonInit();
 
     }
 }

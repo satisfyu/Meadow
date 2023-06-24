@@ -10,7 +10,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.bear.BrownBearEntity;
-import net.satisfyu.meadow.entity.blockentities.ChairEntity;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntity;
 import net.satisfyu.meadow.entity.chicken.MeadowChickenEntity;
 import net.satisfyu.meadow.entity.cow.albino_cow.AlbinoCowEntity;
@@ -35,9 +34,6 @@ import java.util.function.Supplier;
 
 public class EntityRegistry {
     private static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registry.ENTITY_TYPE_KEY);
-    public static final RegistrySupplier<EntityType<ChairEntity>> CHAIR = create("chair",
-            () -> EntityType.Builder.create(ChairEntity::new, SpawnGroup.MISC).setDimensions(0.001F, 0.001F).build(new Identifier(Meadow.MOD_ID, "chair").toString())
-    );
 
     public static final RegistrySupplier<EntityType<AlbinoCowEntity>> ALBINO_COW = create("albino_cow",
             () -> EntityType.Builder.create(AlbinoCowEntity::new, SpawnGroup.CREATURE).setDimensions(1.4f, 1.4f).build(new Identifier(Meadow.MOD_ID, "albino_cow").toString())

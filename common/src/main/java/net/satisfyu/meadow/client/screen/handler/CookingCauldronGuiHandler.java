@@ -15,7 +15,7 @@ import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.satisfyu.meadow.client.recipebook.group.CookingCauldronRecipeBookGroup;
 import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
+import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 
@@ -69,7 +69,7 @@ public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandle
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
 
-    private Stream<CookingCauldronRecipe> recipeStream() {
+    private Stream<CookingPotRecipe> recipeStream() {
         return this.world.getRecipeManager().listAllOfType(RecipeRegistry.COOKING.get()).stream();
     }
 
@@ -90,7 +90,7 @@ public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandle
 
     @Override
     public boolean hasIngredient(Recipe<?> recipe) {
-        if (recipe instanceof CookingCauldronRecipe potRecipe) {
+        if (recipe instanceof CookingPotRecipe potRecipe) {
             for (Ingredient ingredient : potRecipe.getIngredients()) {
                 boolean found = false;
                 for (Slot slot : this.slots) {

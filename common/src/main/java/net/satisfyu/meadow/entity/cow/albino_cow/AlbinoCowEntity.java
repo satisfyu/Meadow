@@ -1,6 +1,7 @@
 package net.satisfyu.meadow.entity.cow.albino_cow;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,6 +25,14 @@ public class AlbinoCowEntity extends CowEntity {
     @Override
     public CowEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
         return EntityRegistry.ALBINO_COW.get().create(serverWorld);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.world.isDay() && this.world.isSkyVisible(this.getBlockPos()) && !this.isBaby()) {
+            this.damage(DamageSource.ON_FIRE, 1.0f);
+        }
     }
 
     @Override

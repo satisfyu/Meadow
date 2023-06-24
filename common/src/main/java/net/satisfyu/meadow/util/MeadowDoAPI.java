@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.satisfyu.meadow.client.model.FurArmorHat;
 import net.satisfyu.meadow.client.model.FurArmorInner;
 import net.satisfyu.meadow.client.model.FurArmorOuter;
+import net.satisfyu.meadow.registry.ArmorRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 import java.util.Map;
@@ -31,17 +32,12 @@ public class MeadowDoAPI implements DoApiAPI {
 
     @Override
     public <T extends LivingEntity> void registerHat(Map<Item, EntityModel<T>> models, EntityModelLoader modelLoader) {
-        models.put(ObjectRegistry.FUR_HELMET.get(), new FurArmorHat<>(modelLoader.getModelPart(FurArmorHat.LAYER_LOCATION)));
+        ArmorRegistry.registerHatModels(models, modelLoader);
     }
 
     @Override
     public <T extends LivingEntity> void registerArmor(Map<FullCustomArmor, Pair<BipedEntityModel<T>, BipedEntityModel<T>>> models, EntityModelLoader modelLoader) {
-        models.put(new FullCustomArmor(ObjectRegistry.FUR_BOOTS.get(), ObjectRegistry.FUR_CHESTPLATE.get(), ObjectRegistry.FUR_LEGGINGS.get(), new MeadowIdentifier("textures/models/armor/fur.png")), new Pair<>(new FurArmorOuter<>(modelLoader.getModelPart(FurArmorOuter.LAYER_LOCATION)), new FurArmorInner<>(modelLoader.getModelPart(FurArmorInner.LAYER_LOCATION))));
-    }
-    public static void registerArmorModelLayers(){
-        EntityModelLayerRegistry.register(FurArmorOuter.LAYER_LOCATION, FurArmorOuter::createBodyLayer);
-        EntityModelLayerRegistry.register(FurArmorInner.LAYER_LOCATION, FurArmorInner::createBodyLayer);
-        EntityModelLayerRegistry.register(FurArmorHat.LAYER_LOCATION, FurArmorHat::createBodyLayer);
+        ArmorRegistry.registerArmorModels(models, modelLoader);
     }
 
 
