@@ -9,7 +9,6 @@ import net.satisfyu.meadow.fabric.rei.category.CookingCauldronCategory;
 import net.satisfyu.meadow.fabric.rei.display.CheeseFormDisplay;
 import net.satisfyu.meadow.fabric.rei.display.CookingCauldronDisplay;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.recipes.cooking.CookingPotRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
@@ -26,7 +25,7 @@ public class MeadowReiClientPlugin implements REIClientPlugin {
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        registry.registerFiller(CookingCauldronRecipe.class, CookingCauldronDisplay::new);
+        registry.registerFiller(CookingPotRecipe.class, CookingCauldronDisplay::new);
         registry.registerFiller(CheeseFormRecipe.class, CheeseFormDisplay::new);
     }
 }
