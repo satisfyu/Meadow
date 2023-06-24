@@ -84,7 +84,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
     public boolean isBeingBurned() {
         if (getWorld() == null)
             throw new NullPointerException("Null world invoked");
-        //if(this.getCachedState().get(CookingCauldronBlock.HANGING)) return true;
+        if(this.getCachedState().get(CookingCauldronBlock.HANGING)) return true;
         final BlockState belowState = this.getWorld().getBlockState(getPos().down());
         final var optionalList = Registry.BLOCK.getEntryList(TagRegistry.ALLOWS_COOKING);
         final var entryList = optionalList.orElse(null);

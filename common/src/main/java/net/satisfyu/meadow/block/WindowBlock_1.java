@@ -16,12 +16,12 @@ import net.minecraft.world.WorldView;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.Nullable;
 
-public class WindowBlock extends PaneBlock {
+public class WindowBlock_1 extends PaneBlock {
 
 
     public static final IntProperty PART = IntProperty.of("part", 0, 3);
 
-    public WindowBlock(Settings settings) {
+    public WindowBlock_1(Settings settings) {
         super(settings);
         this.setDefaultState(getDefaultState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
     }
@@ -67,7 +67,7 @@ public class WindowBlock extends PaneBlock {
         do {
             pos = pos.up();
         }
-        while (world.getBlockState(pos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(pos).isOf(ObjectRegistry.WINDOW.get()));
         return pos.down();
     }
 
@@ -79,7 +79,7 @@ public class WindowBlock extends PaneBlock {
             i++;
             highestPos = highestPos.down();
         }
-        while (world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW.get()));
         return i;
     }
 
@@ -103,7 +103,7 @@ public class WindowBlock extends PaneBlock {
         do {
             pos = pos.up();
         }
-        while (world.getBlockState(pos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(pos).isOf(ObjectRegistry.WINDOW.get()));
         return pos.down();
     }
 
@@ -115,7 +115,7 @@ public class WindowBlock extends PaneBlock {
             i++;
             highestPos = highestPos.down();
         }
-        while (world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW.get()));
         return i;
     }
 
@@ -129,9 +129,7 @@ public class WindowBlock extends PaneBlock {
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockState downState = world.getBlockState(pos.down());
         BlockState downState2 = world.getBlockState(pos.down(2));
-        return (!downState.isOf(ObjectRegistry.WINDOW.get()) || downState.get(PART) != 3 || !downState2.isOf(ObjectRegistry.WINDOW.get()) || downState2.get(PART) != 2)
-                && (!downState.isOf(ObjectRegistry.WINDOW_2.get()) || downState.get(PART) != 3 || !downState2.isOf(ObjectRegistry.WINDOW_2.get()) || downState2.get(PART) != 2)
-                && (!downState.isOf(ObjectRegistry.WINDOW_3.get()) || downState.get(PART) != 3 || !downState2.isOf(ObjectRegistry.WINDOW_3.get()) || downState2.get(PART) != 2);
+        return (!downState.isOf(ObjectRegistry.WINDOW.get()) || downState.get(PART) != 3 || !downState2.isOf(ObjectRegistry.WINDOW.get()) || downState2.get(PART) != 2);
     }
 }
 

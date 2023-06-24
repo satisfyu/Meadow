@@ -2,6 +2,7 @@ package net.satisfyu.meadow.item;
 
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.*;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
@@ -14,18 +15,23 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.GameEvent;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class WoodenBucket extends BucketItem {
     private final Fluid fluid;
@@ -148,5 +154,9 @@ public class WoodenBucket extends BucketItem {
         SoundEvent soundEvent = this.fluid.isIn(FluidTags.LAVA) ? SoundEvents.ITEM_BUCKET_EMPTY_LAVA : SoundEvents.ITEM_BUCKET_EMPTY;
         world.playSound(player, pos, soundEvent, SoundCategory.BLOCKS, 1.0f, 1.0f);
         world.emitGameEvent(player, GameEvent.FLUID_PLACE, pos);
+    }
+
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.meadow.wooden_bucket.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }

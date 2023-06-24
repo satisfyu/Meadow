@@ -8,6 +8,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -60,6 +61,21 @@ public class CameraBlock extends Block {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.playSound(null, pos, new Random().nextBoolean() ? SoundRegistry.CLICK_CAMERA.get() : SoundRegistry.CLICK_CAMERA2.get(), SoundCategory.BLOCKS, 1.0f, 1.0f);
+        if (world.isClient) {
+            for (int i = 0; i < 5; i++) {
+                Direction direction = state.get(FACING);
+
+
+                double d0 = pos.getX() + 0.5D + 0.5D * direction.getOffsetX();
+                double d1 = pos.getY() + 0.7D + 0.5D;
+                double d2 = pos.getZ() + 0.5D + (world.random.nextFloat() - 0.5D) * 0.5D * direction.getOffsetZ();
+                double d3 = pos.getX() + 0.5D + 0.5D * direction.getOffsetX() + 5.0D / 16.0D * direction.getOffsetX();
+                world.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+                world.addParticle(ParticleTypes.FIREWORK, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+                world.addParticle(ParticleTypes.CRIT, d3, d1, d2, 0.0D, 0.0D, 0.0D);
+            }
+        }
+
         return ActionResult.SUCCESS;
     }
 

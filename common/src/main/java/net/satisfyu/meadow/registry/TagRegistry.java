@@ -28,6 +28,8 @@ public class TagRegistry {
 
     public static final TagKey<Item> CHEESE = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "cheese"));
 
+    public static final TagKey<Item> BREAD = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "bread"));
+
     public static final TagKey<Block> CAN_NOT_CONNECT = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "can_not_connect"));
 
     public static final TagKey<Item> SHOVEL = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "shovel"));

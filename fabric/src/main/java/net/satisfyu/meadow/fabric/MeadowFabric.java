@@ -35,7 +35,7 @@ public class MeadowFabric implements ModInitializer {
         FabricEntitySpawn.registerEntitySpawn();
 
         FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container -> {
-            ResourceManagerHelper.registerBuiltinResourcePack(new MeadowIdentifier("patched"), container, ResourcePackActivationType.NORMAL);
+            ResourceManagerHelper.registerBuiltinResourcePack(new MeadowIdentifier("bushy_leaves"), container, ResourcePackActivationType.NORMAL);
             ResourceManagerHelper.registerBuiltinResourcePack(new MeadowIdentifier("optifine_support"), container, ResourcePackActivationType.NORMAL);
         });
     }

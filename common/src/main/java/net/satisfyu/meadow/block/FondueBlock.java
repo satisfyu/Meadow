@@ -9,7 +9,10 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
@@ -19,12 +22,14 @@ import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.entity.blockentities.FondueBlockEntity;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
+import net.satisfyu.meadow.registry.SoundRegistry;
 import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.Nullable;
 
@@ -129,6 +134,26 @@ public class FondueBlock extends BlockWithEntity {
     }
 
     @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        double d = (double) pos.getX() + 0.5;
+        double e = pos.getY() + 0.7;
+        double f = (double) pos.getZ() + 0.5;
+        if (random.nextDouble() < 0.3) {
+            world.playSound(d, e, f, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+            world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.5f, 0.5f, false);
+        }
+        Direction direction = state.get(FACING);
+        Direction.Axis axis = direction.getAxis();
+        double h = random.nextDouble() * 0.6 - 0.3;
+        double i = axis == Direction.Axis.X ? (double) direction.getOffsetX() * 0.0 : h;
+        double j = random.nextDouble() * 9.0 / 16.0;
+        double k = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * 0.0 : h;
+        world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+        world.addParticle(ParticleTypes.BUBBLE_POP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+    }
+
+
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
@@ -144,6 +169,8 @@ public class FondueBlock extends BlockWithEntity {
 
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.meadow.fondue_1.tooltip").formatted(Formatting.WHITE));
+        tooltip.add(Text.translatable("block.meadow.fondue_2.tooltip").formatted(Formatting.WHITE));
         tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
