@@ -249,14 +249,15 @@
   "item.meadow.ingredient.tooltipitem.meadow.wooden_amethyst_milk_bucket": "We don't know who had this idea...",
   "item.meadow.wooden_water_bucket": "Wooden Water Bucket",
   "itemGroup.meadow.meadow_tab": "Meadow",
-  "meadow.tooltip.fur_armor":"Fur Armor:",
-  "meadow.tooltip.fur_armor2":"Full set bonus:",
-  "meadow.tooltip.fur_armor3":"Knockback Resistance +2",
+  "meadow.tooltip.fur_armor": "Fur Armor:",
+  "meadow.tooltip.fur_armor2": "Full set bonus:",
+  "meadow.tooltip.fur_armor3": "Knockback Resistance +2",
   "subtitles.meadow.click_camera": "Clicking Camera",
   "subtitles.meadow.cooking_cauldron": "Cauldron cooking",
   "subtitles.meadow.shelf_closed": "Closing shelf",
   "subtitles.meadow.shelf_open": "Opening shelf",
   "subtitles.meadow.slurping_bowl": "Slurping Bowl",
   "subtitles.meadow.woodcutter": "Woodcutter used",
-  "tooltip.meadow.recipe_book": "Recipe Book"
+  "tooltip.meadow.recipe_book": "Recipe Book",
+  "rei.meadow.cheese_form_category": "Cheese Press"
 }

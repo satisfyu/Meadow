@@ -44,25 +44,26 @@ public class CookingCauldronCategory implements DisplayCategory<CookingCauldronD
 
     @Override
     public int getDisplayHeight() {
-        return 99;
+        return 64;
     }
 
     @Override
     public List<Widget> setupDisplay(CookingCauldronDisplay display, Rectangle bounds) {
-        Point startPoint = new Point(bounds.getCenterX() - 55, bounds.getCenterY() - 13);
+        Point startPoint = new Point(bounds.getX() + 16, bounds.getCenterY() - 18);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
-        widgets.add(Widgets.createArrow(new Point(startPoint.x + 54, startPoint.y - 1)).animationDurationTicks(CookingCauldronBlockEntity.MAX_COOKING_TIME));
-        widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 90, startPoint.y)));
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 90, startPoint.y)).entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
-        for(int i = 0; i < 3; i++){
-            int x = i * 18;
-            int y = -4;
-            x-=8;
-            if(i >= display.getInputEntries().size() - 1) widgets.add(Widgets.createSlotBackground(new Point(startPoint.x + x, startPoint.y + y)));
-            else widgets.add(Widgets.createSlot(new Point(startPoint.x + x, startPoint.y + y)).entries(display.getInputEntries().get(i + 1)).markInput());
+        widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 9)).animationDurationTicks(CookingCauldronBlockEntity.MAX_COOKING_TIME));
+
+        widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 96, startPoint.y + 9)));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 96, startPoint.y + 9)).entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
+
+        for (int slot = 0; slot < 6; slot++) {
+            if (display.getInputEntries().size() < slot + 1)
+                widgets.add(Widgets.createSlotBackground(new Point(startPoint.x + 18 * (slot % 3), startPoint.y + 18 * (slot / 3))));
+            else
+                widgets.add(Widgets.createSlot(new Point(startPoint.x + 18 * (slot % 3), startPoint.y + 18 * (slot / 3))).entries(display.getInputEntries().get(slot)).markInput());
         }
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 56, startPoint.y + 23)).entries(display.getInputEntries().get(0)).markInput());
+
         return widgets;
     }
 }
