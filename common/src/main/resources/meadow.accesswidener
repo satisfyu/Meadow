@@ -1,1 +1,2 @@
 accessWidener   v2  named
+accessible method net/minecraft/block/AbstractCauldronBlock isEntityTouchingFluid (Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)Z

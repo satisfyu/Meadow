@@ -74,6 +74,10 @@ public class WoodenBucket extends BucketItem {
                     if (itemStack2.getItem().equals(Items.WATER_BUCKET)) {
                         itemStack2 = new ItemStack(ObjectRegistry.WOODEN_WATER_BUCKET.get());
                     }
+                    else if (itemStack2.getItem().equals(Items.POWDER_SNOW_BUCKET)) {
+                        itemStack2 = new ItemStack(ObjectRegistry.WOODEN_POWDER_SNOW_BUCKET.get());
+                    }
+
                     user.incrementStat(Stats.USED.getOrCreateStat(this));
                     fluidDrainable.getBucketFillSound().ifPresent(sound -> user.playSound(sound, 1.0f, 1.0f));
                     world.emitGameEvent(user, GameEvent.FLUID_PICKUP, blockPos);

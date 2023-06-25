@@ -3,9 +3,12 @@ package net.satisfyu.meadow.client;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
+import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.resource.language.I18n;
@@ -130,6 +133,16 @@ public class MeadowClient {
 
         registerBlockRenderer();
         registerClientScreens();
+
+        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
+                    if (world == null || pos == null) {
+                        return -1;
+                    }
+                    return BiomeColors.getWaterColor(world, pos);
+                }, ObjectRegistry.WOODEN_WATER_CAULDRON
+        );
+
+
     }
 
     private static void registerBlockRenderer() {
