@@ -8,11 +8,11 @@
   ],
   "mixins": [
     "BlockMixin",
+    "CowMixin",
     "FluidDecrementMixin",
-    "SpawnMobAccessor",
-    "entity.CowMixin",
-    "entity.GoatMixin",
-    "entity.SheepMixin"
+    "GoatMixin",
+    "SheepMixin",
+    "SpawnMobAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

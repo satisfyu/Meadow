@@ -190,7 +190,7 @@ public class CookingCauldronBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockEntityRegistry.COOKING_POT.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
+        return checkType(type, BlockEntityRegistry.COOKING_CAULDRON.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.mixin.entity;
+package net.satisfyu.meadow.mixin;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;

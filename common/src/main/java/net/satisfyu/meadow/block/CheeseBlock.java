@@ -28,7 +28,7 @@ public class CheeseBlock extends HFacingBlock {
 
     private static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 4, 12);
 
-    private static final VoxelShape SHAPE_BIG = Block.createCuboidShape(2, 0, 2, 14, 4, 14);
+    private static final VoxelShape SHAPE_BIG = Block.createCuboidShape(2, 0, 2, 14, 6, 14);
 
     public static final IntProperty CUTS = IntProperty.of("cuts", 0, 3);
     private final RegistrySupplier<Item> slice;

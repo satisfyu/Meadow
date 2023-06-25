@@ -50,7 +50,10 @@ import net.satisfyu.meadow.entity.sheep.inky.InkySheepRenderer;
 import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.rocky.RockySheepRenderer;
-import net.satisfyu.meadow.item.*;
+import net.satisfyu.meadow.item.FurBoots;
+import net.satisfyu.meadow.item.FurChest;
+import net.satisfyu.meadow.item.FurHead;
+import net.satisfyu.meadow.item.FurLegs;
 import net.satisfyu.meadow.registry.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -114,7 +117,7 @@ public class MeadowClient {
     public static void initClient() {
         RenderTypeRegistry.register(RenderLayer.getCutout(), ObjectRegistry.WOODCUTTER.get(),
                 ObjectRegistry.PINE_DOOR.get(), ObjectRegistry.PINE_TRAPDOOR.get(), ObjectRegistry.DELPHINIUM.get(), ObjectRegistry.ALPINE_POPPY.get(), ObjectRegistry.SAXIFRAGE.get(),
-                ObjectRegistry.ENZIAN.get(), ObjectRegistry.COOKING_POT.get(), ObjectRegistry.FRAME.get(), ObjectRegistry.TABLE.get(), ObjectRegistry.FIRE_LOG.get(), ObjectRegistry.ERIOPHORUM.get(),
+                ObjectRegistry.ENZIAN.get(), ObjectRegistry.COOKING_CAULDRON.get(), ObjectRegistry.FRAME.get(), ObjectRegistry.TABLE.get(), ObjectRegistry.FIRE_LOG.get(), ObjectRegistry.ERIOPHORUM.get(),
                 ObjectRegistry.ERIOPHORUM_TALL.get(), ObjectRegistry.SMALL_FIR.get(), ObjectRegistry.PINE_SAPLING.get(), ObjectRegistry.CHAIR.get(),
                 ObjectRegistry.POTTED_DELPHINIUM.get(), ObjectRegistry.POTTED_ALPINE_POPPY.get(), ObjectRegistry.POTTED_SAXIFRAGE.get(), ObjectRegistry.POTTED_ENZIAN.get(),
                 ObjectRegistry.POTTED_ERIOPHORUM.get(), ObjectRegistry.ERIOPHORUM_TALL.get(), ObjectRegistry.PINE_SAPLING.get(), ObjectRegistry.POTTED_PINE_SAPLING.get(), ObjectRegistry.FIRE_LILY.get(), ObjectRegistry.POTTED_FIRE_LILY.get(),
