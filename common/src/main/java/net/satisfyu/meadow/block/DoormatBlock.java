@@ -22,8 +22,8 @@ public class DoormatBlock extends CarpetBlock {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     protected static final VoxelShape[] SHAPES = new VoxelShape[]{
-            Block.createCuboidShape(3.0, 0.0, 1.5, 13.0, 0.5, 14.5),
-            Block.createCuboidShape(1.5, 0.0, 3.0, 14.5, 0.5, 13.0)
+            Block.createCuboidShape(3.0, 0.0, 1.5, 13.0, 1.0, 14.5),
+            Block.createCuboidShape(1.5, 0.0, 3.0, 14.5, 1.0, 13.0)
     };
 
     public DoormatBlock(Settings settings) {

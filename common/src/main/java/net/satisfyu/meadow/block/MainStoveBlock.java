@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.block.FacingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -14,7 +15,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-public class MainStoveBlock extends HFacingBlock {
+public class MainStoveBlock extends FacingBlock {
 
     public static final BooleanProperty CONNECTED_UP = BooleanProperty.of("connected_up");
 

@@ -3,7 +3,9 @@
   "values": [
     "minecraft:smoker",
     "meadow:stove_tiles_wood",
-    "meadow:stove_tiles_lid"
-
+    "meadow:stove_tiles_lid",
+    "minecraft:magma_block",
+    "minecraft:furnace",
+    "minecraft:blast_furnace"
   ]
 }

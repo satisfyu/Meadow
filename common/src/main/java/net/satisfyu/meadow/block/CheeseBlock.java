@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.block.FacingBlock;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -24,7 +25,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 
-public class CheeseBlock extends HFacingBlock {
+public class CheeseBlock extends FacingBlock {
 
     private static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 4, 12);
 

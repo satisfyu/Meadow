@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.block.FacingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -21,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class StoveBlock extends HFacingBlock {
+public class StoveBlock extends FacingBlock {
 
     public static final BooleanProperty CONNECTED = BooleanProperty.of("connected");
 

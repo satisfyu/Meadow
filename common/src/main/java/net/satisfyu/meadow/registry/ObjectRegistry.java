@@ -188,7 +188,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> CHEESE_STICK = registerItem("cheese_stick", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.5f).build())));
     public static final RegistrySupplier<Item> RAW_BEAR_MEAT = registerItem("raw_bear_meat", () -> new CraftingIngredientItem(getSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
     public static final RegistrySupplier<Item> COOKED_BEAR_MEAT = registerItem("cooked_bear_meat", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
-    public static final RegistrySupplier<Item> BEAR_STEW = registerItem("bear_stew", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.3f).build())));
+    public static final RegistrySupplier<Block> ROASTED_HAM = registerBlock("roasted_ham", () -> new MealBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ObjectRegistry.COOKED_BEAR_MEAT, false));
     public static final RegistrySupplier<Item> HAM_CHEESE = registerItem("ham_cheese", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
     public static final RegistrySupplier<Item> WOODEN_BUCKET = registerItem("wooden_bucket", () -> new WoodenBucket(Fluids.EMPTY, getSettings().maxCount(16)));
     public static final RegistrySupplier<Item> WOODEN_WATER_BUCKET = registerItem("wooden_water_bucket", () -> new WoodenBucket(Fluids.WATER, getSettings().maxCount(1)));
@@ -258,6 +258,9 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> ALPINE_OAK_LOG = registerBlock("alpine_oak_log", () -> new PillarBlock(AbstractBlock.Settings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), null);
     public static final RegistrySupplier<Block> ALPINE_BIRCH_LOG = registerBlock("alpine_birch_log", () -> new PillarBlock(AbstractBlock.Settings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).strength(2.0f)), null);
     public static final RegistrySupplier<Block> PINE_LEAVES_2 = registerBlockWithoutItem("pine_leaves_2", () -> new LeavesBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_LEAVES)));
+    public static final RegistrySupplier<Block> FIR = registerBlockWithoutItem("fir", () -> new FlowerBlock(StatusEffects.INSTANT_HEALTH, 1, AbstractBlock.Settings.copy(Blocks.DANDELION)));
+    public static final RegistrySupplier<Block> W_POTTED_SMALL_FIR = registerBlockWithoutItem("wooden_potted_small_fir", () -> new WoodenFlowerPotBlock(ObjectRegistry.FIR.get(), AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> POTTED_SMALL_FIR = registerBlockWithoutItem("potted_small_fir", () -> new FlowerPotBlock(ObjectRegistry.FIR.get(), AbstractBlock.Settings.copy(Blocks.POTTED_POPPY)));
 
     public static void init() {
         Meadow.LOGGER.debug("Registering Blocks and Items for " + Meadow.MOD_ID);

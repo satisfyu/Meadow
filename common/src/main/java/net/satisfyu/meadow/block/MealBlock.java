@@ -1,126 +1,107 @@
-package satisfyu.candlelight.block;
+package net.satisfyu.meadow.block;
 
 import de.cristelknight.doapi.common.block.FacingBlock;
-import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import satisfyu.candlelight.util.CandlelightGeneralUtil;
+import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.event.GameEvent;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
 
+public class MealBlock extends FacingBlock {
 
-public class ChocolateBoxBlock extends FacingBlock {
+    private static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 4, 12);
 
+    private static final VoxelShape SHAPE_BIG = Block.createCuboidShape(2, 0, 2, 14, 6, 14);
 
-    public static final IntegerProperty CUTS = IntegerProperty.create("cuts", 0, 5);
+    public static final IntProperty CUTS = IntProperty.of("cuts", 0, 3);
+    private final RegistrySupplier<Item> slice;
 
-    public ChocolateBoxBlock(Properties settings) {
+    private final boolean big;
+
+    public MealBlock(Settings settings, RegistrySupplier<Item> slice, boolean big) {
         super(settings);
-        this.registerDefaultState(this.stateDefinition.any().setValue(CUTS, 0));
+        this.slice = slice;
+        this.big = big;
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(CUTS);
     }
 
 
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return big ? SHAPE_BIG : SHAPE;
+    }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (player.isDiscrete()) return InteractionResult.PASS;
-        ItemStack itemStack = player.getItemInHand(hand);
-        if (world.isClientSide) {
-            if (tryEat(world, pos, state, player).consumesAction()) {
-                return InteractionResult.SUCCESS;
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        ItemStack itemStack = player.getStackInHand(hand);
+        if (world.isClient) {
+            if (tryEat(world, pos, state, player).isAccepted()) {
+                return ActionResult.SUCCESS;
             }
             if (itemStack.isEmpty()) {
-                return InteractionResult.CONSUME;
+                return ActionResult.CONSUME;
             }
         }
         return tryEat(world, pos, state, player);
     }
 
-    private InteractionResult tryEat(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
-        world.playSound(null, pos, SoundEvents.FOX_EAT, SoundSource.PLAYERS, 0.5f, world.getRandom().nextFloat() * 0.1f + 0.9f);
-        player.getFoodData().eat(1, 0.4f);
-        int i = state.getValue(CUTS);
-        world.gameEvent(player, GameEvent.EAT, pos);
-        if (i < 5) {
-            world.setBlock(pos, state.setValue(CUTS, i + 1), Block.UPDATE_ALL);
+    private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
+        world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.BLOCKS, 1, 1);
+        player.getHungerManager().add(4, 2.5f);
+        int i = state.get(CUTS);
+        world.emitGameEvent(player, GameEvent.EAT, pos);
+        if (i < 3) {
+            world.setBlockState(pos, state.with(CUTS, i + 1), Block.NOTIFY_ALL);
         } else {
-            world.destroyBlock(pos, false);
+            world.removeBlock(pos, false);
+            world.emitGameEvent(player, GameEvent.BLOCK_DESTROY, pos);
         }
-        return InteractionResult.SUCCESS;
+        return ActionResult.SUCCESS;
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
-        if (direction == Direction.DOWN && !state.canSurvive(world, pos)) {
-            return Blocks.AIR.defaultBlockState();
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        if (direction == Direction.DOWN && !state.canPlaceAt(world, pos)) {
+            return Blocks.AIR.getDefaultState();
         }
-        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        return world.getBlockState(pos.below()).getMaterial().isSolid();
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        return world.getBlockState(pos.down()).getMaterial().isSolid();
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(CUTS);
-
-    }
-
-
-    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0, 0.25, 0.8125, 0.125, 0.74375), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.75, 0.125, 0.25, 0.8125, 0.1875, 0.74375), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0.125, 0.25, 0.25, 0.1875, 0.74375), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.25, 0.125, 0.25, 0.75, 0.1875, 0.30625), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.25, 0.125, 0.68125, 0.75, 0.1875, 0.74375), BooleanOp.OR);
-        return shape;
-    };
-
-    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
-        for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, CandlelightGeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
-        }
-    });
-
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return SHAPE.get(state.getValue(FACING));
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.candlelight.canbeplaced.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-        tooltip.add(Component.translatable("block.candlelight.chocolate_box.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }

@@ -17,6 +17,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.render.BigFlowerPotBlockEntityRenderer;
+import net.satisfyu.meadow.client.render.CheeseRackBlockEntityRenderer;
 import net.satisfyu.meadow.client.render.FlowerBoxBlockEntityRenderer;
 import net.satisfyu.meadow.client.render.WheelBarrowBlockEntityRenderer;
 import net.satisfyu.meadow.client.screen.CheeseFormGui;
@@ -135,6 +136,8 @@ public class MeadowClient {
         BlockEntityRendererRegistry.register(BlockEntityRegistry.FLOWER_BOX_BLOCK_ENTITY.get(), FlowerBoxBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityRegistry.WHEEL_BARROW_BLOCK_ENTITY.get(), WheelBarrowBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityRegistry.BIG_FLOWER_POT_BLOCK_ENTITY.get(), BigFlowerPotBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(BlockEntityRegistry.CHEESE_RACK_BLOCK_ENTITY.get(), CheeseRackBlockEntityRenderer::new);
+
     }
 
     private static void registerClientScreens() {

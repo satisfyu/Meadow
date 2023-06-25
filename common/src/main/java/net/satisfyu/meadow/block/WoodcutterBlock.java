@@ -43,7 +43,6 @@ public class WoodcutterBlock extends Block {
             return ActionResult.SUCCESS;
         }
         player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
-        //player.incrementStat(Stats.INTERACT_WITH_STONECUTTER);
         return ActionResult.CONSUME;
     }
 
