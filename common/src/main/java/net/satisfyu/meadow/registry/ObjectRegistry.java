@@ -135,7 +135,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WOODEN_CAULDRON = registerBlock("wooden_cauldron", () -> new WoodenCauldronBlock(AbstractBlock.Settings.of(Material.WOOD, MapColor.SPRUCE_BROWN).requiresTool().strength(2.0f).nonOpaque().sounds(BlockSoundGroup.WOOD)));
     public static final RegistrySupplier<Block> WHEELBARROW = registerBlock("wheelbarrow", () -> new WheelBarrowBlock(AbstractBlock.Settings.of(Material.WOOD).requiresTool().strength(3.5F).sounds(BlockSoundGroup.WOOD)));
     public static final RegistrySupplier<Block> WOODEN_WATER_CAULDRON = registerBlockWithoutItem("wooden_water_cauldron", () -> new LeveledCauldronBlock(AbstractBlock.Settings.copy(ObjectRegistry.WOODEN_CAULDRON.get()), LeveledCauldronBlock.RAIN_PREDICATE, WoodenCauldronBehavior.WATER_CAULDRON_BEHAVIOR));
-    public static final RegistrySupplier<Block> WOODEN_POWDER_SNOW_CAULDRON = registerBlockWithoutItem("wooden_powder_snow_cauldron", () -> new PowderSnowCauldronBlock(AbstractBlock.Settings.copy(ObjectRegistry.WOODEN_CAULDRON.get()), LeveledCauldronBlock.SNOW_PREDICATE, WoodenCauldronBehavior.POWDER_SNOW_CAULDRON_BEHAVIOR));
+    public static final RegistrySupplier<Block> WOODEN_POWDER_SNOW_CAULDRON = registerBlockWithoutItem("wooden_powder_snow_cauldron", () -> new WoodenPowderSnowCauldronBlock(AbstractBlock.Settings.copy(ObjectRegistry.WOODEN_CAULDRON.get()), LeveledCauldronBlock.SNOW_PREDICATE, WoodenCauldronBehavior.POWDER_SNOW_CAULDRON_BEHAVIOR));
     public static final RegistrySupplier<Block> FIRE_LOG = registerBlock("fire_log", () -> new FireLog(AbstractBlock.Settings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)));
     public static final RegistrySupplier<Block> CAN = registerBlock("can", () -> new CanBlock(AbstractBlock.Settings.of(Material.METAL).requiresTool().strength(0.8f).nonOpaque().sounds(BlockSoundGroup.METAL)));
     public static final RegistrySupplier<Block> CLIMBING_ROPE = registerBlockWithoutItem("climbing_rope", () -> new ClimbingRopeBlock(AbstractBlock.Settings.copy(Blocks.BLACK_WOOL).noCollision()));
@@ -190,9 +190,12 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> COOKED_BEAR_MEAT = registerItem("cooked_bear_meat", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
     public static final RegistrySupplier<Item> BEAR_STEW = registerItem("bear_stew", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.3f).build())));
     public static final RegistrySupplier<Item> HAM_CHEESE = registerItem("ham_cheese", () -> new Item(getSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(1.2f).build())));
+
     public static final RegistrySupplier<Item> WOODEN_BUCKET = registerItem("wooden_bucket", () -> new WoodenBucket(Fluids.EMPTY, getSettings().maxCount(16)));
     public static final RegistrySupplier<Item> WOODEN_WATER_BUCKET = registerItem("wooden_water_bucket", () -> new WoodenBucket(Fluids.WATER, getSettings().maxCount(1)));
+    public static final RegistrySupplier<Item> WOODEN_POWDER_SNOW_BUCKET = registerItem("wooden_powder_snow_bucket", () -> new WoodenPowderSnowBucket(Blocks.POWDER_SNOW, getSettings().maxCount(1)));
     public static final RegistrySupplier<Item> WOODEN_MILK_BUCKET = registerItem("wooden_milk_bucket", () -> new WoodenMilkBucket(getSettings().maxCount(1)));
+
     public static final RegistrySupplier<Item> WOODEN_SHEEP_MILK_BUCKET = registerItem("wooden_sheep_milk_bucket", () -> new WoodenMilkBucket(getSettings().maxCount(1)));
     public static final RegistrySupplier<Item> WOODEN_BUFFALO_MILK_BUCKET = registerItem("wooden_buffalo_milk_bucket", () -> new WoodenMilkBucket(getSettings().maxCount(1)));
     public static final RegistrySupplier<Item> WOODEN_GOAT_MILK_BUCKET = registerItem("wooden_goat_milk_bucket", () -> new WoodenMilkBucket(getSettings().maxCount(1)));
