@@ -1,9 +1,9 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"1": "meadow:block/polished_limestone",
+		"1": "meadow:block/polished_limestone_1",
 		"3": "meadow:block/stone_table_connected",
-		"particle": "meadow:block/polished_limestone"
+		"particle": "meadow:block/polished_limestone_1"
 	},
 	"elements": [
 		{
