@@ -14,7 +14,7 @@ dependencies {
     modCompileOnly ("me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
-    modImplementation "maven.modrinth:do-api:${project.doapi_version}"
+    modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
 }
 
 publishing {
