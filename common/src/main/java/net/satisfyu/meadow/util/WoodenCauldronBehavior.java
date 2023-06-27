@@ -34,7 +34,6 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
 
     CauldronBehavior FILL_WITH_WATER = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_WATER_CAULDRON.get().getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY, Items.BUCKET);
     CauldronBehavior FILL_WITH_POWDER_SNOW = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_POWDER_SNOW_CAULDRON.get().getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW, Items.BUCKET);
-    CauldronBehavior FILL_WITH_POWDER_SNOW_W = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_POWDER_SNOW_CAULDRON.get().getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW,  ObjectRegistry.WOODEN_POWDER_SNOW_BUCKET.get());
     CauldronBehavior FILL_WITH_WATER_W = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_WATER_CAULDRON.get().getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY, ObjectRegistry.WOODEN_BUCKET.get());
 
     ActionResult interact(BlockState var1, World var2, BlockPos var3, PlayerEntity var4, Hand var5, ItemStack var6);
@@ -129,7 +128,6 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
         behavior.put(Items.WATER_BUCKET, FILL_WITH_WATER);
         behavior.put(ObjectRegistry.WOODEN_WATER_BUCKET.get(), FILL_WITH_WATER_W);
         behavior.put(Items.POWDER_SNOW_BUCKET, FILL_WITH_POWDER_SNOW);
-        behavior.put(ObjectRegistry.WOODEN_POWDER_SNOW_BUCKET.get(), FILL_WITH_POWDER_SNOW_W);
     }
 
     static ActionResult emptyCauldron(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, ItemStack output, Predicate<BlockState> predicate, SoundEvent soundEvent) {
@@ -169,7 +167,6 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
         CauldronBehavior fillWithWater = (state, world, pos, player, hand, stack) -> fillCauldron(world, pos, player, hand, stack, Blocks.WATER_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY, ObjectRegistry.WOODEN_BUCKET.get());
         CauldronBehavior fillWithPowderSnow = (state, world, pos, player, hand, stack) -> fillCauldron(world, pos, player, hand, stack, Blocks.POWDER_SNOW_CAULDRON.getDefaultState().with(LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY_POWDER_SNOW, ObjectRegistry.WOODEN_BUCKET.get());
         behavior.put(ObjectRegistry.WOODEN_WATER_BUCKET.get(), fillWithWater);
-        behavior.put(ObjectRegistry.WOODEN_POWDER_SNOW_BUCKET.get(), fillWithPowderSnow);
     }
 
 }

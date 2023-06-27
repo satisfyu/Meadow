@@ -1,6 +1,19 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "meadow:item/oil_lantern"
-  }
+	"credit": "Made by Satisfy",
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "meadow:item/oil_lantern"
+	},
+	"display": {
+		"firstperson_righthand": {
+			"rotation": [0, -14, 0],
+			"translation": [1.5, 13, 0.75],
+			"scale": [0.5, 0.5, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -14, 0],
+			"translation": [1.5, 13, 0.75],
+			"scale": [0.5, 0.5, 1]
+		}
+	}
 }

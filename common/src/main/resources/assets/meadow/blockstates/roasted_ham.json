@@ -1,66 +1,66 @@
 {
   "variants": {
     "facing=east,cuts=0": {
-      "model": "meadow:block/cheese_tart",
+      "model": "meadow:block/bear_ham_4",
       "y": 90
     },
     "facing=north,cuts=0": {
-      "model": "meadow:block/cheese_tart"
+      "model": "meadow:block/bear_ham_4"
     },
     "facing=south,cuts=0": {
-      "model": "meadow:block/cheese_tart",
+      "model": "meadow:block/bear_ham_4",
       "y": 180
     },
     "facing=west,cuts=0": {
-      "model": "meadow:block/cheese_tart",
+      "model": "meadow:block/bear_ham_4",
       "y": 270
     },
 
     "facing=east,cuts=1": {
-      "model": "meadow:block/cheese_tart_1",
+      "model": "meadow:block/bear_ham_3",
       "y": 90
     },
     "facing=north,cuts=1": {
-      "model": "meadow:block/cheese_tart_1"
+      "model": "meadow:block/bear_ham_3"
     },
     "facing=south,cuts=1": {
-      "model": "meadow:block/cheese_tart_1",
+      "model": "meadow:block/bear_ham_3",
       "y": 180
     },
     "facing=west,cuts=1": {
-      "model": "meadow:block/cheese_tart_1",
+      "model": "meadow:block/bear_ham_3",
       "y": 270
     },
 
     "facing=east,cuts=2": {
-      "model": "meadow:block/cheese_tart_2",
+      "model": "meadow:block/bear_ham_2",
       "y": 90
     },
     "facing=north,cuts=2": {
-      "model": "meadow:block/cheese_tart_2"
+      "model": "meadow:block/bear_ham_2"
     },
     "facing=south,cuts=2": {
-      "model": "meadow:block/cheese_tart_2",
+      "model": "meadow:block/bear_ham_2",
       "y": 180
     },
     "facing=west,cuts=2": {
-      "model": "meadow:block/cheese_tart_2",
+      "model": "meadow:block/bear_ham_2",
       "y": 270
     },
 
     "facing=east,cuts=3": {
-      "model": "meadow:block/cheese_tart_3",
+      "model": "meadow:block/bear_ham_1",
       "y": 90
     },
     "facing=north,cuts=3": {
-      "model": "meadow:block/cheese_tart_3"
+      "model": "meadow:block/bear_ham_1"
     },
     "facing=south,cuts=3": {
-      "model": "meadow:block/cheese_tart_3",
+      "model": "meadow:block/bear_ham_1",
       "y": 180
     },
     "facing=west,cuts=3": {
-      "model": "meadow:block/cheese_tart_3",
+      "model": "meadow:block/bear_ham_1",
       "y": 270
     }
   }

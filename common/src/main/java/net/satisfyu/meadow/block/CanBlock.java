@@ -38,22 +38,21 @@ public class CanBlock extends Block {
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0, 0.25, 0.75, 0.625, 0.75), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.28125, 0.875, 0.28125, 0.34375, 0.9375, 0.71875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.65625, 0.875, 0.28125, 0.71875, 0.9375, 0.71875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.921875, 0.28125, 0.375, 0.984375, 0.28125, 0.4375), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.984375, 0.28125, 0.375, 1.046875, 0.28125, 0.625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.921875, 0.28125, 0.5625, 0.984375, 0.28125, 0.625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 0.65625, 0.375, 0, 0.65625, 0.4375), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.125, 0.65625, 0.375, -0.0625, 0.65625, 0.625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 0.65625, 0.5625, 0, 0.65625, 0.625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.34375, 0.875, 0.65625, 0.65625, 0.9375, 0.71875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.34375, 0.875, 0.28125, 0.65625, 0.9375, 0.34375), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0.625, 0.3125, 0.375, 0.875, 0.6875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.625, 0.625, 0.3125, 0.6875, 0.875, 0.6875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.625, 0.3125, 0.625, 0.875, 0.375), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.625, 0.625, 0.625, 0.875, 0.6875), BooleanBiFunction.OR);
-
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0, 0.25, 0.75, 0.625, 0.75),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.921875, 0.28125, 0.375, 0.984375, 0.28125, 0.4375),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.984375, 0.28125, 0.375, 1.046875, 0.28125, 0.625),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.921875, 0.28125, 0.5625, 0.984375, 0.28125, 0.625),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 0.65625, 0.375, 0, 0.65625, 0.4375),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.125, 0.65625, 0.375, -0.0625, 0.65625, 0.625),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.0625, 0.65625, 0.5625, 0, 0.65625, 0.625),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0.875, 0.625, 0.75, 0.9375, 0.75),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0.875, 0.25, 0.75, 0.9375, 0.375),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0.625, 0.3125, 0.375, 0.875, 0.6875),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.625, 0.625, 0.3125, 0.6875, 0.875, 0.6875),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.625, 0.3125, 0.625, 0.875, 0.375),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.625, 0.625, 0.625, 0.875, 0.6875),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0.875, 0.375, 0.375, 0.9375, 0.625),BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.625, 0.875, 0.375, 0.75, 0.9375, 0.625),BooleanBiFunction.OR);
         return shape;
     };
 
@@ -97,12 +96,9 @@ public class CanBlock extends Block {
                 world.emitGameEvent(null, GameEvent.FLUID_PLACE, pos);
                 return ActionResult.SUCCESS;
             } else if ((state.get(FLUID) == 1 || state.get(FLUID) == 2) && (item.equals(Items.BUCKET) || item.equals(ObjectRegistry.WOODEN_BUCKET))) {
-                //player.setStackInHand(hand, ItemUsage.exchangeStack(itemStack, player, new ItemStack(state.get(FLUID) == 2 ? Items.WATER_BUCKET : Items.MILK_BUCKET)));
-
+                player.setStackInHand(hand, ItemUsage.exchangeStack(itemStack, player, new ItemStack(state.get(FLUID) == 2 ? Items.WATER_BUCKET : Items.MILK_BUCKET)));
                 boolean bl = item.equals(ObjectRegistry.WOODEN_BUCKET);
-
                 player.setStackInHand(hand, ItemUsage.exchangeStack(itemStack, player, new ItemStack(state.get(FLUID) == 2 ? bl ? ObjectRegistry.WOODEN_WATER_BUCKET.get() : Items.WATER_BUCKET : bl ? ObjectRegistry.WOODEN_MILK_BUCKET.get() : Items.MILK_BUCKET)));
-
                 player.incrementStat(Stats.USED.getOrCreateStat(item));
                 world.setBlockState(pos, state.with(FLUID, 0));
                 world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);

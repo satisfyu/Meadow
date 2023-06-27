@@ -20,7 +20,6 @@
   "block.meadow.bench": "Bench",
   "block.meadow.buffalo_cheese_block": "Buffalo Cheese Wheel",
   "block.meadow.camera": "Camera",
-  "block.meadow.ham_cheese": "Cold Cuts & Cheese",
   "block.meadow.camera.tooltip": "Click, click, click. Only for Decoration Purpose.",
   "block.meadow.can": "Can",
   "block.meadow.canbeplaced.tooltip": "Can be placed",
@@ -157,11 +156,11 @@
   "block.meadow.wooden_flower_pot": "Wooden Flower Pot",
   "block.meadow.woodencauldron.tooltip": "Same functions as a Cauldron",
   "block.meadow.rocky_bed": "White Stitched Bed",
-  "block.meadow:cobbled_limestone_wall": "Cobbled Limestone Wall",
-  "block.meadow:mossy_cobbled_limestone_wall": "Mossy Cobbled Limestone Wall",
+  "block.meadow.roasted_ham": "Roasted Bear Ham",
+  "item.meadow.ham_cheese": "Bear Ham with Cheese",
   "container.cheese_form": "",
   "container.cooking_cauldron": "",
-  "container.shelf": "",
+  "container.shelf": "Storage",
   "container.woodcutter": "",
   "effect.meadow.cozy_home": "Cozy Home",
   "entity.meadow.albino_cow": "Albino Cow",
@@ -264,5 +263,7 @@
   "tooltip.meadow.recipe_book": "Recipe Book",
   "block.meadow.wooden_bucket.tooltip": "Wooden Buckets can mainly being used for Milking Cows, Sheeps and Goats",
   "block.meadow.fondue_1.tooltip": "Indulge in the delightful experience of Fondue with your companions!",
-  "block.meadow.fondue_2.tooltip": "Simply combine Bread and Cheese, and you'll be all set for a memorable feast"
+  "block.meadow.fondue_2.tooltip": "Simply combine Bread and Cheese, and you'll be all set for a memorable feast",
+  "gui.vinery.recipebook.toggleRecipes.cheeseable": "Showing Craftable"
+
 }

@@ -44,6 +44,21 @@
     "facing=east,done=false,working=true": {
       "model": "meadow:block/cheese_form_working",
       "y": 90
+    },
+    "facing=north,done=true,working=true": {
+      "model": "meadow:block/cheese_form_working"
+    },
+    "facing=south,done=true,working=true": {
+      "model": "meadow:block/cheese_form_working",
+      "y": 180
+    },
+    "facing=west,done=true,working=true": {
+      "model": "meadow:block/cheese_form_working",
+      "y": 270
+    },
+    "facing=east,done=true,working=true": {
+      "model": "meadow:block/cheese_form_working",
+      "y": 90
     }
   }
 }

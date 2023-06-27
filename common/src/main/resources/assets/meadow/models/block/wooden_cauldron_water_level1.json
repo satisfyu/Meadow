@@ -1,4 +1,5 @@
 {
+	"credit": "Made by Satisfy",
 	"parent": "minecraft:block/template_cauldron_level1",
 	"textures": {
 		"5": "meadow:block/wooden_cauldron_inner_side",
@@ -6,7 +7,6 @@
 		"bottom": "meadow:block/cauldron_bottom",
 		"particle": "meadow:block/wooden_cauldron_side",
 		"side": "meadow:block/wooden_cauldron_side",
-		"inside": "meadow:block/wooden_cauldron_inner",
 		"content": "block/water_still"
 	}
 }
