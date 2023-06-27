@@ -28,7 +28,7 @@
     ],
 
     "rei_client": [
-      "net.satisfyu.meadow.fabric.rei.MeadowReiClientPlugin"
+      "net.satisfyu.meadow.fabric.rei.MeadowReiClientPluginFabric"
     ],
     "doapi": [
       "net.satisfyu.meadow.util.MeadowDoAPI"
@@ -42,6 +42,7 @@
     "fabric": "*",
     "minecraft": ">=1.19.2",
     "architectury": ">=6.5.77",
-    "doapi": ">=1.1.0"
+    "doapi": ">=1.1.0",
+    "terrablender": ">=2.0.1.136"
   }
 }

@@ -20,7 +20,6 @@ configurations {
 }
 
 repositories {
-    maven { url "https://maven.shedaniel.me/" }
     maven {
         name "terraform wood api, trinkets"
         url "https://maven.terraformersmc.com"
@@ -29,13 +28,12 @@ repositories {
 
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
-
     modApi("net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"){ exclude group: 'net.fabricmc', module: 'fabric-loader' }
     modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}"){ exclude group: 'net.fabricmc', module: 'fabric-loader' }
-    modApi("me.shedaniel:RoughlyEnoughItems-fabric:9.1.595"){ exclude group: 'net.fabricmc', module: 'fabric-loader' }
-    modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}")
+    modImplementation("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
+    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
+    modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}")
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }

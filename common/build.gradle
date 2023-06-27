@@ -7,11 +7,14 @@ loom {
 }
 
 dependencies {
-    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi("dev.architectury:architectury:${rootProject.architectury_version}"){ exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
-    modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
+    modCompileOnly ("me.shedaniel:RoughlyEnoughItems-api:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    modCompileOnly ("me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+
+    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.minecraft_version}-${rootProject.terrablender_version}"
+    modImplementation "maven.modrinth:do-api:${project.doapi_version}"
 }
 
 publishing {
