@@ -139,7 +139,7 @@ public class CheeseFormBlock extends BlockWithEntity {
             double i = axis == Direction.Axis.X ? (double) direction.getOffsetX() * 0.0 : h;
             double j = random.nextDouble() * 9.0 / 16.0;
             double k = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * 0.0 : h;
-            world.addParticle(ParticleTypes.CRIT, d + i, e + j, f + k, 0.01, 0.01, 0.01);
+            world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.01, 0.01, 0.01);
         }
     }
 
