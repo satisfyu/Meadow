@@ -84,29 +84,38 @@ public class CanBlock extends Block {
             return ActionResult.PASS;
         }
 
-        if (!world.isClient) {
-
-            boolean water = false;
-            boolean wood = false;
-            if (state.get(FLUID) == 0 && (item.equals(Items.MILK_BUCKET) || (water = item.equals(Items.WATER_BUCKET)) || (wood = item.equals(ObjectRegistry.WOODEN_MILK_BUCKET)) || (water = wood = item.equals(ObjectRegistry.WOODEN_WATER_BUCKET)))) {
+        boolean water;
+        boolean wood = false;
+        if (state.get(FLUID) == 0 && ((water = isWater(item)) || (wood = isMilk(item)))) {
+            if(!world.isClient()){
                 player.setStackInHand(hand, ItemUsage.exchangeStack(itemStack, player, new ItemStack(wood ? ObjectRegistry.WOODEN_BUCKET.get() : Items.BUCKET)));
                 player.incrementStat(Stats.USED.getOrCreateStat(item));
                 world.setBlockState(pos, state.with(FLUID, water ? 2 : 1));
                 world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 world.emitGameEvent(null, GameEvent.FLUID_PLACE, pos);
-                return ActionResult.SUCCESS;
-            } else if ((state.get(FLUID) == 1 || state.get(FLUID) == 2) && (item.equals(Items.BUCKET) || item.equals(ObjectRegistry.WOODEN_BUCKET))) {
-                player.setStackInHand(hand, ItemUsage.exchangeStack(itemStack, player, new ItemStack(state.get(FLUID) == 2 ? Items.WATER_BUCKET : Items.MILK_BUCKET)));
-                boolean bl = item.equals(ObjectRegistry.WOODEN_BUCKET);
+            }
+            return ActionResult.success(world.isClient());
+        } else if ((state.get(FLUID) == 1 || state.get(FLUID) == 2) && (item.equals(Items.BUCKET) || item.equals(ObjectRegistry.WOODEN_BUCKET.get()))) {
+            if(!world.isClient()){
+                boolean bl = item.equals(ObjectRegistry.WOODEN_BUCKET.get());
                 player.setStackInHand(hand, ItemUsage.exchangeStack(itemStack, player, new ItemStack(state.get(FLUID) == 2 ? bl ? ObjectRegistry.WOODEN_WATER_BUCKET.get() : Items.WATER_BUCKET : bl ? ObjectRegistry.WOODEN_MILK_BUCKET.get() : Items.MILK_BUCKET)));
                 player.incrementStat(Stats.USED.getOrCreateStat(item));
                 world.setBlockState(pos, state.with(FLUID, 0));
                 world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 world.emitGameEvent(null, GameEvent.FLUID_PICKUP, pos);
-                return ActionResult.SUCCESS;
             }
+            return ActionResult.success(world.isClient());
         }
-        return ActionResult.success(world.isClient);
+
+        return ActionResult.PASS;
+    }
+
+    public boolean isMilk(Item item){
+        return item.equals(Items.MILK_BUCKET) || item.equals(ObjectRegistry.WOODEN_MILK_BUCKET.get());
+    }
+
+    public boolean isWater(Item item){
+        return item.equals(Items.WATER_BUCKET) || item.equals(ObjectRegistry.WOODEN_WATER_BUCKET.get());
     }
 
     @Override
