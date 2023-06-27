@@ -10,34 +10,46 @@ import net.minecraft.text.Text;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Util;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.satisfyu.meadow.util.GeneralUtil;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class DoormatBlock extends CarpetBlock {
 
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
-    protected static final VoxelShape[] SHAPES = new VoxelShape[]{
-            Block.createCuboidShape(3.0, 0.0, 1.5, 13.0, 0.5, 14.5),
-            Block.createCuboidShape(1.5, 0.0, 3.0, 14.5, 0.5, 13.0)
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.1875, 0.9375, 0.0625, 0.8125), BooleanBiFunction.OR);
+        return shape;
     };
+
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE.get(state.get(FACING));
+    }
 
     public DoormatBlock(Settings settings) {
         super(settings);
     }
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        if (direction.getAxis() == Direction.Axis.X) {
-            return SHAPES[0];
-        }
-        return SHAPES[1];
-    }
+
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

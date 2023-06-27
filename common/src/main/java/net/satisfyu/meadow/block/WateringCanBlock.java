@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.block.FacingBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.util.Util;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class WateringCanBlock extends HFacingBlock {
+public class WateringCanBlock extends FacingBlock {
     public WateringCanBlock(Settings settings) {
         super(settings);
     }

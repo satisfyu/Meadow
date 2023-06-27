@@ -5,7 +5,7 @@
 		"1": "meadow:block/wooden_cauldron_side",
 		"2": "meadow:block/wooden_cauldron_inner_side",
 		"3": "meadow:block/wooden_cauldron_top",
-		"4": "block/coarse_dirt",
+		"4": "block/rooted_dirt",
 		"particle": "meadow:block/wooden_cauldron_inner_side"
 	},
 	"elements": [

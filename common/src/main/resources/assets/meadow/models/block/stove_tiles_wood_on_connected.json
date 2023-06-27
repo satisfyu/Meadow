@@ -1,11 +1,11 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"1": "meadow:block/oven_top",
-		"3": "meadow:block/stove_tiles_side_connected_bottom",
-		"5": "meadow:block/stove_bottom",
-		"7": "meadow:block/stove_tiles_wood_connected",
-		"particle": "meadow:block/stove_bottom"
+		"1": "meadow:block/brick_stove_bottom",
+		"3": "meadow:block/brick_stove_side_connected_bottom",
+		"5": "meadow:block/brick_stove_bottom_2",
+		"7": "meadow:block/brick_stove_front_on_connected",
+		"particle": "meadow:block/brick_stove_bottom_2"
 	},
 	"elements": [
 		{

@@ -1,34 +1,34 @@
 {
   "variants": {
     "facing=east,cuts=0": {
-      "model": "meadow:block/cheesecake",
+      "model": "meadow:block/cheesecake_4",
       "y": 90
     },
     "facing=north,cuts=0": {
-      "model": "meadow:block/cheesecake"
+      "model": "meadow:block/cheesecake_4"
     },
     "facing=south,cuts=0": {
-      "model": "meadow:block/cheesecake",
+      "model": "meadow:block/cheesecake_4",
       "y": 180
     },
     "facing=west,cuts=0": {
-      "model": "meadow:block/cheesecake",
+      "model": "meadow:block/cheesecake_4",
       "y": 270
     },
 
     "facing=east,cuts=1": {
-      "model": "meadow:block/cheesecake_1",
+      "model": "meadow:block/cheesecake_3",
       "y": 90
     },
     "facing=north,cuts=1": {
-      "model": "meadow:block/cheesecake_1"
+      "model": "meadow:block/cheesecake_3"
     },
     "facing=south,cuts=1": {
-      "model": "meadow:block/cheesecake_1",
+      "model": "meadow:block/cheesecake_3",
       "y": 180
     },
     "facing=west,cuts=1": {
-      "model": "meadow:block/cheesecake_1",
+      "model": "meadow:block/cheesecake_3",
       "y": 270
     },
 
@@ -49,18 +49,18 @@
     },
 
     "facing=east,cuts=3": {
-      "model": "meadow:block/cheesecake_3",
+      "model": "meadow:block/cheesecake_1",
       "y": 90
     },
     "facing=north,cuts=3": {
-      "model": "meadow:block/cheesecake_3"
+      "model": "meadow:block/cheesecake_1"
     },
     "facing=south,cuts=3": {
-      "model": "meadow:block/cheesecake_3",
+      "model": "meadow:block/cheesecake_1",
       "y": 180
     },
     "facing=west,cuts=3": {
-      "model": "meadow:block/cheesecake_3",
+      "model": "meadow:block/cheesecake_1",
       "y": 270
     }
   }

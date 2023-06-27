@@ -161,7 +161,6 @@ public interface WoodenCauldronBehavior extends CauldronBehavior {
     static void registerCauldronBehavior() {
         CauldronBehavior.WATER_CAULDRON_BEHAVIOR.put(ObjectRegistry.WOODEN_BUCKET.get(), (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(ObjectRegistry.WOODEN_WATER_BUCKET.get()), state -> state.get(LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
         registerBucketBehaviorForNormalCauldron(CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR);
-
     }
 
     static void registerBucketBehaviorForNormalCauldron(Map<Item, CauldronBehavior> behavior) {

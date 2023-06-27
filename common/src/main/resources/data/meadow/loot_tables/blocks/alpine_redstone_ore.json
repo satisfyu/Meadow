@@ -38,7 +38,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:redstone_dust"
+              "name": "minecraft:redstone"
             }
           ]
         }

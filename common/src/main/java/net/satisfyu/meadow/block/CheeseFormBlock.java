@@ -8,31 +8,38 @@ import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.*;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.satisfyu.meadow.entity.blockentities.CheeseFormBlockEntity;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
+import net.satisfyu.meadow.registry.SoundRegistry;
+import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class CheeseFormBlock extends BlockWithEntity {
-    private static final VoxelShape SHAPE = createCuboidShape(3, 0, 3, 13, 5, 13);
     public static final BooleanProperty WORKING = BooleanProperty.of("working");
     public static final BooleanProperty DONE = BooleanProperty.of("done");
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
@@ -42,9 +49,29 @@ public class CheeseFormBlock extends BlockWithEntity {
         this.setDefaultState(this.stateManager.getDefaultState().with(DONE, false).with(WORKING, false).with(FACING, Direction.NORTH));
     }
 
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.0625, 0.3125, 0.0625, 0.9375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.6875, 0, 0.0625, 0.8125, 0.0625, 0.9375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0.0625, 0.1875, 0.8125, 0.125, 0.8125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.0625, 0.8125, 0.875, 0.375, 0.875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.0625, 0.125, 0.875, 0.375, 0.1875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.0625, 0.1875, 0.1875, 0.375, 0.8125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.0625, 0.1875, 0.875, 0.375, 0.8125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 0.125, 0.0625, 0.5625, 0.75, 0.125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 0.125, 0.875, 0.5625, 0.75, 0.9375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 0.75, 0.0625, 0.5625, 0.8125, 0.9375), BooleanBiFunction.OR);        return shape;
+    };
+
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
+        return SHAPE.get(state.get(FACING));
     }
 
     @Override
@@ -95,6 +122,25 @@ public class CheeseFormBlock extends BlockWithEntity {
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (state.get(WORKING)) {
+            double d = (double) pos.getX() + 0.5;
+            double e = pos.getY() + 0.7;
+            double f = (double) pos.getZ() + 0.5;
+            if (random.nextDouble() < 0.3) {
+                world.playSound(d, e, f, SoundEvents.BLOCK_SMOKER_SMOKE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+            }
+            Direction direction = state.get(FACING);
+            Direction.Axis axis = direction.getAxis();
+            double h = random.nextDouble() * 0.6 - 0.3;
+            double i = axis == Direction.Axis.X ? (double) direction.getOffsetX() * 0.0 : h;
+            double j = random.nextDouble() * 9.0 / 16.0;
+            double k = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * 0.0 : h;
+            world.addParticle(ParticleTypes.CRIT, d + i, e + j, f + k, 0.01, 0.01, 0.01);
+        }
     }
 
 

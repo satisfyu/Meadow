@@ -121,10 +121,8 @@ public class EntityRegistry {
         Meadow.LOGGER.debug("Registering Mod Entities for " + Meadow.MOD_ID);
         ENTITY_TYPES.register();
 
-
         EntityAttributeRegistry.register(BROWN_BEAR, PolarBearEntity::createPolarBearAttributes);
         registerChicken(MEADOW_CHICKEN);
-
         registerSheep(FLECKED_SHEEP);
         registerSheep(FUZZY_SHEEP);
         registerSheep(HORNED_SHEEP);
@@ -132,7 +130,6 @@ public class EntityRegistry {
         registerSheep(LONG_NOSED_SHEEP);
         registerSheep(PATCHED_SHEEP);
         registerSheep(ROCKY_SHEEP);
-
         registerCow(WARPED_COW);
         registerCow(HIGHLAND_CATTLE);
         registerCow(UMBRA_COW);

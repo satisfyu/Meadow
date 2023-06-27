@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.block.FacingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -8,6 +9,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
@@ -16,13 +20,15 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.satisfyu.meadow.registry.ObjectRegistry;
 
 import java.util.List;
 
-public class FireLog extends HFacingBlock {
+public class FireLog extends FacingBlock {
 
     public static final IntProperty STAGE = IntProperty.of("stage", 0, 3);
 
@@ -49,35 +55,48 @@ public class FireLog extends HFacingBlock {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) return ActionResult.SUCCESS;
+        if (world.isClient) {
+            return ActionResult.SUCCESS;
+        }
+
         int stage = state.get(STAGE);
         ItemStack stack = player.getStackInHand(hand);
-        if (stack.isOf(this.asItem())) {
-            if (stage < 3 && stage > 0) {
-                stage++;
-                if (!player.getAbilities().creativeMode) stack.decrement(1);
-            }
-        } else if (stack.isOf(Items.IRON_AXE) && stage == 1 && stack.getDamage() == 0) {
-            stage = 0;
-            if (!player.getAbilities().creativeMode) stack.decrement(1);
-        } else if (player.isSneaking() && stack.isEmpty()) {
-            Item item;
-            if (stage == 0) {
-                stage = 1;
-                item = Items.IRON_AXE;
-            } else {
+
+        if (player.isSneaking()) {
+            if (stack.isEmpty() && stage > 0) {
                 stage--;
-                item = this.asItem();
-            }
-            if (!player.getAbilities().creativeMode) player.giveItemStack(new ItemStack(item));
-            if (stage == 0) {
-                world.breakBlock(pos, false);
+                player.giveItemStack(new ItemStack(ObjectRegistry.FIRE_LOG.get()));
+                world.setBlockState(pos, state.with(STAGE, stage));
+                world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 return ActionResult.SUCCESS;
             }
+        } else {
+            if (stack.isOf(this.asItem())) {
+                if (stage < 3 && stage > 0) {
+                    stage++;
+                    if (!player.getAbilities().creativeMode) {
+                        stack.decrement(1);
+                    }
+                }
+            } else if (stack.isOf(Items.IRON_AXE) && stage == 1 && stack.getDamage() == 0) {
+                stage = 0;
+                if (!player.getAbilities().creativeMode) {
+                    stack.decrement(1);
+                }
+            }
         }
-        if (stage == state.get(STAGE)) return ActionResult.PASS;
+
+        if (stage == state.get(STAGE)) {
+            return ActionResult.PASS;
+        }
+
         world.setBlockState(pos, state.with(STAGE, stage));
+        world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
         return ActionResult.SUCCESS;
+    }
+
+    private void dropItemStack(World world, BlockPos pos) {
+        Block.dropStack(world, pos, new ItemStack(ObjectRegistry.FIRE_LOG.get(), 1));
     }
 
     @Override
@@ -90,7 +109,5 @@ public class FireLog extends HFacingBlock {
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
         tooltip.add(Text.translatable("block.meadow.fuel_item.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
-
     }
-
 }

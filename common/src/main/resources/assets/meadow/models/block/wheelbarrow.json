@@ -5,7 +5,7 @@
 		"1": "meadow:block/chiseled_limestone",
 		"2": "meadow:block/wheelbarrow_side",
 		"3": "meadow:block/wheelbarrow_top",
-		"5": "meadow:block/wooden_cauldron_inner",
+		"5": "meadow:block/oven_top",
 		"particle": "meadow:block/pine_barn_trapdoor"
 	},
 	"elements": [

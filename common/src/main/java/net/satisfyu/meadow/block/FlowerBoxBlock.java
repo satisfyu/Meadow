@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.block.FacingBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -35,7 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class FlowerBoxBlock extends HFacingBlock implements BlockEntityProvider {
+public class FlowerBoxBlock extends FacingBlock implements BlockEntityProvider {
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
