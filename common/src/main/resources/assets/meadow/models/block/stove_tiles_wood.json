@@ -1,7 +1,7 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"1": "meadow:block/brick_oven_top",
+		"1": "meadow:block/brick_stove_top",
 		"3": "meadow:block/brick_stove_side",
 		"4": "meadow:block/brick_stove_bottom",
 		"5": "meadow:block/brick_stove_bottom_2",
