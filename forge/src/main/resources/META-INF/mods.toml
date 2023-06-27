@@ -11,7 +11,7 @@ authors = ["satisfy", "Cristelknight999", "BMJO"]
 description = '''
 This is an example description! Tell everyone what your mod is about!
 '''
-#logoFile = ""
+logoFile = "pack.png"
 
 [[dependencies.meadow]]
 modId = "forge"
