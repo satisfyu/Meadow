@@ -17,6 +17,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.satisfyu.meadow.block.CheeseFormBlock;
 import net.satisfyu.meadow.client.screen.handler.CheeseFormGuiHandler;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
@@ -90,7 +91,8 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         final var recipeType = world.getRecipeManager()
                 .getFirstMatch(RecipeRegistry.CHEESE.get(), blockEntity, world)
                 .orElse(null);
-        if (canCraft(recipeType)) {
+        boolean working = canCraft(recipeType);
+        if (working) {
             this.fermentationTime++;
 
             if (this.fermentationTime >= COOKING_TIME_IN_TICKS) {
@@ -101,7 +103,10 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         } else {
             this.fermentationTime = 0;
         }
-
+        boolean done = !inventory.get(OUTPUT_SLOT).isEmpty();
+        if (state.get(CheeseFormBlock.WORKING) != working || state.get(CheeseFormBlock.DONE) != done) {
+            world.setBlockState(pos, state.with(CheeseFormBlock.WORKING, working).with(CheeseFormBlock.DONE, done));
+        }
     }
 
     private boolean canCraft(CheeseFormRecipe recipe) {
