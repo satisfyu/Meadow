@@ -11,8 +11,7 @@
     "CowMixin",
     "FluidDecrementMixin",
     "GoatMixin",
-    "SheepMixin",
-    "SpawnMobAccessor"
+    "SheepMixin"
   ],
   "injectors": {
     "defaultRequire": 1
