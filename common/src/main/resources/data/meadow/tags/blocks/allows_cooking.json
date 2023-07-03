@@ -6,6 +6,8 @@
     "meadow:stove_tiles_lid",
     "minecraft:magma_block",
     "minecraft:furnace",
-    "minecraft:blast_furnace"
+    "minecraft:blast_furnace",
+    "#c:allows_cooking",
+    "#forge:allows_cooking"
   ]
 }
