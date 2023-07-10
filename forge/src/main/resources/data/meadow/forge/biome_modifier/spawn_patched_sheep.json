@@ -8,7 +8,7 @@
   ],
   "spawners": {
     "type": "meadow:patched_sheep",
-    "weight": 14,
+    "weight": 7,
     "minCount": 3,
     "maxCount": 5
   }

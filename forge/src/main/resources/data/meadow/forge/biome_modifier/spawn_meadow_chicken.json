@@ -7,7 +7,7 @@
   ],
   "spawners": {
     "type": "meadow:meadow_chicken",
-    "weight": 12,
+    "weight": 9,
     "minCount": 4,
     "maxCount": 7
   }

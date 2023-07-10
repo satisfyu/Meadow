@@ -5,7 +5,7 @@
   ],
   "spawners": {
     "type": "meadow:dark_cow",
-    "weight": 21,
+    "weight": 9,
     "minCount": 4,
     "maxCount": 7
   }

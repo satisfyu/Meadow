@@ -24,12 +24,4 @@ public class BlockMixin {
     private static void checkCannotConnect(BlockState state, CallbackInfoReturnable<Boolean> cir) {
         if (state.isIn(TagRegistry.CAN_NOT_CONNECT)) cir.setReturnValue(true);
     }
-    /*
-    @Inject(method = "onLandedUpon", at = @At("HEAD"))
-    private void onLandUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
-        if (state.getBlock() instanceof LeveledCauldronBlock block && block.isEntityTouchingFluid(state, pos, entity)) {
-            entity.handleFallDamage(fallDistance, 0f, DamageSource.FALL);
-        }
-    }
-     */
 }

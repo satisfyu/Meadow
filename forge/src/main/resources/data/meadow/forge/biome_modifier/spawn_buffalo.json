@@ -3,13 +3,12 @@
   "biomes": [
     "minecraft:savanna",
     "minecraft:savanna_plateau",
-    "minecraft:windswept_savanna",
-    "minecraft:river"
+    "minecraft:windswept_savanna"
   ],
   "spawners": {
     "type": "meadow:water_buffalo",
-    "weight": 14,
-    "minCount": 8,
-    "maxCount": 12
+    "weight": 4,
+    "minCount": 6,
+    "maxCount": 8
   }
 }

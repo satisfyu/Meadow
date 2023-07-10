@@ -139,7 +139,7 @@ public class MeadowClient {
                         return -1;
                     }
                     return BiomeColors.getWaterColor(world, pos);
-                }, ObjectRegistry.WOODEN_WATER_CAULDRON, ObjectRegistry.COOKING_CAULDRON
+                }, ObjectRegistry.WOODEN_WATER_CAULDRON
         );
 
 

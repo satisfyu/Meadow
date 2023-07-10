@@ -11,8 +11,8 @@
   ],
   "spawners": {
     "type": "meadow:horned_sheep",
-    "weight": 14,
-    "minCount": 4,
-    "maxCount": 3
+    "weight": 7,
+    "minCount": 3,
+    "maxCount": 4
   }
 }

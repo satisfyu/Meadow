@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "meadow:stove_tiles_wood"
+    "#meadow:allows_cooking"
   ]
 }

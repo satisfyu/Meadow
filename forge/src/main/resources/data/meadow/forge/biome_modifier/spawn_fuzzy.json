@@ -7,7 +7,7 @@
   ],
   "spawners": {
     "type": "meadow:fuzzy_sheep",
-    "weight": 12,
+    "weight": 9,
     "minCount": 3,
     "maxCount": 5
   }

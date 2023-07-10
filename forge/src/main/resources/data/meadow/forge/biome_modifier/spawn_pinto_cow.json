@@ -9,7 +9,7 @@
   ],
   "spawners": {
     "type": "meadow:pinto_crow",
-    "weight": 10,
+    "weight": 8,
     "minCount": 2,
     "maxCount": 5
   }

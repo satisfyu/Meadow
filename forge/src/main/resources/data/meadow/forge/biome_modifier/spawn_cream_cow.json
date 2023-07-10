@@ -9,7 +9,7 @@
   ],
   "spawners": {
     "type": "meadow:cream_crow",
-    "weight": 10,
+    "weight": 5,
     "minCount": 2,
     "maxCount": 5
   }

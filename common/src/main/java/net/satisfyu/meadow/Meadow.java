@@ -1,10 +1,7 @@
 package net.satisfyu.meadow;
 
 import dev.architectury.hooks.item.tool.AxeItemHooks;
-import dev.architectury.hooks.level.biome.BiomeHooks;
-import dev.architectury.hooks.level.biome.SpawnProperties;
 import dev.architectury.registry.CreativeTabRegistry;
-import dev.architectury.registry.level.biome.BiomeModifications;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
