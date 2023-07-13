@@ -5,7 +5,7 @@
 		"4": "meadow:block/frame_logs",
 		"6": "meadow:block/pine_planks",
 		"7": "meadow:block/frame_fire",
-		"8": "block/water_still",
+		"8": "meadow:block/water_still",
 		"9": "meadow:block/cooking_cauldron_side",
 		"11": "meadow:block/cooking_cauldron",
 		"particle": "meadow:block/pine_planks"

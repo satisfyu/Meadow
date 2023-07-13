@@ -127,7 +127,7 @@ public class CookingCauldronBlock extends BlockWithEntity {
             double f = (double) pos.getZ() + 0.5;
             if (random.nextDouble() < 0.3) {
                 world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, true);
-                world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.1f, 0.1f, true);
+                world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.05f, 0.05f, true);
             }
             Direction direction = state.get(FACING);
             Direction.Axis axis = direction.getAxis();
@@ -145,7 +145,7 @@ public class CookingCauldronBlock extends BlockWithEntity {
                 double f = (double) pos.getZ() + 0.5;
                 if (random.nextDouble() < 0.3) {
                     world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, true);
-                    world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.1f, 0.1f, true);
+                    world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.05f, 0.05f, true);
                 }
                 Direction direction = state.get(FACING);
                 Direction.Axis axis = direction.getAxis();
@@ -163,7 +163,7 @@ public class CookingCauldronBlock extends BlockWithEntity {
             double f = (double) pos.getZ() + 0.5;
             if (random.nextDouble() < 0.3) {
                 world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, true);
-                world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.1f, 0.1f, true);
+                world.playSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundCategory.BLOCKS, 0.05f, 0.05f, true);
             }
             Direction direction = state.get(FACING);
             Direction.Axis axis = direction.getAxis();

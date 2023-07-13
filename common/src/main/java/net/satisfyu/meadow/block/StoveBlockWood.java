@@ -73,6 +73,8 @@ public class StoveBlockWood extends StoveBlock implements BlockEntityProvider {
             double f = (double) pos.getZ() + 0.5;
             if (random.nextDouble() < 0.1)
                 world.playSound(d, e, f, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+            world.playSound(d, e, f, SoundEvents.BLOCK_SMOKER_SMOKE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+            world.playSound(d, e, f, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
 
             Direction direction = state.get(FACING);
             Direction.Axis axis = direction.getAxis();
@@ -82,6 +84,8 @@ public class StoveBlockWood extends StoveBlock implements BlockEntityProvider {
             double k = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * 0.52 : h;
             world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
             world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            double particleHeight = pos.getY() + 0.5 + 16.0 / 16.0;
+            world.addParticle(ParticleTypes.SMOKE, d, particleHeight, f, 0.0, 0.0, 0.0);
         }
     }
 

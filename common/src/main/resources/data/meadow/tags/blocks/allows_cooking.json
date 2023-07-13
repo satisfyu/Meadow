@@ -1,12 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft:smoker",
     "meadow:stove_tiles_wood",
-    "meadow:stove_tiles_lid",
-    "minecraft:magma_block",
-    "minecraft:furnace",
-    "minecraft:blast_furnace",
     "#c:allows_cooking",
     "#forge:allows_cooking"
   ]
