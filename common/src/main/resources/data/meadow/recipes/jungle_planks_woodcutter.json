@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:jungle_log"
-  },
-  "outputItem": "minecraft:jungle_planks",
-  "outputAmount": 5
-}

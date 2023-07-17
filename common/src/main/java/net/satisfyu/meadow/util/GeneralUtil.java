@@ -1,8 +1,10 @@
 package net.satisfyu.meadow.util;
 
 import com.google.gson.JsonArray;
+import io.netty.buffer.Unpooled;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -34,6 +36,10 @@ public class GeneralUtil {
         Objects.requireNonNull(pos, "BlockPos cannot be null");
 
         return tracking(world, new ChunkPos(pos));
+    }
+
+    public static PacketByteBuf create() {
+        return new PacketByteBuf(Unpooled.buffer());
     }
 
     public static Collection<ServerPlayerEntity> tracking(ServerWorld world, ChunkPos pos) {

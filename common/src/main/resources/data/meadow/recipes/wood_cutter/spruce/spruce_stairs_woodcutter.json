@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "tag": "minecraft:spruce_logs"
+  },
+  "outputItem": "minecraft:spruce_stairs",
+  "outputAmount": 2
+}

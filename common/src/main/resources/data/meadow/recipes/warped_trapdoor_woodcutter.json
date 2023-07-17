@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:warped_stem"
-  },
-  "outputItem": "minecraft:warped_trapdoor",
-  "outputAmount": 2
-}

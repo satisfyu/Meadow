@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:acacia_log"
-  },
-  "outputItem": "minecraft:acacia_button",
-  "outputAmount": 6
-}

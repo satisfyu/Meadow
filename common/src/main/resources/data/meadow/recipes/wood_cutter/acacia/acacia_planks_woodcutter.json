@@ -1,0 +1,8 @@
+{
+  "type": "meadow:woodcutting",
+  "inputItem": {
+    "tag": "minecraft:acacia_logs"
+  },
+  "outputItem": "minecraft:acacia_planks",
+  "outputAmount": 5
+}

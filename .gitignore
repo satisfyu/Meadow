@@ -1,4 +1,5 @@
 build/
+remappedSrc/
 *.ipr
 run/
 *.iws

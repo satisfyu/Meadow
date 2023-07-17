@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:jungle_log"
-  },
-  "outputItem": "minecraft:jungle_slab",
-  "outputAmount": 4
-}

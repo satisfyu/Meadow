@@ -7,9 +7,11 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.StonecutterScreenHandler;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 import net.satisfyu.meadow.client.screen.handler.WoodcutterGuiHandler;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 
@@ -19,11 +21,14 @@ public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
     private static final Identifier TEXTURE = new Identifier("meadow", "textures/gui/woodcutter.png");
     private final int recipeIconPosX = 58;
     private final int recipeIconPosY = 15;
-    private final int maxRecipeIcons = 16;
+    private final int maxRecipeIcons = 12;
     private final int recipeIconWidth = 16;
     private final int recipeIconHeight = 18;
     private final int recipeIconPerLine = 4;
     private boolean canCraft;
+    private float scrollAmount;
+    private boolean mouseClicked;
+    private int scrollOffset;
 
     public WoodcutterGui(WoodcutterGuiHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -45,16 +50,23 @@ public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
         int posX = this.x;
         int posY = this.y;
         this.drawTexture(matrices, posX, posY, 0, 0, this.backgroundWidth, this.backgroundHeight);
+
+        int k = (int)(41.0f * this.scrollAmount);
+        if(this.shouldScroll()) this.drawTexture(matrices, posX + 124, posY + 14 + k, 176, 0, 11, 15);
         int recipeX = posX + recipeIconPosX;
         int recipeY = posY + recipeIconPosY;
-        this.renderRecipeBackground(matrices, mouseX, mouseY, recipeX, recipeY);
-        this.renderRecipeIcons(recipeX, recipeY);
+
+        int scrollOffsetOFF = scrollOffset + maxRecipeIcons;
+        this.renderRecipeBackground(matrices, mouseX, mouseY, recipeX, recipeY, scrollOffsetOFF);
+        this.renderRecipeIcons(recipeX, recipeY, scrollOffsetOFF);
     }
 
-    private void renderRecipeBackground(MatrixStack matrices, int mouseX, int mouseY, int x, int y) {
-        for (int i = 0; i < maxRecipeIcons && i < this.handler.getAvailableRecipeCount(); i++) {
-            int posX = x + recipeIconWidth * (i % recipeIconPerLine);
-            int l = i / recipeIconPerLine;
+    private void renderRecipeBackground(MatrixStack matrices, int mouseX, int mouseY, int x, int y, int scrollOffsetOFF) {
+        for (int i = this.scrollOffset; i < scrollOffsetOFF && i < this.handler.getAvailableRecipeCount(); i++) {
+            int offsetedI = i - this.scrollOffset;
+
+            int posX = x + recipeIconWidth * (offsetedI % recipeIconPerLine);
+            int l = offsetedI / recipeIconPerLine;
             int posY = y + recipeIconHeight * l;
             int offsetY = this.backgroundHeight;
             if (i == this.handler.getSelectedRecipe()) {
@@ -66,11 +78,12 @@ public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
         }
     }
 
-    private void renderRecipeIcons(int x, int y) {
+    private void renderRecipeIcons(int x, int y, int scrollOffsetOFF) {
         List<WoodcuttingRecipe> list = this.handler.getAvailableRecipes();
-        for (int i = 0; i < maxRecipeIcons && i < this.handler.getAvailableRecipeCount(); i++) {
-            int k = x + recipeIconWidth * (i % recipeIconPerLine);
-            int l = i / recipeIconPerLine;
+        for (int i = this.scrollOffset; i < scrollOffsetOFF && i < this.handler.getAvailableRecipeCount(); i++) {
+            int offsetedI = i - this.scrollOffset;
+            int k = x + recipeIconWidth * (offsetedI % recipeIconPerLine);
+            int l = offsetedI / recipeIconPerLine;
             int m = y + recipeIconHeight * l + 1;
             this.client.getItemRenderer().renderInGuiWithOverrides(list.get(i).getOutput(), k, m);
         }
@@ -82,10 +95,13 @@ public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
         if (this.canCraft) {
             int i = this.x + recipeIconPosX;
             int j = this.y + recipeIconPosY;
+            int scrollOffsetOFF = this.scrollOffset + maxRecipeIcons;
             List<WoodcuttingRecipe> list = this.handler.getAvailableRecipes();
-            for (int l = 0; l < maxRecipeIcons && l < this.handler.getAvailableRecipeCount(); l++) {
-                int n = i + l % recipeIconPerLine * recipeIconWidth;
-                int o = j + l / recipeIconPerLine * recipeIconHeight;
+            for (int l = scrollOffset; l < scrollOffsetOFF && l < this.handler.getAvailableRecipeCount(); l++) {
+                int offsetedL = l - this.scrollOffset;
+
+                int n = i + offsetedL % recipeIconPerLine * recipeIconWidth;
+                int o = j + offsetedL / recipeIconPerLine * recipeIconHeight;
                 if (x < n || x >= n + recipeIconWidth || y < o || y >= o + recipeIconHeight) continue;
                 this.renderTooltip(matrices, list.get(l).getOutput(), x, y);
             }
@@ -98,20 +114,62 @@ public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        this.mouseClicked = false;
         if (this.canCraft) {
             int i = this.x + recipeIconPosX;
             int j = this.y + recipeIconPosY;
-            for (int l = 0; l < maxRecipeIcons; l++) {
-                double d = mouseX - (double) (i + l % recipeIconPerLine * recipeIconWidth);
-                double e = mouseY - (double) (j + l / recipeIconPerLine * recipeIconHeight);
-                if (!(d >= 0.0) || !(e >= 0.0) || !(d < (float) recipeIconWidth) || !(e < (float) recipeIconHeight) || !this.handler.onButtonClick(this.client.player, l))
+
+            int k = scrollOffset + maxRecipeIcons;
+            for (int l = scrollOffset; l < k; l++) {
+                int offsetedL = l - this.scrollOffset;
+                double d = mouseX - (double) (i + offsetedL % recipeIconPerLine * recipeIconWidth);
+                double e = mouseY - (double) (j + offsetedL / recipeIconPerLine * recipeIconHeight);
+                if (!(d >= 0.0) || !(e >= 0.0) || !(d < (float) recipeIconWidth) || !(e < (float) recipeIconHeight) || !handler.onButtonClick(client.player, l))
                     continue;
                 MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0f));
-                this.client.interactionManager.clickButton(this.handler.syncId, l);
+                this.client.interactionManager.clickButton(handler.syncId, l);
                 return true;
+            }
+
+            i = this.x + 124;
+            j = this.y + 9;
+            if (mouseX >= i && mouseX < (i + 11) && mouseY >= j && mouseY < (j + recipeIconPosX)) {
+                this.mouseClicked = true;
             }
         }
         return super.mouseClicked(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+        if (this.mouseClicked && this.shouldScroll()) {
+            int i = this.y + recipeIconPosY;
+            int j = i + recipeIconPosX;
+            this.scrollAmount = ((float)mouseY - (float)i - 7.5f) / ((float)(j - i) - 15.0f);
+            this.scrollAmount = MathHelper.clamp(this.scrollAmount, 0.0f, 1.0f);
+            this.scrollOffset = (int)((double)(this.scrollAmount * (float)this.getMaxScroll()) + 0.5) * 4;
+            return true;
+        }
+        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+        if (this.shouldScroll()) {
+            int i = this.getMaxScroll();
+            float f = (float)amount / (float)i;
+            this.scrollAmount = MathHelper.clamp(this.scrollAmount - f, 0.0f, 1.0f);
+            this.scrollOffset = (int)((double)(this.scrollAmount * (float)i) + 0.5) * 4;
+        }
+        return true;
+    }
+
+    private boolean shouldScroll() {
+        return this.canCraft && this.handler.getAvailableRecipeCount() > maxRecipeIcons;
+    }
+
+    protected int getMaxScroll() {
+        return (this.handler.getAvailableRecipeCount() + 4 - 1) / 4 - 3;
     }
 
     @Override

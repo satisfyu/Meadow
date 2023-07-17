@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:birch_log"
-  },
-  "outputItem": "minecraft:birch_fence",
-  "outputAmount": 4
-}

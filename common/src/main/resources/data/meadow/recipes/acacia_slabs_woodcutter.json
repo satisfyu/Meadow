@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:acacia_log"
-  },
-  "outputItem": "minecraft:acacia_slab",
-  "outputAmount": 4
-}

@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "meadow:pine_log"
-  },
-  "outputItem": "meadow:pine_railing",
-  "outputAmount": 2
-}
