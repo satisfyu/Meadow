@@ -39,9 +39,9 @@
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.19.2",
-    "architectury": ">=6.5.77",
-    "doapi": ">=1.1.0",
-    "terrablender": ">=2.0.1.136"
+    "minecraft": ">=1.20",
+    "architectury": ">=9.1.10",
+    "doapi": ">=1.2.3",
+    "terrablender": ">=3.0.0.163"
   }
 }

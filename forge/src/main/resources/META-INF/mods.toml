@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[43,)"
+loaderVersion = "[46,)"
 #issueTrackerURL = ""
 license = "ARR"
 
@@ -9,21 +9,22 @@ version = "${version}"
 displayName = "Meadow"
 authors = ["satisfy", "Cristelknight999", "BMJO"]
 description = '''
-This is an example description! Tell everyone what your mod is about!
+A small mod Vanilla+ Mod that aims to improve the meadow biome and adds a new way to create food.
+It also brings back a few animals from Minecraft:Earth and gives them a reason to be there beside of looking pretty.
 '''
 logoFile = "pack.png"
 
 [[dependencies.meadow]]
 modId = "forge"
 mandatory = true
-versionRange = "[43,)"
+versionRange = "[46,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.meadow]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19.2,)"
+versionRange = "[1.20,)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -37,13 +38,13 @@ side = "BOTH"
 [[dependencies.meadow]]
 modId = "terrablender"
 mandatory = true
-versionRange = "[2.0.1.136,)"
+versionRange = "[3.0.0.163,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.meadow]]
 modId = "doapi"
 mandatory = true
-versionRange = "[1.1.0,)"
+versionRange = "[1.2.3,)"
 ordering = "AFTER"
 side = "BOTH"
