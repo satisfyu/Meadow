@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -88,16 +89,17 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
     @Override
     public void tick(World world, BlockPos pos, BlockState state, CheeseFormBlockEntity blockEntity) {
         if (world.isClient) return;
+        DynamicRegistryManager manager = world.getRegistryManager();
         final var recipeType = world.getRecipeManager()
                 .getFirstMatch(RecipeRegistry.CHEESE.get(), blockEntity, world)
                 .orElse(null);
-        boolean working = canCraft(recipeType);
+        boolean working = canCraft(recipeType, manager);
         if (working) {
             this.fermentationTime++;
 
             if (this.fermentationTime >= COOKING_TIME_IN_TICKS) {
                 this.fermentationTime = 0;
-                craft(recipeType);
+                craft(recipeType, manager);
                 markDirty();
             }
         } else {
@@ -109,14 +111,14 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         }
     }
 
-    private boolean canCraft(CheeseFormRecipe recipe) {
-        if (recipe == null || recipe.getOutput().isEmpty()) {
+    private boolean canCraft(CheeseFormRecipe recipe, DynamicRegistryManager manager) {
+        if (recipe == null || recipe.getOutput(manager).isEmpty()) {
             return false;
         } else if (areInputsEmpty()) {
             return false;
         }
         ItemStack itemStack = this.getStack(OUTPUT_SLOT);
-        return itemStack.isEmpty() || itemStack == recipe.getOutput();
+        return itemStack.isEmpty() || itemStack == recipe.getOutput(manager);
     }
 
 
@@ -128,11 +130,11 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         return emptyStacks == 2;
     }
 
-    private void craft(CheeseFormRecipe recipe) {
-        if (!canCraft(recipe)) {
+    private void craft(CheeseFormRecipe recipe, DynamicRegistryManager manager) {
+        if (!canCraft(recipe, manager)) {
             return;
         }
-        final ItemStack recipeOutput = recipe.getOutput();
+        final ItemStack recipeOutput = recipe.getOutput(manager);
         final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
             ItemStack output = recipeOutput.copy();
@@ -188,7 +190,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
     @Override
     public void setStack(int slot, ItemStack stack) {
         final ItemStack stackInSlot = this.inventory.get(slot);
-        boolean dirty = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(stackInSlot) && ItemStack.areNbtEqual(stack, stackInSlot);
+        boolean dirty = !stack.isEmpty() && ItemStack.areItemsEqual(stack, stackInSlot) && ItemStack.areEqual(stack, stackInSlot);
         this.inventory.set(slot, stack);
         if (stack.getCount() > this.getMaxCountPerStack()) {
             stack.setCount(this.getMaxCountPerStack());

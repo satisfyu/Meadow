@@ -11,11 +11,11 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 
 public class WoodcuttingRecipe implements Recipe<Inventory> {
@@ -40,15 +40,15 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
     }
 
     @Override
+    public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
+        return this.outputStack.copy();
+    }
+
+    @Override
     public DefaultedList<Ingredient> getIngredients() {
         DefaultedList<Ingredient> defaultedList = DefaultedList.of();
         defaultedList.add(this.input);
         return defaultedList;
-    }
-
-    @Override
-    public ItemStack craft(Inventory inventory) {
-        return this.outputStack.copy();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack getOutput() {
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return outputStack;
     }
 
@@ -98,7 +98,7 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
 
             Ingredient input = Ingredient.fromJson(recipeJson.inputItem);
 
-            Item outputItem = Registry.ITEM.getOrEmpty(new Identifier(recipeJson.outputItem))
+            Item outputItem = Registries.ITEM.getOrEmpty(new Identifier(recipeJson.outputItem))
                     // Validate the inputted item actually exists
                     .orElseThrow(() -> new JsonSyntaxException("No such item " + recipeJson.outputItem));
             ItemStack output = new ItemStack(outputItem, recipeJson.outputAmount);
@@ -110,7 +110,7 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
         // Turns Recipe into PacketByteBuf
         public void write(PacketByteBuf packetData, WoodcuttingRecipe recipe) {
             recipe.getInput().write(packetData);
-            packetData.writeItemStack(recipe.getOutput());
+            packetData.writeItemStack(recipe.outputStack);
         }
 
         @Override

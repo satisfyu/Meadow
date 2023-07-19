@@ -18,7 +18,7 @@ import java.util.List;
 
 public class FurHead extends CustomHatItem {
     public FurHead(ArmorMaterial material, Settings settings) {
-        super(material, EquipmentSlot.HEAD, settings);
+        super(material, Type.HELMET, settings);
     }
 
     @Override

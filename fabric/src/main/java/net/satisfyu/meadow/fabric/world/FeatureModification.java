@@ -3,7 +3,7 @@ package net.satisfyu.meadow.fabric.world;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.tag.BiomeTags;
+import net.minecraft.registry.tag.BiomeTags;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
 

@@ -11,13 +11,14 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.satisfyu.meadow.block.CookingCauldronBlock;
 import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
@@ -86,23 +87,24 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
             throw new NullPointerException("Null world invoked");
         if(this.getCachedState().get(CookingCauldronBlock.HANGING)) return true;
         final BlockState belowState = this.getWorld().getBlockState(getPos().down());
-        final var optionalList = Registry.BLOCK.getEntryList(TagRegistry.ALLOWS_COOKING);
+        final var optionalList = Registries.BLOCK.getEntryList(TagRegistry.ALLOWS_COOKING);
         final var entryList = optionalList.orElse(null);
         if (entryList == null) {
             return false;
         } else return entryList.contains(belowState.getBlock().getRegistryEntry());
     }
 
-    private boolean canCraft(CookingCauldronRecipe recipe) {
-        if (recipe == null || recipe.getOutput().isEmpty()) {
+    private boolean canCraft(CookingCauldronRecipe recipe, DynamicRegistryManager manager) {
+        if (recipe == null || recipe.getOutput(manager).isEmpty()) {
             return false;
         } else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
             return true;
         } else {
-            final ItemStack recipeOutput = recipe.getOutput();
+            final ItemStack recipeOutput = recipe.getOutput(manager);
             final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
             final int outputSlotCount = outputSlotStack.getCount();
-            if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+
+            if (!ItemStack.areItemsEqual(outputSlotStack, recipeOutput)) { //no damage same?
                 return false;
             } else if (outputSlotCount < this.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
                 return true;
@@ -112,11 +114,11 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
         }
     }
 
-    private void craft(CookingCauldronRecipe recipe) {
-        if (!canCraft(recipe)) {
+    private void craft(CookingCauldronRecipe recipe, DynamicRegistryManager manager) {
+        if (!canCraft(recipe, manager)) {
             return;
         }
-        final ItemStack recipeOutput = recipe.getOutput();
+        final ItemStack recipeOutput = recipe.getOutput(manager);
         final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
             setStack(OUTPUT_SLOT, recipeOutput.copy());
@@ -159,14 +161,15 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Inventory
         }
         CookingCauldronRecipe recipe = world.getRecipeManager().getFirstMatch(RecipeRegistry.COOKING.get(), this, world).orElse(null);
 
-        boolean canCraft = canCraft(recipe);
+        DynamicRegistryManager manager = world.getRegistryManager();
+        boolean canCraft = canCraft(recipe, manager);
         if (canCraft) {
             this.cookingTime++;
             if (this.cookingTime >= MAX_COOKING_TIME) {
                 this.cookingTime = 0;
-                craft(recipe);
+                craft(recipe, manager);
             }
-        } else if (!canCraft(recipe)) {
+        } else if (!canCraft(recipe, manager)) {
             this.cookingTime = 0;
         }
         if (canCraft) {

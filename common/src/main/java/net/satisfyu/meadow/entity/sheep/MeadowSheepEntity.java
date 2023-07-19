@@ -51,7 +51,7 @@ public class MeadowSheepEntity extends SheepEntity {
     @Override
     public void sheared(SoundCategory shearedSoundCategory) {
         if (!DROPS.containsValue(woolBlock)) DROPS.put(DyeColor.WHITE, woolBlock);
-        this.world.playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
+        this.getWorld().playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
         this.setSheared(true);
         int i = 1 + this.random.nextInt(3);
 

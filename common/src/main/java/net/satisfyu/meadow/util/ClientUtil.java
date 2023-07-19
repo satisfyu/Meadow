@@ -32,17 +32,4 @@ public class ClientUtil {
         renderBlock(item.getBlock().getDefaultState(), matrices, vertexConsumers, entity);
     }
 
-    public static <T extends BlockEntity> void renderItem(ItemStack stack, MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity) {
-        MinecraftClient.getInstance()
-                .getItemRenderer()
-                .renderItem(stack,
-                        ModelTransformation.Mode.GUI,
-                        ClientUtil.getLightLevel(entity.getWorld(), entity.getPos()),
-                        OverlayTexture.DEFAULT_UV,
-                        matrices,
-                        vertexConsumers,
-                        1
-                );
-    }
-
 }

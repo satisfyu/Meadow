@@ -28,7 +28,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.registry.DamageSourceRegistry;
 import net.satisfyu.meadow.util.BlockStateUtils;
 import net.satisfyu.meadow.util.MathUtils;
 import net.satisfyu.meadow.registry.TagRegistry;
@@ -119,7 +118,7 @@ public class StoveTilesFurnaceBlock extends Block {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        return getDefaultState().with(FACING, context.getPlayerFacing().getOpposite()).with(LIT, true);
+        return getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite()).with(LIT, true);
     }
 
     @Override
@@ -127,7 +126,7 @@ public class StoveTilesFurnaceBlock extends Block {
         boolean isLit = world.getBlockState(pos).get(LIT);
         if (isLit && !entity.isFireImmune() && entity instanceof LivingEntity livingEntity &&
                 !EnchantmentHelper.hasFrostWalker(livingEntity)) {
-            entity.damage(DamageSourceRegistry.COBBLESTONE_FURNACE_BLOCK, 1.f);
+            entity.damage(world.getDamageSources().inFire(), 1.f);
         }
 
         super.onSteppedOn(world, pos, state, entity);

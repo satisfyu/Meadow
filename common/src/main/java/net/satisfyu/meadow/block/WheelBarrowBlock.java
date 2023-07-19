@@ -72,7 +72,7 @@ public class WheelBarrowBlock extends FlowerPotBlock implements BlockEntityProvi
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().rotateClockwise(Direction.Axis.Y));
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateClockwise(Direction.Axis.Y));
     }
 
     @Nullable

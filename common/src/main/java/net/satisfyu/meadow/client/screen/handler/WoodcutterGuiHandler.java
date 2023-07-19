@@ -8,7 +8,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
@@ -53,7 +52,7 @@ public class WoodcutterGuiHandler extends ScreenHandler {
     public WoodcutterGuiHandler(int syncId, PlayerInventory playerInventory, final ScreenHandlerContext context) {
         super(ScreenHandlerRegistry.WOODCUTTER_SCREEN_HANDLER.get(), syncId);
         this.context = context;
-        this.world = playerInventory.player.world;
+        this.world = playerInventory.player.getWorld();
 
         buildBlockEntityContainer(playerInventory);
         buildPlayerContainer(playerInventory);
@@ -67,8 +66,8 @@ public class WoodcutterGuiHandler extends ScreenHandler {
         this.outputSlot = this.addSlot(new FurnaceOutputSlot(playerInventory.player, this.output, 1, 144, 34) {
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                stack.onCraft(player.world, player, stack.getCount());
-                WoodcutterGuiHandler.this.output.unlockLastRecipe(player);
+                stack.onCraft(player.getWorld(), player, stack.getCount());
+                WoodcutterGuiHandler.this.output.unlockLastRecipe(player, this.getInputStacks());
                 ItemStack itemStack = WoodcutterGuiHandler.this.inputSlot.takeStack(1);
                 if (!itemStack.isEmpty()) {
                     WoodcutterGuiHandler.this.populateResult();
@@ -81,6 +80,10 @@ public class WoodcutterGuiHandler extends ScreenHandler {
                     }
                 });
                 super.onTakeItem(player, stack);
+            }
+
+            private List<ItemStack> getInputStacks() {
+                return List.of(WoodcutterGuiHandler.this.inputSlot.getStack());
             }
         });
     }
@@ -127,6 +130,8 @@ public class WoodcutterGuiHandler extends ScreenHandler {
         return true;
     }
 
+
+
     private boolean isInBounds(int id) {
         return id >= 0 && id < this.availableRecipes.size();
     }
@@ -152,11 +157,17 @@ public class WoodcutterGuiHandler extends ScreenHandler {
     void populateResult() {
         if (!this.availableRecipes.isEmpty() && this.isInBounds(this.selectedRecipe.get())) {
             WoodcuttingRecipe woodcuttingRecipe = this.availableRecipes.get(this.selectedRecipe.get());
-            this.output.setLastRecipe(woodcuttingRecipe);
-            this.outputSlot.setStack(woodcuttingRecipe.craft(this.input));
+            ItemStack itemStack = woodcuttingRecipe.craft(this.input, this.world.getRegistryManager());
+            if (itemStack.isItemEnabled(this.world.getEnabledFeatures())) {
+                this.output.setLastRecipe(woodcuttingRecipe);
+                this.outputSlot.setStackNoCallbacks(itemStack);
+            } else {
+                this.outputSlot.setStackNoCallbacks(ItemStack.EMPTY);
+            }
         } else {
-            this.outputSlot.setStack(ItemStack.EMPTY);
+            this.outputSlot.setStackNoCallbacks(ItemStack.EMPTY);
         }
+
         this.sendContentUpdates();
     }
 
@@ -174,8 +185,9 @@ public class WoodcutterGuiHandler extends ScreenHandler {
         return slot.inventory != this.output && super.canInsertIntoSlot(stack, slot);
     }
 
+
     @Override
-    public ItemStack transferSlot(PlayerEntity player, int index) {
+    public ItemStack quickMove(PlayerEntity player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasStack()) {
@@ -183,7 +195,7 @@ public class WoodcutterGuiHandler extends ScreenHandler {
             Item item = itemStack2.getItem();
             itemStack = itemStack2.copy();
             if (index == 1) {
-                item.onCraft(itemStack2, player.world, player);
+                item.onCraft(itemStack2, player.getWorld(), player);
                 if (!this.insertItem(itemStack2, 2, 38, true)) {
                     return ItemStack.EMPTY;
                 }
@@ -207,11 +219,13 @@ public class WoodcutterGuiHandler extends ScreenHandler {
         return itemStack;
     }
 
-    @Override
-    public void close(PlayerEntity player) {
-        super.close(player);
+
+    public void onClosed(PlayerEntity player) {
+        super.onClosed(player);
         this.output.removeStack(1);
-        this.context.run((world, pos) -> this.dropInventory(player, this.input));
+        this.context.run((world, pos) -> {
+            this.dropInventory(player, this.input);
+        });
     }
 }
 

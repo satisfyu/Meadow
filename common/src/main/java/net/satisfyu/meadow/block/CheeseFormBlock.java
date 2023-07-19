@@ -108,11 +108,6 @@ public class CheeseFormBlock extends BlockWithEntity {
         }
     }
 
-    @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.IGNORE;
-    }
-
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {

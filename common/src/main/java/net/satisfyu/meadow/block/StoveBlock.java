@@ -48,7 +48,7 @@ public class StoveBlock extends FacingBlock {
         List<Block> block = getBlocksToCheck();
         if (!block.isEmpty()) {
             if (block.contains(ctx.getWorld().getBlockState(ctx.getBlockPos().offset(directionToCheck)).getBlock())) {
-                return this.getDefaultState().with(CONNECTED, true).with(FACING, ctx.getPlayerFacing().getOpposite());
+                return this.getDefaultState().with(CONNECTED, true).with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
             }
         }
         return super.getPlacementState(ctx);

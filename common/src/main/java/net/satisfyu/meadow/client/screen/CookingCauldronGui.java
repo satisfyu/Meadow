@@ -3,6 +3,7 @@ package net.satisfyu.meadow.client.screen;
 
 import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScreen;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
@@ -22,17 +23,15 @@ public class CookingCauldronGui extends AbstractRecipeBookGUIScreen<CookingCauld
     }
 
     @Override
-    public void renderProgressArrow(MatrixStack matrices) {
+    protected void renderProgressArrow(DrawContext guiGraphics) {
         int progress = this.handler.getScaledProgress(17);
-        this.drawTexture(matrices, x + 92, y + 10, 178, 16, progress, 29); //Position Arrow (moved 8 pixels to the left)
+        guiGraphics.drawTexture(BACKGROUND, x + 92, y + 10, 178, 16, progress, 29); //Position Arrow (moved 8 pixels to the left)
     }
 
-
-
     @Override
-    public void renderBurnIcon(MatrixStack matrices, int posX, int posY) {
+    protected void renderBurnIcon(DrawContext guiGraphics, int posX, int posY) {
         if (handler.isBeingBurned()) {
-            this.drawTexture(matrices, posX + 124, posY + 51, 176, 0, 17, 15); //fire (moved 5 pixels up)
+            guiGraphics.drawTexture(BACKGROUND, posX + 124, posY + 51, 176, 0, 17, 15); //fire (moved 5 pixels up)
         }
     }
 

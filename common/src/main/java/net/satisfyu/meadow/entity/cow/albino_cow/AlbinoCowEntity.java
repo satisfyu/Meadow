@@ -30,8 +30,8 @@ public class AlbinoCowEntity extends CowEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.world.isDay() && this.world.isSkyVisible(this.getBlockPos()) && !this.isBaby()) {
-            this.damage(DamageSource.ON_FIRE, 1.0f);
+        if (this.getWorld().isDay() && this.getWorld().isSkyVisible(this.getBlockPos()) && !this.isBaby()) {
+            this.damage(getWorld().getDamageSources().inFire(), 1.0f);
         }
     }
 
@@ -43,7 +43,7 @@ public class AlbinoCowEntity extends CowEntity {
             player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
             ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, bl ? Items.MILK_BUCKET.getDefaultStack() : ObjectRegistry.WOODEN_MILK_BUCKET.get().getDefaultStack());
             player.setStackInHand(hand, itemStack2);
-            return ActionResult.success(this.world.isClient);
+            return ActionResult.success(this.getWorld().isClient);
         } else {
             return super.interactMob(player, hand);
         }

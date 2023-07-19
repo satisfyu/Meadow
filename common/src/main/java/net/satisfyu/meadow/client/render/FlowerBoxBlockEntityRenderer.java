@@ -6,7 +6,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 import net.satisfyu.meadow.block.FlowerBoxBlock;
 import net.satisfyu.meadow.entity.blockentities.FlowerBoxBlockEntity;
 
@@ -45,15 +45,15 @@ public class FlowerBoxBlockEntityRenderer implements BlockEntityRenderer<FlowerB
         switch (state.get(FlowerBoxBlock.FACING)) {
             case EAST -> {
                 matrices.translate(-0.5f, 0f, 1f);
-                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90));
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90));
             }
             case SOUTH -> {
                 matrices.translate(1f, 0f, 1f);
-                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
             }
             case WEST -> {
                 matrices.translate(1.5f, 0f, 0f);
-                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(270));
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(270));
             }
         }
     }

@@ -7,7 +7,6 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.util.math.Vec3f;
 import net.satisfyu.meadow.block.WheelBarrowBlock;
 import net.satisfyu.meadow.entity.blockentities.WheelBarrowBlockEntity;
 
@@ -27,7 +26,6 @@ public class WheelBarrowBlockEntityRenderer implements BlockEntityRenderer<Wheel
         if (selfState.getBlock() instanceof WheelBarrowBlock) {
             Item item = entity.getFlower();
             matrices.push();
-            //applyBlockAngle(matrices, selfState, 180);
             if (item instanceof BlockItem) {
                 BlockState state = ((BlockItem) item).getBlock().getDefaultState();
                 matrices.translate(0f, 0.625f, 0f);
@@ -35,12 +33,5 @@ public class WheelBarrowBlockEntityRenderer implements BlockEntityRenderer<Wheel
             }
         }
         matrices.pop();
-    }
-
-    //NoUse
-    public static void applyBlockAngle(MatrixStack matrices, BlockState state, float angleOffset) {
-        float angle = state.get(WheelBarrowBlock.FACING).asRotation();
-        matrices.translate(1, 0, 1);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(angleOffset - angle));
     }
 }

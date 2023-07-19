@@ -5,7 +5,7 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.effects.CozyHomeEffect;
 import net.satisfyu.meadow.util.MeadowIdentifier;
@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 
 public class EffectRegistry {
-    public static final DeferredRegister<StatusEffect> STATUS_EFFECTS = DeferredRegister.create(Meadow.MOD_ID, Registry.MOB_EFFECT_KEY);
+    public static final DeferredRegister<StatusEffect> STATUS_EFFECTS = DeferredRegister.create(Meadow.MOD_ID, RegistryKeys.STATUS_EFFECT);
     public static final Registrar<StatusEffect> STATUS_EFFECTS_REGISTRAR = STATUS_EFFECTS.getRegistrar();
 
     public static final RegistrySupplier<StatusEffect> COZY_HOME = registerEffect("cozy_home", CozyHomeEffect::new);

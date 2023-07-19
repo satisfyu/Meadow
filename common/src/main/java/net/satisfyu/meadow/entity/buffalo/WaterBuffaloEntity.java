@@ -32,7 +32,7 @@ public class WaterBuffaloEntity extends CowEntity {
             player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
             ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, ObjectRegistry.WOODEN_BUFFALO_MILK_BUCKET.get().getDefaultStack());
             player.setStackInHand(hand, itemStack2);
-            return ActionResult.success(this.world.isClient);
+            return ActionResult.success(this.getWorld().isClient);
         } else {
             return super.interactMob(player, hand);
         }

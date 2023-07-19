@@ -16,7 +16,7 @@ import java.util.List;
 
 public class FurLegs extends CustomArmorItem {
     public FurLegs(ArmorMaterial material, Settings settings) {
-        super(material, EquipmentSlot.LEGS, settings);
+        super(material, Type.LEGGINGS, settings);
     }
 
     @Override

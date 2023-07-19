@@ -4,9 +4,11 @@ import com.google.common.collect.ImmutableList;
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
@@ -27,12 +29,13 @@ public enum CookingCauldronRecipeBookGroup implements IRecipeBookGroup {
         this.icons = ImmutableList.copyOf(entries);
     }
 
-    public boolean fitRecipe(Recipe<?> recipe) {
+    @Override
+    public boolean fitRecipe(Recipe<? extends Inventory> recipe, DynamicRegistryManager dynamicRegistryManager) {
         if (recipe instanceof CookingCauldronRecipe cookingCauldronRecipe) {
             return switch (this) {
                 case SEARCH -> true;
-                case MEADOW -> recipe.getOutput().getItem().getGroup() == Meadow.MEADOW_TAB;
-                case MISC -> recipe.getOutput().getItem().getGroup() != Meadow.MEADOW_TAB;
+                case MEADOW -> recipe.getOutput(dynamicRegistryManager).isFood();
+                case MISC -> recipe.getOutput(dynamicRegistryManager).getItem().isDamageable();
             };
         }
         return false;

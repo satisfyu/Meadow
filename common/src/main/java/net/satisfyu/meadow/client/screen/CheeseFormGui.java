@@ -2,6 +2,7 @@ package net.satisfyu.meadow.client.screen;
 
 import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScreen;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
@@ -20,11 +21,11 @@ public class CheeseFormGui extends AbstractRecipeBookGUIScreen<CheeseFormGuiHand
     }
 
     @Override
-    public void renderProgressArrow(MatrixStack matrices) {
+    protected void renderProgressArrow(DrawContext guiGraphics) {
         final int progressX = this.handler.getScaledXProgress();
-        this.drawTexture(matrices, x + 79, y + 36, 178, 4, progressX, 10);
+        guiGraphics.drawTexture(BACKGROUND, x + 79, y + 36, 178, 4, progressX, 10);
         final int progressY = this.handler.getScaledYProgress();
-        this.drawTexture(matrices, x + 81, y + 8, 180, 22, 16, progressY);
+        guiGraphics.drawTexture(BACKGROUND, x + 81, y + 8, 180, 22, 16, progressY);
     }
 
     static {

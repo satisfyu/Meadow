@@ -2,10 +2,11 @@ package net.satisfyu.meadow.world;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.satisfyu.meadow.registry.ObjectRegistry;
@@ -28,7 +29,7 @@ public class MeadowSurfaceRules {
     public static final RegistryKey<Biome> MEADOW_FOREST_KEY = createBiomeKey("meadow_forest");
 
     private static RegistryKey<Biome> createBiomeKey(String name) {
-        return RegistryKey.of(Registry.BIOME_KEY, new Identifier(MOD_ID, name));
+        return RegistryKey.of(RegistryKeys.BIOME, new Identifier(MOD_ID, name));
     }
 
     public static MaterialRules.MaterialRule makeRules() {
@@ -57,6 +58,6 @@ public class MeadowSurfaceRules {
     }
 
     private static RegistryKey<DoublePerlinNoiseSampler.NoiseParameters> register(String name) {
-        return RegistryKey.of(Registry.NOISE_KEY, new Identifier(MOD_ID, name));
+        return RegistryKey.of(RegistryKeys.NOISE_PARAMETERS, new Identifier(MOD_ID, name));
     }
 }

@@ -6,7 +6,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 import net.satisfyu.meadow.block.CheeseRackBlock;
 import net.satisfyu.meadow.entity.blockentities.CheeseRackBlockEntity;
 
@@ -43,6 +43,6 @@ public class CheeseRackBlockEntityRenderer implements BlockEntityRenderer<Cheese
     public static void applyBlockAngle(MatrixStack matrices, BlockState state, float angleOffset) {
         float angle = state.get(CheeseRackBlock.FACING).asRotation();
         matrices.translate(0.5, 0, 0.5);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(angleOffset - angle));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(angleOffset - angle));
     }
 }

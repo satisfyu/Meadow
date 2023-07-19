@@ -10,8 +10,6 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
@@ -21,6 +19,7 @@ import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class FabricVillager {
+    /*
     private static final MeadowIdentifier CHEESEMAKER_POI_IDENTIFIER = new MeadowIdentifier("cheesemaker_poi");
     public static final PointOfInterestType CHEESEMAKER_POI = PointOfInterestHelper.register(CHEESEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.CHEESE_RACK.get());
     public static final VillagerProfession CHEESEMAKER = Registry.register(Registry.VILLAGER_PROFESSION, new MeadowIdentifier("cheesemaker"), VillagerProfessionBuilder.create().id(new MeadowIdentifier("cheesemaker")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, CHEESEMAKER_POI_IDENTIFIER)).build());
@@ -30,8 +29,11 @@ public class FabricVillager {
     public static final VillagerProfession HERMIT = Registry.register(Registry.VILLAGER_PROFESSION, new MeadowIdentifier("hermit"), VillagerProfessionBuilder.create().id(new MeadowIdentifier("hermit")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, HERMIT_POI_IDENTIFIER)).build());
 
     public static final VillagerType MEADOW = Registry.register(Registry.VILLAGER_TYPE, new MeadowIdentifier("meadow"), new VillagerType("meadow"));
+
+     */
     
     public static void init() {
+        /*
         TradeOfferHelper.registerVillagerOffers(CHEESEMAKER, 1, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.RENNET.get(), 1, 2, 7));
         });
@@ -79,6 +81,8 @@ public class FabricVillager {
         });
 
         //VillagerType.BIOME_TO_TYPE.put(RegistryKey.of(Registry.BIOME_KEY, new Identifier("meadow")), MEADOW);
+
+         */
     }
 
     static class BuyForOneEmeraldFactory implements TradeOffers.Factory {

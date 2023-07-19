@@ -1,8 +1,8 @@
 package net.satisfyu.meadow.fabric.world;
 
 import net.fabricmc.fabric.api.biome.v1.*;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.gen.GenerationStep;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
@@ -27,7 +27,7 @@ public class MeadowBiomeModification {
     }
 
     private static Predicate<BiomeSelectionContext> getMeadowSelector(String path) {
-        return BiomeSelectors.tag(TagKey.of(Registry.BIOME_KEY, new MeadowIdentifier(path)));
+        return BiomeSelectors.tag(TagKey.of(RegistryKeys.BIOME, new MeadowIdentifier(path)));
     }
 
 

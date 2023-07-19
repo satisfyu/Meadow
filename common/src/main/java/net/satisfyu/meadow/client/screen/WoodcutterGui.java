@@ -2,12 +2,11 @@ package net.satisfyu.meadow.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.StonecutterScreenHandler;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -36,32 +35,34 @@ public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        super.render(matrices, mouseX, mouseY, delta);
-        this.drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
+        this.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
+
+
     @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        this.renderBackground(matrices);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
+        this.renderBackground(context);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int posX = this.x;
         int posY = this.y;
-        this.drawTexture(matrices, posX, posY, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        context.drawTexture(BACKGROUND_TEXTURE, posX, posY, 0, 0, this.backgroundWidth, this.backgroundHeight);
 
         int k = (int)(41.0f * this.scrollAmount);
-        if(this.shouldScroll()) this.drawTexture(matrices, posX + 124, posY + 14 + k, 176, 0, 11, 15);
+        if(this.shouldScroll()) context.drawTexture(BACKGROUND_TEXTURE, posX + 124, posY + 14 + k, 176, 0, 11, 15);
         int recipeX = posX + recipeIconPosX;
         int recipeY = posY + recipeIconPosY;
 
         int scrollOffsetOFF = scrollOffset + maxRecipeIcons;
-        this.renderRecipeBackground(matrices, mouseX, mouseY, recipeX, recipeY, scrollOffsetOFF);
-        this.renderRecipeIcons(recipeX, recipeY, scrollOffsetOFF);
+        this.renderRecipeBackground(context, mouseX, mouseY, recipeX, recipeY, scrollOffsetOFF);
+        this.renderRecipeIcons(context, recipeX, recipeY, scrollOffsetOFF);
     }
 
-    private void renderRecipeBackground(MatrixStack matrices, int mouseX, int mouseY, int x, int y, int scrollOffsetOFF) {
+    private void renderRecipeBackground(DrawContext context, int mouseX, int mouseY, int x, int y, int scrollOffsetOFF) {
         for (int i = this.scrollOffset; i < scrollOffsetOFF && i < this.handler.getAvailableRecipeCount(); i++) {
             int offsetedI = i - this.scrollOffset;
 
@@ -74,24 +75,24 @@ public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
             } else if (mouseX >= posX && mouseY >= posY && mouseX < posX + recipeIconWidth && mouseY < posY + recipeIconHeight) {
                 offsetY += recipeIconHeight * 2;
             }
-            this.drawTexture(matrices, posX, posY, 0, offsetY, recipeIconWidth, recipeIconHeight);
+            context.drawTexture(BACKGROUND_TEXTURE, posX, posY, 0, offsetY, recipeIconWidth, recipeIconHeight);
         }
     }
 
-    private void renderRecipeIcons(int x, int y, int scrollOffsetOFF) {
+    private void renderRecipeIcons(DrawContext context, int x, int y, int scrollOffsetOFF) {
         List<WoodcuttingRecipe> list = this.handler.getAvailableRecipes();
         for (int i = this.scrollOffset; i < scrollOffsetOFF && i < this.handler.getAvailableRecipeCount(); i++) {
             int offsetedI = i - this.scrollOffset;
             int k = x + recipeIconWidth * (offsetedI % recipeIconPerLine);
             int l = offsetedI / recipeIconPerLine;
             int m = y + recipeIconHeight * l + 1;
-            this.client.getItemRenderer().renderInGuiWithOverrides(list.get(i).getOutput(), k, m);
+            context.drawItem(list.get(i).getOutput(this.client.world.getRegistryManager()), k, m);
         }
     }
 
     @Override
-    protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
-        super.drawMouseoverTooltip(matrices, x, y);
+    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
+        super.drawMouseoverTooltip(context, x, y);
         if (this.canCraft) {
             int i = this.x + recipeIconPosX;
             int j = this.y + recipeIconPosY;
@@ -103,7 +104,7 @@ public class WoodcutterGui extends HandledScreen<WoodcutterGuiHandler> {
                 int n = i + offsetedL % recipeIconPerLine * recipeIconWidth;
                 int o = j + offsetedL / recipeIconPerLine * recipeIconHeight;
                 if (x < n || x >= n + recipeIconWidth || y < o || y >= o + recipeIconHeight) continue;
-                this.renderTooltip(matrices, list.get(l).getOutput(), x, y);
+                context.drawItemTooltip(this.textRenderer, list.get(l).getOutput(this.client.world.getRegistryManager()), x, y);
             }
         }
     }

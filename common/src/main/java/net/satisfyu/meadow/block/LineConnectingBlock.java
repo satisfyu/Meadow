@@ -28,7 +28,7 @@ public class LineConnectingBlock extends Block {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        Direction facing = context.getPlayerFacing().getOpposite();
+        Direction facing = context.getHorizontalPlayerFacing().getOpposite();
         BlockState blockState = this.getDefaultState().with(FACING, facing);
 
         World world = context.getWorld();

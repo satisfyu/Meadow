@@ -50,7 +50,7 @@ public class ShutterBlock extends Block implements Waterloggable {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        Direction facing = context.getPlayerFacing().getOpposite();
+        Direction facing = context.getHorizontalPlayerFacing().getOpposite();
         BlockState blockState = this.getDefaultState().with(FACING, facing);
 
         World world = context.getWorld();
@@ -88,7 +88,7 @@ public class ShutterBlock extends Block implements Waterloggable {
             }
             state = state.with(POWERED, powered);
             if (state.get(WATERLOGGED)) {
-                world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+                world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
             }
         }
         ShutterType type = getType(state, world.getBlockState(pos.up()), world.getBlockState(pos.down()));
@@ -100,7 +100,7 @@ public class ShutterBlock extends Block implements Waterloggable {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (this.material == Material.METAL) {
+        if (/*this.material == Material.METAL*/ false) {
             return ActionResult.PASS;
         } else {
             state = state.cycle(OPEN);
@@ -110,7 +110,7 @@ public class ShutterBlock extends Block implements Waterloggable {
             }
             world.playSound(null, pos, shutterSound(state.get(OPEN)), SoundCategory.BLOCKS, 1.0F, 1.0F);
             if (state.get(WATERLOGGED)) {
-                world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+                world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
             }
 
             return ActionResult.success(world.isClient);

@@ -65,10 +65,6 @@ public abstract class FlowerPotBlock extends Block implements BlockEntityProvide
         }
     }
 
-    @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.IGNORE;
-    }
 
     @Nullable
     @Override

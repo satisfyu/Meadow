@@ -17,7 +17,7 @@ public class CozyHomeEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (entity.world.getTime() % 6 == 0) {
+        if (entity.getWorld().getTime() % 6 == 0) {
             if (entity instanceof PlayerEntity player) {
                 player.heal(0.77f);
             }

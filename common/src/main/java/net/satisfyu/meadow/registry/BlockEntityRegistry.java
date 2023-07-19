@@ -3,7 +3,9 @@ package net.satisfyu.meadow.registry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.BuiltinRegistries;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKeys;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.blockentities.StoveBlockWoodBlockEntity;
 import net.satisfyu.meadow.entity.blockentities.*;
@@ -11,7 +13,7 @@ import net.satisfyu.meadow.entity.blockentities.*;
 import java.util.function.Supplier;
 
 public class BlockEntityRegistry {
-    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registry.BLOCK_ENTITY_TYPE_KEY);
+    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Meadow.MOD_ID, RegistryKeys.BLOCK_ENTITY_TYPE);
 
     public static final RegistrySupplier<BlockEntityType<CookingCauldronBlockEntity>> COOKING_CAULDRON = createBlockEntity("cooking_pot", () -> BlockEntityType.Builder.create(CookingCauldronBlockEntity::new, ObjectRegistry.COOKING_CAULDRON.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<CheeseFormBlockEntity>> CHEESE_FORM_BLOCK_ENTITY = createBlockEntity("cheese_form", () -> BlockEntityType.Builder.create(CheeseFormBlockEntity::new, ObjectRegistry.CHEESE_FORM.get()).build(null));

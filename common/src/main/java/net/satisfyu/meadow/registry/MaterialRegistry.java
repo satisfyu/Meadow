@@ -1,6 +1,7 @@
 package net.satisfyu.meadow.registry;
 
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.Items;
@@ -10,14 +11,16 @@ import net.minecraft.sound.SoundEvent;
 public class MaterialRegistry {
 
     public static final ArmorMaterial FUR_ARMOR = new ArmorMaterial() {
+
+
         @Override
-        public int getDurability(EquipmentSlot slot) {
-            return ArmorMaterials.CHAIN.getDurability(slot);
+        public int getDurability(ArmorItem.Type type) {
+            return ArmorMaterials.CHAIN.getDurability(type);
         }
 
         @Override
-        public int getProtectionAmount(EquipmentSlot slot) {
-            return ArmorMaterials.CHAIN.getProtectionAmount(slot);
+        public int getProtection(ArmorItem.Type type) {
+            return ArmorMaterials.CHAIN.getProtection(type);
         }
 
         @Override

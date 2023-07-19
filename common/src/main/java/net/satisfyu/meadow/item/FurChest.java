@@ -16,7 +16,7 @@ import java.util.List;
 
 public class FurChest extends CustomArmorItem {
     public FurChest(ArmorMaterial material, Settings settings) {
-        super(material, EquipmentSlot.CHEST, settings);
+        super(material, Type.CHESTPLATE, settings);
     }
 
     @Override

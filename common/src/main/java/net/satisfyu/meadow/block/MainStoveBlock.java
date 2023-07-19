@@ -44,7 +44,7 @@ public class MainStoveBlock extends FacingBlock {
         boolean up = isBlockStove(ctx, Direction.UP);
         boolean down = isBlockStove(ctx, Direction.DOWN);
         if (up || down) {
-            return this.getDefaultState().with(CONNECTED_UP, up).with(CONNECTED_DOWN, down).with(FACING, ctx.getPlayerFacing().getOpposite());
+            return this.getDefaultState().with(CONNECTED_UP, up).with(CONNECTED_DOWN, down).with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
         }
 
         return super.getPlacementState(ctx);

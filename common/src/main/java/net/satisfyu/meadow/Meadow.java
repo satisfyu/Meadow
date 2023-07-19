@@ -1,11 +1,7 @@
 package net.satisfyu.meadow;
 
 import dev.architectury.hooks.item.tool.AxeItemHooks;
-import dev.architectury.registry.CreativeTabRegistry;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.registry.*;
 import net.satisfyu.meadow.util.WoodenCauldronBehavior;
 import org.apache.logging.log4j.LogManager;
@@ -15,8 +11,11 @@ public class Meadow {
     public static final String MOD_ID = "meadow";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
+    /*
     public static final ItemGroup MEADOW_TAB = CreativeTabRegistry.create(new Identifier(Meadow.MOD_ID, "meadow_tab"), () ->
             new ItemStack(ObjectRegistry.PIECE_OF_CHEESE.get()));
+
+     */
 
     public static void init() {
         ObjectRegistry.init();

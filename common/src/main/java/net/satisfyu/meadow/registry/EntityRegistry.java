@@ -4,13 +4,10 @@ import dev.architectury.registry.level.entity.EntityAttributeRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LargeEntitySpawnHelper;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.*;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.bear.BrownBearEntity;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntity;
@@ -36,7 +33,7 @@ import net.satisfyu.meadow.entity.sheep.rocky.RockySheepEntity;
 import java.util.function.Supplier;
 
 public class EntityRegistry {
-    private static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registry.ENTITY_TYPE_KEY);
+    private static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Meadow.MOD_ID, RegistryKeys.ENTITY_TYPE);
 
     public static final RegistrySupplier<EntityType<AlbinoCowEntity>> ALBINO_COW = create("albino_cow",
             () -> EntityType.Builder.create(AlbinoCowEntity::new, SpawnGroup.CREATURE).setDimensions(1.4f, 1.4f).build(new Identifier(Meadow.MOD_ID, "albino_cow").toString())

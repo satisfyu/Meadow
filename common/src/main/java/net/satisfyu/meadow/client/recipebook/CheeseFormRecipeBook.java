@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
@@ -19,23 +20,16 @@ public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
     private static final Text TOGGLE_COOKABLE_TEXT;
 
     @Override
-    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        this.ghostSlots.addSlot(recipe.getOutput(), slots.get(0).x, slots.get(0).y);
-        int slot = 1;
-        for (Ingredient ingredient : recipe.getIngredients()) {
-            ItemStack[] inputStacks = ingredient.getMatchingStacks();
-            if (inputStacks.length == 0) continue;
-            ItemStack inputStack = inputStacks[Random.create().nextBetween(0, inputStacks.length - 1)];
-            this.ghostSlots.addSlot(inputStack, slots.get(slot).x, slots.get(slot++).y);
-        }
+    protected RecipeType<? extends Recipe<Inventory>> getRecipeType() {
+        return RecipeRegistry.CHEESE.get();
     }
 
     @Override
-    public void insertRecipe(Recipe<?> recipe, List<Slot> slots) {
+    public void insertRecipe(Recipe<?> recipe) {
         int usedInputSlots = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
             int slotIndex = 0;
-            for (Slot slot : slots) {
+            for (Slot slot : screenHandler.slots) {
                 ItemStack itemStack = slot.getStack();
 
                 if (ingredient.test(itemStack) && usedInputSlots < 3) {
@@ -50,8 +44,15 @@ public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    protected RecipeType<? extends Recipe<Inventory>> getRecipeType() {
-        return RecipeRegistry.CHEESE.get();
+    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots, DynamicRegistryManager dynamicRegistryManager) {
+        this.ghostSlots.addSlot(recipe.getOutput(dynamicRegistryManager), slots.get(0).x, slots.get(0).y);
+        int slot = 1;
+        for (Ingredient ingredient : recipe.getIngredients()) {
+            ItemStack[] inputStacks = ingredient.getMatchingStacks();
+            if (inputStacks.length == 0) continue;
+            ItemStack inputStack = inputStacks[Random.create().nextBetween(0, inputStacks.length - 1)];
+            this.ghostSlots.addSlot(inputStack, slots.get(slot).x, slots.get(slot++).y);
+        }
     }
 
     @Override
@@ -61,5 +62,15 @@ public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
 
     static {
         TOGGLE_COOKABLE_TEXT = Text.translatable("gui.vinery.recipebook.toggleRecipes.cheeseable");
+    }
+
+    @Override
+    public void setFocused(boolean focused) {
+
+    }
+
+    @Override
+    public boolean isFocused() {
+        return false;
     }
 }

@@ -9,11 +9,11 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 
 import java.util.ArrayList;
@@ -51,6 +51,11 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
         return true;
     }
 
+    @Override
+    public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
+        return this.result.copy();
+    }
+
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
@@ -61,17 +66,12 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack craft(Inventory inventory) {
-        return this.result.copy();
-    }
-
-    @Override
     public boolean fits(int width, int height) {
         return true;
     }
 
     @Override
-    public ItemStack getOutput() {
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return result;
     }
 
@@ -115,7 +115,7 @@ public class CheeseFormRecipe implements Recipe<Inventory> {
         @Override
         public void write(PacketByteBuf packetData, CheeseFormRecipe recipe) {
             recipe.getIngredients().forEach(ingredient -> ingredient.write(packetData));
-            packetData.writeItemStack(recipe.getOutput());
+            packetData.writeItemStack(recipe.result);
         }
 
         @Override

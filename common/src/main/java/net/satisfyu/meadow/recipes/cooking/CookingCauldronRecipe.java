@@ -6,6 +6,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
@@ -31,7 +32,7 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack craft(Inventory inventory) {
+    public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
         return ItemStack.EMPTY;
     }
 
@@ -41,7 +42,7 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack getOutput() {
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return this.output.copy();
     }
 
@@ -95,7 +96,7 @@ public class CookingCauldronRecipe implements Recipe<Inventory> {
         public void write(PacketByteBuf buf, CookingCauldronRecipe recipe) {
             buf.writeVarInt(recipe.inputs.size());
             recipe.inputs.forEach(entry -> entry.write(buf));
-            buf.writeItemStack(recipe.getOutput());
+            buf.writeItemStack(recipe.output);
         }
     }
 

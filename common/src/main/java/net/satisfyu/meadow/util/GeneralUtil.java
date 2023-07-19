@@ -6,6 +6,8 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -17,8 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -29,7 +29,7 @@ import java.util.*;
 public class GeneralUtil {
 
     public static RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
-        return RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(Meadow.MOD_ID, name));
+        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, new Identifier(Meadow.MOD_ID, name));
     }
 
     public static Collection<ServerPlayerEntity> tracking(ServerWorld world, BlockPos pos) {

@@ -2,8 +2,6 @@ package net.satisfyu.meadow.terrablender;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.satisfyu.meadow.world.MeadowSurfaceRules;
@@ -21,7 +19,7 @@ public class MeadowRegion extends Region {
         super(name, RegionType.OVERWORLD, weight);
     }
 
-
+    /*
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
         addModifiedVanillaOverworldBiomes(mapper, builder -> {
 
@@ -59,6 +57,8 @@ public class MeadowRegion extends Region {
             meadowClearingPoints.forEach(point -> builder.replaceBiome(point, MeadowSurfaceRules.MEADOW_CLEARING_KEY));
         });
     }
+
+     */
 
     public static void loadTerrablender() {
         Regions.register(new MeadowRegion(new Identifier(MOD_ID, "overworld"), 5));

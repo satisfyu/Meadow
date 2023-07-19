@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
@@ -24,23 +25,12 @@ public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        if (recipe instanceof CookingCauldronRecipe potRecipe) {
-            this.ghostSlots.addSlot(potRecipe.getOutput(), slots.get(0).x, slots.get(0).y);
-
-            int slot = 1;
-            for (Ingredient ingredient : potRecipe.getIngredients()) {
-                ItemStack[] inputStacks = ingredient.getMatchingStacks();
-                if (inputStacks.length == 0) continue;
-                ItemStack inputStack = inputStacks[Random.create().nextBetween(0, inputStacks.length - 1)];
-                this.ghostSlots.addSlot(inputStack, slots.get(slot).x, slots.get(slot++).y);
-            }
-        }
-
+    protected RecipeType<? extends Recipe<Inventory>> getRecipeType() {
+        return RecipeRegistry.COOKING.get();
     }
 
     @Override
-    public void insertRecipe(Recipe<?> recipe, List<Slot> slots) {
+    public void insertRecipe(Recipe<?> recipe) {
         int usedInputSlots = 1;
 
         Meadow.LOGGER.error(recipe.getIngredients().size());
@@ -62,8 +52,18 @@ public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    protected RecipeType<? extends Recipe<Inventory>> getRecipeType() {
-        return RecipeRegistry.COOKING.get();
+    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots, DynamicRegistryManager dynamicRegistryManager) {
+        if (recipe instanceof CookingCauldronRecipe potRecipe) {
+            this.ghostSlots.addSlot(potRecipe.getOutput(dynamicRegistryManager), slots.get(0).x, slots.get(0).y);
+
+            int slot = 1;
+            for (Ingredient ingredient : potRecipe.getIngredients()) {
+                ItemStack[] inputStacks = ingredient.getMatchingStacks();
+                if (inputStacks.length == 0) continue;
+                ItemStack inputStack = inputStacks[Random.create().nextBetween(0, inputStacks.length - 1)];
+                this.ghostSlots.addSlot(inputStack, slots.get(slot).x, slots.get(slot++).y);
+            }
+        }
     }
 
     @Override
@@ -73,5 +73,15 @@ public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
 
     static {
         TOGGLE_COOKABLE_TEXT = Text.translatable("gui.meadow.recipebook.toggleRecipes.cookable");
+    }
+
+    @Override
+    public void setFocused(boolean focused) {
+
+    }
+
+    @Override
+    public boolean isFocused() {
+        return false;
     }
 }
