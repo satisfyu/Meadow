@@ -1,13 +1,11 @@
 package net.satisfyu.meadow.item;
 
 import de.cristelknight.doapi.common.item.CustomArmorItem;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.client.MeadowClient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -16,13 +14,13 @@ import java.util.List;
 
 
 public class FurBoots extends CustomArmorItem {
-    public FurBoots(ArmorMaterial material, Settings settings) {
+    public FurBoots(ArmorMaterial material, Properties settings) {
         super(material, Type.BOOTS, settings);
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
-        if(world != null && world.isClient()){
+    public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, TooltipFlag context) {
+        if(world != null && world.isClientSide()){
             MeadowClient.appendToolTip(tooltip);
         }
     }

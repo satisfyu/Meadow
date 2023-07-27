@@ -1,23 +1,24 @@
 package net.satisfyu.meadow.entity.cow.albino_cow;
 
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.model.CowEntityModel;
-import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.client.MeadowClient;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 
-public class AlbinoCowRenderer extends MobEntityRenderer<AlbinoCowEntity, CowEntityModel<AlbinoCowEntity>> {
+import net.minecraft.client.model.CowModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-    private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/cow/albino_cow.png");
+public class AlbinoCowRenderer extends MobRenderer<AlbinoCowEntity, CowModel<AlbinoCowEntity>> {
 
-    public AlbinoCowRenderer(EntityRendererFactory.Context context) {
-        super(context, new CowEntityModel<>(context.getPart(MeadowClient.ALBINO_COW_MODEL_LAYER)), 0.7f);
+    private static final ResourceLocation TEXTURE = new ResourceLocation(MOD_ID, "textures/entity/cow/albino_cow.png");
+
+    public AlbinoCowRenderer(EntityRendererProvider.Context context) {
+        super(context, new CowModel<>(context.bakeLayer(MeadowClient.ALBINO_COW_MODEL_LAYER)), 0.7f);
     }
 
     @Override
-    public Identifier getTexture(AlbinoCowEntity cowEntity) {
+    public ResourceLocation getTexture(AlbinoCowEntity cowEntity) {
         return TEXTURE;
     }
 }

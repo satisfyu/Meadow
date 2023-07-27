@@ -1,32 +1,38 @@
 package net.satisfyu.meadow.entity.bear;
 
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.PolarBearEntityModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class BrownBearEntityModel extends PolarBearEntityModel<BrownBearEntity> {
+public class BrownBearEntityModel extends PolarBearModel<BrownBearEntity> {
     public BrownBearEntityModel(ModelPart root) {
         super(root);
     }
 
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-        ModelPartData body = modelPartData.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(-5.0F, -24.0F, -7.0F, 14.0F, 25.0F, 11.0F, new Dilation(0.0F)), ModelTransform.of(-2.0F, 9.0F, 12.0F, 1.5708F, 0.0F, 0.0F));
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition modelData = new MeshDefinition();
+        PartDefinition modelPartData = modelData.getRoot();
+        PartDefinition body = modelPartData.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -24.0F, -7.0F, 14.0F, 25.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, 9.0F, 12.0F, 1.5708F, 0.0F, 0.0F));
 
-        ModelPartData head = modelPartData.addChild("head", ModelPartBuilder.create().uv(0, 37).cuboid(-4.5F, -3.0F, -3.0F, 9.0F, 7.0F, 7.0F, new Dilation(0.0F))
-                .uv(50, 34).mirrored().cuboid(-2.5F, 0.0F, -6.0F, 5.0F, 4.0F, 3.0F, new Dilation(0.0F)).mirrored(false)
-                .uv(0, 37).cuboid(-5.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F, new Dilation(0.0F))
-                .uv(0, 37).mirrored().cuboid(3.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F, new Dilation(0.0F)).mirrored(false)
-                .uv(12, 2), ModelTransform.pivot(0.0F, 10.0F, -16.0F));
+        PartDefinition head = modelPartData.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 37).addBox(-4.5F, -3.0F, -3.0F, 9.0F, 7.0F, 7.0F, new CubeDeformation(0.0F))
+                .texOffs(50, 34).mirror().addBox(-2.5F, 0.0F, -6.0F, 5.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(0, 37).addBox(-5.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 37).mirror().addBox(3.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(12, 2), PartPose.offset(0.0F, 10.0F, -16.0F));
 
 
-        modelPartData.addChild("right_hind_leg", ModelPartBuilder.create().uv(50, 48).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(-4.5F, 14.0F, 6.0F));
+        modelPartData.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(50, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.5F, 14.0F, 6.0F));
 
-        modelPartData.addChild("left_hind_leg", ModelPartBuilder.create().uv(33, 37).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(4.5F, 14.0F, 6.0F));
+        modelPartData.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(33, 37).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(4.5F, 14.0F, 6.0F));
 
-        modelPartData.addChild("right_front_leg", ModelPartBuilder.create().uv(51, 17).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.5F, 14.0F, -8.0F));
+        modelPartData.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(51, 17).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.5F, 14.0F, -8.0F));
 
-        modelPartData.addChild("left_front_leg", ModelPartBuilder.create().uv(51, 0).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(3.5F, 14.0F, -8.0F));
+        modelPartData.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(51, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(3.5F, 14.0F, -8.0F));
 		/*
 		ModelPartBuilder modelPartBuilder = ModelPartBuilder.create().uv(50, 22).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F);
 		modelPartData.addChild("right_hind_leg", modelPartBuilder, ModelTransform.pivot(-4.5F, 14.0F, 6.0F));
@@ -37,6 +43,6 @@ public class BrownBearEntityModel extends PolarBearEntityModel<BrownBearEntity> 
 
 		 */
 
-        return TexturedModelData.of(modelData, 128, 128);
+        return LayerDefinition.create(modelData, 128, 128);
     }
 }

@@ -1,18 +1,18 @@
 package net.satisfyu.meadow.entity.blockentities;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.util.GeneralUtil;
 
@@ -21,35 +21,35 @@ import java.util.List;
 
 public class CheeseRackBlockEntity extends BlockEntity {
 
-    private DefaultedList<ItemStack> inventory;
+    private NonNullList<ItemStack> inventory;
 
     public CheeseRackBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.CHEESE_RACK_BLOCK_ENTITY.get(), pos, state);
-        this.inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
     }
 
     @Override
-    public void writeNbt(NbtCompound nbt) {
-        Inventories.writeNbt(nbt, this.inventory);
-        super.writeNbt(nbt);
+    public void saveAdditional(CompoundTag nbt) {
+        ContainerHelper.saveAllItems(nbt, this.inventory);
+        super.saveAdditional(nbt);
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        this.inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
-        Inventories.readNbt(nbt, this.inventory);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(nbt, this.inventory);
     }
 
     public ItemStack removeStack(int slot) {
         ItemStack stack = inventory.set(slot, ItemStack.EMPTY);
-        markDirty();
+        setChanged();
         return stack;
     }
 
     public void setStack(int slot, ItemStack stack) {
         inventory.set(slot, stack);
-        markDirty();
+        setChanged();
     }
 
     public boolean hasStack(int slot) {
@@ -71,25 +71,25 @@ public class CheeseRackBlockEntity extends BlockEntity {
     }
 
     @Override
-    public BlockEntityUpdateS2CPacket toUpdatePacket() {
-        return BlockEntityUpdateS2CPacket.create(this);
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return this.createNbt();
+    public CompoundTag getUpdateTag() {
+        return this.saveWithoutMetadata();
     }
 
     @Override
-    public void markDirty() {
-        if (world != null && !world.isClient()) {
-            Packet<ClientPlayPacketListener> updatePacket = toUpdatePacket();
+    public void setChanged() {
+        if (level != null && !level.isClientSide()) {
+            Packet<ClientGamePacketListener> updatePacket = getUpdatePacket();
 
-            for (ServerPlayerEntity player : GeneralUtil.tracking((ServerWorld) world, getPos())) {
-                player.networkHandler.sendPacket(updatePacket);
+            for (ServerPlayer player : GeneralUtil.tracking((ServerLevel) level, getBlockPos())) {
+                player.connection.send(updatePacket);
             }
         }
-        super.markDirty();
+        super.setChanged();
     }
 
 }

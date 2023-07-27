@@ -1,25 +1,26 @@
 package net.satisfyu.meadow.entity.sheep.flecked;
 
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.model.SheepEntityModel;
-import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.client.MeadowClient;
 import net.satisfyu.meadow.entity.sheep.MeadowSheepWoolFeatureRenderer;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 
-public class FleckedSheepRenderer extends MobEntityRenderer<FleckedSheepEntity, SheepEntityModel<FleckedSheepEntity>> {
+import net.minecraft.client.model.SheepModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-    private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/sheep/flecked_sheep.png");
+public class FleckedSheepRenderer extends MobRenderer<FleckedSheepEntity, SheepModel<FleckedSheepEntity>> {
 
-    public FleckedSheepRenderer(EntityRendererFactory.Context context) {
-        super(context, new SheepEntityModel<>(context.getPart(MeadowClient.FLECKED_SHEEP_MODEL_LAYER)), 0.7f);
-        this.addFeature(new MeadowSheepWoolFeatureRenderer<>(this, context.getModelLoader(), "flecked", MeadowClient.FLECKED_SHEEP_FUR));
+    private static final ResourceLocation TEXTURE = new ResourceLocation(MOD_ID, "textures/entity/sheep/flecked_sheep.png");
+
+    public FleckedSheepRenderer(EntityRendererProvider.Context context) {
+        super(context, new SheepModel<>(context.bakeLayer(MeadowClient.FLECKED_SHEEP_MODEL_LAYER)), 0.7f);
+        this.addLayer(new MeadowSheepWoolFeatureRenderer<>(this, context.getModelSet(), "flecked", MeadowClient.FLECKED_SHEEP_FUR));
     }
 
     @Override
-    public Identifier getTexture(FleckedSheepEntity entity) {
+    public ResourceLocation getTexture(FleckedSheepEntity entity) {
         return TEXTURE;
     }
 }

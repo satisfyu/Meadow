@@ -1,8 +1,8 @@
 package net.satisfyu.meadow.registry;
 
-import net.minecraft.block.ComposterBlock;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.ComposterBlock;
 
 public class CompostableRegistry {
 
@@ -36,9 +36,9 @@ public class CompostableRegistry {
         registerCompostableItem(ObjectRegistry.FIRE_LILY.get(), .3f);
     }
 
-    public static void registerCompostableItem(ItemConvertible item, float chance) {
+    public static void registerCompostableItem(ItemLike item, float chance) {
         if (item.asItem() != Items.AIR) {
-            ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(item.asItem(), chance);
+            ComposterBlock.COMPOSTABLES.put(item.asItem(), chance);
         }
     }
 }

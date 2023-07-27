@@ -1,8 +1,8 @@
 package net.satisfyu.meadow.util;
 
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.StringRepresentable;
 
-public enum LineConnectingType implements StringIdentifiable {
+public enum LineConnectingType implements StringRepresentable {
     NONE("none"),
     MIDDLE("middle"),
     LEFT("left"),
@@ -15,7 +15,7 @@ public enum LineConnectingType implements StringIdentifiable {
     }
 
     @Override
-    public String asString() {
+    public String getSerializedName() {
         return this.name;
     }
 }

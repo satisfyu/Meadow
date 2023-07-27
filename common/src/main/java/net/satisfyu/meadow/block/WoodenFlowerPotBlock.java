@@ -1,26 +1,29 @@
 package net.satisfyu.meadow.block;
 
 import com.google.common.collect.Maps;
-import net.minecraft.block.*;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 import java.util.List;
@@ -28,52 +31,52 @@ import java.util.Map;
 
 public class WoodenFlowerPotBlock extends Block {
     private static final Map<Block, Block> WOODEN_CONTENT_TO_POTTED = Maps.newHashMap();
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 6.0, 11.0);
+    protected static final VoxelShape SHAPE = Block.box(5.0, 0.0, 5.0, 11.0, 6.0, 11.0);
     private final Block content;
 
-    public WoodenFlowerPotBlock(Block content, AbstractBlock.Settings settings) {
+    public WoodenFlowerPotBlock(Block content, Properties settings) {
         super(settings);
         this.content = content;
         WOODEN_CONTENT_TO_POTTED.put(content, this);
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         boolean bl2;
-        ItemStack itemStack = player.getStackInHand(hand);
+        ItemStack itemStack = player.getItemInHand(hand);
         Item item = itemStack.getItem();
-        BlockState blockState = (item instanceof BlockItem ? WOODEN_CONTENT_TO_POTTED.getOrDefault(((BlockItem) item).getBlock(), Blocks.AIR) : Blocks.AIR).getDefaultState();
-        boolean bl = blockState.isOf(Blocks.AIR);
+        BlockState blockState = (item instanceof BlockItem ? WOODEN_CONTENT_TO_POTTED.getOrDefault(((BlockItem) item).getBlock(), Blocks.AIR) : Blocks.AIR).defaultBlockState();
+        boolean bl = blockState.is(Blocks.AIR);
         if (bl != (bl2 = this.isEmpty())) {
             if (bl2) {
-                world.setBlockState(pos, blockState, Block.NOTIFY_ALL);
-                if (!player.getAbilities().creativeMode) {
-                    itemStack.decrement(1);
+                world.setBlock(pos, blockState, Block.UPDATE_ALL);
+                if (!player.getAbilities().instabuild) {
+                    itemStack.shrink(1);
                 }
             } else {
                 ItemStack itemStack2 = new ItemStack(this.content);
                 if (itemStack.isEmpty()) {
-                    player.setStackInHand(hand, itemStack2);
-                } else if (!player.giveItemStack(itemStack2)) {
-                    player.dropItem(itemStack2, false);
+                    player.setItemInHand(hand, itemStack2);
+                } else if (!player.addItem(itemStack2)) {
+                    player.drop(itemStack2, false);
                 }
-                world.setBlockState(pos, ObjectRegistry.WOODEN_FLOWER_POT.get().getDefaultState(), Block.NOTIFY_ALL);
+                world.setBlock(pos, ObjectRegistry.WOODEN_FLOWER_POT.get().defaultBlockState(), Block.UPDATE_ALL);
             }
-            world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            return ActionResult.success(world.isClient);
+            world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+            return InteractionResult.sidedSuccess(world.isClientSide);
         }
-        return ActionResult.CONSUME;
+        return InteractionResult.CONSUME;
     }
 
     @Override
-    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(BlockGetter world, BlockPos pos, BlockState state) {
         if (this.isEmpty()) {
-            return super.getPickStack(world, pos, state);
+            return super.getCloneItemStack(world, pos, state);
         }
         return new ItemStack(this.content);
     }
@@ -83,24 +86,24 @@ public class WoodenFlowerPotBlock extends Block {
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (direction == Direction.DOWN && !state.canPlaceAt(world, pos)) {
-            return Blocks.AIR.getDefaultState();
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (direction == Direction.DOWN && !state.canSurvive(world, pos)) {
+            return Blocks.AIR.defaultBlockState();
         }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+    public boolean isPathfindable(BlockState state, BlockGetter world, BlockPos pos, PathComputationType type) {
         return false;
     }
 
     @Override
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
+        tooltip.add(Component.translatable("block.meadow.canbeplaced.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 
-    public ItemConvertible getContent() {
+    public ItemLike getContent() {
         return this.content;
     }
 

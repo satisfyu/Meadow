@@ -1,46 +1,46 @@
 package net.satisfyu.meadow.entity.sheep;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.LivingEntityRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModelLoader;
-import net.minecraft.client.render.entity.model.SheepEntityModel;
-import net.minecraft.client.render.entity.model.SheepWoolEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.SheepFurModel;
+import net.minecraft.client.model.SheepModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.item.DyeColor;
 import net.satisfyu.meadow.Meadow;
 
 @Environment(value = EnvType.CLIENT)
-public class MeadowSheepWoolFeatureRenderer<T extends SheepEntity, F extends SheepEntityModel<T>>
-        extends FeatureRenderer<T, F> {
+public class MeadowSheepWoolFeatureRenderer<T extends Sheep, F extends SheepModel<T>>
+        extends RenderLayer<T, F> {
 
-    private final SheepWoolEntityModel<T> model;
+    private final SheepFurModel<T> model;
 
     private final String name;
 
 
-    public MeadowSheepWoolFeatureRenderer(FeatureRendererContext<T, F> context, EntityModelLoader loader, String name, EntityModelLayer sheepWoolModel) {
+    public MeadowSheepWoolFeatureRenderer(RenderLayerParent<T, F> context, EntityModelSet loader, String name, ModelLayerLocation sheepWoolModel) {
         super(context);
-        this.model = new SheepWoolEntityModel<>(loader.getModelPart(sheepWoolModel));
+        this.model = new SheepFurModel<>(loader.bakeLayer(sheepWoolModel));
         this.name = name;
     }
 
     @Override
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T sheepEntity, float f, float g, float h, float j, float k, float l) {
-        Identifier skin;
+    public void render(PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i, T sheepEntity, float f, float g, float h, float j, float k, float l) {
+        ResourceLocation skin;
         if (name.equals("DEFAULT")) {
-            skin = new Identifier("textures/entity/sheep/sheep_fur.png");
+            skin = new ResourceLocation("textures/entity/sheep/sheep_fur.png");
         } else {
-            skin = new Identifier(Meadow.MOD_ID, "textures/entity/sheep/" + name + "_sheep_fur.png");
+            skin = new ResourceLocation(Meadow.MOD_ID, "textures/entity/sheep/" + name + "_sheep_fur.png");
         }
 
 
@@ -51,35 +51,35 @@ public class MeadowSheepWoolFeatureRenderer<T extends SheepEntity, F extends She
             return;
         }
         if (sheepEntity.isInvisible()) {
-            MinecraftClient minecraftClient = MinecraftClient.getInstance();
-            boolean bl = minecraftClient.hasOutline(sheepEntity);
+            Minecraft minecraftClient = Minecraft.getInstance();
+            boolean bl = minecraftClient.shouldEntityAppearGlowing(sheepEntity);
             if (bl) {
-                this.getContextModel().copyStateTo(this.model);
-                this.model.animateModel(sheepEntity, f, g, h);
-                this.model.setAngles(sheepEntity, f, g, j, k, l);
-                VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getOutline(skin));
-                this.model.render(matrixStack, vertexConsumer, i, LivingEntityRenderer.getOverlay(sheepEntity, 0.0f), 0.0f, 0.0f, 0.0f, 1.0f);
+                this.getParentModel().copyPropertiesTo(this.model);
+                this.model.prepareMobModel(sheepEntity, f, g, h);
+                this.model.setupAnim(sheepEntity, f, g, j, k, l);
+                VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.outline(skin));
+                this.model.renderToBuffer(matrixStack, vertexConsumer, i, LivingEntityRenderer.getOverlayCoords(sheepEntity, 0.0f), 0.0f, 0.0f, 0.0f, 1.0f);
             }
             return;
         }
         if (sheepEntity.hasCustomName() && "jeb_".equals(sheepEntity.getName().getString())) {
-            int n = sheepEntity.age / 25 + sheepEntity.getId();
+            int n = sheepEntity.tickCount / 25 + sheepEntity.getId();
             int o = DyeColor.values().length;
             int p = n % o;
             int q = (n + 1) % o;
-            float r = ((float) (sheepEntity.age % 25) + h) / 25.0f;
-            float[] fs = SheepEntity.getRgbColor(DyeColor.byId(p));
-            float[] gs = SheepEntity.getRgbColor(DyeColor.byId(q));
+            float r = ((float) (sheepEntity.tickCount % 25) + h) / 25.0f;
+            float[] fs = Sheep.getColorArray(DyeColor.byId(p));
+            float[] gs = Sheep.getColorArray(DyeColor.byId(q));
             s = fs[0] * (1.0f - r) + gs[0] * r;
             t = fs[1] * (1.0f - r) + gs[1] * r;
             u = fs[2] * (1.0f - r) + gs[2] * r;
         } else {
-            float[] hs = SheepEntity.getRgbColor(sheepEntity.getColor());
+            float[] hs = Sheep.getColorArray(sheepEntity.getColor());
             s = hs[0];
             t = hs[1];
             u = hs[2];
         }
-        MeadowSheepWoolFeatureRenderer.render(this.getContextModel(), this.model, skin, matrixStack, vertexConsumerProvider, i, sheepEntity, f, g, j, k, l, h, s, t, u);
+        MeadowSheepWoolFeatureRenderer.coloredCutoutModelCopyLayerRender(this.getParentModel(), this.model, skin, matrixStack, vertexConsumerProvider, i, sheepEntity, f, g, j, k, l, h, s, t, u);
     }
 }
 

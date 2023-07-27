@@ -1,69 +1,69 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class ClimbingRopeTopmountBlock extends Block {
-    protected static final VoxelShape SHAPE = VoxelShapes.union(Block.createCuboidShape(7, 0, 7, 9, 16, 9), Block.createCuboidShape(6, 8, 6, 10, 12, 10));
+    protected static final VoxelShape SHAPE = Shapes.or(Block.box(7, 0, 7, 9, 16, 9), Block.box(6, 8, 6, 10, 12, 10));
 
-    public ClimbingRopeTopmountBlock(Settings settings) {
+    public ClimbingRopeTopmountBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if (!world.isClient) {
+    public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        if (!world.isClientSide) {
             for (int i = 1; i <= 10; i++) {
-                BlockPos blockPos = pos.offset(Direction.DOWN, i);
-                if (world.canSetBlock(blockPos) && world.getBlockState(blockPos).isAir()) {
-                    world.setBlockState(blockPos, ObjectRegistry.CLIMBING_ROPE.get().getDefaultState());
+                BlockPos blockPos = pos.relative(Direction.DOWN, i);
+                if (world.isLoaded(blockPos) && world.getBlockState(blockPos).isAir()) {
+                    world.setBlockAndUpdate(blockPos, ObjectRegistry.CLIMBING_ROPE.get().defaultBlockState());
                 }
             }
         }
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (!world.isClient()) {
-            if (Block.sideCoversSmallSquare(world, pos.up(), Direction.DOWN)) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!world.isClientSide()) {
+            if (Block.canSupportCenter(world, pos.above(), Direction.DOWN)) {
                 return state;
             }
-            world.breakBlock(pos, true);
+            world.destroyBlock(pos, true);
             return world.getBlockState(pos);
         }
         return state;
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return Block.sideCoversSmallSquare(world, pos.up(), Direction.DOWN) && world.isAir(pos.down());
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        return Block.canSupportCenter(world, pos.above(), Direction.DOWN) && world.isEmptyBlock(pos.below());
     }
 
     @Override
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.rope.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
+        tooltip.add(Component.translatable("block.meadow.rope.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

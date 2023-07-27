@@ -1,17 +1,17 @@
 package net.satisfyu.meadow.client.recipebook;
 
 import de.cristelknight.doapi.client.recipebook.screen.widgets.PrivateRecipeBookWidget;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Container;
+import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
@@ -19,13 +19,13 @@ import net.satisfyu.meadow.registry.RecipeRegistry;
 import java.util.List;
 
 public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
-    private static final Text TOGGLE_COOKABLE_TEXT;
+    private static final Component TOGGLE_COOKABLE_TEXT;
 
     public CookingCauldronRecipeBook() {
     }
 
     @Override
-    protected RecipeType<? extends Recipe<Inventory>> getRecipeType() {
+    protected RecipeType<? extends Recipe<Container>> getRecipeType() {
         return RecipeRegistry.COOKING.get();
     }
 
@@ -38,11 +38,11 @@ public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
         for (Ingredient ingredient : recipe.getIngredients()) {
             int slotIndex = 0;
             for (Slot slot : screenHandler.slots) {
-                ItemStack itemStack = slot.getStack();
+                ItemStack itemStack = slot.getItem();
 
                 if (ingredient.test(itemStack) && usedInputSlots < 7) {
-                    MinecraftClient.getInstance().interactionManager.clickSlot(screenHandler.syncId, slotIndex, 0, SlotActionType.PICKUP, MinecraftClient.getInstance().player);
-                    MinecraftClient.getInstance().interactionManager.clickSlot(screenHandler.syncId, usedInputSlots, 0, SlotActionType.PICKUP, MinecraftClient.getInstance().player);
+                    Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, slotIndex, 0, ClickType.PICKUP, Minecraft.getInstance().player);
+                    Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, usedInputSlots, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     ++usedInputSlots;
                     break;
                 }
@@ -52,27 +52,27 @@ public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots, DynamicRegistryManager dynamicRegistryManager) {
+    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots, RegistryAccess dynamicRegistryManager) {
         if (recipe instanceof CookingCauldronRecipe potRecipe) {
-            this.ghostSlots.addSlot(potRecipe.getOutput(dynamicRegistryManager), slots.get(0).x, slots.get(0).y);
+            this.ghostSlots.addSlot(potRecipe.getResultItem(dynamicRegistryManager), slots.get(0).x, slots.get(0).y);
 
             int slot = 1;
             for (Ingredient ingredient : potRecipe.getIngredients()) {
-                ItemStack[] inputStacks = ingredient.getMatchingStacks();
+                ItemStack[] inputStacks = ingredient.getItems();
                 if (inputStacks.length == 0) continue;
-                ItemStack inputStack = inputStacks[Random.create().nextBetween(0, inputStacks.length - 1)];
+                ItemStack inputStack = inputStacks[RandomSource.create().nextIntBetweenInclusive(0, inputStacks.length - 1)];
                 this.ghostSlots.addSlot(inputStack, slots.get(slot).x, slots.get(slot++).y);
             }
         }
     }
 
     @Override
-    protected Text getToggleCraftableButtonText() {
+    protected Component getToggleCraftableButtonText() {
         return TOGGLE_COOKABLE_TEXT;
     }
 
     static {
-        TOGGLE_COOKABLE_TEXT = Text.translatable("gui.meadow.recipebook.toggleRecipes.cookable");
+        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.meadow.recipebook.toggleRecipes.cookable");
     }
 
     @Override

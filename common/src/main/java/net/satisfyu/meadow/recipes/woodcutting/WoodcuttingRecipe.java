@@ -3,27 +3,27 @@ package net.satisfyu.meadow.recipes.woodcutting;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 
-public class WoodcuttingRecipe implements Recipe<Inventory> {
+public class WoodcuttingRecipe implements Recipe<Container> {
     private final Ingredient input;
     private final ItemStack outputStack;
-    private final Identifier id;
+    private final ResourceLocation id;
 
-    public WoodcuttingRecipe(Ingredient input, ItemStack outputStack, Identifier id) {
+    public WoodcuttingRecipe(Ingredient input, ItemStack outputStack, ResourceLocation id) {
         this.id = id;
         this.input = input;
         this.outputStack = outputStack;
@@ -35,39 +35,39 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
 
 
     @Override
-    public boolean matches(Inventory inventory, World world) {
-        return this.input.test(inventory.getStack(0));
+    public boolean matches(Container inventory, Level world) {
+        return this.input.test(inventory.getItem(0));
     }
 
     @Override
-    public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
+    public ItemStack assemble(Container inventory, RegistryAccess registryManager) {
         return this.outputStack.copy();
     }
 
     @Override
-    public DefaultedList<Ingredient> getIngredients() {
-        DefaultedList<Ingredient> defaultedList = DefaultedList.of();
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> defaultedList = NonNullList.create();
         defaultedList.add(this.input);
         return defaultedList;
     }
 
     @Override
-    public boolean fits(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
+    public ItemStack getResultItem(RegistryAccess registryManager) {
         return outputStack;
     }
 
     @Override
-    public boolean isIgnoredInRecipeBook() {
+    public boolean isSpecial() {
         return true;
     }
 
     @Override
-    public Identifier getId() {
+    public ResourceLocation getId() {
         return id;
     }
 
@@ -86,7 +86,7 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
     public static class Serializer implements RecipeSerializer<WoodcuttingRecipe> {
         @Override
         // Turns json into Recipe
-        public WoodcuttingRecipe read(Identifier id, JsonObject json) {
+        public WoodcuttingRecipe fromJson(ResourceLocation id, JsonObject json) {
             WoodcuttingRecipeJsonFormat recipeJson = new Gson().fromJson(json, WoodcuttingRecipeJsonFormat.class);
 
             if (recipeJson.inputItem == null || recipeJson.outputItem == null) {
@@ -98,7 +98,7 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
 
             Ingredient input = Ingredient.fromJson(recipeJson.inputItem);
 
-            Item outputItem = Registries.ITEM.getOrEmpty(new Identifier(recipeJson.outputItem))
+            Item outputItem = BuiltInRegistries.ITEM.getOptional(new ResourceLocation(recipeJson.outputItem))
                     // Validate the inputted item actually exists
                     .orElseThrow(() -> new JsonSyntaxException("No such item " + recipeJson.outputItem));
             ItemStack output = new ItemStack(outputItem, recipeJson.outputAmount);
@@ -108,16 +108,16 @@ public class WoodcuttingRecipe implements Recipe<Inventory> {
 
         @Override
         // Turns Recipe into PacketByteBuf
-        public void write(PacketByteBuf packetData, WoodcuttingRecipe recipe) {
-            recipe.getInput().write(packetData);
-            packetData.writeItemStack(recipe.outputStack);
+        public void write(FriendlyByteBuf packetData, WoodcuttingRecipe recipe) {
+            recipe.getInput().toNetwork(packetData);
+            packetData.writeItem(recipe.outputStack);
         }
 
         @Override
         // Turns PacketByteBuf into Recipe
-        public WoodcuttingRecipe read(Identifier id, PacketByteBuf packetData) {
-            Ingredient input = Ingredient.fromPacket(packetData);
-            ItemStack output = packetData.readItemStack();
+        public WoodcuttingRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf packetData) {
+            Ingredient input = Ingredient.fromNetwork(packetData);
+            ItemStack output = packetData.readItem();
             return new WoodcuttingRecipe(input, output, id);
         }
     }

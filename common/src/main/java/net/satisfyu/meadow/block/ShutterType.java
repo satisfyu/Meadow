@@ -1,8 +1,8 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.StringRepresentable;
 
-public enum ShutterType implements StringIdentifiable {
+public enum ShutterType implements StringRepresentable {
     TOP("top"),
     MIDDLE("middle"),
     BOTTOM("bottom"),
@@ -15,7 +15,7 @@ public enum ShutterType implements StringIdentifiable {
     }
 
     @Override
-    public String asString() {
+    public String getSerializedName() {
         return this.name;
     }
 }

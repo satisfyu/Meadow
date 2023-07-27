@@ -1,139 +1,139 @@
 package net.satisfyu.meadow.entity.cow.shearable;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityStatuses;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.Shearable;
-import net.minecraft.entity.ai.goal.EatGrassGoal;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.passive.CowEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityEvent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Shearable;
+import net.minecraft.world.entity.ai.goal.EatBlockGoal;
+import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.gameevent.GameEvent;
 
-public class ShearableCowEntity extends CowEntity implements Shearable {
+public class ShearableCowEntity extends Cow implements Shearable {
 
-    private static final TrackedData<Boolean> IsSHEARED = DataTracker.registerData(ShearableCowEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IsSHEARED = SynchedEntityData.defineId(ShearableCowEntity.class, EntityDataSerializers.BOOLEAN);
 
     private int eatGrassTimer;
-    private EatGrassGoal eatGrassGoal;
+    private EatBlockGoal eatGrassGoal;
     private final Block wool;
 
-    public ShearableCowEntity(EntityType<? extends CowEntity> entityType, World world, Block wool) {
+    public ShearableCowEntity(EntityType<? extends Cow> entityType, Level world, Block wool) {
         super(entityType, world);
         this.wool = wool;
     }
 
     @Override
-    public ActionResult interactMob(PlayerEntity player2, Hand hand) {
-        ItemStack itemStack = player2.getStackInHand(hand);
-        if (itemStack.isOf(Items.SHEARS)) {
-            if (!this.getWorld().isClient && this.isShearable()) {
-                this.sheared(SoundCategory.PLAYERS);
-                this.emitGameEvent(GameEvent.SHEAR, player2);
-                itemStack.damage(1, player2, player -> player.sendToolBreakStatus(hand));
-                return ActionResult.SUCCESS;
+    public InteractionResult mobInteract(Player player2, InteractionHand hand) {
+        ItemStack itemStack = player2.getItemInHand(hand);
+        if (itemStack.is(Items.SHEARS)) {
+            if (!this.level().isClientSide && this.readyForShearing()) {
+                this.shear(SoundSource.PLAYERS);
+                this.gameEvent(GameEvent.SHEAR, player2);
+                itemStack.hurtAndBreak(1, player2, player -> player.broadcastBreakEvent(hand));
+                return InteractionResult.SUCCESS;
             }
-            return ActionResult.CONSUME;
+            return InteractionResult.CONSUME;
         }
-        return super.interactMob(player2, hand);
+        return super.mobInteract(player2, hand);
     }
 
     @Override
-    public void sheared(SoundCategory shearedSoundCategory) {
-        this.getWorld().playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
+    public void shear(SoundSource shearedSoundCategory) {
+        this.level().playSound(null, this, SoundEvents.SHEEP_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
         this.setSheared(true);
         int i = 1 + this.random.nextInt(3);
         for (int j = 0; j < i; ++j) {
-            ItemEntity itemEntity = this.dropItem(wool, 1);
+            ItemEntity itemEntity = this.spawnAtLocation(wool, 1);
             if (itemEntity == null) continue;
-            itemEntity.setVelocity(itemEntity.getVelocity().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1f, this.random.nextFloat() * 0.05f, (this.random.nextFloat() - this.random.nextFloat()) * 0.1f));
+            itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1f, this.random.nextFloat() * 0.05f, (this.random.nextFloat() - this.random.nextFloat()) * 0.1f));
         }
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
         nbt.putBoolean("Sheared", this.isSheared());
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
         this.setSheared(nbt.getBoolean("Sheared"));
     }
 
     @Override
-    public void onEatingGrass() {
-        super.onEatingGrass();
+    public void ate() {
+        super.ate();
         this.setSheared(false);
         if (this.isBaby()) {
-            this.growUp(60);
+            this.ageUp(60);
         }
     }
 
     @Override
-    protected void initGoals() {
-        super.initGoals();
-        this.eatGrassGoal = new EatGrassGoal(this);
-        this.goalSelector.add(5, this.eatGrassGoal);
+    protected void registerGoals() {
+        super.registerGoals();
+        this.eatGrassGoal = new EatBlockGoal(this);
+        this.goalSelector.addGoal(5, this.eatGrassGoal);
     }
 
     @Override
-    protected void mobTick() {
-        this.eatGrassTimer = this.eatGrassGoal.getTimer();
-        super.mobTick();
+    protected void customServerAiStep() {
+        this.eatGrassTimer = this.eatGrassGoal.getEatAnimationTick();
+        super.customServerAiStep();
     }
 
     @Override
-    public void tickMovement() {
-        if (this.getWorld().isClient) {
+    public void aiStep() {
+        if (this.level().isClientSide) {
             this.eatGrassTimer = Math.max(0, this.eatGrassTimer - 1);
         }
-        super.tickMovement();
+        super.aiStep();
     }
 
     public void setSheared(boolean sheared) {
         if (sheared) {
-            this.dataTracker.set(IsSHEARED, true);
+            this.entityData.set(IsSHEARED, true);
         } else {
-            this.dataTracker.set(IsSHEARED, false);
+            this.entityData.set(IsSHEARED, false);
         }
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(IsSHEARED, false);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(IsSHEARED, false);
     }
 
     public boolean isSheared() {
-        return this.dataTracker.get(IsSHEARED);
+        return this.entityData.get(IsSHEARED);
     }
 
 
     @Override
-    public boolean isShearable() {
+    public boolean readyForShearing() {
         return this.isAlive() && !this.isSheared() && !this.isBaby();
     }
 
     @Override
-    public void handleStatus(byte status) {
-        if (status == EntityStatuses.SET_SHEEP_EAT_GRASS_TIMER_OR_PRIME_TNT_MINECART) {
+    public void handleEntityEvent(byte status) {
+        if (status == EntityEvent.EAT_GRASS) {
             this.eatGrassTimer = 40;
         } else {
-            super.handleStatus(status);
+            super.handleEntityEvent(status);
         }
     }
 
@@ -153,11 +153,11 @@ public class ShearableCowEntity extends CowEntity implements Shearable {
     public float getHeadAngle(float delta) {
         if (this.eatGrassTimer > 4 && this.eatGrassTimer <= 36) {
             float f = ((float) (this.eatGrassTimer - 4) - delta) / 32.0f;
-            return 0.62831855f + 0.21991149f * MathHelper.sin(f * 28.7f);
+            return 0.62831855f + 0.21991149f * Mth.sin(f * 28.7f);
         }
         if (this.eatGrassTimer > 0) {
             return 0.62831855f;
         }
-        return this.getPitch() * ((float) Math.PI / 180);
+        return this.getXRot() * ((float) Math.PI / 180);
     }
 }

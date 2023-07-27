@@ -1,135 +1,135 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.PaneBlock;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Fluids;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.Nullable;
 
-public class WindowBlock_2 extends PaneBlock {
+public class WindowBlock_2 extends IronBarsBlock {
 
 
-    public static final IntProperty PART = IntProperty.of("part", 0, 3);
+    public static final IntegerProperty PART = IntegerProperty.create("part", 0, 3);
 
-    public WindowBlock_2(Settings settings) {
+    public WindowBlock_2(Properties settings) {
         super(settings);
-        this.setDefaultState(getDefaultState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
+        this.registerDefaultState(defaultBlockState().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(WATERLOGGED, false));
     }
 
     @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if (!world.isClient()) {
+    public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        if (!world.isClientSide()) {
             updateWindows(world, getHighestWindow(world, pos));
         }
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
 
         updateWindows2(world, getHighestWindow2(world, pos));
 
-        if (state.get(WATERLOGGED)) {
-            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        if (state.getValue(WATERLOGGED)) {
+            world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
         if (direction.getAxis().isHorizontal()) {
-            return state.with(FACING_PROPERTIES.get(direction), this.connectsTo(neighborState, neighborState.isSideSolidFullSquare(world, neighborPos, direction.getOpposite())));
+            return state.setValue(PROPERTY_BY_DIRECTION.get(direction), this.attachsTo(neighborState, neighborState.isFaceSturdy(world, neighborPos, direction.getOpposite())));
         }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
 
 
-    private void updateWindows(World world, BlockPos pos) {
+    private void updateWindows(Level world, BlockPos pos) {
         int i = getWindowHeight(world, pos);
 
         if (i == 3) {
-            world.setBlockState(pos, world.getBlockState(pos).with(PART, 3));
-            world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 2));
-            world.setBlockState(pos.down(2), world.getBlockState(pos.down(2)).with(PART, 1));
+            world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(PART, 3));
+            world.setBlockAndUpdate(pos.below(), world.getBlockState(pos.below()).setValue(PART, 2));
+            world.setBlockAndUpdate(pos.below(2), world.getBlockState(pos.below(2)).setValue(PART, 1));
         } else if (i == 2) {
-            world.setBlockState(pos, world.getBlockState(pos).with(PART, 3));
-            world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 1));
+            world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(PART, 3));
+            world.setBlockAndUpdate(pos.below(), world.getBlockState(pos.below()).setValue(PART, 1));
         } else if (i == 1) {
-            world.setBlockState(pos, world.getBlockState(pos).with(PART, 0));
+            world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(PART, 0));
         }
     }
 
-    private BlockPos getHighestWindow(World world, BlockPos pos) {
+    private BlockPos getHighestWindow(Level world, BlockPos pos) {
         do {
-            pos = pos.up();
+            pos = pos.above();
         }
-        while (world.getBlockState(pos).isOf(ObjectRegistry.WINDOW_2.get()));
-        return pos.down();
+        while (world.getBlockState(pos).is(ObjectRegistry.WINDOW_2.get()));
+        return pos.below();
     }
 
 
-    private int getWindowHeight(World world, BlockPos pos) {
+    private int getWindowHeight(Level world, BlockPos pos) {
         BlockPos highestPos = getHighestWindow(world, pos);
         int i = 0;
         do {
             i++;
-            highestPos = highestPos.down();
+            highestPos = highestPos.below();
         }
-        while (world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(highestPos).is(ObjectRegistry.WINDOW_2.get()));
         return i;
     }
 
 
-    private void updateWindows2(WorldAccess world, BlockPos pos) {
+    private void updateWindows2(LevelAccessor world, BlockPos pos) {
         int i = getWindowHeight2(world, pos);
 
         if (i == 3) {
-            world.setBlockState(pos, world.getBlockState(pos).with(PART, 3), 3);
-            world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 2), 3);
-            world.setBlockState(pos.down(2), world.getBlockState(pos.down(2)).with(PART, 1), 3);
+            world.setBlock(pos, world.getBlockState(pos).setValue(PART, 3), 3);
+            world.setBlock(pos.below(), world.getBlockState(pos.below()).setValue(PART, 2), 3);
+            world.setBlock(pos.below(2), world.getBlockState(pos.below(2)).setValue(PART, 1), 3);
         } else if (i == 2) {
-            world.setBlockState(pos, world.getBlockState(pos).with(PART, 3), 3);
-            world.setBlockState(pos.down(), world.getBlockState(pos.down()).with(PART, 1), 3);
+            world.setBlock(pos, world.getBlockState(pos).setValue(PART, 3), 3);
+            world.setBlock(pos.below(), world.getBlockState(pos.below()).setValue(PART, 1), 3);
         } else if (i == 1) {
-            world.setBlockState(pos, world.getBlockState(pos).with(PART, 0), 3);
+            world.setBlock(pos, world.getBlockState(pos).setValue(PART, 0), 3);
         }
     }
 
-    private BlockPos getHighestWindow2(WorldAccess world, BlockPos pos) {
+    private BlockPos getHighestWindow2(LevelAccessor world, BlockPos pos) {
         do {
-            pos = pos.up();
+            pos = pos.above();
         }
-        while (world.getBlockState(pos).isOf(ObjectRegistry.WINDOW_2.get()));
-        return pos.down();
+        while (world.getBlockState(pos).is(ObjectRegistry.WINDOW_2.get()));
+        return pos.below();
     }
 
 
-    private int getWindowHeight2(WorldAccess world, BlockPos pos) {
+    private int getWindowHeight2(LevelAccessor world, BlockPos pos) {
         BlockPos highestPos = getHighestWindow2(world, pos);
         int i = 0;
         do {
             i++;
-            highestPos = highestPos.down();
+            highestPos = highestPos.below();
         }
-        while (world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW_2.get()));
+        while (world.getBlockState(highestPos).is(ObjectRegistry.WINDOW_2.get()));
         return i;
     }
 
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(PART, NORTH, EAST, WEST, SOUTH, WATERLOGGED);
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        BlockState downState = world.getBlockState(pos.down());
-        BlockState downState2 = world.getBlockState(pos.down(2));
-        return (!downState.isOf(ObjectRegistry.WINDOW_2.get()) || downState.get(PART) != 3 || !downState2.isOf(ObjectRegistry.WINDOW_2.get()) || downState2.get(PART) != 2);
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        BlockState downState = world.getBlockState(pos.below());
+        BlockState downState2 = world.getBlockState(pos.below(2));
+        return (!downState.is(ObjectRegistry.WINDOW_2.get()) || downState.getValue(PART) != 3 || !downState2.is(ObjectRegistry.WINDOW_2.get()) || downState2.getValue(PART) != 2);
     }
 }
 

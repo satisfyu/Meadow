@@ -1,12 +1,11 @@
 package net.satisfyu.meadow.registry;
 
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ArmorMaterials;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class MaterialRegistry {
 
@@ -14,18 +13,18 @@ public class MaterialRegistry {
 
 
         @Override
-        public int getDurability(ArmorItem.Type type) {
-            return ArmorMaterials.CHAIN.getDurability(type);
+        public int getDurabilityForType(ArmorItem.Type type) {
+            return ArmorMaterials.CHAIN.getDurabilityForType(type);
         }
 
         @Override
-        public int getProtection(ArmorItem.Type type) {
-            return ArmorMaterials.CHAIN.getProtection(type);
+        public int getDefenseForType(ArmorItem.Type type) {
+            return ArmorMaterials.CHAIN.getDefenseForType(type);
         }
 
         @Override
-        public int getEnchantability() {
-            return ArmorMaterials.CHAIN.getEnchantability();
+        public int getEnchantmentValue() {
+            return ArmorMaterials.CHAIN.getEnchantmentValue();
         }
 
         @Override
@@ -36,7 +35,7 @@ public class MaterialRegistry {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.ofItems(Items.RABBIT_HIDE);
+            return Ingredient.of(Items.RABBIT_HIDE);
         }
 
 

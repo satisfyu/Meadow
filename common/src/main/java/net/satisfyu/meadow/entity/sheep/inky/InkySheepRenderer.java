@@ -1,25 +1,26 @@
 package net.satisfyu.meadow.entity.sheep.inky;
 
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.model.SheepEntityModel;
-import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.client.MeadowClient;
 import net.satisfyu.meadow.entity.sheep.MeadowSheepWoolFeatureRenderer;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 
-public class InkySheepRenderer extends MobEntityRenderer<InkySheepEntity, SheepEntityModel<InkySheepEntity>> {
+import net.minecraft.client.model.SheepModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-    private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/sheep/inky_sheep.png");
+public class InkySheepRenderer extends MobRenderer<InkySheepEntity, SheepModel<InkySheepEntity>> {
 
-    public InkySheepRenderer(EntityRendererFactory.Context context) {
-        super(context, new SheepEntityModel<>(context.getPart(MeadowClient.INKY_SHEEP_MODEL_LAYER)), 0.7f);
-        this.addFeature(new MeadowSheepWoolFeatureRenderer<>(this, context.getModelLoader(), "inky", MeadowClient.INKY_SHEEP_FUR));
+    private static final ResourceLocation TEXTURE = new ResourceLocation(MOD_ID, "textures/entity/sheep/inky_sheep.png");
+
+    public InkySheepRenderer(EntityRendererProvider.Context context) {
+        super(context, new SheepModel<>(context.bakeLayer(MeadowClient.INKY_SHEEP_MODEL_LAYER)), 0.7f);
+        this.addLayer(new MeadowSheepWoolFeatureRenderer<>(this, context.getModelSet(), "inky", MeadowClient.INKY_SHEEP_FUR));
     }
 
     @Override
-    public Identifier getTexture(InkySheepEntity entity) {
+    public ResourceLocation getTexture(InkySheepEntity entity) {
         return TEXTURE;
     }
 }

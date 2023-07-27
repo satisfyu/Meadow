@@ -1,26 +1,26 @@
 package net.satisfyu.meadow.item;
 
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 
 
 public class CraftingIngredientItem extends Item {
 
-    public CraftingIngredientItem(Settings settings) {
+    public CraftingIngredientItem(Properties settings) {
         super(settings);
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.meadow.ingredient.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, TooltipFlag context) {
+        tooltip.add(Component.translatable("item.meadow.ingredient.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
 
 
     }

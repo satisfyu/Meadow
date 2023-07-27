@@ -1,45 +1,45 @@
 package net.satisfyu.meadow.entity.buffalo;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.CowEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 
-public class WaterBuffaloEntity extends CowEntity {
-    public WaterBuffaloEntity(EntityType<? extends CowEntity> entityType, World world) {
+public class WaterBuffaloEntity extends Cow {
+    public WaterBuffaloEntity(EntityType<? extends Cow> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
-    public CowEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
+    public Cow getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {
         return EntityRegistry.WATER_BUFFALO.get().create(serverWorld);
     }
 
     @Override
-    public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        ItemStack itemStack = player.getStackInHand(hand);
-        if (itemStack.isOf(ObjectRegistry.WOODEN_BUCKET.get()) && !this.isBaby()) {
-            player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-            ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, ObjectRegistry.WOODEN_BUFFALO_MILK_BUCKET.get().getDefaultStack());
-            player.setStackInHand(hand, itemStack2);
-            return ActionResult.success(this.getWorld().isClient);
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        if (itemStack.is(ObjectRegistry.WOODEN_BUCKET.get()) && !this.isBaby()) {
+            player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+            ItemStack itemStack2 = ItemUtils.createFilledResult(itemStack, player, ObjectRegistry.WOODEN_BUFFALO_MILK_BUCKET.get().getDefaultInstance());
+            player.setItemInHand(hand, itemStack2);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else {
-            return super.interactMob(player, hand);
+            return super.mobInteract(player, hand);
         }
     }
 
     @Override
-    public int getMaxHeadRotation() {
+    public int getMaxHeadYRot() {
         return 35;
     }
 }

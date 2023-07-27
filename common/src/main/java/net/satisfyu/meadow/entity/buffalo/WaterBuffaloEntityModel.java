@@ -1,11 +1,17 @@
 package net.satisfyu.meadow.entity.buffalo;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.QuadrupedEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class WaterBuffaloEntityModel extends QuadrupedEntityModel<WaterBuffaloEntity> {
+public class WaterBuffaloEntityModel extends QuadrupedModel<WaterBuffaloEntity> {
     private final ModelPart body;
     private final ModelPart head;
     private final ModelPart leg0;
@@ -23,33 +29,33 @@ public class WaterBuffaloEntityModel extends QuadrupedEntityModel<WaterBuffaloEn
         this.leg3 = root.getChild("right_front_leg");
     }
 
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-        ModelPartData body = modelPartData.addChild("body", ModelPartBuilder.create().uv(18, 5).cuboid(-5.0F, -11.0F, -7.0F, 14.0F, 12.0F, 10.0F, new Dilation(0.0F))
-                .uv(68, 0).cuboid(-6.0F, -24.0F, -7.0F, 16.0F, 13.0F, 14.0F, new Dilation(0.0F))
-                .uv(116, 52).cuboid(0.0F, -13.0F, -8.0F, 4.0F, 6.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(-2.0F, 9.0F, 12.0F, 1.5708F, 0.0F, 0.0F));
+    public static LayerDefinition getTexturedModelData() {
+        MeshDefinition modelData = new MeshDefinition();
+        PartDefinition modelPartData = modelData.getRoot();
+        PartDefinition body = modelPartData.addOrReplaceChild("body", CubeListBuilder.create().texOffs(18, 5).addBox(-5.0F, -11.0F, -7.0F, 14.0F, 12.0F, 10.0F, new CubeDeformation(0.0F))
+                .texOffs(68, 0).addBox(-6.0F, -24.0F, -7.0F, 16.0F, 13.0F, 14.0F, new CubeDeformation(0.0F))
+                .texOffs(116, 52).addBox(0.0F, -13.0F, -8.0F, 4.0F, 6.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, 9.0F, 12.0F, 1.5708F, 0.0F, 0.0F));
 
-        ModelPartData head = modelPartData.addChild("head", ModelPartBuilder.create().uv(86, 46).cuboid(-4.0F, -5.0F, -3.0F, 8.0F, 8.0F, 7.0F, new Dilation(0.0F))
-                .uv(118, 47).cuboid(4.0F, -4.0F, -1.0F, 3.0F, 2.0F, 2.0F, new Dilation(0.0F))
-                .uv(118, 47).mirrored().cuboid(-7.0F, -4.0F, -1.0F, 3.0F, 2.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
-                .uv(116, 44).cuboid(-7.0F, -7.0F, -1.0F, 2.0F, 3.0F, 2.0F, new Dilation(0.0F))
-                .uv(116, 44).mirrored().cuboid(5.0F, -7.0F, -1.0F, 2.0F, 3.0F, 2.0F, new Dilation(0.0F)).mirrored(false), ModelTransform.pivot(0.0F, 10.0F, -16.0F));
+        PartDefinition head = modelPartData.addOrReplaceChild("head", CubeListBuilder.create().texOffs(86, 46).addBox(-4.0F, -5.0F, -3.0F, 8.0F, 8.0F, 7.0F, new CubeDeformation(0.0F))
+                .texOffs(118, 47).addBox(4.0F, -4.0F, -1.0F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(118, 47).mirror().addBox(-7.0F, -4.0F, -1.0F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(116, 44).addBox(-7.0F, -7.0F, -1.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(116, 44).mirror().addBox(5.0F, -7.0F, -1.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 10.0F, -16.0F));
 
-        head.addChild("snout_r1", ModelPartBuilder.create().uv(93, 60).cuboid(-2.0F, 2.0F, -12.0F, 4.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, -2.0F, 8.0F, 0.0873F, 0.0F, 0.0F));
+        head.addOrReplaceChild("snout_r1", CubeListBuilder.create().texOffs(93, 60).addBox(-2.0F, 2.0F, -12.0F, 4.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.0F, 8.0F, 0.0873F, 0.0F, 0.0F));
 
-        ModelPartData leg0 = modelPartData.addChild("left_hind_leg", ModelPartBuilder.create().uv(14, 28).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(-4.5F, 14.0F, 6.0F));
+        PartDefinition leg0 = modelPartData.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(14, 28).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.5F, 14.0F, 6.0F));
 
-        ModelPartData leg1 = modelPartData.addChild("right_hind_leg", ModelPartBuilder.create().uv(14, 28).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(4.5F, 14.0F, 6.0F));
+        PartDefinition leg1 = modelPartData.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(14, 28).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(4.5F, 14.0F, 6.0F));
 
-        ModelPartData leg2 = modelPartData.addChild("left_front_leg", ModelPartBuilder.create().uv(16, 30).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.5F, 14.0F, -8.0F));
+        PartDefinition leg2 = modelPartData.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(16, 30).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.5F, 14.0F, -8.0F));
 
-        ModelPartData leg3 = modelPartData.addChild("right_front_leg", ModelPartBuilder.create().uv(16, 30).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(3.5F, 14.0F, -8.0F));
-        return TexturedModelData.of(modelData, 128, 64);
+        PartDefinition leg3 = modelPartData.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(16, 30).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(3.5F, 14.0F, -8.0F));
+        return LayerDefinition.create(modelData, 128, 64);
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
         body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
         head.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
         leg0.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);

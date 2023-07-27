@@ -1,16 +1,16 @@
 package net.satisfyu.meadow.item;
 
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MilkBucketItem;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.MilkBucketItem;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,21 +18,21 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class WoodenMilkBucket extends MilkBucketItem {
-    public WoodenMilkBucket(Settings settings) {
+    public WoodenMilkBucket(Properties settings) {
         super(settings);
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (user instanceof ServerPlayerEntity serverPlayerEntity) {
-            Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
-            serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+        if (user instanceof ServerPlayer serverPlayerEntity) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
+            serverPlayerEntity.awardStat(Stats.ITEM_USED.get(this));
         }
-        if (user instanceof PlayerEntity && !((PlayerEntity) user).getAbilities().creativeMode) {
-            stack.decrement(1);
+        if (user instanceof Player && !((Player) user).getAbilities().instabuild) {
+            stack.shrink(1);
         }
-        if (!world.isClient) {
-            user.clearStatusEffects();
+        if (!world.isClientSide) {
+            user.removeAllEffects();
         }
         if (stack.isEmpty()) {
             return new ItemStack(ObjectRegistry.WOODEN_BUCKET.get());
@@ -41,8 +41,8 @@ public class WoodenMilkBucket extends MilkBucketItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.meadow.ingredient.tooltip" + this.getTranslationKey()).formatted(Formatting.ITALIC, Formatting.GRAY));
+    public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, TooltipFlag context) {
+        tooltip.add(Component.translatable("item.meadow.ingredient.tooltip" + this.getDescriptionId()).withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
 
     }
 }

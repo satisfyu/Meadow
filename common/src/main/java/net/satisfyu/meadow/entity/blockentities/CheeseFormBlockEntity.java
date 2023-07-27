@@ -1,23 +1,23 @@
 package net.satisfyu.meadow.entity.blockentities;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.Text;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.block.CheeseFormBlock;
 import net.satisfyu.meadow.client.screen.handler.CheeseFormGuiHandler;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
@@ -28,16 +28,16 @@ import net.satisfyu.meadow.registry.TagRegistry;
 import net.satisfyu.meadow.util.ImplementedInventory;
 import org.jetbrains.annotations.Nullable;
 
-public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTicker<CheeseFormBlockEntity>, NamedScreenHandlerFactory, ImplementedInventory {
+public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTicker<CheeseFormBlockEntity>, MenuProvider, ImplementedInventory {
 
-    private DefaultedList<ItemStack> inventory;
+    private NonNullList<ItemStack> inventory;
     public static final int CAPACITY = 3;
     public static final int COOKING_TIME_IN_TICKS = 1800; // 90s or 3 minutes
     private static final int OUTPUT_SLOT = 0;
     private int fermentationTime = 0;
     protected float experience;
 
-    private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
+    private final ContainerData propertyDelegate = new ContainerData() {
 
         @Override
         public int get(int index) {
@@ -56,21 +56,21 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         }
 
         @Override
-        public int size() {
+        public int getCount() {
             return 1;
         }
     };
 
     public CheeseFormBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.CHEESE_FORM_BLOCK_ENTITY.get(), pos, state);
-        this.inventory = DefaultedList.ofSize(CAPACITY, ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(CAPACITY, ItemStack.EMPTY);
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-        Inventories.readNbt(nbt, this.inventory);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(nbt, this.inventory);
         this.fermentationTime = nbt.getShort("fermentationTime");
         this.experience = nbt.getFloat("experience");
 
@@ -78,20 +78,20 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
 
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, this.inventory);
+    protected void saveAdditional(CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        ContainerHelper.saveAllItems(nbt, this.inventory);
         nbt.putFloat("experience", this.experience);
         nbt.putShort("fermentationTime", (short) this.fermentationTime);
     }
 
 
     @Override
-    public void tick(World world, BlockPos pos, BlockState state, CheeseFormBlockEntity blockEntity) {
-        if (world.isClient) return;
-        DynamicRegistryManager manager = world.getRegistryManager();
+    public void tick(Level world, BlockPos pos, BlockState state, CheeseFormBlockEntity blockEntity) {
+        if (world.isClientSide) return;
+        RegistryAccess manager = world.registryAccess();
         final var recipeType = world.getRecipeManager()
-                .getFirstMatch(RecipeRegistry.CHEESE.get(), blockEntity, world)
+                .getRecipeFor(RecipeRegistry.CHEESE.get(), blockEntity, world)
                 .orElse(null);
         boolean working = canCraft(recipeType, manager);
         if (working) {
@@ -100,70 +100,70 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
             if (this.fermentationTime >= COOKING_TIME_IN_TICKS) {
                 this.fermentationTime = 0;
                 craft(recipeType, manager);
-                markDirty();
+                setChanged();
             }
         } else {
             this.fermentationTime = 0;
         }
         boolean done = !inventory.get(OUTPUT_SLOT).isEmpty();
-        if (state.get(CheeseFormBlock.WORKING) != working || state.get(CheeseFormBlock.DONE) != done) {
-            world.setBlockState(pos, state.with(CheeseFormBlock.WORKING, working).with(CheeseFormBlock.DONE, done));
+        if (state.getValue(CheeseFormBlock.WORKING) != working || state.getValue(CheeseFormBlock.DONE) != done) {
+            world.setBlockAndUpdate(pos, state.setValue(CheeseFormBlock.WORKING, working).setValue(CheeseFormBlock.DONE, done));
         }
     }
 
-    private boolean canCraft(CheeseFormRecipe recipe, DynamicRegistryManager manager) {
-        if (recipe == null || recipe.getOutput(manager).isEmpty()) {
+    private boolean canCraft(CheeseFormRecipe recipe, RegistryAccess manager) {
+        if (recipe == null || recipe.getResultItem(manager).isEmpty()) {
             return false;
         } else if (areInputsEmpty()) {
             return false;
         }
-        ItemStack itemStack = this.getStack(OUTPUT_SLOT);
-        return itemStack.isEmpty() || itemStack == recipe.getOutput(manager);
+        ItemStack itemStack = this.getItem(OUTPUT_SLOT);
+        return itemStack.isEmpty() || itemStack == recipe.getResultItem(manager);
     }
 
 
     private boolean areInputsEmpty() {
         int emptyStacks = 0;
         for (int i = 1; i <= 2; i++) {
-            if (this.getStack(i).isEmpty()) emptyStacks++;
+            if (this.getItem(i).isEmpty()) emptyStacks++;
         }
         return emptyStacks == 2;
     }
 
-    private void craft(CheeseFormRecipe recipe, DynamicRegistryManager manager) {
+    private void craft(CheeseFormRecipe recipe, RegistryAccess manager) {
         if (!canCraft(recipe, manager)) {
             return;
         }
-        final ItemStack recipeOutput = recipe.getOutput(manager);
-        final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+        final ItemStack recipeOutput = recipe.getResultItem(manager);
+        final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
             ItemStack output = recipeOutput.copy();
-            setStack(OUTPUT_SLOT, output);
+            setItem(OUTPUT_SLOT, output);
         }//TODO bucket
         for (Ingredient entry : recipe.getIngredients()) {
-            ItemStack slot1Stack = this.getStack(1);
+            ItemStack slot1Stack = this.getItem(1);
             if (entry.test(slot1Stack)) {
-                if (slot1Stack.isIn(TagRegistry.MILK)) {
-                    ItemStack bucket = slot1Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultStack() : Items.BUCKET.getDefaultStack();
-                    this.setStack(1, bucket);
+                if (slot1Stack.is(TagRegistry.MILK)) {
+                    ItemStack bucket = slot1Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultInstance() : Items.BUCKET.getDefaultInstance();
+                    this.setItem(1, bucket);
                 } else {
-                    removeStack(1, 1);
+                    removeItem(1, 1);
                 }
             }
-            ItemStack slot2Stack = this.getStack(2);
-            if (entry.test(this.getStack(2))) {
-                if (slot2Stack.isIn(TagRegistry.MILK)) {
-                    ItemStack bucket = slot2Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultStack() : Items.BUCKET.getDefaultStack();
-                    this.setStack(2, bucket);
+            ItemStack slot2Stack = this.getItem(2);
+            if (entry.test(this.getItem(2))) {
+                if (slot2Stack.is(TagRegistry.MILK)) {
+                    ItemStack bucket = slot2Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultInstance() : Items.BUCKET.getDefaultInstance();
+                    this.setItem(2, bucket);
                 } else {
-                    removeStack(2, 1);
+                    removeItem(2, 1);
                 }
             }
         }
     }
 
     @Override
-    public int size() {
+    public int getContainerSize() {
         return CAPACITY;
     }
 
@@ -173,63 +173,63 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
     }
 
     @Override
-    public ItemStack getStack(int slot) {
+    public ItemStack getItem(int slot) {
         return this.inventory.get(slot);
     }
 
     @Override
-    public ItemStack removeStack(int slot, int amount) {
-        return Inventories.splitStack(this.inventory, slot, amount);
+    public ItemStack removeItem(int slot, int amount) {
+        return ContainerHelper.removeItem(this.inventory, slot, amount);
     }
 
     @Override
-    public ItemStack removeStack(int slot) {
-        return Inventories.removeStack(this.inventory, slot);
+    public ItemStack removeItemNoUpdate(int slot) {
+        return ContainerHelper.takeItem(this.inventory, slot);
     }
 
     @Override
-    public void setStack(int slot, ItemStack stack) {
+    public void setItem(int slot, ItemStack stack) {
         final ItemStack stackInSlot = this.inventory.get(slot);
-        boolean dirty = !stack.isEmpty() && ItemStack.areItemsEqual(stack, stackInSlot) && ItemStack.areEqual(stack, stackInSlot);
+        boolean dirty = !stack.isEmpty() && ItemStack.isSameItem(stack, stackInSlot) && ItemStack.matches(stack, stackInSlot);
         this.inventory.set(slot, stack);
-        if (stack.getCount() > this.getMaxCountPerStack()) {
-            stack.setCount(this.getMaxCountPerStack());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
         if (slot == 1 || slot == 2) {
             if (!dirty) {
                 this.fermentationTime = 0;
-                markDirty();
+                setChanged();
             }
         }
     }
 
     @Override
-    public boolean canPlayerUse(PlayerEntity player) {
-        if (this.world.getBlockEntity(this.pos) != this) {
+    public boolean stillValid(Player player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.squaredDistanceTo((double) this.pos.getX() + 0.5, (double) this.pos.getY() + 0.5, (double) this.pos.getZ() + 0.5) <= 64.0;
+            return player.distanceToSqr((double) this.worldPosition.getX() + 0.5, (double) this.worldPosition.getY() + 0.5, (double) this.worldPosition.getZ() + 0.5) <= 64.0;
         }
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.inventory.clear();
     }
 
 
     @Override
-    public Text getDisplayName() {
-        return Text.of("");
+    public Component getDisplayName() {
+        return Component.nullToEmpty("");
     }
     @Nullable
     @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+    public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
         return new CheeseFormGuiHandler(syncId, inv, this, this.propertyDelegate);
     }
 
     @Override
-    public DefaultedList<ItemStack> getInventory() {
+    public NonNullList<ItemStack> getInventory() {
         return this.inventory;
     }
 }

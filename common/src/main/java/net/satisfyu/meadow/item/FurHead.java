@@ -1,13 +1,12 @@
 package net.satisfyu.meadow.item;
 
 import de.cristelknight.doapi.common.item.CustomHatItem;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.client.MeadowClient;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 import org.jetbrains.annotations.NotNull;
@@ -17,12 +16,12 @@ import java.util.List;
 
 
 public class FurHead extends CustomHatItem {
-    public FurHead(ArmorMaterial material, Settings settings) {
+    public FurHead(ArmorMaterial material, Properties settings) {
         super(material, Type.HELMET, settings);
     }
 
     @Override
-    public Identifier getTexture() {
+    public ResourceLocation getTexture() {
         return new MeadowIdentifier("textures/models/armor/fur.png");
     }
 
@@ -32,8 +31,8 @@ public class FurHead extends CustomHatItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
-        if(world != null && world.isClient()){
+    public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, TooltipFlag context) {
+        if(world != null && world.isClientSide()){
             MeadowClient.appendToolTip(tooltip);
         }
     }

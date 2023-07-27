@@ -1,9 +1,9 @@
 package net.satisfyu.meadow.fabric.world;
 
 import net.fabricmc.fabric.api.biome.v1.*;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 import java.util.function.Predicate;
@@ -17,17 +17,17 @@ public class MeadowBiomeModification {
         BiomeModification world = BiomeModifications.create(new MeadowIdentifier("world_features"));
         Predicate<BiomeSelectionContext> meadowBiomes = getMeadowSelector("meadow_biomes");
 
-        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, FLOWERS_MEADOW_PATCH_KEY));
-        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, GRASS_PATCH_KEY));
-        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, TREES_MEADOW_KEY));
-        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, BUSH_KEY));
-        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, MEADOW_BOULDERS_KEY));
-        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, LIMESTONE_SLAB_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FLOWERS_MEADOW_PATCH_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, GRASS_PATCH_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TREES_MEADOW_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BUSH_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MEADOW_BOULDERS_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LIMESTONE_SLAB_KEY));
 
     }
 
     private static Predicate<BiomeSelectionContext> getMeadowSelector(String path) {
-        return BiomeSelectors.tag(TagKey.of(RegistryKeys.BIOME, new MeadowIdentifier(path)));
+        return BiomeSelectors.tag(TagKey.create(Registries.BIOME, new MeadowIdentifier(path)));
     }
 
 

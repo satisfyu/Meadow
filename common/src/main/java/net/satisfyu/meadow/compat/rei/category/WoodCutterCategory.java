@@ -9,7 +9,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.compat.rei.display.CheeseFormDisplay;
 import net.satisfyu.meadow.compat.rei.display.WoodCutterDisplay;
@@ -29,8 +29,8 @@ public class WoodCutterCategory implements DisplayCategory<WoodCutterDisplay> {
     }
 
     @Override
-    public Text getTitle() {
-        return Text.translatable("rei.meadow.wood_cutter_category");
+    public Component getTitle() {
+        return Component.translatable("rei.meadow.wood_cutter_category");
     }
 
     @Override

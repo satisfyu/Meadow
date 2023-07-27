@@ -1,29 +1,32 @@
 package net.satisfyu.meadow.item;
 
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidDrainable;
-import net.minecraft.block.FluidFillable;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.*;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.RaycastContext;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BucketPickup;
+import net.minecraft.world.level.block.LiquidBlockContainer;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,83 +35,83 @@ import java.util.List;
 public class WoodenBucket extends BucketItem {
     private final Fluid fluid;
 
-    public WoodenBucket(Fluid fluid, Item.Settings settings) {
+    public WoodenBucket(Fluid fluid, Properties settings) {
         super(fluid, settings);
         this.fluid = fluid;
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        BlockHitResult blockHitResult = WoodenBucket.raycast(world, user, this.fluid == Fluids.EMPTY ? RaycastContext.FluidHandling.SOURCE_ONLY : RaycastContext.FluidHandling.NONE);
+    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+        ItemStack itemStack = user.getItemInHand(hand);
+        BlockHitResult blockHitResult = WoodenBucket.getPlayerPOVHitResult(world, user, this.fluid == Fluids.EMPTY ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE);
         if (blockHitResult.getType() == HitResult.Type.MISS) {
-            return TypedActionResult.pass(itemStack);
+            return InteractionResultHolder.pass(itemStack);
         }
         if (blockHitResult.getType() == HitResult.Type.BLOCK) {
             BlockPos blockPos3;
             BlockPos blockPos = blockHitResult.getBlockPos();
-            Direction direction = blockHitResult.getSide();
-            BlockPos blockPos2 = blockPos.offset(direction);
-            if (!world.canPlayerModifyAt(user, blockPos) || !user.canPlaceOn(blockPos2, direction, itemStack)) {
-                return TypedActionResult.fail(itemStack);
+            Direction direction = blockHitResult.getDirection();
+            BlockPos blockPos2 = blockPos.relative(direction);
+            if (!world.mayInteract(user, blockPos) || !user.mayUseItemAt(blockPos2, direction, itemStack)) {
+                return InteractionResultHolder.fail(itemStack);
             }
             if (this.fluid == Fluids.EMPTY) {
-                FluidDrainable fluidDrainable;
+                BucketPickup fluidDrainable;
                 ItemStack itemStack2;
                 BlockState blockState = world.getBlockState(blockPos);
-                if (blockState.getBlock() instanceof FluidDrainable f) {
+                if (blockState.getBlock() instanceof BucketPickup f) {
 
                     if (blockState.getBlock().equals(Blocks.LAVA)) {
-                        return TypedActionResult.pass(itemStack);
+                        return InteractionResultHolder.pass(itemStack);
                     }
-                    itemStack2 = (fluidDrainable = f).tryDrainFluid(world, blockPos, blockState);
+                    itemStack2 = (fluidDrainable = f).pickupBlock(world, blockPos, blockState);
 
                     if (itemStack2.isEmpty()) {
-                        return TypedActionResult.pass(itemStack);
+                        return InteractionResultHolder.pass(itemStack);
                     }
 
                     if (itemStack2.getItem().equals(Items.WATER_BUCKET)) {
                         itemStack2 = new ItemStack(ObjectRegistry.WOODEN_WATER_BUCKET.get());
                     }
 
-                    user.incrementStat(Stats.USED.getOrCreateStat(this));
-                    fluidDrainable.getBucketFillSound().ifPresent(sound -> user.playSound(sound, 1.0f, 1.0f));
-                    world.emitGameEvent(user, GameEvent.FLUID_PICKUP, blockPos);
-                    ItemStack itemStack3 = ItemUsage.exchangeStack(itemStack, user, itemStack2);
-                    if (!world.isClient) {
-                        Criteria.FILLED_BUCKET.trigger((ServerPlayerEntity) user, itemStack2);
+                    user.awardStat(Stats.ITEM_USED.get(this));
+                    fluidDrainable.getPickupSound().ifPresent(sound -> user.playSound(sound, 1.0f, 1.0f));
+                    world.gameEvent(user, GameEvent.FLUID_PICKUP, blockPos);
+                    ItemStack itemStack3 = ItemUtils.createFilledResult(itemStack, user, itemStack2);
+                    if (!world.isClientSide) {
+                        CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) user, itemStack2);
                     }
-                    return TypedActionResult.success(itemStack3, world.isClient());
+                    return InteractionResultHolder.sidedSuccess(itemStack3, world.isClientSide());
                 }
-                return TypedActionResult.fail(itemStack);
+                return InteractionResultHolder.fail(itemStack);
             }
             BlockState blockState = world.getBlockState(blockPos);
-            blockPos3 = blockState.getBlock() instanceof FluidFillable && this.fluid == Fluids.WATER ? blockPos : blockPos2;
-            if (this.placeFluid(user, world, blockPos3, blockHitResult)) {
-                this.onEmptied(user, world, itemStack, blockPos3);
-                if (user instanceof ServerPlayerEntity) {
-                    Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity) user, blockPos3, itemStack);
+            blockPos3 = blockState.getBlock() instanceof LiquidBlockContainer && this.fluid == Fluids.WATER ? blockPos : blockPos2;
+            if (this.emptyContents(user, world, blockPos3, blockHitResult)) {
+                this.checkExtraContent(user, world, itemStack, blockPos3);
+                if (user instanceof ServerPlayer) {
+                    CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer) user, blockPos3, itemStack);
                 }
-                user.incrementStat(Stats.USED.getOrCreateStat(this));
-                return TypedActionResult.success(WoodenBucket.getEmptiedStack(itemStack, user), world.isClient());
+                user.awardStat(Stats.ITEM_USED.get(this));
+                return InteractionResultHolder.sidedSuccess(WoodenBucket.getEmptySuccessItem(itemStack, user), world.isClientSide());
             }
-            return TypedActionResult.fail(itemStack);
+            return InteractionResultHolder.fail(itemStack);
         }
         return super.use(world, user, hand);
     }
 
-    public static ItemStack getEmptiedStack(ItemStack stack, PlayerEntity player) {
-        if (!player.getAbilities().creativeMode) {
+    public static ItemStack getEmptySuccessItem(ItemStack stack, Player player) {
+        if (!player.getAbilities().instabuild) {
             return new ItemStack(ObjectRegistry.WOODEN_BUCKET.get());
         }
         return stack;
     }
 
     @Override
-    public void onEmptied(@Nullable PlayerEntity player, World world, ItemStack stack, BlockPos pos) {
+    public void checkExtraContent(@Nullable Player player, Level world, ItemStack stack, BlockPos pos) {
     }
 
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.wooden_bucket.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    public void appendTooltip(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
+        tooltip.add(Component.translatable("block.meadow.wooden_bucket.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

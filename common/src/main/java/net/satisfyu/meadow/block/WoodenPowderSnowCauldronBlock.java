@@ -1,34 +1,24 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.block.*;
-import net.minecraft.block.cauldron.CauldronBehavior;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.LayeredCauldronBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.registry.ObjectRegistry;
-import net.satisfyu.meadow.util.WoodenCauldronBehavior;
 
-import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class WoodenPowderSnowCauldronBlock extends LeveledCauldronBlock {
-    public WoodenPowderSnowCauldronBlock(AbstractBlock.Settings settings, Predicate<Biome.Precipitation> predicate, Map<Item, CauldronBehavior> map) {
+public class WoodenPowderSnowCauldronBlock extends LayeredCauldronBlock {
+    public WoodenPowderSnowCauldronBlock(Properties settings, Predicate<Biome.Precipitation> predicate, Map<Item, CauldronInteraction> map) {
         super(settings, predicate, map);
     }
 
-    protected void onFireCollision(BlockState state, World world, BlockPos pos) {
-        decrementFluidLevel(ObjectRegistry.WOODEN_WATER_CAULDRON.get().getDefaultState().with(LEVEL, state.get(LEVEL)), world, pos);
+    protected void handleEntityOnFireInside(BlockState state, Level world, BlockPos pos) {
+        lowerFillLevel(ObjectRegistry.WOODEN_WATER_CAULDRON.get().defaultBlockState().setValue(LEVEL, state.getValue(LEVEL)), world, pos);
     }
 
 

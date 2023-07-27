@@ -7,12 +7,12 @@ import de.cristelknight.doapi.api.DoApiPlugin;
 import de.cristelknight.doapi.client.render.feature.FullCustomArmor;
 
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLoader;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.satisfyu.meadow.client.model.FurArmorHat;
 import net.satisfyu.meadow.client.model.FurArmorInner;
 import net.satisfyu.meadow.client.model.FurArmorOuter;
@@ -31,12 +31,12 @@ public class MeadowDoAPI implements DoApiAPI {
     }
 
     @Override
-    public <T extends LivingEntity> void registerHat(Map<Item, EntityModel<T>> models, EntityModelLoader modelLoader) {
+    public <T extends LivingEntity> void registerHat(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
         ArmorRegistry.registerHatModels(models, modelLoader);
     }
 
     @Override
-    public <T extends LivingEntity> void registerArmor(Map<FullCustomArmor, Pair<BipedEntityModel<T>, BipedEntityModel<T>>> models, EntityModelLoader modelLoader) {
+    public <T extends LivingEntity> void registerArmor(Map<FullCustomArmor, Pair<HumanoidModel<T>, HumanoidModel<T>>> models, EntityModelSet modelLoader) {
         ArmorRegistry.registerArmorModels(models, modelLoader);
     }
 

@@ -1,7 +1,7 @@
 package net.satisfyu.meadow.registry;
 
 import de.cristelknight.doapi.DoApiExpectPlatform;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 
 public class FlammableBlockRegistry {
 

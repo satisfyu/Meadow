@@ -1,25 +1,26 @@
 package net.satisfyu.meadow.entity.cow.shearable.warped;
 
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.util.Identifier;
 import net.satisfyu.meadow.client.MeadowClient;
 import net.satisfyu.meadow.entity.cow.shearable.WoolyCowModel;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 
-public class WarpedCowRenderer extends MobEntityRenderer<WarpedCowEntity, WoolyCowModel<WarpedCowEntity>> {
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-    private static final Identifier TEXTURE_SHEARED = new Identifier(MOD_ID, "textures/entity/cow/warped_cow_sheared.png");
+public class WarpedCowRenderer extends MobRenderer<WarpedCowEntity, WoolyCowModel<WarpedCowEntity>> {
 
-    private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/cow/warped_cow.png");
+    private static final ResourceLocation TEXTURE_SHEARED = new ResourceLocation(MOD_ID, "textures/entity/cow/warped_cow_sheared.png");
 
-    public WarpedCowRenderer(EntityRendererFactory.Context context) {
-        super(context, new WoolyCowModel<>(context.getPart(MeadowClient.UMBRA_COW_MODEL_LAYER)), 0.7f);
+    private static final ResourceLocation TEXTURE = new ResourceLocation(MOD_ID, "textures/entity/cow/warped_cow.png");
+
+    public WarpedCowRenderer(EntityRendererProvider.Context context) {
+        super(context, new WoolyCowModel<>(context.bakeLayer(MeadowClient.UMBRA_COW_MODEL_LAYER)), 0.7f);
     }
 
     @Override
-    public Identifier getTexture(WarpedCowEntity cowEntity) {
+    public ResourceLocation getTexture(WarpedCowEntity cowEntity) {
         return cowEntity.isSheared() ? TEXTURE_SHEARED : TEXTURE;
     }
 }

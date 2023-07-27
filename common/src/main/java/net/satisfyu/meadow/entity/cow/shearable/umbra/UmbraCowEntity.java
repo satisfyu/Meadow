@@ -1,22 +1,22 @@
 package net.satisfyu.meadow.entity.cow.shearable.umbra;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.CowEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.entity.cow.shearable.ShearableCowEntity;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 
 public class UmbraCowEntity extends ShearableCowEntity {
-    public UmbraCowEntity(EntityType<? extends CowEntity> entityType, World world) {
+    public UmbraCowEntity(EntityType<? extends Cow> entityType, Level world) {
         super(entityType, world, ObjectRegistry.UMBRA_WOOL.get());
     }
 
     @Override
-    public CowEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
+    public Cow getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {
         return EntityRegistry.UMBRA_COW.get().create(serverWorld);
     }
 

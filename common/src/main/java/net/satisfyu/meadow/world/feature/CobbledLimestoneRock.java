@@ -1,39 +1,39 @@
 package net.satisfyu.meadow.world.feature;
 
 
-import net.minecraft.block.Blocks;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.SingleStateFeatureConfig;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 
-public class CobbledLimestoneRock extends Feature<SingleStateFeatureConfig> {
+public class CobbledLimestoneRock extends Feature<BlockStateConfiguration> {
 
     public CobbledLimestoneRock() {
-        super(SingleStateFeatureConfig.CODEC);
+        super(BlockStateConfiguration.CODEC);
     }
 
 
     @Override
-    public boolean generate(FeatureContext<SingleStateFeatureConfig> context) {
-        Random random = context.getRandom();
-        SingleStateFeatureConfig config = context.getConfig();
-        StructureWorldAccess world = context.getWorld();
-        int radius = random.nextBetween(3, 7);
-        BlockPos pos = context.getOrigin();
-        for (; pos.getY() > world.getBottomY() + radius; pos = pos.down()) {
-            if (!world.isAir(pos)) {
-                if (world.getBlockState(pos).isIn(BlockTags.DIRT)) {
+    public boolean place(FeaturePlaceContext<BlockStateConfiguration> context) {
+        RandomSource random = context.random();
+        BlockStateConfiguration config = context.config();
+        WorldGenLevel world = context.level();
+        int radius = random.nextIntBetweenInclusive(3, 7);
+        BlockPos pos = context.origin();
+        for (; pos.getY() > world.getMinBuildHeight() + radius; pos = pos.below()) {
+            if (!world.isEmptyBlock(pos)) {
+                if (world.getBlockState(pos).is(BlockTags.DIRT)) {
                     break;
                 }
             }
         }
-        if (pos.getY() <= world.getBottomY() + radius) {
+        if (pos.getY() <= world.getMinBuildHeight() + radius) {
             return false;
         } else {
             //boolean wasInit = false;
@@ -44,9 +44,9 @@ public class CobbledLimestoneRock extends Feature<SingleStateFeatureConfig> {
                 int l = random.nextInt(radius);
                 float f = (float) (j + k + l) * 0.333F + 0.5F;
 
-                for (BlockPos pos2 : BlockPos.iterate(pos.add(-j, -k, -l), pos.add(j, k, l))) {
-                    if (pos2.getSquaredDistance(pos) <= (double) (f * f)) {
-                        this.setBlockState(world, pos2, config.state);
+                for (BlockPos pos2 : BlockPos.betweenClosed(pos.offset(-j, -k, -l), pos.offset(j, k, l))) {
+                    if (pos2.distSqr(pos) <= (double) (f * f)) {
+                        this.setBlock(world, pos2, config.state);
                         /*
                         if(!wasInit){
                             gerade = pos2.getY() % 2 == 0;
@@ -58,16 +58,16 @@ public class CobbledLimestoneRock extends Feature<SingleStateFeatureConfig> {
                          */
                     }
                 }
-                pos = pos.add(-1 + random.nextInt(2), -random.nextInt(2), -1 + random.nextInt(2));
+                pos = pos.offset(-1 + random.nextInt(2), -random.nextInt(2), -1 + random.nextInt(2));
             }
             return true;
         }
     }
 
-    private void setSlab(StructureWorldAccess world, BlockPos pos2, boolean gerade) {
+    private void setSlab(WorldGenLevel world, BlockPos pos2, boolean gerade) {
         if ((pos2.getY() % 2 == 0) == gerade) {
-            if (world.getBlockState(pos2.up()).isOf(Blocks.AIR)) {
-                this.setBlockState(world, pos2.up(), ObjectRegistry.COBBLED_LIMESTONE_SLAB.get().getDefaultState());
+            if (world.getBlockState(pos2.above()).is(Blocks.AIR)) {
+                this.setBlock(world, pos2.above(), ObjectRegistry.COBBLED_LIMESTONE_SLAB.get().defaultBlockState());
             }
         }
     }

@@ -1,71 +1,65 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.LanternBlock;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.satisfyu.meadow.registry.SoundRegistry;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LanternBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.List;
 
 public class OilLantern extends LanternBlock {
-
-    protected static final VoxelShape HANGING_SHAPE = makeShapeHS();
-    protected static final VoxelShape STANDING_SHAPE = makeShapeSS();
+    protected static final VoxelShape AABB = makeShapeSS();
 
     public static VoxelShape makeShapeHS() {
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.375, 0.375, 0.625, 0.6875, 0.625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0.3125, 0.5, 0.3125, 0.75, 0.5), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.6875, 0.3125, 0.5, 0.75, 0.75, 0.5), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 0.3125, 0.6875, 0.5, 0.75, 0.75), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 0.3125, 0.25, 0.5, 0.75, 0.3125), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0.1875, 0.3125, 0.6875, 0.375, 0.6875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0.6875, 0.3125, 0.6875, 0.8125, 0.6875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.8125, 0.375, 0.625, 1, 0.625), BooleanBiFunction.OR);
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.375, 0.375, 0.375, 0.625, 0.6875, 0.625), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.25, 0.3125, 0.5, 0.3125, 0.75, 0.5), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0.3125, 0.5, 0.75, 0.75, 0.5), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.5, 0.3125, 0.6875, 0.5, 0.75, 0.75), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.5, 0.3125, 0.25, 0.5, 0.75, 0.3125), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3125, 0.1875, 0.3125, 0.6875, 0.375, 0.6875), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3125, 0.6875, 0.3125, 0.6875, 0.8125, 0.6875), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.375, 0.8125, 0.375, 0.625, 1, 0.625), BooleanOp.OR);
         return shape;
     }
 
 
     public static VoxelShape makeShapeSS() {
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0.0625, 0.5, 0.3125, 0.5625, 0.5), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 0.0625, 0.6875, 0.5, 0.5625, 0.8125), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0, 0.3125, 0.6875, 0.1875, 0.6875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.1875, 0.375, 0.625, 0.5, 0.625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0.5, 0.3125, 0.6875, 0.625, 0.6875), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 0.0625, 0.1875, 0.5, 0.5625, 0.3125), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.6875, 0.0625, 0.5, 0.8125, 0.5625, 0.5), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.375, 0.625, 0.375, 0.625, 0.6875, 0.625), BooleanBiFunction.OR);
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.40625, 0.6875, 0.40625, 0.59375, 0.8125, 0.59375), BooleanBiFunction.OR);
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0.0625, 0.5, 0.3125, 0.5625, 0.5), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.5, 0.0625, 0.6875, 0.5, 0.5625, 0.8125), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3125, 0, 0.3125, 0.6875, 0.1875, 0.6875), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.375, 0.1875, 0.375, 0.625, 0.5, 0.625), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3125, 0.5, 0.3125, 0.6875, 0.625, 0.6875), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.5, 0.0625, 0.1875, 0.5, 0.5625, 0.3125), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0.0625, 0.5, 0.8125, 0.5625, 0.5), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.375, 0.625, 0.375, 0.625, 0.6875, 0.625), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.40625, 0.6875, 0.40625, 0.59375, 0.8125, 0.59375), BooleanOp.OR);
         return shape;
     }
 
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
         double d = (double) pos.getX() + 0.5;
         double e = pos.getY() + 0.7;
         double f = (double) pos.getZ() + 0.5;
         if (random.nextDouble() < 0.3) {
-            world.playSound(d, e, f, SoundEvents.BLOCK_CANDLE_AMBIENT, SoundCategory.BLOCKS, 2.0f, 1.0f, false);
+            world.playLocalSound(d, e, f, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 2.0f, 1.0f, false);
         }
         double h = random.nextDouble() * 0.6 - 0.3;
         double i = random.nextDouble() * 9.0 / 16.0;
@@ -75,23 +69,23 @@ public class OilLantern extends LanternBlock {
 
 
 
-    public OilLantern(Settings settings) {
+    public OilLantern(Properties settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(HANGING, false).with(WATERLOGGED, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(HANGING, false).setValue(WATERLOGGED, false));
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return state.get(HANGING) ? HANGING_SHAPE : STANDING_SHAPE;
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return state.getValue(HANGING) ? HANGING_AABB : AABB;
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HANGING, WATERLOGGED);
     }
 
     @Override
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.lantern.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
+        tooltip.add(Component.translatable("block.meadow.lantern.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

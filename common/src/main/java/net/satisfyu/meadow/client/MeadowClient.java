@@ -6,18 +6,21 @@ import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.color.world.BiomeColors;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.model.*;
-import net.minecraft.client.resource.language.I18n;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ChickenModel;
+import net.minecraft.client.model.CowModel;
+import net.minecraft.client.model.SheepFurModel;
+import net.minecraft.client.model.SheepModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.render.BigFlowerPotBlockEntityRenderer;
 import net.satisfyu.meadow.client.render.CheeseRackBlockEntityRenderer;
@@ -62,49 +65,49 @@ import java.util.List;
 
 public class MeadowClient {
 
-    public static final EntityModelLayer FLECKED_SHEEP_FUR = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "flecked_sheep"), "fur");
-    public static final EntityModelLayer FLECKED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "flecked_sheep"), "main");
+    public static final ModelLayerLocation FLECKED_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "flecked_sheep"), "fur");
+    public static final ModelLayerLocation FLECKED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "flecked_sheep"), "main");
 
-    public static final EntityModelLayer FUZZY_SHEEP_FUR = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "fuzzy_sheep"), "fur");
-    public static final EntityModelLayer FUZZY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "fuzzy_sheep"), "main");
+    public static final ModelLayerLocation FUZZY_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "fuzzy_sheep"), "fur");
+    public static final ModelLayerLocation FUZZY_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "fuzzy_sheep"), "main");
 
-    public static final EntityModelLayer HORNED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "horned_sheep"), "main");
+    public static final ModelLayerLocation HORNED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "horned_sheep"), "main");
 
-    public static final EntityModelLayer BROWN_BEAR_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "brown_bear"), "main");
+    public static final ModelLayerLocation BROWN_BEAR_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "brown_bear"), "main");
 
-    public static final EntityModelLayer INKY_SHEEP_FUR = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "inky_sheep"), "fur");
-    public static final EntityModelLayer INKY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "inky_sheep"), "main");
+    public static final ModelLayerLocation INKY_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "inky_sheep"), "fur");
+    public static final ModelLayerLocation INKY_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "inky_sheep"), "main");
 
-    public static final EntityModelLayer LONG_NOSED_SHEEP_FUR = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "long_nosed_sheep"), "fur");
-    public static final EntityModelLayer LONG_NOSED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "long_nosed_sheep"), "main");
+    public static final ModelLayerLocation LONG_NOSED_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "long_nosed_sheep"), "fur");
+    public static final ModelLayerLocation LONG_NOSED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "long_nosed_sheep"), "main");
 
-    public static final EntityModelLayer PATCHED_SHEEP_FUR = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "patched_sheep"), "fur");
-    public static final EntityModelLayer PATCHED_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "patched_sheep"), "main");
+    public static final ModelLayerLocation PATCHED_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "patched_sheep"), "fur");
+    public static final ModelLayerLocation PATCHED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "patched_sheep"), "main");
 
-    public static final EntityModelLayer ROCKY_SHEEP_FUR = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "rocky_sheep"), "fur");
-    public static final EntityModelLayer ROCKY_SHEEP_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "rocky_sheep"), "main");
+    public static final ModelLayerLocation ROCKY_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "rocky_sheep"), "fur");
+    public static final ModelLayerLocation ROCKY_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "rocky_sheep"), "main");
 
-    public static final EntityModelLayer UMBRA_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "umbra_cow"), "head");
-    public static final EntityModelLayer WARPED_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "warped_cow"), "head");
+    public static final ModelLayerLocation UMBRA_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "umbra_cow"), "head");
+    public static final ModelLayerLocation WARPED_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "warped_cow"), "head");
 
-    public static final EntityModelLayer HIGHLAND_CATTLE_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "highland_cattle"), "head");
+    public static final ModelLayerLocation HIGHLAND_CATTLE_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "highland_cattle"), "head");
 
-    public static final EntityModelLayer ALBINO_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "albino_cow"), "head");
-    public static final EntityModelLayer WATER_BUFFALO_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "water_buffalo"), "head");
+    public static final ModelLayerLocation ALBINO_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "albino_cow"), "head");
+    public static final ModelLayerLocation WATER_BUFFALO_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "water_buffalo"), "head");
 
-    public static final EntityModelLayer COOKIE_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "cookie_cow"), "head");
+    public static final ModelLayerLocation COOKIE_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "cookie_cow"), "head");
 
-    public static final EntityModelLayer CREAM_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "cream_cow"), "head");
+    public static final ModelLayerLocation CREAM_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "cream_cow"), "head");
 
-    public static final EntityModelLayer DAIRY_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "dairy_cow"), "head");
+    public static final ModelLayerLocation DAIRY_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "dairy_cow"), "head");
 
-    public static final EntityModelLayer DARK_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "dark_cow"), "head");
+    public static final ModelLayerLocation DARK_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "dark_cow"), "head");
 
-    public static final EntityModelLayer PINTO_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "pinto_cow"), "head");
+    public static final ModelLayerLocation PINTO_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "pinto_cow"), "head");
 
-    public static final EntityModelLayer SUNSET_COW_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "sunset_cow"), "head");
+    public static final ModelLayerLocation SUNSET_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "sunset_cow"), "head");
 
-    public static final EntityModelLayer MEADOW_CHICKEN_MODEL_LAYER = new EntityModelLayer(new Identifier(Meadow.MOD_ID, "meadow_chicken"), "main");
+    public static final ModelLayerLocation MEADOW_CHICKEN_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "meadow_chicken"), "main");
 
     public static void preInitClient() {
         registerEntityRenderers();
@@ -116,7 +119,7 @@ public class MeadowClient {
     }
 
     public static void initClient() {
-        RenderTypeRegistry.register(RenderLayer.getCutout(), ObjectRegistry.WOODCUTTER.get(),
+        RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.WOODCUTTER.get(),
                 ObjectRegistry.PINE_DOOR.get(), ObjectRegistry.PINE_TRAPDOOR.get(), ObjectRegistry.DELPHINIUM.get(), ObjectRegistry.ALPINE_POPPY.get(), ObjectRegistry.SAXIFRAGE.get(),
                 ObjectRegistry.ENZIAN.get(), ObjectRegistry.COOKING_CAULDRON.get(), ObjectRegistry.FRAME.get(), ObjectRegistry.TABLE.get(), ObjectRegistry.FIRE_LOG.get(), ObjectRegistry.ERIOPHORUM.get(),
                 ObjectRegistry.ERIOPHORUM_TALL.get(), ObjectRegistry.SMALL_FIR.get(), ObjectRegistry.PINE_SAPLING.get(), ObjectRegistry.CHAIR.get(),
@@ -129,7 +132,7 @@ public class MeadowClient {
                 ObjectRegistry.W_POTTED_ENZIAN.get(), ObjectRegistry.W_POTTED_FIRE_LILY.get(), ObjectRegistry.W_POTTED_ERIOPHORUM.get(), ObjectRegistry.POTTED_AZALEA.get(), ObjectRegistry.POTTED_FLOWERING_AZALEA.get(), ObjectRegistry.FLOWER_POT_BIG.get(), ObjectRegistry.FONDUE.get(),
                 ObjectRegistry.OIL_LANTERN.get(), ObjectRegistry.WHEELBARROW.get(), ObjectRegistry.POTTED_MANGROVE_PROPAGULE.get(), ObjectRegistry.PINE_LEAVES_2.get());
 
-        RenderTypeRegistry.register(RenderLayer.getTranslucent(), ObjectRegistry.WINDOW.get(), ObjectRegistry.WINDOW_2.get(), ObjectRegistry.WINDOW_3.get());
+        RenderTypeRegistry.register(RenderType.translucent(), ObjectRegistry.WINDOW.get(), ObjectRegistry.WINDOW_2.get(), ObjectRegistry.WINDOW_3.get());
 
         registerBlockRenderer();
         registerClientScreens();
@@ -138,7 +141,7 @@ public class MeadowClient {
                     if (world == null || pos == null) {
                         return -1;
                     }
-                    return BiomeColors.getWaterColor(world, pos);
+                    return BiomeColors.getAverageWaterColor(world, pos);
                 }, ObjectRegistry.WOODEN_WATER_CAULDRON
         );
 
@@ -165,78 +168,78 @@ public class MeadowClient {
     }
 
     public static void registerEntityModelLayers() {
-        EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearEntityModel::createBodyLayer);
     }
 
 
     private static void registerCows() {
         EntityRendererRegistry.register(EntityRegistry.UMBRA_COW, UmbraCowRenderer::new);
-        EntityModelLayerRegistry.register(UMBRA_COW_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(UMBRA_COW_MODEL_LAYER, WoolyCowModel::createBodyLayer);
 
         EntityRendererRegistry.register(EntityRegistry.WARPED_COW, WarpedCowRenderer::new);
-        EntityModelLayerRegistry.register(WARPED_COW_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(WARPED_COW_MODEL_LAYER, WoolyCowModel::createBodyLayer);
 
         EntityRendererRegistry.register(EntityRegistry.HIGHLAND_CATTLE, HighlandCattleRenderer::new);
-        EntityModelLayerRegistry.register(HIGHLAND_CATTLE_MODEL_LAYER, WoolyCowModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(HIGHLAND_CATTLE_MODEL_LAYER, WoolyCowModel::createBodyLayer);
 
         EntityRendererRegistry.register(EntityRegistry.ALBINO_COW, AlbinoCowRenderer::new);
-        EntityModelLayerRegistry.register(ALBINO_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(ALBINO_COW_MODEL_LAYER, CowModel::createBodyLayer);
 
         EntityRendererRegistry.register(EntityRegistry.WATER_BUFFALO, WaterBuffaloEntityRenderer::new);
         EntityModelLayerRegistry.register(WATER_BUFFALO_MODEL_LAYER, WaterBuffaloEntityModel::getTexturedModelData);
 
         EntityRendererRegistry.register(EntityRegistry.COOKIE_COW, CookieCowRenderer::new);
-        EntityModelLayerRegistry.register(COOKIE_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(COOKIE_COW_MODEL_LAYER, CowModel::createBodyLayer);
 
         EntityRendererRegistry.register(EntityRegistry.CREAM_COW, CreamCowRenderer::new);
-        EntityModelLayerRegistry.register(CREAM_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(CREAM_COW_MODEL_LAYER, CowModel::createBodyLayer);
 
         EntityRendererRegistry.register(EntityRegistry.DAIRY_COW, DairyCowRenderer::new);
-        EntityModelLayerRegistry.register(DAIRY_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(DAIRY_COW_MODEL_LAYER, CowModel::createBodyLayer);
 
         EntityRendererRegistry.register(EntityRegistry.DARK_COW, DarkCowRenderer::new);
-        EntityModelLayerRegistry.register(DARK_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(DARK_COW_MODEL_LAYER, CowModel::createBodyLayer);
 
         EntityRendererRegistry.register(EntityRegistry.PINTO_COW, PintoCowRenderer::new);
-        EntityModelLayerRegistry.register(PINTO_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(PINTO_COW_MODEL_LAYER, CowModel::createBodyLayer);
 
         EntityRendererRegistry.register(EntityRegistry.SUNSET_COW, SunsetCowRenderer::new);
-        EntityModelLayerRegistry.register(SUNSET_COW_MODEL_LAYER, CowEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(SUNSET_COW_MODEL_LAYER, CowModel::createBodyLayer);
     }
 
     private static void registerSheeps() {
         EntityRendererRegistry.register(EntityRegistry.FLECKED_SHEEP, FleckedSheepRenderer::new);
-        EntityModelLayerRegistry.register(FLECKED_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.register(FLECKED_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(FLECKED_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
+        EntityModelLayerRegistry.register(FLECKED_SHEEP_FUR, SheepFurModel::createFurLayer);
 
         EntityRendererRegistry.register(EntityRegistry.FUZZY_SHEEP, FuzzySheepRenderer::new);
-        EntityModelLayerRegistry.register(FUZZY_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.register(FUZZY_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(FUZZY_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
+        EntityModelLayerRegistry.register(FUZZY_SHEEP_FUR, SheepFurModel::createFurLayer);
 
         EntityRendererRegistry.register(EntityRegistry.HORNED_SHEEP, HornedSheepRenderer::new);
-        EntityModelLayerRegistry.register(HORNED_SHEEP_MODEL_LAYER, HornedSheepModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(HORNED_SHEEP_MODEL_LAYER, HornedSheepModel::createBodyLayer);
 
 
         EntityRendererRegistry.register(EntityRegistry.INKY_SHEEP, InkySheepRenderer::new);
-        EntityModelLayerRegistry.register(INKY_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.register(INKY_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(INKY_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
+        EntityModelLayerRegistry.register(INKY_SHEEP_FUR, SheepFurModel::createFurLayer);
 
         EntityRendererRegistry.register(EntityRegistry.LONG_NOSED_SHEEP, LongNosedSheepRenderer::new);
-        EntityModelLayerRegistry.register(LONG_NOSED_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.register(LONG_NOSED_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(LONG_NOSED_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
+        EntityModelLayerRegistry.register(LONG_NOSED_SHEEP_FUR, SheepFurModel::createFurLayer);
 
         EntityRendererRegistry.register(EntityRegistry.PATCHED_SHEEP, PatchedSheepRenderer::new);
-        EntityModelLayerRegistry.register(PATCHED_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.register(PATCHED_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(PATCHED_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
+        EntityModelLayerRegistry.register(PATCHED_SHEEP_FUR, SheepFurModel::createFurLayer);
 
         EntityRendererRegistry.register(EntityRegistry.ROCKY_SHEEP, RockySheepRenderer::new);
-        EntityModelLayerRegistry.register(ROCKY_SHEEP_MODEL_LAYER, SheepEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.register(ROCKY_SHEEP_FUR, SheepWoolEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(ROCKY_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
+        EntityModelLayerRegistry.register(ROCKY_SHEEP_FUR, SheepFurModel::createFurLayer);
     }
 
     private static void registerChicken() {
         EntityRendererRegistry.register(EntityRegistry.MEADOW_CHICKEN, MeadowChickenRenderer::new);
-        EntityModelLayerRegistry.register(MEADOW_CHICKEN_MODEL_LAYER, ChickenEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(MEADOW_CHICKEN_MODEL_LAYER, ChickenModel::createBodyLayer);
 
     }
 
@@ -245,24 +248,24 @@ public class MeadowClient {
     }
 
 
-    public static void appendToolTip(@NotNull List<Text> tooltip) {
-        PlayerEntity player = MinecraftClient.getInstance().player;
+    public static void appendToolTip(@NotNull List<Component> tooltip) {
+        Player player = Minecraft.getInstance().player;
         if (player == null) return;
-        ItemStack helmet = player.getEquippedStack(EquipmentSlot.HEAD);
-        ItemStack chestplate = player.getEquippedStack(EquipmentSlot.CHEST);
-        ItemStack leggings = player.getEquippedStack(EquipmentSlot.LEGS);
-        ItemStack boots = player.getEquippedStack(EquipmentSlot.FEET);
-        tooltip.add(Text.of(""));
-        tooltip.add(Text.of(Formatting.DARK_GREEN + I18n.translate("meadow.tooltip.fur_armor")));
-        tooltip.add(Text.of((helmet != null && helmet.getItem() instanceof FurHead ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_HELMET.get().getName().getString() + "]"));
-        tooltip.add(Text.of((chestplate != null && chestplate.getItem() instanceof FurChest ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_CHESTPLATE.get().getName().getString() + "]"));
-        tooltip.add(Text.of((leggings != null && leggings.getItem() instanceof FurLegs ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_LEGGINGS.get().getName().getString() + "]"));
-        tooltip.add(Text.of((boots != null && boots.getItem() instanceof FurBoots ? Formatting.GREEN.toString() : Formatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_BOOTS.get().getName().getString() + "]"));
-        tooltip.add(Text.of(""));
-        tooltip.add(Text.of(Formatting.GRAY + I18n.translate("meadow.tooltip.fur_armor2")));
-        tooltip.add(Text.of(((helmet != null && helmet.getItem() instanceof FurHead &&
+        ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
+        ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
+        tooltip.add(Component.nullToEmpty(""));
+        tooltip.add(Component.nullToEmpty(ChatFormatting.DARK_GREEN + I18n.get("meadow.tooltip.fur_armor")));
+        tooltip.add(Component.nullToEmpty((helmet != null && helmet.getItem() instanceof FurHead ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_HELMET.get().getDescription().getString() + "]"));
+        tooltip.add(Component.nullToEmpty((chestplate != null && chestplate.getItem() instanceof FurChest ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_CHESTPLATE.get().getDescription().getString() + "]"));
+        tooltip.add(Component.nullToEmpty((leggings != null && leggings.getItem() instanceof FurLegs ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_LEGGINGS.get().getDescription().getString() + "]"));
+        tooltip.add(Component.nullToEmpty((boots != null && boots.getItem() instanceof FurBoots ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_BOOTS.get().getDescription().getString() + "]"));
+        tooltip.add(Component.nullToEmpty(""));
+        tooltip.add(Component.nullToEmpty(ChatFormatting.GRAY + I18n.get("meadow.tooltip.fur_armor2")));
+        tooltip.add(Component.nullToEmpty(((helmet != null && helmet.getItem() instanceof FurHead &&
                 chestplate != null && chestplate.getItem() instanceof FurChest &&
                 leggings != null && leggings.getItem() instanceof FurLegs &&
-                boots != null && boots.getItem() instanceof FurBoots) ? Formatting.DARK_GREEN.toString() : Formatting.GRAY.toString()) + I18n.translate("meadow.tooltip.fur_armor3")));
+                boots != null && boots.getItem() instanceof FurBoots) ? ChatFormatting.DARK_GREEN.toString() : ChatFormatting.GRAY.toString()) + I18n.get("meadow.tooltip.fur_armor3")));
     }
 }

@@ -1,94 +1,98 @@
 package net.satisfyu.meadow.item;
 
-import net.minecraft.block.*;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.BiomeTags;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.RaycastContext;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.BaseCoralWallFanBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class WateringCanItem extends BlockItem {
-    public WateringCanItem(Block block, Settings settings) {
+    public WateringCanItem(Block block, Properties settings) {
         super(block, settings);
     }
 
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        PlayerEntity playerEntity = context.getPlayer();
-        if (playerEntity == null || playerEntity.isSneaking()) return super.useOnBlock(context);
-        ItemStack stack = context.getStack();
+    public InteractionResult useOn(UseOnContext context) {
+        Player playerEntity = context.getPlayer();
+        if (playerEntity == null || playerEntity.isShiftKeyDown()) return super.useOn(context);
+        ItemStack stack = context.getItemInHand();
 
-        World world = context.getWorld();
-        BlockHitResult hitResult = WateringCanItem.raycast(world, playerEntity, RaycastContext.FluidHandling.SOURCE_ONLY);
+        Level world = context.getLevel();
+        BlockHitResult hitResult = WateringCanItem.getPlayerPOVHitResult(world, playerEntity, ClipContext.Fluid.SOURCE_ONLY);
         if (hitResult.getType() == HitResult.Type.BLOCK) {
             BlockPos blockPos = hitResult.getBlockPos();
-            if (!world.canPlayerModifyAt(playerEntity, blockPos)) {
-                return ActionResult.PASS;
+            if (!world.mayInteract(playerEntity, blockPos)) {
+                return InteractionResult.PASS;
             }
-            if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-                world.playSound(playerEntity, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0f, 1.0f);
-                world.emitGameEvent(playerEntity, GameEvent.FLUID_PICKUP, blockPos);
-                playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-                stack.setDamage(0);
-                return ActionResult.SUCCESS;
+            if (world.getFluidState(blockPos).is(FluidTags.WATER)) {
+                world.playSound(playerEntity, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0f, 1.0f);
+                world.gameEvent(playerEntity, GameEvent.FLUID_PICKUP, blockPos);
+                playerEntity.awardStat(Stats.ITEM_USED.get(this));
+                stack.setDamageValue(0);
+                return InteractionResult.SUCCESS;
             }
         }
 
 
-        if (stack.getDamage() >= stack.getMaxDamage() && !playerEntity.getAbilities().creativeMode)
-            return ActionResult.PASS;
-        BlockPos blockPos = context.getBlockPos();
-        BlockPos blockPos2 = blockPos.offset(context.getSide());
+        if (stack.getDamageValue() >= stack.getMaxDamage() && !playerEntity.getAbilities().instabuild)
+            return InteractionResult.PASS;
+        BlockPos blockPos = context.getClickedPos();
+        BlockPos blockPos2 = blockPos.relative(context.getClickedFace());
         if (WateringCanItem.useOnFertilizable(stack, world, blockPos, playerEntity)) {
-            if (!world.isClient) {
-                world.syncWorldEvent(WorldEvents.BONE_MEAL_USED, blockPos, 0);
+            if (!world.isClientSide) {
+                world.levelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, blockPos, 0);
             }
-            return ActionResult.success(world.isClient);
+            return InteractionResult.sidedSuccess(world.isClientSide);
         }
         BlockState blockState = world.getBlockState(blockPos);
-        boolean bl = blockState.isSideSolidFullSquare(world, blockPos, context.getSide());
-        if (bl && WateringCanItem.useOnGround(stack, world, blockPos2, context.getSide(), playerEntity)) {
-            if (!world.isClient) {
-                world.syncWorldEvent(WorldEvents.BONE_MEAL_USED, blockPos2, 0);
+        boolean bl = blockState.isFaceSturdy(world, blockPos, context.getClickedFace());
+        if (bl && WateringCanItem.useOnGround(stack, world, blockPos2, context.getClickedFace(), playerEntity)) {
+            if (!world.isClientSide) {
+                world.levelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, blockPos2, 0);
             }
-            return ActionResult.success(world.isClient);
+            return InteractionResult.sidedSuccess(world.isClientSide);
         }
-        return ActionResult.PASS;
+        return InteractionResult.PASS;
     }
 
-    public static boolean useOnFertilizable(ItemStack stack, World world, BlockPos pos, PlayerEntity playerEntity) {
-        Fertilizable fertilizable;
+    public static boolean useOnFertilizable(ItemStack stack, Level world, BlockPos pos, Player playerEntity) {
+        BonemealableBlock fertilizable;
         BlockState blockState = world.getBlockState(pos);
-        if (blockState.getBlock() instanceof Fertilizable && (fertilizable = (Fertilizable) blockState.getBlock()).isFertilizable(world, pos, blockState, world.isClient)) {
-            if (world instanceof ServerWorld) {
-                if (fertilizable.canGrow(world, world.random, pos, blockState)) {
-                    fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
+        if (blockState.getBlock() instanceof BonemealableBlock && (fertilizable = (BonemealableBlock) blockState.getBlock()).isValidBonemealTarget(world, pos, blockState, world.isClientSide)) {
+            if (world instanceof ServerLevel) {
+                if (fertilizable.isBonemealSuccess(world, world.random, pos, blockState)) {
+                    fertilizable.performBonemeal((ServerLevel) world, world.random, pos, blockState);
                 }
                 damage(stack, playerEntity);
             }
@@ -98,64 +102,64 @@ public class WateringCanItem extends BlockItem {
     }
 
 
-    public static boolean useOnGround(ItemStack stack, World world, BlockPos blockPos, @Nullable Direction facing, PlayerEntity playerEntity) {
-        if (!world.getBlockState(blockPos).isOf(Blocks.WATER) || world.getFluidState(blockPos).getLevel() != 8) {
+    public static boolean useOnGround(ItemStack stack, Level world, BlockPos blockPos, @Nullable Direction facing, Player playerEntity) {
+        if (!world.getBlockState(blockPos).is(Blocks.WATER) || world.getFluidState(blockPos).getAmount() != 8) {
             return false;
         }
-        if (!(world instanceof ServerWorld)) {
+        if (!(world instanceof ServerLevel)) {
             return true;
         }
-        Random random = world.getRandom();
+        RandomSource random = world.getRandom();
         block0:
         for (int i = 0; i < 128; ++i) {
             BlockPos blockPos2 = blockPos;
-            BlockState blockState = Blocks.SEAGRASS.getDefaultState();
+            BlockState blockState = Blocks.SEAGRASS.defaultBlockState();
             for (int j = 0; j < i / 16; ++j) {
-                if (world.getBlockState(blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1)).isFullCube(world, blockPos2))
+                if (world.getBlockState(blockPos2 = blockPos2.offset(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1)).isCollisionShapeFullBlock(world, blockPos2))
                     continue block0;
             }
-            RegistryEntry<Biome> registryEntry = world.getBiome(blockPos2);
-            if (registryEntry.isIn(BiomeTags.PRODUCES_CORALS_FROM_BONEMEAL)) {
+            Holder<Biome> registryEntry = world.getBiome(blockPos2);
+            if (registryEntry.is(BiomeTags.PRODUCES_CORALS_FROM_BONEMEAL)) {
                 if (i == 0 && facing != null && facing.getAxis().isHorizontal()) {
-                    blockState = Registries.BLOCK.getEntryList(BlockTags.WALL_CORALS).flatMap(blocks -> blocks.getRandom(world.random)).map(blockEntry -> blockEntry.value().getDefaultState()).orElse(blockState);
-                    if (blockState.contains(DeadCoralWallFanBlock.FACING)) {
-                        blockState = blockState.with(DeadCoralWallFanBlock.FACING, facing);
+                    blockState = BuiltInRegistries.BLOCK.getTag(BlockTags.WALL_CORALS).flatMap(blocks -> blocks.getRandomElement(world.random)).map(blockEntry -> blockEntry.value().defaultBlockState()).orElse(blockState);
+                    if (blockState.hasProperty(BaseCoralWallFanBlock.FACING)) {
+                        blockState = blockState.setValue(BaseCoralWallFanBlock.FACING, facing);
                     }
                 } else if (random.nextInt(4) == 0) {
-                    blockState = Registries.BLOCK.getEntryList(BlockTags.UNDERWATER_BONEMEALS).flatMap(blocks -> blocks.getRandom(world.random)).map(blockEntry -> blockEntry.value().getDefaultState()).orElse(blockState);
+                    blockState = BuiltInRegistries.BLOCK.getTag(BlockTags.UNDERWATER_BONEMEALS).flatMap(blocks -> blocks.getRandomElement(world.random)).map(blockEntry -> blockEntry.value().defaultBlockState()).orElse(blockState);
                 }
             }
-            if (blockState.isIn(BlockTags.WALL_CORALS, state -> state.contains(DeadCoralWallFanBlock.FACING))) {
-                for (int k = 0; !blockState.canPlaceAt(world, blockPos2) && k < 4; ++k) {
-                    blockState = blockState.with(DeadCoralWallFanBlock.FACING, Direction.Type.HORIZONTAL.random(random));
+            if (blockState.is(BlockTags.WALL_CORALS, state -> state.hasProperty(BaseCoralWallFanBlock.FACING))) {
+                for (int k = 0; !blockState.canSurvive(world, blockPos2) && k < 4; ++k) {
+                    blockState = blockState.setValue(BaseCoralWallFanBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random));
                 }
             }
-            if (!blockState.canPlaceAt(world, blockPos2)) continue;
+            if (!blockState.canSurvive(world, blockPos2)) continue;
             BlockState blockState2 = world.getBlockState(blockPos2);
-            if (blockState2.isOf(Blocks.WATER) && world.getFluidState(blockPos2).getLevel() == 8) {
-                world.setBlockState(blockPos2, blockState, Block.NOTIFY_ALL);
+            if (blockState2.is(Blocks.WATER) && world.getFluidState(blockPos2).getAmount() == 8) {
+                world.setBlock(blockPos2, blockState, Block.UPDATE_ALL);
                 continue;
             }
-            if (!blockState2.isOf(Blocks.SEAGRASS) || random.nextInt(10) != 0) continue;
-            ((Fertilizable) Blocks.SEAGRASS).grow((ServerWorld) world, random, blockPos2, blockState2);
+            if (!blockState2.is(Blocks.SEAGRASS) || random.nextInt(10) != 0) continue;
+            ((BonemealableBlock) Blocks.SEAGRASS).performBonemeal((ServerLevel) world, random, blockPos2, blockState2);
         }
         damage(stack, playerEntity);
         return true;
     }
 
-    public static void damage(ItemStack stack, PlayerEntity entity) {
-        if (entity.getAbilities().creativeMode) return;
-        int damage = stack.getDamage();
+    public static void damage(ItemStack stack, Player entity) {
+        if (entity.getAbilities().instabuild) return;
+        int damage = stack.getDamageValue();
         if (damage < 25) {
-            stack.setDamage(damage + 1);
+            stack.setDamageValue(damage + 1);
         }
     }
 
     @Override
-    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("item.meadow.canline1.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
-        tooltip.add(Text.translatable("item.meadow.canline2.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
-        tooltip.add(Text.translatable("item.meadow.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    public void appendHoverText(ItemStack itemStack, Level world, List<Component> tooltip, TooltipFlag tooltipContext) {
+        tooltip.add(Component.translatable("item.meadow.canline1.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("item.meadow.canline2.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("item.meadow.canbeplaced.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
 
     }
 }

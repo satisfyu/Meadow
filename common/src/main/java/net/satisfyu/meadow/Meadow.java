@@ -1,7 +1,7 @@
 package net.satisfyu.meadow;
 
 import dev.architectury.hooks.item.tool.AxeItemHooks;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.satisfyu.meadow.registry.*;
 import net.satisfyu.meadow.util.WoodenCauldronBehavior;
 import org.apache.logging.log4j.LogManager;
@@ -31,7 +31,7 @@ public class Meadow {
     public static void commonSetup() {
         FlammableBlockRegistry.init();
         CompostableRegistry.init();
-        WoodenCauldronBehavior.registerBehavior();
+        WoodenCauldronBehavior.bootStrap();
 
         AxeItemHooks.addStrippable(ObjectRegistry.PINE_LOG.get(), ObjectRegistry.STRIPPED_PINE_LOG.get());
         AxeItemHooks.addStrippable(ObjectRegistry.PINE_WOOD.get(), ObjectRegistry.STRIPPED_PINE_WOOD.get());

@@ -2,57 +2,57 @@ package net.satisfyu.meadow.util;
 
 import com.google.gson.JsonArray;
 import io.netty.buffer.Unpooled;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Tuple;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.Meadow;
 
 import java.util.*;
 
 public class GeneralUtil {
 
-    public static RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
-        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, new Identifier(Meadow.MOD_ID, name));
+    public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Meadow.MOD_ID, name));
     }
 
-    public static Collection<ServerPlayerEntity> tracking(ServerWorld world, BlockPos pos) {
+    public static Collection<ServerPlayer> tracking(ServerLevel world, BlockPos pos) {
         Objects.requireNonNull(pos, "BlockPos cannot be null");
 
         return tracking(world, new ChunkPos(pos));
     }
 
-    public static PacketByteBuf create() {
-        return new PacketByteBuf(Unpooled.buffer());
+    public static FriendlyByteBuf create() {
+        return new FriendlyByteBuf(Unpooled.buffer());
     }
 
-    public static Collection<ServerPlayerEntity> tracking(ServerWorld world, ChunkPos pos) {
+    public static Collection<ServerPlayer> tracking(ServerLevel world, ChunkPos pos) {
         Objects.requireNonNull(world, "The world cannot be null");
         Objects.requireNonNull(pos, "The chunk pos cannot be null");
 
-        return world.getChunkManager().threadedAnvilChunkStorage.getPlayersWatchingChunk(pos, false);
+        return world.getChunkSource().chunkMap.getPlayers(pos, false);
     }
 
-    public static boolean matchesRecipe(Inventory inventory, DefaultedList<Ingredient> recipe, int startIndex, int endIndex) {
+    public static boolean matchesRecipe(Container inventory, NonNullList<Ingredient> recipe, int startIndex, int endIndex) {
         final List<ItemStack> validStacks = new ArrayList<>();
         for (int i = startIndex; i <= endIndex; i++) {
-            final ItemStack stackInSlot = inventory.getStack(i);
+            final ItemStack stackInSlot = inventory.getItem(i);
             if (!stackInSlot.isEmpty())
                 validStacks.add(stackInSlot);
         }
@@ -72,8 +72,8 @@ public class GeneralUtil {
         return true;
     }
 
-    public static DefaultedList<Ingredient> deserializeIngredients(JsonArray json) {
-        DefaultedList<Ingredient> ingredients = DefaultedList.of();
+    public static NonNullList<Ingredient> deserializeIngredients(JsonArray json) {
+        NonNullList<Ingredient> ingredients = NonNullList.create();
         for (int i = 0; i < json.size(); i++) {
             Ingredient ingredient = Ingredient.fromJson(json.get(i));
             if (!ingredient.isEmpty()) {
@@ -88,22 +88,22 @@ public class GeneralUtil {
     }
 
     public static VoxelShape rotateShape(Direction from, Direction to, VoxelShape shape) {
-        VoxelShape[] buffer = new VoxelShape[]{shape, VoxelShapes.empty()};
+        VoxelShape[] buffer = new VoxelShape[]{shape, Shapes.empty()};
 
-        int times = (to.getHorizontal() - from.getHorizontal() + 4) % 4;
+        int times = (to.get2DDataValue() - from.get2DDataValue() + 4) % 4;
         for (int i = 0; i < times; i++) {
-            buffer[0].forEachBox((minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = VoxelShapes.combine(buffer[1],
-                    VoxelShapes.cuboid(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX),
-                    BooleanBiFunction.OR
+            buffer[0].forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = Shapes.joinUnoptimized(buffer[1],
+                    Shapes.box(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX),
+                    BooleanOp.OR
             ));
             buffer[0] = buffer[1];
-            buffer[1] = VoxelShapes.empty();
+            buffer[1] = Shapes.empty();
         }
         return buffer[0];
     }
 
-    public static Optional<Pair<Float, Float>> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction, Direction[] unAllowedDirections) {
-        Direction direction2 = blockHitResult.getSide();
+    public static Optional<Tuple<Float, Float>> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction, Direction[] unAllowedDirections) {
+        Direction direction2 = blockHitResult.getDirection();
         if (unAllowedDirections == null)
             unAllowedDirections = new Direction[]{Direction.DOWN, Direction.UP};
         if (Arrays.stream(unAllowedDirections).toList().contains(direction2))
@@ -111,20 +111,20 @@ public class GeneralUtil {
         if (direction != direction2 && direction2 != Direction.UP && direction2 != Direction.DOWN) {
             return Optional.empty();
         } else {
-            BlockPos blockPos = blockHitResult.getBlockPos().offset(direction2);
-            Vec3d vec3 = blockHitResult.getPos().subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-            float d = (float) vec3.getX();
-            float f = (float) vec3.getZ();
+            BlockPos blockPos = blockHitResult.getBlockPos().relative(direction2);
+            Vec3 vec3 = blockHitResult.getLocation().subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+            float d = (float) vec3.x();
+            float f = (float) vec3.z();
 
-            float y = (float) vec3.getY();
+            float y = (float) vec3.y();
 
             if (direction2 == Direction.UP || direction2 == Direction.DOWN)
                 direction2 = direction;
             return switch (direction2) {
-                case NORTH -> Optional.of(new Pair<>((float) (1.0 - d), y));
-                case SOUTH -> Optional.of(new Pair<>(d, y));
-                case WEST -> Optional.of(new Pair<>(f, y));
-                case EAST -> Optional.of(new Pair<>((float) (1.0 - f), y));
+                case NORTH -> Optional.of(new Tuple<>((float) (1.0 - d), y));
+                case SOUTH -> Optional.of(new Tuple<>(d, y));
+                case WEST -> Optional.of(new Tuple<>(f, y));
+                case EAST -> Optional.of(new Tuple<>((float) (1.0 - f), y));
                 case DOWN, UP -> Optional.empty();
             };
         }

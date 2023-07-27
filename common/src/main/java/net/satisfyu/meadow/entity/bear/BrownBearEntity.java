@@ -1,38 +1,38 @@
 package net.satisfyu.meadow.entity.bear;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.ActiveTargetGoal;
-import net.minecraft.entity.ai.goal.AttackGoal;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.passive.PolarBearEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.goal.OcelotAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.PolarBear;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.registry.EntityRegistry;
 
-public class BrownBearEntity extends PolarBearEntity {
-    public BrownBearEntity(EntityType<? extends PolarBearEntity> entityType, World world) {
+public class BrownBearEntity extends PolarBear {
+    public BrownBearEntity(EntityType<? extends PolarBear> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
-    public BrownBearEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
+    public BrownBearEntity getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {
         return EntityRegistry.BROWN_BEAR.get().create(serverWorld);
     }
 
     @Override
-    protected void initGoals() {
-        super.initGoals();
-        this.goalSelector.add(1, new AttackGoal(this));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, AnimalEntity.class, true, livingEntity -> {
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new OcelotAttackGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Animal.class, true, livingEntity -> {
             if (livingEntity instanceof BrownBearEntity) {
                 return false;
-            } else if (livingEntity instanceof PlayerEntity) {
+            } else if (livingEntity instanceof Player) {
                 return true;
             } else {
-                return livingEntity instanceof SheepEntity;
+                return livingEntity instanceof Sheep;
             }
         }));
     }

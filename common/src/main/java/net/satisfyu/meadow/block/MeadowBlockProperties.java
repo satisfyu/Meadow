@@ -1,6 +1,6 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.state.property.EnumProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.satisfyu.meadow.util.LineConnectingType;
 
 public class MeadowBlockProperties {
@@ -8,7 +8,7 @@ public class MeadowBlockProperties {
     public static final EnumProperty<LineConnectingType> LINE_CONNECTING_TYPE;
 
     static {
-        SHUTTER_TYPE = EnumProperty.of("type", ShutterType.class);
-        LINE_CONNECTING_TYPE = EnumProperty.of("type", LineConnectingType.class);
+        SHUTTER_TYPE = EnumProperty.create("type", ShutterType.class);
+        LINE_CONNECTING_TYPE = EnumProperty.create("type", LineConnectingType.class);
     }
 }

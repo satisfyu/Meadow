@@ -3,14 +3,14 @@ package net.satisfyu.meadow.registry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class SoundRegistry {
-    public static Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Meadow.MOD_ID, RegistryKeys.SOUND_EVENT).getRegistrar();
+    public static Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Meadow.MOD_ID, Registries.SOUND_EVENT).getRegistrar();
 
     public static final RegistrySupplier<SoundEvent> COOKING_CAULDRON = create("cooking_cauldron");
     public static final RegistrySupplier<SoundEvent> WOODCUTTER = create("woodcutter");
@@ -20,8 +20,8 @@ public class SoundRegistry {
     public static final RegistrySupplier<SoundEvent> SHELF_CLOSED = create("shelf_closed");
 
     private static RegistrySupplier<SoundEvent> create(String name) {
-        final Identifier id = new MeadowIdentifier(name);
-        return SOUND_EVENTS.register(id, () -> SoundEvent.of(id));
+        final ResourceLocation id = new MeadowIdentifier(name);
+        return SOUND_EVENTS.register(id, () -> SoundEvent.createVariableRangeEvent(id));
     }
 
     public static void init() {

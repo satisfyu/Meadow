@@ -1,28 +1,31 @@
 package net.satisfyu.meadow.block;
 
 import de.cristelknight.doapi.common.block.FacingBlock;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.text.Text;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.*;
-import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.entity.blockentities.CheeseRackBlockEntity;
 import net.satisfyu.meadow.util.GeneralUtil;
 import net.satisfyu.meadow.registry.TagRegistry;
@@ -34,82 +37,82 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class CheeseRackBlock extends FacingBlock implements BlockEntityProvider {
+public class CheeseRackBlock extends FacingBlock implements EntityBlock {
 
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.01, 0.01, 0.01, 0.99, 0.99, 0.99), BooleanBiFunction.OR);
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.01, 0.01, 0.01, 0.99, 0.99, 0.99), BooleanOp.OR);
         return shape;
     };
 
     public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
-        for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
+        for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
             map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
         }
     });
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE.get(state.get(FACING));
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return SHAPE.get(state.getValue(FACING));
     }
 
-    public CheeseRackBlock(AbstractBlock.Settings settings) {
+    public CheeseRackBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) return ActionResult.SUCCESS;
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (world.isClientSide) return InteractionResult.SUCCESS;
         CheeseRackBlockEntity be = (CheeseRackBlockEntity) world.getBlockEntity(pos);
-        if (be == null || player.isSneaking()) return ActionResult.PASS;
-        ItemStack handStack = player.getStackInHand(hand);
+        if (be == null || player.isShiftKeyDown()) return InteractionResult.PASS;
+        ItemStack handStack = player.getItemInHand(hand);
         int slot = -1;
-        Optional<Pair<Float, Float>> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.get(FACING), null);
+        Optional<Tuple<Float, Float>> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.getValue(FACING), null);
         if (optional.isPresent()) {
-            Pair<Float, Float> pair = optional.get();
-            slot = pair.getRight() > 0.5 ? 1 : 0;
-            System.out.println(pair.getLeft() + " " + pair.getRight());
+            Tuple<Float, Float> pair = optional.get();
+            slot = pair.getB() > 0.5 ? 1 : 0;
+            System.out.println(pair.getA() + " " + pair.getB());
         }
 
         if (slot == -1)
-            return ActionResult.PASS;
+            return InteractionResult.PASS;
 
         if (handStack.isEmpty() && be.hasStack(slot)) {
-            player.giveItemStack(be.removeStack(slot));
-            return ActionResult.SUCCESS;
-        } else if (handStack.isIn(TagRegistry.CHEESE_BLOCKS) && !be.hasStack(slot)) {
+            player.addItem(be.removeStack(slot));
+            return InteractionResult.SUCCESS;
+        } else if (handStack.is(TagRegistry.CHEESE_BLOCKS) && !be.hasStack(slot)) {
             be.setStack(slot, new ItemStack(handStack.getItem()));
-            handStack.decrement(1);
-            return ActionResult.SUCCESS;
+            handStack.shrink(1);
+            return InteractionResult.SUCCESS;
         }
-        return super.onUse(state, world, pos, player, hand, hit);
+        return super.use(state, world, pos, player, hand, hit);
     }
 
     @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof CheeseRackBlockEntity be) {
                 for (Item stack : be.getItems()) {
-                    ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(stack));
+                    Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(stack));
                 }
-                world.updateComparators(pos, this);
+                world.updateNeighbourForOutputSignal(pos, this);
             }
-            super.onStateReplaced(state, world, pos, newState, moved);
+            super.onRemove(state, world, pos, newState, moved);
         }
     }
 
     @Nullable
     @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new CheeseRackBlockEntity(pos, state);
     }
 
     @Override
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.rack.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
+        tooltip.add(Component.translatable("block.meadow.rack.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }
 

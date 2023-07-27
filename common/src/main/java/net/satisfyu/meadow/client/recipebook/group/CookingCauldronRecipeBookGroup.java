@@ -4,11 +4,11 @@ import com.google.common.collect.ImmutableList;
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
@@ -30,12 +30,12 @@ public enum CookingCauldronRecipeBookGroup implements IRecipeBookGroup {
     }
 
     @Override
-    public boolean fitRecipe(Recipe<? extends Inventory> recipe, DynamicRegistryManager dynamicRegistryManager) {
+    public boolean fitRecipe(Recipe<? extends Container> recipe, RegistryAccess dynamicRegistryManager) {
         if (recipe instanceof CookingCauldronRecipe cookingCauldronRecipe) {
             return switch (this) {
                 case SEARCH -> true;
-                case MEADOW -> recipe.getOutput(dynamicRegistryManager).isFood();
-                case MISC -> recipe.getOutput(dynamicRegistryManager).getItem().isDamageable();
+                case MEADOW -> recipe.getResultItem(dynamicRegistryManager).isEdible();
+                case MISC -> recipe.getResultItem(dynamicRegistryManager).getItem().canBeDepleted();
             };
         }
         return false;

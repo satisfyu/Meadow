@@ -1,22 +1,22 @@
 package net.satisfyu.meadow.block;
 
 import de.cristelknight.doapi.common.block.FacingBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,54 +24,54 @@ import java.util.List;
 
 public class StoveBlock extends FacingBlock {
 
-    public static final BooleanProperty CONNECTED = BooleanProperty.of("connected");
+    public static final BooleanProperty CONNECTED = BooleanProperty.create("connected");
 
-    public static final VoxelShape SHAPE_BIG = VoxelShapes.union(TiledBench.SHAPE, Block.createCuboidShape(0, 2, 0, 16, 16, 16));
+    public static final VoxelShape SHAPE_BIG = Shapes.or(TiledBench.SHAPE, Block.box(0, 2, 0, 16, 16, 16));
 
     private final Direction directionToCheck;
 
-    public StoveBlock(Settings settings, Direction directionToCheck) {
+    public StoveBlock(Properties settings, Direction directionToCheck) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(CONNECTED, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(CONNECTED, false));
         this.directionToCheck = directionToCheck;
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (directionToCheck == Direction.DOWN && state.get(CONNECTED))
-            return super.getOutlineShape(state, world, pos, context);
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        if (directionToCheck == Direction.DOWN && state.getValue(CONNECTED))
+            return super.getShape(state, world, pos, context);
         return SHAPE_BIG;
     }
 
     @Override
-    public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
         List<Block> block = getBlocksToCheck();
         if (!block.isEmpty()) {
-            if (block.contains(ctx.getWorld().getBlockState(ctx.getBlockPos().offset(directionToCheck)).getBlock())) {
-                return this.getDefaultState().with(CONNECTED, true).with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+            if (block.contains(ctx.getLevel().getBlockState(ctx.getClickedPos().relative(directionToCheck)).getBlock())) {
+                return this.defaultBlockState().setValue(CONNECTED, true).setValue(FACING, ctx.getHorizontalDirection().getOpposite());
             }
         }
-        return super.getPlacementState(ctx);
+        return super.getStateForPlacement(ctx);
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         List<Block> block = getBlocksToCheck();
-        if (!world.isClient() && !block.isEmpty()) {
+        if (!world.isClientSide() && !block.isEmpty()) {
             if (direction == directionToCheck) {
-                boolean connected = state.get(CONNECTED);
+                boolean connected = state.getValue(CONNECTED);
                 if (!connected) {
-                    if (block.contains(neighborState.getBlock())) return state.with(CONNECTED, true);
-                } else if (!block.contains(neighborState.getBlock())) return state.with(CONNECTED, false);
+                    if (block.contains(neighborState.getBlock())) return state.setValue(CONNECTED, true);
+                } else if (!block.contains(neighborState.getBlock())) return state.setValue(CONNECTED, false);
 
             }
         }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(CONNECTED);
     }
 
@@ -84,8 +84,8 @@ public class StoveBlock extends FacingBlock {
     }
 
     @Override
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.meadow.stove.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
+        tooltip.add(Component.translatable("block.meadow.stove.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }
 

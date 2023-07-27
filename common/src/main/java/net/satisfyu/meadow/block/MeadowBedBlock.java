@@ -1,18 +1,18 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.DyeColor;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class MeadowBedBlock extends BedBlock {
-    public MeadowBedBlock(Settings settings) {
+    public MeadowBedBlock(Properties settings) {
         super(DyeColor.BLACK, settings);
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
 
     }
 }

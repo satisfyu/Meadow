@@ -1,22 +1,22 @@
 package net.satisfyu.meadow.entity.blockentities;
 
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.Text;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.client.screen.handler.FondueGuiHandler;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
@@ -24,10 +24,10 @@ import net.satisfyu.meadow.util.ImplementedInventory;
 import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
-public class FondueBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
+public class FondueBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory {
+    private final NonNullList<ItemStack> inventory = NonNullList.withSize(3, ItemStack.EMPTY);
 
-    protected final PropertyDelegate propertyDelegate;
+    protected final ContainerData propertyDelegate;
     private int progress = 0;
     public int MAX_PROGRESS = 72;
 
@@ -35,7 +35,7 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
 
     public FondueBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.FONDUE.get(), pos, state);
-        this.propertyDelegate = new PropertyDelegate() {
+        this.propertyDelegate = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
                     case 0 -> FondueBlockEntity.this.progress;
@@ -51,42 +51,42 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
                 }
             }
 
-            public int size() {
+            public int getCount() {
                 return 2;
             }
         };
     }
 
     @Override
-    public DefaultedList<ItemStack> getInventory() {
+    public NonNullList<ItemStack> getInventory() {
         return this.inventory;
     }
 
     @Override
-    public Text getDisplayName() {
-        return Text.of("");
+    public Component getDisplayName() {
+        return Component.nullToEmpty("");
     }
 
     @Nullable
     @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+    public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
         return new FondueGuiHandler(syncId, inv, this, this.propertyDelegate);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
+    protected void saveAdditional(CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        ContainerHelper.saveAllItems(nbt, inventory);
         nbt.putInt("fondue.progress", progress);
         nbt.putInt("fondue.fuelAmount", fuelAmount);
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        Inventories.readNbt(nbt, inventory);
+    public void load(CompoundTag nbt) {
+        ContainerHelper.loadAllItems(nbt, inventory);
         progress = nbt.getInt("fondue.progress");
         fuelAmount = nbt.getInt("fondue.fuelAmount");
-        super.readNbt(nbt);
+        super.load(nbt);
 
     }
 
@@ -94,52 +94,52 @@ public class FondueBlockEntity extends BlockEntity implements NamedScreenHandler
         this.progress = 0;
     }
 
-    public static void tick(World world, BlockPos blockPos, BlockState state, FondueBlockEntity entity) {
-        if (world.isClient()) {
+    public static void tick(Level world, BlockPos blockPos, BlockState state, FondueBlockEntity entity) {
+        if (world.isClientSide()) {
             return;
         }
 
         if (hasRecipe(entity) && hasFuel(entity)) {
             entity.progress++;
-            markDirty(world, blockPos, state);
+            setChanged(world, blockPos, state);
             if (entity.progress >= entity.MAX_PROGRESS) {
                 craftItem(entity);
             }
         } else {
             entity.resetProgress();
-            markDirty(world, blockPos, state);
+            setChanged(world, blockPos, state);
         }
     }
 
     private static boolean hasFuel(FondueBlockEntity entity) {
         if (entity.fuelAmount > 0) return true;
         ItemStack stack = entity.inventory.get(2);
-        if (stack.isIn(TagRegistry.CHEESE)) {
+        if (stack.is(TagRegistry.CHEESE)) {
             entity.fuelAmount = 10;
-            stack.decrement(1);
+            stack.shrink(1);
             return true;
         }
         return false;
     }
 
     private static void craftItem(FondueBlockEntity entity) {
-        entity.removeStack(0, 1);
-        entity.setStack(1, new ItemStack(ObjectRegistry.CHEESE_STICK.get(), entity.getStack(1).getCount() + 1));
+        entity.removeItem(0, 1);
+        entity.setItem(1, new ItemStack(ObjectRegistry.CHEESE_STICK.get(), entity.getItem(1).getCount() + 1));
         entity.resetProgress();
         entity.fuelAmount--;
     }
 
     private static boolean hasRecipe(FondueBlockEntity entity) {
-        boolean hasBreadInFirstSlot = entity.getStack(0).getItem() == Items.BREAD;
+        boolean hasBreadInFirstSlot = entity.getItem(0).getItem() == Items.BREAD;
         return hasBreadInFirstSlot && canInsertAmountIntoOutputSlot(entity.inventory)
                 && canInsertItemIntoOutputSlot(entity.inventory, ObjectRegistry.CHEESE_STICK.get());
     }
 
-    private static boolean canInsertItemIntoOutputSlot(DefaultedList<ItemStack> inventory, Item output) {
+    private static boolean canInsertItemIntoOutputSlot(NonNullList<ItemStack> inventory, Item output) {
         return inventory.get(1).getItem() == output || inventory.get(1).isEmpty();
     }
 
-    private static boolean canInsertAmountIntoOutputSlot(DefaultedList<ItemStack> inventory) {
-        return inventory.get(1).getMaxCount() > inventory.get(1).getCount();
+    private static boolean canInsertAmountIntoOutputSlot(NonNullList<ItemStack> inventory) {
+        return inventory.get(1).getMaxStackSize() > inventory.get(1).getCount();
     }
 }

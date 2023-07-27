@@ -3,18 +3,15 @@ package net.satisfyu.meadow.fabric.villager;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.village.TradeOffer;
-import net.minecraft.village.TradeOffers;
-import net.minecraft.village.VillagerProfession;
-import net.minecraft.village.VillagerType;
-import net.minecraft.world.poi.PointOfInterestType;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
@@ -85,14 +82,14 @@ public class FabricVillager {
          */
     }
 
-    static class BuyForOneEmeraldFactory implements TradeOffers.Factory {
+    static class BuyForOneEmeraldFactory implements VillagerTrades.ItemListing {
         private final Item buy;
         private final int price;
         private final int maxUses;
         private final int experience;
         private final float multiplier;
 
-        public BuyForOneEmeraldFactory(ItemConvertible item, int price, int maxUses, int experience) {
+        public BuyForOneEmeraldFactory(ItemLike item, int price, int maxUses, int experience) {
             this.buy = item.asItem();
             this.price = price;
             this.maxUses = maxUses;
@@ -101,13 +98,13 @@ public class FabricVillager {
         }
 
         @Override
-        public TradeOffer create(Entity entity, Random random) {
+        public MerchantOffer getOffer(Entity entity, RandomSource random) {
             ItemStack itemStack = new ItemStack(this.buy, this.price);
-            return new TradeOffer(itemStack, new ItemStack(Items.EMERALD), this.maxUses, this.experience, this.multiplier);
+            return new MerchantOffer(itemStack, new ItemStack(Items.EMERALD), this.maxUses, this.experience, this.multiplier);
         }
     }
 
-    static class SellItemFactory implements TradeOffers.Factory {
+    static class SellItemFactory implements VillagerTrades.ItemListing {
         private final ItemStack sell;
         private final int price;
         private final int count;
@@ -145,8 +142,8 @@ public class FabricVillager {
         }
 
         @Override
-        public TradeOffer create(Entity entity, Random random) {
-            return new TradeOffer(
+        public MerchantOffer getOffer(Entity entity, RandomSource random) {
+            return new MerchantOffer(
                     new ItemStack(Items.EMERALD, this.price), new ItemStack(this.sell.getItem(), this.count), this.maxUses, this.experience, this.multiplier
             );
         }
