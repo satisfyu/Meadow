@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
@@ -14,10 +14,10 @@
           "name": "meadow:wooden_flower_pot"
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     },
     {
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
@@ -29,7 +29,7 @@
           "name": "minecraft:lily_of_the_valley"
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ]
 }

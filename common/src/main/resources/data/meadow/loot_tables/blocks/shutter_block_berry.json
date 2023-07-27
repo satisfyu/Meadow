@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
@@ -14,7 +14,7 @@
           "name": "meadow:shutter_block_berry"
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ]
 }

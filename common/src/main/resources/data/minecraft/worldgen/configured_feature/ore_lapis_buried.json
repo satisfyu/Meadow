@@ -30,7 +30,7 @@
       }
     ],
     "size": 7,
-    "discard_chance_on_air_exposure": 1.0
+    "discard_chance_on_air_exposure": 1
   },
   "type": "minecraft:ore"
 }
