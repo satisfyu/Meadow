@@ -23,14 +23,14 @@ public class MeadowChickenRenderer extends MobRenderer<MeadowChickenEntity, Chic
     }
 
     @Override
-    public ResourceLocation getTexture(MeadowChickenEntity chickenEntity) {
-        return chickenEntity.getTextureVariant();
+    public ResourceLocation getTextureLocation(MeadowChickenEntity entity) {
+        return entity.getTextureVariant();
     }
 
     @Override
-    protected float getAnimationProgress(MeadowChickenEntity chickenEntity, float f) {
-        float g = Mth.lerp(f, chickenEntity.oFlap, chickenEntity.flap);
-        float h = Mth.lerp(f, chickenEntity.oFlapSpeed, chickenEntity.flapSpeed);
+    protected float getAttackAnim(MeadowChickenEntity livingEntity, float f) {
+        float g = Mth.lerp(f, livingEntity.oFlap, livingEntity.flap);
+        float h = Mth.lerp(f, livingEntity.oFlapSpeed, livingEntity.flapSpeed);
         return (Mth.sin(g) + 1.0f) * h;
     }
 }

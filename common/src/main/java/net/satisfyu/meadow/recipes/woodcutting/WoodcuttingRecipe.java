@@ -56,6 +56,11 @@ public class WoodcuttingRecipe implements Recipe<Container> {
         return true;
     }
 
+
+    public ItemStack getResultItem() {
+        return getResultItem(null);
+    }
+
     @Override
     public ItemStack getResultItem(RegistryAccess registryManager) {
         return outputStack;
@@ -107,18 +112,17 @@ public class WoodcuttingRecipe implements Recipe<Container> {
         }
 
         @Override
-        // Turns Recipe into PacketByteBuf
-        public void write(FriendlyByteBuf packetData, WoodcuttingRecipe recipe) {
-            recipe.getInput().toNetwork(packetData);
-            packetData.writeItem(recipe.outputStack);
-        }
-
-        @Override
         // Turns PacketByteBuf into Recipe
         public WoodcuttingRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf packetData) {
             Ingredient input = Ingredient.fromNetwork(packetData);
             ItemStack output = packetData.readItem();
             return new WoodcuttingRecipe(input, output, id);
+        }
+
+        @Override
+        public void toNetwork(FriendlyByteBuf friendlyByteBuf, WoodcuttingRecipe recipe) {
+            recipe.getInput().toNetwork(friendlyByteBuf);
+            friendlyByteBuf.writeItem(recipe.outputStack);
         }
     }
 }

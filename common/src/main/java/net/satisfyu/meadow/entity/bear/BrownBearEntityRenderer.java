@@ -17,7 +17,8 @@ public class BrownBearEntityRenderer extends MobRenderer<BrownBearEntity, BrownB
         super(context, new BrownBearEntityModel(context.bakeLayer(MeadowClient.BROWN_BEAR_MODEL_LAYER)), 0.9F);
     }
 
-    public ResourceLocation getTexture(BrownBearEntity polarBearEntity) {
+    @Override
+    public ResourceLocation getTextureLocation(BrownBearEntity entity) {
         return TEXTURE;
     }
 

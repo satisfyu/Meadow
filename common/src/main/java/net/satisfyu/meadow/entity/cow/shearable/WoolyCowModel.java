@@ -38,17 +38,18 @@ public class WoolyCowModel<T extends Cow> extends CowModel<T> {
     }
 
     @Override
-    public void animateModel(T entity, float f, float g, float h) {
+    public void setupAnim(T sheepEntity, float f, float g, float h, float i, float j) {
+        super.setupAnim(sheepEntity, f, g, h, i, j);
+        this.head.xRot = this.headPitchModifier;
+    }
+
+    @Override
+    public void prepareMobModel(T entity, float f, float g, float h) {
         super.prepareMobModel(entity, f, g, h);
         this.head.y = 6.0f + ((ShearableCowEntity) entity).getNeckAngle(h) * 9.0f;
         this.headPitchModifier = ((ShearableCowEntity) entity).getHeadAngle(h);
     }
 
-    @Override
-    public void setAngles(T sheepEntity, float f, float g, float h, float i, float j) {
-        super.setupAnim(sheepEntity, f, g, h, i, j);
-        this.head.xRot = this.headPitchModifier;
-    }
 
 
 }

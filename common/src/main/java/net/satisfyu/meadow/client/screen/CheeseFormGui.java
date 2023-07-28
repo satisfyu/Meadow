@@ -11,8 +11,10 @@ import net.satisfyu.meadow.client.screen.handler.CheeseFormGuiHandler;
 import net.satisfyu.meadow.client.recipebook.CheeseFormRecipeBook;
 
 public class CheeseFormGui extends AbstractRecipeBookGUIScreen<CheeseFormGuiHandler> {
-    private static final ResourceLocation BACKGROUND;
+    public static final ResourceLocation BACKGROUND;
 
+    public static final int ARROW_X = 79;
+    public static final int ARROW_Y = 36;
     public CheeseFormGui(CheeseFormGuiHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title, new CheeseFormRecipeBook(), BACKGROUND);
         font = Minecraft.getInstance().font;
@@ -21,10 +23,8 @@ public class CheeseFormGui extends AbstractRecipeBookGUIScreen<CheeseFormGuiHand
 
     @Override
     protected void renderProgressArrow(GuiGraphics guiGraphics) {
-        final int progressX = this.menu.getScaledXProgress();
-        guiGraphics.blit(BACKGROUND, leftPos + 79, topPos + 36, 178, 4, progressX, 10);
-        final int progressY = this.menu.getScaledYProgress();
-        guiGraphics.blit(BACKGROUND, leftPos + 81, topPos + 8, 180, 22, 16, progressY);
+        int progress = this.menu.getScaledProgress(22);
+        guiGraphics.blit(BACKGROUND, leftPos + 79, topPos + 36, 178, 4, progress, 10);
     }
 
     static {

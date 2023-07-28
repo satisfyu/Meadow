@@ -26,11 +26,14 @@
     "terrablender":  [
       "net.satisfyu.meadow.fabric.terrablender.TerrablenderFabric"
     ],
+    "doapi": [
+      "net.satisfyu.meadow.util.MeadowDoAPI"
+    ],
     "rei_client": [
       "net.satisfyu.meadow.fabric.rei.MeadowReiClientPluginFabric"
     ],
-    "doapi": [
-      "net.satisfyu.meadow.util.MeadowDoAPI"
+    "jei_mod_plugin": [
+      "net.satisfyu.meadow.compat.jei.MeadowJEIPlugin"
     ]
   },
   "mixins": [

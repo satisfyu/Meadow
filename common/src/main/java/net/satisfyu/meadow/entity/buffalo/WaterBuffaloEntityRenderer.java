@@ -17,7 +17,7 @@ public class WaterBuffaloEntityRenderer extends MobRenderer<WaterBuffaloEntity, 
     }
 
     @Override
-    public ResourceLocation getTexture(WaterBuffaloEntity cowEntity) {
+    public ResourceLocation getTextureLocation(WaterBuffaloEntity entity) {
         return TEXTURE;
     }
 

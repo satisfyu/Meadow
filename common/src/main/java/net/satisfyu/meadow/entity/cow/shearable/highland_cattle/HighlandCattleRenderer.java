@@ -20,7 +20,7 @@ public class HighlandCattleRenderer extends MobRenderer<HighlandCattleEntity, Wo
     }
 
     @Override
-    public ResourceLocation getTexture(HighlandCattleEntity cowEntity) {
+    public ResourceLocation getTextureLocation(HighlandCattleEntity cowEntity) {
         return cowEntity.isSheared() ? TEXTURE_SHEARED : TEXTURE;
     }
 }

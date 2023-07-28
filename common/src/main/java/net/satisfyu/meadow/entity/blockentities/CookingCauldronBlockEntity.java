@@ -1,11 +1,8 @@
 package net.satisfyu.meadow.entity.blockentities;
 
 
-import java.util.Optional;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderSet.Named;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -96,13 +93,13 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Container
         } else return entryList.contains(belowState.getBlock().builtInRegistryHolder());
     }
 
-    private boolean canCraft(CookingCauldronRecipe recipe, RegistryAccess manager) {
-        if (recipe == null || recipe.getResultItem(manager).isEmpty()) {
+    private boolean canCraft(CookingCauldronRecipe recipe) {
+        if (recipe == null || recipe.getResultItem().isEmpty()) {
             return false;
         } else if (this.getItem(OUTPUT_SLOT).isEmpty()) {
             return true;
         } else {
-            final ItemStack recipeOutput = recipe.getResultItem(manager);
+            final ItemStack recipeOutput = recipe.getResultItem();
             final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
             final int outputSlotCount = outputSlotStack.getCount();
 
@@ -116,14 +113,14 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Container
         }
     }
 
-    private void craft(CookingCauldronRecipe recipe, RegistryAccess manager) {
-        if (!canCraft(recipe, manager)) {
+    private void craft(CookingCauldronRecipe recipe) {
+        if (!canCraft(recipe)) {
             return;
         }
-        final ItemStack recipeOutput = recipe.getResultItem(manager);
+        final ItemStack recipeOutput = recipe.assemble();
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
-            setItem(OUTPUT_SLOT, recipeOutput.copy());
+            setItem(OUTPUT_SLOT, recipeOutput);
         } else if (outputSlotStack.is(recipeOutput.getItem())) {
             outputSlotStack.grow(recipeOutput.getCount());
         }
@@ -163,15 +160,14 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Container
         }
         CookingCauldronRecipe recipe = world.getRecipeManager().getRecipeFor(RecipeRegistry.COOKING.get(), this, world).orElse(null);
 
-        RegistryAccess manager = world.registryAccess();
-        boolean canCraft = canCraft(recipe, manager);
+        boolean canCraft = canCraft(recipe);
         if (canCraft) {
             this.cookingTime++;
             if (this.cookingTime >= MAX_COOKING_TIME) {
                 this.cookingTime = 0;
-                craft(recipe, manager);
+                craft(recipe);
             }
-        } else if (!canCraft(recipe, manager)) {
+        } else if (!canCraft(recipe)) {
             this.cookingTime = 0;
         }
         if (canCraft) {

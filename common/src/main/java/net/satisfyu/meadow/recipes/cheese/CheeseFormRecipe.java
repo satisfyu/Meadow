@@ -51,6 +51,10 @@ public class CheeseFormRecipe implements Recipe<Container> {
         return true;
     }
 
+    public ItemStack assemble() {
+        return assemble(null, null);
+    }
+
     @Override
     public ItemStack assemble(Container inventory, RegistryAccess registryManager) {
         return this.result.copy();
@@ -68,6 +72,10 @@ public class CheeseFormRecipe implements Recipe<Container> {
     @Override
     public boolean canCraftInDimensions(int width, int height) {
         return true;
+    }
+
+    public ItemStack getResultItem() {
+        return getResultItem(null);
     }
 
     @Override
@@ -113,17 +121,17 @@ public class CheeseFormRecipe implements Recipe<Container> {
         }
 
         @Override
-        public void write(FriendlyByteBuf packetData, CheeseFormRecipe recipe) {
-            recipe.getIngredients().forEach(ingredient -> ingredient.toNetwork(packetData));
-            packetData.writeItem(recipe.result);
-        }
-
-        @Override
         public CheeseFormRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf packetData) {
             Ingredient bucket = Ingredient.fromNetwork(packetData);
             Ingredient input = Ingredient.fromNetwork(packetData);
             ItemStack output = packetData.readItem();
             return new CheeseFormRecipe(id, bucket, input, output);
+        }
+
+        @Override
+        public void toNetwork(FriendlyByteBuf friendlyByteBuf, CheeseFormRecipe recipe) {
+            recipe.getIngredients().forEach(ingredient -> ingredient.toNetwork(friendlyByteBuf));
+            friendlyByteBuf.writeItem(recipe.result);
         }
     }
 

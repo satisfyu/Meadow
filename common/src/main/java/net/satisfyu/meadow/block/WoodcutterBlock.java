@@ -50,7 +50,7 @@ public class WoodcutterBlock extends Block {
         if (world.isClientSide) {
             return InteractionResult.SUCCESS;
         }
-        player.openMenu(state.getMenuProvider(world, pos));
+        player.openMenu(getMenuProvider(state, world, pos));
         return InteractionResult.CONSUME;
     }
 

@@ -18,7 +18,7 @@ public class PintoCowRenderer extends MobRenderer<PintoCowEntity, CowModel<Pinto
     }
 
     @Override
-    public ResourceLocation getTexture(PintoCowEntity cowEntity) {
+    public ResourceLocation getTextureLocation(PintoCowEntity cowEntity) {
         return TEXTURE;
     }
 }

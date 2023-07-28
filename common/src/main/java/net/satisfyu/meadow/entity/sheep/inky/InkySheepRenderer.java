@@ -20,7 +20,7 @@ public class InkySheepRenderer extends MobRenderer<InkySheepEntity, SheepModel<I
     }
 
     @Override
-    public ResourceLocation getTexture(InkySheepEntity entity) {
+    public ResourceLocation getTextureLocation(InkySheepEntity entity) {
         return TEXTURE;
     }
 }

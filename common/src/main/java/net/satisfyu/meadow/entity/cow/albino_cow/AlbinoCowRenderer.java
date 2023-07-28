@@ -18,7 +18,7 @@ public class AlbinoCowRenderer extends MobRenderer<AlbinoCowEntity, CowModel<Alb
     }
 
     @Override
-    public ResourceLocation getTexture(AlbinoCowEntity cowEntity) {
+    public ResourceLocation getTextureLocation(AlbinoCowEntity entity) {
         return TEXTURE;
     }
 }

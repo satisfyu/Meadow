@@ -20,7 +20,7 @@ public class WarpedCowRenderer extends MobRenderer<WarpedCowEntity, WoolyCowMode
     }
 
     @Override
-    public ResourceLocation getTexture(WarpedCowEntity cowEntity) {
+    public ResourceLocation getTextureLocation(WarpedCowEntity cowEntity) {
         return cowEntity.isSheared() ? TEXTURE_SHEARED : TEXTURE;
     }
 }

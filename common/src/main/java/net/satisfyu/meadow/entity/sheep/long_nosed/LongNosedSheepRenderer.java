@@ -20,7 +20,7 @@ public class LongNosedSheepRenderer extends MobRenderer<LongNosedSheepEntity, Sh
     }
 
     @Override
-    public ResourceLocation getTexture(LongNosedSheepEntity entity) {
+    public ResourceLocation getTextureLocation(LongNosedSheepEntity entity) {
         return TEXTURE;
     }
 }

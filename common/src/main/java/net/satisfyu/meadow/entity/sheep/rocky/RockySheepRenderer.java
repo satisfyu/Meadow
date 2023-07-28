@@ -20,7 +20,7 @@ public class RockySheepRenderer extends MobRenderer<RockySheepEntity, SheepModel
     }
 
     @Override
-    public ResourceLocation getTexture(RockySheepEntity entity) {
+    public ResourceLocation getTextureLocation(RockySheepEntity entity) {
         return TEXTURE;
     }
 }

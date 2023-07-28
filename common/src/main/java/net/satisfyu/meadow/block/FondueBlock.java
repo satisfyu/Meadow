@@ -149,8 +149,8 @@ public class FondueBlock extends BaseEntityBlock {
         double e = pos.getY() + 0.7;
         double f = (double) pos.getZ() + 0.5;
         if (random.nextDouble() < 0.3) {
-            world.playLocalSound(d, e, f, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0f, 1.0f, false);
-            world.playLocalSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundSource.BLOCKS, 0.5f, 0.5f, false);
+            world.playLocalSound(d, e, f, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0f, 1.0f, true);
+            world.playLocalSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundSource.BLOCKS, 0.5f, 0.5f, true);
         }
         Direction direction = state.getValue(FACING);
         Direction.Axis axis = direction.getAxis();

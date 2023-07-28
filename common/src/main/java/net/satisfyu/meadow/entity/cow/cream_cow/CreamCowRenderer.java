@@ -18,7 +18,7 @@ public class CreamCowRenderer extends MobRenderer<CreamCowEntity, CowModel<Cream
     }
 
     @Override
-    public ResourceLocation getTexture(CreamCowEntity cowEntity) {
+    public ResourceLocation getTextureLocation(CreamCowEntity entity) {
         return TEXTURE;
     }
 }

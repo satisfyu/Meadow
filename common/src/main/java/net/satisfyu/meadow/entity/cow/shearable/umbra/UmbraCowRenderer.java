@@ -20,7 +20,8 @@ public class UmbraCowRenderer extends MobRenderer<UmbraCowEntity, WoolyCowModel<
     }
 
     @Override
-    public ResourceLocation getTexture(UmbraCowEntity cowEntity) {
-        return cowEntity.isSheared() ? TEXTURE_SHEARED : TEXTURE;
+    public ResourceLocation getTextureLocation(UmbraCowEntity entity) {
+        return entity.isSheared() ? TEXTURE_SHEARED : TEXTURE;
     }
+
 }

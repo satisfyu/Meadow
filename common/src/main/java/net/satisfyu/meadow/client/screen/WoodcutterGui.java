@@ -13,11 +13,12 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.satisfyu.meadow.client.screen.handler.WoodcutterGuiHandler;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
+import net.satisfyu.meadow.util.MeadowIdentifier;
 
 import java.util.List;
 
 public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("meadow", "textures/gui/woodcutter.png");
+    private static final ResourceLocation TEXTURE = new MeadowIdentifier( "textures/gui/woodcutter.png");
     private final int recipeIconPosX = 58;
     private final int recipeIconPosY = 15;
     private final int maxRecipeIcons = 12;
@@ -50,10 +51,10 @@ public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler>
         RenderSystem.setShaderTexture(0, TEXTURE);
         int posX = this.leftPos;
         int posY = this.topPos;
-        context.blit(INVENTORY_LOCATION, posX, posY, 0, 0, this.imageWidth, this.imageHeight);
+        context.blit(TEXTURE, posX, posY, 0, 0, this.imageWidth, this.imageHeight);
 
         int k = (int)(41.0f * this.scrollAmount);
-        if(this.shouldScroll()) context.blit(INVENTORY_LOCATION, posX + 124, posY + 14 + k, 176, 0, 11, 15);
+        if(this.shouldScroll()) context.blit(TEXTURE, posX + 124, posY + 14 + k, 176, 0, 11, 15);
         int recipeX = posX + recipeIconPosX;
         int recipeY = posY + recipeIconPosY;
 
@@ -75,7 +76,7 @@ public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler>
             } else if (mouseX >= posX && mouseY >= posY && mouseX < posX + recipeIconWidth && mouseY < posY + recipeIconHeight) {
                 offsetY += recipeIconHeight * 2;
             }
-            context.blit(INVENTORY_LOCATION, posX, posY, 0, offsetY, recipeIconWidth, recipeIconHeight);
+            context.blit(TEXTURE, posX, posY, 0, offsetY, recipeIconWidth, recipeIconHeight);
         }
     }
 

@@ -13,7 +13,10 @@ import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
 
 
 public class CookingCauldronGui extends AbstractRecipeBookGUIScreen<CookingCauldronGuiHandler> {
-    private static final ResourceLocation BACKGROUND;
+    public static final ResourceLocation BACKGROUND;
+
+    public static final int ARROW_X = 92;
+    public static final int ARROW_Y = 10;
 
     public CookingCauldronGui(CookingCauldronGuiHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title, new CookingCauldronRecipeBook(), BACKGROUND);
@@ -24,7 +27,7 @@ public class CookingCauldronGui extends AbstractRecipeBookGUIScreen<CookingCauld
     @Override
     protected void renderProgressArrow(GuiGraphics guiGraphics) {
         int progress = this.menu.getScaledProgress(17);
-        guiGraphics.blit(BACKGROUND, leftPos + 92, topPos + 10, 178, 16, progress, 29); //Position Arrow (moved 8 pixels to the left)
+        guiGraphics.blit(BACKGROUND, leftPos + ARROW_X, topPos + ARROW_Y, 178, 16, progress, 29); //Position Arrow (moved 8 pixels to the left)
     }
 
     @Override

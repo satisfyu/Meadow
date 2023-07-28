@@ -13,6 +13,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.satisfyu.meadow.client.recipebook.group.CheeseFormRecipeBookGroup;
 import net.satisfyu.meadow.entity.blockentities.CheeseFormBlockEntity;
+import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 
@@ -48,22 +49,13 @@ public class CheeseFormGuiHandler extends AbstractRecipeBookGUIScreenHandler {
         }
     }
 
-    public int getScaledXProgress() {
+    public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = CheeseFormBlockEntity.COOKING_TIME_IN_TICKS;
+        final int totalProgress = CookingCauldronBlockEntity.MAX_COOKING_TIME;
         if (progress == 0) {
             return 0;
         }
-        return progress * 22 / totalProgress + 1;
-    }
-
-    public int getScaledYProgress() {
-        final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = CheeseFormBlockEntity.COOKING_TIME_IN_TICKS;
-        if (progress == 0) {
-            return 0;
-        }
-        return progress * 24 / totalProgress + 1;
+        return progress * arrowWidth/ totalProgress + 1;
     }
 
     @Override

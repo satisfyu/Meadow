@@ -18,7 +18,7 @@ public class SunsetCowRenderer extends MobRenderer<SunsetCowEntity, CowModel<Sun
     }
 
     @Override
-    public ResourceLocation getTexture(SunsetCowEntity cowEntity) {
+    public ResourceLocation getTextureLocation(SunsetCowEntity cowEntity) {
         return TEXTURE;
     }
 }

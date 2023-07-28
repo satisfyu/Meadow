@@ -18,7 +18,7 @@ public class DairyCowRenderer extends MobRenderer<DairyCowEntity, CowModel<Dairy
     }
 
     @Override
-    public ResourceLocation getTexture(DairyCowEntity cowEntity) {
+    public ResourceLocation getTextureLocation(DairyCowEntity entity) {
         return TEXTURE;
     }
 }

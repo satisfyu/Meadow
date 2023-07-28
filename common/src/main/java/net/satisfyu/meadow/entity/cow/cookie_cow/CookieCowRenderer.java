@@ -18,7 +18,7 @@ public class CookieCowRenderer extends MobRenderer<CookieCowEntity, CowModel<Coo
     }
 
     @Override
-    public ResourceLocation getTexture(CookieCowEntity cowEntity) {
+    public ResourceLocation getTextureLocation(CookieCowEntity entity) {
         return TEXTURE;
     }
 }

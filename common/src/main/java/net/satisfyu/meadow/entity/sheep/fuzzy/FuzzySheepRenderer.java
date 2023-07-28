@@ -20,7 +20,7 @@ public class FuzzySheepRenderer extends MobRenderer<FuzzySheepEntity, SheepModel
     }
 
     @Override
-    public ResourceLocation getTexture(FuzzySheepEntity entity) {
+    public ResourceLocation getTextureLocation(FuzzySheepEntity entity) {
         return TEXTURE;
     }
 }

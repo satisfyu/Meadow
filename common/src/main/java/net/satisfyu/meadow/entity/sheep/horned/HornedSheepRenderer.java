@@ -20,7 +20,7 @@ public class HornedSheepRenderer extends MobRenderer<HornedSheepEntity, HornedSh
     }
 
     @Override
-    public ResourceLocation getTexture(HornedSheepEntity entity) {
+    public ResourceLocation getTextureLocation(HornedSheepEntity entity) {
         return TEXTURE;
     }
 }

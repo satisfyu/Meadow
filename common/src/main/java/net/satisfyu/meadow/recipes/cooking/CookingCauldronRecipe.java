@@ -35,9 +35,13 @@ public class CookingCauldronRecipe implements Recipe<Container> {
         return GeneralUtil.matchesRecipe(inventory, inputs, 0, 6);
     }
 
+    public ItemStack assemble() {
+        return assemble(null, null);
+    }
+
     @Override
     public ItemStack assemble(Container inventory, RegistryAccess registryManager) {
-        return ItemStack.EMPTY;
+        return this.output.copy();
     }
 
     @Override
@@ -45,9 +49,13 @@ public class CookingCauldronRecipe implements Recipe<Container> {
         return false;
     }
 
+    public ItemStack getResultItem() {
+        return getResultItem(null);
+    }
+
     @Override
     public ItemStack getResultItem(RegistryAccess registryManager) {
-        return this.output.copy();
+        return this.output;
     }
 
     @Override

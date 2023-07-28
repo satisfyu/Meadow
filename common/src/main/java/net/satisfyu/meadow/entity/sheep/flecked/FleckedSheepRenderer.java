@@ -20,7 +20,7 @@ public class FleckedSheepRenderer extends MobRenderer<FleckedSheepEntity, SheepM
     }
 
     @Override
-    public ResourceLocation getTexture(FleckedSheepEntity entity) {
+    public ResourceLocation getTextureLocation(FleckedSheepEntity entity) {
         return TEXTURE;
     }
 }

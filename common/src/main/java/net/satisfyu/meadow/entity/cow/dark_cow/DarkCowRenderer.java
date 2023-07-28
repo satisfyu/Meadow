@@ -18,7 +18,7 @@ public class DarkCowRenderer extends MobRenderer<DarkCowEntity, CowModel<DarkCow
     }
 
     @Override
-    public ResourceLocation getTexture(DarkCowEntity cowEntity) {
+    public ResourceLocation getTextureLocation(DarkCowEntity cowEntity) {
         return TEXTURE;
     }
 }

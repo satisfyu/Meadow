@@ -29,7 +29,7 @@ public class CheeseFormCategory implements DisplayCategory<CheeseFormDisplay> {
 
     @Override
     public Component getTitle() {
-        return Component.translatable("rei.meadow.cheese_form_category");
+        return Component.translatable("rei.meadow.cheese_press_category");
     }
 
     @Override
