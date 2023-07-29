@@ -12,8 +12,10 @@ import net.satisfyu.meadow.client.screen.handler.FondueGuiHandler;
 
 public class FondueGui extends AbstractContainerScreen<FondueGuiHandler> {
 
-    private final ResourceLocation background = new ResourceLocation(Meadow.MOD_ID, "textures/gui/fondue_gui.png");
+    public static final ResourceLocation BACKGROUND = new ResourceLocation(Meadow.MOD_ID, "textures/gui/fondue_gui.png");
 
+    public static final int ARROW_X = 87;
+    public static final int ARROW_Y = 25;
     public FondueGui(FondueGuiHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title);
     }
@@ -21,7 +23,7 @@ public class FondueGui extends AbstractContainerScreen<FondueGuiHandler> {
 
     private void renderProgressArrow(GuiGraphics context, int x, int y) {
         int progress = this.menu.getScaledProgress();
-        context.blit(background, x + 87, y + 25, 176, 17, progress, 14); //Position Arrow
+        context.blit(BACKGROUND, x + ARROW_X, y + ARROW_Y, 176, 17, progress, 14); //Position Arrow
     }
 
     @Override
@@ -41,15 +43,15 @@ public class FondueGui extends AbstractContainerScreen<FondueGuiHandler> {
     protected void renderBg(GuiGraphics context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, background);
+        RenderSystem.setShaderTexture(0, BACKGROUND);
 
         final int posX = this.leftPos;
         final int posY = this.topPos;
-        context.blit(background, posX, posY, 0, 0, this.imageWidth - 1, this.imageHeight);
+        context.blit(BACKGROUND, posX, posY, 0, 0, this.imageWidth - 1, this.imageHeight);
 
         renderProgressArrow(context, posX, posY);
         if (menu.getIsCooking()) {
-            context.blit(background, posX + 40, posY + 54, 176, 0, 16, 14);
+            context.blit(BACKGROUND, posX + 40, posY + 54, 176, 0, 16, 14);
         }
     }
 }

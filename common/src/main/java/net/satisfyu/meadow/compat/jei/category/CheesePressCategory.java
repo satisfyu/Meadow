@@ -30,12 +30,15 @@ public class CheesePressCategory implements IRecipeCategory<CheeseFormRecipe> {
     private final IDrawable background;
     private final IDrawable icon;
     private final IDrawableAnimated arrow;
+    private final IDrawableAnimated time;
     private final Component localizedName;
 
     public CheesePressCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(CheeseFormGui.BACKGROUND, WIDTH_OF, HEIGHT_OF, WIDTH, HEIGHT);
-        this.arrow = helper.drawableBuilder(CheeseFormGui.BACKGROUND, 178, 4, 22, 10)
+        this.arrow = helper.drawableBuilder(CheeseFormGui.BACKGROUND, 176, 4, 24, 10)
                 .buildAnimated(CheeseFormBlockEntity.COOKING_TIME_IN_TICKS, IDrawableAnimated.StartDirection.LEFT, false);
+        this.time = helper.drawableBuilder(CheeseFormGui.BACKGROUND, 180, 22, 16, 25)
+                .buildAnimated(CheeseFormBlockEntity.COOKING_TIME_IN_TICKS, IDrawableAnimated.StartDirection.TOP, false);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, ObjectRegistry.CHEESE_FORM.get().asItem().getDefaultInstance());
         this.localizedName = Component.translatable("rei.meadow.cheese_press_category");
     }
@@ -55,6 +58,7 @@ public class CheesePressCategory implements IRecipeCategory<CheeseFormRecipe> {
     @Override
     public void draw(CheeseFormRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         arrow.draw(guiGraphics, CheeseFormGui.ARROW_X - WIDTH_OF, CheeseFormGui.ARROW_Y - HEIGHT_OF);
+        time.draw(guiGraphics, CheeseFormGui.TIME_X - WIDTH_OF, CheeseFormGui.TIME_Y - HEIGHT_OF);
     }
 
     @Override

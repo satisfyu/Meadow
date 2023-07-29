@@ -14,11 +14,14 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.satisfyu.meadow.client.screen.handler.CheeseFormGuiHandler;
 import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
+import net.satisfyu.meadow.client.screen.handler.FondueGuiHandler;
 import net.satisfyu.meadow.compat.jei.category.CheesePressCategory;
 import net.satisfyu.meadow.compat.jei.category.CookingCauldronCategory;
+import net.satisfyu.meadow.compat.jei.category.FondueCategory;
 import net.satisfyu.meadow.compat.jei.category.WoodCutterCategory;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
+import net.satisfyu.meadow.recipes.fondue.FondueRecipe;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
@@ -37,6 +40,7 @@ public class MeadowJEIPlugin implements IModPlugin {
         registration.addRecipeCategories(new WoodCutterCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CookingCauldronCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CheesePressCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new FondueCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
 
@@ -52,6 +56,9 @@ public class MeadowJEIPlugin implements IModPlugin {
 
         List<CheeseFormRecipe> cheesePressRecipes = rm.getAllRecipesFor(RecipeRegistry.CHEESE.get());
         registration.addRecipes(CheesePressCategory.CHEESE_PRESS, cheesePressRecipes);
+
+        List<FondueRecipe> fondueRecipes = rm.getAllRecipesFor(RecipeRegistry.FONDUE.get());
+        registration.addRecipes(FondueCategory.FONDUE, fondueRecipes);
     }
 
     @Override
@@ -65,7 +72,10 @@ public class MeadowJEIPlugin implements IModPlugin {
                 1, 2, 3, 36);
 
         registration.addRecipeTransferHandler(CookingCauldronGuiHandler.class, ScreenHandlerRegistry.COOKING_CAULDRON_SCREEN_HANDLER.get(), CookingCauldronCategory.COOKING_CAULDRON,
-                0, 6, 7, 36);
+                1, 6, 7, 36);
+
+        registration.addRecipeTransferHandler(FondueGuiHandler.class, ScreenHandlerRegistry.FONDUE_SCREEN_HANDLER.get(), FondueCategory.FONDUE,
+                0, 2, 3, 36);
     }
 
     @Override

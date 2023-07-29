@@ -128,7 +128,7 @@ public class FondueBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, BlockEntityRegistry.FONDUE.get(), FondueBlockEntity::tick);
+        return createTickerHelper(type, BlockEntityRegistry.FONDUE.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
     }
 
 

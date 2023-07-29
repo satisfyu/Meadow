@@ -49,13 +49,22 @@ public class CheeseFormGuiHandler extends AbstractRecipeBookGUIScreenHandler {
         }
     }
 
-    public int getScaledProgress(int arrowWidth) {
+    public int getScaledXProgress() {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = CookingCauldronBlockEntity.MAX_COOKING_TIME;
+        final int totalProgress = CheeseFormBlockEntity.COOKING_TIME_IN_TICKS;
         if (progress == 0) {
             return 0;
         }
-        return progress * arrowWidth/ totalProgress + 1;
+        return progress * 24 / totalProgress + 1;
+    }
+
+    public int getScaledYProgress() {
+        final int progress = this.propertyDelegate.get(0);
+        final int totalProgress = CheeseFormBlockEntity.COOKING_TIME_IN_TICKS;
+        if (progress == 0) {
+            return 0;
+        }
+        return progress * 25 / totalProgress + 1;
     }
 
     @Override

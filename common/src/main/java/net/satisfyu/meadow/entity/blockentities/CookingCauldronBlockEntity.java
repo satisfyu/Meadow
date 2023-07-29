@@ -2,6 +2,7 @@ package net.satisfyu.meadow.entity.blockentities;
 
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -25,9 +26,10 @@ import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
+import net.satisfyu.meadow.util.ImplementedInventory;
 import org.jetbrains.annotations.Nullable;
 
-public class CookingCauldronBlockEntity extends BlockEntity implements Container, MenuProvider {
+public class CookingCauldronBlockEntity extends BlockEntity implements ImplementedInventory, MenuProvider {
 
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(MAX_CAPACITY, ItemStack.EMPTY);
     private static final int MAX_CAPACITY = 7;
@@ -35,7 +37,8 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Container
     private int cookingTime;
     public static final int OUTPUT_SLOT = 0;
     private static final int INGREDIENTS_AREA = 6;
-
+    private static final int[] SLOTS_FOR_REST = new int[]{1, 2, 3, 4, 5, 6};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{0};
     private boolean isBeingBurned;
 
     private final ContainerData delegate;
@@ -65,6 +68,14 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Container
                 return 2;
             }
         };
+    }
+
+    @Override
+    public int[] getSlotsForFace(Direction side) {
+        if(side.equals(Direction.DOWN)){
+            return SLOTS_FOR_DOWN;
+        }
+        return SLOTS_FOR_REST;
     }
 
     @Override
@@ -179,41 +190,10 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Container
         }
     }
 
-
     @Override
-    public int getContainerSize() {
-        return inventory.size();
+    public NonNullList<ItemStack> getItems() {
+        return inventory;
     }
-
-    @Override
-    public boolean isEmpty() {
-        return inventory.stream().allMatch(ItemStack::isEmpty);
-    }
-
-    @Override
-    public ItemStack getItem(int slot) {
-        return this.inventory.get(slot);
-    }
-
-    @Override
-    public ItemStack removeItem(int slot, int amount) {
-        return ContainerHelper.removeItem(this.inventory, slot, amount);
-    }
-
-    @Override
-    public ItemStack removeItemNoUpdate(int slot) {
-        return ContainerHelper.takeItem(this.inventory, slot);
-    }
-
-    @Override
-    public void setItem(int slot, ItemStack stack) {
-        this.inventory.set(slot, stack);
-        if (stack.getCount() > this.getMaxStackSize()) {
-            stack.setCount(this.getMaxStackSize());
-        }
-        this.setChanged();
-    }
-
 
     @Override
     public boolean stillValid(Player player) {
@@ -224,10 +204,6 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Container
         }
     }
 
-    @Override
-    public void clearContent() {
-        inventory.clear();
-    }
 
     @Override
     public Component getDisplayName() {

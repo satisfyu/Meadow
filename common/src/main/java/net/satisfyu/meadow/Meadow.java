@@ -14,7 +14,6 @@ public class Meadow {
     /*
     public static final ItemGroup MEADOW_TAB = CreativeTabRegistry.create(new Identifier(Meadow.MOD_ID, "meadow_tab"), () ->
             new ItemStack(ObjectRegistry.PIECE_OF_CHEESE.get()));
-
      */
 
     public static void init() {

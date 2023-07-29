@@ -28,6 +28,8 @@
   "rei.meadow.wood_cutter_category": "Woodcutter",
   "rei.meadow.cooking_cauldron_category": "Cauldron",
   "rei.meadow.cheese_press_category": "Cheese Press",
+  "rei.meadow.fondue_category": "Fondue",
+  "rei.meadow.fondue_category.amount": "%s per fuel",
   "block.meadow.cheese_block": "Cheese Wheel",
   "block.meadow.cheese_form": "Cheese Press",
   "block.meadow.cheese_rack": "Cheese Rack",

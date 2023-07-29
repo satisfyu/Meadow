@@ -10,6 +10,7 @@ import net.minecraft.world.inventory.FurnaceResultSlot;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.satisfyu.meadow.entity.blockentities.FondueBlockEntity;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 
 public class FondueGuiHandler extends AbstractContainerMenu {
@@ -36,8 +37,8 @@ public class FondueGuiHandler extends AbstractContainerMenu {
 
     private void buildBlockEntityContainer(Inventory playerInventory, Container inventory) {
         this.addSlot(new Slot(inventory, 0, 41, 9));
-        this.addSlot(new Slot(inventory, 2, 41, 33));
-        this.addSlot(new FurnaceResultSlot(playerInventory.player, inventory, 1, 120, 25));
+        this.addSlot(new Slot(inventory, 1, 41, 33)); //Fuel
+        this.addSlot(new FurnaceResultSlot(playerInventory.player, inventory, 2, 120, 25));
     }
 
     private void buildPlayerContainer(Inventory playerInventory) {
@@ -53,7 +54,7 @@ public class FondueGuiHandler extends AbstractContainerMenu {
     }
 
     public boolean getIsCooking() {
-        return propertyDelegate.get(1) != 0;
+        return propertyDelegate.get(0) != 0;
     }
 
 
@@ -89,12 +90,11 @@ public class FondueGuiHandler extends AbstractContainerMenu {
 
     public int getScaledProgress() {
         int progress = this.propertyDelegate.get(0);
-        int maxProgress = this.propertyDelegate.get(1);  // Max Progress
         int arrowWidth = 15;
 
         if (progress == 0) {
             return 0;
         }
-        return progress * (arrowWidth - 1) / maxProgress + 1;
+        return progress * (arrowWidth - 1) / FondueBlockEntity.MAX_PROGRESS + 1;
     }
 }
