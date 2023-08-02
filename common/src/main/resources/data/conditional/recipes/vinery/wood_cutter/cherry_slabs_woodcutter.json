@@ -1,0 +1,21 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "vinery"
+        }
+      ],
+      "recipe": {
+        "type": "meadow:woodcutting",
+        "inputItem": {
+          "tag": "vinery:cherry_logs"
+        },
+        "outputItem": "vinery:cherry_slab",
+        "outputAmount": 9
+      }
+    }
+  ]
+}

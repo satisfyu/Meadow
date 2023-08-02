@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:oak_log"
-  },
-  "outputItem": "decorative_blocks:oak_beam",
-  "outputAmount": 2
-}

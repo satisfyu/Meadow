@@ -1,8 +1,0 @@
-{
-  "type": "meadow:woodcutting",
-  "inputItem": {
-    "item": "minecraft:crimson_stem"
-  },
-  "outputItem": "decorative_blocks:crimson_beam",
-  "outputAmount": 2
-}
