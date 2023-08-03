@@ -1,6 +1,6 @@
 {
-  "parent": "meadow:block/bed_foot",
+  "parent": "meadow:block/template_bed_foot",
   "textures": {
-    "0": "meadow:entity/bed/flecked"
+    "bed": "meadow:entity/bed/flecked"
   }
 }

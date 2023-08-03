@@ -1,6 +1,6 @@
 {
-  "parent": "meadow:block/bed_head",
+  "parent": "meadow:block/template_bed_head",
   "textures": {
-    "0": "meadow:entity/bed/umbra"
+    "bed": "meadow:entity/bed/umbra"
   }
 }

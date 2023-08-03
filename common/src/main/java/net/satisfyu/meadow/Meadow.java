@@ -12,6 +12,7 @@ public class Meadow {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static void init() {
+        TabRegistry.init();
         ObjectRegistry.init();
         EntityRegistry.init();
         BlockEntityRegistry.init();
@@ -20,7 +21,6 @@ public class Meadow {
         SoundRegistry.init();
         ScreenHandlerRegistry.init();
         FeatureRegistry.init();
-        TabRegistry.init();
     }
 
     public static void commonSetup() {
