@@ -13,8 +13,8 @@ public class FeatureModification {
 
     public static void init() {
         int meadowSpawnWeight = 15;
-        int meadowPackSizeMin = 6;
-        int meadowPackSizeMax = 10;
+        int meadowPackSizeMin = 4;
+        int meadowPackSizeMax = 5;
 
         int bearSpawnWeight = 5;
         int bearPackSizeMin = 2;

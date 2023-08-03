@@ -9,6 +9,6 @@
     "type": "meadow:meadow_chicken",
     "weight": 9,
     "minCount": 4,
-    "maxCount": 7
+    "maxCount": 5
   }
 }

@@ -302,7 +302,7 @@ public class ObjectRegistry {
         FuelRegistry.register(300, PINE_WOOD.get(), STRIPPED_PINE_LOG.get(), STRIPPED_PINE_WOOD.get(), PINE_BEAM.get(), PINE_PLANKS.get(), PINE_STAIRS.get(), PINE_SLAB.get(), PINE_FENCE.get(), PINE_RAILING.get(),
                 FLECKED_WOOL.get(), HIGHLAND_WOOL.get(), PATCHED_WOOL.get(), ROCKY_SHEEP_WOOL.get(), UMBRA_WOOL.get(), INKY_WOOL.get(), WARPED_WOOL.get(),
                 ALPINE_OAK_LOG.get(), ALPINE_BIRCH_LOG.get(), PINE_LEAVES.get(), ALPINE_BIRCH_LEAVES_HANGING.get());
-        FuelRegistry.register(4000, PINE_LOG.get());
+        FuelRegistry.register(4000, FIRE_LOG.get());
     }
 
     public static void registerArmor() {

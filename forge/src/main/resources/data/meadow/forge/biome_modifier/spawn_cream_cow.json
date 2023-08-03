@@ -11,6 +11,6 @@
     "type": "meadow:cream_crow",
     "weight": 5,
     "minCount": 2,
-    "maxCount": 5
+    "maxCount": 4
   }
 }

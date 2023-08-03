@@ -8,7 +8,7 @@
   "spawners": {
     "type": "meadow:sunset_cow",
     "weight": 8,
-    "minCount": 4,
-    "maxCount": 6
+    "minCount": 3,
+    "maxCount": 4
   }
 }

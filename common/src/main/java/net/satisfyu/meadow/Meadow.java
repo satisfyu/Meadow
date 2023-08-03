@@ -11,11 +11,6 @@ public class Meadow {
     public static final String MOD_ID = "meadow";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    /*
-    public static final ItemGroup MEADOW_TAB = CreativeTabRegistry.create(new Identifier(Meadow.MOD_ID, "meadow_tab"), () ->
-            new ItemStack(ObjectRegistry.PIECE_OF_CHEESE.get()));
-     */
-
     public static void init() {
         ObjectRegistry.init();
         EntityRegistry.init();
@@ -25,6 +20,7 @@ public class Meadow {
         SoundRegistry.init();
         ScreenHandlerRegistry.init();
         FeatureRegistry.init();
+        TabRegistry.init();
     }
 
     public static void commonSetup() {
