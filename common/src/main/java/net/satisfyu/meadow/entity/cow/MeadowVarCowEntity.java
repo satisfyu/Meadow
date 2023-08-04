@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MeadowVarCow extends Cow implements VariantHolder<CowVar> {
+public class MeadowVarCowEntity extends Cow implements VariantHolder<CowVar> {
 
     private static final Map<CowVar, TagKey<Biome>> SPAWNS = Util.make(new HashMap<>(), map -> {
         map.put(CowVar.COOKIE, TagRegistry.IS_MEADOW);
@@ -44,8 +44,8 @@ public class MeadowVarCow extends Cow implements VariantHolder<CowVar> {
         map.put(CowVar.SUNSET, TagRegistry.SPAWNS_SUNSET_COW);
     });
 
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(MeadowVarCow.class, EntityDataSerializers.INT);
-    public MeadowVarCow(EntityType<? extends Cow> entityType, Level level) {
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(MeadowVarCowEntity.class, EntityDataSerializers.INT);
+    public MeadowVarCowEntity(EntityType<? extends Cow> entityType, Level level) {
         super(entityType, level);
     }
 
@@ -74,12 +74,12 @@ public class MeadowVarCow extends Cow implements VariantHolder<CowVar> {
     @Nullable
     @Override
     public Cow getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-        MeadowVarCow cow = EntityRegistry.MEADOW_VAR_COW.get().create(serverLevel);
+        MeadowVarCowEntity cow = EntityRegistry.MEADOW_VAR_COW.get().create(serverLevel);
         if(cow == null) return null;
 
         RandomSource random = serverLevel.getRandom();
         CowVar var = this.getVariant();
-        if(random.nextBoolean() && ageableMob instanceof MeadowVarCow varCow){
+        if(random.nextBoolean() && ageableMob instanceof MeadowVarCowEntity varCow){
             var = varCow.getVariant();
         }
         cow.setVariant(var);

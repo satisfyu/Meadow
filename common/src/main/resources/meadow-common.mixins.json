@@ -10,6 +10,7 @@
     "CowMixin",
     "FluidDecrementMixin",
     "GoatMixin",
+    "NetherPortalBlockMixin",
     "SheepMixin"
   ],
   "injectors": {

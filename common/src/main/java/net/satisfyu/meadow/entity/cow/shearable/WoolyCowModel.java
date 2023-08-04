@@ -46,8 +46,8 @@ public class WoolyCowModel<T extends Cow> extends CowModel<T> {
     @Override
     public void prepareMobModel(T entity, float f, float g, float h) {
         super.prepareMobModel(entity, f, g, h);
-        this.head.y = 6.0f + ((ShearableCowEntity) entity).getNeckAngle(h) * 9.0f;
-        this.headPitchModifier = ((ShearableCowEntity) entity).getHeadAngle(h);
+        this.head.y = 6.0f + ((ShearableVarCowEntity) entity).getNeckAngle(h) * 9.0f;
+        this.headPitchModifier = ((ShearableVarCowEntity) entity).getHeadAngle(h);
     }
 
 
