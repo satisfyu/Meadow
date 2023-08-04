@@ -8,9 +8,14 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class TagRegistry {
-    public static final TagKey<Biome> IS_MEADOW = TagKey.create(Registries.BIOME, new ResourceLocation(MOD_ID, "is_meadow"));
+    public static final TagKey<Biome> IS_MEADOW = TagKey.create(Registries.BIOME, new MeadowIdentifier("is_meadow"));
+    public static final TagKey<Biome> SPAWNS_COW = TagKey.create(Registries.BIOME, new MeadowIdentifier("spawns_cows"));
+    public static final TagKey<Biome> SPAWNS_DARK_COW = TagKey.create(Registries.BIOME, new MeadowIdentifier("spawns_dark_cows"));
+    public static final TagKey<Biome> SPAWNS_BEAR = TagKey.create(Registries.BIOME, new MeadowIdentifier("spawns_bear"));
+    public static final TagKey<Biome> SPAWNS_SUNSET_COW = TagKey.create(Registries.BIOME, new MeadowIdentifier("spawns_sunset_cow"));
 
     public static final TagKey<Item> MILK = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "milk"));
 

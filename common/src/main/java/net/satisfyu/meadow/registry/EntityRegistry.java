@@ -16,16 +16,10 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.bear.BrownBearEntity;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntity;
 import net.satisfyu.meadow.entity.chicken.MeadowChickenEntity;
-import net.satisfyu.meadow.entity.cow.albino_cow.AlbinoCowEntity;
-import net.satisfyu.meadow.entity.cow.cookie_cow.CookieCowEntity;
-import net.satisfyu.meadow.entity.cow.cream_cow.CreamCowEntity;
-import net.satisfyu.meadow.entity.cow.dairy_cow.DairyCowEntity;
-import net.satisfyu.meadow.entity.cow.dark_cow.DarkCowEntity;
-import net.satisfyu.meadow.entity.cow.pinto_cow.PintoCowEntity;
+import net.satisfyu.meadow.entity.cow.MeadowVarCow;
 import net.satisfyu.meadow.entity.cow.shearable.highland_cattle.HighlandCattleEntity;
 import net.satisfyu.meadow.entity.cow.shearable.umbra.UmbraCowEntity;
 import net.satisfyu.meadow.entity.cow.shearable.warped.WarpedCowEntity;
-import net.satisfyu.meadow.entity.cow.sunset_cow.SunsetCowEntity;
 import net.satisfyu.meadow.entity.sheep.flecked.FleckedSheepEntity;
 import net.satisfyu.meadow.entity.sheep.fuzzy.FuzzySheepEntity;
 import net.satisfyu.meadow.entity.sheep.horned.HornedSheepEntity;
@@ -33,14 +27,15 @@ import net.satisfyu.meadow.entity.sheep.inky.InkySheepEntity;
 import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepEntity;
 import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepEntity;
 import net.satisfyu.meadow.entity.sheep.rocky.RockySheepEntity;
+import net.satisfyu.meadow.util.MeadowIdentifier;
 
 import java.util.function.Supplier;
 
 public class EntityRegistry {
     private static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registries.ENTITY_TYPE);
 
-    public static final RegistrySupplier<EntityType<AlbinoCowEntity>> ALBINO_COW = create("albino_cow",
-            () -> EntityType.Builder.of(AlbinoCowEntity::new, MobCategory.CREATURE).sized(1.4f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "albino_cow").toString())
+    public static final RegistrySupplier<EntityType<MeadowVarCow>> MEADOW_VAR_COW = create("meadow_cow",
+            () -> EntityType.Builder.of(MeadowVarCow::new, MobCategory.CREATURE).sized(1.4f, 1.4f).build(new MeadowIdentifier("meadow_cow").toString())
     );
 
     public static final RegistrySupplier<EntityType<BrownBearEntity>> BROWN_BEAR = create(
@@ -50,30 +45,6 @@ public class EntityRegistry {
 
     public static final RegistrySupplier<EntityType<WaterBuffaloEntity>> WATER_BUFFALO = create("water_buffalo",
             () -> EntityType.Builder.of(WaterBuffaloEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "water_buffalo").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<CookieCowEntity>> COOKIE_COW = create("cookie_cow",
-            () -> EntityType.Builder.of(CookieCowEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "cookie_cow").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<CreamCowEntity>> CREAM_COW = create("cream_cow",
-            () -> EntityType.Builder.of(CreamCowEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "cream_cow").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<DairyCowEntity>> DAIRY_COW = create("dairy_cow",
-            () -> EntityType.Builder.of(DairyCowEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "dairy_cow").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<DarkCowEntity>> DARK_COW = create("dark_cow",
-            () -> EntityType.Builder.of(DarkCowEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "dark_cow").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<PintoCowEntity>> PINTO_COW = create("pinto_cow",
-            () -> EntityType.Builder.of(PintoCowEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "pinto_cow").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<SunsetCowEntity>> SUNSET_COW = create("sunset_cow",
-            () -> EntityType.Builder.of(SunsetCowEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "sunset_cow").toString())
     );
 
     public static final RegistrySupplier<EntityType<HighlandCattleEntity>> HIGHLAND_CATTLE = create("highland_cattle",
@@ -111,7 +82,6 @@ public class EntityRegistry {
             () -> EntityType.Builder.of(PatchedSheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "patched_sheep").toString())
     );
 
-
     public static final RegistrySupplier<EntityType<RockySheepEntity>> ROCKY_SHEEP = create("rocky_sheep",
             () -> EntityType.Builder.of(RockySheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "rocky_sheep").toString())
     );
@@ -137,14 +107,8 @@ public class EntityRegistry {
         registerCow(WARPED_COW);
         registerCow(HIGHLAND_CATTLE);
         registerCow(UMBRA_COW);
-        registerCow(COOKIE_COW);
-        registerCow(ALBINO_COW);
-        registerCow(CREAM_COW);
-        registerCow(DAIRY_COW);
+        registerCow(MEADOW_VAR_COW);
         registerCow(WATER_BUFFALO);
-        registerCow(DARK_COW);
-        registerCow(PINTO_COW);
-        registerCow(SUNSET_COW);
     }
 
     public static void registerCow(Supplier<? extends EntityType<? extends Animal>> typeSupplier) {

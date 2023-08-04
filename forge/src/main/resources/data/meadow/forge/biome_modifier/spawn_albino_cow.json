@@ -1,13 +1,14 @@
 {
   "type": "forge:add_spawns",
   "biomes": [
-    "minecraft:dark_forest",
-    "minecraft:forest",
-    "minecraft:birch_forest"
+    "#meadow:spawns_bear",
+    "#meadow:spawns_cows",
+    "#meadow:spawns_dark_cows",
+    "#meadow:spawns_sunset_cow"
   ],
   "spawners": {
-    "type": "meadow:albino_cow",
-    "weight": 3,
+    "type": "meadow:meadow_cow",
+    "weight": 10,
     "minCount": 2,
     "maxCount": 3
   }

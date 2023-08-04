@@ -12,9 +12,9 @@ import java.util.function.Predicate;
 public class FeatureModification {
 
     public static void init() {
-        int meadowSpawnWeight = 15;
-        int meadowPackSizeMin = 4;
-        int meadowPackSizeMax = 5;
+        int meadowSpawnWeight = 3;
+        int meadowPackSizeMin = 2;
+        int meadowPackSizeMax = 3;
 
         int bearSpawnWeight = 5;
         int bearPackSizeMin = 2;
@@ -23,32 +23,19 @@ public class FeatureModification {
         Predicate<BiomeSelectionContext> nether = (ctx -> ctx.hasTag(BiomeTags.IS_NETHER) || ctx.hasTag(BiomeTags.HAS_NETHER_FOSSIL) || ctx.hasTag(BiomeTags.HAS_NETHER_FORTRESS));
         Predicate<BiomeSelectionContext> bear = (ctx -> ctx.hasTag(BiomeTags.IS_FOREST) || ctx.hasTag(BiomeTags.HAS_WOODLAND_MANSION) || ctx.hasTag(BiomeTags.IS_TAIGA));
         Predicate<BiomeSelectionContext> sheep = (ctx -> ctx.hasTag(BiomeTags.IS_FOREST) || ctx.hasTag(BiomeTags.HAS_VILLAGE_PLAINS) || ctx.hasTag(BiomeTags.IS_HILL) || ctx.hasTag(BiomeTags.IS_RIVER) || ctx.hasTag(BiomeTags.IS_MOUNTAIN) || ctx.hasTag(BiomeTags.IS_TAIGA));
-        Predicate<BiomeSelectionContext> cow = (ctx -> ctx.hasTag(BiomeTags.IS_FOREST) || ctx.hasTag(BiomeTags.HAS_VILLAGE_PLAINS) || ctx.hasTag(BiomeTags.IS_HILL) || ctx.hasTag(BiomeTags.IS_RIVER) || ctx.hasTag(BiomeTags.IS_MOUNTAIN) || ctx.hasTag(BiomeTags.IS_TAIGA));
         Predicate<BiomeSelectionContext> mountain = (ctx -> ctx.hasTag(BiomeTags.IS_MOUNTAIN) || ctx.hasTag(BiomeTags.IS_HILL));
         Predicate<BiomeSelectionContext> sunset_cow = (ctx -> ctx.hasTag(BiomeTags.IS_SAVANNA) || ctx.hasTag(BiomeTags.HAS_VILLAGE_SAVANNA));
         Predicate<BiomeSelectionContext> buffalo = (ctx -> ctx.hasTag(BiomeTags.IS_RIVER) || ctx.hasTag(BiomeTags.IS_SAVANNA));
         Predicate<BiomeSelectionContext> dark_cow = (ctx -> ctx.hasTag(BiomeTags.IS_FOREST) || ctx.hasTag(BiomeTags.HAS_WOODLAND_MANSION));
         Predicate<BiomeSelectionContext> meadow = (ctx -> ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(BiomeTags.HAS_WOODLAND_MANSION));
 
-        BiomeModifications.addSpawn(meadow, MobCategory.CREATURE, EntityRegistry.DAIRY_COW.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
+        Predicate<BiomeSelectionContext> meadowVarCows = (ctx -> ctx.hasTag(TagRegistry.SPAWNS_COW) || ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(TagRegistry.SPAWNS_DARK_COW) ||
+                ctx.hasTag(TagRegistry.SPAWNS_SUNSET_COW) || ctx.hasTag(TagRegistry.SPAWNS_BEAR));
 
-        BiomeModifications.addSpawn(meadow, MobCategory.CREATURE, EntityRegistry.COOKIE_COW.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
-
-        BiomeModifications.addSpawn(cow, MobCategory.CREATURE, EntityRegistry.CREAM_COW.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
-
-        BiomeModifications.addSpawn(cow, MobCategory.CREATURE, EntityRegistry.PINTO_COW.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
+        BiomeModifications.addSpawn(meadowVarCows, MobCategory.CREATURE, EntityRegistry.MEADOW_VAR_COW.get(),
+                10, meadowPackSizeMin, meadowPackSizeMax);
 
         BiomeModifications.addSpawn(dark_cow, MobCategory.CREATURE, EntityRegistry.UMBRA_COW.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
-
-        BiomeModifications.addSpawn(dark_cow, MobCategory.CREATURE, EntityRegistry.DARK_COW.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
-
-        BiomeModifications.addSpawn(bear, MobCategory.CREATURE, EntityRegistry.ALBINO_COW.get(),
                 meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
 
         BiomeModifications.addSpawn(sunset_cow, MobCategory.CREATURE, EntityRegistry.FLECKED_SHEEP.get(),
@@ -84,7 +71,6 @@ public class FeatureModification {
         BiomeModifications.addSpawn(buffalo, MobCategory.CREATURE, EntityRegistry.WATER_BUFFALO.get(),
                 meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
 
-        BiomeModifications.addSpawn(sunset_cow, MobCategory.CREATURE, EntityRegistry.SUNSET_COW.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
+
     }
 }

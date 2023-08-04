@@ -174,12 +174,15 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.WOODEN_AMETHYST_MILK_BUCKET.get());
                 out.accept(ObjectRegistry.ALBINO_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.WATER_BUFFALO_SPAWN_EGG_ITEM.get());
+                /*
                 out.accept(ObjectRegistry.COOKIE_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.CREAM_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.DAIRY_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.DARK_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.PINTO_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.SUNSET_COW_SPAWN_EGG_ITEM.get());
+
+                 */
                 out.accept(ObjectRegistry.UMBRA_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.HIGHLAND_CATTLE_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.WARPED_COW_SPAWN_EGG_ITEM.get());

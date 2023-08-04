@@ -32,20 +32,12 @@ import net.satisfyu.meadow.client.screen.FondueGui;
 import net.satisfyu.meadow.client.screen.WoodcutterGui;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityModel;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityRenderer;
-import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntityModel;
-import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntityRenderer;
 import net.satisfyu.meadow.entity.chicken.MeadowChickenRenderer;
-import net.satisfyu.meadow.entity.cow.albino_cow.AlbinoCowRenderer;
-import net.satisfyu.meadow.entity.cow.cookie_cow.CookieCowRenderer;
-import net.satisfyu.meadow.entity.cow.cream_cow.CreamCowRenderer;
-import net.satisfyu.meadow.entity.cow.dairy_cow.DairyCowRenderer;
-import net.satisfyu.meadow.entity.cow.dark_cow.DarkCowRenderer;
-import net.satisfyu.meadow.entity.cow.pinto_cow.PintoCowRenderer;
+import net.satisfyu.meadow.entity.cow.MeadowVarCowRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.WoolyCowModel;
 import net.satisfyu.meadow.entity.cow.shearable.highland_cattle.HighlandCattleRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.umbra.UmbraCowRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.warped.WarpedCowRenderer;
-import net.satisfyu.meadow.entity.cow.sunset_cow.SunsetCowRenderer;
 import net.satisfyu.meadow.entity.sheep.flecked.FleckedSheepRenderer;
 import net.satisfyu.meadow.entity.sheep.fuzzy.FuzzySheepRenderer;
 import net.satisfyu.meadow.entity.sheep.horned.HornedSheepModel;
@@ -92,22 +84,11 @@ public class MeadowClient {
 
     public static final ModelLayerLocation HIGHLAND_CATTLE_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "highland_cattle"), "head");
 
-    public static final ModelLayerLocation ALBINO_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "albino_cow"), "head");
     public static final ModelLayerLocation WATER_BUFFALO_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "water_buffalo"), "head");
 
-    public static final ModelLayerLocation COOKIE_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "cookie_cow"), "head");
-
-    public static final ModelLayerLocation CREAM_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "cream_cow"), "head");
-
-    public static final ModelLayerLocation DAIRY_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "dairy_cow"), "head");
-
-    public static final ModelLayerLocation DARK_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "dark_cow"), "head");
-
-    public static final ModelLayerLocation PINTO_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "pinto_cow"), "head");
-
-    public static final ModelLayerLocation SUNSET_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "sunset_cow"), "head");
-
     public static final ModelLayerLocation MEADOW_CHICKEN_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "meadow_chicken"), "main");
+
+    public static final ModelLayerLocation MEADOW_VAR_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "meadow_cow"), "head");
 
     public static void preInitClient() {
         registerEntityRenderers();
@@ -182,29 +163,8 @@ public class MeadowClient {
         EntityRendererRegistry.register(EntityRegistry.HIGHLAND_CATTLE, HighlandCattleRenderer::new);
         EntityModelLayerRegistry.register(HIGHLAND_CATTLE_MODEL_LAYER, WoolyCowModel::createBodyLayer);
 
-        EntityRendererRegistry.register(EntityRegistry.ALBINO_COW, AlbinoCowRenderer::new);
-        EntityModelLayerRegistry.register(ALBINO_COW_MODEL_LAYER, CowModel::createBodyLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.WATER_BUFFALO, WaterBuffaloEntityRenderer::new);
-        EntityModelLayerRegistry.register(WATER_BUFFALO_MODEL_LAYER, WaterBuffaloEntityModel::getTexturedModelData);
-
-        EntityRendererRegistry.register(EntityRegistry.COOKIE_COW, CookieCowRenderer::new);
-        EntityModelLayerRegistry.register(COOKIE_COW_MODEL_LAYER, CowModel::createBodyLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.CREAM_COW, CreamCowRenderer::new);
-        EntityModelLayerRegistry.register(CREAM_COW_MODEL_LAYER, CowModel::createBodyLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.DAIRY_COW, DairyCowRenderer::new);
-        EntityModelLayerRegistry.register(DAIRY_COW_MODEL_LAYER, CowModel::createBodyLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.DARK_COW, DarkCowRenderer::new);
-        EntityModelLayerRegistry.register(DARK_COW_MODEL_LAYER, CowModel::createBodyLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.PINTO_COW, PintoCowRenderer::new);
-        EntityModelLayerRegistry.register(PINTO_COW_MODEL_LAYER, CowModel::createBodyLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.SUNSET_COW, SunsetCowRenderer::new);
-        EntityModelLayerRegistry.register(SUNSET_COW_MODEL_LAYER, CowModel::createBodyLayer);
+        EntityRendererRegistry.register(EntityRegistry.MEADOW_VAR_COW, MeadowVarCowRenderer::new);
+        EntityModelLayerRegistry.register(MEADOW_VAR_COW_MODEL_LAYER, CowModel::createBodyLayer);
     }
 
     private static void registerSheeps() {
