@@ -1,6 +1,6 @@
 {
   "parent": "meadow:block/template_bed_head",
   "textures": {
-    "0": "meadow:entity/bed/inky"
+    "bed": "meadow:entity/bed/inky"
   }
 }

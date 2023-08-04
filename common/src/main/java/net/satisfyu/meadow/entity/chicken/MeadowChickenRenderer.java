@@ -26,11 +26,4 @@ public class MeadowChickenRenderer extends MobRenderer<MeadowChickenEntity, Chic
     public ResourceLocation getTextureLocation(MeadowChickenEntity entity) {
         return entity.getTextureVariant();
     }
-
-    @Override
-    protected float getAttackAnim(MeadowChickenEntity livingEntity, float f) {
-        float g = Mth.lerp(f, livingEntity.oFlap, livingEntity.flap);
-        float h = Mth.lerp(f, livingEntity.oFlapSpeed, livingEntity.flapSpeed);
-        return (Mth.sin(g) + 1.0f) * h;
-    }
 }

@@ -1,7 +1,0 @@
-{
-	"credit": "Made by Satisfy",
-	"parent": "minecraft:block/template_glass_pane_noside_alt",
-	"textures": {
-		"pane": "meadow:block/window_2_main"
-	}
-}

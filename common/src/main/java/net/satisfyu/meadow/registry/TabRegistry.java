@@ -12,7 +12,7 @@ public class TabRegistry {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Meadow.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
     public static final RegistrySupplier<CreativeModeTab> MEADOW_TAB = CREATIVE_MODE_TABS.register("meadow", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
-            .icon(() -> new ItemStack(ObjectRegistry.CHEESE_BLOCK.get()))
+            .icon(() -> new ItemStack(ObjectRegistry.CHEESE_FORM.get()))
             .title(Component.translatable("creativetab.meadow.tab"))
             .displayItems((parameters, out) -> {
                 out.accept(ObjectRegistry.ALPINE_SALT_ORE.get());
@@ -60,7 +60,6 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.PINE_STAIRS.get());
                 out.accept(ObjectRegistry.PINE_SLAB.get());
                 out.accept(ObjectRegistry.PINE_PRESSURE_PLATE.get());
-                out.accept(ObjectRegistry.PINE_BUTTON.get());
                 out.accept(ObjectRegistry.PINE_TRAPDOOR.get());
                 out.accept(ObjectRegistry.PINE_DOOR.get());
                 out.accept(ObjectRegistry.PINE_BARN_TRAPDOOR.get());
@@ -69,9 +68,6 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.PINE_FENCE_GATE.get());
                 out.accept(ObjectRegistry.PINE_RAILING.get());
                 out.accept(ObjectRegistry.SHUTTER_BLOCK.get());
-                out.accept(ObjectRegistry.SHUTTER_BLOCK_POPPY.get());
-                out.accept(ObjectRegistry.SHUTTER_BLOCK_FIR.get());
-                out.accept(ObjectRegistry.SHUTTER_BLOCK_BERRY.get());
                 out.accept(ObjectRegistry.SHELF.get());
                 out.accept(ObjectRegistry.CHEESE_RACK.get());
                 out.accept(ObjectRegistry.CHAIR.get());
@@ -172,17 +168,8 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.WOODEN_WARPED_MILK_BUCKET.get());
                 out.accept(ObjectRegistry.WOODEN_GRAIN_MILK_BUCKET.get());
                 out.accept(ObjectRegistry.WOODEN_AMETHYST_MILK_BUCKET.get());
-                out.accept(ObjectRegistry.ALBINO_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.WATER_BUFFALO_SPAWN_EGG_ITEM.get());
-                /*
-                out.accept(ObjectRegistry.COOKIE_COW_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.CREAM_COW_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.DAIRY_COW_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.DARK_COW_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.PINTO_COW_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.SUNSET_COW_SPAWN_EGG_ITEM.get());
-
-                 */
+                out.accept(ObjectRegistry.ALBINO_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.UMBRA_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.HIGHLAND_CATTLE_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.WARPED_COW_SPAWN_EGG_ITEM.get());

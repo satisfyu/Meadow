@@ -136,28 +136,41 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
             outputSlotStack.grow(recipeOutput.getCount());
         }
         final NonNullList<Ingredient> ingredients = recipe.getIngredients();
-        // each slot can only be used once because in canMake we only checked if decrement by 1 still retains the recipe
-        // otherwise recipes can break when an ingredient is used multiple times
         boolean[] slotUsed = new boolean[INGREDIENTS_AREA];
         for (int i = 0; i < recipe.getIngredients().size(); i++) {
             Ingredient ingredient = ingredients.get(i);
-            // Looks for the best slot to take it from
-            final ItemStack bestSlot = this.getItem(i + 1);
+            ItemStack bestSlot = getItem(i + 1);
             if (ingredient.test(bestSlot) && !slotUsed[i]) {
                 slotUsed[i] = true;
+                ItemStack remainderStack = getRemainderItem(bestSlot);
                 bestSlot.shrink(1);
+                if (!remainderStack.isEmpty()) {
+                    setItem(i + 1, remainderStack);
+                }
             } else {
-                // check all slots in search of the ingredient
                 for (int j = 1; j <= INGREDIENTS_AREA; j++) {
-                    ItemStack stack = this.getItem(j);
+                    ItemStack stack = getItem(j);
                     if (ingredient.test(stack) && !slotUsed[j]) {
                         slotUsed[j] = true;
+                        ItemStack remainderStack = getRemainderItem(stack);
                         stack.shrink(1);
+                        if (!remainderStack.isEmpty()) {
+                            setItem(j, remainderStack);
+                        }
                     }
                 }
             }
         }
     }
+
+    private ItemStack getRemainderItem(ItemStack stack) {
+        if (stack.getItem().hasCraftingRemainingItem()) {
+            return new ItemStack(stack.getItem().getCraftingRemainingItem());
+        }
+        return ItemStack.EMPTY;
+    }
+
+
 
     public void tick(Level world, BlockPos pos, BlockState state, CookingCauldronBlockEntity blockEntity) {
         if (world.isClientSide()) {

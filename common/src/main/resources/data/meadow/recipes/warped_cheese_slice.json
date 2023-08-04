@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "meadow:warped_cheese"
+      "item": "meadow:warped_cheese_block"
     }
   ],
   "result": {
-    "item": "meadow:warped_cheese_slice",
+    "item": "meadow:piece_of_warped_cheese",
     "count": 4
   }
 }
