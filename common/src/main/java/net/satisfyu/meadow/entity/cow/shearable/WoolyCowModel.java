@@ -9,7 +9,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.animal.Cow;
 
-public class WoolyCowModel<T extends Cow> extends CowModel<T> {
+public class WoolyCowModel extends CowModel<ShearableVarCowEntity> {
 
     private float headPitchModifier;
 
@@ -38,16 +38,16 @@ public class WoolyCowModel<T extends Cow> extends CowModel<T> {
     }
 
     @Override
-    public void setupAnim(T sheepEntity, float f, float g, float h, float i, float j) {
+    public void setupAnim(ShearableVarCowEntity sheepEntity, float f, float g, float h, float i, float j) {
         super.setupAnim(sheepEntity, f, g, h, i, j);
         this.head.xRot = this.headPitchModifier;
     }
 
     @Override
-    public void prepareMobModel(T entity, float f, float g, float h) {
+    public void prepareMobModel(ShearableVarCowEntity entity, float f, float g, float h) {
         super.prepareMobModel(entity, f, g, h);
-        this.head.y = 6.0f + ((ShearableVarCowEntity) entity).getNeckAngle(h) * 9.0f;
-        this.headPitchModifier = ((ShearableVarCowEntity) entity).getHeadAngle(h);
+        this.head.y = 6.0f + entity.getNeckAngle(h) * 9.0f;
+        this.headPitchModifier = entity.getHeadAngle(h);
     }
 
 

@@ -8,37 +8,46 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.goal.EatBlockGoal;
-import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ShearableVarCowEntity extends Cow implements Shearable, VariantHolder<ShearableCowVar> {
+public class ShearableVarCowEntity extends Animal implements Shearable, VariantHolder<ShearableCowVar> {
     private static final EntityDataAccessor<Boolean> IS_SHEARED = SynchedEntityData.defineId(ShearableVarCowEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(ShearableVarCowEntity.class, EntityDataSerializers.INT);
 
@@ -51,7 +60,7 @@ public class ShearableVarCowEntity extends Cow implements Shearable, VariantHold
     private int eatGrassTimer;
     private EatBlockGoal eatGrassGoal;
 
-    public ShearableVarCowEntity(EntityType<? extends Cow> entityType, Level world) {
+    public ShearableVarCowEntity(EntityType<ShearableVarCowEntity> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -103,13 +112,6 @@ public class ShearableVarCowEntity extends Cow implements Shearable, VariantHold
         if (this.isBaby()) {
             this.ageUp(60);
         }
-    }
-
-    @Override
-    protected void registerGoals() {
-        super.registerGoals();
-        this.eatGrassGoal = new EatBlockGoal(this);
-        this.goalSelector.addGoal(5, this.eatGrassGoal);
     }
 
     @Override
@@ -188,7 +190,7 @@ public class ShearableVarCowEntity extends Cow implements Shearable, VariantHold
 
     @Nullable
     @Override
-    public Cow getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+    public ShearableVarCowEntity getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
         ShearableVarCowEntity cow = EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get().create(serverLevel);
         if(cow == null) return null;
 
@@ -203,11 +205,12 @@ public class ShearableVarCowEntity extends Cow implements Shearable, VariantHold
 
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData, @Nullable CompoundTag compoundTag) {
+
         ShearableCowVar variant;
         if (spawnGroupData instanceof ShearableVarCowGroupData data) {
             variant = data.variant;
         } else {
-            variant = getRandomVariant(serverLevelAccessor, blockPosition());
+            variant = getRandomVariant(serverLevelAccessor, blockPosition(), mobSpawnType.equals(MobSpawnType.SPAWN_EGG));
             spawnGroupData = new ShearableVarCowGroupData(variant);
         }
 
@@ -217,12 +220,20 @@ public class ShearableVarCowEntity extends Cow implements Shearable, VariantHold
 
 
 
-    private static ShearableCowVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos) {
+    private static ShearableCowVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos, boolean spawnEgg) {
         Holder<Biome> holder = levelAccessor.getBiome(blockPos);
         RandomSource random = levelAccessor.getRandom();
         List<ShearableCowVar> possibleVars = getShearableCowVariantsInBiome(holder);
         int size = possibleVars.size();
-        if(size == 0) return Util.getRandom(ShearableCowVar.values(), random);
+        if(size == 0){
+            if(!spawnEgg){
+                if(holder.is(BiomeTags.IS_NETHER)) return ShearableCowVar.WARPED;
+                List<ShearableCowVar> list = new java.util.ArrayList<>(List.of(ShearableCowVar.values()));
+                list.remove(ShearableCowVar.WARPED);
+                return Util.getRandom(list, random);
+            }
+            return Util.getRandom(ShearableCowVar.values(), random);
+        }
 
         return possibleVars.get(levelAccessor.getRandom().nextInt(size));
     }
@@ -254,5 +265,45 @@ public class ShearableVarCowEntity extends Cow implements Shearable, VariantHold
             super(true);
             this.variant = variant;
         }
+    }
+
+    // COW //
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 2.0));
+        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, Ingredient.of(new ItemLike[]{Items.WHEAT}), false));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+
+        //
+        this.eatGrassGoal = new EatBlockGoal(this);
+        this.goalSelector.addGoal(5, this.eatGrassGoal);
+    }
+
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.COW_AMBIENT;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return SoundEvents.COW_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.COW_DEATH;
+    }
+
+    protected void playStepSound(BlockPos blockPos, BlockState blockState) {
+        this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
+    }
+
+    protected float getSoundVolume() {
+        return 0.4F;
+    }
+
+    protected float getStandingEyeHeight(Pose pose, EntityDimensions entityDimensions) {
+        return this.isBaby() ? entityDimensions.height * 0.95F : 1.3F;
     }
 }

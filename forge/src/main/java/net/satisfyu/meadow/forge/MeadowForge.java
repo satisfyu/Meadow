@@ -28,20 +28,17 @@ public class MeadowForge {
 
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork( () -> {
-            MeadowRegion.loadTerrablender();
-        });
+        event.enqueueWork(MeadowRegion::loadTerrablender);
         Meadow.commonSetup();
     }
 
     @SubscribeEvent
     public static void spawnEvent(SpawnPlacementRegisterEvent event){
-        event.register(EntityRegistry.MEADOW_VAR_COW.get(),
+        event.register(EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND
         );
-
 
         event.register(EntityRegistry.BROWN_BEAR.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
@@ -49,11 +46,6 @@ public class MeadowForge {
                 SpawnPlacementRegisterEvent.Operation.AND
                 );
         event.register(EntityRegistry.FUZZY_SHEEP.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
-        event.register(EntityRegistry.HIGHLAND_CATTLE.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND
@@ -83,12 +75,6 @@ public class MeadowForge {
                 Animal::checkAnimalSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND
                 );
-        event.register(EntityRegistry.UMBRA_COW.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
-
         event.register(EntityRegistry.INKY_SHEEP.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules,

@@ -5,14 +5,15 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
+import net.satisfyu.meadow.world.CommonSpawnUtil;
 
 import java.util.function.Predicate;
 
 public class FeatureModification {
+
+
 
     public static void init() {
         int meadowSpawnWeight = 3;
@@ -30,16 +31,16 @@ public class FeatureModification {
         Predicate<BiomeSelectionContext> buffalo = (ctx -> ctx.hasTag(BiomeTags.IS_RIVER) || ctx.hasTag(BiomeTags.IS_SAVANNA));
         Predicate<BiomeSelectionContext> meadow = (ctx -> ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(BiomeTags.HAS_WOODLAND_MANSION));
 
-        Predicate<BiomeSelectionContext> meadowVarCows = (ctx -> ctx.hasTag(TagRegistry.SPAWNS_COW) || ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(TagRegistry.SPAWNS_DARK_COW) ||
+        Predicate<BiomeSelectionContext> meadowVarCows = (ctx -> ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(TagRegistry.SPAWNS_DARK_COW) ||
                 ctx.hasTag(TagRegistry.SPAWNS_SUNSET_COW) || ctx.hasTag(TagRegistry.SPAWNS_BEAR));
 
-        Predicate<BiomeSelectionContext> shearableVarCows = (ctx -> ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(TagRegistry.SPAWNS_DARK_COW));
+        BiomeModifications.addSpawn(meadowVarCows, MobCategory.CREATURE, EntityType.COW, CommonSpawnUtil.cowSpawnWeight, CommonSpawnUtil.cowPackSizeMin, CommonSpawnUtil.cowPackSizeMax);
 
-        BiomeModifications.addSpawn(meadowVarCows, MobCategory.CREATURE, EntityRegistry.MEADOW_VAR_COW.get(),
-                10, meadowPackSizeMin, meadowPackSizeMax);
+        Predicate<BiomeSelectionContext> shearableVarCows = (ctx -> ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(TagRegistry.SPAWNS_DARK_COW));
         BiomeModifications.addSpawn(shearableVarCows, MobCategory.CREATURE, EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get(),
                 10, meadowPackSizeMin, meadowPackSizeMax);
 
+        /*
         BiomeModifications.addSpawn(sunset_cow, MobCategory.CREATURE, EntityRegistry.FLECKED_SHEEP.get(),
                 meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
         BiomeModifications.addSpawn(meadow, MobCategory.CREATURE, EntityRegistry.FUZZY_SHEEP.get(),
@@ -50,6 +51,8 @@ public class FeatureModification {
                 meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
         BiomeModifications.addSpawn(mountain, MobCategory.CREATURE, EntityRegistry.ROCKY_SHEEP.get(),
                 meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
+         */
+
         BiomeModifications.addSpawn(mountain, MobCategory.CREATURE, EntityRegistry.HORNED_SHEEP.get(),
                 meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
         BiomeModifications.addSpawn(meadow, MobCategory.CREATURE, EntityRegistry.MEADOW_CHICKEN.get(),

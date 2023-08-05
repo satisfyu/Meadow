@@ -36,7 +36,7 @@ public class FlammableBlockRegistry {
                 ObjectRegistry.CHEESE_RACK.get(),
                 ObjectRegistry.ROCKY_CARPET.get(),
                 ObjectRegistry.ROCKY_BED.get(),
-                ObjectRegistry.ROCKY_SHEEP_WOOL.get(),
+                ObjectRegistry.ROCKY_WOOL.get(),
                 ObjectRegistry.FRAME.get(),
                 ObjectRegistry.CHEESE_FORM.get(),
                 ObjectRegistry.FIRE_LOG.get(),

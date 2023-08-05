@@ -23,4 +23,3 @@ public class BlockStateUtils {
     private BlockStateUtils() {
     }
 }
-

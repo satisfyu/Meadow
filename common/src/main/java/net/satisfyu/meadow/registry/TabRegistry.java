@@ -87,7 +87,7 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.PATCHED_WOOL.get());
                 out.accept(ObjectRegistry.PATCHED_CARPET.get());
                 out.accept(ObjectRegistry.PATCHED_BED.get());
-                out.accept(ObjectRegistry.ROCKY_SHEEP_WOOL.get());
+                out.accept(ObjectRegistry.ROCKY_WOOL.get());
                 out.accept(ObjectRegistry.ROCKY_CARPET.get());
                 out.accept(ObjectRegistry.ROCKY_BED.get());
                 out.accept(ObjectRegistry.UMBRA_WOOL.get());
@@ -169,19 +169,12 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.WOODEN_GRAIN_MILK_BUCKET.get());
                 out.accept(ObjectRegistry.WOODEN_AMETHYST_MILK_BUCKET.get());
                 out.accept(ObjectRegistry.WATER_BUFFALO_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.ALBINO_COW_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.UMBRA_COW_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.HIGHLAND_CATTLE_SPAWN_EGG_ITEM.get());
+
                 out.accept(ObjectRegistry.WARPED_COW_SPAWN_EGG_ITEM.get());
+
                 out.accept(ObjectRegistry.BROWN_BEAR_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.MEADOW_CHICKEN_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.FLECKED_SHEEP_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.FUZZY_SHEEP_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.HORNED_SHEEP_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.INKY_SHEEP_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.LONG_NOSED_SHEEP_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.PATCHED_SHEEP_SPAWN_EGG_ITEM.get());
-                out.accept(ObjectRegistry.ROCKY_SHEEP_SPAWN_EGG_ITEM.get());
             })
             .build());
 

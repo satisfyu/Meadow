@@ -12,25 +12,13 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.bear.BrownBearEntity;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntity;
 import net.satisfyu.meadow.entity.chicken.MeadowChickenEntity;
-import net.satisfyu.meadow.entity.cow.MeadowVarCowEntity;
 import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowEntity;
-import net.satisfyu.meadow.entity.sheep.flecked.FleckedSheepEntity;
-import net.satisfyu.meadow.entity.sheep.fuzzy.FuzzySheepEntity;
 import net.satisfyu.meadow.entity.sheep.horned.HornedSheepEntity;
-import net.satisfyu.meadow.entity.sheep.inky.InkySheepEntity;
-import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepEntity;
-import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepEntity;
-import net.satisfyu.meadow.entity.sheep.rocky.RockySheepEntity;
-import net.satisfyu.meadow.util.MeadowIdentifier;
 
 import java.util.function.Supplier;
 
 public class EntityRegistry {
     private static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registries.ENTITY_TYPE);
-
-    public static final RegistrySupplier<EntityType<MeadowVarCowEntity>> MEADOW_VAR_COW = create("meadow_cow",
-            () -> EntityType.Builder.of(MeadowVarCowEntity::new, MobCategory.CREATURE).sized(1.4f, 1.4f).build(new MeadowIdentifier("meadow_cow").toString())
-    );
 
     public static final RegistrySupplier<EntityType<BrownBearEntity>> BROWN_BEAR = create(
             "brown_bear",
@@ -45,32 +33,8 @@ public class EntityRegistry {
             () -> EntityType.Builder.of(ShearableVarCowEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "shearable_meadow_cow").toString())
     );
 
-    public static final RegistrySupplier<EntityType<FleckedSheepEntity>> FLECKED_SHEEP = create("flecked_sheep",
-            () -> EntityType.Builder.of(FleckedSheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "flecked_sheep").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<FuzzySheepEntity>> FUZZY_SHEEP = create("fuzzy_sheep",
-            () -> EntityType.Builder.of(FuzzySheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "fuzzy_sheep").toString())
-    );
-
     public static final RegistrySupplier<EntityType<HornedSheepEntity>> HORNED_SHEEP = create("horned_sheep",
             () -> EntityType.Builder.of(HornedSheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "horned_sheep").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<InkySheepEntity>> INKY_SHEEP = create("inky_sheep",
-            () -> EntityType.Builder.of(InkySheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "inky_sheep").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<LongNosedSheepEntity>> LONG_NOSED_SHEEP = create("long_nosed_sheep",
-            () -> EntityType.Builder.of(LongNosedSheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "long_nosed_sheep").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<PatchedSheepEntity>> PATCHED_SHEEP = create("patched_sheep",
-            () -> EntityType.Builder.of(PatchedSheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "patched_sheep").toString())
-    );
-
-    public static final RegistrySupplier<EntityType<RockySheepEntity>> ROCKY_SHEEP = create("rocky_sheep",
-            () -> EntityType.Builder.of(RockySheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "rocky_sheep").toString())
     );
 
     public static final RegistrySupplier<EntityType<MeadowChickenEntity>> MEADOW_CHICKEN = create("chicken_1",
@@ -84,17 +48,9 @@ public class EntityRegistry {
 
         EntityAttributeRegistry.register(BROWN_BEAR, PolarBear::createAttributes);
         registerChicken(MEADOW_CHICKEN);
-        registerSheep(FLECKED_SHEEP);
-        registerSheep(FUZZY_SHEEP);
         registerSheep(HORNED_SHEEP);
-        registerSheep(INKY_SHEEP);
-        registerSheep(LONG_NOSED_SHEEP);
-        registerSheep(PATCHED_SHEEP);
-        registerSheep(ROCKY_SHEEP);
 
         registerCow(SHEARABLE_MEADOW_VAR_COW);
-        registerCow(MEADOW_VAR_COW);
-
         registerCow(WATER_BUFFALO);
     }
 

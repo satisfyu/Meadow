@@ -9,9 +9,6 @@ import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ChickenModel;
-import net.minecraft.client.model.CowModel;
-import net.minecraft.client.model.SheepFurModel;
-import net.minecraft.client.model.SheepModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
@@ -33,17 +30,10 @@ import net.satisfyu.meadow.client.screen.WoodcutterGui;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityModel;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityRenderer;
 import net.satisfyu.meadow.entity.chicken.MeadowChickenRenderer;
-import net.satisfyu.meadow.entity.cow.MeadowVarCowEntityRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowEntityRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.WoolyCowModel;
-import net.satisfyu.meadow.entity.sheep.flecked.FleckedSheepRenderer;
-import net.satisfyu.meadow.entity.sheep.fuzzy.FuzzySheepRenderer;
 import net.satisfyu.meadow.entity.sheep.horned.HornedSheepModel;
 import net.satisfyu.meadow.entity.sheep.horned.HornedSheepRenderer;
-import net.satisfyu.meadow.entity.sheep.inky.InkySheepRenderer;
-import net.satisfyu.meadow.entity.sheep.long_nosed.LongNosedSheepRenderer;
-import net.satisfyu.meadow.entity.sheep.patched.PatchedSheepRenderer;
-import net.satisfyu.meadow.entity.sheep.rocky.RockySheepRenderer;
 import net.satisfyu.meadow.item.FurBoots;
 import net.satisfyu.meadow.item.FurChest;
 import net.satisfyu.meadow.item.FurHead;
@@ -55,35 +45,16 @@ import java.util.List;
 
 public class MeadowClient {
 
-    public static final ModelLayerLocation FLECKED_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "flecked_sheep"), "fur");
-    public static final ModelLayerLocation FLECKED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "flecked_sheep"), "main");
-
-    public static final ModelLayerLocation FUZZY_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "fuzzy_sheep"), "fur");
-    public static final ModelLayerLocation FUZZY_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "fuzzy_sheep"), "main");
-
     public static final ModelLayerLocation HORNED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "horned_sheep"), "main");
 
     public static final ModelLayerLocation BROWN_BEAR_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "brown_bear"), "main");
 
-    public static final ModelLayerLocation INKY_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "inky_sheep"), "fur");
-    public static final ModelLayerLocation INKY_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "inky_sheep"), "main");
-
-    public static final ModelLayerLocation LONG_NOSED_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "long_nosed_sheep"), "fur");
-    public static final ModelLayerLocation LONG_NOSED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "long_nosed_sheep"), "main");
-
-    public static final ModelLayerLocation PATCHED_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "patched_sheep"), "fur");
-    public static final ModelLayerLocation PATCHED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "patched_sheep"), "main");
-
-    public static final ModelLayerLocation ROCKY_SHEEP_FUR = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "rocky_sheep"), "fur");
-    public static final ModelLayerLocation ROCKY_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "rocky_sheep"), "main");
 
     public static final ModelLayerLocation SHEARABLE_MEADOW_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "shearable_meadow_cow"), "head");
 
     public static final ModelLayerLocation WATER_BUFFALO_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "water_buffalo"), "head");
 
     public static final ModelLayerLocation MEADOW_CHICKEN_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "meadow_chicken"), "main");
-
-    public static final ModelLayerLocation MEADOW_VAR_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "meadow_cow"), "head");
 
     public static void preInitClient() {
         registerEntityRenderers();
@@ -151,39 +122,12 @@ public class MeadowClient {
     private static void registerCows() {
         EntityRendererRegistry.register(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, ShearableVarCowEntityRenderer::new);
         EntityModelLayerRegistry.register(SHEARABLE_MEADOW_COW_MODEL_LAYER, WoolyCowModel::createBodyLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.MEADOW_VAR_COW, MeadowVarCowEntityRenderer::new);
-        EntityModelLayerRegistry.register(MEADOW_VAR_COW_MODEL_LAYER, CowModel::createBodyLayer);
     }
 
     private static void registerSheeps() {
-        EntityRendererRegistry.register(EntityRegistry.FLECKED_SHEEP, FleckedSheepRenderer::new);
-        EntityModelLayerRegistry.register(FLECKED_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
-        EntityModelLayerRegistry.register(FLECKED_SHEEP_FUR, SheepFurModel::createFurLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.FUZZY_SHEEP, FuzzySheepRenderer::new);
-        EntityModelLayerRegistry.register(FUZZY_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
-        EntityModelLayerRegistry.register(FUZZY_SHEEP_FUR, SheepFurModel::createFurLayer);
-
         EntityRendererRegistry.register(EntityRegistry.HORNED_SHEEP, HornedSheepRenderer::new);
         EntityModelLayerRegistry.register(HORNED_SHEEP_MODEL_LAYER, HornedSheepModel::createBodyLayer);
 
-
-        EntityRendererRegistry.register(EntityRegistry.INKY_SHEEP, InkySheepRenderer::new);
-        EntityModelLayerRegistry.register(INKY_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
-        EntityModelLayerRegistry.register(INKY_SHEEP_FUR, SheepFurModel::createFurLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.LONG_NOSED_SHEEP, LongNosedSheepRenderer::new);
-        EntityModelLayerRegistry.register(LONG_NOSED_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
-        EntityModelLayerRegistry.register(LONG_NOSED_SHEEP_FUR, SheepFurModel::createFurLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.PATCHED_SHEEP, PatchedSheepRenderer::new);
-        EntityModelLayerRegistry.register(PATCHED_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
-        EntityModelLayerRegistry.register(PATCHED_SHEEP_FUR, SheepFurModel::createFurLayer);
-
-        EntityRendererRegistry.register(EntityRegistry.ROCKY_SHEEP, RockySheepRenderer::new);
-        EntityModelLayerRegistry.register(ROCKY_SHEEP_MODEL_LAYER, SheepModel::createBodyLayer);
-        EntityModelLayerRegistry.register(ROCKY_SHEEP_FUR, SheepFurModel::createFurLayer);
     }
 
     private static void registerChicken() {

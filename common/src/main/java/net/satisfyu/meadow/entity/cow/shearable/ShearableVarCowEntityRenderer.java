@@ -6,10 +6,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.satisfyu.meadow.client.MeadowClient;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
-public class ShearableVarCowEntityRenderer extends MobRenderer<ShearableVarCowEntity, WoolyCowModel<ShearableVarCowEntity>> {
+public class ShearableVarCowEntityRenderer extends MobRenderer<ShearableVarCowEntity, WoolyCowModel> {
 
     public ShearableVarCowEntityRenderer(EntityRendererProvider.Context context) {
-        super(context, new WoolyCowModel<>(context.bakeLayer(MeadowClient.SHEARABLE_MEADOW_COW_MODEL_LAYER)), 0.7f);
+        super(context, new WoolyCowModel(context.bakeLayer(MeadowClient.SHEARABLE_MEADOW_COW_MODEL_LAYER)), 0.7f);
     }
 
     @Override

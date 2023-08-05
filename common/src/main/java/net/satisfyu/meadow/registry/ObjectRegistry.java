@@ -123,7 +123,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> PATCHED_WOOL = registerBlock("patched_wool", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL)));
     public static final RegistrySupplier<Block> PATCHED_CARPET = registerBlock("patched_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.copy(Blocks.BLACK_CARPET)));
     public static final RegistrySupplier<Block> PATCHED_BED = registerBlock("patched_bed", () -> new MeadowBedBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
-    public static final RegistrySupplier<Block> ROCKY_SHEEP_WOOL = registerBlock("rocky_sheep_wool", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL)));
+    public static final RegistrySupplier<Block> ROCKY_WOOL = registerBlock("rocky_sheep_wool", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL)));
     public static final RegistrySupplier<Block> ROCKY_CARPET = registerBlock("rocky_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.copy(Blocks.BLACK_CARPET)));
     public static final RegistrySupplier<Block> ROCKY_BED = registerBlock("rocky_bed", () -> new MeadowBedBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
     public static final RegistrySupplier<Block> UMBRA_WOOL = registerBlock("umbra_wool", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL)));
@@ -213,7 +213,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> WOODEN_WARPED_MILK_BUCKET = registerItem("wooden_warped_milk_bucket", () -> new WoodenMilkBucket(getSettings().stacksTo(1).craftRemainder(ObjectRegistry.WOODEN_BUCKET.get())));
     public static final RegistrySupplier<Item> WOODEN_GRAIN_MILK_BUCKET = registerItem("wooden_grain_milk_bucket", () -> new WoodenMilkBucket(getSettings().stacksTo(1).craftRemainder(ObjectRegistry.WOODEN_BUCKET.get())));
     public static final RegistrySupplier<Item> WOODEN_AMETHYST_MILK_BUCKET = registerItem("wooden_amethyst_milk_bucket", () -> new WoodenMilkBucket(getSettings().stacksTo(1).craftRemainder(ObjectRegistry.WOODEN_BUCKET.get())));
-    public static final RegistrySupplier<Item> ALBINO_COW_SPAWN_EGG_ITEM = registerItem("albino_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.MEADOW_VAR_COW, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> WATER_BUFFALO_SPAWN_EGG_ITEM = registerItem("water_buffalo_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.WATER_BUFFALO, -1, -1, getSettings()));
     /*
     public static final RegistrySupplier<Item> COOKIE_COW_SPAWN_EGG_ITEM = registerItem("cookie_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.COOKIE_COW, -1, -1, getSettings()));
@@ -222,19 +221,12 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> DARK_COW_SPAWN_EGG_ITEM = registerItem("dark_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.DARK_COW, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> PINTO_COW_SPAWN_EGG_ITEM = registerItem("pinto_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.PINTO_COW, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> SUNSET_COW_SPAWN_EGG_ITEM = registerItem("sunset_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.SUNSET_COW, -1, -1, getSettings()));
-
      */
 
     public static final RegistrySupplier<Item> WARPED_COW_SPAWN_EGG_ITEM = registerItem("warped_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> BROWN_BEAR_SPAWN_EGG_ITEM = registerItem("brown_bear_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.BROWN_BEAR, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> MEADOW_CHICKEN_SPAWN_EGG_ITEM = registerItem("meadow_chicken_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.MEADOW_CHICKEN, -1, -1, getSettings()));
-    public static final RegistrySupplier<Item> FLECKED_SHEEP_SPAWN_EGG_ITEM = registerItem("flecked_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.FLECKED_SHEEP, -1, -1, getSettings()));
-    public static final RegistrySupplier<Item> FUZZY_SHEEP_SPAWN_EGG_ITEM = registerItem("fuzzy_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.FUZZY_SHEEP, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> HORNED_SHEEP_SPAWN_EGG_ITEM = registerItem("horned_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.HORNED_SHEEP, -1, -1, getSettings()));
-    public static final RegistrySupplier<Item> INKY_SHEEP_SPAWN_EGG_ITEM = registerItem("inky_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.INKY_SHEEP, -1, -1, getSettings()));
-    public static final RegistrySupplier<Item> LONG_NOSED_SHEEP_SPAWN_EGG_ITEM = registerItem("long_nosed_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.LONG_NOSED_SHEEP, -1, -1, getSettings()));
-    public static final RegistrySupplier<Item> PATCHED_SHEEP_SPAWN_EGG_ITEM = registerItem("patched_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.PATCHED_SHEEP, -1, -1, getSettings()));
-    public static final RegistrySupplier<Item> ROCKY_SHEEP_SPAWN_EGG_ITEM = registerItem("rocky_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.ROCKY_SHEEP, -1, -1, getSettings()));
     public static final RegistrySupplier<Block> POTTED_ENZIAN = registerBlockWithoutItem("potted_enzian", () -> new FlowerPotBlock(ObjectRegistry.ENZIAN.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));
     public static final RegistrySupplier<Block> POTTED_FIRE_LILY = registerBlockWithoutItem("potted_fire_lily", () -> new FlowerPotBlock(ObjectRegistry.FIRE_LILY.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));
     public static final RegistrySupplier<Block> POTTED_ALPINE_POPPY = registerBlockWithoutItem("potted_alpine_poppy", () -> new FlowerPotBlock(ObjectRegistry.ALPINE_POPPY.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));
@@ -298,23 +290,12 @@ public class ObjectRegistry {
         return Util.registerItem(ITEMS, ITEMS_REGISTRAR, new MeadowIdentifier(path), itemSupplier);
     }
 
-
     private static void registerFuels() {
         Meadow.LOGGER.info("Registering Fuels for " + Meadow.MOD_ID);
         FuelRegistry.register(300, PINE_WOOD.get(), STRIPPED_PINE_LOG.get(), STRIPPED_PINE_WOOD.get(), PINE_BEAM.get(), PINE_PLANKS.get(), PINE_STAIRS.get(), PINE_SLAB.get(), PINE_FENCE.get(), PINE_RAILING.get(),
-                FLECKED_WOOL.get(), HIGHLAND_WOOL.get(), PATCHED_WOOL.get(), ROCKY_SHEEP_WOOL.get(), UMBRA_WOOL.get(), INKY_WOOL.get(), WARPED_WOOL.get(),
+                FLECKED_WOOL.get(), HIGHLAND_WOOL.get(), PATCHED_WOOL.get(), ROCKY_WOOL.get(), UMBRA_WOOL.get(), INKY_WOOL.get(), WARPED_WOOL.get(),
                 ALPINE_OAK_LOG.get(), ALPINE_BIRCH_LOG.get(), PINE_LEAVES.get(), ALPINE_BIRCH_LEAVES_HANGING.get());
         FuelRegistry.register(4000, FIRE_LOG.get());
-    }
-
-    public static void registerArmor() {
-        /*
-        Registry.register(Registry.ITEM, new MeadowIdentifier("fur_helmet"), FUR_HELMET.get());
-        Registry.register(Registry.ITEM, new MeadowIdentifier("fur_chestplate"), FUR_CHESTPLATE.get());
-        Registry.register(Registry.ITEM, new MeadowIdentifier("fur_leggings"), FUR_LEGGINGS.get());
-        Registry.register(Registry.ITEM, new MeadowIdentifier("fur_boots"), FUR_BOOTS.get());
-        
-         */
     }
 
     private static ButtonBlock createWoodenButtonBlock(BlockSetType blockSetType, FeatureFlag... requiredFeatures) {
