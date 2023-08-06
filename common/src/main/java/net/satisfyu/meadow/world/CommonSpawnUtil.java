@@ -15,6 +15,13 @@ public class CommonSpawnUtil {
     public static int cowPackSizeMin = 2; // do not set to 4
     public static int cowPackSizeMax = 3; // do not set to 4
 
+    public static int sheepSpawnWeight = 6;
+    public static int sheepPackSizeMin = 2; // do not set to 4
+    public static int sheepPackSizeMax = 3; // do not set to 4
+
+    public static int chickenSpawnWeight = 6;
+    public static int chickenPackSizeMin = 2; // do not set to 4
+    public static int chickenPackSizeMax = 3; // do not set to 4
 
 
     public static boolean spawnsInBiome(Holder<Biome> biome, boolean checkForMeadowSpawn, EntityType<?>... entityTypes) {
@@ -35,8 +42,16 @@ public class CommonSpawnUtil {
     }
 
     public static boolean isMeadowSpawn(MobSpawnSettings.SpawnerData spawnEntry){
-        if(spawnEntry.type.equals(EntityType.COW)){
-            if(spawnEntry.maxCount == cowPackSizeMax && spawnEntry.minCount == cowPackSizeMin) return true;
+        EntityType<?> type = spawnEntry.type;
+
+        if(type.equals(EntityType.COW)){
+            return spawnEntry.maxCount == cowPackSizeMax && spawnEntry.minCount == cowPackSizeMin;
+        }
+        else if(type.equals(EntityType.SHEEP)){
+            return spawnEntry.maxCount == sheepPackSizeMax && spawnEntry.minCount == sheepPackSizeMin;
+        }
+        else if(type.equals(EntityType.CHICKEN)){
+            return spawnEntry.maxCount == chickenPackSizeMax && spawnEntry.minCount == chickenPackSizeMin;
         }
 
         return false;

@@ -8,7 +8,6 @@ import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ChickenModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
@@ -29,7 +28,6 @@ import net.satisfyu.meadow.client.screen.FondueGui;
 import net.satisfyu.meadow.client.screen.WoodcutterGui;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityModel;
 import net.satisfyu.meadow.entity.bear.BrownBearEntityRenderer;
-import net.satisfyu.meadow.entity.chicken.MeadowChickenRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowEntityRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.WoolyCowModel;
 import net.satisfyu.meadow.entity.sheep.horned.HornedSheepModel;
@@ -46,23 +44,13 @@ import java.util.List;
 public class MeadowClient {
 
     public static final ModelLayerLocation HORNED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "horned_sheep"), "main");
-
     public static final ModelLayerLocation BROWN_BEAR_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "brown_bear"), "main");
-
-
     public static final ModelLayerLocation SHEARABLE_MEADOW_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "shearable_meadow_cow"), "head");
-
     public static final ModelLayerLocation WATER_BUFFALO_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "water_buffalo"), "head");
-
-    public static final ModelLayerLocation MEADOW_CHICKEN_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "meadow_chicken"), "main");
 
     public static void preInitClient() {
         registerEntityRenderers();
-        registerEntityModelLayer();
-        registerCows();
         registerEntityModelLayers();
-        registerSheeps();
-        registerChicken();
     }
 
     public static void initClient() {
@@ -112,31 +100,15 @@ public class MeadowClient {
 
     private static void registerEntityRenderers() {
         EntityRendererRegistry.register(EntityRegistry.BROWN_BEAR, BrownBearEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, ShearableVarCowEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.HORNED_SHEEP, HornedSheepRenderer::new);
     }
 
     public static void registerEntityModelLayers() {
         EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearEntityModel::createBodyLayer);
-    }
-
-
-    private static void registerCows() {
-        EntityRendererRegistry.register(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, ShearableVarCowEntityRenderer::new);
         EntityModelLayerRegistry.register(SHEARABLE_MEADOW_COW_MODEL_LAYER, WoolyCowModel::createBodyLayer);
-    }
-
-    private static void registerSheeps() {
-        EntityRendererRegistry.register(EntityRegistry.HORNED_SHEEP, HornedSheepRenderer::new);
         EntityModelLayerRegistry.register(HORNED_SHEEP_MODEL_LAYER, HornedSheepModel::createBodyLayer);
 
-    }
-
-    private static void registerChicken() {
-        EntityRendererRegistry.register(EntityRegistry.MEADOW_CHICKEN, MeadowChickenRenderer::new);
-        EntityModelLayerRegistry.register(MEADOW_CHICKEN_MODEL_LAYER, ChickenModel::createBodyLayer);
-
-    }
-
-    public static void registerEntityModelLayer() {
         ArmorRegistry.registerArmorModelLayers();
     }
 

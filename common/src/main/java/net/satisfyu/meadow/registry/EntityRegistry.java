@@ -11,7 +11,6 @@ import net.minecraft.world.entity.animal.*;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.bear.BrownBearEntity;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntity;
-import net.satisfyu.meadow.entity.chicken.MeadowChickenEntity;
 import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowEntity;
 import net.satisfyu.meadow.entity.sheep.horned.HornedSheepEntity;
 
@@ -37,9 +36,6 @@ public class EntityRegistry {
             () -> EntityType.Builder.of(HornedSheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "horned_sheep").toString())
     );
 
-    public static final RegistrySupplier<EntityType<MeadowChickenEntity>> MEADOW_CHICKEN = create("chicken_1",
-            () -> EntityType.Builder.of(MeadowChickenEntity::new, MobCategory.CREATURE).sized(0.4f, 0.7f).build(new ResourceLocation(Meadow.MOD_ID, "chicken_1").toString())
-    );
 
 
     public static void init() {
@@ -47,7 +43,6 @@ public class EntityRegistry {
         ENTITY_TYPES.register();
 
         EntityAttributeRegistry.register(BROWN_BEAR, PolarBear::createAttributes);
-        registerChicken(MEADOW_CHICKEN);
         registerSheep(HORNED_SHEEP);
 
         registerCow(SHEARABLE_MEADOW_VAR_COW);
@@ -60,10 +55,6 @@ public class EntityRegistry {
 
     public static void registerSheep(Supplier<? extends EntityType<? extends Animal>> typeSupplier) {
         EntityAttributeRegistry.register(typeSupplier, Sheep::createAttributes);
-    }
-
-    public static void registerChicken(Supplier<? extends EntityType<? extends Animal>> typeSupplier) {
-        EntityAttributeRegistry.register(typeSupplier, Chicken::createAttributes);
     }
 
 

@@ -26,16 +26,7 @@ public abstract class SheepVariantMixin extends MobVariantMixin {
 
     @Override
     protected void onFinalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, SpawnGroupData spawnGroupData, CompoundTag compoundTag, CallbackInfoReturnable<SpawnGroupData> cir) {
-        SheepVar variant;
-        if (spawnGroupData instanceof SheepVar.MeadowVarSheepGroupData data) {
-            variant = data.variant;
-        } else {
-            variant = SheepVar.getRandomVariant(serverLevelAccessor, getSheep().blockPosition());
-            spawnGroupData = new SheepVar.MeadowVarSheepGroupData(variant);
-        }
-
-        SheepVar.setVariant(getSheep(), variant);
-        cir.setReturnValue(spawnGroupData);
+        SheepVar.setVariant(getSheep(), SheepVar.getRandomVariant(serverLevelAccessor, getSheep().blockPosition()));
     }
 
     @Inject(

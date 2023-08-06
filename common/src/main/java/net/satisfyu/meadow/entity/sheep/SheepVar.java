@@ -69,12 +69,12 @@ public enum SheepVar implements StringRepresentable {
 
     private static final Map<SheepVar, TagKey<Biome>> SPAWNS = Util.make(new HashMap<>(), map -> {
         map.put(SheepVar.DEFAULT, null);
-        map.put(SheepVar.FLECKED, TagRegistry.IS_MEADOW);
+        map.put(SheepVar.FLECKED, TagRegistry.SPAWNS_SUNSET_COW);
         map.put(SheepVar.FUZZY, TagRegistry.IS_MEADOW);
         map.put(SheepVar.INKY, null);
-        map.put(SheepVar.LONG_NOSED, null);
-        map.put(SheepVar.PATCHED, TagRegistry.SPAWNS_DARK_COW);
-        map.put(SheepVar.ROCKY, TagRegistry.SPAWNS_BEAR);
+        map.put(SheepVar.LONG_NOSED, TagRegistry.SPAWNS_ROCKY_SHEEP);
+        map.put(SheepVar.PATCHED, null);
+        map.put(SheepVar.ROCKY, TagRegistry.SPAWNS_ROCKY_SHEEP);
     });
 
     public static void setVariant(Sheep sheep, SheepVar variant) {
@@ -106,14 +106,5 @@ public enum SheepVar implements StringRepresentable {
                     return biome.is(biomeTag);
                 })
                 .collect(Collectors.toList());
-    }
-
-
-    public static class MeadowVarSheepGroupData extends AgeableMob.AgeableMobGroupData {
-        public final SheepVar variant;
-        public MeadowVarSheepGroupData(SheepVar variant) {
-            super(true);
-            this.variant = variant;
-        }
     }
 }

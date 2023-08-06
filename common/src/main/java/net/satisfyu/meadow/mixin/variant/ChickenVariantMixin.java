@@ -8,9 +8,9 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.satisfyu.meadow.entity.cow.CowVar;
+import net.satisfyu.meadow.entity.chicken.ChickenVar;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,56 +18,48 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(Cow.class)
-public abstract class CowVariantMixin extends MobVariantMixin {
-
-
-    @Override
-    protected void onTick(CallbackInfo ci) {
-        if (CowVar.getVariant(getCow()).equals(CowVar.ALBINO) && !getCow().isBaby() && getCow().level().isDay() && getCow().level().canSeeSky(getCow().blockPosition())) {
-            getCow().hurt(getCow().level().damageSources().inFire(), 0.5f);
-        }
-    }
+@Mixin(Chicken.class)
+public abstract class ChickenVariantMixin extends MobVariantMixin {
 
     @Override
     protected void onFinalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, SpawnGroupData spawnGroupData, CompoundTag compoundTag, CallbackInfoReturnable<SpawnGroupData> cir) {
-        CowVar.setVariant(getCow(), CowVar.getRandomVariant(serverLevelAccessor, getCow().blockPosition()));
+        ChickenVar.setVariant(getChicken(), ChickenVar.getRandomVariant(serverLevelAccessor, getChicken().blockPosition()));
     }
 
     @Inject(
-            method = "getBreedOffspring(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/animal/Cow;",
+            method = "getBreedOffspring(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/animal/Chicken;",
             at = @At("HEAD"),
             cancellable = true)
-    protected void onGetBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob, CallbackInfoReturnable<Cow> cir) {
-        Cow cow = EntityType.COW.create(serverLevel);
-        if(cow == null) return;
+    protected void onGetBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob, CallbackInfoReturnable<Chicken> cir) {
+        Chicken chicken = EntityType.CHICKEN.create(serverLevel);
+        if(chicken == null) return;
 
         RandomSource random = serverLevel.getRandom();
-        CowVar var = CowVar.getVariant(getCow());
-        if(random.nextBoolean() && ageableMob instanceof Cow varCow){
-            var = CowVar.getVariant(varCow);
+        ChickenVar var = ChickenVar.getVariant(getChicken());
+        if(random.nextBoolean() && ageableMob instanceof Chicken varChicken){
+            var = ChickenVar.getVariant(varChicken);
         }
-        CowVar.setVariant(cow, var);
-        cir.setReturnValue(cow);
+        ChickenVar.setVariant(chicken, var);
+        cir.setReturnValue(chicken);
     }
 
     @Override
     protected void onDefineSynchedData(CallbackInfo ci) {
-        getCow().getEntityData().define(CowVar.DATA_ID_TYPE_VARIANT, 0);
+        getChicken().getEntityData().define(ChickenVar.DATA_ID_TYPE_VARIANT, 0);
     }
 
     @Override
     protected void onAddAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        compoundTag.putInt("Variant", CowVar.getTypeVariant(getCow()));
+        compoundTag.putInt("Variant", ChickenVar.getTypeVariant(getChicken()));
     }
 
     @Override
     protected void onReadAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        CowVar.setTypeVariant(getCow(), compoundTag.getInt("Variant"));
+        ChickenVar.setTypeVariant(getChicken(), compoundTag.getInt("Variant"));
     }
 
     @Unique
-    private Cow getCow(){
-        return (Cow) (Object)this;
+    private Chicken getChicken(){
+        return (Chicken) (Object)this;
     }
 }

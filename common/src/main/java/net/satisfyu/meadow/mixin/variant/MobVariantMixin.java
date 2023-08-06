@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Mob.class)
 public abstract class MobVariantMixin {
+
     @Inject(
             method = "defineSynchedData",
             at = @At("RETURN")
@@ -40,8 +41,7 @@ public abstract class MobVariantMixin {
 
     @Inject(
             method = "finalizeSpawn",
-            at = @At("RETURN"),
-            cancellable = true
+            at = @At("RETURN")
     )
     protected void onFinalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, SpawnGroupData spawnGroupData, CompoundTag compoundTag, CallbackInfoReturnable<SpawnGroupData> cir) {
 

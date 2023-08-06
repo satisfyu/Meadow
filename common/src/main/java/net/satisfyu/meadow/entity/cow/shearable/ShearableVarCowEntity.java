@@ -1,8 +1,6 @@
 package net.satisfyu.meadow.entity.cow.shearable;
 
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -11,8 +9,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -20,8 +16,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -31,31 +25,16 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.satisfyu.meadow.registry.EntityRegistry;
-import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ShearableVarCowEntity extends Animal implements Shearable, VariantHolder<ShearableCowVar> {
     private static final EntityDataAccessor<Boolean> IS_SHEARED = SynchedEntityData.defineId(ShearableVarCowEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(ShearableVarCowEntity.class, EntityDataSerializers.INT);
-
-    private static final Map<ShearableCowVar, TagKey<Biome>> SPAWNS = Util.make(new HashMap<>(), map -> {
-        map.put(ShearableCowVar.HIGHLAND, TagRegistry.IS_MEADOW);
-        map.put(ShearableCowVar.UMBRA, TagRegistry.SPAWNS_DARK_COW);
-        map.put(ShearableCowVar.WARPED, TagRegistry.SPAWNS_WARPED_COW);
-    });
 
     private int eatGrassTimer;
     private EatBlockGoal eatGrassGoal;
@@ -210,7 +189,7 @@ public class ShearableVarCowEntity extends Animal implements Shearable, VariantH
         if (spawnGroupData instanceof ShearableVarCowGroupData data) {
             variant = data.variant;
         } else {
-            variant = getRandomVariant(serverLevelAccessor, blockPosition(), mobSpawnType.equals(MobSpawnType.SPAWN_EGG));
+            variant = ShearableCowVar.getRandomVariant(serverLevelAccessor, blockPosition(), mobSpawnType.equals(MobSpawnType.SPAWN_EGG));
             spawnGroupData = new ShearableVarCowGroupData(variant);
         }
 
@@ -220,30 +199,7 @@ public class ShearableVarCowEntity extends Animal implements Shearable, VariantH
 
 
 
-    private static ShearableCowVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos, boolean spawnEgg) {
-        Holder<Biome> holder = levelAccessor.getBiome(blockPos);
-        RandomSource random = levelAccessor.getRandom();
-        List<ShearableCowVar> possibleVars = getShearableCowVariantsInBiome(holder);
-        int size = possibleVars.size();
-        if(size == 0){
-            if(!spawnEgg){
-                if(holder.is(BiomeTags.IS_NETHER)) return ShearableCowVar.WARPED;
-                List<ShearableCowVar> list = new java.util.ArrayList<>(List.of(ShearableCowVar.values()));
-                list.remove(ShearableCowVar.WARPED);
-                return Util.getRandom(list, random);
-            }
-            return Util.getRandom(ShearableCowVar.values(), random);
-        }
 
-        return possibleVars.get(levelAccessor.getRandom().nextInt(size));
-    }
-
-
-    public static List<ShearableCowVar> getShearableCowVariantsInBiome(Holder<Biome> biome) {
-        return SPAWNS.keySet().stream()
-                .filter(ShearableCowVariant -> biome.is(SPAWNS.get(ShearableCowVariant)))
-                .collect(Collectors.toList());
-    }
 
     public void setVariant(ShearableCowVar variant) {
         setTypeVariant(variant.getId() & 255 | this.getTypeVariant() & -256);

@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
+    "variant.ChickenRendererMixin",
     "variant.CowRendererMixin",
     "variant.SheepFurLayerMixin",
     "variant.SheepRendererMixin"
@@ -15,9 +16,11 @@
     "GoatMixin",
     "NetherPortalBlockMixin",
     "SheepMixin",
+    "variant.ChickenVariantMixin",
     "variant.CowVariantMixin",
     "variant.MobVariantMixin",
-    "variant.SheepVariantMixin"
+    "variant.SheepVariantMixin",
+    "variant.ThrownEggMixin"
   ],
   "injectors": {
     "defaultRequire": 1

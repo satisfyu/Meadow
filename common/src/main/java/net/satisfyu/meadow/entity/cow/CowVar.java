@@ -107,13 +107,4 @@ public enum CowVar implements StringRepresentable {
                 })
                 .collect(Collectors.toList());
     }
-
-
-    public static class MeadowVarCowGroupData extends AgeableMob.AgeableMobGroupData {
-        public final CowVar variant;
-        public MeadowVarCowGroupData(CowVar variant) {
-            super(true);
-            this.variant = variant;
-        }
-    }
 }
