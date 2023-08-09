@@ -33,6 +33,7 @@ public class FabricVillager {
     public static final PoiType HERMIT_POI = PointOfInterestHelper.register(HERMIT_POI_IDENTIFIER, 1, 12, ObjectRegistry.WOODCUTTER.get());
     public static final VillagerProfession HERMIT = Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, new ResourceLocation("meadow", "hermit"), VillagerProfessionBuilder.create().id(new ResourceLocation("meadow", "hermit")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, HERMIT_POI_IDENTIFIER)).build());
 
+    public static final VillagerType MEADOW = Registry.register(BuiltInRegistries.VILLAGER_TYPE, new ResourceLocation("meadow", "meadow"), new VillagerType("meadow"));
 
 
     public static void init() {
@@ -82,6 +83,8 @@ public class FabricVillager {
             factories.add(new SellItemFactory(Items.IRON_AXE, 10, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.WOODEN_CAULDRON.get(), 5, 1, 10));
         });
+
+        VillagerType.BY_BIOME.put(ResourceKey.create(Registries.BIOME, new ResourceLocation("meadow")), MEADOW);
 
     }
 
