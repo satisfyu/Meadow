@@ -56,7 +56,7 @@ public class MeadowClient {
         registerEntityModelLayers();
 
         TerraformSignHelper.regsterSignSprite(MeadowWoodRegistry.PINE_SIGN_TEXTURE);
-        TerraformSignHelper.regsterSignSprite(MeadowWoodRegistry.CHERRY_HANGING_SIGN_TEXTURE);
+        TerraformSignHelper.regsterSignSprite(MeadowWoodRegistry.PINE_HANGING_SIGN_TEXTURE);
     }
 
     public static void initClient() {

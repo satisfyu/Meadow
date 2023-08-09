@@ -21,11 +21,11 @@ public class MeadowWoodRegistry {
     public static final RegistrySupplier<Item> PINE_SIGN_ITEM = ObjectRegistry.registerItem("pine_sign", () -> new SignItem(ObjectRegistry.getSettings().stacksTo(16), PINE_SIGN.get(), PINE_WALL_SIGN.get()));
 
 
-    public static final ResourceLocation CHERRY_HANGING_SIGN_TEXTURE = new MeadowIdentifier("entity/signs/hanging/pine");
-    public static final ResourceLocation CHERRY_HANGING_SIGN_GUI_TEXTURE = new MeadowIdentifier("textures/gui/hanging_signs/pine");
+    public static final ResourceLocation PINE_HANGING_SIGN_TEXTURE = new MeadowIdentifier("entity/signs/hanging/pine");
+    public static final ResourceLocation PINE_HANGING_SIGN_GUI_TEXTURE = new MeadowIdentifier("textures/gui/hanging_signs/pine");
 
-    public static final RegistrySupplier<Block> PINE_HANGING_SIGN = ObjectRegistry.registerBlockWithoutItem("pine_hanging_sign", () -> TerraformSignHelper.getHangingSign(CHERRY_HANGING_SIGN_TEXTURE, CHERRY_HANGING_SIGN_GUI_TEXTURE));
-    public static final RegistrySupplier<Block> PINE_WALL_HANGING_SIGN = ObjectRegistry.registerBlockWithoutItem("pine_wall_hanging_sign", () -> TerraformSignHelper.getWallHangingSign(CHERRY_HANGING_SIGN_TEXTURE, CHERRY_HANGING_SIGN_GUI_TEXTURE));
+    public static final RegistrySupplier<Block> PINE_HANGING_SIGN = ObjectRegistry.registerBlockWithoutItem("pine_hanging_sign", () -> TerraformSignHelper.getHangingSign(PINE_HANGING_SIGN_TEXTURE, PINE_HANGING_SIGN_GUI_TEXTURE));
+    public static final RegistrySupplier<Block> PINE_WALL_HANGING_SIGN = ObjectRegistry.registerBlockWithoutItem("pine_wall_hanging_sign", () -> TerraformSignHelper.getWallHangingSign(PINE_HANGING_SIGN_TEXTURE, PINE_HANGING_SIGN_GUI_TEXTURE));
     public static final RegistrySupplier<Item> PINE_HANGING_SIGN_ITEM = ObjectRegistry.registerItem("pine_hanging_sign", () -> new HangingSignItem(PINE_HANGING_SIGN.get(), PINE_WALL_HANGING_SIGN.get(), ObjectRegistry.getSettings().stacksTo(16)));
 
 
