@@ -23,7 +23,7 @@ public abstract class ChickenVariantMixin extends MobVariantMixin {
 
     @Override
     protected void onFinalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, SpawnGroupData spawnGroupData, CompoundTag compoundTag, CallbackInfoReturnable<SpawnGroupData> cir) {
-        ChickenVar.setVariant(getChicken(), ChickenVar.getRandomVariant(serverLevelAccessor, getChicken().blockPosition()));
+        ChickenVar.setVariant(getChicken(), ChickenVar.getRandomVariant(serverLevelAccessor, getChicken().blockPosition(), mobSpawnType.equals(MobSpawnType.SPAWN_EGG)));
     }
 
     @Inject(

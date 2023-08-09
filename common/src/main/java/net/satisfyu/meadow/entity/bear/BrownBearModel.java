@@ -9,8 +9,8 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class BrownBearEntityModel extends PolarBearModel<BrownBearEntity> {
-    public BrownBearEntityModel(ModelPart root) {
+public class BrownBearModel extends PolarBearModel<BrownBear> {
+    public BrownBearModel(ModelPart root) {
         super(root);
     }
 

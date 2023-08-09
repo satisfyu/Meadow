@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "meadow:rocky_sheep_wool"
+          "name": "meadow:rocky_wool"
         }
       ],
       "rolls": 1

@@ -1,20 +1,6 @@
 {
   "values": [
     "meadow:doormat",
-    "meadow:pine_leaves",
-    "meadow:umbra_carpet",
-    "meadow:highland_carpet",
-    "meadow:rocky_carpet",
-    "meadow:patched_carpet",
-    "meadow:flecked_carpet",
-    "meadow:umbra_wool",
-    "meadow:inky_wool",
-    "meadow:inky_carpet",
-    "meadow:highland_wool",
-    "meadow:rocky_sheep_wool",
-    "meadow:patched_wool",
-    "meadow:flecked_wool",
-    "meadow:warped_wool",
-    "meadow:warped_carpet"
+    "meadow:pine_leaves"
   ]
 }

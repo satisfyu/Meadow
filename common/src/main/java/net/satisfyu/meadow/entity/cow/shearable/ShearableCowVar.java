@@ -9,8 +9,10 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
+import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,17 +23,23 @@ import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
 public enum ShearableCowVar implements StringRepresentable {
-    HIGHLAND(0, "highland_cattle"),
-    UMBRA(1, "umbra_cow"),
-    WARPED(2, "warped_cow");
+    HIGHLAND(0, "highland_cattle", ObjectRegistry.HIGHLAND_WOOL.get().asItem()),
+    UMBRA(1, "umbra_cow", ObjectRegistry.UMBRA_WOOL.get().asItem()),
+    WARPED(2, "warped_cow", ObjectRegistry.WARPED_WOOL.get().asItem());
     public static final Codec<ShearableCowVar> CODEC = StringRepresentable.fromEnum(ShearableCowVar::values);
     private static final IntFunction<ShearableCowVar> BY_ID = ByIdMap.continuous(ShearableCowVar::getId, values(), ByIdMap.OutOfBoundsStrategy.WRAP);
     private final int id;
     private final String name;
+    private final Item wool;
 
-    ShearableCowVar(int id, String name) {
+    ShearableCowVar(int id, String name, Item wool) {
         this.id = id;
         this.name = name;
+        this.wool = wool;
+    }
+
+    public Item getWool() {
+        return wool;
     }
 
     public int getId() {

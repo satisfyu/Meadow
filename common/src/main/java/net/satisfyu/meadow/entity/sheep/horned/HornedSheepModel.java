@@ -9,7 +9,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class HornedSheepModel<T extends HornedSheepEntity> extends SheepModel<T> {
+public class HornedSheepModel<T extends HornedSheep> extends SheepModel<T> {
     public HornedSheepModel(ModelPart root) {
         super(root);
     }

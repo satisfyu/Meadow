@@ -31,7 +31,7 @@ public abstract class CowVariantMixin extends MobVariantMixin {
 
     @Override
     protected void onFinalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, SpawnGroupData spawnGroupData, CompoundTag compoundTag, CallbackInfoReturnable<SpawnGroupData> cir) {
-        CowVar.setVariant(getCow(), CowVar.getRandomVariant(serverLevelAccessor, getCow().blockPosition()));
+        CowVar.setVariant(getCow(), CowVar.getRandomVariant(serverLevelAccessor, getCow().blockPosition(), mobSpawnType.equals(MobSpawnType.SPAWN_EGG)));
     }
 
     @Inject(

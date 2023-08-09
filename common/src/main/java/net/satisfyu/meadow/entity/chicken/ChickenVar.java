@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.ByIdMap;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -74,13 +75,14 @@ public enum ChickenVar implements StringRepresentable {
     public static int getTypeVariant(Chicken Chicken) {
         return Chicken.getEntityData().get(DATA_ID_TYPE_VARIANT);
     }
-    public static ChickenVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos) {
+    public static ChickenVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos, boolean spawnEgg) {
         Holder<Biome> holder = levelAccessor.getBiome(blockPos);
         List<ChickenVar> possibleVars = getChickenVariantsInBiome(holder);
         int size = possibleVars.size();
-        if(size == 0) return ChickenVar.DEFAULT;
+        RandomSource random = levelAccessor.getRandom();
+        if(size == 0 || spawnEgg) return Util.getRandom(ChickenVar.values(), random);
 
-        return possibleVars.get(levelAccessor.getRandom().nextInt(size));
+        return possibleVars.get(random.nextInt(size));
     }
     private static List<ChickenVar> getChickenVariantsInBiome(Holder<Biome> biome) {
         return SPAWNS.keySet().stream()

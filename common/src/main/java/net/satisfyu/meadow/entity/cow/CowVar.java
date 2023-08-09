@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.ByIdMap;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -89,13 +90,14 @@ public enum CowVar implements StringRepresentable {
     public static int getTypeVariant(Cow cow) {
         return cow.getEntityData().get(DATA_ID_TYPE_VARIANT);
     }
-    public static CowVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos) {
+    public static CowVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos, boolean spawnEgg) {
         Holder<Biome> holder = levelAccessor.getBiome(blockPos);
         List<CowVar> possibleVars = getCowVariantsInBiome(holder);
         int size = possibleVars.size();
-        if(size == 0) return CowVar.DEFAULT;
+        RandomSource random = levelAccessor.getRandom();
+        if(size == 0 || spawnEgg) return Util.getRandom(CowVar.values(), random);
 
-        return possibleVars.get(levelAccessor.getRandom().nextInt(size));
+        return possibleVars.get(random.nextInt(size));
     }
     private static List<CowVar> getCowVariantsInBiome(Holder<Biome> biome) {
         return SPAWNS.keySet().stream()

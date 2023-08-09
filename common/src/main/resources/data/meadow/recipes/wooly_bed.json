@@ -3,7 +3,7 @@
   "group": "bed",
   "key": {
     "#": {
-      "item": "meadow:rocky_sheep_wool"
+      "item": "meadow:rocky_wool"
     },
     "X": {
       "tag": "minecraft:planks"

@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class WaterBuffaloEntityModel extends QuadrupedModel<WaterBuffaloEntity> {
+public class WaterBuffaloModel extends QuadrupedModel<WaterBuffalo> {
     private final ModelPart body;
     private final ModelPart head;
     private final ModelPart leg0;
@@ -19,7 +19,7 @@ public class WaterBuffaloEntityModel extends QuadrupedModel<WaterBuffaloEntity> 
     private final ModelPart leg2;
     private final ModelPart leg3;
 
-    public WaterBuffaloEntityModel(ModelPart root) {
+    public WaterBuffaloModel(ModelPart root) {
         super(root, true, 16.0F, 4.0F, 2.25F, 2.0F, 24);
         this.body = root.getChild("body");
         this.head = root.getChild("head");

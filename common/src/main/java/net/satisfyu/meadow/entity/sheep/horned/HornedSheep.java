@@ -7,11 +7,11 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.satisfyu.meadow.entity.sheep.MeadowSheepEntity;
+import net.satisfyu.meadow.entity.sheep.MeadowSheep;
 import net.satisfyu.meadow.registry.EntityRegistry;
 
-public class HornedSheepEntity extends MeadowSheepEntity {
-    public HornedSheepEntity(EntityType<? extends Sheep> entityType, Level world) {
+public class HornedSheep extends MeadowSheep {
+    public HornedSheep(EntityType<? extends Sheep> entityType, Level world) {
         super(entityType, world, Blocks.WHITE_WOOL, new ResourceLocation("entities/sheep/white"));
     }
 

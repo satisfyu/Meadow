@@ -12,13 +12,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.registry.EntityRegistry;
 
-public class BrownBearEntity extends PolarBear {
-    public BrownBearEntity(EntityType<? extends PolarBear> entityType, Level world) {
+public class BrownBear extends PolarBear {
+    public BrownBear(EntityType<? extends PolarBear> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
-    public BrownBearEntity getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {
+    public BrownBear getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {
         return EntityRegistry.BROWN_BEAR.get().create(serverWorld);
     }
 
@@ -27,7 +27,7 @@ public class BrownBearEntity extends PolarBear {
         super.registerGoals();
         this.goalSelector.addGoal(1, new OcelotAttackGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Animal.class, true, livingEntity -> {
-            if (livingEntity instanceof BrownBearEntity) {
+            if (livingEntity instanceof BrownBear) {
                 return false;
             } else if (livingEntity instanceof Player) {
                 return true;

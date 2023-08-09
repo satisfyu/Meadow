@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.entity.cow.shearable.ShearableCowVar;
-import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowEntity;
+import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCow;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,7 +28,7 @@ public class NetherPortalBlockMixin {
             }
 
             if (serverLevel.getBlockState(blockPos).isValidSpawn(serverLevel, blockPos, EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get())) {
-                ShearableVarCowEntity entity = EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get().spawn(serverLevel, blockPos.above(), MobSpawnType.STRUCTURE);
+                ShearableVarCow entity = EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get().spawn(serverLevel, blockPos.above(), MobSpawnType.STRUCTURE);
                 if (entity != null) {
                     entity.setVariant(ShearableCowVar.WARPED);
                     entity.setPortalCooldown();

@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class HornedSheepRenderer extends MobRenderer<HornedSheepEntity, HornedSheepModel<HornedSheepEntity>> {
+public class HornedSheepRenderer extends MobRenderer<HornedSheep, HornedSheepModel<HornedSheep>> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(MOD_ID, "textures/entity/sheep/horned_sheep.png");
 
@@ -20,7 +20,7 @@ public class HornedSheepRenderer extends MobRenderer<HornedSheepEntity, HornedSh
     }
 
     @Override
-    public ResourceLocation getTextureLocation(HornedSheepEntity entity) {
+    public ResourceLocation getTextureLocation(HornedSheep entity) {
         return TEXTURE;
     }
 }
