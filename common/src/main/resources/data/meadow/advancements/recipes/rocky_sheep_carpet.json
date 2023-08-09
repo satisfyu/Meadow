@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_rocky_sheep_wool": {
+    "has_rocky_wool": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "meadow:rocky_sheep_wool"
+              "meadow:rocky_wool"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_rocky_sheep_wool",
+      "has_rocky_wool",
       "has_the_recipe"
     ]
   ]
