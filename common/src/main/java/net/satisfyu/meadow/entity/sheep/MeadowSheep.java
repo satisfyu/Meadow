@@ -16,13 +16,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 
-public class MeadowSheepEntity extends Sheep {
+public class MeadowSheep extends Sheep {
 
     private final Block woolBlock;
 
     private final ResourceLocation lootTable;
 
-    public MeadowSheepEntity(EntityType<? extends Sheep> entityType, Level world, Block woolBlock, ResourceLocation lootTable) {
+    public MeadowSheep(EntityType<? extends Sheep> entityType, Level world, Block woolBlock, ResourceLocation lootTable) {
         super(entityType, world);
         this.woolBlock = woolBlock;
         this.lootTable = lootTable;

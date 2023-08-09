@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.ByIdMap;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -89,13 +90,13 @@ public enum SheepVar implements StringRepresentable {
     public static int getTypeVariant(Sheep sheep) {
         return sheep.getEntityData().get(DATA_ID_TYPE_VARIANT);
     }
-    public static SheepVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos) {
+    public static SheepVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos, boolean spawnEgg) {
         Holder<Biome> holder = levelAccessor.getBiome(blockPos);
         List<SheepVar> possibleVars = getSheepVariantsInBiome(holder);
         int size = possibleVars.size();
-        if(size == 0) return SheepVar.DEFAULT;
-
-        return possibleVars.get(levelAccessor.getRandom().nextInt(size));
+        RandomSource random = levelAccessor.getRandom();
+        if(size == 0 || spawnEgg) return Util.getRandom(SheepVar.values(), random);
+        return possibleVars.get(random.nextInt(size));
     }
     private static List<SheepVar> getSheepVariantsInBiome(Holder<Biome> biome) {
         return SPAWNS.keySet().stream()

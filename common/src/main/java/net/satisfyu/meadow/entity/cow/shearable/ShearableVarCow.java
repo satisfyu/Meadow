@@ -1,10 +1,12 @@
 package net.satisfyu.meadow.entity.cow.shearable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -23,24 +25,35 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.satisfyu.meadow.registry.EntityRegistry;
+import net.satisfyu.meadow.util.MeadowIdentifier;
 import org.jetbrains.annotations.Nullable;
 
-public class ShearableVarCowEntity extends Animal implements Shearable, VariantHolder<ShearableCowVar> {
-    private static final EntityDataAccessor<Boolean> IS_SHEARED = SynchedEntityData.defineId(ShearableVarCowEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(ShearableVarCowEntity.class, EntityDataSerializers.INT);
+public class ShearableVarCow extends Animal implements Shearable, VariantHolder<ShearableCowVar> {
+    private static final EntityDataAccessor<Boolean> IS_SHEARED = SynchedEntityData.defineId(ShearableVarCow.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(ShearableVarCow.class, EntityDataSerializers.INT);
+
+    private static final ResourceLocation COW_LOOT_TABLE = new ResourceLocation("entities/cow");
 
     private int eatGrassTimer;
     private EatBlockGoal eatGrassGoal;
 
-    public ShearableVarCowEntity(EntityType<ShearableVarCowEntity> entityType, Level world) {
+    public ShearableVarCow(EntityType<ShearableVarCow> entityType, Level world) {
         super(entityType, world);
+    }
+
+    @Override
+    protected ResourceLocation getDefaultLootTable() {
+        if(isSheared()) return COW_LOOT_TABLE;
+
+        ResourceLocation location = BuiltInRegistries.ITEM.getKey(getVariant().getWool());
+        String s = location.getPath().replace("_wool", "");
+
+        return new MeadowIdentifier("entities/wooly_cow/" + s);
     }
 
     @Override
@@ -64,7 +77,7 @@ public class ShearableVarCowEntity extends Animal implements Shearable, VariantH
         this.setSheared(true);
         int i = 1 + this.random.nextInt(3);
         for (int j = 0; j < i; ++j) {
-            ItemEntity itemEntity = this.spawnAtLocation(Blocks.BLACK_WOOL, 1);
+            ItemEntity itemEntity = this.spawnAtLocation(getVariant().getWool(), 1);
             if (itemEntity == null) continue;
             itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1f, this.random.nextFloat() * 0.05f, (this.random.nextFloat() - this.random.nextFloat()) * 0.1f));
         }
@@ -169,13 +182,13 @@ public class ShearableVarCowEntity extends Animal implements Shearable, VariantH
 
     @Nullable
     @Override
-    public ShearableVarCowEntity getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-        ShearableVarCowEntity cow = EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get().create(serverLevel);
+    public ShearableVarCow getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+        ShearableVarCow cow = EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get().create(serverLevel);
         if(cow == null) return null;
 
         RandomSource random = serverLevel.getRandom();
         ShearableCowVar var = this.getVariant();
-        if(random.nextBoolean() && ageableMob instanceof ShearableVarCowEntity varCow){
+        if(random.nextBoolean() && ageableMob instanceof ShearableVarCow varCow){
             var = varCow.getVariant();
         }
         cow.setVariant(var);
@@ -228,7 +241,7 @@ public class ShearableVarCowEntity extends Animal implements Shearable, VariantH
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, Ingredient.of(new ItemLike[]{Items.WHEAT}), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, Ingredient.of(Items.WHEAT), false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));

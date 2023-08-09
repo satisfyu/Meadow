@@ -9,31 +9,31 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.animal.*;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.entity.bear.BrownBearEntity;
-import net.satisfyu.meadow.entity.buffalo.WaterBuffaloEntity;
-import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowEntity;
-import net.satisfyu.meadow.entity.sheep.horned.HornedSheepEntity;
+import net.satisfyu.meadow.entity.bear.BrownBear;
+import net.satisfyu.meadow.entity.buffalo.WaterBuffalo;
+import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCow;
+import net.satisfyu.meadow.entity.sheep.horned.HornedSheep;
 
 import java.util.function.Supplier;
 
 public class EntityRegistry {
     private static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registries.ENTITY_TYPE);
 
-    public static final RegistrySupplier<EntityType<BrownBearEntity>> BROWN_BEAR = create(
+    public static final RegistrySupplier<EntityType<BrownBear>> BROWN_BEAR = create(
             "brown_bear",
-            () -> EntityType.Builder.of(BrownBearEntity::new, MobCategory.CREATURE).sized(1.4f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "brown_bear").toString())
+            () -> EntityType.Builder.of(BrownBear::new, MobCategory.CREATURE).sized(1.4f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "brown_bear").toString())
     );
 
-    public static final RegistrySupplier<EntityType<WaterBuffaloEntity>> WATER_BUFFALO = create("water_buffalo",
-            () -> EntityType.Builder.of(WaterBuffaloEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "water_buffalo").toString())
+    public static final RegistrySupplier<EntityType<WaterBuffalo>> WATER_BUFFALO = create("water_buffalo",
+            () -> EntityType.Builder.of(WaterBuffalo::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "water_buffalo").toString())
     );
 
-    public static final RegistrySupplier<EntityType<ShearableVarCowEntity>> SHEARABLE_MEADOW_VAR_COW = create("shearable_meadow_cow",
-            () -> EntityType.Builder.of(ShearableVarCowEntity::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "shearable_meadow_cow").toString())
+    public static final RegistrySupplier<EntityType<ShearableVarCow>> SHEARABLE_MEADOW_VAR_COW = create("wooly_cow",
+            () -> EntityType.Builder.of(ShearableVarCow::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "wooly_cow").toString())
     );
 
-    public static final RegistrySupplier<EntityType<HornedSheepEntity>> HORNED_SHEEP = create("horned_sheep",
-            () -> EntityType.Builder.of(HornedSheepEntity::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "horned_sheep").toString())
+    public static final RegistrySupplier<EntityType<HornedSheep>> HORNED_SHEEP = create("horned_sheep",
+            () -> EntityType.Builder.of(HornedSheep::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "horned_sheep").toString())
     );
 
 

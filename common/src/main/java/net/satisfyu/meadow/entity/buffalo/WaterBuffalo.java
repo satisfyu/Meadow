@@ -15,8 +15,8 @@ import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 
-public class WaterBuffaloEntity extends Cow {
-    public WaterBuffaloEntity(EntityType<? extends Cow> entityType, Level world) {
+public class WaterBuffalo extends Cow {
+    public WaterBuffalo(EntityType<? extends Cow> entityType, Level world) {
         super(entityType, world);
     }
 

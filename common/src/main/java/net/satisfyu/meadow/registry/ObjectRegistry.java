@@ -123,7 +123,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> PATCHED_WOOL = registerBlock("patched_wool", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL)));
     public static final RegistrySupplier<Block> PATCHED_CARPET = registerBlock("patched_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.copy(Blocks.BLACK_CARPET)));
     public static final RegistrySupplier<Block> PATCHED_BED = registerBlock("patched_bed", () -> new MeadowBedBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
-    public static final RegistrySupplier<Block> ROCKY_WOOL = registerBlock("rocky_sheep_wool", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL)));
+    public static final RegistrySupplier<Block> ROCKY_WOOL = registerBlock("rocky_wool", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL)));
     public static final RegistrySupplier<Block> ROCKY_CARPET = registerBlock("rocky_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.copy(Blocks.BLACK_CARPET)));
     public static final RegistrySupplier<Block> ROCKY_BED = registerBlock("rocky_bed", () -> new MeadowBedBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion()));
     public static final RegistrySupplier<Block> UMBRA_WOOL = registerBlock("umbra_wool", () -> new Block(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL)));
@@ -307,7 +307,7 @@ public class ObjectRegistry {
     }
 
 
-    private static Item.Properties getSettings() {
+    static Item.Properties getSettings() {
         return getSettings(settings -> {
         });
     }

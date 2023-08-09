@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.client;
 
+import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
@@ -26,9 +27,11 @@ import net.satisfyu.meadow.client.screen.CheeseFormGui;
 import net.satisfyu.meadow.client.screen.CookingCauldronGui;
 import net.satisfyu.meadow.client.screen.FondueGui;
 import net.satisfyu.meadow.client.screen.WoodcutterGui;
-import net.satisfyu.meadow.entity.bear.BrownBearEntityModel;
-import net.satisfyu.meadow.entity.bear.BrownBearEntityRenderer;
-import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowEntityRenderer;
+import net.satisfyu.meadow.entity.bear.BrownBearModel;
+import net.satisfyu.meadow.entity.bear.BrownBearRenderer;
+import net.satisfyu.meadow.entity.buffalo.WaterBuffaloModel;
+import net.satisfyu.meadow.entity.buffalo.WaterBuffaloRenderer;
+import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.WoolyCowModel;
 import net.satisfyu.meadow.entity.sheep.horned.HornedSheepModel;
 import net.satisfyu.meadow.entity.sheep.horned.HornedSheepRenderer;
@@ -51,6 +54,9 @@ public class MeadowClient {
     public static void preInitClient() {
         registerEntityRenderers();
         registerEntityModelLayers();
+
+        TerraformSignHelper.regsterSignSprite(MeadowWoodRegistry.PINE_SIGN_TEXTURE);
+        TerraformSignHelper.regsterSignSprite(MeadowWoodRegistry.CHERRY_HANGING_SIGN_TEXTURE);
     }
 
     public static void initClient() {
@@ -99,15 +105,18 @@ public class MeadowClient {
     }
 
     private static void registerEntityRenderers() {
-        EntityRendererRegistry.register(EntityRegistry.BROWN_BEAR, BrownBearEntityRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, ShearableVarCowEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.BROWN_BEAR, BrownBearRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, ShearableVarCowRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.HORNED_SHEEP, HornedSheepRenderer::new);
+
+        EntityRendererRegistry.register(EntityRegistry.WATER_BUFFALO, WaterBuffaloRenderer::new);
     }
 
     public static void registerEntityModelLayers() {
-        EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearEntityModel::createBodyLayer);
+        EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearModel::createBodyLayer);
         EntityModelLayerRegistry.register(SHEARABLE_MEADOW_COW_MODEL_LAYER, WoolyCowModel::createBodyLayer);
         EntityModelLayerRegistry.register(HORNED_SHEEP_MODEL_LAYER, HornedSheepModel::createBodyLayer);
+        EntityModelLayerRegistry.register(WATER_BUFFALO_MODEL_LAYER, WaterBuffaloModel::getTexturedModelData);
 
         ArmorRegistry.registerArmorModelLayers();
     }

@@ -10,19 +10,19 @@ import net.satisfyu.meadow.client.MeadowClient;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 @Environment(EnvType.CLIENT)
-public class BrownBearEntityRenderer extends MobRenderer<BrownBearEntity, BrownBearEntityModel> {
+public class BrownBearRenderer extends MobRenderer<BrownBear, BrownBearModel> {
     private static final ResourceLocation TEXTURE = new MeadowIdentifier("textures/entity/brown_bear/brown_bear.png");
 
-    public BrownBearEntityRenderer(EntityRendererProvider.Context context) {
-        super(context, new BrownBearEntityModel(context.bakeLayer(MeadowClient.BROWN_BEAR_MODEL_LAYER)), 0.9F);
+    public BrownBearRenderer(EntityRendererProvider.Context context) {
+        super(context, new BrownBearModel(context.bakeLayer(MeadowClient.BROWN_BEAR_MODEL_LAYER)), 0.9F);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(BrownBearEntity entity) {
+    public ResourceLocation getTextureLocation(BrownBear entity) {
         return TEXTURE;
     }
 
-    protected void scale(BrownBearEntity polarBearEntity, PoseStack matrixStack, float f) {
+    protected void scale(BrownBear polarBearEntity, PoseStack matrixStack, float f) {
         matrixStack.scale(1.2F, 1.2F, 1.2F);
         super.scale(polarBearEntity, matrixStack, f);
     }
