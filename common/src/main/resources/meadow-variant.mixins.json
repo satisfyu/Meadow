@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "plugin": "net.satisfyu.meadow.mixin.VariantPlugin",
+  "package": "net.satisfyu.meadow.mixin.variant",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "ChickenRendererMixin",
+    "CowRendererMixin",
+    "SheepFurLayerMixin",
+    "SheepModelMixin",
+    "SheepRendererMixin"
+  ],
+  "mixins": [
+    "ChickenVariantMixin",
+    "CowVariantMixin",
+    "SheepVariantMixin",
+    "ThrownEggMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

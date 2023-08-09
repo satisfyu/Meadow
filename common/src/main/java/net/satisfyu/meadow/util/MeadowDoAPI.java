@@ -1,23 +1,16 @@
 package net.satisfyu.meadow.util;
 
 import com.mojang.datafixers.util.Pair;
-import de.cristelknight.doapi.DoApiRL;
 import de.cristelknight.doapi.api.DoApiAPI;
 import de.cristelknight.doapi.api.DoApiPlugin;
 import de.cristelknight.doapi.client.render.feature.FullCustomArmor;
-
-import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.satisfyu.meadow.client.model.FurArmorHat;
-import net.satisfyu.meadow.client.model.FurArmorInner;
-import net.satisfyu.meadow.client.model.FurArmorOuter;
 import net.satisfyu.meadow.registry.ArmorRegistry;
-import net.satisfyu.meadow.registry.ObjectRegistry;
 
 import java.util.Map;
 import java.util.Set;

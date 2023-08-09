@@ -37,6 +37,7 @@
     ]
   },
   "mixins": [
+    "meadow-variant.mixins.json",
     "meadow-common.mixins.json",
     "meadow.mixins.json"
   ],

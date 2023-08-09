@@ -11,7 +11,7 @@ import net.satisfyu.meadow.world.feature.CobbledLimestoneRock;
 import java.util.function.Supplier;
 
 public class FeatureRegistry {
-    public static DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Meadow.MOD_ID, Registries.FEATURE);
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Meadow.MOD_ID, Registries.FEATURE);
     public static final RegistrySupplier<Feature<?>> COBBLED_LIMESTONE_ROCK = create("cobbled_limestone_rock", CobbledLimestoneRock::new);
 
     public static void init() {

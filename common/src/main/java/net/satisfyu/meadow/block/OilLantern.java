@@ -80,11 +80,6 @@ public class OilLantern extends LanternBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(HANGING, WATERLOGGED);
-    }
-
-    @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
         tooltip.add(Component.translatable("block.meadow.lantern.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }

@@ -11,7 +11,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.Item;
@@ -36,7 +35,9 @@ public enum SheepVar implements StringRepresentable {
     INKY(3, "inky", ObjectRegistry.INKY_WOOL.get().asItem()),
     LONG_NOSED(4, "long_nosed", ObjectRegistry.HIGHLAND_WOOL.get().asItem()),
     PATCHED(5, "patched", ObjectRegistry.PATCHED_WOOL.get().asItem()),
-    ROCKY(6, "rocky", ObjectRegistry.ROCKY_WOOL.get().asItem());
+    ROCKY(6, "rocky", ObjectRegistry.ROCKY_WOOL.get().asItem()),
+    HORNED(7, "horned", Items.WHITE_WOOL);
+
     public static final Codec<SheepVar> CODEC = StringRepresentable.fromEnum(SheepVar::values);
     private static final IntFunction<SheepVar> BY_ID = ByIdMap.continuous(SheepVar::getId, values(), ByIdMap.OutOfBoundsStrategy.WRAP);
     private final int id;

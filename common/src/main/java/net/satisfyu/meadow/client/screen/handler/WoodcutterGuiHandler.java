@@ -223,9 +223,7 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
     public void removed(Player player) {
         super.removed(player);
         this.output.removeItemNoUpdate(1);
-        this.context.execute((world, pos) -> {
-            this.clearContainer(player, this.input);
-        });
+        this.context.execute((world, pos) -> this.clearContainer(player, this.input));
     }
 }
 

@@ -84,7 +84,7 @@ public class StoveBlockWood extends StoveBlock implements EntityBlock {
             double k = axis == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52 : h;
             world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
             world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
-            double particleHeight = pos.getY() + 0.5 + 16.0 / 16.0;
+            double particleHeight = pos.getY() + 0.5 + 1.0;
             world.addParticle(ParticleTypes.SMOKE, d, particleHeight, f, 0.0, 0.0, 0.0);
         }
     }
@@ -93,11 +93,6 @@ public class StoveBlockWood extends StoveBlock implements EntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(LIT);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.meadow.stove.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 
     @Nullable

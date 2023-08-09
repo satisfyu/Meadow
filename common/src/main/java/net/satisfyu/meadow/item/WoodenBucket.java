@@ -107,10 +107,6 @@ public class WoodenBucket extends BucketItem {
         return stack;
     }
 
-    @Override
-    public void checkExtraContent(@Nullable Player player, Level world, ItemStack stack, BlockPos pos) {
-    }
-
     public void appendTooltip(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
         tooltip.add(Component.translatable("block.meadow.wooden_bucket.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }

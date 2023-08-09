@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class MeadowWoodRegistry {
-    public static ResourceLocation PINE_BOAT_TYPE = new MeadowIdentifier("pine");
+    public static final ResourceLocation PINE_BOAT_TYPE = new MeadowIdentifier("pine");
 
     public static final ResourceLocation PINE_SIGN_TEXTURE = new MeadowIdentifier("entity/signs/pine");
     public static final RegistrySupplier<Block> PINE_SIGN = ObjectRegistry.registerBlockWithoutItem("pine_sign", () -> TerraformSignHelper.getSign(PINE_SIGN_TEXTURE));
@@ -29,8 +29,8 @@ public class MeadowWoodRegistry {
     public static final RegistrySupplier<Item> PINE_HANGING_SIGN_ITEM = ObjectRegistry.registerItem("pine_hanging_sign", () -> new HangingSignItem(PINE_HANGING_SIGN.get(), PINE_WALL_HANGING_SIGN.get(), ObjectRegistry.getSettings().stacksTo(16)));
 
 
-    public static RegistrySupplier<Item> PINE_BOAT = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "pine_boat", PINE_BOAT_TYPE, false);
-    public static RegistrySupplier<Item> PINE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "pine_chest_boat", PINE_BOAT_TYPE, true);
+    public static final RegistrySupplier<Item> PINE_BOAT = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "pine_boat", PINE_BOAT_TYPE, false);
+    public static final RegistrySupplier<Item> PINE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "pine_chest_boat", PINE_BOAT_TYPE, true);
     public static void init() {
         DoApiExpectPlatform.registerBoatType(PINE_BOAT_TYPE, new TerraformBoatType.Builder().item(PINE_BOAT).chestItem(PINE_CHEST_BOAT).build());
     }

@@ -36,13 +36,11 @@ public class MealBlock extends FacingBlock {
     private static final VoxelShape SHAPE_BIG = Block.box(2, 0, 2, 14, 6, 14);
 
     public static final IntegerProperty CUTS = IntegerProperty.create("cuts", 0, 3);
-    private final RegistrySupplier<Item> slice;
 
     private final boolean big;
 
-    public MealBlock(Properties settings, RegistrySupplier<Item> slice, boolean big) {
+    public MealBlock(Properties settings, boolean big) {
         super(settings);
-        this.slice = slice;
         this.big = big;
     }
 

@@ -45,42 +45,12 @@ public class MeadowForge {
                 Animal::checkAnimalSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND
                 );
-        event.register(EntityRegistry.FUZZY_SHEEP.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
-        event.register(EntityRegistry.MEADOW_CHICKEN.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
-        event.register(EntityRegistry.FLECKED_SHEEP.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
         event.register(EntityRegistry.WATER_BUFFALO.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND
                 );
         event.register(EntityRegistry.HORNED_SHEEP.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
-        event.register(EntityRegistry.ROCKY_SHEEP.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
-        event.register(EntityRegistry.INKY_SHEEP.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
-        event.register(EntityRegistry.PATCHED_SHEEP.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND

@@ -19,7 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
-import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.screen.handler.FondueGuiHandler;
 import net.satisfyu.meadow.recipes.fondue.FondueRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
@@ -34,7 +33,7 @@ public class FondueBlockEntity extends BlockEntity implements MenuProvider, Impl
     private static final int[] SLOTS_FOR_DOWN = new int[]{2};
     protected final ContainerData propertyDelegate;
     private int progress = 0;
-    public static int MAX_PROGRESS = 72;
+    public static final int MAX_PROGRESS = 72;
 
     private int fuelAmount = 0;
 

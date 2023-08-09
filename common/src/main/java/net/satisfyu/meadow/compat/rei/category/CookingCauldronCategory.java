@@ -38,11 +38,6 @@ public class CookingCauldronCategory implements DisplayCategory<CookingCauldronD
     }
 
     @Override
-    public int getDisplayWidth(CookingCauldronDisplay display) {
-        return 150;
-    }
-
-    @Override
     public int getDisplayHeight() {
         return 64;
     }

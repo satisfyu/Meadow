@@ -33,7 +33,7 @@ public class FluidDecrementMixin {
         }
     }
 
-    @Inject(method = "entityInside", at = @At(value = "HEAD"), cancellable = true)
+    @Inject(method = "entityInside", at = @At(value = "HEAD"))
     private void register(BlockState state, Level world, BlockPos pos, Entity entity, CallbackInfo ci) {
         Object o = this;
         LayeredCauldronBlock block = (LayeredCauldronBlock) o;

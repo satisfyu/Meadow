@@ -20,7 +20,7 @@ public class SheepFurLayerMixin {
 
         if(entity instanceof Sheep sheep){
             SheepVar var = SheepVar.getVariant(sheep);
-            if(var.equals(SheepVar.DEFAULT)) return;
+            if(var.equals(SheepVar.DEFAULT) || var.equals(SheepVar.HORNED)) return;
             args.set(2, new MeadowIdentifier(String.format("textures/entity/sheep/%s_sheep_fur.png", var.getSerializedName())));
         }
     }

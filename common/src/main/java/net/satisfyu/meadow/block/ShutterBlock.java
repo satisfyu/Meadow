@@ -101,6 +101,8 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
         world.setBlock(pos, state, 3);
     }
 
+
+    //ToDo:
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (/*this.material == Material.METAL*/ false) {

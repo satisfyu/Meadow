@@ -11,17 +11,17 @@ import java.util.Set;
 
 public class CommonSpawnUtil {
     // Don't forget to change those values in the forge data!!!
-    public static int cowSpawnWeight = 6;
-    public static int cowPackSizeMin = 2; // do not set to 4
-    public static int cowPackSizeMax = 3; // do not set to 4
+    public static final int cowSpawnWeight = 6;
+    public static final int cowPackSizeMin = 2; // do not set to 4
+    public static final int cowPackSizeMax = 3; // do not set to 4
 
-    public static int sheepSpawnWeight = 6;
-    public static int sheepPackSizeMin = 2; // do not set to 4
-    public static int sheepPackSizeMax = 3; // do not set to 4
+    public static final int sheepSpawnWeight = 6;
+    public static final int sheepPackSizeMin = 2; // do not set to 4
+    public static final int sheepPackSizeMax = 3; // do not set to 4
 
-    public static int chickenSpawnWeight = 6;
-    public static int chickenPackSizeMin = 2; // do not set to 4
-    public static int chickenPackSizeMax = 3; // do not set to 4
+    public static final int chickenSpawnWeight = 6;
+    public static final int chickenPackSizeMin = 2; // do not set to 4
+    public static final int chickenPackSizeMax = 3; // do not set to 4
 
 
     public static boolean spawnsInBiome(Holder<Biome> biome, boolean checkForMeadowSpawn, EntityType<?>... entityTypes) {

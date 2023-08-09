@@ -12,6 +12,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -64,9 +65,10 @@ public abstract class SheepVariantMixin extends MobVariantMixin {
     public void getDefaultLootTable(CallbackInfoReturnable<ResourceLocation> cir) {
         Sheep sheep = getSheep();
         SheepVar var = SheepVar.getVariant(sheep);
-        if(sheep.isSheared() || var.equals(SheepVar.DEFAULT) || !sheep.getColor().equals(DyeColor.WHITE)) return;
+        Item wool = var.getWool();
+        if(sheep.isSheared() || wool.equals(Items.WHITE_WOOL) || !sheep.getColor().equals(DyeColor.WHITE)) return;
 
-        ResourceLocation location = BuiltInRegistries.ITEM.getKey(var.getWool());
+        ResourceLocation location = BuiltInRegistries.ITEM.getKey(wool);
         String s = location.getPath().replace("_wool", "");
         cir.setReturnValue(new MeadowIdentifier("entities/sheep/" + s));
     }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AdvancementRecipeGenerator {
 
-    public static String FOLDER = "/Users/marco/Desktop/Neuer Ordner/";
+    public static final String FOLDER = "/Users/marco/Desktop/Neuer Ordner/";
 
     public static void main(String[] args) {
         List<String> putRecipesHere = List.of(

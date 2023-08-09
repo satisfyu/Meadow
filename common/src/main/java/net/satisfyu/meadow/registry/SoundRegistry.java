@@ -10,7 +10,7 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class SoundRegistry {
-    public static Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Meadow.MOD_ID, Registries.SOUND_EVENT).getRegistrar();
+    public static final Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Meadow.MOD_ID, Registries.SOUND_EVENT).getRegistrar();
 
     public static final RegistrySupplier<SoundEvent> COOKING_CAULDRON = create("cooking_cauldron");
     public static final RegistrySupplier<SoundEvent> WOODCUTTER = create("woodcutter");
