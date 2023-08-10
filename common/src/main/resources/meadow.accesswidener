@@ -1,2 +1,4 @@
 accessWidener   v2  named
 accessible method net/minecraft/world/level/block/AbstractCauldronBlock isEntityInsideContent (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)Z
+accessible field net/minecraft/client/renderer/entity/layers/SheepFurLayer SHEEP_FUR_LOCATION Lnet/minecraft/resources/ResourceLocation;
+mutable field net/minecraft/client/renderer/entity/layers/SheepFurLayer SHEEP_FUR_LOCATION Lnet/minecraft/resources/ResourceLocation;
