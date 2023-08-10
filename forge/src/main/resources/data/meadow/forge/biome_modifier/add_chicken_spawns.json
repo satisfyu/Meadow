@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#meadow:is_meadow",
+  "spawners": {
+    "type": "minecraft:chicken",
+    "weight": 6,
+    "minCount": 2,
+    "maxCount": 3
+  }
+}
