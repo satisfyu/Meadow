@@ -37,7 +37,7 @@ public class FeatureModification {
 
         Predicate<BiomeSelectionContext> meadowVarChicken = (ctx -> {
             if(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN).test(ctx)) return false;
-            return ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(BiomeTags.HAS_WOODLAND_MANSION);
+            return ctx.hasTag(TagRegistry.IS_MEADOW);
         });
         BiomeModifications.addSpawn(meadowVarChicken, MobCategory.CREATURE, EntityType.CHICKEN,
                 CommonSpawnUtil.chickenSpawnWeight, CommonSpawnUtil.chickenPackSizeMin, CommonSpawnUtil.chickenPackSizeMax);
@@ -48,18 +48,7 @@ public class FeatureModification {
         });
         BiomeModifications.addSpawn(meadowVarSheep, MobCategory.CREATURE, EntityType.SHEEP,
                 CommonSpawnUtil.sheepSpawnWeight, CommonSpawnUtil.sheepPackSizeMin, CommonSpawnUtil.sheepPackSizeMax);
-        /*
-        BiomeModifications.addSpawn(sunset_cow, MobCategory.CREATURE, EntityRegistry.FLECKED_SHEEP.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
-        BiomeModifications.addSpawn(meadow, MobCategory.CREATURE, EntityRegistry.FUZZY_SHEEP.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
-        BiomeModifications.addSpawn(sheep, MobCategory.CREATURE, EntityRegistry.INKY_SHEEP.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
-        BiomeModifications.addSpawn(sheep, MobCategory.CREATURE, EntityRegistry.PATCHED_SHEEP.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
-        BiomeModifications.addSpawn(mountain, MobCategory.CREATURE, EntityRegistry.ROCKY_SHEEP.get(),
-                meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
-         */
+
 
         Predicate<BiomeSelectionContext> shearableVarCows = (ctx -> ctx.hasTag(TagRegistry.IS_MEADOW) || ctx.hasTag(TagRegistry.SPAWNS_DARK_COW));
         BiomeModifications.addSpawn(shearableVarCows, MobCategory.CREATURE, EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get(),
