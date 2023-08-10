@@ -8,7 +8,7 @@
       "item": "meadow:alpine_salt"
     },
     {
-      "item": "minecraft:water_bucket"
+      "tag": "meadow:water_bottles"
     }
   ],
   "result": {

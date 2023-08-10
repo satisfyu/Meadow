@@ -203,8 +203,8 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
         POWERED = BlockStateProperties.POWERED;
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
         SHAPES = new VoxelShape[]{
-                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 3.0D),  //south
-                Block.box(13.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), //west
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 3.0D),
+                Block.box(13.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
                 Block.box(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D),//north
                 Block.box(0.0D, 0.0D, 0.0D, 3.0D, 16.0D, 16.0D)  //east
         };
