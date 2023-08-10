@@ -102,37 +102,33 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
     }
 
 
-    //ToDo:
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (/*this.material == Material.METAL*/ false) {
-            return InteractionResult.PASS;
-        } else {
-            state = state.cycle(OPEN);
-            world.setBlock(pos, state, 3);
-            if (!player.isCrouching()) {
-                toggleShutters(state, world, pos, state.getValue(OPEN));
-            }
-            world.playSound(null, pos, shutterSound(state.getValue(OPEN)), SoundSource.BLOCKS, 1.0F, 1.0F);
-            if (state.getValue(WATERLOGGED)) {
-                world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
-            }
-
-            return InteractionResult.sidedSuccess(world.isClientSide);
-        }
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return toggleShutters(state, level, pos, player);
     }
 
-    public void toggleShutters(BlockState state, Level world, BlockPos pos, boolean open) {
+    public InteractionResult toggleShutters(BlockState state, Level level, BlockPos pos, Player player) {
+        state = state.cycle(OPEN);
+        level.setBlock(pos, state, 3);
+        if (player == null || !player.isCrouching()) toggleShutters(state, level, pos, state.getValue(OPEN));
+        level.playSound(null, pos, shutterSound(state.getValue(OPEN)), SoundSource.BLOCKS, 1.0F, 1.0F);
+
+        if (state.getValue(WATERLOGGED)) level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+
+        return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    public void toggleShutters(BlockState state, Level level, BlockPos pos, boolean open) {
         BlockState updateState = state;
         BlockPos updatePos = pos;
         if (state.getValue(TYPE) == ShutterType.MIDDLE || state.getValue(TYPE) == ShutterType.BOTTOM) {
-            int heightUp = world.dimensionType().height() - updatePos.getY();
+            int heightUp = level.dimensionType().height() - updatePos.getY();
             for (int i = 0; i < heightUp; i++) {
-                BlockState above = world.getBlockState(updatePos.above());
-                if (above.getBlock() == state.getBlock() && above.getValue(FACING) == updateState.getValue(FACING) && above.getValue(LEFT) == updateState.getValue(LEFT) && above.getValue(OPEN) != open) {
+                BlockState above = level.getBlockState(updatePos.above());
+                if (above.is(state.getBlock()) && above.getValue(FACING) == updateState.getValue(FACING) && above.getValue(LEFT) == updateState.getValue(LEFT) && above.getValue(OPEN) != open) {
                     updateState = above;
                     updatePos = updatePos.above();
-                    world.setBlock(updatePos, updateState.setValue(OPEN, open), 3);
+                    level.setBlock(updatePos, updateState.setValue(OPEN, open), 3);
                 } else {
                     break;
                 }
@@ -141,14 +137,14 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
         if (state.getValue(TYPE) == ShutterType.MIDDLE || state.getValue(TYPE) == ShutterType.TOP) {
             updateState = state;
             updatePos = pos;
-            int heightDown = world.dimensionType().minY() - updatePos.getY();
+            int heightDown = level.dimensionType().minY() - updatePos.getY();
             heightDown = (heightDown < 0) ? -heightDown : heightDown;
             for (int i = 0; i < heightDown; i++) {
-                BlockState below = world.getBlockState(updatePos.below());
-                if (below.getBlock() == state.getBlock() && below.getValue(FACING) == updateState.getValue(FACING) && below.getValue(LEFT) == updateState.getValue(LEFT) && below.getValue(OPEN) != open) {
+                BlockState below = level.getBlockState(updatePos.below());
+                if (below.is(state.getBlock()) && below.getValue(FACING) == updateState.getValue(FACING) && below.getValue(LEFT) == updateState.getValue(LEFT) && below.getValue(OPEN) != open) {
                     updateState = below;
                     updatePos = updatePos.below();
-                    world.setBlock(updatePos, updateState.setValue(OPEN, open), 3);
+                    level.setBlock(updatePos, updateState.setValue(OPEN, open), 3);
                 } else {
                     break;
                 }
@@ -158,9 +154,9 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
 
     public static SoundEvent shutterSound(boolean open) {
         if (open) {
-            return SoundEvents.WOODEN_TRAPDOOR_OPEN;
+            return SoundEvents.BAMBOO_WOOD_DOOR_OPEN;
         }
-        return SoundEvents.WOODEN_TRAPDOOR_CLOSE;
+        return SoundEvents.BAMBOO_WOOD_DOOR_CLOSE;
     }
 
     public ShutterType getType(BlockState state, BlockState above, BlockState below) {

@@ -29,8 +29,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.entity.blockentities.FlowerBoxBlockEntity;
-import net.satisfyu.meadow.util.GeneralUtil;
 import net.satisfyu.meadow.registry.TagRegistry;
+import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;

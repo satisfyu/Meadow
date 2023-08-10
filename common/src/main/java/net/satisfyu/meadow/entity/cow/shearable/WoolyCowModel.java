@@ -1,6 +1,6 @@
 package net.satisfyu.meadow.entity.cow.shearable;
 
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.CowModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
