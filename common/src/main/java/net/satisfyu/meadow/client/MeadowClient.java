@@ -33,8 +33,6 @@ import net.satisfyu.meadow.entity.buffalo.WaterBuffaloModel;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.WoolyCowModel;
-import net.satisfyu.meadow.entity.sheep.horned.HornedSheepModel;
-import net.satisfyu.meadow.entity.sheep.horned.HornedSheepRenderer;
 import net.satisfyu.meadow.item.FurBoots;
 import net.satisfyu.meadow.item.FurChest;
 import net.satisfyu.meadow.item.FurHead;
@@ -45,8 +43,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class MeadowClient {
-
-    public static final ModelLayerLocation HORNED_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "horned_sheep"), "main");
     public static final ModelLayerLocation BROWN_BEAR_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "brown_bear"), "main");
     public static final ModelLayerLocation SHEARABLE_MEADOW_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "shearable_meadow_cow"), "head");
     public static final ModelLayerLocation WATER_BUFFALO_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "water_buffalo"), "head");
@@ -107,7 +103,6 @@ public class MeadowClient {
     private static void registerEntityRenderers() {
         EntityRendererRegistry.register(EntityRegistry.BROWN_BEAR, BrownBearRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, ShearableVarCowRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.HORNED_SHEEP, HornedSheepRenderer::new);
 
         EntityRendererRegistry.register(EntityRegistry.WATER_BUFFALO, WaterBuffaloRenderer::new);
     }
@@ -115,7 +110,6 @@ public class MeadowClient {
     public static void registerEntityModelLayers() {
         EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearModel::createBodyLayer);
         EntityModelLayerRegistry.register(SHEARABLE_MEADOW_COW_MODEL_LAYER, WoolyCowModel::createBodyLayer);
-        EntityModelLayerRegistry.register(HORNED_SHEEP_MODEL_LAYER, HornedSheepModel::createBodyLayer);
         EntityModelLayerRegistry.register(WATER_BUFFALO_MODEL_LAYER, WaterBuffaloModel::getTexturedModelData);
 
         ArmorRegistry.registerArmorModelLayers();

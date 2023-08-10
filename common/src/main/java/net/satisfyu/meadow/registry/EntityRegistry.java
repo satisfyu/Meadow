@@ -12,7 +12,6 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.bear.BrownBear;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffalo;
 import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCow;
-import net.satisfyu.meadow.entity.sheep.horned.HornedSheep;
 
 import java.util.function.Supplier;
 
@@ -32,18 +31,12 @@ public class EntityRegistry {
             () -> EntityType.Builder.of(ShearableVarCow::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "wooly_cow").toString())
     );
 
-    public static final RegistrySupplier<EntityType<HornedSheep>> HORNED_SHEEP = create("horned_sheep",
-            () -> EntityType.Builder.of(HornedSheep::new, MobCategory.CREATURE).sized(0.9f, 1.3f).build(new ResourceLocation(Meadow.MOD_ID, "horned_sheep").toString())
-    );
-
-
 
     public static void init() {
         Meadow.LOGGER.debug("Registering Mod Entities for " + Meadow.MOD_ID);
         ENTITY_TYPES.register();
 
         EntityAttributeRegistry.register(BROWN_BEAR, PolarBear::createAttributes);
-        registerSheep(HORNED_SHEEP);
 
         registerCow(SHEARABLE_MEADOW_VAR_COW);
         registerCow(WATER_BUFFALO);
@@ -51,10 +44,6 @@ public class EntityRegistry {
 
     public static void registerCow(Supplier<? extends EntityType<? extends Animal>> typeSupplier) {
         EntityAttributeRegistry.register(typeSupplier, Cow::createAttributes);
-    }
-
-    public static void registerSheep(Supplier<? extends EntityType<? extends Animal>> typeSupplier) {
-        EntityAttributeRegistry.register(typeSupplier, Sheep::createAttributes);
     }
 
 

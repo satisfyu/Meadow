@@ -50,10 +50,5 @@ public class MeadowForge {
                 Animal::checkAnimalSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND
                 );
-        event.register(EntityRegistry.HORNED_SHEEP.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
     }
 }

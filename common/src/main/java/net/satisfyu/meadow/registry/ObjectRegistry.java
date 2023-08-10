@@ -202,7 +202,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> CHEESE_STICK = registerItem("cheese_stick", () -> new Item(getSettings().food(new FoodProperties.Builder().nutrition(6).saturationMod(1.8f).build())));
     public static final RegistrySupplier<Item> RAW_BEAR_MEAT = registerItem("raw_bear_meat", () -> new CraftingIngredientItem(getSettings().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3f).build())));
     public static final RegistrySupplier<Item> COOKED_BEAR_MEAT = registerItem("cooked_bear_meat", () -> new Item(getSettings().food(new FoodProperties.Builder().nutrition(6).saturationMod(1.6f).build())));
-    public static final RegistrySupplier<Block> ROASTED_HAM = registerBlock("roasted_ham", () -> new MealBlock(BlockBehaviour.Properties.copy(Blocks.CAKE), ObjectRegistry.COOKED_BEAR_MEAT, false));
+    public static final RegistrySupplier<Block> ROASTED_HAM = registerBlock("roasted_ham", () -> new MealBlock(BlockBehaviour.Properties.copy(Blocks.CAKE), false));
     public static final RegistrySupplier<Item> HAM_CHEESE = registerItem("ham_cheese", () -> new Item(getSettings().food(new FoodProperties.Builder().nutrition(8).saturationMod(1.6f).build())));
     public static final RegistrySupplier<Item> WOODEN_BUCKET = registerItem("wooden_bucket", () -> new WoodenBucket(Fluids.EMPTY, getSettings().stacksTo(16)));
     public static final RegistrySupplier<Item> WOODEN_WATER_BUCKET = registerItem("wooden_water_bucket", () -> new WoodenBucket(Fluids.WATER, getSettings().stacksTo(1).craftRemainder(ObjectRegistry.WOODEN_BUCKET.get())));
@@ -216,7 +216,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> WATER_BUFFALO_SPAWN_EGG_ITEM = registerItem("water_buffalo_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.WATER_BUFFALO, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> WOOLY_COW_SPAWN_EGG_ITEM = registerItem("wooly_cow_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> BROWN_BEAR_SPAWN_EGG_ITEM = registerItem("brown_bear_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.BROWN_BEAR, -1, -1, getSettings()));
-    public static final RegistrySupplier<Item> HORNED_SHEEP_SPAWN_EGG_ITEM = registerItem("horned_sheep_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.HORNED_SHEEP, -1, -1, getSettings()));
     public static final RegistrySupplier<Block> POTTED_ENZIAN = registerBlockWithoutItem("potted_enzian", () -> new FlowerPotBlock(ObjectRegistry.ENZIAN.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));
     public static final RegistrySupplier<Block> POTTED_FIRE_LILY = registerBlockWithoutItem("potted_fire_lily", () -> new FlowerPotBlock(ObjectRegistry.FIRE_LILY.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));
     public static final RegistrySupplier<Block> POTTED_ALPINE_POPPY = registerBlockWithoutItem("potted_alpine_poppy", () -> new FlowerPotBlock(ObjectRegistry.ALPINE_POPPY.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));

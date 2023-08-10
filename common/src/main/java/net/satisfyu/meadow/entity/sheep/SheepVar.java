@@ -77,6 +77,7 @@ public enum SheepVar implements StringRepresentable {
         map.put(SheepVar.LONG_NOSED, TagRegistry.SPAWNS_ROCKY_SHEEP);
         map.put(SheepVar.PATCHED, null);
         map.put(SheepVar.ROCKY, TagRegistry.SPAWNS_ROCKY_SHEEP);
+        map.put(SheepVar.HORNED, TagRegistry.SPAWNS_ROCKY_SHEEP);
     });
 
     public static void setVariant(Sheep sheep, SheepVar variant) {
