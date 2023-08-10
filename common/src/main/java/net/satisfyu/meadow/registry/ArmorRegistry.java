@@ -13,7 +13,6 @@ import net.satisfyu.meadow.client.model.FurArmorInner;
 import net.satisfyu.meadow.client.model.FurArmorOuter;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
-
 import java.util.Map;
 
 public class ArmorRegistry {

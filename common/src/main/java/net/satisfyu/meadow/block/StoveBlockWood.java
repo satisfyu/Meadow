@@ -1,10 +1,8 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -14,8 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FireChargeItem;
 import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -30,8 +26,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.satisfyu.meadow.entity.blockentities.StoveBlockWoodBlockEntity;
 import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class StoveBlockWood extends StoveBlock implements EntityBlock {
 

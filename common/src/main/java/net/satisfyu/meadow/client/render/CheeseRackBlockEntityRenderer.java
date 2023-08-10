@@ -1,10 +1,5 @@
 package net.satisfyu.meadow.client.render;
 
-import net.satisfyu.meadow.block.CheeseRackBlock;
-import net.satisfyu.meadow.entity.blockentities.CheeseRackBlockEntity;
-
-import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -12,6 +7,10 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.state.BlockState;
+import net.satisfyu.meadow.block.CheeseRackBlock;
+import net.satisfyu.meadow.entity.blockentities.CheeseRackBlockEntity;
+
+import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
 
 public class CheeseRackBlockEntityRenderer implements BlockEntityRenderer<CheeseRackBlockEntity> {
 

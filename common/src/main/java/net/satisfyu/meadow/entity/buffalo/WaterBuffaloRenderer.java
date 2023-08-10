@@ -1,12 +1,11 @@
 package net.satisfyu.meadow.entity.buffalo;
 
-import net.satisfyu.meadow.client.MeadowClient;
-
-import static net.satisfyu.meadow.Meadow.MOD_ID;
-
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.satisfyu.meadow.client.MeadowClient;
+
+import static net.satisfyu.meadow.Meadow.MOD_ID;
 
 public class WaterBuffaloRenderer extends MobRenderer<WaterBuffalo, WaterBuffaloModel> {
 

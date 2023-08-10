@@ -1,9 +1,10 @@
 package net.satisfyu.meadow.util;
 
-import java.util.Random;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.Random;
 
 public final class MathUtils {
     public static final Random RAND = new Random();

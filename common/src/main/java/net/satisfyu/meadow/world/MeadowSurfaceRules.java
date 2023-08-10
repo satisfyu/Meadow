@@ -1,9 +1,5 @@
 package net.satisfyu.meadow.world;
 
-import net.satisfyu.meadow.registry.ObjectRegistry;
-
-import static net.satisfyu.meadow.Meadow.MOD_ID;
-
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -12,6 +8,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
+import net.satisfyu.meadow.registry.ObjectRegistry;
+
+import static net.satisfyu.meadow.Meadow.MOD_ID;
 
 public class MeadowSurfaceRules {
 
