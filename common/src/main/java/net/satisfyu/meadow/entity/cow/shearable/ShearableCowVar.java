@@ -65,14 +65,13 @@ public enum ShearableCowVar implements StringRepresentable {
         RandomSource random = levelAccessor.getRandom();
         List<ShearableCowVar> possibleVars = getShearableCowVariantsInBiome(holder);
         int size = possibleVars.size();
-        if(size == 0){
-            if(!spawnEgg){
-                if(holder.is(BiomeTags.IS_NETHER)) return ShearableCowVar.WARPED;
-                List<ShearableCowVar> list = new java.util.ArrayList<>(List.of(ShearableCowVar.values()));
-                list.remove(ShearableCowVar.WARPED);
-                return Util.getRandom(list, random);
-            }
-            return Util.getRandom(ShearableCowVar.values(), random);
+        if(size == 0 || spawnEgg){
+            if(spawnEgg) return Util.getRandom(ShearableCowVar.values(), random);
+
+            if(holder.is(BiomeTags.IS_NETHER)) return ShearableCowVar.WARPED;
+            List<ShearableCowVar> list = new java.util.ArrayList<>(List.of(ShearableCowVar.values()));
+            list.remove(ShearableCowVar.WARPED);
+            return Util.getRandom(list, random);
         }
 
         return possibleVars.get(levelAccessor.getRandom().nextInt(size));
