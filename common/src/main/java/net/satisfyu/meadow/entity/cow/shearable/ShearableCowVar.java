@@ -23,23 +23,29 @@ import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
 public enum ShearableCowVar implements StringRepresentable {
-    HIGHLAND(0, "highland_cattle", ObjectRegistry.HIGHLAND_WOOL.get().asItem()),
-    UMBRA(1, "umbra_cow", ObjectRegistry.UMBRA_WOOL.get().asItem()),
-    WARPED(2, "warped_cow", ObjectRegistry.WARPED_WOOL.get().asItem());
+    HIGHLAND(0, "highland_cattle", ObjectRegistry.HIGHLAND_WOOL.get().asItem(), ObjectRegistry.WOODEN_BUFFALO_MILK_BUCKET.get()),
+    UMBRA(1, "umbra_cow", ObjectRegistry.UMBRA_WOOL.get().asItem(), ObjectRegistry.WOODEN_BUFFALO_MILK_BUCKET.get()),
+    WARPED(2, "warped_cow", ObjectRegistry.WARPED_WOOL.get().asItem(), ObjectRegistry.WOODEN_WARPED_MILK_BUCKET.get());
     public static final Codec<ShearableCowVar> CODEC = StringRepresentable.fromEnum(ShearableCowVar::values);
     private static final IntFunction<ShearableCowVar> BY_ID = ByIdMap.continuous(ShearableCowVar::getId, values(), ByIdMap.OutOfBoundsStrategy.WRAP);
     private final int id;
     private final String name;
     private final Item wool;
+    private final Item bucket;
 
-    ShearableCowVar(int id, String name, Item wool) {
+    ShearableCowVar(int id, String name, Item wool, Item bucket) {
         this.id = id;
         this.name = name;
         this.wool = wool;
+        this.bucket = bucket;
     }
 
     public Item getWool() {
         return wool;
+    }
+
+    public Item getBucket() {
+        return bucket;
     }
 
     public int getId() {

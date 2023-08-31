@@ -23,6 +23,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -30,6 +31,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.satisfyu.meadow.registry.EntityRegistry;
+import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 import org.jetbrains.annotations.Nullable;
 
@@ -57,18 +59,24 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Override
-    public InteractionResult mobInteract(Player player2, InteractionHand hand) {
-        ItemStack itemStack = player2.getItemInHand(hand);
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
         if (itemStack.is(Items.SHEARS)) {
             if (!this.level().isClientSide && this.readyForShearing()) {
                 this.shear(SoundSource.PLAYERS);
-                this.gameEvent(GameEvent.SHEAR, player2);
-                itemStack.hurtAndBreak(1, player2, player -> player.broadcastBreakEvent(hand));
+                this.gameEvent(GameEvent.SHEAR, player);
+                itemStack.hurtAndBreak(1, player, player2 -> player2.broadcastBreakEvent(hand));
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.CONSUME;
         }
-        return super.mobInteract(player2, hand);
+        else if (itemStack.is(ObjectRegistry.WOODEN_BUCKET.get()) && !this.isBaby()) {
+            player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+            ItemStack itemStack2 = ItemUtils.createFilledResult(itemStack, player, getVariant().getBucket().getDefaultInstance());
+            player.setItemInHand(hand, itemStack2);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
+        }
+        return super.mobInteract(player, hand);
     }
 
     @Override
