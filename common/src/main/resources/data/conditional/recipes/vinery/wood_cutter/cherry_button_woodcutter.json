@@ -1,21 +1,17 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
-    {
-      "conditions": [
-        {
-          "type": "forge:mod_loaded",
-          "modid": "vinery"
-        }
-      ],
-      "recipe": {
-        "type": "meadow:woodcutting",
-        "inputItem": {
-          "tag": "vinery:cherry_logs"
-        },
-        "outputItem": "vinery:cherry_button",
-        "outputAmount": 5
-      }
-    }
-  ]
+	"type": "doapi:conditional",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "vinery"
+		}
+	],
+	"recipe": {
+		"type": "meadow:woodcutting",
+		"inputItem": {
+			"tag": "vinery:cherry_logs"
+		},
+		"outputItem": "vinery:cherry_button",
+		"outputAmount": 5
+	}
 }
