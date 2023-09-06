@@ -1,24 +1,8 @@
 {
+  "replace": false,
   "values": [
-    {
-      "id": "bewitchment:salt",
-      "required": false
-    },
-    {
-      "id": "meadow:alpine_salt",
-      "required": false
-    },
-    {
-      "id": "spelunkery:salt_bucket",
-      "required": false
-    },
-    {
-      "id": "expandeddelight:ground_salt",
-      "required": false
-    },
-    {
-      "id": "croptopia:salt",
-      "required": false
-    }
+    "#forge:salt",
+    "#c:salt",
+    "meadow:alpine_salt"
   ]
 }
