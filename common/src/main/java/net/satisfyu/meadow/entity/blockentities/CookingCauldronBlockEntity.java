@@ -138,13 +138,15 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         boolean[] slotUsed = new boolean[INGREDIENTS_AREA];
         for (int i = 0; i < recipe.getIngredients().size(); i++) {
             Ingredient ingredient = ingredients.get(i);
-            ItemStack bestSlot = getItem(i + 1);
-            if (ingredient.test(bestSlot) && !slotUsed[i]) {
-                slotUsed[i] = true;
-                ItemStack remainderStack = getRemainderItem(bestSlot);
-                bestSlot.shrink(1);
-                if (!remainderStack.isEmpty()) {
-                    setItem(i + 1, remainderStack);
+            if (i + 1 < inventory.size()) {
+                ItemStack bestSlot = getItem(i + 1);
+                if (ingredient.test(bestSlot) && !slotUsed[i]) {
+                    slotUsed[i] = true;
+                    ItemStack remainderStack = getRemainderItem(bestSlot);
+                    bestSlot.shrink(1);
+                    if (!remainderStack.isEmpty()) {
+                        setItem(i + 1, remainderStack);
+                    }
                 }
             } else {
                 for (int j = 1; j <= INGREDIENTS_AREA; j++) {

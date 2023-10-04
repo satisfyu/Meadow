@@ -37,7 +37,6 @@ public class WateringCanItem extends BlockItem {
         super(block, settings);
     }
 
-
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Player playerEntity = context.getPlayer();

@@ -25,18 +25,6 @@ public class MeadowRegion extends Region {
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         addModifiedVanillaOverworldBiomes(mapper, builder -> {
 
-            /*
-            List<MultiNoiseUtil.NoiseHypercube> meadowPoints = new ParameterUtils.ParameterPointListBuilder()
-                    .temperature(ParameterUtils.Temperature.COOL, ParameterUtils.Temperature.NEUTRAL)
-                    .humidity(ParameterUtils.Humidity.ARID, ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL, ParameterUtils.Humidity.WET)
-                    .continentalness(ParameterUtils.Continentalness.FAR_INLAND)
-                    .erosion(ParameterUtils.Erosion.EROSION_1, ParameterUtils.Erosion.EROSION_2, ParameterUtils.Erosion.EROSION_3)
-                    .weirdness(ParameterUtils.Weirdness.HIGH_SLICE_NORMAL_ASCENDING, ParameterUtils.Weirdness.PEAK_NORMAL, ParameterUtils.Weirdness.HIGH_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.PEAK_VARIANT, ParameterUtils.Weirdness.HIGH_SLICE_VARIANT_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_VARIANT_DESCENDING)
-                    .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.UNDERGROUND)
-                    .build();
-             */
-
-
             List<Climate.ParameterPoint> meadowForestPoints = new ParameterUtils.ParameterPointListBuilder()
                     .temperature(Climate.Parameter.span(-0.45F, -0.15F), Climate.Parameter.span(-0.15F, 0.2F))
                     .humidity(Climate.Parameter.span(-1.0F, -0.36F), Climate.Parameter.span(-0.35F, -0.1F), Climate.Parameter.span(-0.1F, 0.1F), Climate.Parameter.span(0.1F, 0.3F))
