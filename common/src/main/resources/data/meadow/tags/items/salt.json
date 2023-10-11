@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#forge:salts",
     "#forge:salt",
     "#c:salt",
     "meadow:alpine_salt"
