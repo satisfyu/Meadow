@@ -18,20 +18,15 @@ public class VarS2CPacket implements NetworkManager.NetworkReceiver {
         try {
             int entityId = buffer.readInt();
             int var = buffer.readInt();
-            Meadow.LOGGER.warn("Read: " + entityId + " and var: " + var);
+            //Meadow.LOGGER.warn("Read: " + entityId + " and var: " + var);
 
             Level lvl = Objects.requireNonNull(Minecraft.getInstance().level);
             Entity entity = lvl.getEntity(entityId);
-            if(entity == null){
-                Meadow.LOGGER.error("Entity is null");
-                return;
-            }
+            if(entity == null) throw new RuntimeException("Entity is null");
+
 
             Optional<VarHolder> holder = entity.getCapability(MeadowCapabilities.VAR_HOLDER_CAPABILITY).resolve();
-            if(holder.isEmpty()){
-                Meadow.LOGGER.error("Optional empty");
-                return;
-            }
+            if(holder.isEmpty()) throw new RuntimeException("Optional empty, can't get variation");
             holder.get().setVar(var);
 
         } catch (Exception e) {

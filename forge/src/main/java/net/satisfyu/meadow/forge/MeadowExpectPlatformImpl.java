@@ -56,6 +56,7 @@ public class MeadowExpectPlatformImpl {
             Optional<VarHolder> holder = optional.resolve();
             holder.ifPresent(varHolder -> varHolder.setVar(var));
 
+            /*
             Iterable<ServerPlayer> players = VarHolder.getRecipientsForComponentSync(entity);
             for (ServerPlayer player : players) {
                 FriendlyByteBuf buf = GeneralUtil.create();
@@ -63,8 +64,9 @@ public class MeadowExpectPlatformImpl {
                 buf.writeInt(var);
                 NetworkManager.sendToPlayer(player, MeadowNetworkForge.VAR_S2C, buf);
 
-                Meadow.LOGGER.warn("wrote: " + entity.getId() + " and var: " + var + " to client");
+                //Meadow.LOGGER.warn("wrote: " + entity.getId() + " and var: " + var + " to client");
             }
+             */
         }
     }
 }

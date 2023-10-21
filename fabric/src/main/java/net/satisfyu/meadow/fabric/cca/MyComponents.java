@@ -7,7 +7,6 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Sheep;
-import net.satisfyu.meadow.entity.cow.CowVar;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class MyComponents implements EntityComponentInitializer {

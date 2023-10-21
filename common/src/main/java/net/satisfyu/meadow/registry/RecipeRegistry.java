@@ -27,7 +27,7 @@ public class RecipeRegistry {
     private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registries.RECIPE_TYPE);
 
     public static final RegistrySupplier<RecipeType<WoodcuttingRecipe>> WOODCUTTING = create("woodcutting");
-    public static final RegistrySupplier<RecipeSerializer<WoodcuttingRecipe>> WOODCUTTING_SERIALIZER = create("woodcutting", () -> new SingleItemRecipe.Serializer<>(WoodcuttingRecipe::new));
+    public static final RegistrySupplier<RecipeSerializer<WoodcuttingRecipe>> WOODCUTTING_SERIALIZER = create("woodcutting", WoodcuttingRecipe.Serializer::new);
 
     public static final RegistrySupplier<RecipeType<CookingCauldronRecipe>> COOKING = create("cooking");
     public static final RegistrySupplier<RecipeSerializer<CookingCauldronRecipe>> COOKING_SERIALIZER = create("cooking", CookingCauldronRecipe.Serializer::new);
