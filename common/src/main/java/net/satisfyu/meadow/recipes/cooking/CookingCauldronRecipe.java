@@ -1,12 +1,10 @@
 package net.satisfyu.meadow.recipes.cooking;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -14,21 +12,20 @@ import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.util.GeneralUtil;
 
-public class CookingCauldronRecipe implements Recipe<Container> {
+import java.util.List;
 
-    final ResourceLocation id;
-    private final NonNullList<Ingredient> inputs;
+public class CookingCauldronRecipe implements Recipe<Container> {
+    private final List<Ingredient> inputs;
     private final ItemStack output;
 
-    public CookingCauldronRecipe(ResourceLocation id, NonNullList<Ingredient> inputs, ItemStack output) {
-        this.id = id;
+    public CookingCauldronRecipe(List<Ingredient> inputs, ItemStack output) {
         this.inputs = inputs;
         this.output = output;
     }
 
     @Override
     public boolean matches(Container inventory, Level world) {
-        return GeneralUtil.matchesRecipe(inventory, inputs, 0, 6);
+        return GeneralUtil.matchesRecipe(inventory, getIngredients(), 0, 6);
     }
 
     public ItemStack assemble() {
@@ -55,11 +52,6 @@ public class CookingCauldronRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return RecipeRegistry.COOKING_SERIALIZER.get();
     }
@@ -71,7 +63,12 @@ public class CookingCauldronRecipe implements Recipe<Container> {
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        return this.inputs;
+        NonNullList<Ingredient> list = NonNullList.create();
+        for(Ingredient ingredient : inputs){
+            if(ingredient == null) continue;
+            list.add(ingredient);
+        }
+        return list;
     }
 
     @Override
@@ -81,23 +78,21 @@ public class CookingCauldronRecipe implements Recipe<Container> {
 
     public static class Serializer implements RecipeSerializer<CookingCauldronRecipe> {
 
+        private static final Codec<CookingCauldronRecipe> CODEC = RecordCodecBuilder.create((instance) ->
+                instance.group(
+                        Codec.list(Ingredient.CODEC_NONEMPTY).fieldOf("ingredients").forGetter((recipe) -> recipe.inputs),
+                        CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf("result").forGetter((recipe) -> recipe.output))
+                        .apply(instance, CookingCauldronRecipe::new));
         @Override
-        public CookingCauldronRecipe fromJson(ResourceLocation id, JsonObject json) {
-            final var ingredients = GeneralUtil.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
-            if (ingredients.isEmpty()) {
-                throw new JsonParseException("No ingredients for CookingCauldron Recipe");
-            } else if (ingredients.size() > 6) {
-                throw new JsonParseException("Too many ingredients for CookingPot Recipe");
-            } else {
-                return new CookingCauldronRecipe(id, ingredients, ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result")));
-            }
+        public Codec<CookingCauldronRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public CookingCauldronRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public CookingCauldronRecipe fromNetwork(FriendlyByteBuf buf) {
             final var ingredients = NonNullList.withSize(buf.readVarInt(), Ingredient.EMPTY);
             ingredients.replaceAll(ignored -> Ingredient.fromNetwork(buf));
-            return new CookingCauldronRecipe(id, ingredients, buf.readItem());
+            return new CookingCauldronRecipe(ingredients, buf.readItem());
         }
 
         @Override

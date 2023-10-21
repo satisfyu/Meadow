@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
@@ -22,7 +23,7 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
     private final ContainerLevelAccess context;
     private final DataSlot selectedRecipe = DataSlot.standalone();
     private final Level world;
-    private List<WoodcuttingRecipe> availableRecipes = Lists.newArrayList();
+    private List<RecipeHolder<WoodcuttingRecipe>> availableRecipes = Lists.newArrayList();
     private ItemStack inputStack = ItemStack.EMPTY;
     private long lastTakeTime;
     private Slot inputSlot;
@@ -98,7 +99,7 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
         return this.selectedRecipe.get();
     }
 
-    public List<WoodcuttingRecipe> getAvailableRecipes() {
+    public List<RecipeHolder<WoodcuttingRecipe>> getAvailableRecipes() {
         return this.availableRecipes;
     }
 
@@ -150,8 +151,8 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
 
     void populateResult() {
         if (!this.availableRecipes.isEmpty() && this.isInBounds(this.selectedRecipe.get())) {
-            WoodcuttingRecipe woodcuttingRecipe = this.availableRecipes.get(this.selectedRecipe.get());
-            ItemStack itemStack = woodcuttingRecipe.assemble(this.input, this.world.registryAccess());
+            RecipeHolder<WoodcuttingRecipe> woodcuttingRecipe = this.availableRecipes.get(this.selectedRecipe.get());
+            ItemStack itemStack = woodcuttingRecipe.value().assemble(this.input, this.world.registryAccess());
             if (itemStack.isItemEnabled(this.world.enabledFeatures())) {
                 this.output.setRecipeUsed(woodcuttingRecipe);
                 this.outputSlot.set(itemStack);

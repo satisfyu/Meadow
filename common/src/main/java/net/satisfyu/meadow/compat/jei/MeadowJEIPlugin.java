@@ -11,6 +11,7 @@ import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.satisfyu.meadow.client.screen.handler.CheeseFormGuiHandler;
 import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
@@ -48,16 +49,16 @@ public class MeadowJEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
 
-        List<WoodcuttingRecipe> woodcuttingRecipes = rm.getAllRecipesFor(RecipeRegistry.WOODCUTTING.get());
+        List<WoodcuttingRecipe> woodcuttingRecipes = rm.getAllRecipesFor(RecipeRegistry.WOODCUTTING.get()).stream().map(RecipeHolder::value).toList();
         registration.addRecipes(WoodCutterCategory.WOODCUTTER, woodcuttingRecipes);
 
-        List<CookingCauldronRecipe> cookingCauldronRecipes = rm.getAllRecipesFor(RecipeRegistry.COOKING.get());
+        List<CookingCauldronRecipe> cookingCauldronRecipes = rm.getAllRecipesFor(RecipeRegistry.COOKING.get()).stream().map(RecipeHolder::value).toList();
         registration.addRecipes(CookingCauldronCategory.COOKING_CAULDRON, cookingCauldronRecipes);
 
-        List<CheeseFormRecipe> cheesePressRecipes = rm.getAllRecipesFor(RecipeRegistry.CHEESE.get());
+        List<CheeseFormRecipe> cheesePressRecipes = rm.getAllRecipesFor(RecipeRegistry.CHEESE.get()).stream().map(RecipeHolder::value).toList();
         registration.addRecipes(CheesePressCategory.CHEESE_PRESS, cheesePressRecipes);
 
-        List<FondueRecipe> fondueRecipes = rm.getAllRecipesFor(RecipeRegistry.FONDUE.get());
+        List<FondueRecipe> fondueRecipes = rm.getAllRecipesFor(RecipeRegistry.FONDUE.get()).stream().map(RecipeHolder::value).toList();
         registration.addRecipes(FondueCategory.FONDUE, fondueRecipes);
     }
 

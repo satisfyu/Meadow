@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:oak_logs"
   },
-  "outputItem": "minecraft:oak_trapdoor",
-  "outputAmount": 2
+  "result": "minecraft:oak_trapdoor",
+  "count": 2
 }

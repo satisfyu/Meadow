@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:warped_stems"
   },
-  "outputItem": "minecraft:warped_fence",
-  "outputAmount": 4
+  "result": "minecraft:warped_fence",
+  "count": 4
 }

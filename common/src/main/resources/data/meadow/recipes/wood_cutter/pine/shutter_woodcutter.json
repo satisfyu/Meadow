@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "meadow:pine_logs"
   },
-  "outputItem": "meadow:shutter_block",
-  "outputAmount": 4
+  "result": "meadow:shutter_block",
+  "count": 4
 }

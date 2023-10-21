@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:spruce_logs"
   },
-  "outputItem": "minecraft:spruce_pressure_plate",
-  "outputAmount": 2
+  "result": "minecraft:spruce_pressure_plate",
+  "count": 2
 }

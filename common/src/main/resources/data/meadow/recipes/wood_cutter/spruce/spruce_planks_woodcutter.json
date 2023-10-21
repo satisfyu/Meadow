@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:spruce_logs"
   },
-  "outputItem": "minecraft:spruce_planks",
-  "outputAmount": 4
+  "result": "minecraft:spruce_planks",
+  "count": 4
 }

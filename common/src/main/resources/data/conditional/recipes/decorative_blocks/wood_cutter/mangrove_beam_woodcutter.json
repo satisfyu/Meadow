@@ -8,10 +8,10 @@
 	],
 	"recipe": {
 		"type": "meadow:woodcutting",
-		"inputItem": {
+		"ingredient": {
 			"tag": "minecraft:mangrove_logs"
 		},
-		"outputItem": "decorative_blocks:mangrove_beam",
-		"outputAmount": 2
+		"result": "decorative_blocks:mangrove_beam",
+		"count": 2
 	}
 }

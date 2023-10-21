@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:jungle_logs"
   },
-  "outputItem": "minecraft:jungle_stairs",
-  "outputAmount": 4
+  "result": "minecraft:jungle_stairs",
+  "count": 4
 }

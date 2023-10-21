@@ -15,6 +15,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -125,14 +126,14 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         }
     }
 
-    private boolean canCraft(CheeseFormRecipe recipe, RegistryAccess manager) {
-        if (recipe == null || recipe.getResultItem(manager).isEmpty()) {
+    private boolean canCraft(RecipeHolder<CheeseFormRecipe> recipe, RegistryAccess manager) {
+        if (recipe == null || recipe.value().getResultItem(manager).isEmpty()) {
             return false;
         } else if (areInputsEmpty()) {
             return false;
         }
         ItemStack itemStack = this.getItem(OUTPUT_SLOT);
-        return itemStack.isEmpty() || itemStack == recipe.getResultItem(manager);
+        return itemStack.isEmpty() || itemStack == recipe.value().getResultItem(manager);
     }
 
 
@@ -144,10 +145,11 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         return emptyStacks == 2;
     }
 
-    private void craft(CheeseFormRecipe recipe, RegistryAccess manager) {
-        if (!canCraft(recipe, manager)) {
+    private void craft(RecipeHolder<CheeseFormRecipe> recipeHolder, RegistryAccess manager) {
+        if (!canCraft(recipeHolder, manager)) {
             return;
         }
+        CheeseFormRecipe recipe = recipeHolder.value();
         final ItemStack recipeOutput = recipe.getResultItem(manager);
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {

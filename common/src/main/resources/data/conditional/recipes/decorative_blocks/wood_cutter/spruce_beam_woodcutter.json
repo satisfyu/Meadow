@@ -8,10 +8,10 @@
 	],
 	"recipe": {
 		"type": "meadow:woodcutting",
-		"inputItem": {
+		"ingredient": {
 			"tag": "minecraft:spruce_logs"
 		},
-		"outputItem": "decorative_blocks:spruce_beam",
-		"outputAmount": 2
+		"result": "decorative_blocks:spruce_beam",
+		"count": 2
 	}
 }

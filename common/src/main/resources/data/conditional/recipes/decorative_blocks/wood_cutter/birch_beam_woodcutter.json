@@ -8,10 +8,10 @@
 	],
 	"recipe": {
 		"type": "meadow:woodcutting",
-		"inputItem": {
+		"ingredient": {
 			"tag": "minecraft:birch_logs"
 		},
-		"outputItem": "decorative_blocks:birch_beam",
-		"outputAmount": 2
+		"result": "decorative_blocks:birch_beam",
+		"count": 2
 	}
 }

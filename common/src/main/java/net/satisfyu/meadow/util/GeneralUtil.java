@@ -1,6 +1,11 @@
 package net.satisfyu.meadow.util;
 
 import com.google.gson.JsonArray;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.DynamicOps;
+import com.mojang.serialization.JsonOps;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,6 +20,7 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.phys.BlockHitResult;
@@ -75,13 +81,28 @@ public class GeneralUtil {
     public static NonNullList<Ingredient> deserializeIngredients(JsonArray json) {
         NonNullList<Ingredient> ingredients = NonNullList.create();
         for (int i = 0; i < json.size(); i++) {
-            Ingredient ingredient = Ingredient.fromJson(json.get(i));
-            if (!ingredient.isEmpty()) {
-                ingredients.add(ingredient);
+            //JsonElement json = (JsonElement)(new Dynamic(JsonOps.INSTANCE, input)).convert(JsonOps.INSTANCE).getValue();
+            DataResult<Ingredient> ingredient = Ingredient.CODEC.parse(new Dynamic<>(JsonOps.INSTANCE, json.get(i)));
+            if(!error(ingredient)){
+                ingredients.add(ingredient.result().get());
             }
         }
         return ingredients;
     }
+
+    public static boolean error(DataResult<?> result){
+        boolean error = false;
+        if(result.error().isPresent()){
+            Meadow.LOGGER.error(result.error().get().message());
+            error = true;
+        }
+        else if (!result.result().isPresent()){
+            Meadow.LOGGER.error(() -> "Result did not parse a valid return");
+            error = true;
+        }
+        return error;
+    }
+
 
     public static boolean isIndexInRange(int index, int startInclusive, int endInclusive) {
         return index >= startInclusive && index <= endInclusive;

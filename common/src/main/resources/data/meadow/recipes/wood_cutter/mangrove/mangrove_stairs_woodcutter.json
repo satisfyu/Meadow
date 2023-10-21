@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:mangrove_logs"
   },
-  "outputItem": "minecraft:mangrove_stairs",
-  "outputAmount": 4
+  "result": "minecraft:mangrove_stairs",
+  "count": 4
 }

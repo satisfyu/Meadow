@@ -8,10 +8,10 @@
 	],
 	"recipe": {
 		"type": "meadow:woodcutting",
-		"inputItem": {
+		"ingredient": {
 			"tag": "minecraft:oak_logs"
 		},
-		"outputItem": "decorative_blocks:oak_beam",
-		"outputAmount": 2
+		"result": "decorative_blocks:oak_beam",
+		"count": 2
 	}
 }

@@ -8,10 +8,10 @@
 	],
 	"recipe": {
 		"type": "meadow:woodcutting",
-		"inputItem": {
+		"ingredient": {
 			"tag": "minecraft:acacia_logs"
 		},
-		"outputItem": "decorative_blocks:acacia_beam",
-		"outputAmount": 2
+		"result": "decorative_blocks:acacia_beam",
+		"count": 2
 	}
 }

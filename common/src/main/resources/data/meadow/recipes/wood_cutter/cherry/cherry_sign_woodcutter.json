@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:cherry_logs"
   },
-  "outputItem": "minecraft:cherry_sign",
-  "outputAmount": 2
+  "result": "minecraft:cherry_sign",
+  "count": 2
 }

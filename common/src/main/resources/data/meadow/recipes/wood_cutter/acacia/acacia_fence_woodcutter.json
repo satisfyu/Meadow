@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:acacia_logs"
   },
-  "outputItem": "minecraft:acacia_fence",
-  "outputAmount": 4
+  "result": "minecraft:acacia_fence",
+  "count": 4
 }

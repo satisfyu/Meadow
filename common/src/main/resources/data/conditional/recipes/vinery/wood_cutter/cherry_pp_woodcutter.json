@@ -8,10 +8,10 @@
 	],
 	"recipe": {
 		"type": "meadow:woodcutting",
-		"inputItem": {
+		"ingredient": {
 			"tag": "vinery:cherry_logs"
 		},
-		"outputItem": "vinery:cherry_pressure_plate",
-		"outputAmount": 2
+		"result": "vinery:cherry_pressure_plate",
+		"count": 2
 	}
 }

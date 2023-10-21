@@ -8,10 +8,10 @@
 	],
 	"recipe": {
 		"type": "meadow:woodcutting",
-		"inputItem": {
+		"ingredient": {
 			"tag": "minecraft:pine_logs"
 		},
-		"outputItem": "decorative_blocks:pine_beam",
-		"outputAmount": 2
+		"result": "decorative_blocks:pine_beam",
+		"count": 2
 	}
 }

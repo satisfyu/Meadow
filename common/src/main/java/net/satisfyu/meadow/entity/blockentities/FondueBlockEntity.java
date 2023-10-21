@@ -15,6 +15,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -110,12 +111,13 @@ public class FondueBlockEntity extends BlockEntity implements MenuProvider, Impl
     public void tick(Level world, BlockPos blockPos, BlockState state, FondueBlockEntity entity) {
         if (world.isClientSide()) return;
 
-        Recipe<?> r = world.getRecipeManager().getRecipeFor(RecipeRegistry.FONDUE.get(), this, world).orElse(null);
-        if(!(r instanceof FondueRecipe recipe)){
+        RecipeHolder<FondueRecipe> r = world.getRecipeManager().getRecipeFor(RecipeRegistry.FONDUE.get(), this, world).orElse(null);
+        if(r == null) {
             entity.resetProgress();
             setChanged(world, blockPos, state);
             return;
         }
+        FondueRecipe recipe = r.value();
 
         if (hasFuel(entity, recipe) && hasRecipe(entity, recipe)) {
             entity.progress++;

@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:crimson_stems"
   },
-  "outputItem": "minecraft:crimson_door",
-  "outputAmount": 2
+  "result": "minecraft:crimson_door",
+  "count": 2
 }

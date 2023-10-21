@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:birch_logs"
   },
-  "outputItem": "minecraft:birch_door",
-  "outputAmount": 2
+  "result": "minecraft:birch_door",
+  "count": 2
 }

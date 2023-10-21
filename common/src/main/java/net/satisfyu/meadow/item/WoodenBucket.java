@@ -57,7 +57,7 @@ public class WoodenBucket extends BucketItem {
                     if (blockState.getBlock().equals(Blocks.LAVA)) {
                         return InteractionResultHolder.pass(itemStack);
                     }
-                    itemStack2 = (fluidDrainable = f).pickupBlock(world, blockPos, blockState);
+                    itemStack2 = (fluidDrainable = f).pickupBlock(user, world, blockPos, blockState);
 
                     if (itemStack2.isEmpty()) {
                         return InteractionResultHolder.pass(itemStack);

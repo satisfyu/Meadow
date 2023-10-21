@@ -15,6 +15,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -103,13 +104,13 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         } else return entryList.contains(belowState.getBlock().builtInRegistryHolder());
     }
 
-    private boolean canCraft(CookingCauldronRecipe recipe) {
-        if (recipe == null || recipe.getResultItem().isEmpty()) {
+    private boolean canCraft(RecipeHolder<CookingCauldronRecipe> recipe) {
+        if (recipe == null || recipe.value().getResultItem().isEmpty()) {
             return false;
         } else if (this.getItem(OUTPUT_SLOT).isEmpty()) {
             return true;
         } else {
-            final ItemStack recipeOutput = recipe.getResultItem();
+            final ItemStack recipeOutput = recipe.value().getResultItem();
             final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
             final int outputSlotCount = outputSlotStack.getCount();
 
@@ -123,10 +124,11 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         }
     }
 
-    private void craft(CookingCauldronRecipe recipe) {
-        if (!canCraft(recipe)) {
+    private void craft(RecipeHolder<CookingCauldronRecipe> recipeHolder) {
+        if (!canCraft(recipeHolder)) {
             return;
         }
+        CookingCauldronRecipe recipe = recipeHolder.value();
         final ItemStack recipeOutput = recipe.assemble();
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
@@ -183,7 +185,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
                 world.setBlock(pos, state.setValue(CookingCauldronBlock.LIT, false), Block.UPDATE_ALL);
             return;
         }
-        CookingCauldronRecipe recipe = world.getRecipeManager().getRecipeFor(RecipeRegistry.COOKING.get(), this, world).orElse(null);
+        RecipeHolder<CookingCauldronRecipe> recipe = world.getRecipeManager().getRecipeFor(RecipeRegistry.COOKING.get(), this, world).orElse(null);
 
         boolean canCraft = canCraft(recipe);
         if (canCraft) {

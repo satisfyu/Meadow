@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "minecraft:cherry_logs"
   },
-  "outputItem": "minecraft:cherry_trapdoor",
-  "outputAmount": 2
+  "result": "minecraft:cherry_trapdoor",
+  "count": 2
 }

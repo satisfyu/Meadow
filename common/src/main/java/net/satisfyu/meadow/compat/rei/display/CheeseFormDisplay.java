@@ -15,13 +15,12 @@ import java.util.Optional;
 
 public class CheeseFormDisplay extends BasicDisplay {
 
-
     public CheeseFormDisplay(CheeseFormRecipe recipe) {
-        this(EntryIngredients.ofIngredients(new ArrayList<>(recipe.getIngredients())), Collections.singletonList(EntryIngredients.of(recipe.getResultItem(BasicDisplay.registryAccess()))), Optional.ofNullable(recipe.getId()));
+        this(EntryIngredients.ofIngredients(new ArrayList<>(recipe.getIngredients())), Collections.singletonList(EntryIngredients.of(recipe.getResultItem(BasicDisplay.registryAccess()))));
     }
 
-    public CheeseFormDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<ResourceLocation> location) {
-        super(inputs, outputs, location);
+    public CheeseFormDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
+        super(inputs, outputs);
     }
 
     @Override

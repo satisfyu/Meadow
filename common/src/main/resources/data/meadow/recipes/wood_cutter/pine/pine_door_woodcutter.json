@@ -1,8 +1,8 @@
 {
   "type": "meadow:woodcutting",
-  "inputItem": {
+  "ingredient": {
     "tag": "meadow:pine_logs"
   },
-  "outputItem": "meadow:pine_door",
-  "outputAmount": 2
+  "result": "meadow:pine_door",
+  "count": 2
 }

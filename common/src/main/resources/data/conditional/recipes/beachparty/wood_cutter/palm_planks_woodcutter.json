@@ -8,10 +8,10 @@
 	],
 	"recipe": {
 		"type": "meadow:woodcutting",
-		"inputItem": {
+		"ingredient": {
 			"tag": "beachparty:palm_logs"
 		},
-		"outputItem": "beachparty:palm_planks",
-		"outputAmount": 4
+		"result": "beachparty:palm_planks",
+		"count": 4
 	}
 }

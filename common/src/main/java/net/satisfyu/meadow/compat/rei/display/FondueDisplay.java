@@ -17,11 +17,11 @@ public class FondueDisplay extends BasicDisplay {
 
 
     public FondueDisplay(FondueRecipe recipe) {
-        this(EntryIngredients.ofIngredients(new ArrayList<>(recipe.getIngredients())), Collections.singletonList(EntryIngredients.of(recipe.getResultItem())), Optional.ofNullable(recipe.getId()));
+        this(EntryIngredients.ofIngredients(new ArrayList<>(recipe.getIngredients())), Collections.singletonList(EntryIngredients.of(recipe.getResultItem())));
     }
 
-    public FondueDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<ResourceLocation> location) {
-        super(inputs, outputs, location);
+    public FondueDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
+        super(inputs, outputs);
     }
 
     @Override

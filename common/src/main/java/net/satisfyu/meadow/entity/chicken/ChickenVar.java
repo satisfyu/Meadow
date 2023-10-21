@@ -15,6 +15,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
+import net.satisfyu.meadow.MeadowExpectPlatform;
 import net.satisfyu.meadow.registry.TagRegistry;
 import net.satisfyu.meadow.world.CommonSpawnUtil;
 import org.jetbrains.annotations.NotNull;
@@ -53,8 +54,6 @@ public enum ChickenVar implements StringRepresentable {
     }
 
 
-    public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(Chicken.class, EntityDataSerializers.INT);
-
     private static final Map<ChickenVar, TagKey<Biome>> SPAWNS = Util.make(new HashMap<>(), map -> {
         map.put(ChickenVar.DEFAULT, null);
         map.put(ChickenVar.CHICKEN_1, TagRegistry.IS_MEADOW);
@@ -62,17 +61,17 @@ public enum ChickenVar implements StringRepresentable {
         map.put(ChickenVar.CHICKEN_3, TagRegistry.IS_MEADOW);
     });
 
-    public static void setVariant(Chicken Chicken, ChickenVar variant) {
-        setTypeVariant(Chicken,variant.getId() & 255 | getTypeVariant(Chicken) & -256);
+    public static void setVariant(Chicken chicken, ChickenVar variant) {
+        setTypeVariant(chicken,variant.getId() & 255 | getTypeVariant(chicken) & -256);
     }
-    public static ChickenVar getVariant(Chicken Chicken) {
-        return ChickenVar.byId(getTypeVariant(Chicken) & 255);
+    public static ChickenVar getVariant(Chicken chicken) {
+        return ChickenVar.byId(getTypeVariant(chicken) & 255);
     }
-    public static void setTypeVariant(Chicken Chicken, int i) {
-        Chicken.getEntityData().set(DATA_ID_TYPE_VARIANT, i);
+    public static void setTypeVariant(Chicken chicken, int i) {
+        MeadowExpectPlatform.setTypeVariant(chicken, i);
     }
-    public static int getTypeVariant(Chicken Chicken) {
-        return Chicken.getEntityData().get(DATA_ID_TYPE_VARIANT);
+    public static int getTypeVariant(Chicken chicken) {
+        return MeadowExpectPlatform.getTypeVariant(chicken);
     }
     public static ChickenVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos, boolean spawnEgg) {
         Holder<Biome> holder = levelAccessor.getBiome(blockPos);

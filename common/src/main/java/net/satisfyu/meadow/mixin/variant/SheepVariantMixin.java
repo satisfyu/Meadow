@@ -23,7 +23,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Sheep.class)
@@ -73,6 +72,7 @@ public abstract class SheepVariantMixin extends MobVariantMixin {
         cir.setReturnValue(new MeadowIdentifier("entities/sheep/" + s));
     }
 
+    /*
     @Override
     protected void onDefineSynchedData(CallbackInfo ci) {
         getSheep().getEntityData().define(SheepVar.DATA_ID_TYPE_VARIANT, 0);
@@ -87,6 +87,7 @@ public abstract class SheepVariantMixin extends MobVariantMixin {
     protected void onReadAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
         SheepVar.setTypeVariant(getSheep(), compoundTag.getInt("Variant"));
     }
+     */
 
     @Unique
     private Sheep getSheep() {

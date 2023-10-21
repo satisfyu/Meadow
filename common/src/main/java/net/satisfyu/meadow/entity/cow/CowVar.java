@@ -12,9 +12,11 @@ import net.minecraft.util.ByIdMap;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
+import net.satisfyu.meadow.MeadowExpectPlatform;
 import net.satisfyu.meadow.registry.TagRegistry;
 import net.satisfyu.meadow.world.CommonSpawnUtil;
 import org.jetbrains.annotations.NotNull;
@@ -56,9 +58,6 @@ public enum CowVar implements StringRepresentable {
         return this.name;
     }
 
-
-    public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(Cow.class, EntityDataSerializers.INT);
-
     private static final Map<CowVar, TagKey<Biome>> SPAWNS = Util.make(new HashMap<>(), map -> {
         map.put(CowVar.DEFAULT, null);
         map.put(CowVar.COOKIE, TagRegistry.IS_MEADOW);
@@ -77,10 +76,10 @@ public enum CowVar implements StringRepresentable {
         return CowVar.byId(getTypeVariant(cow) & 255);
     }
     public static void setTypeVariant(Cow cow, int i) {
-        cow.getEntityData().set(DATA_ID_TYPE_VARIANT, i);
+        MeadowExpectPlatform.setTypeVariant(cow, i);
     }
     public static int getTypeVariant(Cow cow) {
-        return cow.getEntityData().get(DATA_ID_TYPE_VARIANT);
+        return MeadowExpectPlatform.getTypeVariant(cow);
     }
     public static CowVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos, boolean spawnEgg) {
         Holder<Biome> holder = levelAccessor.getBiome(blockPos);

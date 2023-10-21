@@ -51,6 +51,7 @@ public abstract class CowVariantMixin extends MobVariantMixin {
         cir.setReturnValue(cow);
     }
 
+    /*
     @Override
     protected void onDefineSynchedData(CallbackInfo ci) {
         getCow().getEntityData().define(CowVar.DATA_ID_TYPE_VARIANT, 0);
@@ -65,6 +66,7 @@ public abstract class CowVariantMixin extends MobVariantMixin {
     protected void onReadAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
         CowVar.setTypeVariant(getCow(), compoundTag.getInt("Variant"));
     }
+     */
 
     @Unique
     private Cow getCow(){

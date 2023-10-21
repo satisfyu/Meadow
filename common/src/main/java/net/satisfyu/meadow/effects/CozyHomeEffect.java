@@ -11,11 +11,6 @@ public class CozyHomeEffect extends MobEffect {
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
-        return true;
-    }
-
-    @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity.level().getGameTime() % 6 == 0) {
             if (entity instanceof Player player) {
