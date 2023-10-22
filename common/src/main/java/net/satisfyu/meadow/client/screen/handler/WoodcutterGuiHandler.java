@@ -107,7 +107,7 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
         return this.availableRecipes.size();
     }
 
-    public boolean canCraft() {
+    public boolean hasInputItem() {
         return this.inputSlot.hasItem() && !this.availableRecipes.isEmpty();
     }
 
