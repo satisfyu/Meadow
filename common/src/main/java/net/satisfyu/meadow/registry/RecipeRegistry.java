@@ -1,6 +1,5 @@
 package net.satisfyu.meadow.registry;
 
-import com.mojang.datafixers.kinds.Applicative;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -9,7 +8,9 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
@@ -22,6 +23,11 @@ public class RecipeRegistry {
     public static final MapCodec<ItemStack> RESULT_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             (BuiltInRegistries.ITEM.byNameCodec().fieldOf("result")).forGetter(ItemStack::getItem))
             .apply(instance, ItemStack::new));
+
+    public static final MapCodec<ItemStack> RESULT_CODEC_WITH_COUNT = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            (BuiltInRegistries.ITEM.byNameCodec().fieldOf("result")).forGetter(ItemStack::getItem), (Codec.INT.fieldOf("count")).forGetter(ItemStack::getCount))
+            .apply(instance, ItemStack::new));
+
 
     private static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Meadow.MOD_ID, Registries.RECIPE_SERIALIZER);
     private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Meadow.MOD_ID, Registries.RECIPE_TYPE);

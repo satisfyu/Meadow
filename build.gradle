@@ -4,10 +4,6 @@ plugins {
     id 'io.github.juuxel.loom-vineflower' version '1.11.0' apply false
 }
 
-architectury {
-    minecraft = rootProject.minecraft_version
-}
-
 
 subprojects {
     apply plugin: "dev.architectury.loom"

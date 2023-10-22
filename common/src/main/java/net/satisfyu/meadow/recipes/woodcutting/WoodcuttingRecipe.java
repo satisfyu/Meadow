@@ -82,7 +82,7 @@ public class WoodcuttingRecipe implements Recipe<Container> {
         private static final Codec<WoodcuttingRecipe> CODEC = RecordCodecBuilder.create((instance) ->
                 instance.group(
                                 Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter((recipe) -> recipe.ingredient),
-                                RecipeRegistry.RESULT_CODEC.forGetter((recipe) -> recipe.outputStack))
+                                RecipeRegistry.RESULT_CODEC_WITH_COUNT.forGetter((recipe) -> recipe.outputStack))
                         .apply(instance, WoodcuttingRecipe::new));
 
         @Override

@@ -1,9 +1,21 @@
 package net.satisfyu.meadow.forge;
 
 import dev.architectury.platform.forge.EventBuses;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.data.recipes.*;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,6 +29,10 @@ import net.satisfyu.meadow.forge.networking.MeadowNetworkForge;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.terrablender.MeadowRegion;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 @Mod(Meadow.MOD_ID)
 public class MeadowForge {
 
@@ -29,9 +45,8 @@ public class MeadowForge {
         MeadowNetworkForge.registerC2SPackets();
 
         modEventBus.addListener(this::commonSetup);
+
     }
-
-
     private void commonSetup(final FMLCommonSetupEvent event) {
         if(ModList.get().isLoaded("terrablender")) event.enqueueWork(MeadowRegion::loadTerrablender);
         Meadow.commonSetup();

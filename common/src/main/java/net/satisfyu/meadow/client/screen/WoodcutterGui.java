@@ -26,15 +26,14 @@ public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler>
     private static final int SCROLLER_HEIGHT = 15;
     private static final int RECIPES_COLUMNS = 4;
     private static final int RECIPES_ROWS = 3;
-
     private static final int MAX_RECIPE_ICONS = RECIPES_ROWS * RECIPES_COLUMNS;
     private static final int RECIPES_IMAGE_SIZE_WIDTH = 16;
     private static final int RECIPES_IMAGE_SIZE_HEIGHT = 18;
     private static final int SCROLLER_FULL_HEIGHT = 56; //54
     private static final int SCROLLER_X_OFFSET = 124; //119
-
     private static final int RECIPES_X = 58; //52
     private static final int RECIPES_Y = 14;
+
     private float scrollOffs;
     private boolean scrolling;
     private int startIndex;
