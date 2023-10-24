@@ -7,22 +7,7 @@ architectury {
     forge()
 }
 
-
-def generatedResources = file("src/generated")
-sourceSets {
-    main {
-        resources.srcDir generatedResources
-    }
-}
-
 loom {
-    runs {
-        data {
-            data()
-            programArgs "--all", "--mod", "meadow"
-            programArgs "--output", generatedResources.absolutePath
-        }
-    }
     accessWidenerPath = project(":common").loom.accessWidenerPath
 
     forge {
@@ -33,8 +18,6 @@ loom {
         mixinConfig "meadow-common.mixins.json"
         mixinConfig "meadow.mixins.json"
     }
-
-
 }
 
 configurations {

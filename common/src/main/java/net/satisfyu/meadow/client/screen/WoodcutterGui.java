@@ -42,7 +42,8 @@ public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler>
     public WoodcutterGui(WoodcutterGuiHandler stonecutterMenu, Inventory inventory, Component component) {
         super(stonecutterMenu, inventory, component);
         stonecutterMenu.setContentsChangedListener(this::containerChanged);
-        --this.titleLabelY;
+        --titleLabelY;
+        titleLabelX+=20;
     }
 
     @Override
