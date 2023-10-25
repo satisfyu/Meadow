@@ -15,10 +15,12 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -28,6 +30,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.block.WateringCanBlock;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -35,6 +39,12 @@ import java.util.List;
 public class WateringCanItem extends BlockItem {
     public WateringCanItem(Block block, Properties settings) {
         super(block, settings);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
+        super.inventoryTick(itemStack, level, entity, i, bl);
+        //itemStack.setDamageValue(itemStack.getOrCreateTag().)
     }
 
     @Override
@@ -148,6 +158,14 @@ public class WateringCanItem extends BlockItem {
         if (damage < 25) {
             stack.setDamageValue(damage + 1);
         }
+    }
+
+    @Nullable
+    @Override
+    protected BlockState getPlacementState(BlockPlaceContext blockPlaceContext) {
+         BlockState state = super.getPlacementState(blockPlaceContext);
+         if(state != null) state = state.setValue(WateringCanBlock.DAMAGE, blockPlaceContext.getItemInHand().getDamageValue());
+         return state;
     }
 
     @Override
