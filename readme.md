@@ -1,4 +1,4 @@
-<p align="center"><img src="www.imgur.com/ZIIuRj3.png" alt="Logo" width="200"></p>
+<p align="center"><img src="https://imgur.com/ZIIuRj3.png" alt="Logo" width="200"></p>
 <h1 align="center">Logo  <br>
 </h1>
 
