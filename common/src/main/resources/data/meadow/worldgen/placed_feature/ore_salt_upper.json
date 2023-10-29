@@ -1,21 +1,28 @@
 {
-  "feature": "meadow:alpine_ore_salt",
+  "feature": "meadow:ore_salt",
   "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 30
+    },
+    {
+      "type": "minecraft:in_square"
+    },
     {
       "type": "minecraft:height_range",
       "height": {
         "type": "minecraft:uniform",
         "min_inclusive": {
-          "absolute": 80
+          "absolute": 136
         },
         "max_inclusive": {
-          "absolute": 384
+          "below_top": 0
         }
       }
     },
     {
-      "type": "minecraft:count",
-      "count": 88
+      "type": "minecraft:biome"
     }
   ]
 }
+

@@ -9,7 +9,6 @@ public class CompostableRegistry {
     public static void init() {
         registerCompostableItem(ObjectRegistry.PIECE_OF_CHEESE.get(), .5f);
         registerCompostableItem(ObjectRegistry.PIECE_OF_GOAT_CHEESE.get(), .5f);
-        registerCompostableItem(ObjectRegistry.PIECE_OF_CHEESE.get(), .5f);
         registerCompostableItem(ObjectRegistry.PIECE_OF_GRAIN_CHEESE.get(), .5f);
         registerCompostableItem(ObjectRegistry.PIECE_OF_AMETHYST_CHEESE.get(), .5f);
         registerCompostableItem(ObjectRegistry.PIECE_OF_SHEEP_CHEESE.get(), .5f);
