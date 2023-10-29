@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "meadow:wooden_milk_bucket",
+    "meadow:wooden_sheep_milk_bucket",
+    "meadow:wooden_buffalo_milk_bucket",
+    "meadow:wooden_goat_milk_bucket",
+    "meadow:wooden_warped_milk_bucket",
+    "meadow:wooden_grain_milk_bucket",
+    "meadow:wooden_amethyst_milk_bucket"
+  ]
+}

@@ -4,6 +4,7 @@
     "#forge:salts",
     "#forge:salt",
     "#c:salt",
+    "#c:salts",
     "meadow:alpine_salt"
   ]
 }

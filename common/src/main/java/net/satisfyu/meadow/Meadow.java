@@ -1,8 +1,10 @@
 package net.satisfyu.meadow;
 
+import de.cristelknight.doapi.DoApiExpectPlatform;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import net.minecraft.world.level.block.Blocks;
 import net.satisfyu.meadow.registry.*;
+import net.satisfyu.meadow.util.MeadowIdentifier;
 import net.satisfyu.meadow.util.WoodenCauldronBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +24,9 @@ public class Meadow {
         SoundRegistry.init();
         ScreenHandlerRegistry.init();
         FeatureRegistry.init();
+        DoApiExpectPlatform.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("better_leaves"), false);
+        DoApiExpectPlatform.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("green_stove"), false);
+        DoApiExpectPlatform.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("optifine_support"), false);
     }
 
     public static void commonSetup() {

@@ -131,9 +131,6 @@ public class CheeseFormBlock extends BaseEntityBlock {
             double d = (double) pos.getX() + 0.5;
             double e = pos.getY() + 0.7;
             double f = (double) pos.getZ() + 0.5;
-            if (random.nextDouble() < 0.3) {
-                world.playLocalSound(d, e, f, SoundEvents.SMOKER_SMOKE, SoundSource.BLOCKS, 1.0f, 1.0f, false);
-            }
             Direction direction = state.getValue(FACING);
             Direction.Axis axis = direction.getAxis();
             double h = random.nextDouble() * 0.6 - 0.3;

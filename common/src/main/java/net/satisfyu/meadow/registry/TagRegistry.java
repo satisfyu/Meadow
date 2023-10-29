@@ -17,16 +17,13 @@ public class TagRegistry {
     public static final TagKey<Biome> SPAWNS_WARPED_COW = TagKey.create(Registries.BIOME, new MeadowIdentifier("spawns_warped_cow"));
     public static final TagKey<Biome> SPAWNS_BEAR = TagKey.create(Registries.BIOME, new MeadowIdentifier("spawns_bear"));
     public static final TagKey<Biome> SPAWNS_SUNSET_COW = TagKey.create(Registries.BIOME, new MeadowIdentifier("spawns_sunset_cow"));
-
     public static final TagKey<Item> MILK = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "milk"));
-
     public static final TagKey<Item> CHEESE_BLOCKS = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "cheese_blocks"));
-
     public static final TagKey<Block> ALLOWS_COOKING = TagKey.create(Registries.BLOCK, new ResourceLocation(MOD_ID, "allows_cooking"));
 
-    public static final TagKey<Item> WOODEN_BUCKETS = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "wooden_buckets"));
+    public static final TagKey<Item> WOODEN_MILK_BUCKET = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "wooden_milk_bucket"));
 
-    public static final TagKey<Item> BUCKETS = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "buckets"));
+    public static final TagKey<Item> MILK_BUCKET = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "milk_bucket"));
 
     public static final TagKey<Item> SMALL_FLOWER = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "small_flower"));
 

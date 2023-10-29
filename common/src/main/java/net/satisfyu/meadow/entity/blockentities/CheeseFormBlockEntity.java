@@ -153,19 +153,25 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         if (outputSlotStack.isEmpty()) {
             ItemStack output = recipeOutput.copy();
             setItem(OUTPUT_SLOT, output);
-        }//TODO bucket
-        for (Ingredient entry : recipe.getIngredients()) {
-            ItemStack slot1Stack = this.getItem(1);
-            if (entry.test(slot1Stack)) {
-                if (slot1Stack.is(TagRegistry.MILK)) {
-                    ItemStack bucket = slot1Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultInstance() : Items.BUCKET.getDefaultInstance();
-                    this.setItem(1, bucket);
-                } else {
-                    removeItem(1, 1);
-                }
+        }
+
+        ItemStack slot1Stack = this.getItem(1);
+        if (recipe.getIngredients().stream().anyMatch(entry -> entry.test(slot1Stack))) {
+            if (slot1Stack.is(TagRegistry.MILK_BUCKET)) {
+                this.setItem(1, Items.BUCKET.getDefaultInstance());
+            } else if (slot1Stack.is(TagRegistry.WOODEN_MILK_BUCKET)) {
+                this.setItem(1, ObjectRegistry.WOODEN_BUCKET.get().getDefaultInstance());
+            } else {
+                removeItem(1, 1);
             }
-            ItemStack slot2Stack = this.getItem(2);
-            if (entry.test(this.getItem(2))) {
+        }
+        ItemStack slot2Stack = this.getItem(2);
+        if (recipe.getIngredients().stream().anyMatch(entry -> entry.test(slot2Stack))) {
+            if (slot2Stack.is(TagRegistry.MILK_BUCKET)) {
+                this.setItem(2, Items.BUCKET.getDefaultInstance());
+            } else if (slot2Stack.is(TagRegistry.WOODEN_MILK_BUCKET)) {
+                this.setItem(2, ObjectRegistry.WOODEN_BUCKET.get().getDefaultInstance());
+            } else {
                 if (slot2Stack.is(TagRegistry.MILK)) {
                     ItemStack bucket = slot2Stack.getItem() == ObjectRegistry.WOODEN_MILK_BUCKET.get() ? ObjectRegistry.WOODEN_BUCKET.get().getDefaultInstance() : Items.BUCKET.getDefaultInstance();
                     this.setItem(2, bucket);
@@ -176,7 +182,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         }
     }
 
-    @Override
+        @Override
     public NonNullList<ItemStack> getItems() {
         return inventory;
     }

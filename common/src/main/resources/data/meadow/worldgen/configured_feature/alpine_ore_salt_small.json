@@ -1,13 +1,22 @@
 {
   "type": "minecraft:ore",
   "config": {
-    "size": 17,
+    "size": 8,
     "discard_chance_on_air_exposure": 0,
     "targets": [
       {
         "target": {
           "predicate_type": "minecraft:block_match",
           "block": "meadow:limestone"
+        },
+        "state": {
+          "Name": "meadow:alpine_salt_ore"
+        }
+      },
+      {
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "minecraft:stone"
         },
         "state": {
           "Name": "meadow:alpine_salt_ore"
