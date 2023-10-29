@@ -37,6 +37,9 @@
     ],
     "cardinal-components": [
       "net.satisfyu.meadow.fabric.cca.MyComponents"
+    ],
+    "modmenu": [
+      "net.satisfyu.meadow.fabric.client.ModMenuConfig"
     ]
   },
   "mixins": [

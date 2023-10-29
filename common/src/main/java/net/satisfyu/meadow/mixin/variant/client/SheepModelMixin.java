@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.mixin.variant;
+package net.satisfyu.meadow.mixin.variant.client;
 
 import net.minecraft.client.model.SheepModel;
 import net.minecraft.client.model.geom.PartPose;

@@ -15,15 +15,18 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.client.config.ClothConfigScreen;
 import net.satisfyu.meadow.forge.capabilities.MeadowCapabilities;
 import net.satisfyu.meadow.forge.networking.MeadowNetworkForge;
 import net.satisfyu.meadow.registry.EntityRegistry;
@@ -45,7 +48,7 @@ public class MeadowForge {
         MeadowNetworkForge.registerC2SPackets();
 
         modEventBus.addListener(this::commonSetup);
-
+        if(isClothConfigLoaded()) ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> ClothConfigScreen.create(parent)));
     }
     private void commonSetup(final FMLCommonSetupEvent event) {
         if(ModList.get().isLoaded("terrablender")) event.enqueueWork(MeadowRegion::loadTerrablender);
@@ -70,5 +73,9 @@ public class MeadowForge {
                 Animal::checkAnimalSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND
                 );
+    }
+
+    public static boolean isClothConfigLoaded(){
+        return ModList.get().isLoaded("cloth_config");
     }
 }

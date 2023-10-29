@@ -1,6 +1,6 @@
 package net.satisfyu.meadow.mixin;
 
-import net.satisfyu.meadow.MeadowExpectPlatform;
+import net.satisfyu.meadow.config.MeadowConfig;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -8,15 +8,15 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
-public class VariantPlugin implements IMixinConfigPlugin {
+public class ClientVariantPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return !MeadowExpectPlatform.isModLoaded("moremobvariants");
+        //return !MeadowExpectPlatform.isModLoaded("moremobvariants");
+        return MeadowConfig.DEFAULT.getConfig().renderCustomEntityTextures();
     }
 
     // Boilerplate
-
     @Override
     public void onLoad(String mixinPackage) {
 
