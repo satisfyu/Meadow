@@ -1,0 +1,59 @@
+{
+  "parent": "meadow:main/place_cheese_form",
+  "display": {
+    "icon": {
+      "item": "meadow:buffalo_cheese_block"
+    },
+    "title": {
+      "translate": "meadow.advancement.cheese_collector"
+    },
+    "description": {
+      "translate": "meadow.advancement.cheese_collector.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 750,
+    "loot": [
+      "meadow:advancements/completionist"
+    ]
+  },
+  "criteria": {
+    "get_cheese": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["meadow:cheese_block"]
+          },
+          {
+            "items": ["meadow:sheep_cheese_block"]
+          },
+          {
+            "items": ["meadow:grain_cheese_block"]
+          },
+          {
+            "items": ["meadow:amethyst_cheese_block"]
+          },
+          {
+            "items": ["meadow:buffalo_cheese_block"]
+          },
+          {
+            "items": ["meadow:goat_cheese_block"]
+          },
+          {
+            "items": ["meadow:warped_cheese_block"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_cheese"
+    ]
+  ]
+}

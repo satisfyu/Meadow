@@ -1,0 +1,37 @@
+{
+  "parent": "meadow:main/place_frame",
+  "display": {
+    "icon": {
+      "item": "meadow:cooking_pot"
+    },
+    "title": {
+      "translate": "meadow.advancement.rennet"
+    },
+    "description": {
+      "translate": "meadow.advancement.rennet.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rennet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:rennet"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rennet"
+    ]
+  ]
+}

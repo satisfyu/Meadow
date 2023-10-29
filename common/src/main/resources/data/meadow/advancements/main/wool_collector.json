@@ -1,0 +1,56 @@
+{
+  "parent": "meadow:main/find_meadow",
+  "display": {
+    "icon": {
+      "item": "meadow:flecked_wool"
+    },
+    "title": {
+      "translate": "meadow.advancement.wool_collector"
+    },
+    "description": {
+      "translate": "meadow.advancement.wool_collector.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 250
+  },
+  "criteria": {
+    "get_wool": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["meadow:flecked_wool"]
+          },
+          {
+            "items": ["meadow:highland_wool"]
+          },
+          {
+            "items": ["meadow:patched_wool"]
+          },
+          {
+            "items": ["meadow:rocky_wool"]
+          },
+          {
+            "items": ["meadow:umbra_wool"]
+          },
+          {
+            "items": ["meadow:inky_wool"]
+          },
+          {
+            "items": ["meadow:warped_wool"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_wool"
+    ]
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "parent": "meadow:main/get_salt",
+  "criteria": {
+    "cheese_form": {
+      "conditions": {
+        "location": [
+          {
+            "block": "meadow:cheese_form",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "meadow.advancement.cheese_form.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "meadow:cheese_form"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "meadow.advancement.cheese_form"
+    }
+  },
+  "requirements": [
+    [
+      "cheese_form"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

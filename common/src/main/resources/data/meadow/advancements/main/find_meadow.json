@@ -1,0 +1,83 @@
+{
+  "parent": "meadow:main/root",
+  "criteria": {
+    "clearing": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "meadow:meadow_clearing"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "forest": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "meadow:meadow_forest"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "meadow": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "minecraft:meadow"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "meadow.advancement.find_meadow.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "meadow:camera"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "meadow.advancement.find_meadow"
+    }
+  },
+  "requirements": [
+    [
+      "clearing"
+    ],
+    [
+      "forest"
+    ],
+    [
+      "meadow"
+    ]
+  ],
+  "rewards": {
+    "experience": 250
+  },
+  "sends_telemetry_event": true
+}

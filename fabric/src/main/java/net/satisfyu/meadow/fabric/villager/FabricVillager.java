@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.Block;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
+@SuppressWarnings("deprecation")
 public class FabricVillager {
 
     private static final MeadowIdentifier CHEESEMAKER_POI_IDENTIFIER = new MeadowIdentifier("cheesemaker_poi");
@@ -56,7 +57,10 @@ public class FabricVillager {
             factories.add(new SellItemFactory(ObjectRegistry.CHEESE_FORM.get(), 4, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.AMETHYST_CHEESE_BLOCK.get(), 12, 1, 15));
             factories.add(new SellItemFactory(ObjectRegistry.GRAIN_CHEESE_BLOCK.get(), 12, 1, 15));
+            factories.add(new SellItemFactory(ObjectRegistry.WOODEN_WARPED_MILK_BUCKET.get(), 18, 2, 15));
+
         });
+
 
         TradeOfferHelper.registerVillagerOffers(HERMIT, 1, factories -> {
             factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.BENCH.get(), 15, 4, 5));
@@ -82,6 +86,8 @@ public class FabricVillager {
         TradeOfferHelper.registerVillagerOffers(HERMIT, 5, factories -> {
             factories.add(new SellItemFactory(Items.IRON_AXE, 10, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.WOODEN_CAULDRON.get(), 5, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.ALPINE_SALT.get(), 3, 1, 5));
+
         });
 
         VillagerType.BY_BIOME.put(ResourceKey.create(Registries.BIOME, new ResourceLocation("meadow")), MEADOW);

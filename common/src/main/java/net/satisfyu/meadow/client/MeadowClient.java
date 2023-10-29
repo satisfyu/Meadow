@@ -19,10 +19,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.render.BigFlowerPotBlockEntityRenderer;
-import net.satisfyu.meadow.client.render.CheeseRackBlockEntityRenderer;
-import net.satisfyu.meadow.client.render.FlowerBoxBlockEntityRenderer;
-import net.satisfyu.meadow.client.render.WheelBarrowBlockEntityRenderer;
+import net.satisfyu.meadow.client.render.*;
 import net.satisfyu.meadow.client.screen.CheeseFormGui;
 import net.satisfyu.meadow.client.screen.CookingCauldronGui;
 import net.satisfyu.meadow.client.screen.FondueGui;
@@ -90,7 +87,7 @@ public class MeadowClient {
         BlockEntityRendererRegistry.register(BlockEntityRegistry.WHEEL_BARROW_BLOCK_ENTITY.get(), WheelBarrowBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityRegistry.BIG_FLOWER_POT_BLOCK_ENTITY.get(), BigFlowerPotBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityRegistry.CHEESE_RACK_BLOCK_ENTITY.get(), CheeseRackBlockEntityRenderer::new);
-
+        BlockEntityRendererRegistry.register(BlockEntityRegistry.STANDARD.get(), StandardRenderer::new);
     }
 
     private static void registerClientScreens() {
@@ -111,6 +108,7 @@ public class MeadowClient {
         EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearModel::createBodyLayer);
         EntityModelLayerRegistry.register(SHEARABLE_MEADOW_COW_MODEL_LAYER, WoolyCowModel::createBodyLayer);
         EntityModelLayerRegistry.register(WATER_BUFFALO_MODEL_LAYER, WaterBuffaloModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(StandardRenderer.LAYER_LOCATION, StandardRenderer::createBodyLayer);
 
         ArmorRegistry.registerArmorModelLayers();
     }

@@ -1,0 +1,40 @@
+{
+  "parent": "meadow:main/spyglass_at_brown_bear",
+  "criteria": {
+    "killed_bear": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "meadow:brown_bear"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "meadow.advancement.brown_bear.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "meadow:brown_bear_spawn_egg"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "meadow.advancement.brown_bear"
+    }
+  },
+  "requirements": [
+    [
+      "killed_bear"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

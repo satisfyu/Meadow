@@ -1,0 +1,56 @@
+{
+  "parent": "meadow:main/get_salt",
+  "display": {
+    "icon": {
+      "item": "meadow:wooden_bucket"
+    },
+    "title": {
+      "translate": "meadow.advancement.milk_bucket_collector"
+    },
+    "description": {
+      "translate": "meadow.advancement.milk_bucket_collector.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 250
+  },
+  "criteria": {
+    "get_milk_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["meadow:wooden_milk_bucket"]
+          },
+          {
+            "items": ["meadow:wooden_sheep_milk_bucket"]
+          },
+          {
+            "items": ["meadow:wooden_buffalo_milk_bucket"]
+          },
+          {
+            "items": ["meadow:wooden_goat_milk_bucket"]
+          },
+          {
+            "items": ["meadow:wooden_warped_milk_bucket"]
+          },
+          {
+            "items": ["meadow:wooden_grain_milk_bucket"]
+          },
+          {
+            "items": ["meadow:wooden_amethyst_milk_bucket"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_milk_bucket"
+    ]
+  ]
+}

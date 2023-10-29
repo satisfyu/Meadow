@@ -3,6 +3,7 @@ package net.satisfyu.meadow.registry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.blockentities.*;
@@ -21,6 +22,7 @@ public class BlockEntityRegistry {
     public static final RegistrySupplier<BlockEntityType<FondueBlockEntity>> FONDUE = createBlockEntity("fondue", () -> BlockEntityType.Builder.of(FondueBlockEntity::new, ObjectRegistry.FONDUE.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<ShelfBlockEntity>> SHELF_BLOCK_ENTITY = createBlockEntity("shelf", () -> BlockEntityType.Builder.of(ShelfBlockEntity::new, ObjectRegistry.SHELF.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<StoveBlockWoodBlockEntity>> STOVE_BLOCK_WOOD_BLOCK_ENTITY = createBlockEntity("stove_block_wood", () -> BlockEntityType.Builder.of(StoveBlockWoodBlockEntity::new, ObjectRegistry.STOVE_WOOD.get()).build(null));
+    public static final RegistrySupplier<BlockEntityType<StandardBlockEntity>> STANDARD = createBlockEntity("standard", () -> BlockEntityType.Builder.of(StandardBlockEntity::new, ObjectRegistry.STANDARD_BLOCKS.stream().map(Supplier::get).toList().toArray(new Block[0])).build(null));
 
 
     private static <T extends BlockEntityType<?>> RegistrySupplier<T> createBlockEntity(final String path, final Supplier<T> type) {

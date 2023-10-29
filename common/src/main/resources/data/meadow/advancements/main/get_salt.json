@@ -1,0 +1,37 @@
+{
+  "parent": "meadow:main/find_meadow",
+  "display": {
+    "icon": {
+      "item": "meadow:alpine_salt"
+    },
+    "title": {
+      "translate": "meadow.advancement.salt"
+    },
+    "description": {
+      "translate": "meadow.advancement.salt.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "salt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "meadow:alpine_salt"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "salt"
+    ]
+  ]
+}

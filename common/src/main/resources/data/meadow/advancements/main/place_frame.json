@@ -1,0 +1,37 @@
+{
+  "parent": "meadow:main/get_salt",
+  "criteria": {
+    "frame": {
+      "conditions": {
+        "location": [
+          {
+            "block": "meadow:frame",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "meadow.advancement.frame.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "meadow:frame"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "meadow.advancement.frame"
+    }
+  },
+  "requirements": [
+    [
+      "frame"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
