@@ -23,12 +23,6 @@ public class MeadowFabric implements ModInitializer {
         FabricVillager.init();
         MeadowBiomeModification.init();
         FabricEntitySpawn.registerEntitySpawn();
-
-        FabricLoader.getInstance().getModContainer(Meadow.MOD_ID).ifPresent(container -> {
-            ResourceManagerHelper.registerBuiltinResourcePack(new MeadowIdentifier("bushy_leaves"), container, ResourcePackActivationType.NORMAL);
-            ResourceManagerHelper.registerBuiltinResourcePack(new MeadowIdentifier("green_stove"), container, ResourcePackActivationType.NORMAL);
-            ResourceManagerHelper.registerBuiltinResourcePack(new MeadowIdentifier("optifine_support"), container, ResourcePackActivationType.NORMAL);
-        });
     }
 }
 

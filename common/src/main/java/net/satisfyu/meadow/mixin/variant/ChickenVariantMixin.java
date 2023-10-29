@@ -43,24 +43,6 @@ public abstract class ChickenVariantMixin extends MobVariantMixin {
         cir.setReturnValue(chicken);
     }
 
-    /*
-    @Override
-    protected void onDefineSynchedData(CallbackInfo ci) {
-        getChicken().getEntityData().define(ChickenVar.DATA_ID_TYPE_VARIANT, 0);
-    }
-
-    @Override
-    protected void onAddAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        compoundTag.putInt("Variant", ChickenVar.getTypeVariant(getChicken()));
-    }
-
-    @Override
-    protected void onReadAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        ChickenVar.setTypeVariant(getChicken(), compoundTag.getInt("Variant"));
-    }
-    */
-
-
     @Unique
     private Chicken getChicken(){
         return (Chicken) (Object)this;

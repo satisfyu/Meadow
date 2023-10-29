@@ -52,12 +52,14 @@ public class WateringCanBlock extends FacingBlock {
     });
 
     @Override
-    public void playerWillDestroy(@NotNull Level level, BlockPos blockPos, @NotNull BlockState blockState, @NotNull Player player) {
-        ItemStack stack = new ItemStack(this);
-        stack.setDamageValue(blockState.getValue(DAMAGE));
-        ItemEntity itemEntity = new ItemEntity(level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), stack);
-        itemEntity.setDefaultPickUpDelay();
-        level.addFreshEntity(itemEntity);
+    public void playerWillDestroy(@NotNull Level level, @NotNull BlockPos blockPos, @NotNull BlockState blockState, @NotNull Player player) {
+        if(!player.getAbilities().instabuild){
+            ItemStack stack = new ItemStack(this);
+            stack.setDamageValue(blockState.getValue(DAMAGE));
+            ItemEntity itemEntity = new ItemEntity(level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), stack);
+            itemEntity.setDefaultPickUpDelay();
+            level.addFreshEntity(itemEntity);
+        }
         super.playerWillDestroy(level, blockPos, blockState, player);
     }
 
