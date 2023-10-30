@@ -3,6 +3,7 @@ package net.satisfyu.meadow.fabric.cca;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
+import net.satisfyu.meadow.config.MeadowConfig;
 
 public class VarHolder implements IntComponent, AutoSyncedComponent {
 

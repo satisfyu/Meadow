@@ -3,6 +3,7 @@ package net.satisfyu.meadow.mixin.variant.client;
 import net.minecraft.client.model.SheepModel;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.satisfyu.meadow.config.MeadowConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,6 +15,7 @@ public class SheepModelMixin {
 
     @Inject(method = "createBodyLayer", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
     private static void onCreateBodyLayer(CallbackInfoReturnable<LayerDefinition> ci, MeshDefinition meshDefinition, PartDefinition partDefinition) {
+        if(!MeadowConfig.DEFAULT.getConfig().renderCustomEntityTextures()) return;
         PartDefinition head = partDefinition.getChild("head");
 
         PartDefinition horn_right = head.addOrReplaceChild("horn_right", CubeListBuilder.create(), PartPose.offset(7.0F, 0.0F, 1.0F));

@@ -10,6 +10,7 @@ import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.satisfyu.meadow.config.MeadowConfig;
 import net.satisfyu.meadow.entity.sheep.SheepVar;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -47,12 +48,17 @@ public class SheepFurLayerMixin {
             method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/Sheep;FFFFFF)V",
             at = @At(value = "HEAD"))
     public void onRender(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, Sheep sheep, float f, float g, float h, float j, float k, float l, CallbackInfo ci) {
-        SheepVar var = SheepVar.getVariant(sheep);
-        if(var.equals(SheepVar.DEFAULT) || var.equals(SheepVar.HORNED)){
-            SheepFurLayer.SHEEP_FUR_LOCATION = SHEEP_FUR_LOCATION;
-            return;
+        if(MeadowConfig.DEFAULT.getConfig().renderCustomEntityTextures()) {
+            SheepVar var = SheepVar.getVariant(sheep);
+            if(var.equals(SheepVar.DEFAULT) || var.equals(SheepVar.HORNED)){
+                SheepFurLayer.SHEEP_FUR_LOCATION = SHEEP_FUR_LOCATION;
+                return;
+            }
+            SheepFurLayer.SHEEP_FUR_LOCATION = new MeadowIdentifier(String.format("textures/entity/sheep/%s_sheep_fur.png", var.getSerializedName()));
         }
-        SheepFurLayer.SHEEP_FUR_LOCATION = new MeadowIdentifier(String.format("textures/entity/sheep/%s_sheep_fur.png", var.getSerializedName()));
+        else {
+            SheepFurLayer.SHEEP_FUR_LOCATION = SHEEP_FUR_LOCATION;
+        }
     }
 
 }

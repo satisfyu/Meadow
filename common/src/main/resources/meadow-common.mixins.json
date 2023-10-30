@@ -11,12 +11,7 @@
     "FluidDecrementMixin",
     "GoatMixin",
     "NetherPortalBlockMixin",
-    "SheepMixin",
-    "variant.ChickenVariantMixin",
-    "variant.CowVariantMixin",
-    "variant.MobVariantMixin",
-    "variant.SheepVariantMixin",
-    "variant.ThrownEggMixin"
+    "SheepMixin"
   ],
   "injectors": {
     "defaultRequire": 1

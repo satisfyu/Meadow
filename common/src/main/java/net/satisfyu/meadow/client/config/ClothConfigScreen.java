@@ -38,7 +38,7 @@ public class ClothConfigScreen {
             this.builder = builder;
             this.category = category;
 
-            renderCustomEntityTextures = createBooleanField("renderCustomEntityTextures", config.renderCustomEntityTextures(), MeadowConfig.DEFAULT.renderCustomEntityTextures(), true);
+            renderCustomEntityTextures = createBooleanField("renderCustomEntityTextures", config.renderCustomEntityTextures(), MeadowConfig.DEFAULT.renderCustomEntityTextures(), false);
         }
 
 
