@@ -2,6 +2,6 @@
   "ambientocclusion": false,
   "parent": "minecraft:block/tinted_cross",
   "textures": {
-    "cross": "meadow:block/alpine_poppy_4"
+    "cross": "meadow:block/delphinium_3"
   }
 }
