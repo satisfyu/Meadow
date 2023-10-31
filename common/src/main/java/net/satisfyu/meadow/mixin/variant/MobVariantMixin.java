@@ -23,6 +23,7 @@ public abstract class MobVariantMixin {
 
     }
 
+    /*
     @Inject(
             method = "addAdditionalSaveData",
             at = @At("RETURN")
@@ -38,6 +39,7 @@ public abstract class MobVariantMixin {
     protected void onReadAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
 
     }
+     */
 
     @Inject(
             method = "finalizeSpawn",

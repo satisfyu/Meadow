@@ -3,7 +3,7 @@
   "id": "meadow",
   "version": "1.2.0",
   "name": "Meadow",
-  "description": "A small mod Vanilla+ Mod that aims to improve the meadow biome and adds a new way to create food. It also brings back a few animals from Minecraft:Earth and gives them a reason to be there beside of looking pretty.",
+"description": "A Mod offering a slight overhaul for the meadow biome by adding two new sub biomes and introducing the process of crafting cheese.",
   "authors": [
     "satisfyu",
     "Cristelknight999",
@@ -34,6 +34,9 @@
     ],
     "jei_mod_plugin": [
       "net.satisfyu.meadow.compat.jei.MeadowJEIPlugin"
+    ],
+    "cardinal-components": [
+      "net.satisfyu.meadow.fabric.cca.MyComponents"
     ]
   },
   "mixins": [
@@ -41,6 +44,11 @@
     "meadow-common.mixins.json",
     "meadow.mixins.json"
   ],
+  "custom": {
+    "cardinal-components": [
+      "meadow:var"
+    ]
+  },
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.20",

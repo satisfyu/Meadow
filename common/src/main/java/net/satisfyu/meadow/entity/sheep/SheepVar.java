@@ -4,9 +4,6 @@ import com.mojang.serialization.Codec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.RandomSource;
@@ -17,6 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
+import net.satisfyu.meadow.MeadowExpectPlatform;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
 import net.satisfyu.meadow.world.CommonSpawnUtil;
@@ -66,9 +64,6 @@ public enum SheepVar implements StringRepresentable {
         return this.name;
     }
 
-
-    public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(Sheep.class, EntityDataSerializers.INT);
-
     private static final Map<SheepVar, TagKey<Biome>> SPAWNS = Util.make(new HashMap<>(), map -> {
         map.put(SheepVar.DEFAULT, null);
         map.put(SheepVar.FLECKED, TagRegistry.SPAWNS_SUNSET_COW);
@@ -87,10 +82,10 @@ public enum SheepVar implements StringRepresentable {
         return SheepVar.byId(getTypeVariant(sheep) & 255);
     }
     public static void setTypeVariant(Sheep sheep, int i) {
-        sheep.getEntityData().set(DATA_ID_TYPE_VARIANT, i);
+        MeadowExpectPlatform.setTypeVariant(sheep, i);
     }
     public static int getTypeVariant(Sheep sheep) {
-        return sheep.getEntityData().get(DATA_ID_TYPE_VARIANT);
+        return MeadowExpectPlatform.getTypeVariant(sheep);
     }
     public static SheepVar getRandomVariant(LevelAccessor levelAccessor, BlockPos blockPos, boolean spawnEgg) {
         Holder<Biome> holder = levelAccessor.getBiome(blockPos);
