@@ -1,6 +1,6 @@
 {
    "parent": "meadow:block/wooden_flower_pot_cross",
    "textures": {
-     "plant": "meadow:block/delphinium_potted"
+     "plant": "meadow:block/delphinium_3"
    }
 }
