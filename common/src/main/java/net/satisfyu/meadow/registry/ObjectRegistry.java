@@ -301,8 +301,6 @@ public class ObjectRegistry {
 
 
     public static final List<Supplier<Block>> STANDARD_BLOCKS = Lists.newArrayList();
-    public static final List<Supplier<Block>> STANDARD_WALL_BLOCKS = Lists.newArrayList();
-    public static final List<Supplier<Block>> STANDARD_FLOOR_BLOCKS = Lists.newArrayList();
     public static Supplier<Block> MEADOW_STANDARD;
 
     private static void createStandards() {
