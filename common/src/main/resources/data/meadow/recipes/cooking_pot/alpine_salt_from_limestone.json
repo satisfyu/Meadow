@@ -1,0 +1,15 @@
+{
+  "type": "meadow:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "meadow:limestone"
+    }
+  ],
+  "result": {
+    "item": "meadow:alpine_salt",
+    "count": 4
+  }
+}
