@@ -259,13 +259,13 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> ALPINE_OAK_LOG = registerBlock("alpine_oak_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f)));
     public static final RegistrySupplier<Block> ALPINE_BIRCH_LOG = registerBlock("alpine_birch_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f)));
     public static final RegistrySupplier<Block> PINE_LEAVES_2 = registerBlockWithoutItem("pine_leaves_2", () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.SPRUCE_LEAVES)));
+    public static final RegistrySupplier<Item>  MEADOW_STANDARD = registerItem("meadow_standard", () -> new MeadowStandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
+
 
     public static void init() {
         Meadow.LOGGER.debug("Registering Blocks and Items for " + Meadow.MOD_ID);
         ITEMS.register();
         BLOCKS.register();
-        createStandards();
-        registerCompostable();
     }
 
     public static void registerCompostable() {
@@ -297,29 +297,6 @@ public class ObjectRegistry {
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ERIOPHORUM_TALL.get(), 0.3f);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.FIRE_LILY.get(), 0.3f);
     }
-
-
-
-    public static final List<Supplier<Block>> STANDARD_BLOCKS = Lists.newArrayList();
-    public static Supplier<Block> MEADOW_STANDARD;
-
-    private static void createStandards() {
-        MEADOW_STANDARD = BLOCKS.register(Meadow.MOD_ID("meadow_standard"), () -> new MeadowStandardBlock(properties(1F).instrument(NoteBlockInstrument.BASS).noCollission().sound(SoundType.WOOD)));
-        Supplier<Block> adjWall = BLOCKS.register(Meadow.MOD_ID("meadow_wall_standard"), () -> new MeadowStandardWallBlock(properties(1F).instrument(NoteBlockInstrument.BASS).noCollission().sound(SoundType.WOOD).dropsLike(MEADOW_STANDARD.get())));
-
-        ITEMS.register(Meadow.MOD_ID("meadow_standard"), () -> new StandingAndWallBlockItem(MEADOW_STANDARD.get(), adjWall.get(), new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON), Direction.DOWN));
-        STANDARD_BLOCKS.add(MEADOW_STANDARD);
-        STANDARD_BLOCKS.add(adjWall);
-    }
-
-    public static BlockBehaviour.Properties properties(float strength) {
-        return properties(strength, strength);
-    }
-
-    public static BlockBehaviour.Properties properties(float breakSpeed, float explosionResist) {
-        return BlockBehaviour.Properties.of().strength(breakSpeed, explosionResist);
-    }
-
 
     public static void commonInit() {
         registerFuels();
