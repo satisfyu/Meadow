@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.satisfyu.meadow.Meadow;
+import net.satisfyu.meadow.forge.networking.MeadowNetworkForge;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.terrablender.MeadowRegion;
 
@@ -21,6 +22,7 @@ public class MeadowForge {
         EventBuses.registerModEventBus(Meadow.MOD_ID, modEventBus);
 
         Meadow.init();
+        MeadowNetworkForge.registerC2SPackets();
 
         modEventBus.addListener(this::commonSetup);
     }
