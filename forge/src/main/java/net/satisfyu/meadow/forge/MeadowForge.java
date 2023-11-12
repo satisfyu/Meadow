@@ -12,6 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.forge.networking.MeadowNetworkForge;
+import net.satisfyu.meadow.registry.CompostableRegistry;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.terrablender.MeadowRegion;
 
@@ -23,14 +24,17 @@ public class MeadowForge {
 
         Meadow.init();
         MeadowNetworkForge.registerC2SPackets();
-
         modEventBus.addListener(this::commonSetup);
     }
 
 
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(MeadowRegion::loadTerrablender);
+        event.enqueueWork(() -> {
+                    MeadowRegion.loadTerrablender();
+                    CompostableRegistry.registerCompostable();
+                }
+        );
         Meadow.commonSetup();
     }
 

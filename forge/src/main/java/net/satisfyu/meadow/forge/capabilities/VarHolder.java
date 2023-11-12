@@ -2,18 +2,13 @@ package net.satisfyu.meadow.forge.capabilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ChunkMap;
-import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.network.ServerPlayerConnection;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.chunk.ChunkSource;
 import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class VarHolder implements INBTSerializable<CompoundTag> {
 

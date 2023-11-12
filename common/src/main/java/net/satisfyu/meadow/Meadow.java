@@ -31,7 +31,6 @@ public class Meadow {
     }
 
     public static void commonSetup() {
-        ObjectRegistry.registerCompostable();
         FlammableBlockRegistry.init();
         WoodenCauldronBehavior.bootStrap();
 

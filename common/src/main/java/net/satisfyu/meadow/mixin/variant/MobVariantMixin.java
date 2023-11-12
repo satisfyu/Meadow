@@ -16,32 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MobVariantMixin {
 
     @Inject(
-            method = "defineSynchedData",
-            at = @At("RETURN")
-    )
-    protected void onDefineSynchedData(CallbackInfo ci) {
-
-    }
-
-    /*
-    @Inject(
-            method = "addAdditionalSaveData",
-            at = @At("RETURN")
-    )
-    protected void onAddAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-
-    }
-
-    @Inject(
-            method = "readAdditionalSaveData",
-            at = @At("RETURN")
-    )
-    protected void onReadAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-
-    }
-     */
-
-    @Inject(
             method = "finalizeSpawn",
             at = @At("RETURN")
     )

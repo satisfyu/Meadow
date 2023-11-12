@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Chicken.class)
@@ -42,23 +41,6 @@ public abstract class ChickenVariantMixin extends MobVariantMixin {
         ChickenVar.setVariant(chicken, var);
         cir.setReturnValue(chicken);
     }
-
-    /*
-    @Override
-    protected void onDefineSynchedData(CallbackInfo ci) {
-        getChicken().getEntityData().define(ChickenVar.DATA_ID_TYPE_VARIANT, 0);
-    }
-
-    @Override
-    protected void onAddAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        compoundTag.putInt("Variant", ChickenVar.getTypeVariant(getChicken()));
-    }
-
-    @Override
-    protected void onReadAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        ChickenVar.setTypeVariant(getChicken(), compoundTag.getInt("Variant"));
-    }
-    */
 
 
     @Unique

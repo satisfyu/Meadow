@@ -72,23 +72,6 @@ public abstract class SheepVariantMixin extends MobVariantMixin {
         cir.setReturnValue(new MeadowIdentifier("entities/sheep/" + s));
     }
 
-    /*
-    @Override
-    protected void onDefineSynchedData(CallbackInfo ci) {
-        getSheep().getEntityData().define(SheepVar.DATA_ID_TYPE_VARIANT, 0);
-    }
-
-    @Override
-    protected void onAddAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        compoundTag.putInt("Variant", SheepVar.getTypeVariant(getSheep()));
-    }
-
-    @Override
-    protected void onReadAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        SheepVar.setTypeVariant(getSheep(), compoundTag.getInt("Variant"));
-    }
-     */
-
     @Unique
     private Sheep getSheep() {
         return (Sheep) (Object)this;

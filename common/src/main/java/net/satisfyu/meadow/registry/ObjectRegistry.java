@@ -1,6 +1,5 @@
 package net.satisfyu.meadow.registry;
 
-import com.google.common.collect.Lists;
 import de.cristelknight.doapi.Util;
 import de.cristelknight.doapi.common.block.ChairBlock;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
@@ -19,13 +18,11 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.Fluids;
@@ -39,7 +36,6 @@ import net.satisfyu.meadow.util.MeadowIdentifier;
 import net.satisfyu.meadow.util.WoodenCauldronBehavior;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -268,35 +264,6 @@ public class ObjectRegistry {
         BLOCKS.register();
     }
 
-    public static void registerCompostable() {
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_GOAT_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_GRAIN_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_AMETHYST_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_SHEEP_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_WARPED_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESECAKE_SLICE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_TART_SLICE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_SANDWICH.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_ROLL.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_STICK.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.WARPED_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.AMETHYST_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.GOAT_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SHEEP_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.GRAIN_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ENZIAN.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.DELPHINIUM.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ALPINE_POPPY.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAXIFRAGE.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ERIOPHORUM.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SMALL_FIR.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PINE_SAPLING.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ERIOPHORUM_TALL.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.FIRE_LILY.get(), 0.3f);
-    }
 
     public static void commonInit() {
         registerFuels();

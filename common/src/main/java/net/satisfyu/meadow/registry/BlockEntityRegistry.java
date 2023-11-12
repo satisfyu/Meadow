@@ -3,7 +3,6 @@ package net.satisfyu.meadow.registry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.entity.blockentities.*;
