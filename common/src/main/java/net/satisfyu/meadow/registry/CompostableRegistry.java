@@ -1,35 +1,44 @@
 package net.satisfyu.meadow.registry;
 
+import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.ComposterBlock;
 
 public class CompostableRegistry {
     public static void registerCompostable() {
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_GOAT_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_GRAIN_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_AMETHYST_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_SHEEP_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PIECE_OF_WARPED_CHEESE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESECAKE_SLICE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_TART_SLICE.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_SANDWICH.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_ROLL.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_STICK.get(), 0.5f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.WARPED_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.AMETHYST_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.GOAT_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SHEEP_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.GRAIN_CHEESE_BLOCK.get(), 1f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ENZIAN.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.DELPHINIUM.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ALPINE_POPPY.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAXIFRAGE.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ERIOPHORUM.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SMALL_FIR.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.PINE_SAPLING.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ERIOPHORUM_TALL.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.FIRE_LILY.get(), 0.3f);
+        registerCompostableItem(ObjectRegistry.PIECE_OF_CHEESE, 0.5f);
+        registerCompostableItem(ObjectRegistry.PIECE_OF_GOAT_CHEESE, 0.5f);
+        registerCompostableItem(ObjectRegistry.PIECE_OF_CHEESE, 0.5f);
+        registerCompostableItem(ObjectRegistry.PIECE_OF_GRAIN_CHEESE, 0.5f);
+        registerCompostableItem(ObjectRegistry.PIECE_OF_AMETHYST_CHEESE, 0.5f);
+        registerCompostableItem(ObjectRegistry.PIECE_OF_SHEEP_CHEESE, 0.5f);
+        registerCompostableItem(ObjectRegistry.PIECE_OF_WARPED_CHEESE, 0.5f);
+        registerCompostableItem(ObjectRegistry.CHEESECAKE_SLICE, 0.5f);
+        registerCompostableItem(ObjectRegistry.CHEESE_TART_SLICE, 0.5f);
+        registerCompostableItem(ObjectRegistry.CHEESE_SANDWICH, 0.5f);
+        registerCompostableItem(ObjectRegistry.CHEESE_ROLL, 0.5f);
+        registerCompostableItem(ObjectRegistry.CHEESE_STICK, 0.5f);
+        registerCompostableItem(ObjectRegistry.CHEESE_BLOCK, 1f);
+        registerCompostableItem(ObjectRegistry.WARPED_CHEESE_BLOCK, 1f);
+        registerCompostableItem(ObjectRegistry.AMETHYST_CHEESE_BLOCK, 1f);
+        registerCompostableItem(ObjectRegistry.GOAT_CHEESE_BLOCK, 1f);
+        registerCompostableItem(ObjectRegistry.SHEEP_CHEESE_BLOCK, 1f);
+        registerCompostableItem(ObjectRegistry.GRAIN_CHEESE_BLOCK, 1f);
+        registerCompostableItem(ObjectRegistry.ENZIAN, 0.3f);
+        registerCompostableItem(ObjectRegistry.DELPHINIUM, 0.3f);
+        registerCompostableItem(ObjectRegistry.ALPINE_POPPY, 0.3f);
+        registerCompostableItem(ObjectRegistry.SAXIFRAGE, 0.3f);
+        registerCompostableItem(ObjectRegistry.ERIOPHORUM, 0.3f);
+        registerCompostableItem(ObjectRegistry.SMALL_FIR, 0.3f);
+        registerCompostableItem(ObjectRegistry.PINE_SAPLING, 0.3f);
+        registerCompostableItem(ObjectRegistry.ERIOPHORUM_TALL, 0.3f);
+        registerCompostableItem(ObjectRegistry.FIRE_LILY, 0.3f);
+    }
+
+    public static <T extends ItemLike> void registerCompostableItem(RegistrySupplier<T> item, float chance) {
+        if (item.get().asItem() != Items.AIR) {
+            ComposterBlock.COMPOSTABLES.put(item.get(), chance);
+        }
     }
 }
