@@ -6,8 +6,9 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Sheep;
-import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.forge.networking.MeadowNetworkForge;
 import net.satisfyu.meadow.util.GeneralUtil;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,17 +25,12 @@ public abstract class ClientPacketListenerMixin {
             locals = LocalCapture.CAPTURE_FAILSOFT,
             require = 0
     )
-    private void bumblezone$syncHorseUUID1(
-            ClientboundAddEntityPacket clientboundAddEntityPacket,
-            CallbackInfo ci,
-            EntityType<?> entitytype,
-            Entity entity)
-    {
-        if (entity instanceof Sheep && entity.level().isClientSide()) {
+    private void meadowSyncVar(ClientboundAddEntityPacket clientboundAddEntityPacket, CallbackInfo ci, EntityType<?> entitytype, Entity entity) {
+        Class<? extends Entity> eC = entity.getClass();
+        if ((eC == Sheep.class || eC == Chicken.class || eC == Cow.class) && entity.level().isClientSide()) {
             FriendlyByteBuf buf = GeneralUtil.create();
             buf.writeUUID(entity.getUUID());
             NetworkManager.sendToServer(MeadowNetworkForge.VAR_REQUEST_S2C, buf);
-            Meadow.LOGGER.warn("Sending Request to server");
         }
     }
 }
