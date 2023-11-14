@@ -37,7 +37,6 @@ public class VarRequestC2SPacket implements NetworkManager.NetworkReceiver {
 
         } catch (Exception e) {
             Meadow.LOGGER.error("Error while reading entity id from network", e);
-            throw e;
         }
     }
 }

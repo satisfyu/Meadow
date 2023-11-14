@@ -21,11 +21,11 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public abstract class ClientPacketListenerMixin {
 
     @Inject(method = "handleAddEntity(Lnet/minecraft/network/protocol/game/ClientboundAddEntityPacket;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/network/protocol/game/ClientboundAddEntityPacket;getId()I"),
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ClientPacketListener;postAddEntitySoundInstance(Lnet/minecraft/world/entity/Entity;)V"),
             locals = LocalCapture.CAPTURE_FAILSOFT,
             require = 0
     )
-    private void meadowSyncVar(ClientboundAddEntityPacket clientboundAddEntityPacket, CallbackInfo ci, EntityType<?> entitytype, Entity entity) {
+    private void meadowSyncVar(ClientboundAddEntityPacket clientboundAddEntityPacket, CallbackInfo ci, EntityType<?> entityType, Entity entity, int i) {
         Class<? extends Entity> eC = entity.getClass();
         if ((eC == Sheep.class || eC == Chicken.class || eC == Cow.class) && entity.level().isClientSide()) {
             FriendlyByteBuf buf = GeneralUtil.create();

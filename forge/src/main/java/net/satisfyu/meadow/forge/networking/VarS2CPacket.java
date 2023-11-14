@@ -31,7 +31,6 @@ public class VarS2CPacket implements NetworkManager.NetworkReceiver {
 
         } catch (Exception e) {
             Meadow.LOGGER.error("Error while reading entity var from network", e);
-            throw e;
         }
     }
 }
