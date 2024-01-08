@@ -7,17 +7,10 @@ import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.render.*;
 import net.satisfyu.meadow.client.screen.CheeseFormGui;
@@ -30,14 +23,7 @@ import net.satisfyu.meadow.entity.buffalo.WaterBuffaloModel;
 import net.satisfyu.meadow.entity.buffalo.WaterBuffaloRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCowRenderer;
 import net.satisfyu.meadow.entity.cow.shearable.WoolyCowModel;
-import net.satisfyu.meadow.item.FurBoots;
-import net.satisfyu.meadow.item.FurChest;
-import net.satisfyu.meadow.item.FurHead;
-import net.satisfyu.meadow.item.FurLegs;
 import net.satisfyu.meadow.registry.*;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class MeadowClient {
     public static final ModelLayerLocation BROWN_BEAR_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "brown_bear"), "main");
@@ -48,8 +34,8 @@ public class MeadowClient {
         registerEntityRenderers();
         registerEntityModelLayers();
 
-        TerraformSignHelper.regsterSignSprite(MeadowWoodRegistry.PINE_SIGN_TEXTURE);
-        TerraformSignHelper.regsterSignSprite(MeadowWoodRegistry.PINE_HANGING_SIGN_TEXTURE);
+        TerraformSignHelper.regsterSignSprite(BoatsAndSignsRegistry.PINE_SIGN_TEXTURE);
+        TerraformSignHelper.regsterSignSprite(BoatsAndSignsRegistry.PINE_HANGING_SIGN_TEXTURE);
     }
 
     public static void initClient() {
@@ -109,27 +95,5 @@ public class MeadowClient {
         EntityModelLayerRegistry.register(WATER_BUFFALO_MODEL_LAYER, WaterBuffaloModel::getTexturedModelData);
 
         ArmorRegistry.registerArmorModelLayers();
-    }
-
-
-    public static void appendToolTip(@NotNull List<Component> tooltip) {
-        Player player = Minecraft.getInstance().player;
-        if (player == null) return;
-        ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
-        ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
-        ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
-        ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
-        tooltip.add(Component.nullToEmpty(""));
-        tooltip.add(Component.nullToEmpty(ChatFormatting.DARK_GREEN + I18n.get("meadow.tooltip.fur_armor")));
-        tooltip.add(Component.nullToEmpty((helmet != null && helmet.getItem() instanceof FurHead ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_HELMET.get().getDescription().getString() + "]"));
-        tooltip.add(Component.nullToEmpty((chestplate != null && chestplate.getItem() instanceof FurChest ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_CHESTPLATE.get().getDescription().getString() + "]"));
-        tooltip.add(Component.nullToEmpty((leggings != null && leggings.getItem() instanceof FurLegs ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_LEGGINGS.get().getDescription().getString() + "]"));
-        tooltip.add(Component.nullToEmpty((boots != null && boots.getItem() instanceof FurBoots ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_BOOTS.get().getDescription().getString() + "]"));
-        tooltip.add(Component.nullToEmpty(""));
-        tooltip.add(Component.nullToEmpty(ChatFormatting.GRAY + I18n.get("meadow.tooltip.fur_armor2")));
-        tooltip.add(Component.nullToEmpty(((helmet != null && helmet.getItem() instanceof FurHead &&
-                chestplate != null && chestplate.getItem() instanceof FurChest &&
-                leggings != null && leggings.getItem() instanceof FurLegs &&
-                boots != null && boots.getItem() instanceof FurBoots) ? ChatFormatting.DARK_GREEN.toString() : ChatFormatting.GRAY.toString()) + I18n.get("meadow.tooltip.fur_armor3")));
     }
 }

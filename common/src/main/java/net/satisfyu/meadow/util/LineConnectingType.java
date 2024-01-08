@@ -3,7 +3,7 @@ package net.satisfyu.meadow.util;
 import net.minecraft.util.StringRepresentable;
 
 public enum LineConnectingType implements StringRepresentable {
-    NONE("none"),
+    NONE("single"),
     MIDDLE("middle"),
     LEFT("left"),
     RIGHT("right");

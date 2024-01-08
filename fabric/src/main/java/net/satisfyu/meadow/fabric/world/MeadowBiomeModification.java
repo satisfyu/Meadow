@@ -23,6 +23,8 @@ public class MeadowBiomeModification {
         world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BUSH_KEY));
         world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MEADOW_BOULDERS_KEY));
         world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, LIMESTONE_SLAB_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getEffects().setGrassColor(9286496));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getEffects().setFoliageColor(5866311));
 
         //world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, LIMESTONE_ORE));
         //world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, SALT_ORE_LOWER));

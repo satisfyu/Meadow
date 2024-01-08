@@ -65,7 +65,7 @@ public class CameraBlock extends Block {
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        world.playSound(null, pos, new Random().nextBoolean() ? SoundRegistry.CLICK_CAMERA.get() : SoundRegistry.CLICK_CAMERA2.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
+        world.playSound(null, pos, SoundRegistry.CLICK_CAMERA.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
         if (world.isClientSide) {
             for (int i = 0; i < 5; i++) {
                 Direction direction = state.getValue(FACING);

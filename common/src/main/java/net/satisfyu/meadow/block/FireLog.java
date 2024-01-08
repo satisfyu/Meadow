@@ -80,6 +80,9 @@ public class FireLog extends FacingBlock {
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);
                 }
+            } else if (stage == 0) {
+                world.removeBlock(pos, true);
+                return InteractionResult.SUCCESS;
             }
         }
 

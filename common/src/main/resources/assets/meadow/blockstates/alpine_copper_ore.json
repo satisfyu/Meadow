@@ -1,5 +1,10 @@
 {
   "variants": {
-    "": [ { "model": "meadow:block/alpine_copper_ore", "weight":1 }
-    ]   }
+    "": [
+      {
+        "model": "meadow:block/alpine_copper_ore",
+        "weight": 1
+      }
+    ]
+  }
 }

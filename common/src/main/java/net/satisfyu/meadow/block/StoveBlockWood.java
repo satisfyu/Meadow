@@ -27,7 +27,7 @@ import net.satisfyu.meadow.entity.blockentities.StoveBlockWoodBlockEntity;
 import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.Nullable;
 
-public class StoveBlockWood extends StoveBlock implements EntityBlock {
+public class StoveBlockWood extends StoveMainBlock implements EntityBlock {
 
     public static final BooleanProperty LIT = BooleanProperty.create("lit");
 
@@ -66,10 +66,8 @@ public class StoveBlockWood extends StoveBlock implements EntityBlock {
             double e = pos.getY() + 0.24;
             double f = (double) pos.getZ() + 0.5;
             if (random.nextDouble() < 0.1)
-                world.playLocalSound(d, e, f, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0f, 1.0f, false);
-            world.playLocalSound(d, e, f, SoundEvents.SMOKER_SMOKE, SoundSource.BLOCKS, 1.0f, 1.0f, false);
-            world.playLocalSound(d, e, f, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 1.0f, 1.0f, false);
-
+                world.playLocalSound(d, e, f, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 0.5f, 0.5f, false);
+            world.playLocalSound(d, e, f, SoundEvents.SMOKER_SMOKE, SoundSource.BLOCKS, 0.5f, 0.5f, false);
             Direction direction = state.getValue(FACING);
             Direction.Axis axis = direction.getAxis();
             double h = random.nextDouble() * 0.6 - 0.3;

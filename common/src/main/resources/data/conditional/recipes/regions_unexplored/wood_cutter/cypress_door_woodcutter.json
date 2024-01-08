@@ -1,0 +1,17 @@
+{
+	"type": "doapi:conditional",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "regions_unexplored"
+		}
+	],
+	"recipe": {
+		"type": "meadow:woodcutting",
+		"inputItem": {
+			"tag": "regions_unexplored:cypress_logs"
+		},
+		"outputItem": "regions_unexplored:cypress_door",
+		"outputAmount": 2
+	}
+}

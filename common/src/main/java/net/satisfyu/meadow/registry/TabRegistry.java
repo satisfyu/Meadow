@@ -171,10 +171,10 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.WATER_BUFFALO_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.WOOLY_COW_SPAWN_EGG_ITEM.get());
                 out.accept(ObjectRegistry.BROWN_BEAR_SPAWN_EGG_ITEM.get());
-                out.accept(MeadowWoodRegistry.PINE_SIGN.get());
-                out.accept(MeadowWoodRegistry.PINE_HANGING_SIGN.get());
-                out.accept(MeadowWoodRegistry.PINE_BOAT.get());
-                out.accept(MeadowWoodRegistry.PINE_CHEST_BOAT.get());
+                out.accept(BoatsAndSignsRegistry.PINE_SIGN.get());
+                out.accept(BoatsAndSignsRegistry.PINE_HANGING_SIGN.get());
+                out.accept(BoatsAndSignsRegistry.PINE_BOAT.get());
+                out.accept(BoatsAndSignsRegistry.PINE_CHEST_BOAT.get());
                 out.accept(ObjectRegistry.PINE_BUTTON.get());
             })
             .build());

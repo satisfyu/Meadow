@@ -17,7 +17,7 @@ public class Meadow {
     public static void init() {
         TabRegistry.init();
         ObjectRegistry.init();
-        MeadowWoodRegistry.init();
+        BoatsAndSignsRegistry.init();
         EntityRegistry.init();
         BlockEntityRegistry.init();
         EffectRegistry.init();

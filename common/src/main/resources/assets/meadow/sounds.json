@@ -8,13 +8,9 @@
   "click_camera": {
     "subtitle": "subtitles.meadow.click_camera",
     "sounds": [
-      "meadow:click_camera"
-    ]
-  },
-  "click_camera2": {
-    "subtitle": "subtitles.meadow.click_camera",
-    "sounds": [
+      "meadow:click_camera1",
       "meadow:click_camera2"
+
     ]
   },
   "cooking_cauldron": {
@@ -33,6 +29,12 @@
     "subtitle": "subtitles.meadow.shelf_closed",
     "sounds": [
       "meadow:shelf_closed"
+    ]
+  },
+  "fur": {
+    "subtitle": "subtitles.meadow.fur_armor_equip",
+    "sounds": [
+      "meadow:fur_armor_equip"
     ]
   }
 }

@@ -36,8 +36,6 @@ public class CobbledLimestoneRock extends Feature<BlockStateConfiguration> {
         if (pos.getY() <= world.getMinBuildHeight() + radius) {
             return false;
         } else {
-            //boolean wasInit = false;
-            //boolean gerade = false;
             for (int i = 0; i < 1; ++i) {
                 int j = random.nextInt(radius);
                 int k = random.nextInt(radius);
@@ -47,15 +45,6 @@ public class CobbledLimestoneRock extends Feature<BlockStateConfiguration> {
                 for (BlockPos pos2 : BlockPos.betweenClosed(pos.offset(-j, -k, -l), pos.offset(j, k, l))) {
                     if (pos2.distSqr(pos) <= (double) (f * f)) {
                         this.setBlock(world, pos2, config.state);
-                        /*
-                        if(!wasInit){
-                            gerade = pos2.getY() % 2 == 0;
-                            wasInit = true;
-                        }
-                        if(!world.getBlockState(pos2).isOf(ObjectRegistry.COBBLED_LIMESTONE_SLAB)) this.setBlockState(world, pos2, config.state);
-                        setSlab(world, pos2, gerade);
-
-                         */
                     }
                 }
                 pos = pos.offset(-1 + random.nextInt(2), -random.nextInt(2), -1 + random.nextInt(2));

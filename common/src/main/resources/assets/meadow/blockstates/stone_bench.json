@@ -1,18 +1,18 @@
 {
   "variants": {
 
-    "facing=north,type=none": {
+    "facing=north,type=single": {
       "model": "meadow:block/bench/stone_bench"
     },
-    "facing=east,type=none": {
+    "facing=east,type=single": {
       "model": "meadow:block/bench/stone_bench",
       "y": 90
     },
-    "facing=south,type=none": {
+    "facing=south,type=single": {
       "model": "meadow:block/bench/stone_bench",
       "y": 180
     },
-    "facing=west,type=none": {
+    "facing=west,type=single": {
       "model": "meadow:block/bench/stone_bench",
       "y": 270
     },

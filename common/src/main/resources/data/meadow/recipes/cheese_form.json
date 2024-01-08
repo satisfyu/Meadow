@@ -7,7 +7,7 @@
     ],
     "key": {
         "_": {
-            "item": "meadow:pine_slab"
+            "tag": "minecraft:wooden_slabs"
         },
         "B": {
             "item": "minecraft:stick"

@@ -7,6 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.client.MeadowClient;
+import net.satisfyu.meadow.registry.ArmorRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,7 +22,7 @@ public class FurBoots extends CustomArmorItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, TooltipFlag context) {
         if(world != null && world.isClientSide()){
-            MeadowClient.appendToolTip(tooltip);
+            ArmorRegistry.appendToolTip(tooltip);
         }
     }
 }

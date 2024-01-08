@@ -32,7 +32,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
 
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(MAX_CAPACITY, ItemStack.EMPTY);
     private static final int MAX_CAPACITY = 7;
-    public static final int MAX_COOKING_TIME = 600; // Time in ticks (30s)
+    public static final int MAX_COOKING_TIME = 200;
     private int cookingTime;
     public static final int OUTPUT_SLOT = 0;
     private static final int INGREDIENTS_AREA = 6;
@@ -113,7 +113,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
             final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
             final int outputSlotCount = outputSlotStack.getCount();
 
-            if (!ItemStack.isSameItem(outputSlotStack, recipeOutput)) { //no damage same?
+            if (!ItemStack.isSameItem(outputSlotStack, recipeOutput)) {
                 return false;
             } else if (outputSlotCount < this.getMaxStackSize() && outputSlotCount < outputSlotStack.getMaxStackSize()) {
                 return true;
@@ -127,42 +127,38 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         if (!canCraft(recipe)) {
             return;
         }
+
         final ItemStack recipeOutput = recipe.assemble();
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
+
         if (outputSlotStack.isEmpty()) {
             setItem(OUTPUT_SLOT, recipeOutput);
         } else if (outputSlotStack.is(recipeOutput.getItem())) {
             outputSlotStack.grow(recipeOutput.getCount());
         }
+
         final NonNullList<Ingredient> ingredients = recipe.getIngredients();
         boolean[] slotUsed = new boolean[INGREDIENTS_AREA];
-        for (int i = 0; i < recipe.getIngredients().size(); i++) {
+
+        for (int i = 0; i < ingredients.size(); i++) {
             Ingredient ingredient = ingredients.get(i);
-            if (i + 1 < inventory.size()) {
-                ItemStack bestSlot = getItem(i + 1);
-                if (ingredient.test(bestSlot) && !slotUsed[i]) {
-                    slotUsed[i] = true;
-                    ItemStack remainderStack = getRemainderItem(bestSlot);
-                    bestSlot.shrink(1);
+
+            for (int j = 1; j <= INGREDIENTS_AREA; j++) {
+                ItemStack stack = getItem(j);
+
+                if (ingredient.test(stack) && !slotUsed[j - 1]) {
+                    slotUsed[j - 1] = true;
+                    ItemStack remainderStack = getRemainderItem(stack);
+                    stack.shrink(1);
+
                     if (!remainderStack.isEmpty()) {
-                        setItem(i + 1, remainderStack);
-                    }
-                }
-            } else {
-                for (int j = 1; j <= INGREDIENTS_AREA; j++) {
-                    ItemStack stack = getItem(j);
-                    if (ingredient.test(stack) && !slotUsed[j]) {
-                        slotUsed[j] = true;
-                        ItemStack remainderStack = getRemainderItem(stack);
-                        stack.shrink(1);
-                        if (!remainderStack.isEmpty()) {
-                            setItem(j, remainderStack);
-                        }
+                        setItem(j, remainderStack);
                     }
                 }
             }
         }
     }
+
 
     private ItemStack getRemainderItem(ItemStack stack) {
         if (stack.getItem().hasCraftingRemainingItem()) {

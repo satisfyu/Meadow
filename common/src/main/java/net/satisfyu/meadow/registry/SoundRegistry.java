@@ -15,9 +15,9 @@ public class SoundRegistry {
     public static final RegistrySupplier<SoundEvent> COOKING_CAULDRON = create("cooking_cauldron");
     public static final RegistrySupplier<SoundEvent> WOODCUTTER = create("woodcutter");
     public static final RegistrySupplier<SoundEvent> CLICK_CAMERA = create("click_camera");
-    public static final RegistrySupplier<SoundEvent> CLICK_CAMERA2 = create("click_camera2");
     public static final RegistrySupplier<SoundEvent> SHELF_OPEN = create("shelf_open");
     public static final RegistrySupplier<SoundEvent> SHELF_CLOSED = create("shelf_closed");
+    public static final RegistrySupplier<SoundEvent> FUR = create("fur");
 
     private static RegistrySupplier<SoundEvent> create(String name) {
         final ResourceLocation id = new MeadowIdentifier(name);

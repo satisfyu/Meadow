@@ -1,0 +1,17 @@
+{
+	"type": "doapi:conditional",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "bloomingnature"
+		}
+	],
+	"recipe": {
+		"type": "meadow:woodcutting",
+		"inputItem": {
+			"item": "bloomingnature:palm_log"
+		},
+		"outputItem": "bloomingnature:palm_slab",
+		"outputAmount": 9
+	}
+}

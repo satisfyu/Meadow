@@ -27,13 +27,13 @@ public class CookingCauldronGui extends AbstractRecipeBookGUIScreen<CookingCauld
     @Override
     protected void renderProgressArrow(GuiGraphics guiGraphics) {
         int progress = this.menu.getScaledProgress(17);
-        guiGraphics.blit(BACKGROUND, leftPos + ARROW_X, topPos + ARROW_Y, 178, 16, progress, 29); //Position Arrow (moved 8 pixels to the left)
+        guiGraphics.blit(BACKGROUND, leftPos + ARROW_X, topPos + ARROW_Y, 178, 16, progress, 29);
     }
 
     @Override
     protected void renderBurnIcon(GuiGraphics guiGraphics, int posX, int posY) {
         if (menu.isBeingBurned()) {
-            guiGraphics.blit(BACKGROUND, posX + 124, posY + 51, 176, 0, 17, 15); //fire (moved 5 pixels up)
+            guiGraphics.blit(BACKGROUND, posX + 124, posY + 51, 176, 0, 17, 15);
         }
     }
 

@@ -5,7 +5,6 @@
 		"4": "meadow:block/frame_logs",
 		"6": "meadow:block/pine_planks",
 		"7": "meadow:block/frame_fire",
-		"8": "block/water_still",
 		"9": "meadow:block/cooking_cauldron_side",
 		"11": "meadow:block/cooking_cauldron",
 		"particle": "meadow:block/pine_planks"
@@ -204,8 +203,8 @@
 			"to": [11.96, 19, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [17.616, 2.46, 6.47868]},
 			"faces": {
-				"up": {"uv": [4, 4, 12, 12], "rotation": 90, "texture": "#8", "cullface": "up"},
-				"down": {"uv": [8, 8, 16, 16], "rotation": 90, "texture": "#8", "cullface": "up"}
+				"up": {"uv": [4, 4, 12, 12], "rotation": 90, "texture": "#missing", "cullface": "up"},
+				"down": {"uv": [8, 8, 16, 16], "rotation": 90, "texture": "#missing", "cullface": "up"}
 			}
 		},
 		{
@@ -388,30 +387,35 @@
 			"name": "frame",
 			"origin": [8, 8, 8],
 			"color": 0,
+			"nbt": "{}",
 			"children": [0, 1, 2, 3, 4, 5]
 		},
 		{
 			"name": "chain",
 			"origin": [8, 8, 8],
 			"color": 0,
+			"nbt": "{}",
 			"children": [6, 7]
 		},
 		{
 			"name": "campfire_fire",
 			"origin": [8, 8, 8],
 			"color": 0,
+			"nbt": "{}",
 			"children": [8, 9, 10]
 		},
 		{
 			"name": "campfire_logs",
 			"origin": [8, 8, 8],
 			"color": 0,
+			"nbt": "{}",
 			"children": [11, 12, 13, 14]
 		},
 		{
 			"name": "cauldron",
 			"origin": [8, 8, 8],
 			"color": 0,
+			"nbt": "{}",
 			"children": [
 				15,
 				16,
@@ -423,6 +427,7 @@
 					"name": "handle",
 					"origin": [8, 8, 8],
 					"color": 0,
+					"nbt": "{}",
 					"children": [21, 22, 23, 24, 25]
 				}
 			]

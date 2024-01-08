@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.satisfyu.meadow.util.LineConnectingType;
+import net.satisfyu.meadow.util.MeadowBlockProperties;
 import org.jetbrains.annotations.Nullable;
 
 public class LineConnectingBlock extends Block {

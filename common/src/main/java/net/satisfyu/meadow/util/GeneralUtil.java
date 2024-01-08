@@ -56,12 +56,15 @@ public class GeneralUtil {
             if (!stackInSlot.isEmpty())
                 validStacks.add(stackInSlot);
         }
+
+        List<ItemStack> toRemove = new ArrayList<>();
+
         for (Ingredient entry : recipe) {
             boolean matches = false;
             for (ItemStack item : validStacks) {
                 if (entry.test(item)) {
                     matches = true;
-                    validStacks.remove(item);
+                    toRemove.add(item);
                     break;
                 }
             }
@@ -69,6 +72,8 @@ public class GeneralUtil {
                 return false;
             }
         }
+        validStacks.removeAll(toRemove);
+
         return true;
     }
 

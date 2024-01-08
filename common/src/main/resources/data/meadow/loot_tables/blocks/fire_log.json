@@ -50,6 +50,16 @@
               "function": "minecraft:set_count"
             },
             {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "meadow:fire_log",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "stage": "0"
+                  }
+                }
+              ],
               "function": "minecraft:explosion_decay"
             }
           ],

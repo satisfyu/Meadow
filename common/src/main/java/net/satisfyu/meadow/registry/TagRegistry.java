@@ -20,18 +20,10 @@ public class TagRegistry {
     public static final TagKey<Item> MILK = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "milk"));
     public static final TagKey<Item> CHEESE_BLOCKS = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "cheese_blocks"));
     public static final TagKey<Block> ALLOWS_COOKING = TagKey.create(Registries.BLOCK, new ResourceLocation(MOD_ID, "allows_cooking"));
-
     public static final TagKey<Item> WOODEN_MILK_BUCKET = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "wooden_milk_bucket"));
-
     public static final TagKey<Item> MILK_BUCKET = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "milk_bucket"));
-
     public static final TagKey<Item> SMALL_FLOWER = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "small_flower"));
-
     public static final TagKey<Item> BIG_FLOWER = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "big_flower"));
-
-    public static final TagKey<Item> CHEESE = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "cheese"));
-
     public static final TagKey<Block> CAN_NOT_CONNECT = TagKey.create(Registries.BLOCK, new ResourceLocation(MOD_ID, "can_not_connect"));
-
     public static final TagKey<Item> SHOVEL = TagKey.create(Registries.ITEM, new ResourceLocation(MOD_ID, "shovel"));
 }

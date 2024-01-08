@@ -29,7 +29,7 @@ public class MaterialRegistry {
 
         @Override
         public SoundEvent getEquipSound() {
-            return ArmorMaterials.LEATHER.getEquipSound();
+            return SoundRegistry.FUR.get();
         }
 
 
