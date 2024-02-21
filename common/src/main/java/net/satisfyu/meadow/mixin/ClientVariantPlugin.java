@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.mixin;
 
+import net.satisfyu.meadow.MeadowExpectPlatform;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -11,7 +12,7 @@ public class ClientVariantPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return false; //!MeadowExpectPlatform.isModLoaded("moremobvariants");
+        return !MeadowExpectPlatform.isModLoaded("moremobvariants");
     }
 
     // Boilerplate
