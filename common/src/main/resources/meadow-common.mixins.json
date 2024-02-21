@@ -13,7 +13,11 @@
     "NetherPortalBlockMixin",
     "SheepMixin",
 
-    "variant.MobVariantMixin"
+    "variant.MobVariantMixin",
+    "variant.ChickenVariantMixin",
+    "variant.CowVariantMixin",
+    "variant.SheepVariantMixin",
+    "variant.ThrownEggMixin"
   ],
   "injectors": {
     "defaultRequire": 1
