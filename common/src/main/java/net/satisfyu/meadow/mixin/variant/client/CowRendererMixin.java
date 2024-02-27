@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.mixin.variant;
+package net.satisfyu.meadow.mixin.variant.client;
 
 import net.minecraft.client.renderer.entity.CowRenderer;
 import net.minecraft.resources.ResourceLocation;
