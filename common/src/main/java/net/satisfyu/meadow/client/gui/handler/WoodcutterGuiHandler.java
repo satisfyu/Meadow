@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen.handler;
+package net.satisfyu.meadow.client.gui.handler;
 
 import com.google.common.collect.Lists;
 import net.minecraft.sounds.SoundSource;

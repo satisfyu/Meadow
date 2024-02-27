@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen;
+package net.satisfyu.meadow.client.gui;
 
 
 import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScreen;
@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.recipebook.CookingCauldronRecipeBook;
-import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
 
 
 public class CookingCauldronGui extends AbstractRecipeBookGUIScreen<CookingCauldronGuiHandler> {

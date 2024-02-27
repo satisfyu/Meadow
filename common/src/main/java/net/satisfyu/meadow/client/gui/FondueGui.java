@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen;
+package net.satisfyu.meadow.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
@@ -8,7 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.screen.handler.FondueGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
 
 public class FondueGui extends AbstractContainerScreen<FondueGuiHandler> {
 

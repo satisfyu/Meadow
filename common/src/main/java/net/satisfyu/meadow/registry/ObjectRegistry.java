@@ -11,7 +11,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.flag.FeatureFlag;
@@ -39,9 +38,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-
-import static de.cristelknight.doapi.Util.registerWithItem;
-import static de.cristelknight.doapi.common.registry.DoApiBlocks.BLOCK_REGISTRAR;
 
 @SuppressWarnings("unused")
 public class ObjectRegistry {
@@ -161,10 +157,10 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> FLOWER_POT_BIG = registerWithItem("flower_pot_big", () -> new BigFlowerPotBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
     public static final RegistrySupplier<Block> WOODEN_FLOWER_POT = registerWithItem("wooden_flower_pot", () -> new WoodenFlowerPotBlock(Blocks.AIR, BlockBehaviour.Properties.of().instabreak().noOcclusion()));
     public static final RegistrySupplier<Block> WOODEN_FLOWER_BOX = registerWithItem("flower_box", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
-    public static final RegistrySupplier<Item> FUR_HELMET = registerItem("fur_helmet", () -> new FurHead(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.EPIC)));
-    public static final RegistrySupplier<Item> FUR_CHESTPLATE = registerItem("fur_chestplate", () -> new FurChest(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
-    public static final RegistrySupplier<Item> FUR_LEGGINGS = registerItem("fur_leggings", () -> new FurLegs(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
-    public static final RegistrySupplier<Item> FUR_BOOTS = registerItem("fur_boots", () -> new FurBoots(MaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> FUR_HELMET = registerItem("fur_helmet", () -> new FurHead(ArmorMaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.EPIC)));
+    public static final RegistrySupplier<Item> FUR_CHESTPLATE = registerItem("fur_chestplate", () -> new FurChest(ArmorMaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> FUR_LEGGINGS = registerItem("fur_leggings", () -> new FurLegs(ArmorMaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> FUR_BOOTS = registerItem("fur_boots", () -> new FurBoots(ArmorMaterialRegistry.FUR_ARMOR, getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Block> SMALL_FIR = registerWithItem("small_fir", () -> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.ROSE_BUSH)));
     public static final RegistrySupplier<Block> PINE_SAPLING = registerWithItem("pine_sapling", () -> new SaplingBlock(new AbstractTreeGrower() {
         @Override

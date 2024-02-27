@@ -6,10 +6,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.screen.handler.CheeseFormGuiHandler;
-import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
-import net.satisfyu.meadow.client.screen.handler.FondueGuiHandler;
-import net.satisfyu.meadow.client.screen.handler.WoodcutterGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CheeseFormGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.WoodcutterGuiHandler;
 
 import java.util.function.Supplier;
 

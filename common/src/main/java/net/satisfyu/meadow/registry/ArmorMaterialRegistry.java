@@ -7,7 +7,7 @@ import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
-public class MaterialRegistry {
+public class ArmorMaterialRegistry {
 
     public static final ArmorMaterial FUR_ARMOR = new ArmorMaterial() {
 

@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen.handler;
+package net.satisfyu.meadow.client.gui.handler;
 
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;

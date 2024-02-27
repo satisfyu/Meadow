@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.satisfyu.meadow.client.screen.handler.WoodcutterGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.WoodcutterGuiHandler;
 
 import java.util.List;
 

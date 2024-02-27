@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen.handler;
+package net.satisfyu.meadow.client.gui.handler;
 
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import de.cristelknight.doapi.client.recipebook.handler.AbstractRecipeBookGUIScreenHandler;

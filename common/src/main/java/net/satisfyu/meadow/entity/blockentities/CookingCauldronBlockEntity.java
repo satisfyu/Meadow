@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.block.CookingCauldronBlock;
-import net.satisfyu.meadow.client.screen.handler.CookingCauldronGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;

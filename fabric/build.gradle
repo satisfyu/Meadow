@@ -19,6 +19,13 @@ configurations {
     developmentFabric.extendsFrom common
 }
 
+
+def jarFileName = 'letsdo-meadow-fabric'
+
+archivesBaseName = jarFileName
+
+
+
 repositories {
     maven {
         name "terraform wood api, trinkets"

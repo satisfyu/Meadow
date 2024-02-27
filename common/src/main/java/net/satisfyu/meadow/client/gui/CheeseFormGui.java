@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.screen;
+package net.satisfyu.meadow.client.gui;
 
 import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScreen;
 import net.minecraft.client.Minecraft;
@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.recipebook.CheeseFormRecipeBook;
-import net.satisfyu.meadow.client.screen.handler.CheeseFormGuiHandler;
+import net.satisfyu.meadow.client.gui.handler.CheeseFormGuiHandler;
 
 public class CheeseFormGui extends AbstractRecipeBookGUIScreen<CheeseFormGuiHandler> {
     public static final ResourceLocation BACKGROUND;

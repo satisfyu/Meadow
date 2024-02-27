@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "meadow",
-  "version": "1.3.3",
+  "version": "${version}",
   "name": "Meadow",
 "description": "A Mod offering a slight overhaul for the meadow biome by adding two new sub biomes and introducing the process of crafting cheese.",
   "authors": [
