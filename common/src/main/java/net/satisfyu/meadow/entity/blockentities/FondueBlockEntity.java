@@ -162,6 +162,16 @@ public class FondueBlockEntity extends BlockEntity implements MenuProvider, Impl
         return hasBreadInFirstSlot && r2 && r3;
     }
 
+    @Override
+    public boolean stillValid(Player player) {
+        assert this.level != null;
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
+            return false;
+        } else {
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5, (double)this.worldPosition.getY() + 0.5, (double)this.worldPosition.getZ() + 0.5) <= 64.0;
+        }
+    }
+
     private static boolean canInsertItemIntoOutputSlot(NonNullList<ItemStack> inventory, Item output) {
         return inventory.get(2).getItem() == output || inventory.get(2).isEmpty();
     }

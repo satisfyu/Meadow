@@ -19,6 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.satisfyu.meadow.block.CookingCauldronBlock;
 import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
@@ -26,7 +27,10 @@ import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
 import net.satisfyu.meadow.util.ImplementedInventory;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Objects;
 
 public class CookingCauldronBlockEntity extends BlockEntity implements ImplementedInventory, MenuProvider {
 
@@ -78,14 +82,14 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         ContainerHelper.loadAllItems(nbt, this.inventory);
         this.cookingTime = nbt.getInt("CookingTime");
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
+    protected void saveAdditional(@NotNull CompoundTag nbt) {
         super.saveAdditional(nbt);
         ContainerHelper.saveAllItems(nbt, this.inventory);
         nbt.putInt("CookingTime", this.cookingTime);
@@ -140,9 +144,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         final NonNullList<Ingredient> ingredients = recipe.getIngredients();
         boolean[] slotUsed = new boolean[INGREDIENTS_AREA];
 
-        for (int i = 0; i < ingredients.size(); i++) {
-            Ingredient ingredient = ingredients.get(i);
-
+        for (Ingredient ingredient : ingredients) {
             for (int j = 1; j <= INGREDIENTS_AREA; j++) {
                 ItemStack stack = getItem(j);
 
@@ -162,35 +164,38 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
 
     private ItemStack getRemainderItem(ItemStack stack) {
         if (stack.getItem().hasCraftingRemainingItem()) {
-            return new ItemStack(stack.getItem().getCraftingRemainingItem());
+            return new ItemStack(Objects.requireNonNull(stack.getItem().getCraftingRemainingItem()));
         }
         return ItemStack.EMPTY;
     }
 
-
-
-    public void tick(Level world, BlockPos pos, BlockState state, CookingCauldronBlockEntity blockEntity) {
+    public void tick(Level world, BlockPos pos, BlockState state) {
         if (world.isClientSide()) {
             return;
         }
+
         this.isBeingBurned = isBeingBurned();
+
         if (!this.isBeingBurned) {
-            if (state.getValue(CookingCauldronBlock.LIT))
+            if (state.getValue(CookingCauldronBlock.LIT)) {
                 world.setBlock(pos, state.setValue(CookingCauldronBlock.LIT, false), Block.UPDATE_ALL);
+            }
             return;
         }
-        CookingCauldronRecipe recipe = world.getRecipeManager().getRecipeFor(RecipeRegistry.COOKING.get(), this, world).orElse(null);
 
+        CookingCauldronRecipe recipe = world.getRecipeManager().getRecipeFor(RecipeRegistry.COOKING.get(), this, world).orElse(null);
         boolean canCraft = canCraft(recipe);
+
         if (canCraft) {
             this.cookingTime++;
             if (this.cookingTime >= MAX_COOKING_TIME) {
                 this.cookingTime = 0;
                 craft(recipe);
             }
-        } else if (!canCraft(recipe)) {
+        } else {
             this.cookingTime = 0;
         }
+
         if (canCraft) {
             world.setBlock(pos, state.setValue(CookingCauldronBlock.COOKING, true).setValue(CookingCauldronBlock.LIT, true), Block.UPDATE_ALL);
         } else if (state.getValue(CookingCauldronBlock.COOKING)) {
@@ -198,7 +203,14 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         } else if (state.getValue(CookingCauldronBlock.LIT) != isBeingBurned) {
             world.setBlock(pos, state.setValue(CookingCauldronBlock.LIT, isBeingBurned), Block.UPDATE_ALL);
         }
+
+        world.getEntitiesOfClass(Player.class, new AABB(pos).inflate(8.0), player -> true).forEach(player -> {
+            if (player.distanceToSqr((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5) > 64.0) {
+                player.closeContainer();
+            }
+        });
     }
+
 
     @Override
     public NonNullList<ItemStack> getItems() {
@@ -207,22 +219,22 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
 
     @Override
     public boolean stillValid(Player player) {
+        assert this.level != null;
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.distanceToSqr((double) this.worldPosition.getX() + 0.5, (double) this.worldPosition.getY() + 0.5, (double) this.worldPosition.getZ() + 0.5) <= 64.0;
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5, (double)this.worldPosition.getY() + 0.5, (double)this.worldPosition.getZ() + 0.5) <= 64.0;
         }
     }
 
-
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.nullToEmpty("");
     }
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
+    public AbstractContainerMenu createMenu(int syncId, @NotNull Inventory inv, @NotNull Player player) {
         return new CookingCauldronGuiHandler(syncId, inv, this, this.delegate);
     }
 }

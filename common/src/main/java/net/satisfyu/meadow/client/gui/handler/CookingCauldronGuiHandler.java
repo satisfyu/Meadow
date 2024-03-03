@@ -55,11 +55,6 @@ public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandle
         }
     }
 
-    @Override
-    public boolean stillValid(Player player) {
-        return true;
-    }
-
     public boolean isBeingBurned() {
         return propertyDelegate.get(1) != 0;
     }
