@@ -12,7 +12,6 @@ public class MeadowPlacedFeature {
 
     public static final ResourceKey<PlacedFeature> FOREST_TREES_KEY = registerKey("forest_trees");
     public static final ResourceKey<PlacedFeature> FOREST_SMALL_FIR_KEY = registerKey("forest_small_fir");
-
     public static final ResourceKey<PlacedFeature> MEADOW_ORE_LIMESTONE_KEY = registerKey("ores/ore_limestone");
     public static final ResourceKey<PlacedFeature> MEADOW_ORE_SALT_UPPER_KEY = registerKey("ores/ore_salt_upper");
     public static final ResourceKey<PlacedFeature> MEADOW_ORE_SALT_BURIED_KEY = registerKey("ores/ore_salt_buried");
@@ -20,6 +19,10 @@ public class MeadowPlacedFeature {
     public static final ResourceKey<PlacedFeature> MEADOW_LIMESTONE_SLAB_KEY = registerKey("terrain/meadow_limestone_slab");
     public static final ResourceKey<PlacedFeature> MEADOW_MOSSY_LIMESTONE_KEY = registerKey("terrain/meadow_mossy_limestone");
     public static final ResourceKey<PlacedFeature> MEADOW_REPLACE_STONE_WITH_LIMESTONE_KEY = registerKey("terrain/meadow_replace_stone_with_limestone");
+    public static final ResourceKey<PlacedFeature> MEADOW_REPLACE_GRASS_WITH_COBBLED_LIMESTONE_KEY = registerKey("terrain/meadow_replace_grass_with_cobbled_limestone");
+    public static final ResourceKey<PlacedFeature> MEADOW_REPLACE_GRASS_WITH_COARSE_DIRT_KEY = registerKey("terrain/meadow_replace_grass_with_coarse_dirt");
+    public static final ResourceKey<PlacedFeature> MEADOW_REPLACE_GRASS_WITH_MOSSY_COBBLED_LIMESTONE_KEY = registerKey("terrain/meadow_replace_grass_with_mossy_cobbled_limestone");
+
     public static final ResourceKey<PlacedFeature> MEADOW_GRASS_PATCH_KEY = registerKey("meadow_grass_patch");
     public static final ResourceKey<PlacedFeature> MEADOW_PINE_FALLEN_KEY = registerKey("meadow_pine_fallen");
     public static final ResourceKey<PlacedFeature> MEADOW_FLOWERS_PATCH_KEY = registerKey("meadow_flowers");

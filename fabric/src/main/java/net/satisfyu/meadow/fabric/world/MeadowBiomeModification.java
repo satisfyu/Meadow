@@ -30,11 +30,13 @@ public class MeadowBiomeModification {
         world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MeadowPlacedFeature.MEADOW_LIMESTONE_SLAB_KEY));
         world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MeadowPlacedFeature.MEADOW_MOSSY_LIMESTONE_KEY));
         world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MeadowPlacedFeature.MEADOW_REPLACE_STONE_WITH_LIMESTONE_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MeadowPlacedFeature.MEADOW_REPLACE_GRASS_WITH_COBBLED_LIMESTONE_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MeadowPlacedFeature.MEADOW_REPLACE_GRASS_WITH_COARSE_DIRT_KEY));
+        world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MeadowPlacedFeature.MEADOW_REPLACE_GRASS_WITH_MOSSY_COBBLED_LIMESTONE_KEY));
         world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getEffects().setGrassColor(9286496));
         world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getEffects().setFoliageColor(5866311));
         world.add(ModificationPhase.REMOVALS, meadowBiomes, ctx -> ctx.getGenerationSettings().removeFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MeadowPlacedFeature.MEADOW_MC_FLOWERS));
         world.add(ModificationPhase.REMOVALS, meadowBiomes, ctx -> ctx.getGenerationSettings().removeFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MeadowPlacedFeature.MEADOW_MC_TREES));
-
     }
 
     private static Predicate<BiomeSelectionContext> getMeadowSelector() {
