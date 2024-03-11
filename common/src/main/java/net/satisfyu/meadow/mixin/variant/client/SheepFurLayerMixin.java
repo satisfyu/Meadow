@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.SheepFurLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.animal.Sheep;
-import net.satisfyu.meadow.entity.sheep.SheepVar;
+import net.satisfyu.meadow.entity.SheepVar;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

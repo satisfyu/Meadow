@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.bear;
+package net.satisfyu.meadow.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
@@ -7,6 +7,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.satisfyu.meadow.client.MeadowClient;
+import net.satisfyu.meadow.client.model.BrownBearModel;
+import net.satisfyu.meadow.entity.BrownBear;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 @Environment(EnvType.CLIENT)

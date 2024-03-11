@@ -10,7 +10,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.satisfyu.meadow.entity.chicken.ChickenVar;
+import net.satisfyu.meadow.entity.ChickenVar;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

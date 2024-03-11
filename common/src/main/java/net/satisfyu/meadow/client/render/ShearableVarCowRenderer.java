@@ -1,9 +1,11 @@
-package net.satisfyu.meadow.entity.cow.shearable;
+package net.satisfyu.meadow.client.render;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.satisfyu.meadow.client.MeadowClient;
+import net.satisfyu.meadow.client.model.WoolyCowModel;
+import net.satisfyu.meadow.entity.ShearableVarCow;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class ShearableVarCowRenderer extends MobRenderer<ShearableVarCow, WoolyCowModel> {

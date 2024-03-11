@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.cow.shearable;
+package net.satisfyu.meadow.client.model;
 
 import net.minecraft.client.model.CowModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -7,6 +7,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.satisfyu.meadow.entity.ShearableVarCow;
 
 public class WoolyCowModel extends CowModel<ShearableVarCow> {
 

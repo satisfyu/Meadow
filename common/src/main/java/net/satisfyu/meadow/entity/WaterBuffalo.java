@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.buffalo;
+package net.satisfyu.meadow.entity;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;

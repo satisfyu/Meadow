@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.sheep;
+package net.satisfyu.meadow.entity;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.Util;

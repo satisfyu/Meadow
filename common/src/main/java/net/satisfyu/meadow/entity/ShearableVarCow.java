@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.cow.shearable;
+package net.satisfyu.meadow.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -33,6 +33,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.util.MeadowIdentifier;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ShearableVarCow extends Animal implements Shearable, VariantHolder<ShearableCowVar> {
@@ -59,7 +60,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Override
-    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+    public @NotNull InteractionResult mobInteract(Player player, @NotNull InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (itemStack.is(Items.SHEARS)) {
             if (!this.level().isClientSide && this.readyForShearing()) {
@@ -80,7 +81,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Override
-    public void shear(SoundSource shearedSoundCategory) {
+    public void shear(@NotNull SoundSource shearedSoundCategory) {
         this.level().playSound(null, this, SoundEvents.SHEEP_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
         this.setSheared(true);
         int i = 1 + this.random.nextInt(3);
@@ -190,7 +191,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
 
     @Nullable
     @Override
-    public ShearableVarCow getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+    public ShearableVarCow getBreedOffspring(@NotNull ServerLevel serverLevel, @NotNull AgeableMob ageableMob) {
         ShearableVarCow cow = EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get().create(serverLevel);
         if(cow == null) return null;
 
@@ -204,7 +205,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData, @Nullable CompoundTag compoundTag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor serverLevelAccessor, @NotNull DifficultyInstance difficultyInstance, @NotNull MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData, @Nullable CompoundTag compoundTag) {
 
         ShearableCowVar variant;
         if (spawnGroupData instanceof ShearableVarCowGroupData data) {
@@ -226,7 +227,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         setTypeVariant(variant.getId() & 255 | this.getTypeVariant() & -256);
     }
     @Override
-    public ShearableCowVar getVariant() {
+    public @NotNull ShearableCowVar getVariant() {
         return ShearableCowVar.byId(getTypeVariant() & 255);
     }
     private void setTypeVariant(int i) {
@@ -264,7 +265,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         return SoundEvents.COW_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
         return SoundEvents.COW_HURT;
     }
 
@@ -272,7 +273,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         return SoundEvents.COW_DEATH;
     }
 
-    protected void playStepSound(BlockPos blockPos, BlockState blockState) {
+    protected void playStepSound(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
     }
 
@@ -280,7 +281,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         return 0.4F;
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions entityDimensions) {
+    protected float getStandingEyeHeight(@NotNull Pose pose, @NotNull EntityDimensions entityDimensions) {
         return this.isBaby() ? entityDimensions.height * 0.95F : 1.3F;
     }
 }

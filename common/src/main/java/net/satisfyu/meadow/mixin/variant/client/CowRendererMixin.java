@@ -3,7 +3,7 @@ package net.satisfyu.meadow.mixin.variant.client;
 import net.minecraft.client.renderer.entity.CowRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.animal.Cow;
-import net.satisfyu.meadow.entity.cow.CowVar;
+import net.satisfyu.meadow.entity.CowVar;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

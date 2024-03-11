@@ -259,7 +259,7 @@
   "item.meadow.wooden_warped_milk_bucket": "Дерев'яне відро химерного молока",
   "item.meadow.wooden_water_bucket": "Дерев'яне відро води",
   "item.meadow.wooly_cow_spawn_egg": "Яйце виклику волохатої корови",
-  "itemGroup.meadow.meadow_tab": "Meadow",
+  "creativetab.meadow.tab": "[Let's Do] Meadow",
   "meadow.tooltip.fur_armor": "Хутряні обладунки:",
   "meadow.tooltip.fur_armor2": "Бонус повного комплекту:",
   "meadow.tooltip.fur_armor3": "Стійкість до відкидання +2",

@@ -1,9 +1,10 @@
-package net.satisfyu.meadow.entity.bear;
+package net.satisfyu.meadow.client.model;
 
 import net.minecraft.client.model.PolarBearModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.satisfyu.meadow.entity.BrownBear;
 
 public class BrownBearModel extends PolarBearModel<BrownBear> {
     public BrownBearModel(ModelPart root) {

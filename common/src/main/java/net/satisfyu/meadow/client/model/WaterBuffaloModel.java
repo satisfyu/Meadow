@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity.buffalo;
+package net.satisfyu.meadow.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -6,6 +6,7 @@ import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.satisfyu.meadow.entity.WaterBuffalo;
 
 public class WaterBuffaloModel extends QuadrupedModel<WaterBuffalo> {
     private final ModelPart body;

@@ -11,9 +11,9 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.PolarBear;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.entity.bear.BrownBear;
-import net.satisfyu.meadow.entity.buffalo.WaterBuffalo;
-import net.satisfyu.meadow.entity.cow.shearable.ShearableVarCow;
+import net.satisfyu.meadow.entity.BrownBear;
+import net.satisfyu.meadow.entity.WaterBuffalo;
+import net.satisfyu.meadow.entity.ShearableVarCow;
 
 import java.util.function.Supplier;
 

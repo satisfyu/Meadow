@@ -1,9 +1,11 @@
-package net.satisfyu.meadow.entity.buffalo;
+package net.satisfyu.meadow.client.render;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.satisfyu.meadow.client.MeadowClient;
+import net.satisfyu.meadow.client.model.WaterBuffaloModel;
+import net.satisfyu.meadow.entity.WaterBuffalo;
 
 import static net.satisfyu.meadow.Meadow.MOD_ID;
 
