@@ -36,6 +36,12 @@
               },
               {
                 "Name": "meadow:saxifrage"
+              },
+              {
+                "Name": "meadow:eriophorum_tall",
+                "Properties": {
+                  "half": "lower"
+                }
               }
             ]
           }

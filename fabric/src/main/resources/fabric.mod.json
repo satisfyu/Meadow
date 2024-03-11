@@ -23,9 +23,6 @@
     "client": [
       "net.satisfyu.meadow.fabric.client.MeadowFabricClient"
     ],
-    "terrablender":  [
-      "net.satisfyu.meadow.fabric.terrablender.TerrablenderFabric"
-    ],
     "doapi": [
       "net.satisfyu.meadow.util.MeadowDoAPI"
     ],

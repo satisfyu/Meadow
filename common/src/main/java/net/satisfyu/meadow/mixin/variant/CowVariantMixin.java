@@ -20,15 +20,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Cow.class)
 public abstract class CowVariantMixin extends MobVariantMixin {
-
-
-    @Override
-    protected void onTick(CallbackInfo ci) {
-        if (CowVar.getVariant(getCow()).equals(CowVar.ALBINO) && !getCow().isBaby() && getCow().level().isDay() && getCow().level().canSeeSky(getCow().blockPosition())) {
-            getCow().hurt(getCow().level().damageSources().inFire(), 0.5f);
-        }
-    }
-
     @Override
     protected void onFinalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, SpawnGroupData spawnGroupData, CompoundTag compoundTag, CallbackInfoReturnable<SpawnGroupData> cir) {
         CowVar.setVariant(getCow(), CowVar.getRandomVariant(serverLevelAccessor, getCow().blockPosition(), mobSpawnType.equals(MobSpawnType.SPAWN_EGG)));

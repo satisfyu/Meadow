@@ -3,12 +3,11 @@
   "biomes": [
     "minecraft:dark_forest",
     "minecraft:forest",
-    "meadow:meadow_clearing",
-    "meadow:meadow_forest"
+    "minecraft:meadow"
   ],
   "spawners": {
     "type": "meadow:brown_bear",
-    "weight": 5,
+    "weight": 9,
     "minCount": 2,
     "maxCount": 3
   }

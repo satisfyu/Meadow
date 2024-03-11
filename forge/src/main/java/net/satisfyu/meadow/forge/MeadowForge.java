@@ -15,7 +15,6 @@ import net.satisfyu.meadow.forge.capabilities.MeadowCapabilities;
 import net.satisfyu.meadow.forge.networking.MeadowNetworkForge;
 import net.satisfyu.meadow.registry.CompostableRegistry;
 import net.satisfyu.meadow.registry.EntityRegistry;
-import net.satisfyu.meadow.terrablender.MeadowRegion;
 
 @Mod(Meadow.MOD_ID)
 public class MeadowForge {
@@ -32,10 +31,7 @@ public class MeadowForge {
 
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-                    MeadowRegion.loadTerrablender();
-                    CompostableRegistry.registerCompostable();
-                }
+        event.enqueueWork(CompostableRegistry::registerCompostable
         );
         Meadow.commonSetup();
     }

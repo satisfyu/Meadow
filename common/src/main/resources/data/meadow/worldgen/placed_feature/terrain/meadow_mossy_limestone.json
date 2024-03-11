@@ -1,16 +1,12 @@
 {
-  "feature": "meadow:meadow_trees",
+  "feature": "meadow:terrain/meadow_mossy_limestone",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 44
+      "type": "minecraft:count",
+      "count": 2
     },
     {
       "type": "minecraft:in_square"
-    },
-    {
-      "type": "minecraft:surface_water_depth_filter",
-      "max_water_depth": 0
     },
     {
       "type": "minecraft:heightmap",

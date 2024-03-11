@@ -12,10 +12,9 @@
     "GoatMixin",
     "NetherPortalBlockMixin",
     "SheepMixin",
-
-    "variant.MobVariantMixin",
     "variant.ChickenVariantMixin",
     "variant.CowVariantMixin",
+    "variant.MobVariantMixin",
     "variant.SheepVariantMixin",
     "variant.ThrownEggMixin"
   ],
