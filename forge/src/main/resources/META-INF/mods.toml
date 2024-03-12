@@ -36,13 +36,6 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.meadow]]
-modId = "terrablender"
-mandatory = true
-versionRange = "[3.0.0.163,)"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.meadow]]
 modId = "doapi"
 mandatory = true
 versionRange = "[1.2.8,)"
