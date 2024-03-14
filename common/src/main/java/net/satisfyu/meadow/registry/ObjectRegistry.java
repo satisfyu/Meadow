@@ -165,7 +165,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> PINE_SAPLING = registerWithItem("pine_sapling", () -> new SaplingBlock(new AbstractTreeGrower() {
         @Override
         protected @NotNull ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource random, boolean bees) {
-            return GeneralUtil.configuredFeatureKey("pine");
+            return GeneralUtil.configuredFeatureKey("forest_pine");
         }
     }, BlockBehaviour.Properties.copy(Blocks.SPRUCE_SAPLING)));
     public static final RegistrySupplier<Block> ALPINE_POPPY = registerWithItem("alpine_poppy", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
