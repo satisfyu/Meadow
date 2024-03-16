@@ -13,8 +13,10 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("deprecation")
 public class MainStoveBlock extends FacingBlock {
 
     public static final BooleanProperty CONNECTED_UP = BooleanProperty.create("connected_up");
@@ -30,7 +32,7 @@ public class MainStoveBlock extends FacingBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         if (state.getValue(CONNECTED_DOWN)) return super.getShape(state, world, pos, context);
         return SHAPE_BIG;
     }
@@ -51,7 +53,7 @@ public class MainStoveBlock extends FacingBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         if (!world.isClientSide()) {
             if (direction == Direction.DOWN || direction == Direction.UP) {
                 if (!isConnected(state, direction)) {

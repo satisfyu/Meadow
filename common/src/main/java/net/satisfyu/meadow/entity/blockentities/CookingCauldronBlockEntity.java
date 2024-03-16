@@ -19,7 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.satisfyu.meadow.block.CookingCauldronBlock;
 import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
@@ -95,6 +94,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         nbt.putInt("CookingTime", this.cookingTime);
     }
 
+    @SuppressWarnings("deprecation")
     public boolean isBeingBurned() {
         if (getLevel() == null)
             throw new NullPointerException("Null world invoked");
@@ -203,12 +203,6 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         } else if (state.getValue(CookingCauldronBlock.LIT) != isBeingBurned) {
             world.setBlock(pos, state.setValue(CookingCauldronBlock.LIT, isBeingBurned), Block.UPDATE_ALL);
         }
-
-        world.getEntitiesOfClass(Player.class, new AABB(pos).inflate(8.0), player -> true).forEach(player -> {
-            if (player.distanceToSqr((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5) > 64.0) {
-                player.closeContainer();
-            }
-        });
     }
 
 

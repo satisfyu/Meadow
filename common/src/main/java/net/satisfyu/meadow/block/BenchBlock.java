@@ -15,9 +15,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.util.LineConnectingType;
+import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("deprecation")
 public class BenchBlock extends LineConnectingBlock {
-
     public static final VoxelShape[] TOP_SHAPE;
     public static final VoxelShape[] BOTTOM_SINGLE_SHAPE;
     public static final VoxelShape[] BOTTOM_MULTI_SHAPE;
@@ -27,7 +28,7 @@ public class BenchBlock extends LineConnectingBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         boolean isX = state.getValue(FACING).getAxis() == Direction.Axis.X;
         Direction direction = state.getValue(FACING);
 
@@ -54,7 +55,7 @@ public class BenchBlock extends LineConnectingBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         return ChairUtil.onUse(world, player, hand, hit, 0);
     }
 
