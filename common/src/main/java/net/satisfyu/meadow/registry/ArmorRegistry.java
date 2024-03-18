@@ -1,12 +1,11 @@
 package net.satisfyu.meadow.registry;
 
-import com.mojang.datafixers.util.Pair;
-import de.cristelknight.doapi.client.render.feature.FullCustomArmor;
+import de.cristelknight.doapi.client.render.feature.CustomArmorManager;
+import de.cristelknight.doapi.client.render.feature.CustomArmorSet;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
@@ -41,10 +40,14 @@ public class ArmorRegistry {
         models.put(ObjectRegistry.FUR_HELMET.get(), new FurArmorHat<>(modelLoader.bakeLayer(FurArmorHat.LAYER_LOCATION)));
     }
 
-    public static  <T extends LivingEntity> void registerArmorModels(Map<FullCustomArmor, Pair<HumanoidModel<T>, HumanoidModel<T>>> models, EntityModelSet modelLoader) {
-        models.put(new FullCustomArmor(ObjectRegistry.FUR_BOOTS.get(), ObjectRegistry.FUR_CHESTPLATE.get(), ObjectRegistry.FUR_LEGGINGS.get(), new MeadowIdentifier("textures/models/armor/fur.png")), new Pair<>(new FurArmorOuter<>(modelLoader.bakeLayer(FurArmorOuter.LAYER_LOCATION)), new FurArmorInner<>(modelLoader.bakeLayer(FurArmorInner.LAYER_LOCATION))));
+    public static <T extends LivingEntity> void registerArmorModels(CustomArmorManager<T> armors, EntityModelSet modelLoader) {
+        armors.addArmor(new CustomArmorSet<T>(ObjectRegistry.FUR_HELMET.get(), ObjectRegistry.FUR_CHESTPLATE.get(), ObjectRegistry.FUR_LEGGINGS.get(), ObjectRegistry.FUR_BOOTS.get())
+                .setTexture(new MeadowIdentifier("fur"))
+                .setOuterModel(new FurArmorOuter<>(modelLoader.bakeLayer(FurArmorOuter.LAYER_LOCATION)))
+                .setInnerModel(new FurArmorInner<>(modelLoader.bakeLayer(FurArmorInner.LAYER_LOCATION))));
     }
 
+    @SuppressWarnings("all")
     public static void appendToolTip(@NotNull List<Component> tooltip) {
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
