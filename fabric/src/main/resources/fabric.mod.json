@@ -3,18 +3,18 @@
   "id": "meadow",
   "version": "${version}",
   "name": "Meadow",
-"description": "A Mod offering a slight overhaul for the meadow biome by adding two new sub biomes and introducing the process of crafting cheese.",
+"description": "A small Mod that aims to improve the meadow biome and adds a new way to create food. It also brings back a few animals from Minecraft:Earth and gives and make them actually useful.",
   "authors": [
     "satisfy",
     "Cristelknight999",
     "BMJO"
   ],
   "contact": {
-    "homepage": "https://legacy.curseforge.com/minecraft/mc-mods/welcome-to-meadow",
+    "homepage": "https://legacy.curseforge.com/minecraft/mc-mods/lets-do-meadow",
     "sources": "https://github.com/satisfyu/Meadow/"
   },
   "icon": "pack.png",
-  "license": "ARR",
+  "license": "Custom",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -50,6 +50,6 @@
     "fabric": "*",
     "minecraft": ">=1.20",
     "architectury": ">=9.1.10",
-    "doapi": ">=1.2.8"
+    "doapi": ">=1.2.9"
   }
 }

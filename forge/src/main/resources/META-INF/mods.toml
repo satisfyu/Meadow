@@ -1,7 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[46,)"
-#issueTrackerURL = ""
-license = "ARR"
+license = "Custom"
 
 [[mods]]
 modId = "meadow"
@@ -9,9 +8,7 @@ version = "${version}"
 displayName = "Meadow"
 authors = ["satisfy", "Cristelknight999", "BMJO"]
 description = '''
-A small mod Vanilla+ Mod that aims to improve the meadow biome and adds a new way to create food.
-It also brings back a few animals from Minecraft:Earth and gives them a reason to be there beside of looking pretty.
-'''
+A small Mod that aims to improve the meadow biome and adds a new way to create food. It also brings back a few animals from Minecraft:Earth and gives and make them actually useful.'''
 logoFile = "pack.png"
 
 [[dependencies.meadow]]
@@ -38,6 +35,6 @@ side = "BOTH"
 [[dependencies.meadow]]
 modId = "doapi"
 mandatory = true
-versionRange = "[1.2.8,)"
+versionRange = "[1.2.9,)"
 ordering = "AFTER"
 side = "BOTH"
