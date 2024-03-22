@@ -5,10 +5,11 @@ license = "Custom"
 [[mods]]
 modId = "meadow"
 version = "${version}"
-displayName = "Meadow"
+displayName = "[Let's Do] Meadow"
 authors = ["satisfy", "Cristelknight999", "BMJO"]
 description = '''
-A small Mod that aims to improve the meadow biome and adds a new way to create food. It also brings back a few animals from Minecraft:Earth and gives and make them actually useful.'''
+Hey Wanderer! Sit down, enjoy a piece of cheese, and take a look at the new mountain pasture - cliffs, beautiful forests, clearings, and lots of colorful flowers.
+'''
 logoFile = "pack.png"
 
 [[dependencies.meadow]]

@@ -2,12 +2,10 @@
   "schemaVersion": 1,
   "id": "meadow",
   "version": "${version}",
-  "name": "Meadow",
-"description": "A small Mod that aims to improve the meadow biome and adds a new way to create food. It also brings back a few animals from Minecraft:Earth and gives and make them actually useful.",
+  "name": "[Let's Do] Meadow",
+"description": "Hey Wanderer! Sit down, enjoy a piece of cheese, and take a look at the new mountain pasture - cliffs, beautiful forests, clearings, and lots of colorful flowers!",
   "authors": [
-    "satisfy",
-    "Cristelknight999",
-    "BMJO"
+    "satisfy, Cristelknight999, BMJO"
   ],
   "contact": {
     "homepage": "https://legacy.curseforge.com/minecraft/mc-mods/lets-do-meadow",
