@@ -176,6 +176,7 @@ public class TabRegistry {
                 out.accept(BoatsAndSignsRegistry.PINE_BOAT.get());
                 out.accept(BoatsAndSignsRegistry.PINE_CHEST_BOAT.get());
                 out.accept(ObjectRegistry.PINE_BUTTON.get());
+                out.accept(ObjectRegistry.MEADOW_STANDARD.get());
             })
             .build());
 

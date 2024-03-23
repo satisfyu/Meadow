@@ -300,7 +300,7 @@
   "tooltip.meadow.thankyou_2": "Wenn platziert:",
   "tooltip.meadow.thankyou_3": "Danke, dass du Meadow spielst!",
   "tooltip.meadow.thankyou_4": "Erhöht die Abbaugeschwindigkeit um 10% in einem Radius von 8 Blöcken",
-  "item.meadow.meadow_standard": "Vervollständigungsbanner: §Meadow",
+  "item.meadow.meadow_standard": "Vervollständigungsbanner: \u00a7aMeadow",
   "entity.meadow.warped_cow": "Netherkuh",
   "entity.meadow.wooly_cow": "Wolliges Rind",
   "entity.meadow.chicken_1": "Alpenhuhn",
