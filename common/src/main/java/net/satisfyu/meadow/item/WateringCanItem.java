@@ -31,6 +31,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.satisfyu.meadow.block.WateringCanBlock;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class WateringCanItem extends BlockItem {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
+    public @NotNull InteractionResult useOn(UseOnContext context) {
         Player playerEntity = context.getPlayer();
         if (playerEntity == null || playerEntity.isShiftKeyDown()) return super.useOn(context);
         ItemStack stack = context.getItemInHand();
