@@ -31,8 +31,7 @@ public class MeadowForge {
 
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(CompostableRegistry::registerCompostable
-        );
+        event.enqueueWork(CompostableRegistry::registerCompostable);
         Meadow.commonSetup();
     }
 
