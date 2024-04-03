@@ -9,12 +9,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -44,7 +45,33 @@ public class WateringCanItem extends BlockItem {
     @Override
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
         super.inventoryTick(itemStack, level, entity, i, bl);
-        //itemStack.setDamageValue(itemStack.getOrCreateTag().)
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+        ItemStack itemStack = player.getItemInHand(interactionHand);
+        if(itemStack.getDamageValue() == 0) return InteractionResultHolder.pass(itemStack);
+
+        BlockHitResult blockHitResult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
+        if (blockHitResult.getType() == HitResult.Type.MISS) {
+            return InteractionResultHolder.pass(itemStack);
+        } else {
+            if (blockHitResult.getType() == HitResult.Type.BLOCK) {
+                BlockPos blockPos = blockHitResult.getBlockPos();
+                if (!level.mayInteract(player, blockPos)) {
+                    return InteractionResultHolder.pass(itemStack);
+                }
+
+                if (level.getFluidState(blockPos).is(FluidTags.WATER)) {
+                    level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
+                    level.gameEvent(player, GameEvent.FLUID_PICKUP, blockPos);
+                    itemStack.setDamageValue(0);
+                    return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
+                }
+            }
+
+            return InteractionResultHolder.pass(itemStack);
+        }
     }
 
     @Override
@@ -54,21 +81,6 @@ public class WateringCanItem extends BlockItem {
         ItemStack stack = context.getItemInHand();
 
         Level world = context.getLevel();
-        BlockHitResult hitResult = WateringCanItem.getPlayerPOVHitResult(world, playerEntity, ClipContext.Fluid.SOURCE_ONLY);
-        if (hitResult.getType() == HitResult.Type.BLOCK) {
-            BlockPos blockPos = hitResult.getBlockPos();
-            if (!world.mayInteract(playerEntity, blockPos)) {
-                return InteractionResult.PASS;
-            }
-            if (world.getFluidState(blockPos).is(FluidTags.WATER)) {
-                world.playSound(playerEntity, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0f, 1.0f);
-                world.gameEvent(playerEntity, GameEvent.FLUID_PICKUP, blockPos);
-                playerEntity.awardStat(Stats.ITEM_USED.get(this));
-                stack.setDamageValue(0);
-                return InteractionResult.SUCCESS;
-            }
-        }
-
 
         if (stack.getDamageValue() >= stack.getMaxDamage() && !playerEntity.getAbilities().instabuild)
             return InteractionResult.PASS;
@@ -80,6 +92,7 @@ public class WateringCanItem extends BlockItem {
             }
             return InteractionResult.sidedSuccess(world.isClientSide);
         }
+
         BlockState blockState = world.getBlockState(blockPos);
         boolean bl = blockState.isFaceSturdy(world, blockPos, context.getClickedFace());
         if (bl && WateringCanItem.useOnGround(stack, world, blockPos2, context.getClickedFace(), playerEntity)) {

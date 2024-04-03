@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -21,6 +23,7 @@ import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -51,13 +54,12 @@ public class WateringCanBlock extends FacingBlock {
     });
 
     @Override
-    public void playerWillDestroy(@NotNull Level level, BlockPos blockPos, @NotNull BlockState blockState, @NotNull Player player) {
+    public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
+        List<ItemStack> drops = super.getDrops(blockState, builder);
         ItemStack stack = new ItemStack(this);
         stack.setDamageValue(blockState.getValue(DAMAGE));
-        ItemEntity itemEntity = new ItemEntity(level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), stack);
-        itemEntity.setDefaultPickUpDelay();
-        level.addFreshEntity(itemEntity);
-        super.playerWillDestroy(level, blockPos, blockState, player);
+        drops.add(stack);
+        return drops;
     }
 
     @Override
