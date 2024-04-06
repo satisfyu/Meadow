@@ -27,9 +27,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public class WateringCanBlock extends FacingBlock {
 
-    public static final IntegerProperty DAMAGE = IntegerProperty.create("damage", 0, 25);
+    public static final IntegerProperty DAMAGE = IntegerProperty.create("damage", 0, 5);
 
     public WateringCanBlock(Properties settings) {
         super(settings);
@@ -54,7 +55,7 @@ public class WateringCanBlock extends FacingBlock {
     });
 
     @Override
-    public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
         List<ItemStack> drops = super.getDrops(blockState, builder);
         ItemStack stack = new ItemStack(this);
         stack.setDamageValue(blockState.getValue(DAMAGE));
@@ -63,7 +64,7 @@ public class WateringCanBlock extends FacingBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE.get(state.getValue(FACING));
     }
 

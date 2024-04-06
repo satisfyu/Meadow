@@ -168,7 +168,7 @@ public class WateringCanItem extends BlockItem {
     public static void damage(ItemStack stack, Player entity) {
         if (entity.getAbilities().instabuild) return;
         int damage = stack.getDamageValue();
-        if (damage < 25) {
+        if (damage < 5) {
             stack.setDamageValue(damage + 1);
         }
     }
