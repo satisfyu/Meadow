@@ -61,7 +61,7 @@ public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
     }
 
     static {
-        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.vinery.recipebook.toggleRecipes.cheeseable");
+        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.meadow.recipebook.toggleRecipes.cheeseable");
     }
 
     @Override

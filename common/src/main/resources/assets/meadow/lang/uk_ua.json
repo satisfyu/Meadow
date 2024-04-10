@@ -192,7 +192,7 @@
   "entity.minecraft.villager.hermit": "Самітник",
   "gui.meadow.recipebook.toggleRecipes.cheeseable": "Можна приготувати",
   "gui.meadow.recipebook.toggleRecipes.cookable": "Можна приготувати",
-  "gui.vinery.recipebook.toggleRecipes.cheeseable": "Доступні для приготування",
+  "gui.meadow.recipebook.toggleRecipes.cheeseable": "Доступні для приготування",
   "item.meadow.alpine_salt": "Альпійська сіль",
   "item.meadow.bear_stew": "Ведмеже рагу",
   "item.meadow.brown_bear_spawn_egg": "Яйце виклику коричневого ведмедя",

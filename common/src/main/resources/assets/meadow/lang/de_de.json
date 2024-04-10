@@ -308,6 +308,7 @@
   "block.meadow.wooden_powder_snow_cauldron": "Holzkessel",
   "creativetab.meadow.tab": "[Let's Do] Meadow",
   "block.meadow.climbing_rope": "Seil",
+  "gui.meadow.recipebook.toggleRecipes.cheeseable": "Zeige herstellbares",
   "rei.meadow.wood_cutter_category": "Holzhacker",
   "rei.meadow.fondue_category": "Fondue",
   "rei.meadow.fondue_category.amount": "%s pro Brennstoff"
