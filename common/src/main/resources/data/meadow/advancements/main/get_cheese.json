@@ -103,12 +103,24 @@
   },
   "requirements": [
     [
-      "cheese_block",
-      "sheep_cheese_block",
-      "grain_cheese_block",
-      "buffalo_cheese_block",
-      "goat_cheese_block",
-      "warped_cheese_block",
+      "cheese_block"
+    ],
+    [
+      "sheep_cheese_block"
+    ],
+    [
+      "grain_cheese_block"
+    ],
+    [
+      "buffalo_cheese_block"
+    ],
+    [
+      "goat_cheese_block"
+    ],
+    [
+      "warped_cheese_block"
+    ],
+    [
       "amethyst_cheese_block"
     ]
   ]
