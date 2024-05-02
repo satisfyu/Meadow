@@ -8,12 +8,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.block.FlowerBoxBlock;
-import net.satisfyu.meadow.entity.blockentities.FlowerBoxBlockEntity;
+import net.satisfyu.meadow.entity.FlowerBoxBlockEntity;
 
-import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
+import static de.cristelknight.doapi.client.ClientUtil.renderBlock;
 
 public class FlowerBoxBlockEntityRenderer implements BlockEntityRenderer<FlowerBoxBlockEntity> {
 
+    @SuppressWarnings("unused")
     public FlowerBoxBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
 
     }

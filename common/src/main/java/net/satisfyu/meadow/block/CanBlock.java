@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -30,7 +31,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.registry.ObjectRegistry;
-import net.satisfyu.meadow.util.GeneralUtil;
 
 import java.util.HashMap;
 import java.util.List;

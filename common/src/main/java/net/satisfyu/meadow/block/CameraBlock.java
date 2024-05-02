@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -28,7 +29,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.registry.SoundRegistry;
-import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -103,10 +103,5 @@ public class CameraBlock extends Block {
     @Override
     public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.meadow.camera.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

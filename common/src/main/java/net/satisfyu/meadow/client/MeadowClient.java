@@ -17,8 +17,6 @@ import net.satisfyu.meadow.client.gui.CheeseFormGui;
 import net.satisfyu.meadow.client.gui.CookingCauldronGui;
 import net.satisfyu.meadow.client.gui.FondueGui;
 import net.satisfyu.meadow.client.gui.WoodcutterGui;
-import net.satisfyu.meadow.client.model.BrownBearModel;
-import net.satisfyu.meadow.client.render.BrownBearRenderer;
 import net.satisfyu.meadow.client.model.WaterBuffaloModel;
 import net.satisfyu.meadow.client.render.WaterBuffaloRenderer;
 import net.satisfyu.meadow.client.render.ShearableVarCowRenderer;
@@ -83,14 +81,12 @@ public class MeadowClient {
     }
 
     private static void registerEntityRenderers() {
-        EntityRendererRegistry.register(EntityRegistry.BROWN_BEAR, BrownBearRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, ShearableVarCowRenderer::new);
 
         EntityRendererRegistry.register(EntityRegistry.WATER_BUFFALO, WaterBuffaloRenderer::new);
     }
 
     public static void registerEntityModelLayers() {
-        EntityModelLayerRegistry.register(BROWN_BEAR_MODEL_LAYER, BrownBearModel::createBodyLayer);
         EntityModelLayerRegistry.register(SHEARABLE_MEADOW_COW_MODEL_LAYER, WoolyCowModel::createBodyLayer);
         EntityModelLayerRegistry.register(WATER_BUFFALO_MODEL_LAYER, WaterBuffaloModel::getTexturedModelData);
 

@@ -15,8 +15,6 @@ public class ClientVariantPlugin implements IMixinConfigPlugin {
         return !MeadowExpectPlatform.isModLoaded("moremobvariants");
     }
 
-    // Boilerplate
-
     @Override
     public void onLoad(String mixinPackage) {
 

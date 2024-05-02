@@ -23,9 +23,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfyu.meadow.client.gui.handler.WoodcutterGuiHandler;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class WoodcutterBlock extends Block {
     private static final Component TITLE = Component.translatable("container.woodcutter");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -42,7 +44,7 @@ public class WoodcutterBlock extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (world.isClientSide) {
             return InteractionResult.SUCCESS;
         }
@@ -56,7 +58,7 @@ public class WoodcutterBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
@@ -66,17 +68,17 @@ public class WoodcutterBlock extends Block {
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState state) {
+    public @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rotation) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirror) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 

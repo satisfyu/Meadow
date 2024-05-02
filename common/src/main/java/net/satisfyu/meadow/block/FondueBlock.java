@@ -1,6 +1,8 @@
 package net.satisfyu.meadow.block;
 
 
+import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -33,10 +35,8 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.satisfyu.meadow.entity.blockentities.FondueBlockEntity;
+import net.satisfyu.meadow.entity.FondueBlockEntity;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
-import net.satisfyu.meadow.registry.SoundRegistry;
-import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -146,7 +146,7 @@ public class FondueBlock extends BaseEntityBlock {
         double f = (double) pos.getZ() + 0.5;
         if (random.nextDouble() < 0.3) {
             world.playLocalSound(d, e, f, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0f, 1.0f, true);
-            world.playLocalSound(d, e, f, SoundRegistry.COOKING_CAULDRON.get(), SoundSource.BLOCKS, 0.05f, 0.05f, true);
+            world.playLocalSound(d, e, f, DoApiSoundEventRegistry.COOKING_POT_BOILING.get(), SoundSource.BLOCKS, 0.05f, 1.0f, true);
         }
         Direction direction = state.getValue(FACING);
         Direction.Axis axis = direction.getAxis();

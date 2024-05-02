@@ -17,38 +17,38 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class OilLantern extends LanternBlock {
-    protected static final VoxelShape AABB = makeShapeSS();
+    protected static final VoxelShape STANDING_SHAPE = createStandingLanternShape();
 
-    public static VoxelShape makeShapeHS() {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.375, 0.375, 0.375, 0.625, 0.6875, 0.625), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.25, 0.3125, 0.5, 0.3125, 0.75, 0.5), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0.3125, 0.5, 0.75, 0.75, 0.5), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.5, 0.3125, 0.6875, 0.5, 0.75, 0.75), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.5, 0.3125, 0.25, 0.5, 0.75, 0.3125), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3125, 0.1875, 0.3125, 0.6875, 0.375, 0.6875), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3125, 0.6875, 0.3125, 0.6875, 0.8125, 0.6875), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.375, 0.8125, 0.375, 0.625, 1, 0.625), BooleanOp.OR);
-        return shape;
+    public static VoxelShape createHangingLanternShape() {
+        VoxelShape baseShape = Shapes.empty();
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.375, 0.375, 0.375, 0.625, 0.6875, 0.625), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.25, 0.3125, 0.5, 0.3125, 0.75, 0.5), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.6875, 0.3125, 0.5, 0.75, 0.75, 0.5), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.5, 0.3125, 0.6875, 0.5, 0.75, 0.75), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.5, 0.3125, 0.25, 0.5, 0.75, 0.3125), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.3125, 0.1875, 0.3125, 0.6875, 0.375, 0.6875), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.3125, 0.6875, 0.3125, 0.6875, 0.8125, 0.6875), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.375, 0.8125, 0.375, 0.625, 1, 0.625), BooleanOp.OR);
+        return baseShape;
     }
 
-
-    public static VoxelShape makeShapeSS() {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0.0625, 0.5, 0.3125, 0.5625, 0.5), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.5, 0.0625, 0.6875, 0.5, 0.5625, 0.8125), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3125, 0, 0.3125, 0.6875, 0.1875, 0.6875), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.375, 0.1875, 0.375, 0.625, 0.5, 0.625), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3125, 0.5, 0.3125, 0.6875, 0.625, 0.6875), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.5, 0.0625, 0.1875, 0.5, 0.5625, 0.3125), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0.0625, 0.5, 0.8125, 0.5625, 0.5), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.375, 0.625, 0.375, 0.625, 0.6875, 0.625), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.40625, 0.6875, 0.40625, 0.59375, 0.8125, 0.59375), BooleanOp.OR);
-        return shape;
+    public static VoxelShape createStandingLanternShape() {
+        VoxelShape baseShape = Shapes.empty();
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.1875, 0.0625, 0.5, 0.3125, 0.5625, 0.5), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.5, 0.0625, 0.6875, 0.5, 0.5625, 0.8125), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.3125, 0, 0.3125, 0.6875, 0.1875, 0.6875), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.375, 0.1875, 0.375, 0.625, 0.5, 0.625), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.3125, 0.5, 0.3125, 0.6875, 0.625, 0.6875), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.5, 0.0625, 0.1875, 0.5, 0.5625, 0.3125), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.6875, 0.0625, 0.5, 0.8125, 0.5625, 0.5), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.375, 0.625, 0.375, 0.625, 0.6875, 0.625), BooleanOp.OR);
+        baseShape = Shapes.joinUnoptimized(baseShape, Shapes.box(0.40625, 0.6875, 0.40625, 0.59375, 0.8125, 0.59375), BooleanOp.OR);
+        return baseShape;
     }
 
     @Override
@@ -65,20 +65,13 @@ public class OilLantern extends LanternBlock {
         world.addParticle(ParticleTypes.SMOKE, d + h, e + i, f + j, 0.0, 0.0, 0.0);
     }
 
-
-
     public OilLantern(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(HANGING, false).setValue(WATERLOGGED, false));
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return state.getValue(HANGING) ? HANGING_AABB : AABB;
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.meadow.lantern.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return state.getValue(HANGING) ? createHangingLanternShape() : STANDING_SHAPE;
     }
 }

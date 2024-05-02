@@ -17,7 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.gui.CheeseFormGui;
 import net.satisfyu.meadow.compat.jei.MeadowJEIPlugin;
-import net.satisfyu.meadow.entity.blockentities.CheeseFormBlockEntity;
+import net.satisfyu.meadow.entity.CheeseFormBlockEntity;
 import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 

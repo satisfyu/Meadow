@@ -1,5 +1,6 @@
-package net.satisfyu.meadow.entity.blockentities;
+package net.satisfyu.meadow.entity;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -14,54 +15,55 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
-import net.satisfyu.meadow.util.GeneralUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlowerBoxBlockEntity extends BlockEntity {
-    private NonNullList<ItemStack> flowers;
+public class CheeseRackBlockEntity extends BlockEntity {
 
-    public FlowerBoxBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.FLOWER_BOX_BLOCK_ENTITY.get(), pos, state);
-        this.flowers = NonNullList.withSize(2, ItemStack.EMPTY);
+    private NonNullList<ItemStack> inventory;
+
+    public CheeseRackBlockEntity(BlockPos pos, BlockState state) {
+        super(BlockEntityRegistry.CHEESE_RACK_BLOCK_ENTITY.get(), pos, state);
+        this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
     }
 
     @Override
     public void saveAdditional(CompoundTag nbt) {
-        ContainerHelper.saveAllItems(nbt, this.flowers);
+        ContainerHelper.saveAllItems(nbt, this.inventory);
         super.saveAdditional(nbt);
     }
 
     @Override
     public void load(CompoundTag nbt) {
         super.load(nbt);
-        this.flowers = NonNullList.withSize(3, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.flowers);
+        this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(nbt, this.inventory);
     }
 
-    public void addFlower(ItemStack stack, int slot) {
-        flowers.set(slot, stack);
-        setChanged();
-    }
-
-    public ItemStack removeFlower(int slot) {
-        ItemStack stack = flowers.set(slot, ItemStack.EMPTY);
+    public ItemStack removeStack(int slot) {
+        ItemStack stack = inventory.set(slot, ItemStack.EMPTY);
         setChanged();
         return stack;
     }
 
-    public ItemStack getFlower(int slot) {
-        return flowers.get(slot);
+    public void setStack(int slot, ItemStack stack) {
+        inventory.set(slot, stack);
+        setChanged();
     }
 
-    public boolean isSlotEmpty(int slot) {
-        return slot < flowers.size() && flowers.get(slot).isEmpty();
+    public boolean hasStack(int slot) {
+        return !inventory.get(slot).isEmpty();
     }
 
-    public Item[] getFlowers() {
+    public ItemStack getStack(int slot) {
+        return inventory.get(slot);
+    }
+
+    public Item[] getItems() {
         List<Item> items = new ArrayList<>();
-        for (ItemStack stack : flowers) {
+        for (ItemStack stack : inventory) {
             if (!stack.isEmpty()) {
                 items.add(stack.getItem());
             }
@@ -75,7 +77,7 @@ public class FlowerBoxBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
+    public @NotNull CompoundTag getUpdateTag() {
         return this.saveWithoutMetadata();
     }
 
@@ -90,4 +92,5 @@ public class FlowerBoxBlockEntity extends BlockEntity {
         }
         super.setChanged();
     }
+
 }

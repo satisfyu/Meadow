@@ -1,5 +1,6 @@
-package net.satisfyu.meadow.entity.blockentities;
+package net.satisfyu.meadow.entity;
 
+import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -25,7 +26,6 @@ import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
-import net.satisfyu.meadow.util.ImplementedInventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -72,7 +72,7 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
     }
 
     @Override
-    public int[] getSlotsForFace(Direction side) {
+    public int @NotNull [] getSlotsForFace(Direction side) {
         if(side.equals(Direction.UP)){
             return SLOTS_FOR_UP;
         } else if (side.equals(Direction.DOWN)){

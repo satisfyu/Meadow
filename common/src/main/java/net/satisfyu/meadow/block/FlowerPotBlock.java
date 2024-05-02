@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.satisfyu.meadow.entity.blockentities.FlowerPotBlockEntity;
+import net.satisfyu.meadow.entity.FlowerPotBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class FlowerPotBlock extends Block implements EntityBlock {

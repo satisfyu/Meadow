@@ -5,7 +5,7 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.entity.blockentities.*;
+import net.satisfyu.meadow.entity.*;
 
 import java.util.function.Supplier;
 
@@ -19,8 +19,6 @@ public class BlockEntityRegistry {
     public static final RegistrySupplier<BlockEntityType<FlowerBoxBlockEntity>> FLOWER_BOX_BLOCK_ENTITY = createBlockEntity("flower_box", () -> BlockEntityType.Builder.of(FlowerBoxBlockEntity::new, ObjectRegistry.WOODEN_FLOWER_BOX.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<BigFlowerPotBlockEntity>> BIG_FLOWER_POT_BLOCK_ENTITY = createBlockEntity("big_flower_pot", () -> BlockEntityType.Builder.of(BigFlowerPotBlockEntity::new, ObjectRegistry.FLOWER_POT_BIG.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<FondueBlockEntity>> FONDUE = createBlockEntity("fondue", () -> BlockEntityType.Builder.of(FondueBlockEntity::new, ObjectRegistry.FONDUE.get()).build(null));
-    public static final RegistrySupplier<BlockEntityType<ShelfBlockEntity>> SHELF_BLOCK_ENTITY = createBlockEntity("shelf", () -> BlockEntityType.Builder.of(ShelfBlockEntity::new, ObjectRegistry.SHELF.get()).build(null));
-    public static final RegistrySupplier<BlockEntityType<StoveBlockWoodBlockEntity>> STOVE_BLOCK_WOOD_BLOCK_ENTITY = createBlockEntity("stove_block_wood", () -> BlockEntityType.Builder.of(StoveBlockWoodBlockEntity::new, ObjectRegistry.STOVE_WOOD.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<StoveBlockEntity>> STOVE_BLOCK_ENTITY = createBlockEntity("stove_block_entity", () -> BlockEntityType.Builder.of(StoveBlockEntity::new, ObjectRegistry.STOVE_LID.get()).build(null));
 
 

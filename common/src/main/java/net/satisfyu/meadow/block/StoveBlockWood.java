@@ -14,20 +14,15 @@ import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.LevelEvent;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.satisfyu.meadow.entity.blockentities.StoveBlockWoodBlockEntity;
 import net.satisfyu.meadow.registry.TagRegistry;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
-public class StoveBlockWood extends StoveMainBlock implements EntityBlock {
+public class StoveBlockWood extends StoveMainBlock {
 
     public static final BooleanProperty LIT = BooleanProperty.create("lit");
 
@@ -37,7 +32,8 @@ public class StoveBlockWood extends StoveMainBlock implements EntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    @SuppressWarnings("deprecation")
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (world.isClientSide) return InteractionResult.SUCCESS;
         boolean lit = state.getValue(LIT);
         ItemStack stack = player.getItemInHand(hand);
@@ -85,16 +81,5 @@ public class StoveBlockWood extends StoveMainBlock implements EntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(LIT);
-    }
-
-    @Nullable
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new StoveBlockWoodBlockEntity(pos, state);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-        return StoveBlockWoodBlockEntity::tick;
     }
 }

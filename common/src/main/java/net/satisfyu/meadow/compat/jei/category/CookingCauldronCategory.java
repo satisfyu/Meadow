@@ -17,9 +17,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.gui.CookingCauldronGui;
 import net.satisfyu.meadow.compat.jei.MeadowJEIPlugin;
-import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.entity.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import org.jetbrains.annotations.NotNull;
 
 public class CookingCauldronCategory implements IRecipeCategory<CookingCauldronRecipe> {
     public static final RecipeType<CookingCauldronRecipe> COOKING_CAULDRON = RecipeType.create(Meadow.MOD_ID, "cooking", CookingCauldronRecipe.class);
@@ -36,7 +37,7 @@ public class CookingCauldronCategory implements IRecipeCategory<CookingCauldronR
     public CookingCauldronCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(CookingCauldronGui.BACKGROUND, WIDTH_OF, HEIGHT_OF, WIDTH, HEIGHT);
         this.arrow = helper.drawableBuilder(CookingCauldronGui.BACKGROUND, 178, 16, 17, 29)
-                .buildAnimated(CookingCauldronBlockEntity.MAX_COOKING_TIME, IDrawableAnimated.StartDirection.LEFT, false);
+                .buildAnimated(CookingCauldronBlockEntity.getMaxCookingTime(), IDrawableAnimated.StartDirection.LEFT, false);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, ObjectRegistry.COOKING_CAULDRON.get().asItem().getDefaultInstance());
         this.burnicon = helper.createDrawable(CookingCauldronGui.BACKGROUND, 176, 0, 17, 15);
         this.localizedName = Component.translatable("rei.meadow.cooking_cauldron_category");
@@ -56,7 +57,6 @@ public class CookingCauldronCategory implements IRecipeCategory<CookingCauldronR
             }
         }
 
-        // Output
         builder.addSlot(RecipeIngredientRole.OUTPUT, 124 - WIDTH_OF,  26 - HEIGHT_OF).addItemStack(recipe.getResultItem());
     }
 
@@ -67,22 +67,22 @@ public class CookingCauldronCategory implements IRecipeCategory<CookingCauldronR
     }
 
     @Override
-    public RecipeType<CookingCauldronRecipe> getRecipeType() {
+    public @NotNull RecipeType<CookingCauldronRecipe> getRecipeType() {
         return COOKING_CAULDRON;
     }
 
     @Override
-    public Component getTitle() {
+    public @NotNull Component getTitle() {
         return this.localizedName;
     }
 
     @Override
-    public IDrawable getBackground() {
+    public @NotNull IDrawable getBackground() {
         return this.background;
     }
 
     @Override
-    public IDrawable getIcon() {
+    public @NotNull IDrawable getIcon() {
         return this.icon;
     }
 }

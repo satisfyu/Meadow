@@ -19,7 +19,6 @@ public class Meadow {
         BoatsAndSignsRegistry.init();
         EntityRegistry.init();
         BlockEntityRegistry.init();
-        EffectRegistry.init();
         RecipeRegistry.init();
         SoundRegistry.init();
         ScreenHandlerRegistry.init();

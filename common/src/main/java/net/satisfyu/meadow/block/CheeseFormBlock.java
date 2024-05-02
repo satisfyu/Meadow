@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -33,9 +34,9 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.satisfyu.meadow.entity.blockentities.CheeseFormBlockEntity;
+import net.satisfyu.meadow.entity.CheeseFormBlockEntity;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
-import net.satisfyu.meadow.util.GeneralUtil;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -43,6 +44,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public class CheeseFormBlock extends BaseEntityBlock {
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
     public static final BooleanProperty DONE = BooleanProperty.create("done");
@@ -74,7 +76,7 @@ public class CheeseFormBlock extends BaseEntityBlock {
     });
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE.get(state.getValue(FACING));
     }
 
@@ -84,7 +86,7 @@ public class CheeseFormBlock extends BaseEntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isClientSide) {
             MenuProvider screenHandlerFactory = state.getMenuProvider(world, pos);
             if (screenHandlerFactory != null) {
@@ -119,7 +121,7 @@ public class CheeseFormBlock extends BaseEntityBlock {
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState state) {
+    public @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 

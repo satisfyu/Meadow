@@ -54,8 +54,6 @@ public class FeatureModification {
         BiomeModifications.addSpawn(shearableVarCows, MobCategory.CREATURE, EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get(),
                 10, meadowPackSizeMin, meadowPackSizeMax);
 
-        BiomeModifications.addSpawn(bear, MobCategory.CREATURE, EntityRegistry.BROWN_BEAR.get(),
-                bearSpawnWeight, bearPackSizeMin, bearPackSizeMax);
         BiomeModifications.addSpawn(buffalo, MobCategory.CREATURE, EntityRegistry.WATER_BUFFALO.get(),
                 meadowSpawnWeight, meadowPackSizeMin, meadowPackSizeMax);
     }

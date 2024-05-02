@@ -12,7 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 
@@ -33,14 +32,13 @@ public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
     public void insertRecipe(Recipe<?> recipe) {
         int usedInputSlots = 1;
 
-        Meadow.LOGGER.error(recipe.getIngredients().size());
-
         for (Ingredient ingredient : recipe.getIngredients()) {
             int slotIndex = 0;
             for (Slot slot : screenHandler.slots) {
                 ItemStack itemStack = slot.getItem();
 
                 if (ingredient.test(itemStack) && usedInputSlots < 7) {
+                    assert Minecraft.getInstance().gameMode != null;
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, slotIndex, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, usedInputSlots, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     ++usedInputSlots;

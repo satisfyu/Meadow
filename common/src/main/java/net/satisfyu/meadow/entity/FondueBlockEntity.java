@@ -1,6 +1,7 @@
-package net.satisfyu.meadow.entity.blockentities;
+package net.satisfyu.meadow.entity;
 
 
+import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -23,7 +24,7 @@ import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
 import net.satisfyu.meadow.recipes.fondue.FondueRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
-import net.satisfyu.meadow.util.ImplementedInventory;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class FondueBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory, BlockEntityTicker<FondueBlockEntity> {
@@ -66,7 +67,7 @@ public class FondueBlockEntity extends BlockEntity implements MenuProvider, Impl
     }
 
     @Override
-    public int[] getSlotsForFace(Direction side) {
+    public int @NotNull [] getSlotsForFace(Direction side) {
         if(side.equals(Direction.UP)){
             return SLOTS_FOR_UP;
         } else if (side.equals(Direction.DOWN)){
@@ -75,7 +76,7 @@ public class FondueBlockEntity extends BlockEntity implements MenuProvider, Impl
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.nullToEmpty("");
     }
 

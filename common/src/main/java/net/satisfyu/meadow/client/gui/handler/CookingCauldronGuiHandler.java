@@ -5,7 +5,6 @@ import de.cristelknight.doapi.client.recipebook.handler.AbstractRecipeBookGUIScr
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.FurnaceResultSlot;
 import net.minecraft.world.inventory.SimpleContainerData;
@@ -14,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.satisfyu.meadow.client.recipebook.group.CookingCauldronRecipeBookGroup;
-import net.satisfyu.meadow.entity.blockentities.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.entity.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
@@ -59,7 +58,7 @@ public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandle
         return propertyDelegate.get(1) != 0;
     }
 
-
+    @SuppressWarnings("unused")
     private boolean isItemIngredient(ItemStack stack) {
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
@@ -70,7 +69,7 @@ public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandle
 
     public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = CookingCauldronBlockEntity.MAX_COOKING_TIME;
+        final int totalProgress = CookingCauldronBlockEntity.getMaxCookingTime();
         if (progress == 0) {
             return 0;
         }

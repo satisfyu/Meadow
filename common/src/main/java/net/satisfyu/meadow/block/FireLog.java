@@ -109,6 +109,5 @@ public class FireLog extends FacingBlock {
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
         tooltip.add(Component.translatable("block.meadow.canbeplaced.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-        tooltip.add(Component.translatable("block.meadow.fuel_item.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

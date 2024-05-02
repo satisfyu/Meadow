@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.block;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -18,9 +19,8 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.satisfyu.meadow.entity.blockentities.WheelBarrowBlockEntity;
+import net.satisfyu.meadow.entity.WheelBarrowBlockEntity;
 import net.satisfyu.meadow.registry.TagRegistry;
-import net.satisfyu.meadow.util.GeneralUtil;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;

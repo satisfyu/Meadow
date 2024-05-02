@@ -8,12 +8,13 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.block.WheelBarrowBlock;
-import net.satisfyu.meadow.entity.blockentities.WheelBarrowBlockEntity;
+import net.satisfyu.meadow.entity.WheelBarrowBlockEntity;
 
-import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
+import static de.cristelknight.doapi.client.ClientUtil.renderBlock;
 
 public class WheelBarrowBlockEntityRenderer implements BlockEntityRenderer<WheelBarrowBlockEntity> {
 
+    @SuppressWarnings("unused")
     public WheelBarrowBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
     }
 

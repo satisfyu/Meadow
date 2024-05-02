@@ -10,7 +10,6 @@ import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Sheep;
 import net.satisfyu.meadow.forge.networking.MeadowNetworkForge;
-import net.satisfyu.meadow.util.GeneralUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

@@ -1,5 +1,6 @@
-package net.satisfyu.meadow.entity.blockentities;
+package net.satisfyu.meadow.entity;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -12,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.satisfyu.meadow.util.GeneralUtil;
+import org.jetbrains.annotations.NotNull;
 
 public class FlowerPotBlockEntity extends BlockEntity {
     private Item flower;
@@ -69,7 +70,7 @@ public class FlowerPotBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
+    public @NotNull CompoundTag getUpdateTag() {
         return this.saveWithoutMetadata();
     }
 

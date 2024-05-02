@@ -24,22 +24,26 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.satisfyu.meadow.registry.ObjectRegistry;
+import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("deprecation")
 public class CheeseBlock extends FacingBlock {
-
-    private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 4, 12);
-
-    private static final VoxelShape SHAPE_BIG = Block.box(2, 0, 2, 14, 4, 14);
+    private static final VoxelShape SHAPE_GRAIN = Block.box(4, 0, 4, 12, 5, 12);
+    private static final VoxelShape SHAPE_CHEESE = Block.box(2, 0, 2, 14, 6, 14);
+    private static final VoxelShape SHAPE_WARPED = Block.box(3, 0, 3, 13, 7, 13);
+    private static final VoxelShape SHAPE_BUFFALO = Block.box(4, 0, 4, 12, 4, 12);
+    private static final VoxelShape SHAPE_SHEEP = Block.box(5, 0, 5, 8, 6, 8);
+    private static final VoxelShape SHAPE_CAKE = Block.box(2, 0, 2, 14, 4, 14);
 
     public static final IntegerProperty CUTS = IntegerProperty.create("cuts", 0, 3);
     private final RegistrySupplier<Item> slice;
+    private final CheeseType cheeseType;
 
-    private final boolean big;
-
-    public CheeseBlock(Properties settings, RegistrySupplier<Item> slice, boolean big) {
+    public CheeseBlock(Properties settings, RegistrySupplier<Item> slice, CheeseType cheeseType) {
         super(settings);
         this.slice = slice;
-        this.big = big;
+        this.cheeseType = cheeseType;
     }
 
     @Override
@@ -48,14 +52,22 @@ public class CheeseBlock extends FacingBlock {
         builder.add(CUTS);
     }
 
-
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return big ? SHAPE_BIG : SHAPE;
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return switch (cheeseType) {
+            case GRAIN -> SHAPE_GRAIN;
+            case REGULAR -> SHAPE_CHEESE;
+            case WARPED -> SHAPE_WARPED;
+            case BUFFALO, GOAT ->
+                    SHAPE_BUFFALO;
+            case SHEEP -> SHAPE_SHEEP;
+            case CAKE -> SHAPE_CAKE;
+            default -> SHAPE_CHEESE;
+        };
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (world.isClientSide) {
             if (tryEat(world, pos, state, player).consumesAction()) {
@@ -83,7 +95,7 @@ public class CheeseBlock extends FacingBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         if (direction == Direction.DOWN && !state.canSurvive(world, pos)) {
             return Blocks.AIR.defaultBlockState();
         }
@@ -93,5 +105,9 @@ public class CheeseBlock extends FacingBlock {
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         return world.getBlockState(pos.below()).isSolid();
+    }
+
+    public enum CheeseType {
+        GRAIN, REGULAR, WARPED, BUFFALO, GOAT, SHEEP, CAKE
     }
 }

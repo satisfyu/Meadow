@@ -8,12 +8,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.block.CheeseRackBlock;
-import net.satisfyu.meadow.entity.blockentities.CheeseRackBlockEntity;
+import net.satisfyu.meadow.entity.CheeseRackBlockEntity;
 
-import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
+import static de.cristelknight.doapi.client.ClientUtil.renderBlock;
 
 public class CheeseRackBlockEntityRenderer implements BlockEntityRenderer<CheeseRackBlockEntity> {
 
+    @SuppressWarnings("unused")
     public CheeseRackBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
     }
 

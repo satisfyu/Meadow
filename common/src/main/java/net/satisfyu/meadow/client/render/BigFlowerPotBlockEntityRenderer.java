@@ -9,13 +9,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.satisfyu.meadow.block.BigFlowerPotBlock;
-import net.satisfyu.meadow.entity.blockentities.BigFlowerPotBlockEntity;
+import net.satisfyu.meadow.block.FlowerPotBlock;
+import net.satisfyu.meadow.entity.BigFlowerPotBlockEntity;
 
-import static net.satisfyu.meadow.util.ClientUtil.renderBlock;
+import static de.cristelknight.doapi.client.ClientUtil.renderBlock;
 
 public class BigFlowerPotBlockEntityRenderer implements BlockEntityRenderer<BigFlowerPotBlockEntity> {
 
+    @SuppressWarnings("unused")
     public BigFlowerPotBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
     }
 
@@ -25,7 +26,7 @@ public class BigFlowerPotBlockEntityRenderer implements BlockEntityRenderer<BigF
             return;
         }
         BlockState selfState = entity.getBlockState();
-        if (selfState.getBlock() instanceof BigFlowerPotBlock) {
+        if (selfState.getBlock() instanceof FlowerPotBlock) {
             Item item = entity.getFlower();
             matrices.pushPose();
             if (item instanceof BlockItem) {
