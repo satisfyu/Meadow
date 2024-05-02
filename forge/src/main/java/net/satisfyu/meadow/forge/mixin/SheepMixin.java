@@ -15,15 +15,26 @@ public class SheepMixin {
             method = "onSheared",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;<init>(Lnet/minecraft/world/level/ItemLike;)V"))
     public ItemLike getDrop(ItemLike itemLike) {
-        if(itemLike.asItem().equals(Items.WHITE_WOOL)){
-            return SheepVar.getVariant(getSheep()).getWool();
+        if (itemLike.asItem().equals(Items.WHITE_WOOL)) {
+            return meadow$safeGetWoolVariant();
         }
         return itemLike;
     }
 
+    @Unique
+    private ItemLike meadow$safeGetWoolVariant() {
+        SheepVar variant = SheepVar.getVariant(meadow$getSheep());
+        if (variant != null) {
+            ItemLike wool = variant.getWool();
+            if (wool != null) {
+                return wool;
+            }
+        }
+        return Items.WHITE_WOOL;
+    }
 
     @Unique
-    private Sheep getSheep() {
+    private Sheep meadow$getSheep() {
         return (Sheep) (Object)this;
     }
 }

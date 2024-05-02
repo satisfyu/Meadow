@@ -10,15 +10,17 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.*;
 
+@SuppressWarnings("unused")
 public class VarHolder implements INBTSerializable<CompoundTag> {
 
-    private int var;
+
+    private volatile int var;
 
     public void setVar(int var) {
         this.var = var;
     }
 
-    public int getId() {
+    public int getVariant() {
         return var;
     }
 
@@ -31,23 +33,24 @@ public class VarHolder implements INBTSerializable<CompoundTag> {
 
     @Override
     public void deserializeNBT(CompoundTag tag) {
-        this.var = tag.getInt("Variant");
+        if (tag.contains("Variant")) {
+            this.var = tag.getInt("Variant");
+        }
     }
 
     public static Iterable<ServerPlayer> getRecipientsForComponentSync(Entity holder) {
         if (!holder.level().isClientSide && holder.level() instanceof ServerLevel level) {
             Deque<ServerPlayer> watchers = new ArrayDeque<>(tracking(level, holder.blockPosition()));
-            if (holder instanceof ServerPlayer player && player.connection != null) {
+            if (holder instanceof ServerPlayer player) {
                 watchers.addFirst(player);
             }
             return watchers;
         }
-        return List.of();
+        return Collections.emptyList();
     }
 
     public static Collection<ServerPlayer> tracking(ServerLevel world, BlockPos pos) {
         Objects.requireNonNull(pos, "BlockPos cannot be null");
-
         return tracking(world, new ChunkPos(pos));
     }
 

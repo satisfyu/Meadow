@@ -25,12 +25,13 @@ public abstract class ClientPacketListenerMixin {
             locals = LocalCapture.CAPTURE_FAILSOFT,
             require = 0
     )
-    private void meadowSyncVar(ClientboundAddEntityPacket clientboundAddEntityPacket, CallbackInfo ci, EntityType<?> entityType, Entity entity, int i) {
-        Class<? extends Entity> eC = entity.getClass();
-        if ((eC == Sheep.class || eC == Chicken.class || eC == Cow.class) && entity.level().isClientSide()) {
-            FriendlyByteBuf buf = GeneralUtil.create();
-            buf.writeUUID(entity.getUUID());
-            NetworkManager.sendToServer(MeadowNetworkForge.VAR_REQUEST_S2C, buf);
+    private void meadowSyncVar(ClientboundAddEntityPacket packet, CallbackInfo ci, EntityType<?> entityType, Entity entity, int i) {
+        if (entity instanceof Sheep || entity instanceof Chicken || entity instanceof Cow) {
+            if (entity.level().isClientSide()) {
+                FriendlyByteBuf buf = GeneralUtil.create();
+                buf.writeUUID(entity.getUUID());
+                NetworkManager.sendToServer(MeadowNetworkForge.VAR_REQUEST_S2C, buf);
+            }
         }
     }
 }

@@ -38,7 +38,7 @@ public class MeadowExpectPlatformImpl {
         LazyOptional<VarHolder> optional = entity.getCapability(MeadowCapabilities.VAR_HOLDER_CAPABILITY);
         if(optional.isPresent()){
             Optional<VarHolder> holder = optional.resolve();
-            if(holder.isPresent()) return holder.get().getId();
+            if(holder.isPresent()) return holder.get().getVariant();
         }
         return 0;
     }

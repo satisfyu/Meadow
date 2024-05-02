@@ -16,9 +16,6 @@ import net.satisfyu.meadow.util.MeadowIdentifier;
 import org.jetbrains.annotations.NotNull;
 
 public final class VarAttacher {
-
-    // Every entity will hold their own instance of EPADCapabilityProvider.
-    // Their instances will hold a lazy that holds the cap.
     private static class VarCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
         public static final ResourceLocation IDENTIFIER = new MeadowIdentifier("var");
@@ -29,6 +26,7 @@ public final class VarAttacher {
         public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
             return MeadowCapabilities.VAR_HOLDER_CAPABILITY.orEmpty(cap, this.optionalData);
         }
+        
 
         @Override
         public CompoundTag serializeNBT() {
@@ -41,7 +39,6 @@ public final class VarAttacher {
         }
     }
 
-    // attach only to our needed entities
     public static void attach(final AttachCapabilitiesEvent<Entity> event) {
         Class<? extends Entity> entity = event.getObject().getClass();
         if (!(entity == Sheep.class || entity == Cow.class || entity == Chicken.class)) return;
