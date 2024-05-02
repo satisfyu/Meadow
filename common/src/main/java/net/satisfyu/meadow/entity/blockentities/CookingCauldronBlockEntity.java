@@ -223,7 +223,7 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
 
     @Override
     public @NotNull Component getDisplayName() {
-        return Component.nullToEmpty("");
+        return null;
     }
 
     @Nullable
