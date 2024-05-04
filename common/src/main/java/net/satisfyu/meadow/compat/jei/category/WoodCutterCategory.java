@@ -11,7 +11,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
+import net.satisfyu.meadow.recipes.WoodcuttingRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 public class WoodCutterCategory implements IRecipeCategory<WoodcuttingRecipe> {

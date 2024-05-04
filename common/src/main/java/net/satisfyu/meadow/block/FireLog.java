@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class FireLog extends FacingBlock {
 
     public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, 3);
@@ -52,7 +53,7 @@ public class FireLog extends FacingBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (world.isClientSide) {
             return InteractionResult.SUCCESS;
         }
@@ -94,10 +95,6 @@ public class FireLog extends FacingBlock {
         world.setBlockAndUpdate(pos, state.setValue(STAGE, stage));
         world.playSound(null, pos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
         return InteractionResult.SUCCESS;
-    }
-
-    private void dropItemStack(Level world, BlockPos pos) {
-        Block.popResource(world, pos, new ItemStack(ObjectRegistry.FIRE_LOG.get(), 1));
     }
 
     @Override

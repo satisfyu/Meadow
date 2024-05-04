@@ -11,10 +11,12 @@ import net.satisfyu.meadow.util.MeadowIdentifier;
 
 public class SoundRegistry {
     public static final Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Meadow.MOD_ID, Registries.SOUND_EVENT).getRegistrar();
-
     public static final RegistrySupplier<SoundEvent> WOODCUTTER = create("woodcutter");
     public static final RegistrySupplier<SoundEvent> FUR = create("fur");
     public static final RegistrySupplier<SoundEvent> CLICK_CAMERA = create("click_camera");
+    public static final RegistrySupplier<SoundEvent> BUFFALO_AMBIENT = create("buffalo_ambient");
+    public static final RegistrySupplier<SoundEvent> BUFFALO_HURT = create("buffalo_hurt");
+    public static final RegistrySupplier<SoundEvent> BUFFALO_DEATH = create("buffalo_death");
 
     private static RegistrySupplier<SoundEvent> create(String name) {
         final ResourceLocation id = new MeadowIdentifier(name);

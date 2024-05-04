@@ -7,10 +7,10 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
-import net.satisfyu.meadow.recipes.fondue.FondueRecipe;
-import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
+import net.satisfyu.meadow.recipes.CheeseFormRecipe;
+import net.satisfyu.meadow.recipes.CookingCauldronRecipe;
+import net.satisfyu.meadow.recipes.FondueRecipe;
+import net.satisfyu.meadow.recipes.WoodcuttingRecipe;
 
 import java.util.function.Supplier;
 

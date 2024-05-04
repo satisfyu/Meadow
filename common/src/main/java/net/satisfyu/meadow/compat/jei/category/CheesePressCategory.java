@@ -18,7 +18,7 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.gui.CheeseFormGui;
 import net.satisfyu.meadow.compat.jei.MeadowJEIPlugin;
 import net.satisfyu.meadow.entity.CheeseFormBlockEntity;
-import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
+import net.satisfyu.meadow.recipes.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 public class CheesePressCategory implements IRecipeCategory<CheeseFormRecipe> {

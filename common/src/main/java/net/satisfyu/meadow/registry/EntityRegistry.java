@@ -10,8 +10,8 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cow;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.entity.WaterBuffalo;
 import net.satisfyu.meadow.entity.ShearableVarCow;
+import net.satisfyu.meadow.entity.WaterBuffalo;
 
 import java.util.function.Supplier;
 

@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.block.CheeseFormBlock;
 import net.satisfyu.meadow.client.gui.handler.CheeseFormGuiHandler;
-import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
+import net.satisfyu.meadow.recipes.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;

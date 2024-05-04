@@ -1,6 +1,7 @@
 package net.satisfyu.meadow.util;
 
 import net.minecraft.util.StringRepresentable;
+import org.jetbrains.annotations.NotNull;
 
 public enum ShutterType implements StringRepresentable {
     TOP("top"),
@@ -15,7 +16,7 @@ public enum ShutterType implements StringRepresentable {
     }
 
     @Override
-    public String getSerializedName() {
+    public @NotNull String getSerializedName() {
         return this.name;
     }
 }

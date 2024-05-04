@@ -190,7 +190,7 @@
   "item.meadow.alpine_salt": "Sal alpina",
   "item.meadow.bear_stew": "Estofado de oso",
   "item.meadow.brown_bear_spawn_egg":"Generador de oso pardo",
-  "item.meadow.canbeplaced.tooltip": "Se puede colocar",
+  "tooltip.meadow.canbeplaced": "Se puede colocar",
   "item.meadow.canline1.tooltip": "Misma función que el polvo de hueso",
   "item.meadow.canline2.tooltip": "Es necesario rellenar con agua de vez en cuando.",
   "item.meadow.cheese_roll": "Rollo de queso",

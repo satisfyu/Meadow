@@ -84,7 +84,6 @@ public class WheelBarrowBlock extends FlowerPotBlock implements EntityBlock {
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
         tooltip.add(Component.translatable("block.meadow.canbeplaced.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-        tooltip.add(Component.translatable("block.meadow.wheelbarrow.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 
     @Override

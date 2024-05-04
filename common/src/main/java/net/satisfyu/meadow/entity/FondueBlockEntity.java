@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfyu.meadow.client.gui.handler.FondueGuiHandler;
-import net.satisfyu.meadow.recipes.fondue.FondueRecipe;
+import net.satisfyu.meadow.recipes.FondueRecipe;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import org.jetbrains.annotations.NotNull;

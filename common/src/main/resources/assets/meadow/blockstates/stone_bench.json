@@ -1,67 +1,67 @@
 {
   "variants": {
 
-    "facing=north,type=single": {
-      "model": "meadow:block/bench/stone_bench"
+    "facing=north,type=none": {
+      "model": "meadow:block/stone_bench"
     },
-    "facing=east,type=single": {
-      "model": "meadow:block/bench/stone_bench",
+    "facing=east,type=none": {
+      "model": "meadow:block/stone_bench",
       "y": 90
     },
-    "facing=south,type=single": {
-      "model": "meadow:block/bench/stone_bench",
+    "facing=south,type=none": {
+      "model": "meadow:block/stone_bench",
       "y": 180
     },
-    "facing=west,type=single": {
-      "model": "meadow:block/bench/stone_bench",
+    "facing=west,type=none": {
+      "model": "meadow:block/stone_bench",
       "y": 270
     },
 
     "facing=north,type=middle": {
-      "model": "meadow:block/bench/stone_bench_middle"
+      "model": "meadow:block/stone_bench_middle"
     },
     "facing=east,type=middle": {
-      "model": "meadow:block/bench/stone_bench_middle",
+      "model": "meadow:block/stone_bench_middle",
       "y": 90
     },
     "facing=south,type=middle": {
-      "model": "meadow:block/bench/stone_bench_middle",
+      "model": "meadow:block/stone_bench_middle",
       "y": 180
     },
     "facing=west,type=middle": {
-      "model": "meadow:block/bench/stone_bench_middle",
+      "model": "meadow:block/stone_bench_middle",
       "y": 270
     },
 
     "facing=north,type=left": {
-      "model": "meadow:block/bench/stone_bench_side"
+      "model": "meadow:block/stone_bench_side"
     },
     "facing=east,type=left": {
-      "model": "meadow:block/bench/stone_bench_side",
+      "model": "meadow:block/stone_bench_side",
       "y": 90
     },
     "facing=south,type=left": {
-      "model": "meadow:block/bench/stone_bench_side",
+      "model": "meadow:block/stone_bench_side",
       "y": 180
     },
     "facing=west,type=left": {
-      "model": "meadow:block/bench/stone_bench_side",
+      "model": "meadow:block/stone_bench_side",
       "y": 270
     },
 
     "facing=north,type=right": {
-      "model": "meadow:block/bench/stone_bench_side",
+      "model": "meadow:block/stone_bench_side",
       "y": 180
     },
     "facing=east,type=right": {
-      "model": "meadow:block/bench/stone_bench_side",
+      "model": "meadow:block/stone_bench_side",
       "y": 270
     },
     "facing=south,type=right": {
-      "model": "meadow:block/bench/stone_bench_side"
+      "model": "meadow:block/stone_bench_side"
     },
     "facing=west,type=right": {
-      "model": "meadow:block/bench/stone_bench_side",
+      "model": "meadow:block/stone_bench_side",
       "y": 90
     }
   }

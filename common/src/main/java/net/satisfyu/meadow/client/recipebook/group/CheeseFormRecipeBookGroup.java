@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.satisfyu.meadow.block.CheeseBlock;
-import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
+import net.satisfyu.meadow.recipes.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 import java.util.List;

@@ -184,7 +184,7 @@
   "item.meadow.fur_leggings": "Mit Fell verstärkte Beinschützer",
   "item.meadow.bear_stew": "Bärenfleischeintopf",
   "item.meadow.brown_bear_spawn_egg":"Braunbär-Spawn-Ei",
-  "item.meadow.canbeplaced.tooltip": "Kann platziert werden",
+  "tooltip.meadow.canbeplaced": "Kann platziert werden",
   "item.meadow.canline1.tooltip": "Funktioniert wie Knochenmehl",
   "item.meadow.canline2.tooltip": "Muss jedoch von Zeit zu Zeit wieder aufgefüllt werden",
   "item.meadow.cheese_roll": "Käserolle",

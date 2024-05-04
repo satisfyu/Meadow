@@ -39,10 +39,4 @@ public class WoodenMilkBucket extends MilkBucketItem {
         }
         return stack;
     }
-
-    @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, TooltipFlag context) {
-        tooltip.add(Component.translatable("item.meadow.ingredient.tooltip" + this.getDescriptionId()).withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-
-    }
 }

@@ -1,17 +1,17 @@
 package net.satisfyu.meadow.item;
 
-        import de.cristelknight.doapi.common.item.StandardItem;
-        import net.minecraft.ChatFormatting;
-        import net.minecraft.network.chat.Component;
-        import net.minecraft.world.effect.MobEffectInstance;
-        import net.minecraft.world.effect.MobEffects;
-        import net.minecraft.world.item.ItemStack;
-        import net.minecraft.world.item.TooltipFlag;
-        import net.minecraft.world.level.Level;
-        import net.satisfyu.meadow.util.MeadowIdentifier;
-        import org.jetbrains.annotations.Nullable;
+import de.cristelknight.doapi.common.item.StandardItem;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import net.satisfyu.meadow.util.MeadowIdentifier;
+import org.jetbrains.annotations.Nullable;
 
-        import java.util.List;
+import java.util.List;
 
 public class MeadowStandardItem extends StandardItem {
     public MeadowStandardItem(Properties properties) {

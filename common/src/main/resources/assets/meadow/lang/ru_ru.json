@@ -197,7 +197,7 @@
   "item.meadow.alpine_salt": "Горная соль",
   "item.meadow.bear_stew": "Медвежье рагу",
   "item.meadow.brown_bear_spawn_egg": "Яйцо призыва бурого медведя",
-  "item.meadow.canbeplaced.tooltip": "Можно поставить",
+  "tooltip.meadow.canbeplaced": "Можно поставить",
   "item.meadow.canline1.tooltip": "Делает то же, что и костная мука",
   "item.meadow.canline2.tooltip": "Время от времени следует наполнять водой",
   "item.meadow.cheese_roll": "Сырный рулет",

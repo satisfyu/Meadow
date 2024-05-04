@@ -6,7 +6,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.resources.ResourceLocation;
 import net.satisfyu.meadow.compat.rei.category.CheeseFormCategory;
-import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
+import net.satisfyu.meadow.recipes.CheeseFormRecipe;
 
 import java.util.ArrayList;
 import java.util.Collections;

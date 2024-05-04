@@ -5,9 +5,9 @@
 	"textures": {
 		"3": "meadow:block/fondue_pan",
 		"4": "meadow:block/fondue_roster",
+		"5": "meadow:block/fondue_cheese",
 		"6": "meadow:block/frame_fire",
 		"7": "block/campfire_log",
-		"8": "meadow:block/fondue_cheese",
 		"particle": "meadow:block/fondue_pan"
 	},
 	"elements": [
@@ -190,7 +190,7 @@
 			"to": [12, 13, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [6.47868, 2.46, -1.656]},
 			"faces": {
-				"up": {"uv": [8, 8, 16, 16], "texture": "#8"},
+				"up": {"uv": [4, 4, 12, 12], "texture": "#5"},
 				"down": {"uv": [0, 8, 8, 16], "texture": "#3"}
 			}
 		},
@@ -330,6 +330,7 @@
 			"name": "handle",
 			"origin": [8, 8, 8],
 			"color": 0,
+			"nbt": "{}",
 			"children": [0, 1]
 		},
 		2,

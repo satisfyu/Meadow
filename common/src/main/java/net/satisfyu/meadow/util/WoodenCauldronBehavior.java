@@ -21,12 +21,14 @@ import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 import java.util.function.Predicate;
 
 import static net.minecraft.world.level.block.LayeredCauldronBlock.LEVEL;
 
+@SuppressWarnings("unused")
 public interface WoodenCauldronBehavior extends CauldronInteraction {
     Map<Item, CauldronInteraction> EMPTY = CauldronInteraction.newInteractionMap();
     Map<Item, CauldronInteraction> WATER = CauldronInteraction.newInteractionMap();
@@ -36,7 +38,7 @@ public interface WoodenCauldronBehavior extends CauldronInteraction {
     CauldronInteraction FILL_POWDER_SNOW = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_POWDER_SNOW_CAULDRON.get().defaultBlockState().setValue(LEVEL, 3), SoundEvents.BUCKET_EMPTY_POWDER_SNOW, Items.BUCKET);
     CauldronInteraction FILL_WITH_WATER_W = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_WATER_CAULDRON.get().defaultBlockState().setValue(LEVEL, 3), SoundEvents.BUCKET_EMPTY, ObjectRegistry.WOODEN_BUCKET.get());
 
-    InteractionResult interact(BlockState var1, Level var2, BlockPos var3, Player var4, InteractionHand var5, ItemStack var6);
+    @NotNull InteractionResult interact(BlockState var1, Level var2, BlockPos var3, Player var4, InteractionHand var5, ItemStack var6);
 
     static void bootStrap() {
         registerCauldronBehavior();

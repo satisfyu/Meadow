@@ -3,10 +3,7 @@ package net.satisfyu.meadow.client.model;
 import net.minecraft.client.model.CowModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.*;
 import net.satisfyu.meadow.entity.ShearableVarCow;
 
 public class WoolyCowModel extends CowModel<ShearableVarCow> {
@@ -17,24 +14,43 @@ public class WoolyCowModel extends CowModel<ShearableVarCow> {
         super(modelPart);
     }
 
+    @SuppressWarnings("unused")
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
-        partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, -6.0F, 8.0F, 8.0F, 6.0F).texOffs(22, 0).addBox("right_horn", -5.0F, -5.0F, -4.0F, 1.0F, 3.0F, 1.0F).texOffs(22, 0).addBox("left_horn", 4.0F, -5.0F, -4.0F, 1.0F, 3.0F, 1.0F), PartPose.offset(0.0F, 4.0F, -8.0F));
-        PartDefinition partdefinition2 = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(18, 4).addBox(-6.0F, -10.0F, -7.0F, 12.0F, 18.0F, 10.0F).texOffs(52, 0).addBox(-2.0F, 2.0F, -8.0F, 4.0F, 6.0F, 1.0F), PartPose.offsetAndRotation(0.0F, 5.0F, 2.0F, ((float) Math.PI / 2F), 0.0F, 0.0F));
-        PartDefinition partdefinition3 = partdefinition2.addOrReplaceChild("body_part", CubeListBuilder.create().texOffs(52, 6).addBox(-42.0F, -1.5F, 30.0F, 3F, 8.0F, 0.0F), PartPose.offsetAndRotation(-2.0F, 20.0F, -49.0F, ((float) Math.PI / 2F), ((float) Math.PI / 2F), 0.0F));
-        partdefinition3.addOrReplaceChild("body_part2", CubeListBuilder.create().texOffs(52, 6).addBox(-1.5F, -4.0F, 0.0F, 3F, 8.0F, 0.0F), PartPose.offsetAndRotation(-41.0F, 2.5F, 12.0F, ((float) Math.PI), 0.0F, 0.0F));
 
-        PartDefinition partdefinition4 = partdefinition2.addOrReplaceChild("body_part3", CubeListBuilder.create().texOffs(26, 0).addBox(1.0F, -0.01F, -2.0F, 16.0F, 0.0F, 3.0F), PartPose.offsetAndRotation(6.0F, -10.0F, -8.0F, 0.0F, 0.0F, ((float) Math.PI / 2F)));
-        partdefinition4.addOrReplaceChild("body_part4", CubeListBuilder.create().texOffs(26, 0).addBox(-8.0F, 0.0F, -1.5F, 16.0F, 0.0F, 3.0F), PartPose.offsetAndRotation(9.0F, 12.01F, -0.5F, 0.0F, 0.0F, -((float) Math.PI)));
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 33).addBox(-6.0F, -10.0F, -7.0F, 12.0F, 18.0F, 10.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(-6.0F, -10.0F, -12.0F, 12.0F, 18.0F, 15.0F, new CubeDeformation(0.2F))
+                .texOffs(0, 0).addBox(-2.0F, 2.0F, -8.0F, 4.0F, 6.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 5.0F, 2.0F, 1.5708F, 0.0F, 0.0F));
 
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(39, 0).addBox(-4.0F, -4.0F, -5.0F, 8.0F, 8.0F, 6.0F, new CubeDeformation(0.0F))
+                .texOffs(34, 33).addBox(-4.0F, -4.0F, -5.0F, 8.0F, 4.0F, 6.0F, new CubeDeformation(0.2F)), PartPose.offset(0.0F, 4.0F, -9.0F));
 
-        CubeListBuilder cubelistbuilder = CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F);
-        partdefinition.addOrReplaceChild("right_hind_leg", cubelistbuilder, PartPose.offset(-4.0F, 12.0F, 7.0F));
-        partdefinition.addOrReplaceChild("left_hind_leg", cubelistbuilder, PartPose.offset(4.0F, 12.0F, 7.0F));
-        partdefinition.addOrReplaceChild("right_front_leg", cubelistbuilder, PartPose.offset(-4.0F, 12.0F, -6.0F));
-        partdefinition.addOrReplaceChild("left_front_leg", cubelistbuilder, PartPose.offset(4.0F, 12.0F, -6.0F));
-        return LayerDefinition.create(meshdefinition, 64, 32);
+        PartDefinition snout_r1 = head.addOrReplaceChild("snout_r1", CubeListBuilder.create().texOffs(16, 61).addBox(-3.0F, -1.0F, -7.0F, 6.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.1745F, 0.0F, 0.0F));
+
+        PartDefinition horn_right_top_r1 = head.addOrReplaceChild("horn_right_top_r1", CubeListBuilder.create().texOffs(6, 10).addBox(5.0F, -29.0F, -11.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(66, 12).addBox(0.0F, -26.0F, -11.0F, 7.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 22.0F, 8.0F, 0.0F, 0.0F, 0.0873F));
+
+        PartDefinition horn_left_top_r1 = head.addOrReplaceChild("horn_left_top_r1", CubeListBuilder.create().texOffs(0, 7).addBox(-7.0F, -29.0F, -11.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(61, 0).addBox(-7.0F, -26.0F, -11.0F, 7.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 22.0F, 8.0F, 0.0F, 0.0F, -0.0873F));
+
+        PartDefinition ear_right_r1 = head.addOrReplaceChild("ear_right_r1", CubeListBuilder.create().texOffs(67, 4).addBox(-13.0F, -19.0F, -12.0F, 4.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 21.0F, 8.0F, 0.0F, 0.0F, 0.7854F));
+
+        PartDefinition ear_left_r1 = head.addOrReplaceChild("ear_left_r1", CubeListBuilder.create().texOffs(12, 67).addBox(9.0F, -19.0F, -12.0F, 4.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 21.0F, 8.0F, 0.0F, 0.0F, -0.7854F));
+
+        PartDefinition left_hind_leg = partdefinition.addOrReplaceChild("left_hind_leg", CubeListBuilder.create().texOffs(44, 43).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(60, 47).addBox(-2.0F, 5.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.15F)), PartPose.offset(-4.0F, 12.0F, 7.0F));
+
+        PartDefinition right_hind_leg = partdefinition.addOrReplaceChild("right_hind_leg", CubeListBuilder.create().texOffs(44, 43).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(60, 47).addBox(-2.0F, 5.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.15F)), PartPose.offset(4.0F, 12.0F, 7.0F));
+
+        PartDefinition left_front_leg = partdefinition.addOrReplaceChild("left_front_leg", CubeListBuilder.create().texOffs(44, 43).addBox(-2.0F, 0.0F, -1.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(60, 47).addBox(-2.0F, 5.0F, -1.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.15F)), PartPose.offset(-4.0F, 12.0F, -6.0F));
+
+        PartDefinition right_front_leg = partdefinition.addOrReplaceChild("right_front_leg", CubeListBuilder.create().texOffs(44, 43).addBox(-2.0F, 0.0F, -1.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(60, 47).addBox(-2.0F, 5.0F, -1.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.15F)), PartPose.offset(4.0F, 12.0F, -6.0F));
+
+        return LayerDefinition.create(meshdefinition, 128, 128);
     }
 
     @Override
@@ -49,7 +65,4 @@ public class WoolyCowModel extends CowModel<ShearableVarCow> {
         this.head.y = 6.0f + entity.getNeckAngle(h) * 9.0f;
         this.headPitchModifier = entity.getHeadAngle(h);
     }
-
-
-
 }

@@ -20,7 +20,7 @@ import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.gui.FondueGui;
 import net.satisfyu.meadow.compat.jei.MeadowJEIPlugin;
 import net.satisfyu.meadow.entity.FondueBlockEntity;
-import net.satisfyu.meadow.recipes.fondue.FondueRecipe;
+import net.satisfyu.meadow.recipes.FondueRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 public class FondueCategory implements IRecipeCategory<FondueRecipe> {

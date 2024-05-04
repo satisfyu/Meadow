@@ -13,7 +13,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.satisfyu.meadow.client.recipebook.group.CheeseFormRecipeBookGroup;
 import net.satisfyu.meadow.entity.CheeseFormBlockEntity;
-import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
+import net.satisfyu.meadow.recipes.CheeseFormRecipe;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 
 import java.util.List;

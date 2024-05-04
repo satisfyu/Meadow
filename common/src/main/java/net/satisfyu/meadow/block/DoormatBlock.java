@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public class DoormatBlock extends CarpetBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

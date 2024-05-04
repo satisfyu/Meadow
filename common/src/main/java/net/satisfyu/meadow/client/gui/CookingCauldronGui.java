@@ -8,8 +8,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.recipebook.CookingCauldronRecipeBook;
 import net.satisfyu.meadow.client.gui.handler.CookingCauldronGuiHandler;
+import net.satisfyu.meadow.client.recipebook.CookingCauldronRecipeBook;
 
 
 public class CookingCauldronGui extends AbstractRecipeBookGUIScreen<CookingCauldronGuiHandler> {

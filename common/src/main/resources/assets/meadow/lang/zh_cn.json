@@ -197,7 +197,7 @@
   "item.meadow.alpine_salt": "山地盐",
   "item.meadow.bear_stew": "熊肉煲",
   "item.meadow.brown_bear_spawn_egg":"棕熊刷怪蛋",
-  "item.meadow.canbeplaced.tooltip": "可放置",
+  "tooltip.meadow.canbeplaced": "可放置",
   "item.meadow.canline1.tooltip": "与骨粉功能相同",
   "item.meadow.canline2.tooltip": "需要每次重新加满水。",
   "item.meadow.cheese_roll": "奶酪卷",

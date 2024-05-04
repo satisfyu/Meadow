@@ -196,7 +196,7 @@
   "item.meadow.alpine_salt": "Альпійська сіль",
   "item.meadow.bear_stew": "Ведмеже рагу",
   "item.meadow.brown_bear_spawn_egg": "Яйце виклику коричневого ведмедя",
-  "item.meadow.canbeplaced.tooltip": "Можна розмістити",
+  "tooltip.meadow.canbeplaced": "Можна розмістити",
   "item.meadow.canline1.tooltip": "Ті ж функції, що й в кісткового борошна",
   "item.meadow.canline2.tooltip": "Потребує наповнення водою час від часу.",
   "item.meadow.cheese_roll": "Сирний рол",

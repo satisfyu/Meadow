@@ -1,20 +1,15 @@
 package net.satisfyu.meadow.block;
 
 import de.cristelknight.doapi.common.util.GeneralUtil;
-import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -30,7 +25,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -40,9 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class CheeseFormBlock extends BaseEntityBlock {
@@ -55,29 +47,28 @@ public class CheeseFormBlock extends BaseEntityBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(DONE, false).setValue(WORKING, false).setValue(FACING, Direction.NORTH));
     }
 
-    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0, 0.0625, 0.3125, 0.0625, 0.9375), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0, 0.0625, 0.8125, 0.0625, 0.9375), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0.0625, 0.1875, 0.8125, 0.125, 0.8125), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.0625, 0.8125, 0.875, 0.375, 0.875), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.375, 0.1875), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.0625, 0.1875, 0.1875, 0.375, 0.8125), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.8125, 0.0625, 0.1875, 0.875, 0.375, 0.8125), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.4375, 0.125, 0.0625, 0.5625, 0.75, 0.125), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.4375, 0.125, 0.875, 0.5625, 0.75, 0.9375), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.4375, 0.75, 0.0625, 0.5625, 0.8125, 0.9375), BooleanOp.OR);        return shape;
-    };
+    private static final VoxelShape BASE_SHAPE = Shapes.or(
+            Shapes.box(0.1875, 0, 0.0625, 0.3125, 0.0625, 0.9375),
+            Shapes.box(0.6875, 0, 0.0625, 0.8125, 0.0625, 0.9375),
+            Shapes.box(0.1875, 0.0625, 0.1875, 0.8125, 0.125, 0.8125),
+            Shapes.box(0.125, 0.0625, 0.8125, 0.875, 0.375, 0.875),
+            Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.375, 0.1875),
+            Shapes.box(0.125, 0.0625, 0.1875, 0.1875, 0.375, 0.8125),
+            Shapes.box(0.8125, 0.0625, 0.1875, 0.875, 0.375, 0.8125),
+            Shapes.box(0.4375, 0.125, 0.0625, 0.5625, 0.75, 0.125),
+            Shapes.box(0.4375, 0.125, 0.875, 0.5625, 0.75, 0.9375),
+            Shapes.box(0.4375, 0.75, 0.0625, 0.5625, 0.8125, 0.9375)
+    );
 
-    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+    public static final Map<Direction, VoxelShape> DIRECTIONAL_SHAPES = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, BASE_SHAPE));
         }
     });
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return SHAPE.get(state.getValue(FACING));
+        return DIRECTIONAL_SHAPES.get(state.getValue(FACING));
     }
 
     @Override
@@ -88,10 +79,7 @@ public class CheeseFormBlock extends BaseEntityBlock {
     @Override
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isClientSide) {
-            MenuProvider screenHandlerFactory = state.getMenuProvider(world, pos);
-            if (screenHandlerFactory != null) {
-                player.openMenu(screenHandlerFactory);
-            }
+            player.openMenu(state.getMenuProvider(world, pos));
         }
         return InteractionResult.SUCCESS;
     }
@@ -145,10 +133,5 @@ public class CheeseFormBlock extends BaseEntityBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(WORKING, DONE, FACING);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.meadow.form.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

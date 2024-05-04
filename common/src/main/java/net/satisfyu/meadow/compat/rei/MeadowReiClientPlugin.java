@@ -11,10 +11,10 @@ import net.satisfyu.meadow.compat.rei.display.CheeseFormDisplay;
 import net.satisfyu.meadow.compat.rei.display.CookingCauldronDisplay;
 import net.satisfyu.meadow.compat.rei.display.FondueDisplay;
 import net.satisfyu.meadow.compat.rei.display.WoodCutterDisplay;
-import net.satisfyu.meadow.recipes.cheese.CheeseFormRecipe;
-import net.satisfyu.meadow.recipes.cooking.CookingCauldronRecipe;
-import net.satisfyu.meadow.recipes.fondue.FondueRecipe;
-import net.satisfyu.meadow.recipes.woodcutting.WoodcuttingRecipe;
+import net.satisfyu.meadow.recipes.CheeseFormRecipe;
+import net.satisfyu.meadow.recipes.CookingCauldronRecipe;
+import net.satisfyu.meadow.recipes.FondueRecipe;
+import net.satisfyu.meadow.recipes.WoodcuttingRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 public class MeadowReiClientPlugin {

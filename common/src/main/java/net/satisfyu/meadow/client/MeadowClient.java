@@ -12,15 +12,13 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.render.*;
 import net.satisfyu.meadow.client.gui.CheeseFormGui;
 import net.satisfyu.meadow.client.gui.CookingCauldronGui;
 import net.satisfyu.meadow.client.gui.FondueGui;
 import net.satisfyu.meadow.client.gui.WoodcutterGui;
 import net.satisfyu.meadow.client.model.WaterBuffaloModel;
-import net.satisfyu.meadow.client.render.WaterBuffaloRenderer;
-import net.satisfyu.meadow.client.render.ShearableVarCowRenderer;
 import net.satisfyu.meadow.client.model.WoolyCowModel;
+import net.satisfyu.meadow.client.render.*;
 import net.satisfyu.meadow.registry.*;
 
 public class MeadowClient {

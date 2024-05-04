@@ -13,28 +13,35 @@
 
     ]
   },
-  "cooking_cauldron": {
-    "subtitle": "subtitles.meadow.cooking_cauldron",
-    "sounds": [
-      "meadow:cooking_cauldron"
-    ]
-  },
   "shelf_open": {
     "subtitle": "subtitles.meadow.shelf_open",
     "sounds": [
       "meadow:shelf_open"
     ]
   },
-  "shelf_closed": {
-    "subtitle": "subtitles.meadow.shelf_closed",
-    "sounds": [
-      "meadow:shelf_closed"
-    ]
-  },
   "fur": {
     "subtitle": "subtitles.meadow.fur_armor_equip",
     "sounds": [
       "meadow:fur_armor_equip"
+    ]
+  },
+  "buffalo_ambient": {
+    "subtitle": "subtitles.meadow.buffalo_ambient",
+    "sounds": [
+      "meadow:water_buffalo_ambient1",
+      "meadow:water_buffalo_ambient2"
+    ]
+  },
+  "buffalo_hurt": {
+    "subtitle": "subtitles.meadow.buffalo_hurt",
+    "sounds": [
+      "meadow:water_buffalo_hurt"
+    ]
+  },
+  "buffalo_death": {
+    "subtitle": "subtitles.meadow.buffalo_death",
+    "sounds": [
+      "meadow:water_buffalo_death"
     ]
   }
 }

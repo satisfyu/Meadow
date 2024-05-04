@@ -50,8 +50,8 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Override
-    protected ResourceLocation getDefaultLootTable() {
-        if(isSheared()) return COW_LOOT_TABLE;
+    protected @NotNull ResourceLocation getDefaultLootTable() {
+        if (isSheared()) return COW_LOOT_TABLE;
 
         ResourceLocation location = BuiltInRegistries.ITEM.getKey(getVariant().getWool());
         String s = location.getPath().replace("_wool", "");
@@ -70,8 +70,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.CONSUME;
-        }
-        else if (itemStack.is(ObjectRegistry.WOODEN_BUCKET.get()) && !this.isBaby()) {
+        } else if (itemStack.is(ObjectRegistry.WOODEN_BUCKET.get()) && !this.isBaby()) {
             player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
             ItemStack itemStack2 = ItemUtils.createFilledResult(itemStack, player, getVariant().getBucket().getDefaultInstance());
             player.setItemInHand(hand, itemStack2);
@@ -148,7 +147,6 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         return entityData.get(IS_SHEARED);
     }
 
-
     @Override
     public boolean readyForShearing() {
         return this.isAlive() && !this.isSheared() && !this.isBaby();
@@ -187,17 +185,15 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         return this.getXRot() * ((float) Math.PI / 180);
     }
 
-
-
     @Nullable
     @Override
     public ShearableVarCow getBreedOffspring(@NotNull ServerLevel serverLevel, @NotNull AgeableMob ageableMob) {
         ShearableVarCow cow = EntityRegistry.SHEARABLE_MEADOW_VAR_COW.get().create(serverLevel);
-        if(cow == null) return null;
+        if (cow == null) return null;
 
         RandomSource random = serverLevel.getRandom();
         ShearableCowVar var = this.getVariant();
-        if(random.nextBoolean() && ageableMob instanceof ShearableVarCow varCow){
+        if (random.nextBoolean() && ageableMob instanceof ShearableVarCow varCow) {
             var = varCow.getVariant();
         }
         cow.setVariant(var);
@@ -219,33 +215,32 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData, compoundTag);
     }
 
-
-
-
-
     public void setVariant(ShearableCowVar variant) {
         setTypeVariant(variant.getId() & 255 | this.getTypeVariant() & -256);
     }
+
     @Override
     public @NotNull ShearableCowVar getVariant() {
         return ShearableCowVar.byId(getTypeVariant() & 255);
     }
+
     private void setTypeVariant(int i) {
         entityData.set(DATA_ID_TYPE_VARIANT, i);
     }
+
     private int getTypeVariant() {
         return entityData.get(DATA_ID_TYPE_VARIANT);
     }
 
     public static class ShearableVarCowGroupData extends AgeableMob.AgeableMobGroupData {
         public final ShearableCowVar variant;
+
         public ShearableVarCowGroupData(ShearableCowVar variant) {
             super(true);
             this.variant = variant;
         }
     }
 
-    // COW //
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0));
@@ -255,8 +250,6 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-
-        //
         this.eatGrassGoal = new EatBlockGoal(this);
         this.goalSelector.addGoal(5, this.eatGrassGoal);
     }

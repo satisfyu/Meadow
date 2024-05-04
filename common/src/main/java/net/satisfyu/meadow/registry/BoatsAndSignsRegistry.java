@@ -1,15 +1,15 @@
 package net.satisfyu.meadow.registry;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.HangingSignItem;
-import net.minecraft.world.item.SignItem;
-import net.minecraft.world.level.block.Block;
-import dev.architectury.registry.registries.RegistrySupplier;
+import de.cristelknight.doapi.DoApiExpectPlatform;
 import de.cristelknight.doapi.terraform.boat.TerraformBoatType;
 import de.cristelknight.doapi.terraform.boat.item.TerraformBoatItemHelper;
 import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
-import de.cristelknight.doapi.DoApiExpectPlatform;
+import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.HangingSignItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SignItem;
+import net.minecraft.world.level.block.Block;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 
 @SuppressWarnings("unused")

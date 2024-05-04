@@ -7,8 +7,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.satisfyu.meadow.Meadow;
-import net.satisfyu.meadow.client.recipebook.CheeseFormRecipeBook;
 import net.satisfyu.meadow.client.gui.handler.CheeseFormGuiHandler;
+import net.satisfyu.meadow.client.recipebook.CheeseFormRecipeBook;
 
 public class CheeseFormGui extends AbstractRecipeBookGUIScreen<CheeseFormGuiHandler> {
     public static final ResourceLocation BACKGROUND;

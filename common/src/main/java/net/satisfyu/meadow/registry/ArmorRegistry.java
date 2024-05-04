@@ -17,10 +17,10 @@ import net.minecraft.world.item.ItemStack;
 import net.satisfyu.meadow.client.model.FurArmorHat;
 import net.satisfyu.meadow.client.model.FurArmorInner;
 import net.satisfyu.meadow.client.model.FurArmorOuter;
-import net.satisfyu.meadow.item.FurBoots;
-import net.satisfyu.meadow.item.FurChest;
-import net.satisfyu.meadow.item.FurHead;
-import net.satisfyu.meadow.item.FurLegs;
+import net.satisfyu.meadow.item.armor.FurBoots;
+import net.satisfyu.meadow.item.armor.FurChest;
+import net.satisfyu.meadow.item.armor.FurHead;
+import net.satisfyu.meadow.item.armor.FurLegs;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 import org.jetbrains.annotations.NotNull;
 

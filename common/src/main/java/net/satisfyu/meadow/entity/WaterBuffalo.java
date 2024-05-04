@@ -1,9 +1,11 @@
 package net.satisfyu.meadow.entity;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Cow;
@@ -13,6 +15,8 @@ import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.level.Level;
 import net.satisfyu.meadow.registry.EntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import net.satisfyu.meadow.registry.SoundRegistry;
+import org.jetbrains.annotations.NotNull;
 
 
 public class WaterBuffalo extends Cow {
@@ -26,7 +30,7 @@ public class WaterBuffalo extends Cow {
     }
 
     @Override
-    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+    public @NotNull InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (itemStack.is(ObjectRegistry.WOODEN_BUCKET.get()) && !this.isBaby()) {
             player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
@@ -37,6 +41,22 @@ public class WaterBuffalo extends Cow {
             return super.mobInteract(player, hand);
         }
     }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundRegistry.BUFFALO_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return SoundRegistry.BUFFALO_HURT.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundRegistry.BUFFALO_DEATH.get();
+    }
+
 
     @Override
     public int getMaxHeadYRot() {

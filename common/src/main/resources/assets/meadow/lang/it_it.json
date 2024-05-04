@@ -196,7 +196,7 @@
   "item.meadow.alpine_salt": "Sale Alpino",
   "item.meadow.bear_stew": "Stufato d'orso",
   "item.meadow.brown_bear_spawn_egg":"Uovo di orso bruno",
-  "item.meadow.canbeplaced.tooltip": "Può essere posizionato",
+  "tooltip.meadow.canbeplaced": "Può essere posizionato",
   "item.meadow.canline1.tooltip": "Stessa funzione della farina d'ossa",
   "item.meadow.canline2.tooltip": "Ha bisogno di essere riempito di acqua di tanto in tanto.",
   "item.meadow.cheese_roll": "Rotolo di formaggio",
