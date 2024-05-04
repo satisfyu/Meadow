@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity;
+package net.satisfyu.meadow.block.entity;
 
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;

@@ -1,6 +1,7 @@
 package net.satisfyu.meadow.registry;
 
-import de.cristelknight.doapi.DoApiExpectPlatform;
+import de.cristelknight.doapi.DoApiCommonEP;
+import de.cristelknight.doapi.DoApiEP;
 import de.cristelknight.doapi.terraform.boat.TerraformBoatType;
 import de.cristelknight.doapi.terraform.boat.item.TerraformBoatItemHelper;
 import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
@@ -29,7 +30,7 @@ public class BoatsAndSignsRegistry {
     public static final RegistrySupplier<Item> PINE_CHEST_BOAT = registerPineBoat(true);
 
     public static void init() {
-        DoApiExpectPlatform.registerBoatType(PINE_BOAT_TYPE, new TerraformBoatType.Builder().item(PINE_BOAT).chestItem(PINE_CHEST_BOAT).build());
+        DoApiCommonEP.registerBoatType(PINE_BOAT_TYPE, new TerraformBoatType.Builder().item(PINE_BOAT).chestItem(PINE_CHEST_BOAT).build());
     }
 
     private static RegistrySupplier<Block> registerPineSign() {

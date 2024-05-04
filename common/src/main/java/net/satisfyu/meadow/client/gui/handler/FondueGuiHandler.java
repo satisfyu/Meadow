@@ -6,7 +6,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.satisfyu.meadow.entity.FondueBlockEntity;
+import net.satisfyu.meadow.block.entity.FondueBlockEntity;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;
 
 public class FondueGuiHandler extends AbstractContainerMenu {

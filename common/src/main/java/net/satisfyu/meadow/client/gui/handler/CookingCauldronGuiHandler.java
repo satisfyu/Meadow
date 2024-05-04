@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.satisfyu.meadow.client.recipebook.group.CookingCauldronRecipeBookGroup;
-import net.satisfyu.meadow.entity.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.block.entity.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.recipes.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.RecipeRegistry;
 import net.satisfyu.meadow.registry.ScreenHandlerRegistry;

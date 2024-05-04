@@ -1,6 +1,6 @@
 package net.satisfyu.meadow;
 
-import de.cristelknight.doapi.DoApiExpectPlatform;
+import de.cristelknight.doapi.DoApiEP;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import net.minecraft.world.level.block.Blocks;
 import net.satisfyu.meadow.registry.*;
@@ -22,9 +22,9 @@ public class Meadow {
         RecipeRegistry.init();
         SoundRegistry.init();
         ScreenHandlerRegistry.init();
-        DoApiExpectPlatform.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("better_leaves"), false);
-        DoApiExpectPlatform.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("green_stove"), false);
-        DoApiExpectPlatform.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("optifine_support"), false);
+        DoApiEP.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("better_leaves"), false);
+        DoApiEP.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("green_stove"), false);
+        DoApiEP.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("optifine_support"), false);
     }
 
     public static void commonSetup() {

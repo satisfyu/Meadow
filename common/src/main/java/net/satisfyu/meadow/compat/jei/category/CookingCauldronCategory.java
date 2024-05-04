@@ -17,7 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.client.gui.CookingCauldronGui;
 import net.satisfyu.meadow.compat.jei.MeadowJEIPlugin;
-import net.satisfyu.meadow.entity.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.block.entity.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.recipes.CookingCauldronRecipe;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;

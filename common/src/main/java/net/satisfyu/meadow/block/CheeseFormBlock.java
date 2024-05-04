@@ -28,7 +28,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.satisfyu.meadow.entity.CheeseFormBlockEntity;
+import net.satisfyu.meadow.block.entity.CheeseFormBlockEntity;
 import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

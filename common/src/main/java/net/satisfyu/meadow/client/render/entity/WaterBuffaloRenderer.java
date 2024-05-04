@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.render;
+package net.satisfyu.meadow.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;

@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.client.render;
+package net.satisfyu.meadow.client.render.entity;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;

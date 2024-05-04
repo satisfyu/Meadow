@@ -1,9 +1,9 @@
 package net.satisfyu.meadow.client;
 
+import de.cristelknight.doapi.client.render.block.storage.StorageBlockEntityRenderer;
 import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
-import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
@@ -18,7 +18,11 @@ import net.satisfyu.meadow.client.gui.FondueGui;
 import net.satisfyu.meadow.client.gui.WoodcutterGui;
 import net.satisfyu.meadow.client.model.WaterBuffaloModel;
 import net.satisfyu.meadow.client.model.WoolyCowModel;
-import net.satisfyu.meadow.client.render.*;
+import net.satisfyu.meadow.client.render.block.storage.CheeseRackRenderer;
+import net.satisfyu.meadow.client.render.block.storage.WheelBarrowRenderer;
+import net.satisfyu.meadow.client.render.block.storage.FlowerPotSmallRenderer;
+import net.satisfyu.meadow.client.render.entity.ShearableVarCowRenderer;
+import net.satisfyu.meadow.client.render.entity.WaterBuffaloRenderer;
 import net.satisfyu.meadow.registry.*;
 
 import static net.satisfyu.meadow.registry.ObjectRegistry.*;
@@ -47,7 +51,7 @@ public class MeadowClient {
 
         RenderTypeRegistry.register(RenderType.translucent(), HEART_PATTERNED_WINDOW.get(), SUN_PATTERNED_WINDOW.get(), PINE_WINDOW.get());
 
-        registerBlockRenderer();
+        registerStorageTypeRenderers();
         registerClientScreens();
 
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
@@ -59,12 +63,10 @@ public class MeadowClient {
         );
     }
 
-    private static void registerBlockRenderer() {
-        BlockEntityRendererRegistry.register(BlockEntityRegistry.WOODEN_FLOWER_BOX.get(), WoodenFlowerBoxRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntityRegistry.WHEEL_BARROW_BLOCK_ENTITY.get(), WheelBarrowRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntityRegistry.WOODEN_FLOWER_POT_SMALL.get(), WoodenFlowerPotSmallRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntityRegistry.WOODEN_FLOWER_POT_BIG.get(), WoodenFlowerPotBigRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntityRegistry.CHEESE_RACK_BLOCK_ENTITY.get(), CheeseRackBlockRenderer::new);
+    public static void registerStorageTypeRenderers(){
+        StorageBlockEntityRenderer.registerStorageType(StorageTypeRegistry.WHEEL_BARROW, new WheelBarrowRenderer());
+        StorageBlockEntityRenderer.registerStorageType(StorageTypeRegistry.FLOWER_POT_SMALL, new FlowerPotSmallRenderer());
+        StorageBlockEntityRenderer.registerStorageType(StorageTypeRegistry.CHEESE_RACK, new CheeseRackRenderer());
     }
 
     private static void registerClientScreens() {

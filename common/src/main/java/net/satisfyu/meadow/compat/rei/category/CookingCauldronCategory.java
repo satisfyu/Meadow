@@ -12,7 +12,7 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.network.chat.Component;
 import net.satisfyu.meadow.Meadow;
 import net.satisfyu.meadow.compat.rei.display.CookingCauldronDisplay;
-import net.satisfyu.meadow.entity.CookingCauldronBlockEntity;
+import net.satisfyu.meadow.block.entity.CookingCauldronBlockEntity;
 import net.satisfyu.meadow.registry.ObjectRegistry;
 
 import java.util.List;

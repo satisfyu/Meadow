@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity;
+package net.satisfyu.meadow.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
