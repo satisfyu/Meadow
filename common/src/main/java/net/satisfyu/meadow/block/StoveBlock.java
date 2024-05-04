@@ -1,34 +1,26 @@
 package net.satisfyu.meadow.block;
 
-import net.minecraft.ChatFormatting;
+import de.cristelknight.doapi.common.block.FacingBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SmokerBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.satisfyu.meadow.entity.StoveBlockEntity;
-import net.satisfyu.meadow.registry.BlockEntityRegistry;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class StoveBlock extends SmokerBlock {
+@SuppressWarnings("deprecation")
+public class StoveBlock extends FacingBlock {
 
     public static final BooleanProperty CONNECTED = BooleanProperty.create("connected");
 
@@ -36,15 +28,14 @@ public class StoveBlock extends SmokerBlock {
 
     private final Direction directionToCheck;
 
-    public StoveBlock(Properties properties, Direction directionToCheck) {
-        super(properties);
+    public StoveBlock(Properties settings, Direction directionToCheck) {
+        super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(CONNECTED, false));
         this.directionToCheck = directionToCheck;
     }
 
-
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         if (directionToCheck == Direction.DOWN && state.getValue(CONNECTED))
             return super.getShape(state, world, pos, context);
         return SHAPE_BIG;
@@ -62,7 +53,7 @@ public class StoveBlock extends SmokerBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         List<Block> block = getBlocksToCheck();
         if (!world.isClientSide() && !block.isEmpty()) {
             if (direction == directionToCheck) {
@@ -88,21 +79,6 @@ public class StoveBlock extends SmokerBlock {
         } else if (directionToCheck == Direction.DOWN) {
             return List.of(ObjectRegistry.STOVE_WOOD.get(), ObjectRegistry.STOVE_LID.get());
         } else return List.of();
-    }
-
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new StoveBlockEntity(pos, state);
-    }
-
-    @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createFurnaceTicker(level, blockEntityType, BlockEntityRegistry.STOVE_BLOCK_ENTITY.get());
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.meadow.stove.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }
 

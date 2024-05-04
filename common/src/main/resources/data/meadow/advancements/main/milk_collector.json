@@ -5,10 +5,10 @@
       "item": "meadow:wooden_bucket"
     },
     "title": {
-      "translate": "meadow.advancement.milk_bucket_collector"
+      "translate": "advancement.meadow.milk_bucket_collector"
     },
     "description": {
-      "translate": "meadow.advancement.milk_bucket_collector.desc"
+      "translate": "advancement.meadow.milk_bucket_collector.desc"
     },
     "frame": "challenge",
     "show_toast": true,

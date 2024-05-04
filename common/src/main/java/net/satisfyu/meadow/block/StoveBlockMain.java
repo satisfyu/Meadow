@@ -87,6 +87,6 @@ public class StoveBlockMain extends FacingBlock {
     }
 
     public boolean isBlockStove(Block block) {
-        return block instanceof StoveBlock || block instanceof StoveBlockMain;
+        return block instanceof StoveBlockSmoker || block instanceof StoveBlockMain;
     }
 }

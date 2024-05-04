@@ -16,7 +16,7 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "meadow.advancement.cheese_form.desc"
+      "translate": "advancement.meadow.cheese_form.desc"
     },
     "frame": "goal",
     "hidden": false,
@@ -25,7 +25,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "meadow.advancement.cheese_form"
+      "translate": "advancement.meadow.cheese_form"
     }
   },
   "requirements": [

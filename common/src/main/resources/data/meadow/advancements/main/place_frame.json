@@ -16,7 +16,7 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "meadow.advancement.frame.desc"
+      "translate": "advancement.meadow.frame.desc"
     },
     "frame": "goal",
     "hidden": false,
@@ -25,7 +25,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "meadow.advancement.frame"
+      "translate": "advancement.meadow.frame"
     }
   },
   "requirements": [

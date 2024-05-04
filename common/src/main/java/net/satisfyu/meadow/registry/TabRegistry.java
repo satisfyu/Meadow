@@ -8,6 +8,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.satisfyu.meadow.Meadow;
 
+@SuppressWarnings("unused")
 public class TabRegistry {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Meadow.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
@@ -75,9 +76,9 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.BENCH.get());
                 out.accept(ObjectRegistry.STONE_TABLE.get());
                 out.accept(ObjectRegistry.STONE_BENCH.get());
-                out.accept(ObjectRegistry.WINDOW.get());
-                out.accept(ObjectRegistry.WINDOW_2.get());
-                out.accept(ObjectRegistry.WINDOW_3.get());
+                out.accept(ObjectRegistry.HEART_PATTERNED_WINDOW.get());
+                out.accept(ObjectRegistry.SUN_PATTERNED_WINDOW.get());
+                out.accept(ObjectRegistry.PINE_WINDOW.get());
                 out.accept(ObjectRegistry.FLECKED_WOOL.get());
                 out.accept(ObjectRegistry.FLECKED_CARPET.get());
                 out.accept(ObjectRegistry.FLECKED_BED.get());
@@ -114,8 +115,8 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.OIL_LANTERN.get());
                 out.accept(ObjectRegistry.CAMERA.get());
                 out.accept(ObjectRegistry.DOORMAT.get());
-                out.accept(ObjectRegistry.FLOWER_POT_BIG.get());
-                out.accept(ObjectRegistry.WOODEN_FLOWER_POT.get());
+                out.accept(ObjectRegistry.WOODEN_FLOWER_POT_BIG.get());
+                out.accept(ObjectRegistry.WOODEN_FLOWER_POT_SMALL.get());
                 out.accept(ObjectRegistry.WOODEN_FLOWER_BOX.get());
                 out.accept(ObjectRegistry.FUR_HELMET.get());
                 out.accept(ObjectRegistry.FUR_CHESTPLATE.get());
@@ -155,10 +156,10 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.CHEESE_SANDWICH.get());
                 out.accept(ObjectRegistry.CHEESE_ROLL.get());
                 out.accept(ObjectRegistry.CHEESE_STICK.get());
-                out.accept(ObjectRegistry.RAW_BEAR_MEAT.get());
-                out.accept(ObjectRegistry.COOKED_BEAR_MEAT.get());
+                out.accept(ObjectRegistry.RAW_BUFFALO_MEAT.get());
+                out.accept(ObjectRegistry.COOKED_BUFFALO_MEAT.get());
                 out.accept(ObjectRegistry.ROASTED_HAM.get());
-                out.accept(ObjectRegistry.HAM_CHEESE.get());
+                out.accept(ObjectRegistry.SAUSAGE_WITH_CHEESE.get());
                 out.accept(ObjectRegistry.WOODEN_BUCKET.get());
                 out.accept(ObjectRegistry.WOODEN_WATER_BUCKET.get());
                 out.accept(ObjectRegistry.WOODEN_MILK_BUCKET.get());

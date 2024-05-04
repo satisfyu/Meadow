@@ -5,10 +5,10 @@
       "item": "meadow:alpine_salt"
     },
     "title": {
-      "translate": "meadow.advancement.salt"
+      "translate": "advancement.meadow.salt"
     },
     "description": {
-      "translate": "meadow.advancement.salt.desc"
+      "translate": "advancement.meadow.salt.desc"
     },
     "frame": "task",
     "show_toast": true,

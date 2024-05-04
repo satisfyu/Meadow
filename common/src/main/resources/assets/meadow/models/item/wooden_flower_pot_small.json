@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "meadow:item/wooden_flower_pot_small"
+  }
+}

@@ -5,10 +5,10 @@
       "item": "meadow:buffalo_cheese_block"
     },
     "title": {
-      "translate": "meadow.advancement.cheese_collector"
+      "translate": "advancement.meadow.cheese_collector"
     },
     "description": {
-      "translate": "meadow.advancement.cheese_collector.desc"
+      "translate": "advancement.meadow.cheese_collector.desc"
     },
     "frame": "challenge",
     "show_toast": true,

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_glass_pane_noside_alt",
   "textures": {
-    "pane": "meadow:block/window_3_main"
+    "pane": "meadow:block/pine_window_main"
   }
 }

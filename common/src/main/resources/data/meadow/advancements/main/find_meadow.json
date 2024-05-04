@@ -53,7 +53,7 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "meadow.advancement.find_meadow.desc"
+      "translate": "advancement.meadow.find_meadow.desc"
     },
     "frame": "task",
     "hidden": false,
@@ -62,7 +62,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "meadow.advancement.find_meadow"
+      "translate": "advancement.meadow.find_meadow"
     }
   },
   "requirements": [

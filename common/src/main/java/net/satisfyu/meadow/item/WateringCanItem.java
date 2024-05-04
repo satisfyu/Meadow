@@ -180,9 +180,4 @@ public class WateringCanItem extends BlockItem {
         if(state != null) state = state.setValue(WateringCanBlock.DAMAGE, blockPlaceContext.getItemInHand().getDamageValue());
         return state;
     }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, Level world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("tooltip.meadow.canbeplaced").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-    }
 }

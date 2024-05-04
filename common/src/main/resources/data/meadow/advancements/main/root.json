@@ -4,10 +4,10 @@
       "item": "meadow:pine_sapling"
     },
     "title": {
-      "translate": "meadow.advancement.root"
+      "translate": "advancement.meadow.root"
     },
     "description": {
-      "translate": "meadow.advancement.root.desc"
+      "translate": "advancement.meadow.root.desc"
     },
     "frame": "task",
     "show_toast": false,

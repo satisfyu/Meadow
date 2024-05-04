@@ -22,8 +22,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.NotNull;
 
-public class StoveBlockWood extends StoveMainBlock {
-
+@SuppressWarnings("deprecation")
+public class StoveBlockWood extends StoveBlock {
     public static final BooleanProperty LIT = BooleanProperty.create("lit");
 
     public StoveBlockWood(Properties settings, Direction directionToCheck) {
@@ -32,7 +32,6 @@ public class StoveBlockWood extends StoveMainBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (world.isClientSide) return InteractionResult.SUCCESS;
         boolean lit = state.getValue(LIT);

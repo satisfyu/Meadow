@@ -2,7 +2,7 @@
   "type": "meadow:cooking",
   "ingredients": [
     {
-      "item": "meadow:raw_bear_meat"
+      "item": "meadow:raw_buffalo_meat"
     },
     {
       "item": "meadow:alpine_salt"
@@ -12,7 +12,7 @@
     }
   ],
   "result": {
-    "item":  "meadow:ham_cheese",
+    "item":  "meadow:sausage_with_cheese",
     "count": 2
   }
 }

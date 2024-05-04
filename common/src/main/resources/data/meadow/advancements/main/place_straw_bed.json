@@ -16,7 +16,7 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "meadow.advancement.straw_bed.desc"
+      "translate": "advancement.meadow.straw_bed.desc"
     },
     "frame": "goal",
     "hidden": false,
@@ -25,7 +25,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "meadow.advancement.straw_bed"
+      "translate": "advancement.meadow.straw_bed"
     }
   },
   "requirements": [

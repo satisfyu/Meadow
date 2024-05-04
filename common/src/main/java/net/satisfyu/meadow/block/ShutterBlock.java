@@ -34,7 +34,6 @@ import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
 public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
-
     public static final DirectionProperty FACING;
     public static final EnumProperty<ShutterType> TYPE;
     public static final BooleanProperty LEFT;

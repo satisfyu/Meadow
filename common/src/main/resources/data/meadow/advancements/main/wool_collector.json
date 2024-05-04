@@ -5,10 +5,10 @@
       "item": "meadow:flecked_wool"
     },
     "title": {
-      "translate": "meadow.advancement.wool_collector"
+      "translate": "advancement.meadow.wool_collector"
     },
     "description": {
-      "translate": "meadow.advancement.wool_collector.desc"
+      "translate": "advancement.meadow.wool_collector.desc"
     },
     "frame": "challenge",
     "show_toast": true,

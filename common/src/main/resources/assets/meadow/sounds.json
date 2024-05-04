@@ -13,12 +13,6 @@
 
     ]
   },
-  "shelf_open": {
-    "subtitle": "subtitles.meadow.shelf_open",
-    "sounds": [
-      "meadow:shelf_open"
-    ]
-  },
   "fur": {
     "subtitle": "subtitles.meadow.fur_armor_equip",
     "sounds": [

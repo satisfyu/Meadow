@@ -56,16 +56,16 @@ public class ArmorRegistry {
         ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
         ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
         tooltip.add(Component.nullToEmpty(""));
-        tooltip.add(Component.nullToEmpty(ChatFormatting.DARK_GREEN + I18n.get("meadow.tooltip.fur_armor")));
+        tooltip.add(Component.nullToEmpty(ChatFormatting.DARK_GREEN + I18n.get("tooltip.meadow.fur_armor")));
         tooltip.add(Component.nullToEmpty((helmet != null && helmet.getItem() instanceof FurHead ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_HELMET.get().getDescription().getString() + "]"));
         tooltip.add(Component.nullToEmpty((chestplate != null && chestplate.getItem() instanceof FurChest ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_CHESTPLATE.get().getDescription().getString() + "]"));
         tooltip.add(Component.nullToEmpty((leggings != null && leggings.getItem() instanceof FurLegs ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_LEGGINGS.get().getDescription().getString() + "]"));
         tooltip.add(Component.nullToEmpty((boots != null && boots.getItem() instanceof FurBoots ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.FUR_BOOTS.get().getDescription().getString() + "]"));
         tooltip.add(Component.nullToEmpty(""));
-        tooltip.add(Component.nullToEmpty(ChatFormatting.GRAY + I18n.get("meadow.tooltip.fur_armor2")));
+        tooltip.add(Component.nullToEmpty(ChatFormatting.GRAY + I18n.get("tooltip.meadow.fur_armor2")));
         tooltip.add(Component.nullToEmpty(((helmet != null && helmet.getItem() instanceof FurHead &&
                 chestplate != null && chestplate.getItem() instanceof FurChest &&
                 leggings != null && leggings.getItem() instanceof FurLegs &&
-                boots != null && boots.getItem() instanceof FurBoots) ? ChatFormatting.DARK_GREEN.toString() : ChatFormatting.GRAY.toString()) + I18n.get("meadow.tooltip.fur_armor3")));
+                boots != null && boots.getItem() instanceof FurBoots) ? ChatFormatting.DARK_GREEN.toString() : ChatFormatting.GRAY.toString()) + I18n.get("tooltip.meadow.fur_armor3")));
     }
 }

@@ -5,10 +5,10 @@
       "item": "meadow:cheese_block"
     },
     "title": {
-      "translate": "meadow.advancement.get_cheese"
+      "translate": "advancement.meadow.get_cheese"
     },
     "description": {
-      "translate": "meadow.advancement.get_cheese.desc"
+      "translate": "advancement.meadow.get_cheese.desc"
     },
     "frame": "task",
     "show_toast": true,

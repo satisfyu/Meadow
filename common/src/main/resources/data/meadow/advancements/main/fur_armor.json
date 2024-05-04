@@ -1,14 +1,14 @@
 {
-  "parent": "meadow:main/kill_brown_bear",
+  "parent": "meadow:main/wool_collector",
   "display": {
     "icon": {
       "item": "meadow:fur_helmet"
     },
     "title": {
-      "translate": "meadow.advancement.fur_armor"
+      "translate": "advancement.meadow.fur_armor"
     },
     "description": {
-      "translate": "meadow.advancement.fur_armor.desc"
+      "translate": "advancement.meadow.fur_armor.desc"
     },
     "frame": "challenge",
     "show_toast": true,
