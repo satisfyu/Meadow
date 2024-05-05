@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.forge.mixin;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.FriendlyByteBuf;

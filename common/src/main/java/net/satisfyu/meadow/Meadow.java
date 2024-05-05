@@ -14,6 +14,7 @@ public class Meadow {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static void init() {
+        DataFixerRegistry.init();
         TabRegistry.init();
         ObjectRegistry.init();
         BoatsAndSignsRegistry.init();

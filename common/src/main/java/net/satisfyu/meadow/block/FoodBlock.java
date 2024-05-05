@@ -131,9 +131,4 @@ public class FoodBlock extends FacingBlock {
         }
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("tooltip.meadow.canbeplaced").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-    }
 }

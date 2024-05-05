@@ -17,7 +17,7 @@ public class WheelBarrowRenderer implements StorageTypeRenderer {
         ItemStack stack = itemStacks.get(0);
         if (stack.getItem() instanceof BlockItem blockItem) {
             BlockState state = blockItem.getBlock().defaultBlockState();
-            poseStack.translate(0f, 0.625f, 0f);
+            poseStack.translate(-0.5f, 0.5f, -0.5f);
             ClientUtil.renderBlock(state, poseStack, multiBufferSource, storageBlockEntity);
         }
     }

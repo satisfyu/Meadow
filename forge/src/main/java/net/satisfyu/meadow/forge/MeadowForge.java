@@ -43,11 +43,6 @@ public class MeadowForge {
                 SpawnPlacementRegisterEvent.Operation.AND
         );
 
-        event.register(EntityRegistry.BROWN_BEAR.get(),
-                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Animal::checkAnimalSpawnRules,
-                SpawnPlacementRegisterEvent.Operation.AND
-                );
         event.register(EntityRegistry.WATER_BUFFALO.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules,
