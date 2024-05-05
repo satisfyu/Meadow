@@ -1,6 +1,7 @@
 package net.satisfyu.meadow.block.storage;
 
 import de.cristelknight.doapi.common.block.StorageBlock;
+import de.cristelknight.doapi.common.registry.DoApiStorageTypeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -15,11 +16,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.satisfyu.meadow.registry.StorageTypeRegistry;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
 public class FlowerPotSmallBlock extends StorageBlock {
-
     protected static final VoxelShape SHAPE = Block.box(5.0, 0.0, 5.0, 11.0, 6.0, 11.0);
 
     public FlowerPotSmallBlock(Properties settings) {
@@ -33,7 +34,7 @@ public class FlowerPotSmallBlock extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return null;
+        return StorageTypeRegistry.FLOWER_POT_SMALL;
     }
 
     @Override

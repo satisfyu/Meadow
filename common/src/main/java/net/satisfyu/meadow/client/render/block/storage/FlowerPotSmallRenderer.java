@@ -18,7 +18,7 @@ public class FlowerPotSmallRenderer implements StorageTypeRenderer {
         ItemStack itemStack = nonNullList.get(0);
         if (itemStack.getItem() instanceof BlockItem blockItem) {
             BlockState state = blockItem.getBlock().defaultBlockState();
-            poseStack.translate(0f, 0.5f, 0f);
+            poseStack.translate(-0.5f, 0.3f, -0.5f);
             renderBlock(state, poseStack, multiBufferSource, storageBlockEntity);
         }
     }

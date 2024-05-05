@@ -17,6 +17,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.satisfyu.meadow.registry.StorageTypeRegistry;
 import net.satisfyu.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.NotNull;
 
@@ -61,7 +62,7 @@ public class WheelBarrowBlock extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return null;
+        return StorageTypeRegistry.WHEEL_BARROW;
     }
 
     @Override

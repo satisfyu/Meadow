@@ -16,7 +16,7 @@ public class Meadow {
 
     public static void init() {
         MeadowConfig.get();
-
+        DataFixerRegistry.init();
         TabRegistry.init();
         ObjectRegistry.init();
         BoatsAndSignsRegistry.init();
