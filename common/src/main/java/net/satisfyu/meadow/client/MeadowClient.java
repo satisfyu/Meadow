@@ -40,6 +40,8 @@ public class MeadowClient {
     }
 
     public static void initClient() {
+
+
         RenderTypeRegistry.register(RenderType.cutout(),
                 PINE_DOOR.get(), PINE_TRAPDOOR.get(), DELPHINIUM.get(), ALPINE_POPPY.get(), SAXIFRAGE.get(),
                 ENZIAN.get(), COOKING_CAULDRON.get(), FRAME.get(), TABLE.get(), FIRE_LOG.get(), ERIOPHORUM.get(),

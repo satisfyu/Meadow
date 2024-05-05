@@ -1,5 +1,6 @@
 package net.satisfyu.meadow.forge.networking;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;

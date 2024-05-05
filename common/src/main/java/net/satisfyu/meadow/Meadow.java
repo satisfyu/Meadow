@@ -3,6 +3,7 @@ package net.satisfyu.meadow;
 import de.cristelknight.doapi.DoApiEP;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import net.minecraft.world.level.block.Blocks;
+import net.satisfyu.meadow.config.MeadowConfig;
 import net.satisfyu.meadow.registry.*;
 import net.satisfyu.meadow.util.MeadowIdentifier;
 import net.satisfyu.meadow.util.WoodenCauldronBehavior;
@@ -14,6 +15,8 @@ public class Meadow {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static void init() {
+        MeadowConfig.get();
+
         TabRegistry.init();
         ObjectRegistry.init();
         BoatsAndSignsRegistry.init();

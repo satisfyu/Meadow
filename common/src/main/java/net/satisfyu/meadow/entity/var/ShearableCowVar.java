@@ -1,4 +1,4 @@
-package net.satisfyu.meadow.entity;
+package net.satisfyu.meadow.entity.var;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.Util;

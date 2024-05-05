@@ -48,6 +48,7 @@ allprojects {
             name = "Jared's maven"
             url = "https://maven.blamejared.com/"
         }
+        maven { url = "https://jitpack.io" }
     }
 
     tasks.withType(JavaCompile) {

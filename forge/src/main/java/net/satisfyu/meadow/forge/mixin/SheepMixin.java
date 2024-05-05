@@ -3,7 +3,7 @@ package net.satisfyu.meadow.forge.mixin;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
-import net.satisfyu.meadow.entity.SheepVar;
+import net.satisfyu.meadow.entity.var.SheepVar;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

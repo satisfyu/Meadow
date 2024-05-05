@@ -32,6 +32,9 @@
     ],
     "cardinal-components": [
       "net.satisfyu.meadow.fabric.cca.MyComponents"
+    ],
+    "mixinsquared": [
+      "net.satisfyu.meadow.util.MeadowMixinCanceller"
     ]
   },
   "mixins": [
