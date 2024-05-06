@@ -12,6 +12,7 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -44,7 +45,6 @@ import net.satisfyu.meadow.item.armor.FurChest;
 import net.satisfyu.meadow.item.armor.FurHead;
 import net.satisfyu.meadow.item.armor.FurLegs;
 import net.satisfyu.meadow.util.MeadowIdentifier;
-import net.satisfyu.meadow.util.MeadowUtil;
 import net.satisfyu.meadow.util.WoodenCauldronBehavior;
 import org.jetbrains.annotations.NotNull;
 
@@ -176,7 +176,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> SMALL_FIR = registerWithItem("small_fir", () -> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.ROSE_BUSH)));
     public static final RegistrySupplier<Block> PINE_SAPLING = registerWithItem("pine_sapling", () -> new SaplingBlock(new AbstractTreeGrower() {
         @Override
-        protected @NotNull ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource random, boolean bees) {return MeadowUtil.configuredFeatureKey("forest_pine");
+        protected @NotNull ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource random, boolean bees) {return configuredFeatureKey("forest_pine");
         }
     }, BlockBehaviour.Properties.copy(Blocks.SPRUCE_SAPLING)));
     public static final RegistrySupplier<Block> ALPINE_POPPY = registerWithItem("alpine_poppy", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
@@ -274,7 +274,10 @@ public class ObjectRegistry {
 
     public static void commonInit() {
         FuelRegistry.register(300, PINE_FENCE.get(), PINE_FENCE_GATE.get(), PINE_PLANKS.get(), PINE_LOG.get(), PINE_WOOD.get(), STRIPPED_PINE_LOG.get(), STRIPPED_PINE_WOOD.get());
+    }
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Meadow.MOD_ID, name));
     }
 
     private static ButtonBlock woodenButton(FeatureFlag... featureFlags) {

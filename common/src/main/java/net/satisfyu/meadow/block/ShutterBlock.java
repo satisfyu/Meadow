@@ -27,7 +27,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.satisfyu.meadow.util.MeadowUtil;
 import net.satisfyu.meadow.util.ShutterType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -200,7 +199,7 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
 
     static {
         FACING = BlockStateProperties.HORIZONTAL_FACING;
-        TYPE = MeadowUtil.SHUTTER_TYPE;
+        TYPE = ShutterType.SHUTTER_TYPE;
         LEFT = BooleanProperty.create("left");
         OPEN = BlockStateProperties.OPEN;
         POWERED = BlockStateProperties.POWERED;

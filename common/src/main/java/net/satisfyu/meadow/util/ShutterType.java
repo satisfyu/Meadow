@@ -1,6 +1,7 @@
 package net.satisfyu.meadow.util;
 
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.NotNull;
 
 public enum ShutterType implements StringRepresentable {
@@ -18,6 +19,12 @@ public enum ShutterType implements StringRepresentable {
     @Override
     public @NotNull String getSerializedName() {
         return this.name;
+    }
+
+    public static final EnumProperty<ShutterType> SHUTTER_TYPE;
+
+    static {
+        SHUTTER_TYPE = EnumProperty.create("type", ShutterType.class);
     }
 }
 

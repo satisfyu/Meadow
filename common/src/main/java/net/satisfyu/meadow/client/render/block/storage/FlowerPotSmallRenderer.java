@@ -1,7 +1,7 @@
 package net.satisfyu.meadow.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
+import de.cristelknight.doapi.client.render.block.storage.api.StorageTypeRenderer;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;

@@ -1,6 +1,6 @@
 package net.satisfyu.meadow.client;
 
-import de.cristelknight.doapi.client.render.block.storage.StorageBlockEntityRenderer;
+import de.cristelknight.doapi.client.render.block.storage.api.StorageBlockEntityRenderer;
 import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
