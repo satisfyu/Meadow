@@ -3,7 +3,6 @@ package net.satisfyu.meadow.config;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import de.cristelknight.doapi.config.jankson.config.CommentedConfig;
-import net.minecraft.Util;
 
 import java.util.HashMap;
 
@@ -23,10 +22,9 @@ public record MeadowConfig(boolean customEntityTextures)
 
     @Override
     public HashMap<String, String> getComments() {
-        return Util.make(new HashMap<>(), map -> {
-            map.put("custom_entity_textures", """
-                    Enable or disable custom entity textures.""");
-        });
+        HashMap<String, String> map = new HashMap<>();
+        map.put("custom_entity_textures", "Enable or disable custom entity textures.");
+        return map;
     }
 
     @Override
