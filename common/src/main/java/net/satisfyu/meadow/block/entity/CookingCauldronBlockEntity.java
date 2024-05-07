@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -101,16 +102,27 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
 
         ItemStack recipeOutput = recipe.assemble();
         ItemStack outputSlotStack = getItem(OUTPUT_SLOT);
-        outputSlotStack.grow(recipeOutput.getCount());
+        if (outputSlotStack.isEmpty()) {
+            setItem(OUTPUT_SLOT, recipeOutput.copy());
+        } else if (ItemStack.isSameItem(outputSlotStack, recipe.getResultItem()) && outputSlotStack.getCount() + recipeOutput.getCount() <= outputSlotStack.getMaxStackSize()) {
+            outputSlotStack.grow(recipeOutput.getCount());
+        }
+
+        boolean[] ingredientUsed = new boolean[INGREDIENTS_AREA + 1];
 
         for (Ingredient ingredient : recipe.getIngredients()) {
-            for (int j = 1; j <= INGREDIENTS_AREA; j++) {
-                ItemStack stack = getItem(j);
-                if (ingredient.test(stack)) {
-                    stack.shrink(1);
-                    ItemStack remainderStack = stack.getItem().hasCraftingRemainingItem() ? new ItemStack(Objects.requireNonNull(stack.getItem().getCraftingRemainingItem())) : ItemStack.EMPTY;
+            for (int slotIndex = 1; slotIndex <= INGREDIENTS_AREA; slotIndex++) {
+                if (!ingredientUsed[slotIndex] && ingredient.test(getItem(slotIndex))) {
+                    ingredientUsed[slotIndex] = true;
+                    ItemStack stackInSlot = getItem(slotIndex);
+                    ItemStack remainderStack = getRemainderItem(stackInSlot);
+                    stackInSlot.shrink(1);
                     if (!remainderStack.isEmpty()) {
-                        setItem(j, remainderStack);
+                        if (stackInSlot.isEmpty()) {
+                            setItem(slotIndex, remainderStack);
+                        } else {
+                            handleRemainder(remainderStack, slotIndex);
+                        }
                     }
                     break;
                 }
@@ -118,6 +130,41 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         }
     }
 
+    private void handleRemainder(ItemStack remainderStack, int originalSlot) {
+        boolean added = false;
+        for (int i = 1; i <= INGREDIENTS_AREA; i++) {
+            ItemStack is = getItem(i);
+            if (is.isEmpty()) {
+                setItem(i, remainderStack.copy());
+                added = true;
+                break;
+            } else if (ItemStack.isSameItem(is, remainderStack) && is.getCount() + remainderStack.getCount() <= is.getMaxStackSize()) {
+                is.grow(remainderStack.getCount());
+                added = true;
+                break;
+            }
+        }
+        if (!added) {
+            dropItemIntoWorld(remainderStack, worldPosition);
+        }
+    }
+
+    private ItemStack getRemainderItem(ItemStack stack) {
+        if (stack.getItem().hasCraftingRemainingItem()) {
+            return new ItemStack(Objects.requireNonNull(stack.getItem().getCraftingRemainingItem()));
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private void dropItemIntoWorld(ItemStack itemStack, BlockPos pos) {
+        if (level != null && !level.isClientSide()) {
+            double offsetX = level.random.nextDouble() * 0.7 + 0.15;
+            double offsetY = level.random.nextDouble() * 0.5 + 0.1;
+            double offsetZ = level.random.nextDouble() * 0.7 + 0.15;
+            ItemEntity itemEntity = new ItemEntity(level, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, itemStack);
+            level.addFreshEntity(itemEntity);
+        }
+    }
 
     public void tick(Level world, BlockPos pos, BlockState state) {
         if (world.isClientSide()) return;

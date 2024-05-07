@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "#forge:water_bottles",
-    "#c:water_bottles",
-    "minecraft:water_bucket"
+    "#c:water_bottles"
   ]
 }

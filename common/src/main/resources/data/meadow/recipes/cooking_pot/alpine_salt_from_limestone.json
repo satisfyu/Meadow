@@ -2,7 +2,7 @@
   "type": "meadow:cooking",
   "ingredients": [
     {
-      "item": "minecraft:water_bucket"
+      "tag": "meadow:water_bottles"
     },
     {
       "item": "meadow:limestone"

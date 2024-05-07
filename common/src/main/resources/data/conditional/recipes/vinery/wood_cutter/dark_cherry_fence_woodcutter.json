@@ -9,9 +9,9 @@
 	"recipe": {
 		"type": "meadow:woodcutting",
 		"inputItem": {
-			"tag": "vinery:cherry_logs"
+			"tag": "vinery:dark_cherry_logs"
 		},
-		"outputItem": "vinery:cherry_sign",
-		"outputAmount": 2
+		"outputItem": "vinery:dark_cherry_fence",
+		"outputAmount": 4
 	}
 }

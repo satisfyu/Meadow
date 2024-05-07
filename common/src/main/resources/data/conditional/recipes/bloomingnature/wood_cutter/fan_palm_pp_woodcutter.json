@@ -9,9 +9,9 @@
 	"recipe": {
 		"type": "meadow:woodcutting",
 		"inputItem": {
-			"item": "bloomingnature:palm_log"
+			"item": "bloomingnature:fan_palm_log"
 		},
-		"outputItem": "bloomingnature:palm_door",
+		"outputItem": "bloomingnature:fan_palm_pressure_plate",
 		"outputAmount": 2
 	}
 }

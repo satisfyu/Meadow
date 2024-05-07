@@ -3,15 +3,15 @@
 	"conditions": [
 		{
 			"type": "forge:mod_loaded",
-			"modid": "bloomingnature"
+			"modid": "vinery"
 		}
 	],
 	"recipe": {
 		"type": "meadow:woodcutting",
 		"inputItem": {
-			"item": "bloomingnature:palm_log"
+			"tag": "vinery:dark_cherry_logs"
 		},
-		"outputItem": "bloomingnature:palm_pressure_plate",
-		"outputAmount": 2
+		"outputItem": "vinery:dark_cherry_fence_gate",
+		"outputAmount": 1
 	}
 }
