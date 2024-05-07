@@ -68,7 +68,7 @@
               "function": "minecraft:looting_enchant"
             }
           ],
-          "name": "minecraft:beef"
+          "name": "meadow:raw_buffalo_meat"
         }
       ],
       "rolls": 1
