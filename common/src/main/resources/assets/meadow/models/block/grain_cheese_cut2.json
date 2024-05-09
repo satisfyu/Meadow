@@ -1,7 +1,8 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"4": "meadow:block/grain_cheese"
+		"4": "meadow:block/grain_cheese",
+		"particle": "meadow:block/grain_cheese"
 	},
 	"elements": [
 		{
