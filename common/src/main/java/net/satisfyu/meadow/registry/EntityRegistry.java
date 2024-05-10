@@ -26,20 +26,18 @@ public class EntityRegistry {
             () -> EntityType.Builder.of(ShearableVarCow::new, MobCategory.CREATURE).sized(0.9f, 1.4f).build(new ResourceLocation(Meadow.MOD_ID, "wooly_cow").toString())
     );
 
+    public static void registerCow(Supplier<? extends EntityType<? extends Animal>> typeSupplier) {
+        EntityAttributeRegistry.register(typeSupplier, Cow::createAttributes);
+    }
+
+    public static <T extends EntityType<?>> RegistrySupplier<T> create(final String path, final Supplier<T> type) {
+        return ENTITY_TYPES.register(new ResourceLocation(Meadow.MOD_ID, path), type);
+    }
 
     public static void init() {
         Meadow.LOGGER.debug("Registering Mod Entities for " + Meadow.MOD_ID);
         ENTITY_TYPES.register();
         registerCow(SHEARABLE_MEADOW_VAR_COW);
         registerCow(WATER_BUFFALO);
-    }
-
-    public static void registerCow(Supplier<? extends EntityType<? extends Animal>> typeSupplier) {
-        EntityAttributeRegistry.register(typeSupplier, Cow::createAttributes);
-    }
-
-
-    public static <T extends EntityType<?>> RegistrySupplier<T> create(final String path, final Supplier<T> type) {
-        return ENTITY_TYPES.register(new ResourceLocation(Meadow.MOD_ID, path), type);
     }
 }
