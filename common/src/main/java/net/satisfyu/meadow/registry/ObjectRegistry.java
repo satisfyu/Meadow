@@ -53,7 +53,6 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public class ObjectRegistry {
-
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Meadow.MOD_ID, Registries.ITEM);
     public static final Registrar<Item> ITEM_REGISTRAR = ITEMS.getRegistrar();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Meadow.MOD_ID, Registries.BLOCK);
@@ -267,7 +266,6 @@ public class ObjectRegistry {
         Meadow.LOGGER.debug("Registering Mod Block and Items for " + Meadow.MOD_ID);
         ITEMS.register();
         BLOCKS.register();
-        commonInit();
     }
 
     public static void commonInit() {
