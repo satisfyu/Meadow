@@ -24,6 +24,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.satisfyu.meadow.registry.ObjectRegistry;
+import org.jetbrains.annotations.NotNull;
 
 public class WoodenBucket extends BucketItem {
     private final Fluid fluid;
@@ -34,7 +35,7 @@ public class WoodenBucket extends BucketItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
         ItemStack itemStack = user.getItemInHand(hand);
         BlockHitResult blockHitResult = WoodenBucket.getPlayerPOVHitResult(world, user, this.fluid == Fluids.EMPTY ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE);
         if (blockHitResult.getType() == HitResult.Type.MISS) {
@@ -54,7 +55,7 @@ public class WoodenBucket extends BucketItem {
                 BlockState blockState = world.getBlockState(blockPos);
                 if (blockState.getBlock() instanceof BucketPickup f) {
 
-                    if (blockState.getBlock().equals(Blocks.LAVA)) {
+                    if (!blockState.getFluidState().isSource() || blockState.getBlock().equals(Blocks.LAVA) || blockState.getBlock().equals(Blocks.POWDER_SNOW)) {
                         return InteractionResultHolder.pass(itemStack);
                     }
                     itemStack2 = (fluidDrainable = f).pickupBlock(world, blockPos, blockState);
@@ -93,7 +94,7 @@ public class WoodenBucket extends BucketItem {
         return super.use(world, user, hand);
     }
 
-    public static ItemStack getEmptySuccessItem(ItemStack stack, Player player) {
+    public static @NotNull ItemStack getEmptySuccessItem(ItemStack stack, Player player) {
         if (!player.getAbilities().instabuild) {
             return new ItemStack(ObjectRegistry.WOODEN_BUCKET.get());
         }
