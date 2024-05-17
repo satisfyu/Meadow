@@ -45,18 +45,7 @@ public record MeadowConfig(boolean customEntityTextures)
 
     @Override
     public MeadowConfig getInstance() {
-        return getMeadowConfig();
-    }
-
-    public static MeadowConfig getMeadowConfig() {
-        if (INSTANCE == null) {
-            INSTANCE = loadConfig();
-        }
         return INSTANCE;
-    }
-
-    private static MeadowConfig loadConfig() {
-        return new MeadowConfig(true);
     }
 
     @Override
