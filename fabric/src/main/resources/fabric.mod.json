@@ -16,25 +16,25 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.satisfyu.meadow.fabric.MeadowFabric"
+      "net.satisfy.meadow.fabric.MeadowFabric"
     ],
     "client": [
-      "net.satisfyu.meadow.fabric.client.MeadowFabricClient"
+      "net.satisfy.meadow.fabric.client.MeadowFabricClient"
     ],
     "doapi": [
-      "net.satisfyu.meadow.util.MeadowDoAPI"
+      "net.satisfy.meadow.util.MeadowDoAPI"
     ],
     "rei_client": [
-      "net.satisfyu.meadow.fabric.rei.MeadowReiClientPluginFabric"
+      "net.satisfy.meadow.fabric.rei.MeadowReiClientPluginFabric"
     ],
     "jei_mod_plugin": [
-      "net.satisfyu.meadow.compat.jei.MeadowJEIPlugin"
+      "net.satisfy.meadow.compat.jei.MeadowJEIPlugin"
     ],
     "cardinal-components": [
-      "net.satisfyu.meadow.fabric.cca.MyComponents"
+      "net.satisfy.meadow.fabric.cca.MyComponents"
     ],
     "mixinsquared": [
-      "net.satisfyu.meadow.util.MeadowMixinCanceller"
+      "net.satisfy.meadow.util.MeadowMixinCanceller"
     ]
   },
   "mixins": [

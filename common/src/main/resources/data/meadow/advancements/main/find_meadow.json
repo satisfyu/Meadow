@@ -1,38 +1,6 @@
 {
   "parent": "meadow:main/root",
   "criteria": {
-    "clearing": {
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "meadow:meadow_clearing"
-              }
-            }
-          }
-        ]
-      },
-      "trigger": "minecraft:location"
-    },
-    "forest": {
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "meadow:meadow_forest"
-              }
-            }
-          }
-        ]
-      },
-      "trigger": "minecraft:location"
-    },
     "meadow": {
       "conditions": {
         "player": [
@@ -66,12 +34,6 @@
     }
   },
   "requirements": [
-    [
-      "clearing"
-    ],
-    [
-      "forest"
-    ],
     [
       "meadow"
     ]
