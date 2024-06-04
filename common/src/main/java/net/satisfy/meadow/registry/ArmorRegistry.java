@@ -6,7 +6,9 @@ import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -24,20 +26,17 @@ import net.satisfy.meadow.item.armor.FurLegs;
 import net.satisfy.meadow.util.MeadowIdentifier;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ArmorRegistry {
+    private static final Map<Item, FurArmorHat<?>> models = new HashMap<>();
 
     public static void registerArmorModelLayers() {
-        EntityModelLayerRegistry.register(FurArmorHat.LAYER_LOCATION, FurArmorHat::createBodyLayer);
         EntityModelLayerRegistry.register(FurArmorOuter.LAYER_LOCATION, FurArmorOuter::createBodyLayer);
         EntityModelLayerRegistry.register(FurArmorInner.LAYER_LOCATION, FurArmorInner::createBodyLayer);
 
-    }
-
-    public static  <T extends LivingEntity> void registerHatModels(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
-        models.put(ObjectRegistry.FUR_HELMET.get(), new FurArmorHat<>(modelLoader.bakeLayer(FurArmorHat.LAYER_LOCATION)));
     }
 
     public static <T extends LivingEntity> void registerArmorModels(CustomArmorManager<T> armors, EntityModelSet modelLoader) {
@@ -45,6 +44,22 @@ public class ArmorRegistry {
                 .setTexture(new MeadowIdentifier("fur"))
                 .setOuterModel(new FurArmorOuter<>(modelLoader.bakeLayer(FurArmorOuter.LAYER_LOCATION)))
                 .setInnerModel(new FurArmorInner<>(modelLoader.bakeLayer(FurArmorInner.LAYER_LOCATION))));
+    }
+
+    public static Model getHatModel(Item item, ModelPart baseHead) {
+        EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
+        FurArmorHat<?> model = models.computeIfAbsent(item, key -> {
+            if (key == ObjectRegistry.FUR_HELMET.get()) {
+                return new FurArmorHat<>(modelSet.bakeLayer(FurArmorHat.LAYER_LOCATION));
+            } else {
+                return null;
+            }
+        });
+
+        assert model != null;
+        model.copyHead(baseHead);
+
+        return model;
     }
 
     @SuppressWarnings("all")

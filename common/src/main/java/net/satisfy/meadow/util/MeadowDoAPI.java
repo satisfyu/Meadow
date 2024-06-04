@@ -29,7 +29,6 @@ public class MeadowDoAPI implements DoApiAPI {
     @Override
     @SuppressWarnings("deprecation")
     public <T extends LivingEntity> void registerHat(Map<Item, EntityModel<T>> map, EntityModelSet entityModelSet) {
-        ArmorRegistry.registerHatModels(map, entityModelSet);
     }
 
     @Override
