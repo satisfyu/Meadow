@@ -23,8 +23,6 @@ public class MeadowFabric implements ModInitializer {
         FabricVillager.init();
         MeadowBiomeModification.init();
         FabricEntitySpawn.registerEntitySpawn();
-
-        ArmorRenderer.register(new FurArmorHatRenderer(), ObjectRegistry.FUR_HELMET.get());
     }
 }
 

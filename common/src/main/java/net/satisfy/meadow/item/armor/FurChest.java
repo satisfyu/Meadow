@@ -24,6 +24,4 @@ public class FurChest extends CustomArmorItem {
             ArmorRegistry.appendToolTip(tooltip);
         }
     }
-
-
 }
