@@ -68,11 +68,17 @@ public class WoodenBucket extends Item implements DispensibleContainerItem, Inje
                             if (!level.isClientSide) {
                                 CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer)player, itemStack2);
                             }
-
-                            return InteractionResultHolder.sidedSuccess(itemStack3, level.isClientSide());
+                            itemStack.shrink(1);
+                            if (itemStack.isEmpty()) {
+                                return InteractionResultHolder.sidedSuccess(itemStack3, level.isClientSide());
+                            } else {
+                                if (!player.getInventory().add(itemStack3)) {
+                                    player.drop(itemStack3, false);
+                                }
+                                return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
+                            }
                         }
                     }
-
                     return InteractionResultHolder.fail(itemStack);
                 } else {
                     blockState = level.getBlockState(blockPos);
