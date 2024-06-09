@@ -36,6 +36,6 @@ side = "BOTH"
 [[dependencies.meadow]]
 modId = "doapi"
 mandatory = true
-versionRange = "[1.2.9,)"
+versionRange = "[1.2.13,)"
 ordering = "AFTER"
 side = "BOTH"
