@@ -28,6 +28,8 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.satisfy.meadow.item.WoodenBucket;
+import net.satisfy.meadow.item.WoodenMilkBucket;
 import net.satisfy.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 
@@ -84,13 +86,14 @@ public class CanBlock extends Block {
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getItemInHand(hand);
         Item item = itemStack.getItem();
-        if (!(item instanceof BucketItem || item instanceof MilkBucketItem)) {
+        if (!(item instanceof BucketItem || item instanceof MilkBucketItem || item instanceof WoodenBucket)) {
             return InteractionResult.PASS;
         }
 
         boolean water;
-        boolean wood = false;
-        if (state.getValue(FLUID) == 0 && ((water = isWater(item)) || (wood = isMilk(item)))) {
+        boolean milk;
+        boolean wood = isWooden(item);
+        if (state.getValue(FLUID) == 0 && ((water = isWater(item)) || (milk = isMilk(item)))) {
             if(!world.isClientSide()){
                 player.setItemInHand(hand, ItemUtils.createFilledResult(itemStack, player, new ItemStack(wood ? ObjectRegistry.WOODEN_BUCKET.get() : Items.BUCKET)));
                 player.awardStat(Stats.ITEM_USED.get(item));
@@ -101,8 +104,7 @@ public class CanBlock extends Block {
             return InteractionResult.sidedSuccess(world.isClientSide());
         } else if ((state.getValue(FLUID) == 1 || state.getValue(FLUID) == 2) && (item.equals(Items.BUCKET) || item.equals(ObjectRegistry.WOODEN_BUCKET.get()))) {
             if(!world.isClientSide()){
-                boolean bl = item.equals(ObjectRegistry.WOODEN_BUCKET.get());
-                player.setItemInHand(hand, ItemUtils.createFilledResult(itemStack, player, new ItemStack(state.getValue(FLUID) == 2 ? bl ? ObjectRegistry.WOODEN_WATER_BUCKET.get() : Items.WATER_BUCKET : bl ? ObjectRegistry.WOODEN_MILK_BUCKET.get() : Items.MILK_BUCKET)));
+                player.setItemInHand(hand, ItemUtils.createFilledResult(itemStack, player, new ItemStack(state.getValue(FLUID) == 2 ? wood ? ObjectRegistry.WOODEN_WATER_BUCKET.get() : Items.WATER_BUCKET : wood ? ObjectRegistry.WOODEN_MILK_BUCKET.get() : Items.MILK_BUCKET)));
                 player.awardStat(Stats.ITEM_USED.get(item));
                 world.setBlockAndUpdate(pos, state.setValue(FLUID, 0));
                 world.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0f, 1.0f);
@@ -116,6 +118,10 @@ public class CanBlock extends Block {
 
     public boolean isMilk(Item item){
         return item.equals(Items.MILK_BUCKET) || item.equals(ObjectRegistry.WOODEN_MILK_BUCKET.get());
+    }
+
+    public boolean isWooden(Item item){
+        return item.equals(ObjectRegistry.WOODEN_WATER_BUCKET.get()) || item.equals(ObjectRegistry.WOODEN_MILK_BUCKET.get()) || item.equals(ObjectRegistry.WOODEN_BUCKET.get());
     }
 
     public boolean isWater(Item item){
