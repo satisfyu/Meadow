@@ -13,6 +13,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.satisfy.meadow.Meadow;
 import net.satisfy.meadow.forge.capabilities.MeadowCapabilities;
 import net.satisfy.meadow.forge.networking.MeadowNetworkForge;
+import net.satisfy.meadow.forge.registry.MeadowForgeVillagers;
 import net.satisfy.meadow.registry.CompostableRegistry;
 import net.satisfy.meadow.registry.EntityRegistry;
 
@@ -25,10 +26,9 @@ public class MeadowForge {
         Meadow.init();
         MeadowCapabilities.setupCapabilities(modEventBus);
         MeadowNetworkForge.registerC2SPackets();
+        MeadowForgeVillagers.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
     }
-
-
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(CompostableRegistry::registerCompostable);
@@ -46,6 +46,6 @@ public class MeadowForge {
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND
-                );
+        );
     }
 }

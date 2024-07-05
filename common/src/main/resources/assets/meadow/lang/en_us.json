@@ -239,5 +239,7 @@
   "tooltip.meadow.thankyou_1": "A reward for crafting all Cheese Variants",
   "tooltip.meadow.thankyou_2": "When placed:",
   "tooltip.meadow.thankyou_3": "Thank you for playing Meadow!",
-  "tooltip.meadow.thankyou_4": "Grants Dig Speed II in a radius of 8 blocks"
+  "tooltip.meadow.thankyou_4": "Grants Dig Speed II in a radius of 8 blocks",
+  "entity.minecraft.villager.meadow.hermit": "Hermit",
+  "entity.minecraft.villager.meadow.cheesemaker": "Cheesemaker"
 }
