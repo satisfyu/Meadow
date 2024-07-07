@@ -1,0 +1,29 @@
+{
+  "parent": "meadow:main/root",
+  "criteria": {
+    "trigger": "minecraft:item_dropped",
+    "conditions": {
+      "item": {
+        "tag": ["#meadow:cheeses", "#meadow:cheese", "#meadow:cheese_blocks"]
+        }
+      }
+    },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.meadow.throw_the_cheese.desc"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "meadow:piece_of_cheese"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.meadow.throw_the_cheese"
+    }
+  },
+  "rewards": {
+    "experience": 250
+  }
+}
