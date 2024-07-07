@@ -1,7 +1,7 @@
 {
   "parent": "meadow:main/root",
   "criteria": {
-    "trigger": "minecraft:item_dropped",
+    "trigger": "minecraft:thrown_item_picked_up_by_player",
     "conditions": {
       "item": {
         "tag": ["#meadow:cheeses", "#meadow:cheese", "#meadow:cheese_blocks"]
