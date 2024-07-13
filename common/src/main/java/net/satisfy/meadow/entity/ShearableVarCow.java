@@ -130,11 +130,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     public void setSheared(boolean sheared) {
-        if (sheared) {
-            this.entityData.set(IS_SHEARED, true);
-        } else {
-            this.entityData.set(IS_SHEARED, false);
-        }
+        this.entityData.set(IS_SHEARED, sheared);
     }
 
     @Override
@@ -242,6 +238,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         }
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0));
@@ -255,26 +252,32 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         this.goalSelector.addGoal(5, this.eatGrassGoal);
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.COW_AMBIENT;
     }
 
+    @Override
     protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
         return SoundEvents.COW_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.COW_DEATH;
     }
 
+    @Override
     protected void playStepSound(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
     }
 
+    @Override
     protected float getSoundVolume() {
         return 0.4F;
     }
 
+    @Override
     protected float getStandingEyeHeight(@NotNull Pose pose, @NotNull EntityDimensions entityDimensions) {
         return this.isBaby() ? entityDimensions.height * 0.95F : 1.3F;
     }
