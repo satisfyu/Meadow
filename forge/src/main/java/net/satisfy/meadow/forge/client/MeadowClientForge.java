@@ -7,7 +7,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.RegisterEvent;
 import net.satisfy.meadow.Meadow;
 import net.satisfy.meadow.client.MeadowClient;
-import net.satisfy.meadow.forge.networking.MeadowNetworkForge;
 
 @Mod.EventBusSubscriber(modid = Meadow.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MeadowClientForge {
@@ -18,7 +17,6 @@ public class MeadowClientForge {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        MeadowNetworkForge.registerS2CPackets();
         MeadowClient.initClient();
     }
 }

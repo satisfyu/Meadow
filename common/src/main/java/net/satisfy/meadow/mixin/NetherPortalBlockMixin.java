@@ -8,7 +8,7 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.satisfy.meadow.entity.var.ShearableCowVar;
+import net.satisfy.meadow.entity.ShearableCowVar;
 import net.satisfy.meadow.entity.ShearableVarCow;
 import net.satisfy.meadow.registry.EntityRegistry;
 import net.satisfy.meadow.registry.TagRegistry;

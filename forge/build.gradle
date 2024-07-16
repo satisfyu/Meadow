@@ -19,7 +19,6 @@ loom {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-        mixinConfig "meadow-variant.mixins.json"
         mixinConfig "meadow-common.mixins.json"
         mixinConfig "meadow.mixins.json"
     }
@@ -40,12 +39,8 @@ dependencies {
     modImplementation "me.shedaniel:RoughlyEnoughItems-forge:$rei_version"
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
-    //modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-forge"
-
-    implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.1.2-beta.5"))
-    implementation(include("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.1.2-beta.5"))
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }

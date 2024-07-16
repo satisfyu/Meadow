@@ -44,15 +44,9 @@ dependencies {
     modImplementation("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}")
-    //modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
 
     modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}")
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
-
-    include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.1.2-beta.5")))
-
-    include(modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"))
-    include(modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"))
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

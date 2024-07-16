@@ -4,11 +4,9 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
-    "ClientPacketListenerMixin"
   ],
   "mixins": [
-    "HatItemMixin",
-    "SheepMixin"
+    "HatItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

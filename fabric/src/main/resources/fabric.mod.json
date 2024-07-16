@@ -5,7 +5,7 @@
   "name": "[Let's Do] Meadow",
 "description": "Hey Wanderer! Sit down, enjoy a piece of cheese, and take a look at the new mountain pasture - cliffs, beautiful forests, clearings, and lots of colorful flowers!",
   "authors": [
-    "satisfy, Cristelknight999, BMJO"
+    "satisfy, Cristelknight999"
   ],
   "contact": {
     "homepage": "https://legacy.curseforge.com/minecraft/mc-mods/lets-do-meadow",
@@ -29,24 +29,11 @@
     ],
     "jei_mod_plugin": [
       "net.satisfy.meadow.compat.jei.MeadowJEIPlugin"
-    ],
-    "cardinal-components": [
-      "net.satisfy.meadow.fabric.cca.MyComponents"
-    ],
-    "mixinsquared": [
-      "net.satisfy.meadow.util.MeadowMixinCanceller"
     ]
   },
   "mixins": [
-    "meadow-variant.mixins.json",
-    "meadow-common.mixins.json",
-    "meadow.mixins.json"
+    "meadow-common.mixins.json"
   ],
-  "custom": {
-    "cardinal-components": [
-      "meadow:var"
-    ]
-  },
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.20",
@@ -54,6 +41,5 @@
     "doapi": ">=1.2.13"
   },
   "conflicts": {
-    "moremobvariants": "*"
   }
 }
