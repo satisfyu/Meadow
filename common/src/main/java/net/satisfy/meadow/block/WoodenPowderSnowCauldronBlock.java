@@ -13,8 +13,9 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public class WoodenPowderSnowCauldronBlock extends LayeredCauldronBlock {
-    public WoodenPowderSnowCauldronBlock(Properties settings, Predicate<Biome.Precipitation> predicate, Map<Item, CauldronInteraction> map) {
-        super(settings, predicate, map);
+
+    public WoodenPowderSnowCauldronBlock(Biome.Precipitation precipitation, CauldronInteraction.InteractionMap interactionMap, Properties properties) {
+        super(precipitation, interactionMap, properties);
     }
 
     protected void handleEntityOnFireInside(BlockState state, Level world, BlockPos pos) {

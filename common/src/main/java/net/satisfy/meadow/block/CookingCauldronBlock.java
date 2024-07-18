@@ -1,5 +1,6 @@
 package net.satisfy.meadow.block;
 
+import com.mojang.serialization.MapCodec;
 import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -43,6 +44,7 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class CookingCauldronBlock extends BaseEntityBlock {
+    public static final MapCodec<CookingCauldronBlock> CODEC = simpleCodec(CookingCauldronBlock::new);
     private static final VoxelShape LOWER_SHAPE = Shapes.box(0.25, 0, 0.25, 0.75, 0.0625, 0.75);
     private static final VoxelShape UPPER_SHAPE = Shapes.box(0.1875, 0.0625, 0.1875, 0.8125, 0.5625, 0.8125);
     private static final VoxelShape COMBINED_SHAPE = Shapes.or(LOWER_SHAPE, UPPER_SHAPE);
@@ -56,6 +58,11 @@ public class CookingCauldronBlock extends BaseEntityBlock {
     public CookingCauldronBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HANGING, false).setValue(COOKING, false).setValue(LIT, false));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -74,13 +81,13 @@ public class CookingCauldronBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         BlockEntity entity = world.getBlockEntity(pos);
         if (entity instanceof MenuProvider factory) {
             player.openMenu(factory);
             return InteractionResult.SUCCESS;
         } else {
-            return super.use(state, world, pos, player, hand, hit);
+            return super.useWithoutItem(state, world, pos, player, hit);
         }
     }
 

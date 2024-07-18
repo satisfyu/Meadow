@@ -39,6 +39,6 @@ public class CookingCauldronGui extends AbstractRecipeBookGUIScreen<CookingCauld
 
 
     static {
-        BACKGROUND = new ResourceLocation(Meadow.MOD_ID, "textures/gui/cooking_cauldron_gui.png");
+        BACKGROUND = ResourceLocation.fromNamespaceAndPath(Meadow.MOD_ID, "textures/gui/cooking_cauldron_gui.png");
     }
 }

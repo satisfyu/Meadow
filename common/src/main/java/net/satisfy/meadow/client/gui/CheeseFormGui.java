@@ -33,6 +33,6 @@ public class CheeseFormGui extends AbstractRecipeBookGUIScreen<CheeseFormGuiHand
     }
 
     static {
-        BACKGROUND = new ResourceLocation(Meadow.MOD_ID, "textures/gui/cheese_form_gui.png");
+        BACKGROUND = ResourceLocation.fromNamespaceAndPath(Meadow.MOD_ID, "textures/gui/cheese_form_gui.png");
     }
 }

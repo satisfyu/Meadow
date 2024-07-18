@@ -30,7 +30,8 @@ public class CheeseRackBlock extends StorageBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionHand hand = player.getUsedItemHand();
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (!(blockEntity instanceof StorageBlockEntity shelfBlockEntity)) {
             return InteractionResult.PASS;

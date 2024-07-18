@@ -1,6 +1,7 @@
 package net.satisfy.meadow.block;
 
 
+import com.mojang.serialization.MapCodec;
 import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.Util;
@@ -70,6 +71,8 @@ public class FondueBlock extends BaseEntityBlock {
         return shape;
     };
 
+    public static final MapCodec<FondueBlock> CODEC = simpleCodec(FondueBlock::new);
+
     public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
             map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
@@ -81,6 +84,11 @@ public class FondueBlock extends BaseEntityBlock {
     public FondueBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -101,7 +109,7 @@ public class FondueBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
         if (!world.isClientSide) {
             MenuProvider screenHandlerFactory = state.getMenuProvider(world, pos);
             if (screenHandlerFactory != null) {

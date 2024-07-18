@@ -64,7 +64,8 @@ public class CheeseBlock extends FacingBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
+        InteractionHand hand = player.getUsedItemHand();
         ItemStack itemStack = player.getItemInHand(hand);
         if (world.isClientSide) {
             if (tryEat(world, pos, state, player).consumesAction()) {

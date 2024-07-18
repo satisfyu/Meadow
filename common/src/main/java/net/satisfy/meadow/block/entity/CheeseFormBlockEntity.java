@@ -1,10 +1,7 @@
 package net.satisfy.meadow.block.entity;
 
 import de.cristelknight.doapi.common.world.ImplementedInventory;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.ContainerHelper;
@@ -81,22 +78,20 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.inventory);
-        this.fermentationTime = nbt.getShort("fermentationTime");
-        this.experience = nbt.getFloat("experience");
-
+        ContainerHelper.loadAllItems(compoundTag, this.inventory, provider);
+        this.fermentationTime = compoundTag.getShort("fermentationTime");
+        this.experience = compoundTag.getFloat("experience");
     }
 
-
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
-        ContainerHelper.saveAllItems(nbt, this.inventory);
-        nbt.putFloat("experience", this.experience);
-        nbt.putShort("fermentationTime", (short) this.fermentationTime);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
+        ContainerHelper.saveAllItems(compoundTag, this.inventory, provider);
+        compoundTag.putShort("fermentationTime", (short) this.fermentationTime);
+        compoundTag.putFloat("experience", this.experience);
     }
 
 

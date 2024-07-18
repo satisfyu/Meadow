@@ -83,7 +83,8 @@ public class CanBlock extends Block {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
+        InteractionHand hand = player.getUsedItemHand();
         ItemStack itemStack = player.getItemInHand(hand);
         Item item = itemStack.getItem();
         if (!(item instanceof BucketItem || item instanceof MilkBucketItem || item instanceof WoodenBucket)) {

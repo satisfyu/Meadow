@@ -4,58 +4,55 @@ plugins {
 
 architectury {
     platformSetupLoomIde()
-    forge()
+    neoForge {
+        platformPackage = "forge"
+    }
 }
 
 def jarFileName = 'letsdo-meadow-forge'
 
 archivesBaseName = jarFileName
 
-
-loom {
-    accessWidenerPath = project(":common").loom.accessWidenerPath
-
-    forge {
-        convertAccessWideners = true
-        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
-
-        mixinConfig "meadow-variant.mixins.json"
-        mixinConfig "meadow-common.mixins.json"
-        mixinConfig "meadow.mixins.json"
-    }
-}
-
 configurations {
     common
-    shadowCommon
+    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentForge.extendsFrom common
+    developmentNeoForge.extendsFrom common
+}
+
+repositories {
+    maven {
+        name = 'NeoForged'
+        url = 'https://maven.neoforged.net/releases'
+    }
+
+    maven { url "https://maven.shedaniel.me" }
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
-    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+    neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
+    modApi "dev.architectury:architectury-neoforge:${rootProject.architectury_version}"
 
-    modImplementation "me.shedaniel:RoughlyEnoughItems-forge:$rei_version"
+    modImplementation "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
-    //modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    //modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") //?
 
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-forge"
 
     implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.1.2-beta.5"))
-    implementation(include("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.1.2-beta.5"))
+    implementation(include("com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.1.2-beta.5"))
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }
 }
 
 processResources {
-    inputs.property "version", project.version
+    inputs.property 'version', project.version
 
-    filesMatching("META-INF/mods.toml") {
-        expand "version": project.version
+    filesMatching('META-INF/neoforge.neoforge.mods.toml') {
+        expand version: project.version
     }
 }
 
@@ -95,8 +92,5 @@ publishing {
             artifactId = rootProject.archives_base_name + "-" + project.name
             from components.java
         }
-    }
-
-    repositories {
     }
 }

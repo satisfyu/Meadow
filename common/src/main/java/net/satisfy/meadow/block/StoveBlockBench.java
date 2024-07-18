@@ -31,8 +31,8 @@ public class StoveBlockBench extends Block {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return ChairUtil.onUse(world, player, hand, hit, -0.1);
+    protected InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        return ChairUtil.onUse(level, player, player.getUsedItemHand(), blockHitResult, -0.1);
     }
 
     @Override

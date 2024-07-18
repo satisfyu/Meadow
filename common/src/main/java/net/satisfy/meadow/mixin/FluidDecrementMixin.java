@@ -6,7 +6,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
-import net.minecraft.world.level.block.PowderSnowCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.satisfy.meadow.registry.ObjectRegistry;
@@ -40,8 +39,8 @@ public class FluidDecrementMixin {
 
         if (!world.isClientSide && block.isEntityInsideContent(state, pos, entity)) {
             if(entity.isOnFire()) return;
-            if(block instanceof PowderSnowCauldronBlock){
-                Blocks.POWDER_SNOW.entityInside(state, world, pos, entity);
+            if(block == Blocks.POWDER_SNOW_CAULDRON){
+                Blocks.POWDER_SNOW.defaultBlockState().entityInside(world, pos, entity);
             }
         }
     }

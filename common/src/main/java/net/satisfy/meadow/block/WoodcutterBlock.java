@@ -39,7 +39,7 @@ public class WoodcutterBlock extends Block {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
         if (world.isClientSide) {
             return InteractionResult.SUCCESS;
         }

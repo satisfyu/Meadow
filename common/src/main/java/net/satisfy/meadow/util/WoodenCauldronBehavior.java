@@ -8,12 +8,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -30,7 +30,7 @@ import static net.minecraft.world.level.block.LayeredCauldronBlock.LEVEL;
 
 @SuppressWarnings("unused")
 public interface WoodenCauldronBehavior extends CauldronInteraction {
-    Map<Item, CauldronInteraction> EMPTY = CauldronInteraction.newInteractionMap();
+    Map<Item, CauldronInteraction> EMPTY = CauldronInteraction.newInteractionMap("empty");
     Map<Item, CauldronInteraction> WATER = CauldronInteraction.newInteractionMap();
     Map<Item, CauldronInteraction> POWDER_SNOW = CauldronInteraction.newInteractionMap();
 
@@ -38,7 +38,8 @@ public interface WoodenCauldronBehavior extends CauldronInteraction {
     CauldronInteraction FILL_POWDER_SNOW = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_POWDER_SNOW_CAULDRON.get().defaultBlockState().setValue(LEVEL, 3), SoundEvents.BUCKET_EMPTY_POWDER_SNOW, Items.BUCKET);
     CauldronInteraction FILL_WITH_WATER_W = (state, world, pos, player, hand, stack) -> WoodenCauldronBehavior.fillCauldron(world, pos, player, hand, stack, ObjectRegistry.WOODEN_WATER_CAULDRON.get().defaultBlockState().setValue(LEVEL, 3), SoundEvents.BUCKET_EMPTY, ObjectRegistry.WOODEN_BUCKET.get());
 
-    @NotNull InteractionResult interact(BlockState var1, Level var2, BlockPos var3, Player var4, InteractionHand var5, ItemStack var6);
+    @NotNull
+    ItemInteractionResult interact(BlockState var1, Level var2, BlockPos var3, Player var4, InteractionHand var5, ItemStack var6);
 
     static void bootStrap() {
         registerCauldronBehavior();
@@ -132,9 +133,9 @@ public interface WoodenCauldronBehavior extends CauldronInteraction {
         behavior.put(Items.POWDER_SNOW_BUCKET, FILL_POWDER_SNOW);
     }
 
-    static InteractionResult fillBucket(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack, ItemStack output, Predicate<BlockState> predicate, SoundEvent soundEvent) {
+    static ItemInteractionResult fillBucket(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack, ItemStack output, Predicate<BlockState> predicate, SoundEvent soundEvent) {
         if (!predicate.test(state)) {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.FAIL;
         }
         if (!world.isClientSide) {
             Item item = stack.getItem();
@@ -144,10 +145,10 @@ public interface WoodenCauldronBehavior extends CauldronInteraction {
             world.playSound(null, pos, soundEvent, SoundSource.BLOCKS, 1.0f, 1.0f);
             world.gameEvent(null, GameEvent.FLUID_PICKUP, pos);
         }
-        return InteractionResult.sidedSuccess(world.isClientSide);
+        return ItemInteractionResult.sidedSuccess(world.isClientSide);
     }
 
-    static InteractionResult fillCauldron(Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack, BlockState state, SoundEvent soundEvent, Item returnItem) {
+    static ItemInteractionResult fillCauldron(Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack, BlockState state, SoundEvent soundEvent, Item returnItem) {
         if (!world.isClientSide) {
             Item item = stack.getItem();
             player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, new ItemStack(returnItem)));
@@ -157,7 +158,7 @@ public interface WoodenCauldronBehavior extends CauldronInteraction {
             world.playSound(null, pos, soundEvent, SoundSource.BLOCKS, 1.0f, 1.0f);
             world.gameEvent(null, GameEvent.FLUID_PLACE, pos);
         }
-        return InteractionResult.sidedSuccess(world.isClientSide);
+        return ItemInteractionResult.sidedSuccess(world.isClientSide);
     }
 
     static void registerCauldronBehavior() {

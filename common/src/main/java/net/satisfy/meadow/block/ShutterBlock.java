@@ -103,10 +103,9 @@ public class ShutterBlock extends Block implements SimpleWaterloggedBlock {
         world.setBlock(pos, state, 3);
     }
 
-
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return toggleShutters(state, level, pos, player);
+    protected @NotNull InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        return toggleShutters(blockState, level, blockPos, player);
     }
 
     public InteractionResult toggleShutters(BlockState state, Level level, BlockPos pos, Player player) {

@@ -1,5 +1,6 @@
 package net.satisfy.meadow.block;
 
+import com.mojang.serialization.MapCodec;
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -41,10 +42,16 @@ public class CheeseFormBlock extends BaseEntityBlock {
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
     public static final BooleanProperty DONE = BooleanProperty.create("done");
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final MapCodec<CheeseFormBlock> CODEC = simpleCodec(CheeseFormBlock::new);
 
     public CheeseFormBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(DONE, false).setValue(WORKING, false).setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     private static final VoxelShape BASE_SHAPE = Shapes.or(
@@ -77,7 +84,7 @@ public class CheeseFormBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
         if (!world.isClientSide) {
             player.openMenu(state.getMenuProvider(world, pos));
         }

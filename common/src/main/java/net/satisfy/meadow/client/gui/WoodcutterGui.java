@@ -18,7 +18,7 @@ import net.satisfy.meadow.util.MeadowIdentifier;
 import java.util.List;
 
 public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler> {
-    private static final ResourceLocation TEXTURE = new MeadowIdentifier( "textures/gui/woodcutter.png");
+    private static final ResourceLocation TEXTURE = MeadowIdentifier.of( "textures/gui/woodcutter.png");
     private final int recipeIconPosX = 58;
     private final int recipeIconPosY = 15;
     private final int maxRecipeIcons = 12;
@@ -45,7 +45,7 @@ public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler>
 
     @Override
     protected void renderBg(GuiGraphics context, float delta, int mouseX, int mouseY) {
-        this.renderBackground(context);
+        this.renderBackground(context, mouseX, mouseY, delta);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShaderTexture(0, TEXTURE);
@@ -156,11 +156,10 @@ public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler>
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-        if (this.shouldScroll()) {
+    public boolean mouseScrolled(double d, double e, double f, double g) {
+        if(this.shouldScroll()) {
             int i = this.getMaxScroll();
-            float f = (float)amount / (float)i;
-            this.scrollAmount = Mth.clamp(this.scrollAmount - f, 0.0f, 1.0f);
+            this.scrollAmount = Mth.clamp(this.scrollAmount - (float)g / (float)i, 0.0f, 1.0f);
             this.scrollOffset = (int)((double)(this.scrollAmount * (float)i) + 0.5) * 4;
         }
         return true;

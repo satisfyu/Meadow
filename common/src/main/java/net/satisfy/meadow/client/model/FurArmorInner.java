@@ -10,7 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 
 public class FurArmorInner<T extends LivingEntity> extends HumanoidModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new DoApiRL("wool_armor_inner"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(DoApiRL.asResourceLocation("wool_armor_inner"), "main");
 
     public FurArmorInner(ModelPart root) {
         super(root);

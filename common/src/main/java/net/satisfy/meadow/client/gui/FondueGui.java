@@ -12,7 +12,7 @@ import net.satisfy.meadow.client.gui.handler.FondueGuiHandler;
 
 public class FondueGui extends AbstractContainerScreen<FondueGuiHandler> {
 
-    public static final ResourceLocation BACKGROUND = new ResourceLocation(Meadow.MOD_ID, "textures/gui/fondue_gui.png");
+    public static final ResourceLocation BACKGROUND = ResourceLocation.fromNamespaceAndPath(Meadow.MOD_ID, "textures/gui/fondue_gui.png");
 
     public static final int ARROW_X = 87;
     public static final int ARROW_Y = 25;
@@ -28,7 +28,7 @@ public class FondueGui extends AbstractContainerScreen<FondueGuiHandler> {
 
     @Override
     public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
         renderTooltip(context, mouseX, mouseY);
     }

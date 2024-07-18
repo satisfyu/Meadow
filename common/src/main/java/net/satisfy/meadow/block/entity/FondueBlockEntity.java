@@ -4,6 +4,7 @@ package net.satisfy.meadow.block.entity;
 import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -87,20 +88,19 @@ public class FondueBlockEntity extends BlockEntity implements MenuProvider, Impl
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
-        ContainerHelper.saveAllItems(nbt, inventory);
-        nbt.putInt("fondue.progress", progress);
-        nbt.putInt("fondue.fuelAmount", fuelAmount);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
+        ContainerHelper.saveAllItems(compoundTag, this.inventory, provider);
+        compoundTag.putInt("progress", this.progress);
+        compoundTag.putInt("fuelAmount", this.fuelAmount);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        ContainerHelper.loadAllItems(nbt, inventory);
-        progress = nbt.getInt("fondue.progress");
-        fuelAmount = nbt.getInt("fondue.fuelAmount");
-        super.load(nbt);
-
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        ContainerHelper.loadAllItems(compoundTag, this.inventory, provider);
+        this.progress = compoundTag.getInt("progress");
+        this.fuelAmount = compoundTag.getInt("fuelAmount");
+        super.loadAdditional(compoundTag, provider);
     }
 
     private void resetProgress() {

@@ -3,6 +3,7 @@ package net.satisfy.meadow.block.entity;
 import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -71,16 +72,19 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         return side == Direction.DOWN ? SLOTS_FOR_DOWN : SLOTS_FOR_REST;
     }
 
-    public void load(@NotNull CompoundTag nbt) {
-        super.load(nbt);
-        ContainerHelper.loadAllItems(nbt, inventory);
-        cookingTime = nbt.getInt("CookingTime");
+
+    @Override
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
+        ContainerHelper.loadAllItems(compoundTag, inventory, provider);
+        cookingTime = compoundTag.getInt("CookingTime");
     }
 
-    protected void saveAdditional(@NotNull CompoundTag nbt) {
-        super.saveAdditional(nbt);
-        ContainerHelper.saveAllItems(nbt, inventory);
-        nbt.putInt("CookingTime", cookingTime);
+    @Override
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
+        ContainerHelper.saveAllItems(compoundTag, inventory, provider);
+        compoundTag.putInt("CookingTime", cookingTime);
     }
 
     public boolean isBeingBurned() {

@@ -11,7 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.satisfy.meadow.util.MeadowIdentifier;
 
 public class FurArmorHat<T extends Entity> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new MeadowIdentifier("fur_helmet"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(MeadowIdentifier.of("fur_helmet"), "main");
     private final ModelPart head;
 
     public FurArmorHat(ModelPart root) {
@@ -36,19 +36,20 @@ public class FurArmorHat<T extends Entity> extends EntityModel<T> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        poseStack.pushPose();
-        poseStack.scale(1F, 1F, 1F);
-        head.render(poseStack, buffer, packedLight, packedOverlay);
-        poseStack.popPose();
-    }
-
-    @Override
     public void setupAnim(T entity, float f, float g, float h, float i, float j) {
 
     }
 
     public void copyHead(ModelPart model) {
         head.copyFrom(model);
+    }
+
+    @Override
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j, int k) {
+        poseStack.pushPose();
+        poseStack.scale(1F, 1F, 1F);
+        head.render(poseStack, vertexConsumer, i, j, k);
+        poseStack.popPose();
+
     }
 }

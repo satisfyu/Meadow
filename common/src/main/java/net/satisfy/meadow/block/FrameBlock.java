@@ -61,9 +61,9 @@ public class FrameBlock extends Block {
         super(settings);
     }
 
-
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionHand hand = player.getUsedItemHand();
         ItemStack stack = player.getItemInHand(hand);
         if (stack.getItem().equals(ObjectRegistry.COOKING_CAULDRON.get().asItem())) {
             if (!world.isClientSide()) {
