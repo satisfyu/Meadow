@@ -19,11 +19,11 @@ import net.satisfy.meadow.client.gui.WoodcutterGui;
 import net.satisfy.meadow.client.model.FurArmorHat;
 import net.satisfy.meadow.client.model.WaterBuffaloModel;
 import net.satisfy.meadow.client.model.WoolyCowModel;
-import net.satisfy.meadow.client.model.MeadowSheepModel;
 import net.satisfy.meadow.client.render.block.storage.CheeseRackRenderer;
 import net.satisfy.meadow.client.render.block.storage.WheelBarrowRenderer;
 import net.satisfy.meadow.client.render.block.storage.FlowerPotSmallRenderer;
-import net.satisfy.meadow.client.render.entity.*;
+import net.satisfy.meadow.client.render.entity.ShearableVarCowRenderer;
+import net.satisfy.meadow.client.render.entity.WaterBuffaloRenderer;
 import net.satisfy.meadow.registry.*;
 
 import static net.satisfy.meadow.registry.ObjectRegistry.*;
@@ -31,8 +31,6 @@ import static net.satisfy.meadow.registry.ObjectRegistry.*;
 public class MeadowClient {
     public static final ModelLayerLocation SHEARABLE_MEADOW_COW_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "shearable_meadow_cow"), "head");
     public static final ModelLayerLocation WATER_BUFFALO_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "water_buffalo"), "head");
-    public static final ModelLayerLocation MEADOW_SHEEP_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "meadow_sheep"), "main");
-    public static final ModelLayerLocation MEADOW_SHEEP_FUR_MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Meadow.MOD_ID, "meadow_sheep_fur"), "main");
 
     public static void preInitClient() {
         registerEntityRenderers();
@@ -43,6 +41,8 @@ public class MeadowClient {
     }
 
     public static void initClient() {
+
+
         RenderTypeRegistry.register(RenderType.cutout(),
                 PINE_DOOR.get(), PINE_TRAPDOOR.get(), DELPHINIUM.get(), ALPINE_POPPY.get(), SAXIFRAGE.get(),
                 ENZIAN.get(), COOKING_CAULDRON.get(), FRAME.get(), TABLE.get(), FIRE_LOG.get(), ERIOPHORUM.get(),
@@ -82,15 +82,13 @@ public class MeadowClient {
     private static void registerEntityRenderers() {
         EntityRendererRegistry.register(EntityRegistry.SHEARABLE_MEADOW_VAR_COW, ShearableVarCowRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.WATER_BUFFALO, WaterBuffaloRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.MEADOW_SHEEP, MeadowSheepRenderer::new);
     }
 
     public static void registerEntityModelLayers() {
         EntityModelLayerRegistry.register(FurArmorHat.LAYER_LOCATION, FurArmorHat::createBodyLayer);
         EntityModelLayerRegistry.register(SHEARABLE_MEADOW_COW_MODEL_LAYER, WoolyCowModel::createBodyLayer);
         EntityModelLayerRegistry.register(WATER_BUFFALO_MODEL_LAYER, WaterBuffaloModel::getTexturedModelData);
-        EntityModelLayerRegistry.register(MEADOW_SHEEP_MODEL_LAYER, MeadowSheepModel::createBodyLayer);
-        EntityModelLayerRegistry.register(MEADOW_SHEEP_FUR_MODEL_LAYER, MeadowSheepFurModel::createBodyLayer);
+
 
         ArmorRegistry.registerArmorModelLayers();
     }
