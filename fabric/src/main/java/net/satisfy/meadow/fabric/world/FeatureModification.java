@@ -13,12 +13,18 @@ import net.satisfy.meadow.world.CommonSpawnUtil;
 import java.util.function.Predicate;
 
 public class FeatureModification {
+
+
     public static void init() {
         int meadowSpawnWeight = 3;
         int meadowPackSizeMin = 2;
         int meadowPackSizeMax = 3;
 
+        int bearSpawnWeight = 5;
+        int bearPackSizeMin = 2;
+        int bearPackSizeMax = 3;
 
+        Predicate<BiomeSelectionContext> bear = (ctx -> ctx.hasTag(BiomeTags.IS_FOREST) || ctx.hasTag(BiomeTags.HAS_WOODLAND_MANSION) || ctx.hasTag(BiomeTags.IS_TAIGA));
         Predicate<BiomeSelectionContext> buffalo = (ctx -> ctx.hasTag(BiomeTags.IS_RIVER) || ctx.hasTag(BiomeTags.IS_SAVANNA));
 
 

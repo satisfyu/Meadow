@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "plugin": "net.satisfy.meadow.mixin.ClientVariantPlugin",
+  "package": "net.satisfy.meadow.mixin.variant.client",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "SheepFurLayerMixin",
+    "SheepModelMixin",
+    "SheepRendererMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

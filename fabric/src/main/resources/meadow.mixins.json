@@ -1,14 +1,11 @@
 {
   "required": true,
-  "package": "net.satisfy.meadow.forge.mixin",
+  "package": "net.satisfy.meadow.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
-    "ClientPacketListenerMixin"
   ],
   "mixins": [
-    "HatItemMixin",
-    "SheepMixin"
   ],
   "injectors": {
     "defaultRequire": 1
