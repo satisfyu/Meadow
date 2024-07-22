@@ -17,6 +17,6 @@ public class SheepRendererMixin {
     private void onGetTexture(Sheep sheep, CallbackInfoReturnable<ResourceLocation> cir) {
         SheepVar var = SheepVar.getVariant(sheep);
         if(var.equals(SheepVar.DEFAULT)) return;
-        cir.setReturnValue(new MeadowIdentifier(String.format("textures/entity/sheep/%s_sheep.png", var.getSerializedName())));
+        cir.setReturnValue(MeadowIdentifier.of(String.format("textures/entity/sheep/%s_sheep.png", var.getSerializedName())));
     }
 }

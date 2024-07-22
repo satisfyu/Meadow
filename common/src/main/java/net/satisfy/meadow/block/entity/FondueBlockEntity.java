@@ -16,7 +16,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -27,6 +29,8 @@ import net.satisfy.meadow.registry.BlockEntityRegistry;
 import net.satisfy.meadow.registry.RecipeRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class FondueBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory, BlockEntityTicker<FondueBlockEntity> {
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(3, ItemStack.EMPTY);
@@ -111,8 +115,15 @@ public class FondueBlockEntity extends BlockEntity implements MenuProvider, Impl
     public void tick(Level world, BlockPos blockPos, BlockState state, FondueBlockEntity entity) {
         if (world.isClientSide()) return;
 
-        Recipe<?> r = world.getRecipeManager().getRecipeFor(RecipeRegistry.FONDUE.get(), this, world).orElse(null);
-        if(!(r instanceof FondueRecipe recipe)){
+
+        RecipeManager recipeManager = world.getRecipeManager();
+        Optional<RecipeHolder<FondueRecipe>> r = recipeManager
+                .getAllRecipesFor(RecipeRegistry.FONDUE.get())
+                .stream()
+                .filter(recipe -> recipe.value().matches(new SingleRecipeInput(inventory.get(0)), world))
+                .findFirst();
+
+        if(!(r.isPresent() && r.get().value() instanceof FondueRecipe recipe)){
             entity.resetProgress();
             setChanged(world, blockPos, state);
             return;

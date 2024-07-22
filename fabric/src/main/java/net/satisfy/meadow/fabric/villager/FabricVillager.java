@@ -17,6 +17,7 @@ import net.minecraft.world.entity.npc.VillagerType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -26,15 +27,15 @@ import net.satisfy.meadow.util.MeadowIdentifier;
 @SuppressWarnings("deprecation")
 public class FabricVillager {
 
-    private static final MeadowIdentifier CHEESEMAKER_POI_IDENTIFIER = new MeadowIdentifier("cheesemaker_poi");
+    private static final ResourceLocation CHEESEMAKER_POI_IDENTIFIER = MeadowIdentifier.of("cheesemaker_poi");
     public static final PoiType CHEESEMAKER_POI = PointOfInterestHelper.register(CHEESEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.CHEESE_FORM.get());
-    public static final VillagerProfession CHEESEMAKER = Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, new ResourceLocation("meadow", "cheesemaker"), VillagerProfessionBuilder.create().id(new ResourceLocation("meadow", "cheesemaker")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, CHEESEMAKER_POI_IDENTIFIER)).build());
+    public static final VillagerProfession CHEESEMAKER = Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, MeadowIdentifier.of("meadow", "cheesemaker"), VillagerProfessionBuilder.create().id(MeadowIdentifier.of("meadow", "cheesemaker")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, CHEESEMAKER_POI_IDENTIFIER)).build());
 
-    private static final MeadowIdentifier HERMIT_POI_IDENTIFIER = new MeadowIdentifier("hermit_poi");
+    private static final ResourceLocation HERMIT_POI_IDENTIFIER = MeadowIdentifier.of("hermit_poi");
     public static final PoiType HERMIT_POI = PointOfInterestHelper.register(HERMIT_POI_IDENTIFIER, 1, 12, ObjectRegistry.WOODCUTTER.get());
-    public static final VillagerProfession HERMIT = Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, new ResourceLocation("meadow", "hermit"), VillagerProfessionBuilder.create().id(new ResourceLocation("meadow", "hermit")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, HERMIT_POI_IDENTIFIER)).build());
+    public static final VillagerProfession HERMIT = Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, MeadowIdentifier.of("meadow", "hermit"), VillagerProfessionBuilder.create().id(MeadowIdentifier.of("meadow", "hermit")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, HERMIT_POI_IDENTIFIER)).build());
 
-    public static final VillagerType MEADOW = Registry.register(BuiltInRegistries.VILLAGER_TYPE, new ResourceLocation("meadow", "meadow"), new VillagerType("meadow"));
+    public static final VillagerType MEADOW = Registry.register(BuiltInRegistries.VILLAGER_TYPE, MeadowIdentifier.of("meadow", "meadow"), new VillagerType("meadow"));
 
 
     public static void init() {
@@ -90,7 +91,7 @@ public class FabricVillager {
 
         });
 
-        VillagerType.BY_BIOME.put(ResourceKey.create(Registries.BIOME, new ResourceLocation("meadow")), MEADOW);
+        VillagerType.BY_BIOME.put(ResourceKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace("meadow")), MEADOW);
 
     }
 
@@ -112,7 +113,7 @@ public class FabricVillager {
         @Override
         public MerchantOffer getOffer(Entity entity, RandomSource random) {
             ItemStack itemStack = new ItemStack(this.buy, this.price);
-            return new MerchantOffer(itemStack, new ItemStack(Items.EMERALD), this.maxUses, this.experience, this.multiplier);
+            return new MerchantOffer(new ItemCost(itemStack.getItem(), this.price), new ItemStack(Items.EMERALD), this.maxUses, this.experience, this.multiplier);
         }
     }
 
@@ -156,7 +157,7 @@ public class FabricVillager {
         @Override
         public MerchantOffer getOffer(Entity entity, RandomSource random) {
             return new MerchantOffer(
-                    new ItemStack(Items.EMERALD, this.price), new ItemStack(this.sell.getItem(), this.count), this.maxUses, this.experience, this.multiplier
+                    new ItemCost(Items.EMERALD, this.price), new ItemStack(this.sell.getItem(), this.count), this.maxUses, this.experience, this.multiplier
             );
         }
     }

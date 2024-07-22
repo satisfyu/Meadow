@@ -12,6 +12,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.satisfy.meadow.client.recipebook.group.CookingCauldronRecipeBookGroup;
 import net.satisfy.meadow.block.entity.CookingCauldronBlockEntity;
 import net.satisfy.meadow.recipes.CookingCauldronRecipe;
@@ -64,7 +65,8 @@ public class CookingCauldronGuiHandler extends AbstractRecipeBookGUIScreenHandle
     }
 
     private Stream<CookingCauldronRecipe> recipeStream() {
-        return this.world.getRecipeManager().getAllRecipesFor(RecipeRegistry.COOKING.get()).stream();
+        return this.world.getRecipeManager().getAllRecipesFor(RecipeRegistry.COOKING.get()).stream()
+                .map(RecipeHolder::value);
     }
 
     public int getScaledProgress(int arrowWidth) {

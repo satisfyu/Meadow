@@ -31,11 +31,11 @@ public class MeadowPlacedFeature {
     public static final ResourceKey<PlacedFeature> MEADOW_MC_TREES = registerMCKey("trees_meadow");
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, new MeadowIdentifier(name));
+        return ResourceKey.create(Registries.PLACED_FEATURE, MeadowIdentifier.of(name));
     }
 
     public static ResourceKey<PlacedFeature> registerMCKey(String name) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation("minecraft", name));
+        return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath("minecraft", name));
     }
 }
 

@@ -102,7 +102,7 @@ public class WateringCanItem extends BlockItem {
     public static boolean useOnFertilizable(ItemStack stack, Level world, BlockPos pos, Player playerEntity) {
         BonemealableBlock fertilizable;
         BlockState blockState = world.getBlockState(pos);
-        if (blockState.getBlock() instanceof BonemealableBlock && (fertilizable = (BonemealableBlock) blockState.getBlock()).isValidBonemealTarget(world, pos, blockState, world.isClientSide)) {
+        if (blockState.getBlock() instanceof BonemealableBlock && (fertilizable = (BonemealableBlock) blockState.getBlock()).isValidBonemealTarget(world, pos, blockState)) {
             if (world instanceof ServerLevel) {
                 if (fertilizable.isBonemealSuccess(world, world.random, pos, blockState)) {
                     fertilizable.performBonemeal((ServerLevel) world, world.random, pos, blockState);

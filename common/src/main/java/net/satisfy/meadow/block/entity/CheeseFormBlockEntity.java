@@ -12,6 +12,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -25,6 +28,8 @@ import net.satisfy.meadow.registry.RecipeRegistry;
 import net.satisfy.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTicker<CheeseFormBlockEntity>, MenuProvider, ImplementedInventory {
 
@@ -98,25 +103,32 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
     @Override
     public void tick(Level world, BlockPos pos, BlockState state, CheeseFormBlockEntity blockEntity) {
         if (world.isClientSide) return;
-        RegistryAccess manager = world.registryAccess();
-        final var recipeType = world.getRecipeManager()
-                .getRecipeFor(RecipeRegistry.CHEESE.get(), blockEntity, world)
-                .orElse(null);
-        boolean working = canCraft(recipeType, manager);
-        if (working) {
-            this.fermentationTime++;
 
-            if (this.fermentationTime >= COOKING_TIME_IN_TICKS) {
+        RecipeManager recipeManager = world.getRecipeManager();
+        Optional<RecipeHolder<CheeseFormRecipe>> recipe = recipeManager
+                .getAllRecipesFor(RecipeRegistry.CHEESE.get())
+                .stream()
+                .filter(r -> r.value().matches(new SingleRecipeInput(inventory.get(0)), world))
+                .findFirst();
+
+        if (recipe.isPresent()) {
+            RegistryAccess access = world.registryAccess();
+            boolean working = canCraft(recipe.get().value(), access);
+            if (working) {
+                this.fermentationTime++;
+
+                if (this.fermentationTime >= COOKING_TIME_IN_TICKS) {
+                    this.fermentationTime = 0;
+                    craft(recipe.get().value(), access);
+                    setChanged();
+                }
+            } else {
                 this.fermentationTime = 0;
-                craft(recipeType, manager);
-                setChanged();
             }
-        } else {
-            this.fermentationTime = 0;
-        }
-        boolean done = !inventory.get(OUTPUT_SLOT).isEmpty();
-        if (state.getValue(CheeseFormBlock.WORKING) != working || state.getValue(CheeseFormBlock.DONE) != done) {
-            world.setBlockAndUpdate(pos, state.setValue(CheeseFormBlock.WORKING, working).setValue(CheeseFormBlock.DONE, done));
+            boolean done = !inventory.get(OUTPUT_SLOT).isEmpty();
+            if (state.getValue(CheeseFormBlock.WORKING) != working || state.getValue(CheeseFormBlock.DONE) != done) {
+                world.setBlockAndUpdate(pos, state.setValue(CheeseFormBlock.WORKING, working).setValue(CheeseFormBlock.DONE, done));
+            }
         }
     }
 

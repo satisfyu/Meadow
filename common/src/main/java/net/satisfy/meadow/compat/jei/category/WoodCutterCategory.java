@@ -24,7 +24,7 @@ public class WoodCutterCategory implements IRecipeCategory<WoodcuttingRecipe> {
     private final Component localizedName;
 
     public WoodCutterCategory(IGuiHelper helper) {
-        ResourceLocation location = new ResourceLocation(ModIds.JEI_ID, "textures/jei/gui/gui_vanilla.png");
+        ResourceLocation location = ResourceLocation.fromNamespaceAndPath(ModIds.JEI_ID, "textures/jei/gui/gui_vanilla.png");
         background = helper.createDrawable(location, 0, 220, width, height);
         icon = helper.createDrawableItemStack(ObjectRegistry.WOODCUTTER.get().asItem().getDefaultInstance());
         this.localizedName = Component.translatable("rei.meadow.wood_cutter_category");

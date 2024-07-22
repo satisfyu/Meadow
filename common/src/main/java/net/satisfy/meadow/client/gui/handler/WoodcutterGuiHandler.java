@@ -9,12 +9,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.satisfy.meadow.recipes.WoodcuttingRecipe;
 import net.satisfy.meadow.registry.ObjectRegistry;
 import net.satisfy.meadow.registry.RecipeRegistry;
 import net.satisfy.meadow.registry.ScreenHandlerRegistry;
 import net.satisfy.meadow.registry.SoundRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -22,7 +25,7 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
     private final ContainerLevelAccess context;
     private final DataSlot selectedRecipe = DataSlot.standalone();
     private final Level world;
-    private List<WoodcuttingRecipe> availableRecipes = Lists.newArrayList();
+    private List<RecipeHolder<WoodcuttingRecipe>> availableRecipes = Lists.newArrayList();
     private ItemStack inputStack = ItemStack.EMPTY;
     private long lastTakeTime;
     private Slot inputSlot;
@@ -98,7 +101,7 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
         return this.selectedRecipe.get();
     }
 
-    public List<WoodcuttingRecipe> getAvailableRecipes() {
+    public List<RecipeHolder<WoodcuttingRecipe>> getAvailableRecipes() {
         return this.availableRecipes;
     }
 
@@ -144,14 +147,14 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
         this.selectedRecipe.set(-1);
         this.outputSlot.setByPlayer(ItemStack.EMPTY);
         if (!stack.isEmpty()) {
-            this.availableRecipes = this.world.getRecipeManager().getRecipesFor(RecipeRegistry.WOODCUTTING.get(), input, this.world);
+            this.availableRecipes = this.world.getRecipeManager().getAllRecipesFor(RecipeRegistry.WOODCUTTING.get());
         }
     }
 
     void populateResult() {
         if (!this.availableRecipes.isEmpty() && this.isInBounds(this.selectedRecipe.get())) {
-            WoodcuttingRecipe woodcuttingRecipe = this.availableRecipes.get(this.selectedRecipe.get());
-            ItemStack itemStack = woodcuttingRecipe.assemble(this.input, this.world.registryAccess());
+            RecipeHolder<WoodcuttingRecipe> woodcuttingRecipe = this.availableRecipes.get(this.selectedRecipe.get());
+            ItemStack itemStack = woodcuttingRecipe.value().assemble(null, null);
             if (itemStack.isItemEnabled(this.world.enabledFeatures())) {
                 this.output.setRecipeUsed(woodcuttingRecipe);
                 this.outputSlot.set(itemStack);
@@ -181,7 +184,7 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
 
 
     @Override
-    public ItemStack quickMoveStack(Player player, int index) {
+    public @NotNull ItemStack quickMoveStack(Player player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasItem()) {
@@ -195,7 +198,7 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
                 }
                 slot.onQuickCraft(itemStack2, itemStack);
             } else if (index == 0 ? !this.moveItemStackTo(itemStack2, 2, 38, false) :
-                    (this.world.getRecipeManager().getRecipeFor(RecipeRegistry.WOODCUTTING.get(), new SimpleContainer(itemStack2), this.world).isPresent() ? !this.moveItemStackTo(itemStack2, 0, 1, false) :
+                    (this.world.getRecipeManager().getRecipeFor(RecipeRegistry.WOODCUTTING.get(), new SingleRecipeInput(itemStack2), this.world).isPresent() ? !this.moveItemStackTo(itemStack2, 0, 1, false) :
                             (index >= 2 && index < 29 ? !this.moveItemStackTo(itemStack2, 29, 38, false) :
                                     index >= 29 && index < 38 && !this.moveItemStackTo(itemStack2, 2, 29, false)))) {
                 return ItemStack.EMPTY;

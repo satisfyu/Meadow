@@ -14,10 +14,10 @@ import net.satisfy.meadow.util.MeadowIdentifier;
 
 @SuppressWarnings("unused")
 public class BoatsAndSignsRegistry {
-    public static final ResourceLocation PINE_BOAT_TYPE = new MeadowIdentifier("pine");
-    public static final ResourceLocation PINE_SIGN_TEXTURE = new MeadowIdentifier("entity/signs/pine");
-    public static final ResourceLocation PINE_HANGING_SIGN_TEXTURE = new MeadowIdentifier("entity/signs/hanging/pine");
-    public static final ResourceLocation PINE_HANGING_SIGN_GUI_TEXTURE = new MeadowIdentifier("textures/gui/hanging_signs/pine");
+    public static final ResourceLocation PINE_BOAT_TYPE = MeadowIdentifier.of("pine");
+    public static final ResourceLocation PINE_SIGN_TEXTURE = MeadowIdentifier.of("entity/signs/pine");
+    public static final ResourceLocation PINE_HANGING_SIGN_TEXTURE = MeadowIdentifier.of("entity/signs/hanging/pine");
+    public static final ResourceLocation PINE_HANGING_SIGN_GUI_TEXTURE = MeadowIdentifier.of("textures/gui/hanging_signs/pine");
 
     public static final RegistrySupplier<Block> PINE_SIGN = registerPineSign();
     public static final RegistrySupplier<Block> PINE_WALL_SIGN = registerPineWallSign();

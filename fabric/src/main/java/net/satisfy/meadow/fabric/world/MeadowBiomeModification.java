@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 public class MeadowBiomeModification {
 
     public static void init() {
-        BiomeModification world = BiomeModifications.create(new MeadowIdentifier("world_features"));
+        BiomeModification world = BiomeModifications.create(MeadowIdentifier.of("world_features"));
         Predicate<BiomeSelectionContext> meadowBiomes = getMeadowSelector();
 
         world.add(ModificationPhase.ADDITIONS, meadowBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MeadowPlacedFeature.FOREST_TREES_KEY));
@@ -40,6 +40,6 @@ public class MeadowBiomeModification {
     }
 
     private static Predicate<BiomeSelectionContext> getMeadowSelector() {
-        return BiomeSelectors.tag(TagKey.create(Registries.BIOME, new MeadowIdentifier("meadow_biomes")));
+        return BiomeSelectors.tag(TagKey.create(Registries.BIOME, MeadowIdentifier.of("meadow_biomes")));
     }
 }

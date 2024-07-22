@@ -5,13 +5,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.satisfy.meadow.registry.RecipeRegistry;
 
 import java.util.List;
@@ -20,8 +20,8 @@ public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
     private static final Component TOGGLE_COOKABLE_TEXT;
 
     @Override
-    protected RecipeType<? extends Recipe<Container>> getRecipeType() {
-        return RecipeRegistry.CHEESE.get();
+    protected RecipeType<? extends Recipe<SingleRecipeInput>> getRecipeType() {
+        return (RecipeType<? extends Recipe<SingleRecipeInput>>) RecipeRegistry.CHEESE;
     }
 
     @Override

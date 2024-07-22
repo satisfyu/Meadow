@@ -17,6 +17,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -31,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @SuppressWarnings("deprecation, unused")
 public class CookingCauldronBlockEntity extends BlockEntity implements ImplementedInventory, MenuProvider {
@@ -179,14 +183,22 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
             return;
         }
 
-        CookingCauldronRecipe recipe = world.getRecipeManager().getRecipeFor(RecipeRegistry.COOKING.get(), this, world).orElse(null);
-        if (canCraft(recipe)) {
+        RecipeManager recipeManager = world.getRecipeManager();
+        Optional<RecipeHolder<CookingCauldronRecipe>> recipe = recipeManager
+                .getAllRecipesFor(RecipeRegistry.COOKING.get())
+                .stream()
+                .filter(r -> r.value().matches(new SingleRecipeInput(inventory.get(0)), world))
+                .findFirst();
+
+        if (recipe.isPresent() && canCraft(recipe.get().value())) {
             cookingTime++;
             if (cookingTime >= MAX_COOKING_TIME) {
                 cookingTime = 0;
-                craft(recipe);
+                craft(recipe.get().value());
             }
-            world.setBlock(pos, state.setValue(CookingCauldronBlock.COOKING, true).setValue(CookingCauldronBlock.LIT, true), Block.UPDATE_ALL);
+            if (!state.getValue(CookingCauldronBlock.COOKING)) {
+                world.setBlock(pos, state.setValue(CookingCauldronBlock.COOKING, true).setValue(CookingCauldronBlock.LIT, true), Block.UPDATE_ALL);
+            }
         } else {
             cookingTime = 0;
             if (state.getValue(CookingCauldronBlock.COOKING)) {

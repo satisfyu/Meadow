@@ -1,24 +1,22 @@
 package net.satisfy.meadow.recipes;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.satisfy.meadow.registry.RecipeRegistry;
+import org.jetbrains.annotations.NotNull;
 
-public class WoodcuttingRecipe implements Recipe<Container> {
+import java.util.Optional;
+
+public class WoodcuttingRecipe implements Recipe<RecipeInput> {
     private final Ingredient input;
     private final ItemStack outputStack;
     private final ResourceLocation id;
@@ -29,26 +27,31 @@ public class WoodcuttingRecipe implements Recipe<Container> {
         this.outputStack = outputStack;
     }
 
+    public WoodcuttingRecipe(Optional<ResourceLocation> resourceLocation, ItemStack itemStack, Integer integer, Ingredient ingredient) {
+        this.id = resourceLocation.orElseGet(() -> ResourceLocation.fromNamespaceAndPath("meadow", "woodcutting"));
+        this.outputStack = new ItemStack(itemStack.getItem(), integer);
+        this.input = ingredient;
+    }
+
     public Ingredient getInput() {
         return input;
     }
 
-
     @Override
-    public boolean matches(Container inventory, Level world) {
-        return this.input.test(inventory.getItem(0));
-    }
-
-    @Override
-    public ItemStack assemble(Container inventory, RegistryAccess registryManager) {
-        return this.outputStack.copy();
-    }
-
-    @Override
-    public NonNullList<Ingredient> getIngredients() {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> defaultedList = NonNullList.create();
         defaultedList.add(this.input);
         return defaultedList;
+    }
+
+    @Override
+    public boolean matches(RecipeInput recipeInput, Level level) {
+        return this.input.test(recipeInput.getItem(0));
+    }
+
+    @Override
+    public @NotNull ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
+        return this.outputStack.copy();
     }
 
     @Override
@@ -56,14 +59,13 @@ public class WoodcuttingRecipe implements Recipe<Container> {
         return true;
     }
 
+    @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return this.outputStack.copy();
+    }
 
     public ItemStack getResultItem() {
         return getResultItem(null);
-    }
-
-    @Override
-    public ItemStack getResultItem(RegistryAccess registryManager) {
-        return outputStack;
     }
 
     @Override
@@ -71,58 +73,54 @@ public class WoodcuttingRecipe implements Recipe<Container> {
         return true;
     }
 
-    @Override
     public ResourceLocation getId() {
         return id;
     }
 
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return RecipeRegistry.WOODCUTTING_SERIALIZER.get();
     }
 
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return RecipeRegistry.WOODCUTTING.get();
     }
 
     public static class Serializer implements RecipeSerializer<WoodcuttingRecipe> {
-        @Override
-        // Turns json into Recipe
-        public WoodcuttingRecipe fromJson(ResourceLocation id, JsonObject json) {
-            WoodcuttingRecipeJsonFormat recipeJson = new Gson().fromJson(json, WoodcuttingRecipeJsonFormat.class);
+        public static final MapCodec<WoodcuttingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                        ResourceLocation.CODEC.optionalFieldOf("id").forGetter(recipe -> Optional.of(recipe.getId())),
+                        ItemStack.CODEC.fieldOf("outputItem").forGetter(recipe -> recipe.outputStack),
+                        Codec.INT.fieldOf("outputAmount").forGetter(recipe -> recipe.outputStack.getCount()),
+                        Ingredient.CODEC.fieldOf("inputItem").forGetter(WoodcuttingRecipe::getInput)
+                ).apply(instance, WoodcuttingRecipe::new)
+        );
 
-            if (recipeJson.inputItem == null || recipeJson.outputItem == null) {
-                throw new JsonSyntaxException("A required attribute is missing!");
-            }
-            // We'll allow to not specify the output, and default it to 1.
-            if (recipeJson.outputAmount == 0) recipeJson.outputAmount = 1;
+        public static final StreamCodec<RegistryFriendlyByteBuf, WoodcuttingRecipe> STREAM_CODEC = StreamCodec.of(WoodcuttingRecipe.Serializer::toNetwork, WoodcuttingRecipe.Serializer::fromNetwork);
 
-
-            Ingredient input = Ingredient.fromJson(recipeJson.inputItem);
-
-            Item outputItem = BuiltInRegistries.ITEM.getOptional(new ResourceLocation(recipeJson.outputItem))
-                    // Validate the inputted item actually exists
-                    .orElseThrow(() -> new JsonSyntaxException("No such item " + recipeJson.outputItem));
-            ItemStack output = new ItemStack(outputItem, recipeJson.outputAmount);
-
+        public static WoodcuttingRecipe fromNetwork(RegistryFriendlyByteBuf buf) {
+            ResourceLocation id = buf.readResourceLocation();
+            ItemStack output = ItemStack.OPTIONAL_STREAM_CODEC.decode(buf);
+            Ingredient input = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
             return new WoodcuttingRecipe(input, output, id);
         }
 
-        @Override
-        // Turns PacketByteBuf into Recipe
-        public WoodcuttingRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf packetData) {
-            Ingredient input = Ingredient.fromNetwork(packetData);
-            ItemStack output = packetData.readItem();
-            return new WoodcuttingRecipe(input, output, id);
+        public static void toNetwork(RegistryFriendlyByteBuf buf, WoodcuttingRecipe recipe) {
+            buf.writeResourceLocation(recipe.getId());
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.input);
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.outputStack);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf friendlyByteBuf, WoodcuttingRecipe recipe) {
-            recipe.getInput().toNetwork(friendlyByteBuf);
-            friendlyByteBuf.writeItem(recipe.outputStack);
+        public @NotNull MapCodec<WoodcuttingRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, WoodcuttingRecipe> streamCodec() {
+            return STREAM_CODEC;
         }
     }
 }

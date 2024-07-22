@@ -19,9 +19,8 @@ public class WoodenCauldronBlock
         extends AbstractCauldronBlock {
     public static final MapCodec<WoodenCauldronBlock> CODEC = simpleCodec(WoodenCauldronBlock::new);
 
-
-    public WoodenCauldronBlock(Properties settings) {
-        super(settings, WoodenCauldronBehavior.EMPTY);
+    public WoodenCauldronBlock(Properties properties) {
+        super(properties, WoodenCauldronBehavior.EMPTY);
     }
 
     @Override

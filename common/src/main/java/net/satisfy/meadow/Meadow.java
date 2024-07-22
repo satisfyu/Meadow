@@ -17,6 +17,7 @@ public class Meadow {
     public static void init() {
         MeadowConfig.get();
         DataFixerRegistry.init();
+        ArmorMaterialRegistry.init();
         TabRegistry.init();
         ObjectRegistry.init();
         BoatsAndSignsRegistry.init();
@@ -25,9 +26,9 @@ public class Meadow {
         RecipeRegistry.init();
         SoundRegistry.init();
         ScreenHandlerRegistry.init();
-        DoApiEP.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("better_leaves"), false);
-        DoApiEP.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("green_stove"), false);
-        DoApiEP.registerBuiltInPack(Meadow.MOD_ID, new MeadowIdentifier("optifine_support"), false);
+        DoApiEP.registerBuiltInPack(Meadow.MOD_ID, MeadowIdentifier.of("better_leaves"), false);
+        DoApiEP.registerBuiltInPack(Meadow.MOD_ID, MeadowIdentifier.of("green_stove"), false);
+        DoApiEP.registerBuiltInPack(Meadow.MOD_ID, MeadowIdentifier.of("optifine_support"), false);
     }
 
     public static void commonSetup() {

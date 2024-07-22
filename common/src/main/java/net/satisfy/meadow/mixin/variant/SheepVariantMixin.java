@@ -1,7 +1,6 @@
 package net.satisfy.meadow.mixin.variant;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -29,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class SheepVariantMixin extends MobVariantMixin {
 
     @Override
-    protected void onFinalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, SpawnGroupData spawnGroupData, CompoundTag compoundTag, CallbackInfoReturnable<SpawnGroupData> cir) {
+    protected void onFinalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
         SheepVar.setVariant(getSheep(), SheepVar.getRandomVariant(serverLevelAccessor, getSheep().blockPosition(), mobSpawnType.equals(MobSpawnType.SPAWN_EGG)));
     }
 
@@ -69,7 +68,7 @@ public abstract class SheepVariantMixin extends MobVariantMixin {
 
         ResourceLocation location = BuiltInRegistries.ITEM.getKey(wool);
         String s = location.getPath().replace("_wool", "");
-        cir.setReturnValue(new MeadowIdentifier("entities/sheep/" + s));
+        cir.setReturnValue(MeadowIdentifier.of("entities/sheep/" + s));
     }
 
     @Unique

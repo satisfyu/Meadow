@@ -59,7 +59,7 @@ public class WoodenBucket extends Item implements DispensibleContainerItem, Inje
                         if (level.getFluidState(blockPos).getType() != Fluids.WATER) {
                             return InteractionResultHolder.fail(itemStack);
                         }
-                        ItemStack itemStack2 = bucketPickup.pickupBlock(level, blockPos, blockState);
+                        ItemStack itemStack2 = bucketPickup.pickupBlock(player, level,blockPos, blockState);
                         if (!itemStack2.isEmpty()) {
                             player.awardStat(Stats.ITEM_USED.get(this));
                             bucketPickup.getPickupSound().ifPresent((soundEvent) -> player.playSound(soundEvent, 1.0F, 1.0F));
@@ -115,7 +115,7 @@ public class WoodenBucket extends Item implements DispensibleContainerItem, Inje
             BlockState blockState = level.getBlockState(blockPos);
             Block block = blockState.getBlock();
             boolean bl = blockState.canBeReplaced(this.content);
-            boolean bl2 = blockState.isAir() || bl || block instanceof LiquidBlockContainer && ((LiquidBlockContainer)block).canPlaceLiquid(level, blockPos, blockState, this.content);
+            boolean bl2 = blockState.isAir() || bl || block instanceof LiquidBlockContainer && ((LiquidBlockContainer)block).canPlaceLiquid(player, level, blockPos, blockState, this.content);
             if (!bl2) {
                 return blockHitResult != null && this.emptyContents(player, level, blockHitResult.getBlockPos().relative(blockHitResult.getDirection()), null);
             } else if (level.dimensionType().ultraWarm() && this.content.is(FluidTags.WATER)) {

@@ -1,22 +1,25 @@
 package net.satisfy.meadow.recipes;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import de.cristelknight.doapi.common.util.GeneralUtil;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.satisfy.meadow.registry.RecipeRegistry;
+import net.satisfy.meadow.util.NewGeneralUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @SuppressWarnings("unused")
-public class CookingCauldronRecipe implements Recipe<Container> {
+public class CookingCauldronRecipe implements Recipe<RecipeInput> {
     final ResourceLocation id;
     private final NonNullList<Ingredient> inputs;
     private final ItemStack output;
@@ -27,9 +30,17 @@ public class CookingCauldronRecipe implements Recipe<Container> {
         this.output = output;
     }
 
+    public CookingCauldronRecipe(Optional<ResourceLocation> resourceLocation, List<Ingredient> ingredients, ItemStack itemStack) {
+        this.id = resourceLocation.orElseGet(() -> ResourceLocation.fromNamespaceAndPath("meadow", "cooking_cauldron_recipe"));
+        NonNullList<Ingredient> nonNullList = NonNullList.create();
+        nonNullList.addAll(ingredients);
+        this.inputs = nonNullList;
+        this.output = itemStack;
+    }
+
     @Override
-    public boolean matches(Container inventory, Level world) {
-        return GeneralUtil.matchesRecipe(inventory, inputs, 0, 6);
+    public boolean matches(RecipeInput recipeInput, Level level) {
+        return NewGeneralUtil.matchesRecipe(recipeInput, inputs, 0, 6);
     }
 
     public ItemStack assemble() {
@@ -37,7 +48,7 @@ public class CookingCauldronRecipe implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container inventory, RegistryAccess registryManager) {
+    public @NotNull ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
         return this.output.copy();
     }
 
@@ -46,16 +57,15 @@ public class CookingCauldronRecipe implements Recipe<Container> {
         return false;
     }
 
+    @Override
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider provider) {
+        return this.output.copy();
+    }
+
     public ItemStack getResultItem() {
         return getResultItem(null);
     }
 
-    @Override
-    public @NotNull ItemStack getResultItem(RegistryAccess registryManager) {
-        return this.output;
-    }
-
-    @Override
     public @NotNull ResourceLocation getId() {
         return id;
     }
@@ -81,40 +91,39 @@ public class CookingCauldronRecipe implements Recipe<Container> {
     }
 
     public static class Serializer implements RecipeSerializer<CookingCauldronRecipe> {
+        public static final MapCodec<CookingCauldronRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                        ResourceLocation.CODEC.optionalFieldOf("id").forGetter(recipe -> Optional.of(recipe.getId())),
+                        Ingredient.CODEC.listOf().fieldOf("ingredients").forGetter(CookingCauldronRecipe::getIngredients),
+                        ItemStack.CODEC.fieldOf("output").forGetter(recipe -> recipe.output)
+                ).apply(instance, CookingCauldronRecipe::new)
+        );
 
-        @Override
-        public @NotNull CookingCauldronRecipe fromJson(ResourceLocation id, JsonObject json) {
-            final var ingredients = GeneralUtil.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
-            if (ingredients.isEmpty()) {
-                throw new JsonParseException("No ingredients for CookingCauldron Recipe");
-            } else if (ingredients.size() > 6) {
-                throw new JsonParseException("Too many ingredients for CookingPot Recipe");
-            } else {
-                return new CookingCauldronRecipe(id, ingredients, ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result")));
-            }
+        public static final StreamCodec<RegistryFriendlyByteBuf, CookingCauldronRecipe> STREAM_CODEC = StreamCodec.of(CookingCauldronRecipe.Serializer::toNetwork, CookingCauldronRecipe.Serializer::fromNetwork);
+
+        public static CookingCauldronRecipe fromNetwork(RegistryFriendlyByteBuf buf) {
+            ResourceLocation id = buf.readResourceLocation();
+            NonNullList<Ingredient> ingredients = NonNullList.create();
+            var children = buf.readCollection(ArrayList::new, buffer -> Ingredient.CONTENTS_STREAM_CODEC.decode(buf));
+            ingredients.addAll(children);
+            final var output = ItemStack.OPTIONAL_STREAM_CODEC.decode(buf);
+
+            return new CookingCauldronRecipe(id, ingredients, output);
+        }
+
+        public static void toNetwork(RegistryFriendlyByteBuf buf, CookingCauldronRecipe recipe) {
+            buf.writeResourceLocation(recipe.getId());
+            buf.writeCollection(recipe.getIngredients(), (b, child) -> Ingredient.CONTENTS_STREAM_CODEC.encode(buf, child));
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.output);
         }
 
         @Override
-        public @NotNull CookingCauldronRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            final var ingredients = NonNullList.withSize(buf.readVarInt(), Ingredient.EMPTY);
-            ingredients.replaceAll(ignored -> Ingredient.fromNetwork(buf));
-            return new CookingCauldronRecipe(id, ingredients, buf.readItem());
+        public @NotNull MapCodec<CookingCauldronRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buf, CookingCauldronRecipe recipe) {
-            buf.writeVarInt(recipe.inputs.size());
-            recipe.inputs.forEach(entry -> entry.toNetwork(buf));
-            buf.writeItem(recipe.output);
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, CookingCauldronRecipe> streamCodec() {
+            return STREAM_CODEC;
         }
-    }
-
-    public static class Type implements RecipeType<CookingCauldronRecipe> {
-        private Type() {
-        }
-
-        public static final Type INSTANCE = new Type();
-
-        public static final String ID = "cooking";
     }
 }

@@ -35,7 +35,7 @@ public class SheepFurLayerMixin {
 
     // Accesswidening SHEEP_FUR_LOCATION, so it can be changed before the render
     @Unique
-    private static final ResourceLocation SHEEP_FUR_LOCATION = new ResourceLocation("textures/entity/sheep/sheep_fur.png");
+    private static final ResourceLocation SHEEP_FUR_LOCATION = ResourceLocation.withDefaultNamespace("textures/entity/sheep/sheep_fur.png");
     @Inject(
             method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/Sheep;FFFFFF)V",
             at = @At(value = "HEAD"))
@@ -45,7 +45,7 @@ public class SheepFurLayerMixin {
             SheepFurLayer.SHEEP_FUR_LOCATION = SHEEP_FUR_LOCATION;
             return;
         }
-        SheepFurLayer.SHEEP_FUR_LOCATION = new MeadowIdentifier(String.format("textures/entity/sheep/%s_sheep_fur.png", var.getSerializedName()));
+        SheepFurLayer.SHEEP_FUR_LOCATION = MeadowIdentifier.of(String.format("textures/entity/sheep/%s_sheep_fur.png", var.getSerializedName()));
     }
 
 }

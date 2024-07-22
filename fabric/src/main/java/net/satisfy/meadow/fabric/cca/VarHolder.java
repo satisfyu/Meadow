@@ -1,8 +1,9 @@
 package net.satisfy.meadow.fabric.cca;
 
-import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
+import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
 public class VarHolder implements IntComponent, AutoSyncedComponent {
 
@@ -21,6 +22,13 @@ public class VarHolder implements IntComponent, AutoSyncedComponent {
         return var;
     }
 
-    @Override public void readFromNbt(CompoundTag tag) { this.var = tag.getInt("Variant"); }
-    @Override public void writeToNbt(CompoundTag tag) { tag.putInt("Variant", this.var); }
+    @Override
+    public void readFromNbt(CompoundTag tag, HolderLookup.Provider registryLookup) {
+        this.var = tag.getInt("Variant");
+    }
+
+    @Override
+    public void writeToNbt(CompoundTag tag, HolderLookup.Provider registryLookup) {
+        tag.putInt("Variant", this.var);
+    }
 }

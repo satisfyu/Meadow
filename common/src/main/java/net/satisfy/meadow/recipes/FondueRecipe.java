@@ -1,25 +1,23 @@
 package net.satisfy.meadow.recipes;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.satisfy.meadow.registry.RecipeRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public class FondueRecipe implements Recipe<Container> {
+public class FondueRecipe implements Recipe<RecipeInput> {
     private final ResourceLocation id;
     private final Ingredient fuel;
     private final Ingredient bread;
@@ -32,10 +30,32 @@ public class FondueRecipe implements Recipe<Container> {
         this.result = result;
     }
 
+    public FondueRecipe(Optional<ResourceLocation> id, Ingredient fuel, Ingredient bread, ItemStack result) {
+        this.id = id.orElseGet(() -> ResourceLocation.fromNamespaceAndPath("meadow", "fondue"));
+        this.fuel = fuel;
+        this.bread = bread;
+        this.result = result;
+    }
+
+    public Ingredient getFuel() {
+        return fuel;
+    }
+    public Ingredient getBread() {
+        return bread;
+    }
+
     @Override
-    public boolean matches(Container inventory, Level world) {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> defaultedList = NonNullList.create();
+        defaultedList.add(this.bread);
+        defaultedList.add(this.fuel);
+        return defaultedList;
+    }
+
+    @Override
+    public boolean matches(RecipeInput recipeInput, Level level) {
         NonNullList<Ingredient> ingredients = getIngredients();
-        List<ItemStack> items = new ArrayList<>(List.of(inventory.getItem(1), inventory.getItem(0)));
+        List<ItemStack> items = new ArrayList<>(List.of(recipeInput.getItem(1), recipeInput.getItem(0)));
         for (Ingredient ingredient : ingredients) {
             boolean matches = false;
             for (ItemStack stack : items) {
@@ -51,28 +71,13 @@ public class FondueRecipe implements Recipe<Container> {
         return true;
     }
 
-    public ItemStack assemble() {
-        return assemble(null, null);
-    }
-
     @Override
-    public ItemStack assemble(Container inventory, RegistryAccess registryManager) {
+    public @NotNull ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
         return this.result.copy();
     }
 
-    public Ingredient getFuel() {
-        return fuel;
-    }
-    public Ingredient getBread() {
-        return bread;
-    }
-
-    @Override
-    public NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> defaultedList = NonNullList.create();
-        defaultedList.add(this.bread);
-        defaultedList.add(this.fuel);
-        return defaultedList;
+    public ItemStack assemble() {
+        return assemble(null, null);
     }
 
     @Override
@@ -80,28 +85,26 @@ public class FondueRecipe implements Recipe<Container> {
         return true;
     }
 
+    @Override
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider provider) {
+        return result;
+    }
+
     public ItemStack getResultItem() {
         return getResultItem(null);
     }
 
-    @Override
-    public ItemStack getResultItem(RegistryAccess registryManager) {
-        return result;
-    }
-
-
-    @Override
     public ResourceLocation getId() {
         return id;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return RecipeRegistry.FONDUE_SERIALIZER.get();
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return RecipeRegistry.FONDUE.get();
     }
 
@@ -111,33 +114,39 @@ public class FondueRecipe implements Recipe<Container> {
     }
 
     public static class Serializer implements RecipeSerializer<FondueRecipe> {
+        public static final MapCodec<FondueRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                        ResourceLocation.CODEC.optionalFieldOf("id").forGetter(recipe -> Optional.of(recipe.getId())),
+                        Ingredient.CODEC.fieldOf("fuel").forGetter(FondueRecipe::getFuel),
+                        Ingredient.CODEC.fieldOf("bread").forGetter(FondueRecipe::getBread),
+                        ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.result)
+                ).apply(instance, FondueRecipe::new)
+        );
 
-        @Override
-        public FondueRecipe fromJson(ResourceLocation id, JsonObject json) {
-            JsonElement jsonResultElement = json.get("result");
-            ItemStack resultItem = GsonHelper.convertToItem(jsonResultElement, jsonResultElement.getAsString()).getDefaultInstance();
+        public static final StreamCodec<RegistryFriendlyByteBuf, FondueRecipe> STREAM_CODEC = StreamCodec.of(FondueRecipe.Serializer::toNetwork, FondueRecipe.Serializer::fromNetwork);
 
-            JsonObject jsonBucketObject = json.getAsJsonObject("fuel");
-            Ingredient bucket = Ingredient.fromJson(jsonBucketObject);
+        public static FondueRecipe fromNetwork(RegistryFriendlyByteBuf buf) {
+            ResourceLocation id = buf.readResourceLocation();
+            Ingredient fuel = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
+            Ingredient bread = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
+            ItemStack result = ItemStack.OPTIONAL_STREAM_CODEC.decode(buf);
+            return new FondueRecipe(id, fuel, bread, result);
+        }
 
-            JsonObject jsonIngredientObject = json.getAsJsonObject("bread");
-            Ingredient ingredient = Ingredient.fromJson(jsonIngredientObject);
-
-            return new FondueRecipe(id, bucket, ingredient, resultItem);
+        public static void toNetwork(RegistryFriendlyByteBuf buf, FondueRecipe recipe) {
+            buf.writeResourceLocation(recipe.getId());
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.fuel);
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.bread);
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.result);
         }
 
         @Override
-        public FondueRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf packetData) {
-            Ingredient bucket = Ingredient.fromNetwork(packetData);
-            Ingredient input = Ingredient.fromNetwork(packetData);
-            ItemStack output = packetData.readItem();
-            return new FondueRecipe(id, bucket, input, output);
+        public @NotNull MapCodec<FondueRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf friendlyByteBuf, FondueRecipe recipe) {
-            recipe.getIngredients().forEach(ingredient -> ingredient.toNetwork(friendlyByteBuf));
-            friendlyByteBuf.writeItem(recipe.result);
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, FondueRecipe> streamCodec() {
+            return STREAM_CODEC;
         }
     }
 

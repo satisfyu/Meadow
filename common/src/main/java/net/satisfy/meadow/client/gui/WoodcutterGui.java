@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.satisfy.meadow.client.gui.handler.WoodcutterGuiHandler;
 import net.satisfy.meadow.recipes.WoodcuttingRecipe;
 import net.satisfy.meadow.util.MeadowIdentifier;
@@ -81,13 +82,13 @@ public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler>
     }
 
     private void renderRecipeIcons(GuiGraphics context, int x, int y, int scrollOffsetOFF) {
-        List<WoodcuttingRecipe> list = this.menu.getAvailableRecipes();
+        List<RecipeHolder<WoodcuttingRecipe>> list = this.menu.getAvailableRecipes();
         for (int i = this.scrollOffset; i < scrollOffsetOFF && i < this.menu.getAvailableRecipeCount(); i++) {
             int offsetedI = i - this.scrollOffset;
             int k = x + recipeIconWidth * (offsetedI % recipeIconPerLine);
             int l = offsetedI / recipeIconPerLine;
             int m = y + recipeIconHeight * l + 1;
-            context.renderItem(list.get(i).getResultItem(this.minecraft.level.registryAccess()), k, m);
+            context.renderItem(list.get(i).value().getResultItem(this.minecraft.level.registryAccess()), k, m);
         }
     }
 
@@ -98,14 +99,14 @@ public class WoodcutterGui extends AbstractContainerScreen<WoodcutterGuiHandler>
             int i = this.leftPos + recipeIconPosX;
             int j = this.topPos + recipeIconPosY;
             int scrollOffsetOFF = this.scrollOffset + maxRecipeIcons;
-            List<WoodcuttingRecipe> list = this.menu.getAvailableRecipes();
+            List<RecipeHolder<WoodcuttingRecipe>> list = this.menu.getAvailableRecipes();
             for (int l = scrollOffset; l < scrollOffsetOFF && l < this.menu.getAvailableRecipeCount(); l++) {
                 int offsetedL = l - this.scrollOffset;
 
                 int n = i + offsetedL % recipeIconPerLine * recipeIconWidth;
                 int o = j + offsetedL / recipeIconPerLine * recipeIconHeight;
                 if (x < n || x >= n + recipeIconWidth || y < o || y >= o + recipeIconHeight) continue;
-                context.renderTooltip(this.font, list.get(l).getResultItem(this.minecraft.level.registryAccess()), x, y);
+                context.renderTooltip(this.font, list.get(l).value().getResultItem(this.minecraft.level.registryAccess()), x, y);
             }
         }
     }

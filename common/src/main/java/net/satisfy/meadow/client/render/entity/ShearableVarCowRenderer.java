@@ -18,7 +18,7 @@ public class ShearableVarCowRenderer extends MobRenderer<ShearableVarCow, WoolyC
     @Override
     public @NotNull ResourceLocation getTextureLocation(ShearableVarCow entity) {
         return entity.isSheared() ?
-                new MeadowIdentifier(String.format("textures/entity/cow/%s_sheared.png", entity.getVariant().getSerializedName())) :
-                new MeadowIdentifier(String.format("textures/entity/cow/%s.png", entity.getVariant().getSerializedName()));
+                MeadowIdentifier.of(String.format("textures/entity/cow/%s_sheared.png", entity.getVariant().getSerializedName())) :
+                MeadowIdentifier.of(String.format("textures/entity/cow/%s.png", entity.getVariant().getSerializedName()));
     }
 }

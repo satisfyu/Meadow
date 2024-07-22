@@ -2,10 +2,12 @@ package net.satisfy.meadow.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -30,6 +32,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.satisfy.meadow.entity.var.ShearableCowVar;
 import net.satisfy.meadow.registry.EntityRegistry;
 import net.satisfy.meadow.registry.ObjectRegistry;
@@ -41,7 +44,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     private static final EntityDataAccessor<Boolean> IS_SHEARED = SynchedEntityData.defineId(ShearableVarCow.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(ShearableVarCow.class, EntityDataSerializers.INT);
 
-    private static final ResourceLocation COW_LOOT_TABLE = new ResourceLocation("entities/cow");
+    private static final ResourceKey<LootTable> COW_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/cow"));
 
     private int eatGrassTimer;
     private EatBlockGoal eatGrassGoal;
@@ -51,13 +54,12 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Override
-    protected @NotNull ResourceLocation getDefaultLootTable() {
+    protected @NotNull ResourceKey<LootTable> getDefaultLootTable() {
         if (isSheared()) return COW_LOOT_TABLE;
 
         ResourceLocation location = BuiltInRegistries.ITEM.getKey(getVariant().getWool());
         String s = location.getPath().replace("_wool", "");
-
-        return new MeadowIdentifier("entities/wooly_cow/" + s);
+        return ResourceKey.create(Registries.LOOT_TABLE, MeadowIdentifier.of("entities/wooly_cow/" + s));
     }
 
     @Override
@@ -67,7 +69,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
             if (!this.level().isClientSide && this.readyForShearing()) {
                 this.shear(SoundSource.PLAYERS);
                 this.gameEvent(GameEvent.SHEAR, player);
-                itemStack.hurtAndBreak(1, player, player2 -> player2.broadcastBreakEvent(hand));
+                itemStack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(itemStack));
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.CONSUME;
@@ -107,6 +109,11 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Override
+    public boolean isFood(ItemStack itemStack) {
+        return false;
+    }
+
+    @Override
     public void ate() {
         super.ate();
         this.setSheared(false);
@@ -134,10 +141,10 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        entityData.define(IS_SHEARED, false);
-        entityData.define(DATA_ID_TYPE_VARIANT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(IS_SHEARED, false);
+        builder.define(DATA_ID_TYPE_VARIANT, 0);
     }
 
     public boolean isSheared() {
@@ -198,7 +205,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor serverLevelAccessor, @NotNull DifficultyInstance difficultyInstance, @NotNull MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData, @Nullable CompoundTag compoundTag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor serverLevelAccessor, @NotNull DifficultyInstance difficultyInstance, @NotNull MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
 
         ShearableCowVar variant;
         if (spawnGroupData instanceof ShearableVarCowGroupData data) {
@@ -209,7 +216,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
         }
 
         setVariant(variant);
-        return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData, compoundTag);
+        return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
     }
 
     public void setVariant(ShearableCowVar variant) {
@@ -278,7 +285,7 @@ public class ShearableVarCow extends Animal implements Shearable, VariantHolder<
     }
 
     @Override
-    protected float getStandingEyeHeight(@NotNull Pose pose, @NotNull EntityDimensions entityDimensions) {
-        return this.isBaby() ? entityDimensions.height * 0.95F : 1.3F;
+    public double getEyeY() {
+        return this.isBaby() ? this.getY() + 0.5 : this.getY() + 1.1;
     }
 }

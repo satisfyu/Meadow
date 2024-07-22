@@ -5,14 +5,15 @@ import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.satisfy.meadow.block.CheeseBlock;
 import net.satisfy.meadow.recipes.CheeseFormRecipe;
 import net.satisfy.meadow.registry.ObjectRegistry;
+import net.satisfy.meadow.registry.RecipeRegistry;
 
 import java.util.List;
 
@@ -31,14 +32,15 @@ public enum CheeseFormRecipeBookGroup implements IRecipeBookGroup {
     }
 
     @Override
-    public boolean fitRecipe(Recipe<? extends Container> recipe, RegistryAccess dynamicRegistryManager) {
-        if (recipe instanceof CheeseFormRecipe cheeseFormRecipe) {
+    public boolean fitRecipe(Recipe<? extends SingleRecipeInput> recipe, RegistryAccess registryAccess) {
+        if (recipe.getType() == RecipeRegistry.CHEESE) {
+            CheeseFormRecipe cheeseFormRecipe = (CheeseFormRecipe) recipe.getType();
             return switch (this) {
                 case SEARCH -> true;
                 case CHEESE ->
-                        cheeseFormRecipe.getResultItem(dynamicRegistryManager).getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof CheeseBlock;
+                        cheeseFormRecipe.getResultItem(registryAccess).getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof CheeseBlock;
                 case MISC ->
-                        cheeseFormRecipe.getResultItem(dynamicRegistryManager).getItem() instanceof BlockItem blockItem && !(blockItem.getBlock() instanceof CheeseBlock);
+                        cheeseFormRecipe.getResultItem(registryAccess).getItem() instanceof BlockItem blockItem && !(blockItem.getBlock() instanceof CheeseBlock);
             };
         }
         return false;

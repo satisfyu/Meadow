@@ -10,8 +10,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.*;
 import net.satisfy.meadow.client.gui.handler.CheeseFormGuiHandler;
 import net.satisfy.meadow.client.gui.handler.CookingCauldronGuiHandler;
 import net.satisfy.meadow.client.gui.handler.FondueGuiHandler;
@@ -27,7 +26,9 @@ import net.satisfy.meadow.registry.ObjectRegistry;
 import net.satisfy.meadow.registry.RecipeRegistry;
 import net.satisfy.meadow.registry.ScreenHandlerRegistry;
 import net.satisfy.meadow.util.MeadowIdentifier;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -48,22 +49,40 @@ public class MeadowJEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
 
-        List<WoodcuttingRecipe> woodcuttingRecipes = rm.getAllRecipesFor(RecipeRegistry.WOODCUTTING.get());
+        List<RecipeHolder<WoodcuttingRecipe>> woodcuttingRecipesHolder = rm.getAllRecipesFor(RecipeRegistry.WOODCUTTING.get());
+        List<WoodcuttingRecipe> woodcuttingRecipes = new ArrayList<>();
+        woodcuttingRecipesHolder.iterator().forEachRemaining(recipeHolder -> {
+            woodcuttingRecipes.add(recipeHolder.value());
+        });
+
         registration.addRecipes(WoodCutterCategory.WOODCUTTER, woodcuttingRecipes);
 
-        List<CookingCauldronRecipe> cookingCauldronRecipes = rm.getAllRecipesFor(RecipeRegistry.COOKING.get());
+        List<RecipeHolder<CookingCauldronRecipe>> cookingCauldronRecipesHolders = rm.getAllRecipesFor(RecipeRegistry.COOKING.get());
+        List<CookingCauldronRecipe> cookingCauldronRecipes = new ArrayList<>();
+        cookingCauldronRecipesHolders.iterator().forEachRemaining(recipeHolder -> {
+            cookingCauldronRecipes.add(recipeHolder.value());
+        });
+
         registration.addRecipes(CookingCauldronCategory.COOKING_CAULDRON, cookingCauldronRecipes);
 
-        List<CheeseFormRecipe> cheesePressRecipes = rm.getAllRecipesFor(RecipeRegistry.CHEESE.get());
+        List<RecipeHolder<CheeseFormRecipe>> cheesePressRecipesHolders = rm.getAllRecipesFor(RecipeRegistry.CHEESE.get());
+        List<CheeseFormRecipe> cheesePressRecipes = new ArrayList<>();
+        cheesePressRecipesHolders.iterator().forEachRemaining(recipeHolder -> {
+            cheesePressRecipes.add(recipeHolder.value());
+        });
         registration.addRecipes(CheesePressCategory.CHEESE_PRESS, cheesePressRecipes);
 
-        List<FondueRecipe> fondueRecipes = rm.getAllRecipesFor(RecipeRegistry.FONDUE.get());
+        List<RecipeHolder<FondueRecipe>> fondueRecipesHolders = rm.getAllRecipesFor(RecipeRegistry.FONDUE.get());
+        List<FondueRecipe> fondueRecipes = new ArrayList<>();
+        fondueRecipesHolders.iterator().forEachRemaining(recipeHolder -> {
+            fondueRecipes.add(recipeHolder.value());
+        });
         registration.addRecipes(FondueCategory.FONDUE, fondueRecipes);
     }
 
     @Override
-    public ResourceLocation getPluginUid() {
-        return new MeadowIdentifier("jei_plugin");
+    public @NotNull ResourceLocation getPluginUid() {
+        return MeadowIdentifier.of("jei_plugin");
     }
 
     @Override
