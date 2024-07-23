@@ -1,5 +1,6 @@
 package net.satisfy.meadow.recipes;
 
+import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
@@ -20,18 +21,15 @@ import java.util.Optional;
 
 @SuppressWarnings("unused")
 public class CookingCauldronRecipe implements Recipe<RecipeInput> {
-    final ResourceLocation id;
     private final NonNullList<Ingredient> inputs;
     private final ItemStack output;
 
-    public CookingCauldronRecipe(ResourceLocation id, NonNullList<Ingredient> inputs, ItemStack output) {
-        this.id = id;
+    public CookingCauldronRecipe(NonNullList<Ingredient> inputs, ItemStack output) {
         this.inputs = inputs;
         this.output = output;
     }
 
-    public CookingCauldronRecipe(Optional<ResourceLocation> resourceLocation, List<Ingredient> ingredients, ItemStack itemStack) {
-        this.id = resourceLocation.orElseGet(() -> ResourceLocation.fromNamespaceAndPath("meadow", "cooking_cauldron_recipe"));
+    public CookingCauldronRecipe(List<Ingredient> ingredients, ItemStack itemStack) {
         NonNullList<Ingredient> nonNullList = NonNullList.create();
         nonNullList.addAll(ingredients);
         this.inputs = nonNullList;
@@ -67,7 +65,7 @@ public class CookingCauldronRecipe implements Recipe<RecipeInput> {
     }
 
     public @NotNull ResourceLocation getId() {
-        return id;
+        return ResourceLocation.fromNamespaceAndPath("meadow", "cooking");
     }
 
     @Override
@@ -92,8 +90,14 @@ public class CookingCauldronRecipe implements Recipe<RecipeInput> {
 
     public static class Serializer implements RecipeSerializer<CookingCauldronRecipe> {
         public static final MapCodec<CookingCauldronRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                        ResourceLocation.CODEC.optionalFieldOf("id").forGetter(recipe -> Optional.of(recipe.getId())),
-                        Ingredient.CODEC.listOf().fieldOf("ingredients").forGetter(CookingCauldronRecipe::getIngredients),
+                        Ingredient.CODEC_NONEMPTY.listOf().fieldOf("shapelessExtraIngredients").flatXmap(list -> {
+                            Ingredient[] ingredients = list.toArray(Ingredient[]::new);
+                            if (ingredients.length == 0) {
+                                return DataResult.error(() -> "No ingredients for shapeless recipe");
+                            }
+                            return DataResult.success(NonNullList.of(Ingredient.EMPTY, ingredients));
+                        }, DataResult::success).forGetter(CookingCauldronRecipe::getIngredients),
+
                         ItemStack.CODEC.fieldOf("output").forGetter(recipe -> recipe.output)
                 ).apply(instance, CookingCauldronRecipe::new)
         );
@@ -101,17 +105,15 @@ public class CookingCauldronRecipe implements Recipe<RecipeInput> {
         public static final StreamCodec<RegistryFriendlyByteBuf, CookingCauldronRecipe> STREAM_CODEC = StreamCodec.of(CookingCauldronRecipe.Serializer::toNetwork, CookingCauldronRecipe.Serializer::fromNetwork);
 
         public static CookingCauldronRecipe fromNetwork(RegistryFriendlyByteBuf buf) {
-            ResourceLocation id = buf.readResourceLocation();
             NonNullList<Ingredient> ingredients = NonNullList.create();
             var children = buf.readCollection(ArrayList::new, buffer -> Ingredient.CONTENTS_STREAM_CODEC.decode(buf));
             ingredients.addAll(children);
             final var output = ItemStack.OPTIONAL_STREAM_CODEC.decode(buf);
 
-            return new CookingCauldronRecipe(id, ingredients, output);
+            return new CookingCauldronRecipe(ingredients, output);
         }
 
         public static void toNetwork(RegistryFriendlyByteBuf buf, CookingCauldronRecipe recipe) {
-            buf.writeResourceLocation(recipe.getId());
             buf.writeCollection(recipe.getIngredients(), (b, child) -> Ingredient.CONTENTS_STREAM_CODEC.encode(buf, child));
             ItemStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.output);
         }

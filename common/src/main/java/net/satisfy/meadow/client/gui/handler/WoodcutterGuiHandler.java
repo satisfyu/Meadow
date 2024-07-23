@@ -169,7 +169,7 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
     }
 
     @Override
-    public MenuType<?> getType() {
+    public @NotNull MenuType<?> getType() {
         return ScreenHandlerRegistry.WOODCUTTER_SCREEN_HANDLER.get();
     }
 

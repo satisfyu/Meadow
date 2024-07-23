@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "meadow:stove_tiles_wood",
-    "#c:allows_cooking",
-    "#forge:allows_cooking"
-  ]
-}

@@ -18,7 +18,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -30,7 +29,7 @@ import net.satisfy.meadow.registry.RecipeRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
+import java.util.List;
 
 public class FondueBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory, BlockEntityTicker<FondueBlockEntity> {
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(3, ItemStack.EMPTY);
@@ -117,13 +116,11 @@ public class FondueBlockEntity extends BlockEntity implements MenuProvider, Impl
 
 
         RecipeManager recipeManager = world.getRecipeManager();
-        Optional<RecipeHolder<FondueRecipe>> r = recipeManager
-                .getAllRecipesFor(RecipeRegistry.FONDUE.get())
-                .stream()
-                .filter(recipe -> recipe.value().matches(new SingleRecipeInput(inventory.get(0)), world))
-                .findFirst();
 
-        if(!(r.isPresent() && r.get().value() instanceof FondueRecipe recipe)){
+        List<RecipeHolder<FondueRecipe>> recipes = recipeManager.getAllRecipesFor(RecipeRegistry.FONDUE.get());
+        FondueRecipe recipe = getRecipe(entity, recipes);
+
+        if(recipes.isEmpty() || !(recipe instanceof FondueRecipe)){
             entity.resetProgress();
             setChanged(world, blockPos, state);
             return;
@@ -141,8 +138,19 @@ public class FondueBlockEntity extends BlockEntity implements MenuProvider, Impl
         }
     }
 
+    private static FondueRecipe getRecipe(FondueBlockEntity entity, List<RecipeHolder<FondueRecipe>> recipes) {
+        for(RecipeHolder<FondueRecipe> recipe : recipes){
+            if(recipe.value().getBread().test(entity.getItem(0)) && (recipe.value().getFuel().test(entity.getItem(1)) || entity.fuelAmount > 0)){
+                return recipe.value();
+            }
+        }
+        return null;
+    }
+
     private static boolean hasFuel(FondueBlockEntity entity, FondueRecipe recipe) {
-        if (entity.fuelAmount > 0) return true;
+        if (entity.fuelAmount > 0) {
+            return true;
+        }
         ItemStack stack = entity.getItem(1);
         if (recipe.getFuel().test(stack)) {
             entity.fuelAmount = 10;

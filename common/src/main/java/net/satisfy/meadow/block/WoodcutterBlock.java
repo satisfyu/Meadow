@@ -3,7 +3,6 @@ package net.satisfy.meadow.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
@@ -43,7 +42,7 @@ public class WoodcutterBlock extends Block {
         if (world.isClientSide) {
             return InteractionResult.SUCCESS;
         }
-        player.openMenu(getMenuProvider(state, world, pos));
+        //player.openMenu(getMenuProvider(state, world, pos));
         return InteractionResult.CONSUME;
     }
 
