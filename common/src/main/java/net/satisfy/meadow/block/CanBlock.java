@@ -29,7 +29,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfy.meadow.item.WoodenBucket;
-import net.satisfy.meadow.item.WoodenMilkBucket;
 import net.satisfy.meadow.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 

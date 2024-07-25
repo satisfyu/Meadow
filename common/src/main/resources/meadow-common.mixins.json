@@ -12,6 +12,7 @@
     "GoatMixin",
     "NetherPortalBlockMixin",
     "SheepMixin",
+    "SinkBlockMixin",
     "variant.MobVariantMixin",
     "variant.SheepVariantMixin"
   ],
