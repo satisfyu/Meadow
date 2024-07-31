@@ -8,7 +8,7 @@
     "item": "meadow:alpine_gold_ore"
   },
   "result": {
-    "item": "minecraft:gold_ingot",
+    "id": "minecraft:gold_ingot",
     "count": 1
   }
 }

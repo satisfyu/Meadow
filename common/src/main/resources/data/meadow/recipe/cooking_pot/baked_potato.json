@@ -12,7 +12,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:baked_potato",
+    "id": "minecraft:baked_potato",
     "count": 4
   }
 }

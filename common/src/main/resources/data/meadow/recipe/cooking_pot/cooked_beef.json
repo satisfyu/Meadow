@@ -9,7 +9,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:cooked_beef",
+    "id": "minecraft:cooked_beef",
     "count": 4
   }
 }

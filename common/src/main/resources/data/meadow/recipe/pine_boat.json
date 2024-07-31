@@ -12,7 +12,7 @@
     "###"
   ],
   "result": {
-    "item": "meadow:pine_boat",
+    "id": "meadow:pine_boat",
     "count": 1
   },
   "show_notification": true

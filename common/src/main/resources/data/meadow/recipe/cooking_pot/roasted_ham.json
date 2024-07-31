@@ -21,7 +21,7 @@
     }
   ],
   "result": {
-    "item":  "meadow:roasted_ham",
+    "id":  "meadow:roasted_ham",
     "count": 2
   }
 }

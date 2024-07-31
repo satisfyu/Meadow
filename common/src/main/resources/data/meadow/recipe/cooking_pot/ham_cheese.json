@@ -12,7 +12,7 @@
     }
   ],
   "result": {
-    "item":  "meadow:sausage_with_cheese",
+    "id":  "meadow:sausage_with_cheese",
     "count": 2
   }
 }

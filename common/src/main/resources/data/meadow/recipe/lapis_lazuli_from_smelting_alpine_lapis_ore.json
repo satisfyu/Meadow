@@ -7,8 +7,8 @@
   "ingredient": {
     "item": "meadow:alpine_lapis_ore"
   },
-    "result": {
-        "item": "minecraft:lapis_lazuli",
-        "count": 1
-    }
+  "result": {
+      "id": "minecraft:lapis_lazuli",
+      "count": 1
+  }
 }

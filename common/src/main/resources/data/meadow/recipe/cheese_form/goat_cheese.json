@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "meadow:rennet"
   },
-  "result": "meadow:goat_cheese_block"
+  "result": {
+    "id": "meadow:goat_cheese_block",
+    "count": 1
+  }
 }
