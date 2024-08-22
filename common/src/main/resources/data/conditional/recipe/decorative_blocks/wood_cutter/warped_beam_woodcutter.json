@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "minecraft:warped_stems"
 		},
-		"outputItem": "decorative_blocks:warped_beam",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "decorative_blocks:warped_beam",
+			"count": 2
+		}
 	}
 }

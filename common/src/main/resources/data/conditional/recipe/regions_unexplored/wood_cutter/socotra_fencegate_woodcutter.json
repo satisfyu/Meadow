@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:socotra_logs"
 		},
-		"outputItem": "regions_unexplored:socotra_fence_gate",
-		"outputAmount": 1
+		"outputItem": {
+			"id": "regions_unexplored:socotra_fence_gate",
+			"count": 1
+		}
 	}
 }

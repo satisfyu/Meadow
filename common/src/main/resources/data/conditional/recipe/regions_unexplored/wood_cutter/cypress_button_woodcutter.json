@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:cypress_logs"
 		},
-		"outputItem": "regions_unexplored:cypress_button",
-		"outputAmount": 5
+		"outputItem": {
+			"id": "regions_unexplored:cypress_button",
+			"count": 5
+		}
 	}
 }

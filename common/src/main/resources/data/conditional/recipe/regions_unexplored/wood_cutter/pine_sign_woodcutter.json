@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:pine_logs"
 		},
-		"outputItem": "regions_unexplored:pine_sign",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "regions_unexplored:pine_sign",
+			"count": 2
+		}
 	}
 }

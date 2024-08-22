@@ -19,7 +19,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,6 +32,7 @@ import net.satisfy.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -184,17 +184,15 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
         }
 
         RecipeManager recipeManager = world.getRecipeManager();
-        Optional<RecipeHolder<CookingCauldronRecipe>> recipe = recipeManager
-                .getAllRecipesFor(RecipeRegistry.COOKING.get())
-                .stream()
-                .filter(r -> r.value().matches(new SingleRecipeInput(inventory.get(0)), world))
-                .findFirst();
+        List<RecipeHolder<CookingCauldronRecipe>> recipes = recipeManager.getAllRecipesFor(RecipeRegistry.COOKING.get());
+        Optional<CookingCauldronRecipe> recipe = Optional.ofNullable(getRecipe(recipes));
 
-        if (recipe.isPresent() && canCraft(recipe.get().value())) {
+
+        if (recipe.isPresent() && canCraft(recipe.get())) {
             cookingTime++;
             if (cookingTime >= MAX_COOKING_TIME) {
                 cookingTime = 0;
-                craft(recipe.get().value());
+                craft(recipe.get());
             }
             if (!state.getValue(CookingCauldronBlock.COOKING)) {
                 world.setBlock(pos, state.setValue(CookingCauldronBlock.COOKING, true).setValue(CookingCauldronBlock.LIT, true), Block.UPDATE_ALL);
@@ -205,6 +203,28 @@ public class CookingCauldronBlockEntity extends BlockEntity implements Implement
                 world.setBlock(pos, state.setValue(CookingCauldronBlock.COOKING, false).setValue(CookingCauldronBlock.LIT, true), Block.UPDATE_ALL);
             }
         }
+    }
+
+    public CookingCauldronRecipe getRecipe(List<RecipeHolder<CookingCauldronRecipe>> recipes) {
+        recipeLoop:
+        for (RecipeHolder<CookingCauldronRecipe> recipeHolder : recipes) {
+            CookingCauldronRecipe recipe = recipeHolder.value();
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                boolean ingredientFound = false;
+                for (int slotIndex = 1; slotIndex <= INGREDIENTS_AREA; slotIndex++) {
+                    ItemStack slotItem = inventory.get(slotIndex);
+                    if (ingredient.test(slotItem)) {
+                        ingredientFound = true;
+                        break;
+                    }
+                }
+                if (!ingredientFound) {
+                    continue recipeLoop;
+                }
+            }
+            return recipe;
+        }
+        return null; // No matching recipe found
     }
 
     public NonNullList<ItemStack> getItems() {

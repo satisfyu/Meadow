@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "minecraft:spruce_logs"
 		},
-		"outputItem": "decorative_blocks:spruce_beam",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "decorative_blocks:spruce_beam",
+			"count": 2
+		}
 	}
 }

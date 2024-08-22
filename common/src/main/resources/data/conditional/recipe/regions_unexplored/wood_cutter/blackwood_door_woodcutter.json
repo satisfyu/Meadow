@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:blackwood_logs"
 		},
-		"outputItem": "regions_unexplored:blackwood_door",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "regions_unexplored:blackwood_door",
+			"count": 2
+		}
 	}
 }

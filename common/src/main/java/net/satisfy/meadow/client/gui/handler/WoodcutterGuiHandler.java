@@ -143,12 +143,25 @@ public class WoodcutterGuiHandler extends AbstractContainerMenu {
     }
 
     private void updateInput(Container input, ItemStack stack) {
+        this.availableRecipes = Lists.newArrayList(this.availableRecipes); // Convert to mutable list
         this.availableRecipes.clear();
         this.selectedRecipe.set(-1);
         this.outputSlot.setByPlayer(ItemStack.EMPTY);
         if (!stack.isEmpty()) {
-            this.availableRecipes = this.world.getRecipeManager().getAllRecipesFor(RecipeRegistry.WOODCUTTING.get());
+            List<RecipeHolder<WoodcuttingRecipe>> list = this.world.getRecipeManager().getAllRecipesFor(RecipeRegistry.WOODCUTTING.get());
+            this.availableRecipes = this.getRecipes(list, stack);
         }
+    }
+
+    private List<RecipeHolder<WoodcuttingRecipe>> getRecipes(List<RecipeHolder<WoodcuttingRecipe>> recipes, ItemStack stack) {
+        List<RecipeHolder<WoodcuttingRecipe>> validRecipes = Lists.newArrayList();
+        for (RecipeHolder<WoodcuttingRecipe> recipeHolder : recipes) {
+            WoodcuttingRecipe recipe = recipeHolder.value();
+            if (recipe.matches(new SingleRecipeInput(stack), this.world)) {
+                validRecipes.add(recipeHolder);
+            }
+        }
+        return validRecipes;
     }
 
     void populateResult() {

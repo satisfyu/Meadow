@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:joshua_logs"
 		},
-		"outputItem": "regions_unexplored:joshua_fence_gate",
-		"outputAmount": 1
+		"outputItem": {
+			"id": "regions_unexplored:joshua_fence_gate",
+			"count": 1
+		}
 	}
 }

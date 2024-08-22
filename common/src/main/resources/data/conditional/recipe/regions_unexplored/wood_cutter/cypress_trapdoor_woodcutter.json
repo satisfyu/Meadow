@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:cypress_logs"
 		},
-		"outputItem": "regions_unexplored:cypress_trapdoor",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "regions_unexplored:cypress_trapdoor",
+			"count": 2
+		}
 	}
 }

@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "minecraft:pine_logs"
 		},
-		"outputItem": "decorative_blocks:pine_beam",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "decorative_blocks:pine_beam",
+			"count": 2
+		}
 	}
 }

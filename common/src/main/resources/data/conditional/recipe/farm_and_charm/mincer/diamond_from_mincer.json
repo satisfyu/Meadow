@@ -11,7 +11,7 @@
     "ingredient": { "item": "meadow:alpine_diamond_ore" },
     "recipe_type": "METAL",
     "result": {
-      "item": "minecraft:diamond",
+      "id": "minecraft:diamond",
       "count": 2
     }
   }

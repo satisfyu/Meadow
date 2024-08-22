@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "minecraft:birch_logs"
 		},
-		"outputItem": "decorative_blocks:birch_beam",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "decorative_blocks:birch_beam",
+			"count": 2
+		}
 	}
 }

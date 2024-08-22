@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:joshua_logs"
 		},
-		"outputItem": "regions_unexplored:joshua_door",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "regions_unexplored:joshua_door",
+			"count": 2
+		}
 	}
 }

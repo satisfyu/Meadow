@@ -9,7 +9,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.satisfy.meadow.block.CheeseBlock;
 import net.satisfy.meadow.recipes.CheeseFormRecipe;
 import net.satisfy.meadow.registry.ObjectRegistry;
@@ -32,7 +32,7 @@ public enum CheeseFormRecipeBookGroup implements IRecipeBookGroup {
     }
 
     @Override
-    public boolean fitRecipe(Recipe<? extends SingleRecipeInput> recipe, RegistryAccess registryAccess) {
+    public boolean fitRecipe(Recipe<? extends RecipeInput> recipe, RegistryAccess registryAccess) {
         if (recipe.getType() == RecipeRegistry.CHEESE) {
             CheeseFormRecipe cheeseFormRecipe = (CheeseFormRecipe) recipe.getType();
             return switch (this) {

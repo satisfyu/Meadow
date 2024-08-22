@@ -11,7 +11,7 @@
     "ingredient": { "item": "meadow:alpine_emerald_ore" },
     "recipe_type": "METAL",
     "result": {
-      "item": "minecraft:emerald",
+      "id": "minecraft:emerald",
       "count": 3
     }
   }

@@ -4,9 +4,7 @@ plugins {
 
 architectury {
     platformSetupLoomIde()
-    neoForge {
-        platformPackage = "forge"
-    }
+    neoForge()
 }
 
 def jarFileName = 'letsdo-meadow-forge'
@@ -40,6 +38,8 @@ dependencies {
     //modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") //?
 
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-forge"
+
+    forgeRuntimeLibrary("blue.endless:jankson:1.2.3")
 
     implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.1.2-beta.5"))
     implementation(include("com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.1.2-beta.5"))

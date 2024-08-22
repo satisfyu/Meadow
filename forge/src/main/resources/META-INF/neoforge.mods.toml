@@ -3,9 +3,18 @@ loaderVersion = "[4,)"
 license = "Custom"
 #issueTrackerURL = ""
 
+[[mixins]]
+config = "meadow-common.mixins.json"
+
+[[mixins]]
+config = "meadow-variant.mixins.json"
+
+[[mixins]]
+config = "meadow.mixins.json"
+
 [[mods]]
 modId = "meadow"
-version = "${version}"
+version = "1.5.0"
 displayName = "[Let's Do] Meadow"
 authors = ["satisfy", "Cristelknight999", "BMJO"]
 description = '''

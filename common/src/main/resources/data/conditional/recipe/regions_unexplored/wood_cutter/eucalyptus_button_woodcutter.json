@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:eucalyptus_logs"
 		},
-		"outputItem": "regions_unexplored:eucalyptus_button",
-		"outputAmount": 5
+		"outputItem": {
+			"id": "regions_unexplored:eucalyptus_button",
+			"count": 5
+		}
 	}
 }

@@ -13,7 +13,7 @@
     },
     "recipe_type": "WOOD",
     "result": {
-      "item": "meadow:stripped_pine_log",
+      "id": "meadow:stripped_pine_log",
       "count": 1
     }
   }

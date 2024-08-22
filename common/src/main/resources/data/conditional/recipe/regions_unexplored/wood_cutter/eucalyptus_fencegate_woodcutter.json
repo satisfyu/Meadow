@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:eucalyptus_logs"
 		},
-		"outputItem": "regions_unexplored:eucalyptus_fence_gate",
-		"outputAmount": 1
+		"outputItem": {
+			"id": "regions_unexplored:eucalyptus_fence_gate",
+			"count": 1
+		}
 	}
 }

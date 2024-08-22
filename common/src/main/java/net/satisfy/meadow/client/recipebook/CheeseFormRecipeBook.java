@@ -8,20 +8,19 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.crafting.*;
 import net.satisfy.meadow.registry.RecipeRegistry;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
     private static final Component TOGGLE_COOKABLE_TEXT;
 
+
     @Override
-    protected RecipeType<? extends Recipe<SingleRecipeInput>> getRecipeType() {
-        return (RecipeType<? extends Recipe<SingleRecipeInput>>) RecipeRegistry.CHEESE;
+    protected RecipeType<? extends Recipe<RecipeInput>> getRecipeType() {
+        return RecipeRegistry.CHEESE.get();
     }
 
     @Override
@@ -49,9 +48,17 @@ public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
         int slot = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
             ItemStack[] inputStacks = ingredient.getItems();
-            if (inputStacks.length == 0) continue;
+            //if (inputStacks.length == 0) continue;
             ItemStack inputStack = inputStacks[RandomSource.create().nextIntBetweenInclusive(0, inputStacks.length - 1)];
             this.ghostSlots.addSlot(inputStack, slots.get(slot).x, slots.get(slot++).y);
+        }
+    }
+
+    @Override
+    public void slotClicked(@Nullable Slot slot) {
+        super.slotClicked(slot);
+        if (slot != null && slot.index < this.screenHandler.getCraftingSlotCount()) {
+            this.ghostSlots.reset();
         }
     }
 
@@ -72,5 +79,9 @@ public class CheeseFormRecipeBook extends PrivateRecipeBookWidget {
     @Override
     public boolean isFocused() {
         return false;
+    }
+
+    @Override
+    public void recipesShown(List<RecipeHolder<?>> list) {
     }
 }

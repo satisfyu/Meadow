@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:palm_logs"
 		},
-		"outputItem": "regions_unexplored:palm_stairs",
-		"outputAmount": 4
+		"outputItem": {
+			"id": "regions_unexplored:palm_stairs",
+			"count": 4
+		}
 	}
 }

@@ -9,7 +9,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.satisfy.meadow.registry.ObjectRegistry;
 import net.satisfy.meadow.registry.RecipeRegistry;
 
@@ -30,7 +30,7 @@ public enum CookingCauldronRecipeBookGroup implements IRecipeBookGroup {
     }
 
     @Override
-    public boolean fitRecipe(Recipe<? extends SingleRecipeInput> recipe, RegistryAccess registryAccess) {
+    public boolean fitRecipe(Recipe<? extends RecipeInput> recipe, RegistryAccess registryAccess) {
         if (recipe.getType() == RecipeRegistry.COOKING) {
             return switch (this) {
                 case SEARCH -> true;

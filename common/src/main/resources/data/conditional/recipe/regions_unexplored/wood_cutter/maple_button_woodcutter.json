@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:maple_logs"
 		},
-		"outputItem": "regions_unexplored:maple_button",
-		"outputAmount": 5
+		"outputItem": {
+			"id": "regions_unexplored:maple_button",
+			"count": 5
+		}
 	}
 }

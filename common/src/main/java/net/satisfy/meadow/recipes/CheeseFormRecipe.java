@@ -15,23 +15,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class CheeseFormRecipe implements Recipe<RecipeInput> {
-    private final ResourceLocation id;
     private final Ingredient bucket;
     private final Ingredient ingredient;
     private final ItemStack result;
 
-    public CheeseFormRecipe(ResourceLocation id, Ingredient bucket, Ingredient ingredient, ItemStack result) {
-        this.id = id;
-        this.bucket = bucket;
-        this.ingredient = ingredient;
-        this.result = result;
-    }
-
-    public CheeseFormRecipe(Optional<ResourceLocation> id, Ingredient bucket, Ingredient ingredient, ItemStack result) {
-        this.id = id.orElse(ResourceLocation.fromNamespaceAndPath("meadow", "cheese_form"));
+    public CheeseFormRecipe(Ingredient bucket, Ingredient ingredient, ItemStack result) {
         this.bucket = bucket;
         this.ingredient = ingredient;
         this.result = result;
@@ -97,7 +87,7 @@ public class CheeseFormRecipe implements Recipe<RecipeInput> {
     }
 
     public ResourceLocation getId() {
-        return id;
+        return ResourceLocation.fromNamespaceAndPath("meadow", "cheese_form");
     }
 
     @Override
@@ -117,29 +107,18 @@ public class CheeseFormRecipe implements Recipe<RecipeInput> {
 
     public static class Serializer implements RecipeSerializer<CheeseFormRecipe> {
         public static final MapCodec<CheeseFormRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                        ResourceLocation.CODEC.optionalFieldOf("id").forGetter(recipe -> Optional.of(recipe.getId())),
                         Ingredient.CODEC.fieldOf("bucket").forGetter(CheeseFormRecipe::bucket),
                         Ingredient.CODEC.fieldOf("ingredient").forGetter(CheeseFormRecipe::ingredient),
                         ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.result)
                 ).apply(instance, CheeseFormRecipe::new)
         );
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, CheeseFormRecipe> STREAM_CODEC = StreamCodec.of(CheeseFormRecipe.Serializer::toNetwork, CheeseFormRecipe.Serializer::fromNetwork);
-
-        public static CheeseFormRecipe fromNetwork(RegistryFriendlyByteBuf buf) {
-            ResourceLocation id = buf.readResourceLocation();
-            Ingredient bucket = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
-            Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
-            ItemStack result = ItemStack.OPTIONAL_STREAM_CODEC.decode(buf);
-            return new CheeseFormRecipe(id, bucket, ingredient, result);
-        }
-
-        public static void toNetwork(RegistryFriendlyByteBuf buf, CheeseFormRecipe recipe) {
-            buf.writeResourceLocation(recipe.getId());
-            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.bucket);
-            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.ingredient);
-            ItemStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.result);
-        }
+        public static final StreamCodec<RegistryFriendlyByteBuf, CheeseFormRecipe> STREAM_CODEC = StreamCodec.composite(
+                Ingredient.CONTENTS_STREAM_CODEC, CheeseFormRecipe::bucket,
+                Ingredient.CONTENTS_STREAM_CODEC, CheeseFormRecipe::ingredient,
+                ItemStack.OPTIONAL_STREAM_CODEC, CheeseFormRecipe::getResultItem,
+                CheeseFormRecipe::new
+        );
 
         @Override
         public @NotNull MapCodec<CheeseFormRecipe> codec() {

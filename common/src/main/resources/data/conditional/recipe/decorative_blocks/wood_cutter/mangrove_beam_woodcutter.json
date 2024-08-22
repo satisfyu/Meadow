@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "minecraft:mangrove_logs"
 		},
-		"outputItem": "decorative_blocks:mangrove_beam",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "decorative_blocks:mangrove_beam",
+			"count": 2
+		}
 	}
 }

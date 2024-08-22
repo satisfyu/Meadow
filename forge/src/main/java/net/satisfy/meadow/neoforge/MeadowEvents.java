@@ -1,13 +1,13 @@
-package net.satisfy.meadow.forge;
+package net.satisfy.meadow.neoforge;
 
 import de.cristelknight.doapi.common.util.VillagerUtil;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.satisfy.meadow.Meadow;
-import net.satisfy.meadow.forge.registry.MeadowForgeVillagers;
+import net.satisfy.meadow.neoforge.registry.MeadowForgeVillagers;
 import net.satisfy.meadow.registry.ObjectRegistry;
 
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class MeadowEvents {
 
-    @Mod.EventBusSubscriber(modid = Meadow.MOD_ID)
+    @EventBusSubscriber(modid = Meadow.MOD_ID)
     public static class ForgeEvents {
         @SubscribeEvent
         public static void addCustomTrades(VillagerTradesEvent event) {

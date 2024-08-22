@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "beachparty:palm_logs"
 		},
-		"outputItem": "beachparty:palm_planks",
-		"outputAmount": 4
+		"outputItem": {
+			"id": "beachparty:palm_planks",
+			"count": 4
+		}
 	}
 }

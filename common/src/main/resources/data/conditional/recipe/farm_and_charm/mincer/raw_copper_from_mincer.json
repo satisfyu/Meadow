@@ -11,7 +11,7 @@
     "ingredient": { "item": "meadow:alpine_copper_ore" },
     "recipe_type": "METAL",
     "result": {
-      "item": "minecraft:raw_copper",
+      "id": "minecraft:raw_copper",
       "count": 8
     }
   }

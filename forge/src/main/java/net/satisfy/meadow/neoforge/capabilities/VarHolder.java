@@ -1,19 +1,20 @@
-package net.satisfy.meadow.forge.capabilities;
+package net.satisfy.meadow.neoforge.capabilities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraftforge.common.util.INBTSerializable;
+import net.neoforged.neoforge.common.util.INBTSerializable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.*;
 
 @SuppressWarnings("unused")
 public class VarHolder implements INBTSerializable<CompoundTag> {
-
-
     private volatile int var;
 
     public void setVar(int var) {
@@ -25,14 +26,14 @@ public class VarHolder implements INBTSerializable<CompoundTag> {
     }
 
     @Override
-    public CompoundTag serializeNBT() {
+    public @UnknownNullability CompoundTag serializeNBT(HolderLookup.@NotNull Provider provider) {
         CompoundTag tag = new CompoundTag();
         tag.putInt("Variant", this.var);
         return tag;
     }
 
     @Override
-    public void deserializeNBT(CompoundTag tag) {
+    public void deserializeNBT(HolderLookup.@NotNull Provider provider, CompoundTag tag) {
         if (tag.contains("Variant")) {
             this.var = tag.getInt("Variant");
         }

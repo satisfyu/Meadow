@@ -16,7 +16,6 @@ dependencies {
 
     implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.1.2-beta.5"))
 
-
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
 }
 

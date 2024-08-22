@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "beachparty:palm_logs"
 		},
-		"outputItem": "beachparty:palm_door",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "beachparty:palm_door",
+			"count": 2
+		}
 	}
 }

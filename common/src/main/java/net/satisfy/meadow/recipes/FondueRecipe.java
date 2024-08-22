@@ -118,21 +118,6 @@ public class FondueRecipe implements Recipe<RecipeInput> {
                 FondueRecipe::new
         );
 
-//        public static FondueRecipe fromNetwork(RegistryFriendlyByteBuf buf) {
-//            ResourceLocation id = buf.readResourceLocation();
-//            Ingredient fuel = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
-//            Ingredient bread = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
-//            ItemStack result = ItemStack.OPTIONAL_STREAM_CODEC.decode(buf);
-//            return new FondueRecipe(id, fuel, bread, result);
-//        }
-//
-//        public static void toNetwork(RegistryFriendlyByteBuf buf, FondueRecipe recipe) {
-//            buf.writeResourceLocation(recipe.getId());
-//            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.fuel);
-//            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.bread);
-//            ItemStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.result);
-//        }
-
         @Override
         public @NotNull MapCodec<FondueRecipe> codec() {
             return CODEC;

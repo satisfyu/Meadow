@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:baobab_logs"
 		},
-		"outputItem": "regions_unexplored:baobab_planks",
-		"outputAmount": 4
+		"outputItem": {
+			"id": "regions_unexplored:baobab_planks",
+			"count": 4
+		}
 	}
 }

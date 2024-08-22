@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:kapok_logs"
 		},
-		"outputItem": "regions_unexplored:kapok_slab",
-		"outputAmount": 9
+		"outputItem": {
+			"id": "regions_unexplored:kapok_slab",
+			"count": 9
+		}
 	}
 }

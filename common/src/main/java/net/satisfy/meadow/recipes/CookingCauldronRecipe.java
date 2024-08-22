@@ -13,11 +13,11 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.satisfy.meadow.registry.RecipeRegistry;
 import net.satisfy.meadow.util.NewGeneralUtil;
+import net.satisfy.meadow.util.StreamCodecUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @SuppressWarnings("unused")
 public class CookingCauldronRecipe implements Recipe<RecipeInput> {
@@ -27,13 +27,6 @@ public class CookingCauldronRecipe implements Recipe<RecipeInput> {
     public CookingCauldronRecipe(NonNullList<Ingredient> inputs, ItemStack output) {
         this.inputs = inputs;
         this.output = output;
-    }
-
-    public CookingCauldronRecipe(List<Ingredient> ingredients, ItemStack itemStack) {
-        NonNullList<Ingredient> nonNullList = NonNullList.create();
-        nonNullList.addAll(ingredients);
-        this.inputs = nonNullList;
-        this.output = itemStack;
     }
 
     @Override
@@ -83,6 +76,10 @@ public class CookingCauldronRecipe implements Recipe<RecipeInput> {
         return this.inputs;
     }
 
+    public List<Ingredient> getIngredientsList() {
+        return new ArrayList<>(this.inputs);
+    }
+
     @Override
     public boolean isSpecial() {
         return true;
@@ -90,7 +87,7 @@ public class CookingCauldronRecipe implements Recipe<RecipeInput> {
 
     public static class Serializer implements RecipeSerializer<CookingCauldronRecipe> {
         public static final MapCodec<CookingCauldronRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                        Ingredient.CODEC_NONEMPTY.listOf().fieldOf("shapelessExtraIngredients").flatXmap(list -> {
+                        Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").flatXmap(list -> {
                             Ingredient[] ingredients = list.toArray(Ingredient[]::new);
                             if (ingredients.length == 0) {
                                 return DataResult.error(() -> "No ingredients for shapeless recipe");
@@ -98,25 +95,15 @@ public class CookingCauldronRecipe implements Recipe<RecipeInput> {
                             return DataResult.success(NonNullList.of(Ingredient.EMPTY, ingredients));
                         }, DataResult::success).forGetter(CookingCauldronRecipe::getIngredients),
 
-                        ItemStack.CODEC.fieldOf("output").forGetter(recipe -> recipe.output)
+                        ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.output)
                 ).apply(instance, CookingCauldronRecipe::new)
         );
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, CookingCauldronRecipe> STREAM_CODEC = StreamCodec.of(CookingCauldronRecipe.Serializer::toNetwork, CookingCauldronRecipe.Serializer::fromNetwork);
-
-        public static CookingCauldronRecipe fromNetwork(RegistryFriendlyByteBuf buf) {
-            NonNullList<Ingredient> ingredients = NonNullList.create();
-            var children = buf.readCollection(ArrayList::new, buffer -> Ingredient.CONTENTS_STREAM_CODEC.decode(buf));
-            ingredients.addAll(children);
-            final var output = ItemStack.OPTIONAL_STREAM_CODEC.decode(buf);
-
-            return new CookingCauldronRecipe(ingredients, output);
-        }
-
-        public static void toNetwork(RegistryFriendlyByteBuf buf, CookingCauldronRecipe recipe) {
-            buf.writeCollection(recipe.getIngredients(), (b, child) -> Ingredient.CONTENTS_STREAM_CODEC.encode(buf, child));
-            ItemStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.output);
-        }
+        public static final StreamCodec<RegistryFriendlyByteBuf, CookingCauldronRecipe> STREAM_CODEC = StreamCodec.composite(
+                StreamCodecUtil.nonNullList(Ingredient.CONTENTS_STREAM_CODEC, Ingredient.EMPTY), CookingCauldronRecipe::getIngredients,
+                ItemStack.OPTIONAL_STREAM_CODEC, CookingCauldronRecipe::getResultItem,
+                CookingCauldronRecipe::new
+        );
 
         @Override
         public @NotNull MapCodec<CookingCauldronRecipe> codec() {

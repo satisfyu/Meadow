@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "minecraft:crimson_stems"
 		},
-		"outputItem": "decorative_blocks:crimson_beam",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "decorative_blocks:crimson_beam",
+			"count": 2
+		}
 	}
 }

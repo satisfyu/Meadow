@@ -11,7 +11,7 @@
     "ingredient": { "item": "meadow:alpine_gold_ore" },
     "recipe_type": "METAL",
     "result": {
-      "item": "minecraft:gold_nugget",
+      "id": "minecraft:gold_nugget",
       "count": 12
     }
   }

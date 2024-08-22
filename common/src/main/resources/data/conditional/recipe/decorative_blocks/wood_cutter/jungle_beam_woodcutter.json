@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "minecraft:jungle_logs"
 		},
-		"outputItem": "decorative_blocks:jungle_beam",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "decorative_blocks:jungle_beam",
+			"count": 2
+		}
 	}
 }

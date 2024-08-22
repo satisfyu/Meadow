@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:larch_logs"
 		},
-		"outputItem": "regions_unexplored:larch_trapdoor",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "regions_unexplored:larch_trapdoor",
+			"count": 2
+		}
 	}
 }

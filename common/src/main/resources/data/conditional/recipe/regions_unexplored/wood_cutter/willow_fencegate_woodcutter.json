@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:willow_logs"
 		},
-		"outputItem": "regions_unexplored:willow_fence_gate",
-		"outputAmount": 1
+		"outputItem": {
+			"id": "regions_unexplored:willow_fence_gate",
+			"count": 1
+		}
 	}
 }

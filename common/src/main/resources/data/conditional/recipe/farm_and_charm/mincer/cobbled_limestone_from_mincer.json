@@ -11,7 +11,7 @@
     "ingredient": { "item": "meadow:limestone" },
     "recipe_type": "METAL",
     "result": {
-      "item": "meadow:cobbled_limestone",
+      "id": "meadow:cobbled_limestone",
       "count": 4
     }
   }

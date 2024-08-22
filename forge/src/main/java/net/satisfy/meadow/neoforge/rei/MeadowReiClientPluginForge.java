@@ -1,4 +1,4 @@
-package net.satisfy.meadow.forge.rei;
+package net.satisfy.meadow.neoforge.rei;
 
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;

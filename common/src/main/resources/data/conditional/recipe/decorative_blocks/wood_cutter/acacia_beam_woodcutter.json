@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "minecraft:acacia_logs"
 		},
-		"outputItem": "decorative_blocks:acacia_beam",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "decorative_blocks:acacia_beam",
+			"count": 2
+		}
 	}
 }

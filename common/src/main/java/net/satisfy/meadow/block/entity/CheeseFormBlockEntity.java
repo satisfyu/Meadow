@@ -12,9 +12,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -29,6 +29,7 @@ import net.satisfy.meadow.registry.TagRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Optional;
 
 public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTicker<CheeseFormBlockEntity>, MenuProvider, ImplementedInventory {
@@ -105,21 +106,18 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
         if (world.isClientSide) return;
 
         RecipeManager recipeManager = world.getRecipeManager();
-        Optional<RecipeHolder<CheeseFormRecipe>> recipe = recipeManager
-                .getAllRecipesFor(RecipeRegistry.CHEESE.get())
-                .stream()
-                .filter(r -> r.value().matches(new SingleRecipeInput(inventory.get(0)), world))
-                .findFirst();
+        List<RecipeHolder<CheeseFormRecipe>> recipes = recipeManager.getAllRecipesFor(RecipeRegistry.CHEESE.get());
+        Optional<CheeseFormRecipe> recipe = Optional.ofNullable(getRecipe(recipes, inventory));
 
         if (recipe.isPresent()) {
             RegistryAccess access = world.registryAccess();
-            boolean working = canCraft(recipe.get().value(), access);
+            boolean working = canCraft(recipe.get(), access);
             if (working) {
                 this.fermentationTime++;
 
                 if (this.fermentationTime >= COOKING_TIME_IN_TICKS) {
                     this.fermentationTime = 0;
-                    craft(recipe.get().value(), access);
+                    craft(recipe.get(), access);
                     setChanged();
                 }
             } else {
@@ -130,6 +128,29 @@ public class CheeseFormBlockEntity extends BlockEntity implements BlockEntityTic
                 world.setBlockAndUpdate(pos, state.setValue(CheeseFormBlock.WORKING, working).setValue(CheeseFormBlock.DONE, done));
             }
         }
+    }
+
+    private CheeseFormRecipe getRecipe(List<RecipeHolder<CheeseFormRecipe>> recipes, NonNullList<ItemStack> inventory) {
+        recipeLoop:
+        for (RecipeHolder<CheeseFormRecipe> recipeHolder : recipes) {
+            CheeseFormRecipe recipe = recipeHolder.value();
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                boolean ingredientFound = false;
+                for (int slotIndex = 1; slotIndex < inventory.size(); slotIndex++) { // Assuming slot 0 is the output slot
+                    ItemStack slotItem = inventory.get(slotIndex);
+                    if (ingredient.test(slotItem)) {
+                        ingredientFound = true;
+                        break; // Found a matching item for this ingredient, no need to check further slots
+                    }
+                }
+                if (!ingredientFound) {
+                    continue recipeLoop; // This ingredient didn't match any slot items, skip to the next recipe
+                }
+            }
+            // All ingredients matched, return this recipe
+            return recipe;
+        }
+        return null; // No matching recipe found
     }
 
     private boolean canCraft(CheeseFormRecipe recipe, RegistryAccess manager) {

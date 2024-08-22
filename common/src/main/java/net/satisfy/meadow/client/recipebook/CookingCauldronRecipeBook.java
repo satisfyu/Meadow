@@ -8,10 +8,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.crafting.*;
 import net.satisfy.meadow.recipes.CookingCauldronRecipe;
 import net.satisfy.meadow.registry.RecipeRegistry;
 
@@ -24,8 +21,8 @@ public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    protected RecipeType<? extends Recipe<SingleRecipeInput>> getRecipeType() {
-        return (RecipeType<? extends Recipe<SingleRecipeInput>>) RecipeRegistry.COOKING;
+    protected RecipeType<? extends Recipe<RecipeInput>> getRecipeType() {
+        return RecipeRegistry.COOKING.get();
     }
 
 
@@ -82,5 +79,10 @@ public class CookingCauldronRecipeBook extends PrivateRecipeBookWidget {
     @Override
     public boolean isFocused() {
         return false;
+    }
+
+    @Override
+    public void recipesShown(List<RecipeHolder<?>> list) {
+
     }
 }

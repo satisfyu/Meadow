@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "regions_unexplored:baobab_logs"
 		},
-		"outputItem": "regions_unexplored:baobab_button",
-		"outputAmount": 5
+		"outputItem": {
+			"id": "regions_unexplored:baobab_button",
+			"count": 5
+		}
 	}
 }

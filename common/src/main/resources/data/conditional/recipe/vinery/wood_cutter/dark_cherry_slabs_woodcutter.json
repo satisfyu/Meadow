@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "vinery:dark_cherry_logs"
 		},
-		"outputItem": "vinery:dark_cherry_slab",
-		"outputAmount": 9
+		"outputItem": {
+			"id": "vinery:dark_cherry_slab",
+			"count": 9
+		}
 	}
 }

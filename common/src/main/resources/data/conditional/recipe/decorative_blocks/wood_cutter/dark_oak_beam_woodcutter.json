@@ -11,7 +11,9 @@
 		"inputItem": {
 			"tag": "minecraft:dark_oak_logs"
 		},
-		"outputItem": "decorative_blocks:dark_oak_beam",
-		"outputAmount": 2
+		"outputItem": {
+			"id": "decorative_blocks:dark_oak_beam",
+			"count": 2
+		}
 	}
 }
