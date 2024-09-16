@@ -7,13 +7,13 @@ architectury {
     neoForge()
 }
 
-def jarFileName = 'letsdo-meadow-forge'
+def jarFileName = 'letsdo-meadow-neoforge'
 
 archivesBaseName = jarFileName
 
 configurations {
     common
-    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    shadowCommon
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
     developmentNeoForge.extendsFrom common
@@ -35,9 +35,9 @@ dependencies {
     modImplementation "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
-    //modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") //?
+    //modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
-    modImplementation "maven.modrinth:do-api:${project.doapi_version}-forge"
+    modImplementation "maven.modrinth:do-api:${project.doapi_version}-neoforge"
 
     forgeRuntimeLibrary("blue.endless:jankson:1.2.3")
 
